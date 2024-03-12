@@ -1,0 +1,26 @@
+{
+  "name": "chatbot",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/chatbot/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/chatbot",
+        "main": "libs/chatbot/src/index.ts",
+        "tsConfig": "libs/chatbot/tsconfig.lib.json",
+        "assets": [],
+        "project": "libs/chatbot/package.json",
+        "compiler": "swc",
+        "format": ["esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs chatbot {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

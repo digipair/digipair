@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@digipair/chatbot": ["libs/chatbot/src/index.ts"],
       "@digipair/engine": ["libs/engine/src/index.ts"]
     }
   },

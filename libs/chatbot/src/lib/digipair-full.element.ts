@@ -1,0 +1,297 @@
+import '@ui5/webcomponents-icons/dist/AllIcons';
+import '@ui5/webcomponents/dist/BusyIndicator';
+import '@ui5/webcomponents/dist/Icon';
+import { html, LitElement, nothing, TemplateResult } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import './chat.element';
+import { ChatElement } from './chat.element';
+import { styles } from './digipair-full.data';
+import { executePins } from '@digipair/engine';
+
+const CHAT_COMMAND = (experience: string) => ({
+  library: '@pinser-world/actions-experience',
+  element: 'executeScene',
+  properties: {
+    experience,
+    scene: 'conversation',
+  },
+});
+
+let DIGIPAIR_USER = document.location.pathname.split('/')[2] ?? localStorage.getItem('digipair-user');
+
+if (!DIGIPAIR_USER) {
+  // set uuid
+  DIGIPAIR_USER = Math.random().toString(36).substring(2, 15);
+  localStorage.setItem('digipair-user', DIGIPAIR_USER);
+}
+
+@customElement('digipair-chatbot-full')
+export class DigipairFullElement extends LitElement {
+  @property()
+  code = '6539213e2fc9cf277ab8e70c';
+
+  @property()
+  apiUrl = 'https://service.digipair.ai/api';
+  
+  @property()
+  baseUrl = 'https://chatbot.digipair.ai';
+
+  @property()
+  commonExperience = '6539213e2fc9cf277ab8e70c';
+
+  @state()
+  private boosters: any[] = [];
+
+  @state()
+  private loading = false;
+
+  @state()
+  private currentBoost: any = null;
+
+  @state()
+  private messages: { role: string; content: string }[] = [];
+
+  @query('pw-chatbot-chat')
+  private chatbot!: ChatElement;
+
+  private cacheBoosters: any[] = [];
+
+  private isDigipairLoading = false;
+  private metadata!: {
+    id: string,
+    avatar: string,
+    color: string,
+  };
+
+  override connectedCallback(): void {
+    super.connectedCallback();
+    this.loadBoosters();
+  }
+
+  private async loadBoosters(): Promise<void> {
+    this.cacheBoosters = (await this.executeScene(this.commonExperience, 'boosts', {
+      experience: this.code,
+    }))
+      .map(({ name, metadata }: any) => metadata?.boosts.map((boost: any) => ({ ...boost, scene: name, checkUrl: new RegExp(boost.url) })))
+      .flat()
+      .filter((boost: any) => boost && !boost.selector)
+      .map((boost: any) => ({
+        name: boost.name,
+        prompt: boost.prompt,
+        required: boost.required,
+        text: boost.text,
+        inputs: boost.inputs,
+        context: {},
+        command: {
+          library: '@pinser-world/actions-experience',
+          element: 'executeScene',
+          properties: {
+            experience: this.code,
+            scene: boost.scene,
+            input: {},
+          }
+        }
+      }));
+  }
+
+  private async loadDigipair(): Promise<void> {
+    this.isDigipairLoading = true;
+
+    const experience = this.code;
+    const scene = 'metadata';
+    const metadata = await this.executeScene(this.commonExperience, scene, {
+      experience,
+    });
+
+    this.metadata = { ...metadata, id: experience };
+    await this.loadHistory();
+
+    setTimeout(() => {
+      this.scrollDown();
+    }, 1);
+
+    this.isDigipairLoading = false;
+  }
+
+  private async loadHistory(): Promise<void> {
+    const userId = DIGIPAIR_USER;
+    const experience = this.code;
+    const scene = 'history';
+    const messages = await this.executeScene(experience, scene, {
+      userId,
+    });
+
+    if (messages.length > 0) {
+      this.messages = messages;
+    }
+  }
+
+  private scrollDown(): void {
+    const container = (this.shadowRoot as unknown as HTMLElement).querySelector('.container') as HTMLElement;
+    container.scrollTop = container.scrollHeight;
+  }
+
+  async execute(boost: any, message?: string): Promise<void> {
+    this.currentBoost = null;
+    this.loading = true;
+
+    if (boost) {
+      this.messages.push({
+        role: 'user',
+        content: boost.name,
+      });
+    }
+    if (boost?.text) {
+      this.messages.push({
+        role: 'assistant',
+        content: boost.text,
+      });
+    }
+    this.chatbot.inputs.forEach(({ content }) => {
+      if (!content) {
+        return;
+      }
+
+      this.messages.push({
+        role: 'user',
+        content,
+      });
+    });
+    if (message || boost.command.properties.input.prompt) {
+      this.messages.push({
+        role: 'user',
+        content: message || boost.command.properties.input.prompt,
+      });
+    }
+    this.chatbot.requestUpdate();
+
+    const command = boost ? boost.command : CHAT_COMMAND(this.code);
+    try {
+      const pins = JSON.parse(JSON.stringify(command));
+      pins.properties.input = {
+        ...(pins.properties.input || {}),
+        prompt: message || pins.properties.input.prompt,
+        inputs: this.chatbot.inputs,
+        userId: DIGIPAIR_USER,
+        ...(!boost
+          ? {}
+          : {
+            boost: {
+              name: boost.name,
+              text: boost.text,
+            },
+          }),
+      };
+
+      const detail = await executePins(pins);
+      this.pushAssistantMessage(detail.assistant);
+
+      if (detail.command && detail.command.library && detail.command.element) {
+        executePins(detail.command, {});
+      }
+    } catch (error) {
+      this.pushAssistantMessage('Oups, il y a eu une erreur...');
+    }
+
+    this.loading = false;
+  }
+
+  private executeBoost(boost: any): void {
+    this.currentBoost = boost;
+    this.boosters = [];
+
+    if (!boost.prompt && (boost.inputs || []).length === 0) {
+      this.execute(boost);
+    }
+  }
+
+  private pushAssistantMessage(message: string): void {
+    this.messages.push({
+      role: 'assistant',
+      content: message,
+    });
+    this.chatbot.requestUpdate();
+  }
+
+  private async openMenu(): Promise<void> {
+    this.boosters = this.cacheBoosters;
+  }
+
+  private closeMenu(): void {
+    this.boosters = [];
+  }
+
+  private executeScene = async (
+    experience: string,
+    scene: string,
+    input: any = {},
+  ): Promise<any> => {
+    const response = await fetch(this.apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        experience,
+        scene,
+        input,
+      }),
+    });
+  
+    return await response.json();
+  };  
+
+  static override styles = styles;
+  override render(): TemplateResult {
+    if (this.metadata?.id !== this.code) {
+      if (!this.isDigipairLoading) {
+        this.loadDigipair();
+      }
+      return html``;
+    }
+
+    return html`
+      <section class="container">
+        <section class="result" style="border: 1px solid ${this.metadata.color}">
+          <digipair-chatbot-chat
+            baseUrl=${this.baseUrl}
+            ?loading=${this.loading}
+            .messages=${this.messages}
+            .currentBoost=${this.currentBoost}
+            @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
+          ></digipair-chatbot-chat>
+        </section>
+
+        <section class="actions ${this.loading ? 'loading' : ''}">
+          ${this.boosters.map(boost => html`
+            <div>
+              <span class="action" style="border: 1px solid ${this.metadata.color}" @click=${() => this.executeBoost(boost)}>${boost.name}</span>
+            </div>
+          `,
+    )}
+          ${!this.currentBoost
+        ? nothing
+        : html`
+              <div>
+                <span
+                  class="action"
+                  style="border: 1px solid ${this.metadata.color}"
+                  @click=${() => {
+            this.currentBoost = null;
+          }}
+                  >Annuler</span
+                >
+              </div>
+              `}
+        </section>
+
+        <section class="panel" style="border: 1px solid ${this.metadata.color}"></section>
+        <img
+          class="logo ${this.loading ? 'loading' : ''}"
+          src=${this.metadata.avatar}
+          @click=${() => this.boosters.length <= 0 ? this.openMenu() : this.closeMenu()}
+        />
+      </section>
+    `;
+  }
+}

@@ -50,7 +50,7 @@ export const applyTemplate = (value: any, context: any) => {
 
 export const executePins = async (
   settingsOrigin: PinsSettings,
-  context: any
+  context: any = {}
 ): Promise<any> => {
   const settings = await preparePinsSettings(settingsOrigin, context);
   const version = 'latest'; // this.experience.libraries[library] || 'latest';
@@ -66,7 +66,7 @@ export const executePins = async (
 };
 
 export const generateElementFromPins = async (
-  experience: Experience,
+  // experience: Experience,
   pinsSettings: PinsSettings,
   context: any
 ): Promise<Element> => {
@@ -75,7 +75,7 @@ export const generateElementFromPins = async (
 
   const library = pinsSettings.library;
   if (library !== 'web') {
-    const version = experience.libraries[library] || 'latest';
+    const version = 'latest'; // experience.libraries[library] || 'latest';
     import(`https://cdn.jsdelivr.net/npm/${library}@${version}`);
   }
 
@@ -102,7 +102,7 @@ export const generateElementFromPins = async (
   const pinsList = settings.pins || [];
   for (let i = 0; i < pinsList.length; i++) {
     const item = pinsList[i];
-    const child = await generateElementFromPins(experience, item, settings.context);
+    const child = await generateElementFromPins(/*experience, */ item, settings.context);
     element.appendChild(child);
   }
 
