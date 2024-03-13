@@ -19,7 +19,7 @@ export class ChatElement extends LitElement {
 
   @property({ type: Array })
   get inputs(): { [key: string]: any }[] {
-    return this.inputsElement.values;
+    return this.inputsElement?.values || [];
   }
 
   @property()

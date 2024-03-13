@@ -1,7 +1,11 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { until } from 'lit/directives/until.js';
-import { PinsSettings, generateElementFromPins } from '@digipair/engine';
+// import { PinsSettings, generateElementFromPins } from '@digipair/engine';
+import * as engine from '@digipair/engine';
+
+const { generateElementFromPins } = engine as any;
+type PinsSettings = any;
 
 @customElement('digipair-chatbot-inputs')
 export class InputsElement extends LitElement {
@@ -24,7 +28,7 @@ export class InputsElement extends LitElement {
       ${(this.inputs || []).map(
       (pins: PinsSettings) =>
         html`${until(
-          generateElementFromPins(pins, this.context).then(el => {
+          generateElementFromPins(pins, this.context).then((el: Element) => {
             setTimeout(() => this.dispatchEvent(new CustomEvent('change')), 1);
             el.addEventListener('change', () => this.dispatchEvent(new CustomEvent('change')));
             return el;

@@ -1,20 +1,18 @@
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import '@ui5/webcomponents/dist/BusyIndicator';
 import '@ui5/webcomponents/dist/Icon';
+// import { executePins } from '@digipair/engine';
+import * as engine from '@digipair/engine';
 import { html, LitElement, nothing, TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import './chat.element';
 import { ChatElement } from './chat.element';
 import { styles } from './digipair-full.data';
-import { executePins } from '@digipair/engine';
+import * as actionsChatbot from './pins/chatbot.actions';
 
-const CHAT_COMMAND = (experience: string) => ({
-  library: '@pinser-world/actions-experience',
-  element: 'executeScene',
-  properties: {
-    experience,
-    scene: 'conversation',
-  },
+const { config, executePins } = engine as any;
+config.set('LIBRARIES', {
+  '@digipair/actions-chatbot': actionsChatbot,
 });
 
 let DIGIPAIR_USER = document.location.pathname.split('/')[2] ?? localStorage.getItem('digipair-user');
@@ -51,8 +49,18 @@ export class DigipairFullElement extends LitElement {
   @state()
   private messages: { role: string; content: string }[] = [];
 
-  @query('pw-chatbot-chat')
+  @query('digipair-chatbot-chat')
   private chatbot!: ChatElement;
+
+  private CHAT_COMMAND = (digipair: string) => ({
+    library: '@digipair/actions-chatbot',
+    element: 'executeRemoteReasoning',
+    properties: {
+      digipair,
+      reasoning: 'conversation',
+      apiUrl: this.apiUrl,
+    },
+  });
 
   private cacheBoosters: any[] = [];
 
@@ -83,12 +91,13 @@ export class DigipairFullElement extends LitElement {
         inputs: boost.inputs,
         context: {},
         command: {
-          library: '@pinser-world/actions-experience',
-          element: 'executeScene',
+          library: '@digipair/actions-chatbot',
+          element: 'executeRemoteReasoning',
           properties: {
-            experience: this.code,
-            scene: boost.scene,
+            digipair: this.code,
+            reasoning: boost.scene,
             input: {},
+            apiUrl: this.apiUrl,
           }
         }
       }));
@@ -165,7 +174,7 @@ export class DigipairFullElement extends LitElement {
     }
     this.chatbot.requestUpdate();
 
-    const command = boost ? boost.command : CHAT_COMMAND(this.code);
+    const command = boost ? boost.command : this.CHAT_COMMAND(this.code);
     try {
       const pins = JSON.parse(JSON.stringify(command));
       pins.properties.input = {
@@ -277,8 +286,8 @@ export class DigipairFullElement extends LitElement {
                   class="action"
                   style="border: 1px solid ${this.metadata.color}"
                   @click=${() => {
-            this.currentBoost = null;
-          }}
+                    this.currentBoost = null;
+                  }}
                   >Annuler</span
                 >
               </div>

@@ -7,16 +7,10 @@ import './chat.element';
 import { ChatElement } from './chat.element';
 import { styles } from './digipair.data';
 import getCssSelector from './tools/css-selector';
-import { executePins, executePinsList } from '@digipair/engine';
+import { _config } from './config';
+import * as engine from '@digipair/engine';
 
-const CHAT_COMMAND = (experience: string) => ({
-  library: '@pinser-world/actions-experience',
-  element: 'executeScene',
-  properties: {
-    experience,
-    scene: 'conversation',
-  },
-});
+const { executePins, executePinsList } = engine as any;
 
 let DIGIPAIR_USER = localStorage.getItem('digipair-user');
 let NEW_USER = false;
@@ -37,15 +31,6 @@ export class ChatbotElement extends LitElement {
   @property()
   firstOpenDelay = 60000;
 
-  @property()
-  apiUrl = 'https://service.digipair.ai/api';
-
-  @property()
-  baseUrl = 'https://chatbot.digipair.ai';
-  
-  @property()
-  commonExperience = '6539213e2fc9cf277ab8e70c';
-
   @state()
   private boosters: any[] = [];
 
@@ -63,6 +48,16 @@ export class ChatbotElement extends LitElement {
 
   @query('digipair-chatbot-chat')
   private chatbot!: ChatElement;
+
+  private CHAT_COMMAND = (digipair: string) => ({
+    library: '@digipair/actions-chatbot',
+    element: 'executeRemoteReasoning',
+    properties: {
+      digipair,
+      reasoning: 'conversation',
+      apiUrl: _config['API_URL'],
+    },
+  });
 
   private alreadyOpened = false;
   private isDigipairLoading = false;
@@ -93,7 +88,7 @@ export class ChatbotElement extends LitElement {
   
   private async boostListener() {
     const experience = this.code;
-    const boosts = (await this.executeScene(this.commonExperience, 'boosts', {
+    const boosts = (await this.executeScene(_config['COMMON_EXPERIENCE'], 'boosts', {
       experience,
     }))
       .map(({ name, metadata }: any) => metadata?.boosts.map((boost: any) => ({ ...boost, scene: name, checkUrl: new RegExp(boost.url) })))
@@ -127,12 +122,13 @@ export class ChatbotElement extends LitElement {
                 element: getCssSelector(event.target.closest(boost.selector)),
               },
               command: {
-                library: '@pinser-world/actions-experience',
-                element: 'executeScene',
+                library: '@digipair/actions-chatbot',
+                element: 'executeRemoteReasoning',
                 properties: {
-                  experience: this.code,
-                  scene: boost.scene,
+                  digipair: this.code,
+                  reasoning: boost.scene,
                   input: {},
+                  apiUrl: _config['API_URL'],
                 }
               }
             }));
@@ -152,7 +148,7 @@ export class ChatbotElement extends LitElement {
 
     const experience = this.code;
     const scene = 'metadata';
-    const metadata = await this.executeScene(this.commonExperience, scene, {
+    const metadata = await this.executeScene(_config['COMMON_EXPERIENCE'], scene, {
       experience,
     });
 
@@ -239,7 +235,7 @@ export class ChatbotElement extends LitElement {
     }
     this.chatbot.requestUpdate();
 
-    const command = boost ? boost.command : CHAT_COMMAND(this.code);
+    const command = boost ? boost.command : this.CHAT_COMMAND(this.code);
     try {
       const pins = JSON.parse(JSON.stringify(command));
       pins.properties.input = {
@@ -307,7 +303,7 @@ export class ChatbotElement extends LitElement {
     scene: string,
     input: any = {},
   ): Promise<any> => {
-    const response = await fetch(this.apiUrl, {
+    const response = await fetch(_config, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

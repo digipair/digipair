@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as Handlebars from 'handlebars';
-import * as JSONPath from 'jsonpath';
+import * as Handlebars from 'handlebars/dist/handlebars.min.js';
+import * as jsonpath from 'jsonpath/jsonpath.min.js';
 import { PinsSettings } from './pins-settings.interface';
-import { Experience } from './experience.interface';
 
 Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);
 });
 
 const _config: { [key: string]: any } = {
-  PINS: {} as { [key: string]: string },
-  BASE_URL: 'https://cdn.jsdelivr.net/npm/' as string
+  LIBRARIES: {} as { [key: string]: string },
+  BASE_URL: 'https://cdn.jsdelivr.net/npm' as string
 };
 
 export const config = {
@@ -28,7 +27,6 @@ export const applyTemplate = (value: any, context: any) => {
 
     if (result.startsWith('GET_VALUE:')) {
       const path = result.replace('GET_VALUE:', '');
-      const jsonpath = new (JSONPath as any).JSONPath();
       result = jsonpath.value(context, path);
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
@@ -50,11 +48,12 @@ export const applyTemplate = (value: any, context: any) => {
 
 export const executePins = async (
   settingsOrigin: PinsSettings,
-  context: any = {}
+  context: any = {},
+  options: { libraries: {[key: string]: string }} = { libraries: {} }
 ): Promise<any> => {
-  const settings = await preparePinsSettings(settingsOrigin, context);
-  const version = 'latest'; // this.experience.libraries[library] || 'latest';
-  const library = _config['PINS'][settings.library] ?? (await import(`https://cdn.jsdelivr.net/npm/${settings.library}@${version}/index.js`))[settings.library];
+  const settings = await preparePinsSettings(settingsOrigin, context, options);
+  const version = options.libraries[settings.library] || 'latest';
+  const library = _config['LIBRARIES'][settings.library] || await import(`${_config['BASE_URL']}/${settings.library}@${version}/index.js`);
   const pins = library?.[settings.element];
 
   return pins
@@ -66,20 +65,20 @@ export const executePins = async (
 };
 
 export const generateElementFromPins = async (
-  // experience: Experience,
   pinsSettings: PinsSettings,
-  context: any
+  context: any,
+  options: { libraries: {[key: string]: string }} = { libraries: {} }
 ): Promise<Element> => {
   const element = document.createElement(pinsSettings.element);
   element.setAttribute('data-digipair-pins', '');
 
   const library = pinsSettings.library;
-  if (library !== 'web') {
-    const version = 'latest'; // experience.libraries[library] || 'latest';
-    import(`https://cdn.jsdelivr.net/npm/${library}@${version}`);
+  if (library !== 'web' && !_config['LIBRARIES'][library]) {
+    const version = options.libraries[library] || 'latest';
+    import(`${_config['BASE_URL']}/${library}@${version}/index.js`);
   }
 
-  const settings = await preparePinsSettings(pinsSettings, context);
+  const settings = await preparePinsSettings(pinsSettings, context, options);
   Object.entries(settings.properties || {}).forEach(([key, value]) => {
     if (key === 'textContent') {
       element.textContent = value;
@@ -94,7 +93,7 @@ export const generateElementFromPins = async (
     ([key, pins]) => {
       element.addEventListener(key as keyof HTMLElementEventMap, (_event: Event) => {
         const event = _event as CustomEvent;
-        executePins(pins, { ...context, event: event.detail });
+        executePins(pins, { ...context, event: event.detail }, options);
       });
     }
   );
@@ -102,7 +101,7 @@ export const generateElementFromPins = async (
   const pinsList = settings.pins || [];
   for (let i = 0; i < pinsList.length; i++) {
     const item = pinsList[i];
-    const child = await generateElementFromPins(/*experience, */ item, settings.context);
+    const child = await generateElementFromPins(item, settings.context, options);
     element.appendChild(child);
   }
 
@@ -111,7 +110,8 @@ export const generateElementFromPins = async (
 
 export const executePinsList = async (
     pinsSettingsList: PinsSettings[],
-    context: any
+    context: any,
+    options: { libraries: {[key: string]: string }} = { libraries: {} }
   ): Promise<any> => {
   let previous = {};
   const steps = [];
@@ -120,7 +120,7 @@ export const executePinsList = async (
   for (let i = 0; i < pinsSettingsList.length; i++) {
     const settings = pinsSettingsList[i];
 
-    previous = await executePins(settings, { ...context, previous, steps, parent: { previous: context.previous, parent: context.parent } });
+    previous = await executePins(settings, { ...context, previous, steps, parent: { previous: context.previous, parent: context.parent } }, options);
     steps[i] = { name: settings.name, result: previous };
   }
 
@@ -129,7 +129,8 @@ export const executePinsList = async (
 
 export const preparePinsSettings = async (
   settings: PinsSettings,
-  context: any
+  context: any,
+  options: { libraries: {[key: string]: string }} = { libraries: {} }
 ): Promise<PinsSettings> => {
   const localContext = {
     ...context,
@@ -142,7 +143,7 @@ export const preparePinsSettings = async (
   }
 
   for (const [key, value] of Object.entries(settings.requests || {})) {
-    localContext.requests[key] = await executePins(value, localContext);
+    localContext.requests[key] = await executePins(value, localContext, options);
   }
 
   const properties = {} as any;
