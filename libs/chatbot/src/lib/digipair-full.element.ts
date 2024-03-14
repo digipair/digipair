@@ -66,7 +66,7 @@ export class DigipairFullElement extends LitElement {
 
   private async loadBoosters(): Promise<void> {
     this.cacheBoosters = (await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
-      experience: this.code,
+      digipair: this.code,
     }))
       .map(({ name, metadata }: any) => metadata?.boosts.map((boost: any) => ({ ...boost, scene: name, checkUrl: new RegExp(boost.url) })))
       .flat()
@@ -94,13 +94,13 @@ export class DigipairFullElement extends LitElement {
   private async loadDigipair(): Promise<void> {
     this.isDigipairLoading = true;
 
-    const experience = this.code;
-    const scene = 'metadata';
-    const metadata = await this.executeScene(_config.COMMON_EXPERIENCE, scene, {
-      experience,
+    const digipair = this.code;
+    const reasoning = 'metadata';
+    const metadata = await this.executeScene(_config.COMMON_EXPERIENCE, reasoning, {
+      digipair,
     });
 
-    this.metadata = { ...metadata, id: experience };
+    this.metadata = { ...metadata, id: digipair };
     await this.loadHistory();
 
     setTimeout(() => {
@@ -112,9 +112,9 @@ export class DigipairFullElement extends LitElement {
 
   private async loadHistory(): Promise<void> {
     const userId = DIGIPAIR_USER;
-    const experience = this.code;
-    const scene = 'history';
-    const messages = await this.executeScene(experience, scene, {
+    const digipair = this.code;
+    const reasoning = 'history';
+    const messages = await this.executeScene(digipair, reasoning, {
       userId,
     });
 
@@ -219,25 +219,21 @@ export class DigipairFullElement extends LitElement {
   }
 
   private executeScene = async (
-    experience: string,
-    scene: string,
+    digipair: string,
+    reasoning: string,
     input: any = {},
   ): Promise<any> => {
-    const response = await fetch(_config.API_URL, {
+    const response = await fetch(`${_config.API_URL}/${digipair}/${reasoning}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        experience,
-        scene,
-        input,
-      }),
+      body: JSON.stringify(input),
     });
   
     return await response.json();
-  };  
-
+  };
+  
   static override styles = styles;
   override render(): TemplateResult {
     if (this.metadata?.id !== this.code) {

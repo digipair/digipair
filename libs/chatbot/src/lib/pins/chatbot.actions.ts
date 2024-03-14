@@ -6,15 +6,14 @@ class DomService {
     _pinsSettingsList: PinsSettings[],
     context: any
   ): Promise<any> {
-    const response = await fetch(apiUrl, {
+    const response = await fetch(`${apiUrl}/${digipair}/${reasoning}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        experience: digipair,
-        scene: reasoning,
-        input: { ...context.input, ...input },
+        ...context.input, 
+        ...input,
       }),
     });
   
