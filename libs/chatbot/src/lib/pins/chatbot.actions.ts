@@ -17,7 +17,13 @@ class DomService {
       }),
     });
   
-    return await response.json();
+    const result = await response.json();
+
+    if (response.status >= 400) {
+      throw new Error(result.message);
+    }
+
+    return result;
   }
 
   async setElementAttribute(

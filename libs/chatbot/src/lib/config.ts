@@ -10,7 +10,7 @@ configEngine.set('LIBRARIES', {
 type CONFIG_KEY = 'API_URL' | 'COMMON_EXPERIENCE' | 'BASE_URL' | 'LIBRARIES';
 export const _config = {
   API_URL: 'https://service.digipair.ai/api',
-  COMMON_EXPERIENCE: '6539213e2fc9cf277ab8e70c',
+  COMMON_EXPERIENCE: 'common',
 };
 export const config = {
   set: (key: CONFIG_KEY, value: any) => {
@@ -30,5 +30,3 @@ export const config = {
     _config[key] = value;
   },
 };
-
-

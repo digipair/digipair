@@ -23,7 +23,7 @@ if (!DIGIPAIR_USER) {
 @customElement('digipair-chatbot-full')
 export class DigipairFullElement extends LitElement {
   @property()
-  code = '6539213e2fc9cf277ab8e70c';
+  code = 'common';
 
   @state()
   private boosters: any[] = [];
@@ -233,7 +233,7 @@ export class DigipairFullElement extends LitElement {
   
     return await response.json();
   };
-  
+
   static override styles = styles;
   override render(): TemplateResult {
     if (this.metadata?.id !== this.code) {

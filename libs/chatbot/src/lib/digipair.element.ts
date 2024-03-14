@@ -26,7 +26,7 @@ if (!DIGIPAIR_USER) {
 @customElement('digipair-chatbot')
 export class ChatbotElement extends LitElement {
   @property()
-  code = '6539213e2fc9cf277ab8e70c';
+  code = 'common';
 
   @property()
   firstOpenDelay = 60000;

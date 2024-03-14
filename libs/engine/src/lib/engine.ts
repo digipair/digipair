@@ -57,12 +57,11 @@ export const executePins = async (
   const library = _config.LIBRARIES[settings.library] || await import(`${_config.BASE_URL}/${settings.library}@${version}/index.js`);
   const pins = library?.[settings.element];
 
-  return pins
-    ? await pins(settings.properties, settings.pins, context)
-    : {
-      command: 'error',
-      message: `[CommandService:executePins] pins "${settings.library}:${settings.element}" not found`,
-    };
+  if (!pins) {
+    throw new Error(`Element ${settings.element} not found in library ${settings.library}`);
+  }
+  
+  return await pins(settings.properties, settings.pins, context);
 };
 
 export const generateElementFromPins = async (
