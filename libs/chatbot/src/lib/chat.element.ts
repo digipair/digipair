@@ -1,4 +1,4 @@
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.esm.min.mjs';
+import mermaid from 'mermaid/dist/mermaid.esm.min.mjs';
 import { LitElement, TemplateResult, css, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';

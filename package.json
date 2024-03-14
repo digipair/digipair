@@ -7,6 +7,7 @@
   "dependencies": {
     "@ui5/webcomponents": "^1.23.1",
     "@ui5/webcomponents-icons": "^1.23.1",
+    "mermaid": "10.3.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
