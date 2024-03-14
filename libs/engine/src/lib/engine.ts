@@ -7,13 +7,14 @@ Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);
 });
 
-const _config: { [key: string]: any } = {
+type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES';
+const _config = {
   LIBRARIES: {} as { [key: string]: string },
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string
 };
 
 export const config = {
-  set: (key: string, value: any) => {
+  set: (key: CONFIG_KEY, value: any) => {
     _config[key] = value;
   }
 };
@@ -53,7 +54,7 @@ export const executePins = async (
 ): Promise<any> => {
   const settings = await preparePinsSettings(settingsOrigin, context, options);
   const version = options.libraries[settings.library] || 'latest';
-  const library = _config['LIBRARIES'][settings.library] || await import(`${_config['BASE_URL']}/${settings.library}@${version}/index.js`);
+  const library = _config.LIBRARIES[settings.library] || await import(`${_config.BASE_URL}/${settings.library}@${version}/index.js`);
   const pins = library?.[settings.element];
 
   return pins
@@ -73,9 +74,9 @@ export const generateElementFromPins = async (
   element.setAttribute('data-digipair-pins', '');
 
   const library = pinsSettings.library;
-  if (library !== 'web' && !_config['LIBRARIES'][library]) {
+  if (library !== 'web' && !_config.LIBRARIES[library]) {
     const version = options.libraries[library] || 'latest';
-    import(`${_config['BASE_URL']}/${library}@${version}/index.js`);
+    import(`${_config.BASE_URL}/${library}@${version}/index.js`);
   }
 
   const settings = await preparePinsSettings(pinsSettings, context, options);

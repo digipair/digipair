@@ -1,19 +1,21 @@
 import * as engine from '@digipair/engine';
 import * as actionsChatbot from './pins/chatbot.actions';
 
-engine.config.set('LIBRARIES', {
+const configEngine = engine as any;
+
+configEngine.set('LIBRARIES', {
     '@digipair/actions-chatbot': actionsChatbot,
 });
 
-export const _config: { [key: string]: any } = {
+type CONFIG_KEY = 'API_URL' | 'COMMON_EXPERIENCE' | 'BASE_URL' | 'LIBRARIES';
+export const _config = {
   API_URL: 'https://service.digipair.ai/api',
-  CHATBOT_URL: 'https://chatbot.digipair.ai',
   COMMON_EXPERIENCE: '6539213e2fc9cf277ab8e70c',
 };
 export const config = {
-  set: (key: string, value: any) => {
-    if (key === 'LIBRARIES' || key === 'BASE_URL') {
-      engine.config.set('LIBRARIES', {
+  set: (key: CONFIG_KEY, value: any) => {
+    if (key === 'LIBRARIES') {
+      configEngine.set('LIBRARIES', {
         '@digipair/actions-chatbot': actionsChatbot,
         ...value
       });
@@ -21,7 +23,7 @@ export const config = {
     }
 
     if (key === 'BASE_URL') {
-      engine.config.set('BASE_URL', value);
+      configEngine.set('BASE_URL', value);
       return;
     }
 

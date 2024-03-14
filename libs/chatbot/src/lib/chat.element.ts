@@ -5,6 +5,8 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import * as showdown from 'showdown';
 import './inputs.element';
 import { InputsElement } from './inputs.element';
+import { _config } from './config';
+import { WRITTING_IMAGE } from './common.data';
 
 @customElement('digipair-chatbot-chat')
 export class ChatElement extends LitElement {
@@ -21,9 +23,6 @@ export class ChatElement extends LitElement {
   get inputs(): { [key: string]: any }[] {
     return this.inputsElement?.values || [];
   }
-
-  @property()
-  baseUrl!: string;
 
   @state()
   private speaking = false;
@@ -320,7 +319,7 @@ export class ChatElement extends LitElement {
           .context=${this.currentBoost?.context || {}}
         ></digipair-chatbot-inputs>
 
-        ${!this.loading ? nothing : html`<section class="loading"><img src=${this.baseUrl + '/assets/writing.gif'} /></section>`}
+        ${!this.loading ? nothing : html`<section class="loading"><img src=${WRITTING_IMAGE} /></section>`}
       </section>
 
       <section class="input-container">

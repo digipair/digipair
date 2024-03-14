@@ -8,12 +8,9 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import './chat.element';
 import { ChatElement } from './chat.element';
 import { styles } from './digipair-full.data';
-import * as actionsChatbot from './pins/chatbot.actions';
+import { _config } from './config';
 
-const { config, executePins } = engine as any;
-config.set('LIBRARIES', {
-  '@digipair/actions-chatbot': actionsChatbot,
-});
+const { executePins } = engine as any;
 
 let DIGIPAIR_USER = document.location.pathname.split('/')[2] ?? localStorage.getItem('digipair-user');
 
@@ -27,15 +24,6 @@ if (!DIGIPAIR_USER) {
 export class DigipairFullElement extends LitElement {
   @property()
   code = '6539213e2fc9cf277ab8e70c';
-
-  @property()
-  apiUrl = 'https://service.digipair.ai/api';
-  
-  @property()
-  baseUrl = 'https://chatbot.digipair.ai';
-
-  @property()
-  commonExperience = '6539213e2fc9cf277ab8e70c';
 
   @state()
   private boosters: any[] = [];
@@ -58,7 +46,7 @@ export class DigipairFullElement extends LitElement {
     properties: {
       digipair,
       reasoning: 'conversation',
-      apiUrl: this.apiUrl,
+      apiUrl: _config.API_URL,
     },
   });
 
@@ -77,7 +65,7 @@ export class DigipairFullElement extends LitElement {
   }
 
   private async loadBoosters(): Promise<void> {
-    this.cacheBoosters = (await this.executeScene(this.commonExperience, 'boosts', {
+    this.cacheBoosters = (await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
       experience: this.code,
     }))
       .map(({ name, metadata }: any) => metadata?.boosts.map((boost: any) => ({ ...boost, scene: name, checkUrl: new RegExp(boost.url) })))
@@ -97,7 +85,7 @@ export class DigipairFullElement extends LitElement {
             digipair: this.code,
             reasoning: boost.scene,
             input: {},
-            apiUrl: this.apiUrl,
+            apiUrl: _config.API_URL,
           }
         }
       }));
@@ -108,7 +96,7 @@ export class DigipairFullElement extends LitElement {
 
     const experience = this.code;
     const scene = 'metadata';
-    const metadata = await this.executeScene(this.commonExperience, scene, {
+    const metadata = await this.executeScene(_config.COMMON_EXPERIENCE, scene, {
       experience,
     });
 
@@ -235,7 +223,7 @@ export class DigipairFullElement extends LitElement {
     scene: string,
     input: any = {},
   ): Promise<any> => {
-    const response = await fetch(this.apiUrl, {
+    const response = await fetch(_config.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -263,7 +251,6 @@ export class DigipairFullElement extends LitElement {
       <section class="container">
         <section class="result" style="border: 1px solid ${this.metadata.color}">
           <digipair-chatbot-chat
-            baseUrl=${this.baseUrl}
             ?loading=${this.loading}
             .messages=${this.messages}
             .currentBoost=${this.currentBoost}

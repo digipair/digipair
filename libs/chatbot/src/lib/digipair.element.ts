@@ -55,7 +55,7 @@ export class ChatbotElement extends LitElement {
     properties: {
       digipair,
       reasoning: 'conversation',
-      apiUrl: _config['API_URL'],
+      apiUrl: _config.API_URL,
     },
   });
 
@@ -88,7 +88,7 @@ export class ChatbotElement extends LitElement {
   
   private async boostListener() {
     const experience = this.code;
-    const boosts = (await this.executeScene(_config['COMMON_EXPERIENCE'], 'boosts', {
+    const boosts = (await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
       experience,
     }))
       .map(({ name, metadata }: any) => metadata?.boosts.map((boost: any) => ({ ...boost, scene: name, checkUrl: new RegExp(boost.url) })))
@@ -128,7 +128,7 @@ export class ChatbotElement extends LitElement {
                   digipair: this.code,
                   reasoning: boost.scene,
                   input: {},
-                  apiUrl: _config['API_URL'],
+                  apiUrl: _config.API_URL,
                 }
               }
             }));
@@ -148,7 +148,7 @@ export class ChatbotElement extends LitElement {
 
     const experience = this.code;
     const scene = 'metadata';
-    const metadata = await this.executeScene(_config['COMMON_EXPERIENCE'], scene, {
+    const metadata = await this.executeScene(_config.COMMON_EXPERIENCE, scene, {
       experience,
     });
 
@@ -303,7 +303,7 @@ export class ChatbotElement extends LitElement {
     scene: string,
     input: any = {},
   ): Promise<any> => {
-    const response = await fetch(_config, {
+    const response = await fetch(_config.API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -331,7 +331,6 @@ export class ChatbotElement extends LitElement {
       <section class="container result-${this.resultState}">
         <section class="result" style="border: 1px solid ${this.metadata.color}">
           <digipair-chatbot-chat
-            baseUrl=${this.baseUrl}
             ?loading=${this.loading}
             .messages=${this.messages}
             .currentBoost=${this.currentBoost}
