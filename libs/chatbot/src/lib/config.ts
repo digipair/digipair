@@ -1,7 +1,7 @@
 import * as engine from '@digipair/engine';
 import * as actionsChatbot from './pins/chatbot.actions';
 
-const configEngine = engine as any;
+const configEngine = (engine as any).config;
 
 configEngine.set('LIBRARIES', {
     '@digipair/actions-chatbot': actionsChatbot,

@@ -1,12 +1,12 @@
 import mermaid from 'mermaid/dist/mermaid.esm.min.mjs';
 import { LitElement, TemplateResult, css, html, nothing } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import * as showdown from 'showdown';
-import './inputs.element';
 import { InputsElement } from './inputs.element';
 import { _config } from './config';
 import { WRITTING_IMAGE } from './common.data';
+import './inputs.element';
 
 @customElement('digipair-chatbot-chat')
 export class ChatElement extends LitElement {
@@ -24,9 +24,6 @@ export class ChatElement extends LitElement {
     return this.inputsElement?.values || [];
   }
 
-  @state()
-  private speaking = false;
-
   @query('#messageInput')
   private messageInput!: HTMLInputElement;
 
@@ -35,7 +32,6 @@ export class ChatElement extends LitElement {
 
   private previousMessages = '';
   private previousCurrentBoostText: string | undefined = undefined;
-  private recognition!: any;
   private converter!: showdown.Converter;
 
   static override styles = [
@@ -140,10 +136,6 @@ export class ChatElement extends LitElement {
         background-color: transparent;
         margin-right: 6px;
         padding-bottom: 0px;
-      }
-
-      .speaking {
-        color: red !important;
       }
 
       .button {
@@ -262,11 +254,6 @@ export class ChatElement extends LitElement {
     this.addMessage(this.messageInput.value.trim());
   }
 
-  private speak(): void {
-    this.speaking = true;
-    this.recognition?.start();
-  }
-
   private hasInputsValues(): boolean {
     return this.inputsElement.values.reduce((acc, { value, required }) => (required && value === '' ? false : acc), true);
   }
@@ -333,32 +320,13 @@ export class ChatElement extends LitElement {
             @keydown=${() => this.requestUpdate()}
             @keyup=${(event: Event) => this.keypressManagement(event)}
             ?disabled=${this.loading ||
-      this.speaking ||
       (this.currentBoost && !this.currentBoost.prompt)}
           ></textarea>
         </section>
 
         <ui5-icon
-          name="microphone"
-          class="button ${!this.recognition || this.loading ||
-        this.speaking ||
-        (this.messageInput && this.messageInput.value !== '') ||
-        (this.currentBoost && !this.currentBoost.prompt)
-        ? 'disabled'
-        : ''} ${this.speaking ? 'speaking' : ''}"
-          @click=${() =>
-        !this.recognition ||
-          this.loading ||
-          this.speaking ||
-          (this.messageInput && this.messageInput?.value !== '') ||
-          (this.currentBoost && !this.currentBoost.prompt)
-          ? void 0
-          : this.speak()}
-        ></ui5-icon>
-        <ui5-icon
           name="begin"
           class="button ${this.loading ||
-        this.speaking ||
         ((!this.messageInput || this.messageInput.value === '') &&
           (!this.currentBoost || this.currentBoost.required)) ||
         !this.hasInputsValues()
@@ -366,7 +334,6 @@ export class ChatElement extends LitElement {
         : ''}"
           @click=${() =>
         this.loading ||
-          this.speaking ||
           ((!this.messageInput || this.messageInput.value === '') &&
             (!this.currentBoost || this.currentBoost.required)) ||
           !this.hasInputsValues()
