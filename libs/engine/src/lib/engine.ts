@@ -31,11 +31,7 @@ export const applyTemplate = (value: any, context: any) => {
       result = jsonpath.value(context, path);
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
-    result = [] as any;
-
-    (value || []).forEach((attributeValue, key) => {
-      result[key] = applyTemplate(attributeValue, context);
-    });
+    result = value;
   } else if (typeof value === 'object') {
     result = {} as any;
 
