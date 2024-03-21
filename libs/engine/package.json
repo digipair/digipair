@@ -2,6 +2,6 @@
   "name": "@digipair/engine",
   "version": "0.0.1",
   "dependencies": {},
-  "main": "./index.esm.js",
+  "main": "./index.cjs.js",
   "module": "./index.esm.js"
 }

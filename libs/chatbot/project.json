@@ -14,7 +14,7 @@
         "assets": ["libs/chatbot/src/debug.html"],
         "project": "libs/chatbot/package.json",
         "compiler": "swc",
-        "format": ["esm"],
+        "format": ["esm", "cjs"],
         "rollupConfig": ["libs/chatbot/rollup.config.cjs"]
       }
     },
