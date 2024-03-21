@@ -1,0 +1,27 @@
+{
+  "name": "skill-llm",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-llm/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-llm",
+        "main": "libs/skill-llm/src/index.ts",
+        "tsConfig": "libs/skill-llm/tsconfig.lib.json",
+        "assets": [],
+        "project": "libs/skill-llm/package.json",
+        "compiler": "swc",
+        "format": ["esm", "cjs"],
+        "rollupConfig": ["libs/skill-llm/rollup.config.cjs"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-llm {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

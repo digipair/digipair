@@ -16,7 +16,12 @@
     "baseUrl": ".",
     "paths": {
       "@digipair/chatbot": ["libs/chatbot/src/index.ts"],
-      "@digipair/engine": ["libs/engine/src/index.ts"]
+      "@digipair/engine": ["libs/engine/src/index.ts"],
+      "@digipair/skill-chatbot": ["libs/skill-chatbot/src/index.ts"],
+      "@digipair/skill-llm": ["libs/skill-llm/src/index.ts"],
+      "@digipair/skill-ollama": ["libs/skill-ollama/src/index.ts"],
+      "@digipair/skill-openai": ["libs/skill-openai/src/index.ts"],
+      "@digipair/skill-vespa": ["libs/skill-vespa/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
