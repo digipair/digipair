@@ -116,7 +116,7 @@ export const executePinsList = async (
   for (let i = 0; i < pinsSettingsList.length; i++) {
     const settings = pinsSettingsList[i];
 
-    previous = await executePins(settings, { ...context, previous, steps, parent: { previous: context.previous, parent: context.parent } }, options);
+    previous = await executePins(settings, { ...context, previous, steps, parent: { previous: context.previous, steps: context.steps, parent: context.parent } }, options);
     steps[i] = { name: settings.name, result: previous };
   }
 
