@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Ollama } from '@langchain/community/llms/ollama';
-import { RunnableSequence } from '@langchain/core/runnables';
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { PromptTemplate } from '@langchain/core/prompts';
+import { RunnableSequence } from '@langchain/core/runnables';
 import { loadSummarizationChain } from 'langchain/chains';
+import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 
 type PinsSettings = any;
 
@@ -12,13 +12,13 @@ const OLLAMA_SERVER = process.env['OLLAMA_SERVER'] ?? 'http://localhost:11434';
 class OllamaService {
   private extractJsonFromOutput(message: any): any {
     const text = message.content;
-  
+
     // Define the regular expression pattern to match JSON blocks
     const pattern = /```json\s*((.|\n)*?)\s*```/gs;
-  
+
     // Find all non-overlapping matches of the pattern in the string
     const matches = pattern.exec(text);
-  
+
     if (matches && matches[1]) {
       try {
         return JSON.parse(matches[1].trim());
@@ -30,39 +30,41 @@ class OllamaService {
     }
   }
 
-  async basic(
-    params: any,
-    _pins: PinsSettings[],
-    context: any
-  ) {
-    const { modelName = 'mistral', temperature = 0, baseUrl = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER, prompt, schema } = params;
+  async basic(params: any, _pins: PinsSettings[], _context: any) {
+    const {
+      modelName = 'mistral',
+      temperature = 0,
+      baseUrl = OLLAMA_SERVER,
+      prompt,
+      schema,
+    } = params;
     const model = new Ollama({ model: modelName, temperature, baseUrl });
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
       chain = RunnableSequence.from([
-        PromptTemplate.fromTemplate(
-          prompt ?? '{prompt}',
-        ),
+        PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
         model as any,
       ]);
     } else {
       const promptFormatted = prompt.replace(/{/g, '{{').replace(/}/g, '}}');
       const SYSTEM_PROMPT_TEMPLATE = [
         "Answer the user's query. You must return your answer as JSON that matches the given schema:",
-        "```json\n{schema}\n```.",
-        "Make sure to wrap the answer in ```json and ``` tags. Conform to the given schema exactly.",
-      ].join("\n");
+        '```json\n{schema}\n```.',
+        'Make sure to wrap the answer in ```json and ``` tags. Conform to the given schema exactly.',
+      ].join('\n');
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${promptFormatted ?? '{prompt}'}`,
+          `Answer the users question as best as possible.\n{format_instructions}\n${
+            promptFormatted ?? '{prompt}'
+          }`,
           {
             partialVariables: {
-              schema,
+              schema: JSON.stringify(schema),
               format_instructions: SYSTEM_PROMPT_TEMPLATE,
-            }
-          }
+            },
+          },
         ),
         model as any,
         this.extractJsonFromOutput,
@@ -72,41 +74,45 @@ class OllamaService {
     return chain;
   }
 
-  async vision(
-    params: any,
-    _pins: PinsSettings[],
-    context: any
-  ) {
-    const { modelName = 'llava', temperature = 0, baseUrl = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER, prompt, images, schema } = params;
+  async vision(params: any, _pins: PinsSettings[], _context: any) {
+    const {
+      modelName = 'llava',
+      temperature = 0,
+      baseUrl = OLLAMA_SERVER,
+      schema,
+      prompt,
+      image,
+    } = params;
     const model = new Ollama({ model: modelName, temperature, baseUrl }).bind({
-      images,
-    });
+      images: [image.split(';base64,')[1]],
+      prompt,
+    } as any);
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
       chain = RunnableSequence.from([
-        PromptTemplate.fromTemplate(
-          prompt ?? '{prompt}',
-        ),
+        PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
         model as any,
       ]);
     } else {
       const promptFormatted = prompt.replace(/{/g, '{{').replace(/}/g, '}}');
       const SYSTEM_PROMPT_TEMPLATE = [
         "Answer the user's query. You must return your answer as JSON that matches the given schema:",
-        "```json\n{schema}\n```.",
-        "Make sure to wrap the answer in ```json and ``` tags. Conform to the given schema exactly.",
-      ].join("\n");
+        '```json\n{schema}\n```.',
+        'Make sure to wrap the answer in ```json and ``` tags. Conform to the given schema exactly.',
+      ].join('\n');
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${promptFormatted ?? '{prompt}'}`,
+          `Answer the users question as best as possible.\n{format_instructions}\n${
+            promptFormatted ?? '{prompt}'
+          }`,
           {
             partialVariables: {
-              schema,
+              schema: JSON.stringify(schema),
               format_instructions: SYSTEM_PROMPT_TEMPLATE,
-            }
-          }
+            },
+          },
         ),
         model as any,
         this.extractJsonFromOutput,
@@ -116,15 +122,11 @@ class OllamaService {
     return chain;
   }
 
-  async summarization(
-    params: any,
-    _pins: PinsSettings[],
-    context: any
-  ) {
+  async summarization(params: any, _pins: PinsSettings[], _context: any) {
     const {
       modelName = 'mistral',
       temperature = 0,
-      baseUrl = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER,
+      baseUrl = OLLAMA_SERVER,
       chunkSize = 1024,
 
       type = 'map_reduce',
@@ -147,14 +149,20 @@ class OllamaService {
       type,
       verbose,
 
-      prompt: !prompt ? undefined : PromptTemplate.fromTemplate(prompt) as any,
+      prompt: !prompt ? undefined : (PromptTemplate.fromTemplate(prompt) as any),
 
-      combineMapPrompt: !combineMapPrompt ? undefined : PromptTemplate.fromTemplate(combineMapPrompt) as any,
-      combinePrompt: !combinePrompt ? undefined : PromptTemplate.fromTemplate(combinePrompt) as any,
+      combineMapPrompt: !combineMapPrompt
+        ? undefined
+        : (PromptTemplate.fromTemplate(combineMapPrompt) as any),
+      combinePrompt: !combinePrompt
+        ? undefined
+        : (PromptTemplate.fromTemplate(combinePrompt) as any),
       returnIntermediateSteps,
 
-      refinePrompt: !refinePrompt ? undefined : PromptTemplate.fromTemplate(refinePrompt) as any,
-      questionPrompt: !questionPrompt ? undefined : PromptTemplate.fromTemplate(questionPrompt) as any,
+      refinePrompt: !refinePrompt ? undefined : (PromptTemplate.fromTemplate(refinePrompt) as any),
+      questionPrompt: !questionPrompt
+        ? undefined
+        : (PromptTemplate.fromTemplate(questionPrompt) as any),
     });
 
     const chain = RunnableSequence.from([
@@ -168,20 +176,11 @@ class OllamaService {
   }
 }
 
-export const basic = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new OllamaService().basic(params, pinsSettingsList, context);
+export const basic = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new OllamaService().basic(params, pinsSettingsList, context);
 
-export const vision = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new OllamaService().vision(params, pinsSettingsList, context);
+export const vision = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new OllamaService().vision(params, pinsSettingsList, context);
 
-export const summarization = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new OllamaService().summarization(params, pinsSettingsList, context);
+export const summarization = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new OllamaService().summarization(params, pinsSettingsList, context);

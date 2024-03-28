@@ -7,17 +7,26 @@ type PinsSettings = any;
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 
 class VespaService {
-  private async searchDocuments(baseUrl: string, collection: string, query: string, options: any = {}): Promise<any[]> {
+  private async searchDocuments(
+    baseUrl: string,
+    collection: string,
+    query: string,
+    options: any = {},
+  ): Promise<any[]> {
     const response = await fetch(`${baseUrl}/search/`, {
       method: 'POST',
-      body: JSON.stringify({ yql: `select * from ${collection} Digipair_default where ${query}`, ...options }),
+      body: JSON.stringify({
+        yql: `select * from ${collection} where ${query}`,
+        ...options,
+      }),
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     });
 
     if (!response.ok) {
-      console.error('Error - VespaService:getDocuments - fetching', await response.json());
+      const error = await response.json();
+      console.error('Error - VespaService:getDocuments - fetching', error.root?.errors ?? error);
       throw new Error(`Error - VespaService:getDocuments - fetching ${collection}`);
     }
 
@@ -25,7 +34,12 @@ class VespaService {
     return messages;
   }
 
-  private async searchParentDocuments(baseUrl: string, collection: string, query: string, options: any = {}): Promise<any[]> {
+  private async searchParentDocuments(
+    baseUrl: string,
+    collection: string,
+    query: string,
+    options: any = {},
+  ): Promise<any[]> {
     const documents = [];
     const uuids = [];
     const queryUuids = [];
@@ -40,29 +54,26 @@ class VespaService {
     }
 
     if (queryUuids.length > 0) {
-      documents.push(...(await this.searchDocuments(baseUrl, collection, `uuid in (${queryUuids.map((uuid) => `"${uuid}"`).join(',')})`, options)));
+      documents.push(
+        ...(await this.searchDocuments(
+          baseUrl,
+          collection,
+          `uuid in (${queryUuids.map(uuid => `"${uuid}"`).join(',')})`,
+          options,
+        )),
+      );
     }
 
     return documents;
   }
 
-    private async embedding(text: string) {
-    const { HuggingFaceTransformersEmbeddings } = (await eval(`import('@langchain/community/embeddings/hf_transformers')`));
-    const model = new HuggingFaceTransformersEmbeddings({
-      modelName: 'Xenova/multilingual-e5-large', 
-    });
-
-    return await model.embedQuery(text);
-  }
-
-
   private async prepareDocuments(documents: any[]) {
-    const parents = documents.map((document) => {
+    const parents = documents.map(document => {
       const uuid = v4();
       return { ...document, uuid, parent_uuid: uuid, is_parent: true };
     });
 
-    const chunksPromises = parents.map(async (parent) => {
+    const chunksPromises = parents.map(async parent => {
       const text = parent.content;
       const v128 = new RecursiveCharacterTextSplitter({
         chunkSize: 128,
@@ -76,38 +87,56 @@ class VespaService {
         chunkSize: 512,
         chunkOverlap: 51,
       });
-      const output = [...(text.length > 128 ? await v128.createDocuments([text]) : []), ...(text.length > 256 ? await v256.createDocuments([text]) : []), ...(text.length > 512 ? await v512.createDocuments([text]) : [])];
+      const output = [
+        ...(text.length > 128 ? await v128.createDocuments([text]) : []),
+        ...(text.length > 256 ? await v256.createDocuments([text]) : []),
+        ...(text.length > 512 ? await v512.createDocuments([text]) : []),
+      ];
 
-      return output.map(({ pageContent }) => ({ ...parent, content: pageContent, uuid: v4(), is_parent: false }));
+      return output.map(({ pageContent }) => ({
+        ...parent,
+        content: pageContent,
+        uuid: v4(),
+        is_parent: false,
+      }));
     });
 
     const chunks = await Promise.all(chunksPromises);
     const result = [...parents, ...chunks.flat()];
-    const embeddings = await this.embeddings(result.map((document) => document.content));
+    const embeddings = await this.embeddings(result.map(document => document.content));
 
     return result.map((document, index) => ({ ...document, content_embedding: embeddings[index] }));
   }
 
-  private async embeddings(texts: string[]) {
-    const { HuggingFaceTransformersEmbeddings } = (await eval(`import('@langchain/community/embeddings/hf_transformers')`));
+  private async embedding(text: string) {
+    const { HuggingFaceTransformersEmbeddings } = await eval(
+      `import('@langchain/community/embeddings/hf_transformers')`,
+    );
     const model = new HuggingFaceTransformersEmbeddings({
-      modelName: 'Xenova/multilingual-e5-large', 
+      modelName: 'Xenova/multilingual-e5-large',
     });
 
-    return Promise.all(texts.map((text) => model.embedQuery(text)));
+    return await model.embedQuery(text);
+  }
+
+  private async embeddings(texts: string[]) {
+    return Promise.all(texts.map(text => this.embedding(text)));
   }
 
   private async pushDocuments(baseUrl: string, collection: string, documents: any[]) {
     const results = [];
 
     for (const document of documents) {
-      const response = await fetch(`${baseUrl}/document/v1/Digipair_default/${collection}/docid/${document.uuid}`, {
-        method: 'POST',
-        body: JSON.stringify({ fields: document }),
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `${baseUrl}/document/v1/Digipair_default/${collection}/docid/${document.uuid}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ fields: { ...document } }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      });
+      );
 
       results.push(await response.json());
     }
@@ -115,44 +144,80 @@ class VespaService {
     return results;
   }
 
-  async find(params: any,  _pinsSettingsList: PinsSettings[],  context: any): Promise<any> {
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', limit = 100, query } = params;
-    const results = await this.searchDocuments(baseUrl, collection, `is_parent = true and userQuery() limit ${limit}`, {
-      query,
-    });
+  async find(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', limit = 100, orderby = '', query } = params;
 
-    return results;
-  }
+    if (
+      orderby !== '' &&
+      !/^([a-zA-Z0-9_-]+)(,\s*[a-zA-Z0-9_-]+)*(\s+(asc|desc))?$/.test(orderby)
+    ) {
+      throw new Error('vespa:find - Invalid orderby parameter');
+    }
 
-  async search(params: any,  _pinsSettingsList: PinsSettings[],  context: any): Promise<any> {
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', limit = 100, targetHits = 50, query } = params;
-    const queryEmbedding = await this.embedding(query);
-    const results = await this.searchParentDocuments(
+    const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
+    const results = await this.searchDocuments(
       baseUrl,
-      collection, 
-      `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) limit ${limit}`,
-      { 
-        'ranking.profile': 'fusion',
-        'input.query(q)': queryEmbedding,
-        'query': query,
-      }
+      collection,
+      `is_parent = true and userQuery() ${orderbySecured} limit ${parseInt(limit)}`,
+      {
+        query,
+      },
     );
 
     return results;
   }
 
-  async textSplitter(params: any,  _pinsSettingsList: PinsSettings[],  _context: any): Promise<any> {
+  async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      collection = 'knowledge',
+      limit = 100,
+      orderby = '',
+      targetHits = 50,
+      language = 'fr',
+      query,
+    } = params;
+
+    if (
+      orderby !== '' &&
+      !/^([a-zA-Z0-9_-]+)(,\s*[a-zA-Z0-9_-]+)*(\s+(asc|desc))?$/.test(orderby)
+    ) {
+      throw new Error('vespa:find - Invalid orderby parameter');
+    }
+
+    const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
+    const queryEmbedding = await this.embedding(query);
+    const results = await this.searchParentDocuments(
+      baseUrl,
+      collection,
+      `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) ${orderbySecured} limit ${parseInt(
+        limit,
+      )}`,
+      {
+        'ranking.profile': 'fusion',
+        'input.query(q)': queryEmbedding,
+        query: query,
+        language,
+      },
+    );
+
+    return results;
+  }
+
+  async textSplitter(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { size = 1024, overlap = 102, source, text } = params;
     const splitter = new RecursiveCharacterTextSplitter({
       chunkSize: size,
       chunkOverlap: overlap,
     });
 
-    return (await splitter.createDocuments([text]))
-      .map(({ pageContent }) => ({ source, content: pageContent }));
+    return (await splitter.createDocuments([text])).map(({ pageContent }) => ({
+      source,
+      content: pageContent,
+    }));
   }
 
-  async push(params: any,  _pinsSettingsList: PinsSettings[],  context: any): Promise<any> {
+  async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', documents } = params;
     const results = await this.prepareDocuments(documents);
 
@@ -160,26 +225,14 @@ class VespaService {
   }
 }
 
-export const find = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new VespaService().find(params, pinsSettingsList, context);
+export const find = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new VespaService().find(params, pinsSettingsList, context);
 
-export const search = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new VespaService().search(params, pinsSettingsList, context);
+export const search = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new VespaService().search(params, pinsSettingsList, context);
 
-export const push = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new VespaService().push(params, pinsSettingsList, context);
+export const textSplitter = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new VespaService().textSplitter(params, pinsSettingsList, context);
 
-export const textSplitter = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new VespaService().textSplitter(params, pinsSettingsList, context);
+export const push = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new VespaService().push(params, pinsSettingsList, context);
