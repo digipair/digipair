@@ -50,7 +50,7 @@ export const executePins = async (
 ): Promise<any> => {
   const settings = await preparePinsSettings(settingsOrigin, context, options);
   const version = options.libraries[settings.library] || 'latest';
-  const library = _config.LIBRARIES[settings.library] || await import(`${_config.BASE_URL}/${settings.library}@${version}/index.js`);
+  const library = _config.LIBRARIES[settings.library] || await import(`${_config.BASE_URL}/${settings.library}@${version}/index.esm.js`);
   const pins = library?.[settings.element];
 
   if (!pins) {
@@ -71,7 +71,7 @@ export const generateElementFromPins = async (
   const library = pinsSettings.library;
   if (library !== 'web' && !_config.LIBRARIES[library]) {
     const version = options.libraries[library] || 'latest';
-    import(`${_config.BASE_URL}/${library}@${version}/index.js`);
+    import(`${_config.BASE_URL}/${library}@${version}/index.esm.js`);
   }
 
   const settings = await preparePinsSettings(pinsSettings, context, options);

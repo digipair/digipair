@@ -3,13 +3,47 @@ import { OpenAI } from '@langchain/openai';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { RunnableSequence } from '@langchain/core/runnables';
 import { loadSummarizationChain } from 'langchain/chains';
+import { StructuredOutputParser } from 'langchain/output_parsers';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
+import { z } from 'zod';
 
 type PinsSettings = any;
 
 const OPENAI_SERVER = process.env['OPENAI_SERVER'];
 const OPENAI_API_KEY = process.env['OPENAI_API_KEY'];
 
+function jsonSchemaToZod(schema: any): any {
+  const zodProps: Record<string, any> = {};
+
+  switch (schema.type) {
+    case 'string':
+      return z.string();
+    case 'number':
+      return z.number();
+    case 'boolean':
+      return z.boolean();
+    case 'object':
+      for (const prop in schema.properties) {
+        zodProps[prop] = jsonSchemaToZod(schema.properties[prop]);
+
+        if (schema.properties[prop].description) {
+          zodProps[prop] = zodProps[prop].describe(schema.properties[prop].description);
+        }
+      }
+      return z
+        .object(zodProps)
+        .required(
+          (schema.required ?? []).reduce((acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }), {}),
+        );
+    case 'array':
+      if (schema.items) {
+        return z.array(jsonSchemaToZod(schema.items));
+      }
+      return z.array(z.unknown());
+    default:
+      throw new Error(`Unsupported JSON Schema type: ${schema.type}`);
+  }
+}
 
 class OpenAIService {
   private extractJsonFromOutput(message: any): any {
@@ -50,27 +84,19 @@ class OpenAIService {
         model as any,
       ]);
     } else {
-      const promptFormatted = prompt.replace(/{/g, '{{').replace(/}/g, '}}');
-      const SYSTEM_PROMPT_TEMPLATE = [
-        "Answer the user's query. You must return your answer as JSON that matches the given schema:",
-        '```json\n{schema}\n```.',
-        'Make sure to wrap the answer in ```json and ``` tags. Conform to the given schema exactly.',
-      ].join('\n');
+      const parser = new StructuredOutputParser(jsonSchemaToZod(schema) as any);
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${
-            promptFormatted ?? '{prompt}'
-          }`,
+          `Answer the users question as best as possible.\n{format_instructions}\n${prompt ?? '{prompt}'}`,
           {
             partialVariables: {
-              schema: JSON.stringify(schema),
-              format_instructions: SYSTEM_PROMPT_TEMPLATE,
+              format_instructions: parser.getFormatInstructions(),
             },
           },
         ),
-        model as any,
-        this.extractJsonFromOutput,
+        model,
+        parser,
       ]);
     }
 

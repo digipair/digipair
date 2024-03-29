@@ -12,14 +12,6 @@ import { _config } from './config';
 
 const { executePins } = engine as any;
 
-let DIGIPAIR_USER = document.location.pathname.split('/')[2] ?? localStorage.getItem('digipair-user');
-
-if (!DIGIPAIR_USER) {
-  // set uuid
-  DIGIPAIR_USER = Math.random().toString(36).substring(2, 15);
-  localStorage.setItem('digipair-user', DIGIPAIR_USER);
-}
-
 @customElement('digipair-chatbot-full')
 export class DigipairFullElement extends LitElement {
   @property()
@@ -51,8 +43,9 @@ export class DigipairFullElement extends LitElement {
   });
 
   private cacheBoosters: any[] = [];
-
+  private userId: string | null = null;
   private isDigipairLoading = false;
+
   private metadata!: {
     id: string,
     avatar: string,
@@ -61,9 +54,19 @@ export class DigipairFullElement extends LitElement {
 
   override connectedCallback(): void {
     super.connectedCallback();
+    this.loadUser();
     this.loadBoosters();
   }
 
+  private loadUser(): void {
+    this.userId = localStorage.getItem('digipair-user');
+
+    if (!this.userId) {
+      // set uuid
+      this.userId = Math.random().toString(36).substring(2, 15);
+      localStorage.setItem('digipair-user', this.userId);
+    }
+  }
   private async loadBoosters(): Promise<void> {
     this.cacheBoosters = (await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
       digipair: this.code,
@@ -111,7 +114,7 @@ export class DigipairFullElement extends LitElement {
   }
 
   private async loadHistory(): Promise<void> {
-    const userId = DIGIPAIR_USER;
+    const userId = this.userId;
     const digipair = this.code;
     const reasoning = 'history';
     const messages = await this.executeScene(digipair, reasoning, {
@@ -169,7 +172,7 @@ export class DigipairFullElement extends LitElement {
         ...(pins.properties.input || {}),
         prompt: message || pins.properties.input.prompt,
         inputs: this.chatbot.inputs,
-        userId: DIGIPAIR_USER,
+        userId: this.userId,
         ...(!boost
           ? {}
           : {

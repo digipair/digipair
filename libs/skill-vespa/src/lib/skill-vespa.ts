@@ -7,6 +7,8 @@ type PinsSettings = any;
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 
 class VespaService {
+  private embeddingsModel: any = null;
+
   private async searchDocuments(
     baseUrl: string,
     collection: string,
@@ -103,35 +105,34 @@ class VespaService {
 
     const chunks = await Promise.all(chunksPromises);
     const result = [...parents, ...chunks.flat()];
-    const embeddings = await this.embeddings(result.map(document => document.content));
 
-    return result.map((document, index) => ({ ...document, content_embedding: embeddings[index] }));
+    return result;
   }
 
   private async embedding(text: string) {
-    const { HuggingFaceTransformersEmbeddings } = await eval(
-      `import('@langchain/community/embeddings/hf_transformers')`,
-    );
-    const model = new HuggingFaceTransformersEmbeddings({
-      modelName: 'Xenova/multilingual-e5-large',
-    });
+    if (this.embeddingsModel === null) {      
+      const { HuggingFaceTransformersEmbeddings } = await eval(
+        `import('@langchain/community/embeddings/hf_transformers')`,
+      );
+      this.embeddingsModel = new HuggingFaceTransformersEmbeddings({
+        modelName: 'Xenova/multilingual-e5-large',
+      });
+    }
 
-    return await model.embedQuery(text);
-  }
-
-  private async embeddings(texts: string[]) {
-    return Promise.all(texts.map(text => this.embedding(text)));
+    return await this.embeddingsModel.embedQuery(text);
   }
 
   private async pushDocuments(baseUrl: string, collection: string, documents: any[]) {
     const results = [];
 
     for (const document of documents) {
+      const content_embedding = await this.embedding(document.content);
+
       const response = await fetch(
         `${baseUrl}/document/v1/Digipair_default/${collection}/docid/${document.uuid}`,
         {
           method: 'POST',
-          body: JSON.stringify({ fields: { ...document } }),
+          body: JSON.stringify({ fields: { ...document, content_embedding } }),
           headers: {
             'Content-Type': 'application/json',
           },

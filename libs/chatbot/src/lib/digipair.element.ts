@@ -12,17 +12,6 @@ import * as engine from '@digipair/engine';
 
 const { executePins, executePinsList } = engine as any;
 
-let DIGIPAIR_USER = localStorage.getItem('digipair-user');
-let NEW_USER = false;
-
-if (!DIGIPAIR_USER) {
-  // set uuid
-  DIGIPAIR_USER = Math.random().toString(36).substring(2, 15);
-  localStorage.setItem('digipair-user', DIGIPAIR_USER);
-
-  NEW_USER = true;
-}
-
 @customElement('digipair-chatbot')
 export class ChatbotElement extends LitElement {
   @property()
@@ -61,6 +50,8 @@ export class ChatbotElement extends LitElement {
 
   private alreadyOpened = false;
   private isDigipairLoading = false;
+  private userId: string | null = null;
+  private newUser!: boolean;
   private metadata!: {
     id: string,
     avatar: string,
@@ -78,12 +69,26 @@ export class ChatbotElement extends LitElement {
   override connectedCallback(): void {
     super.connectedCallback();
 
+    this.loadUser();
     this.boostListener();
     document.addEventListener('click', this.blurEvent);
   }
 
   override disconnectedCallback(): void {
     document.removeEventListener('click', this.blurEvent);
+  }
+
+  private loadUser(): void {
+    this.userId = localStorage.getItem('digipair-user');
+    this.newUser = false;
+
+    if (!this.userId) {
+      // set uuid
+      this.userId = Math.random().toString(36).substring(2, 15);
+      localStorage.setItem('digipair-user', this.userId);
+
+      this.newUser = true;
+    }
   }
   
   private async boostListener() {
@@ -164,7 +169,7 @@ export class ChatbotElement extends LitElement {
 
     this.isDigipairLoading = false;
 
-    if (NEW_USER) {
+    if (this.newUser) {
       this.manageNewUser();
     }
   }
@@ -184,7 +189,7 @@ export class ChatbotElement extends LitElement {
   }
 
   private async loadHistory(): Promise<void> {
-    const userId = DIGIPAIR_USER;
+    const userId = this.userId;
     const digipair = this.code;
     const reasoning = 'history';
     const messages = await this.executeScene(digipair, reasoning, {
@@ -242,7 +247,7 @@ export class ChatbotElement extends LitElement {
         ...(pins.properties.input || {}),
         prompt: message || pins.properties.input.prompt,
         inputs: this.chatbot.inputs,
-        userId: DIGIPAIR_USER,
+        userId: this.userId,
         ...(!boost
           ? {}
           : {

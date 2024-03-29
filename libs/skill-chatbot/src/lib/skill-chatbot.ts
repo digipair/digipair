@@ -13,6 +13,8 @@ const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 const OLLAMA_SERVER = process.env['OLLAMA_SERVER'] ?? 'http://localhost:11434';
 
 class ChatbotService {
+  private embeddingsModel: any = null;
+
   private async searchDocuments(
     baseUrl: string,
     session: string,
@@ -112,14 +114,7 @@ class ChatbotService {
     });
 
     const chunks = await Promise.all(chunksPromises);
-
-    const result = [...parents, ...chunks.flat()];
-
-    const embeddings = await this.embeddings(result.map(document => document.content));
-    const documents = result.map((document, index) => ({
-      ...document,
-      content_embedding: embeddings[index],
-    }));
+    const documents = [...parents, ...chunks.flat()];
 
     return [
       ...history
@@ -133,29 +128,29 @@ class ChatbotService {
   }
 
   private async embedding(text: string) {
-    const { HuggingFaceTransformersEmbeddings } = await eval(
-      `import('@langchain/community/embeddings/hf_transformers')`,
-    );
-    const model = new HuggingFaceTransformersEmbeddings({
-      modelName: 'Xenova/multilingual-e5-large',
-    });
+    if (!this.embeddingsModel) {
+      const { HuggingFaceTransformersEmbeddings } = await eval(
+        `import('@langchain/community/embeddings/hf_transformers')`,
+      );
+      this.embeddingsModel = new HuggingFaceTransformersEmbeddings({
+        modelName: 'Xenova/multilingual-e5-large',
+      });
+    }
 
-    return await model.embedQuery(text);
-  }
-
-  private async embeddings(texts: string[]) {
-    return Promise.all(texts.map(text => this.embedding(text)));
+    return await this.embeddingsModel.embedQuery(text);
   }
 
   private async pushDocuments(baseUrl: string, session: string, documents: any[]) {
     const results = [];
 
     for (const document of documents) {
+      const content_embedding = document.role === 'system' ? undefined : await this.embedding(document.content);
+
       const response = await fetch(
         `${baseUrl}/document/v1/Digipair_default/history/docid/${document.uuid}`,
         {
           method: 'POST',
-          body: JSON.stringify({ fields: { ...document, session } }),
+          body: JSON.stringify({ fields: { ...document, content_embedding, session } }),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -189,7 +184,7 @@ class ChatbotService {
     return results;
   }
 
-  private async updateSummary(baseUrl: string, session: string, messages: any[], options: { modelName: string, temperature: number, baseUrl: string }): Promise<void> {
+  private async updateSummary(baseUrl: string, prompt: string, session: string, messages: any[], options: { modelName: string, temperature: number, baseUrl: string }): Promise<void> {
     const [summary] = await this.searchDocuments(
       baseUrl,
       session,
@@ -204,16 +199,6 @@ class ChatbotService {
       .map(({ role, content }) => `${role}: ${content}`)
       .join('\n');
     const date = messages.reduce((acc, { date }) => Math.max(acc, date), 0);
-    const prompt = `
-      Résumé de l'historique la conversation:
-      ${summary.content}
-
-      Nouveaux messages:
-      ${history}
-
-      Résumer dans un texte court, précis et concis l'historique de la conversation en prenant en compte les nouveaux messages.
-    `;
-
     const chain = RunnableSequence.from([PromptTemplate.fromTemplate(prompt), model as any]);
     const content = await chain.invoke({ summary: summary.content, history });
     const document = {
@@ -228,20 +213,20 @@ class ChatbotService {
     await this.updateDocuments(baseUrl, [document]);
   }
 
-  private async updateHistory(baseUrl: string, session: string, memory: any[], options: { modelName: string, temperature: number, baseUrl: string }): Promise<void> {
+  private async updateHistory(baseUrl: string, promptSummary: string, session: string, memory: any[], options: { modelName: string, temperature: number, baseUrl: string }): Promise<void> {
     // add new messages
     const documents = await this.prepareHistory(memory);
     await this.pushDocuments(baseUrl, session, documents);
 
     // update summary
-    await this.updateSummary(baseUrl, session, memory, options);
+    await this.updateSummary(baseUrl, promptSummary, session, memory, options);
   }
 
   async history(params: any, _pins: PinsSettings[], context: any) {
-    const MAX_HISTORY = 100;
     const session = `${context.request.digipair}-${context.request.body.userId}`;
     const {
       baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      maxHistory = 100,
       system = `Vous êtes un assistant utile, capable d'expliquer des concepts de manière simple à comprendre. Si vous n'êtes pas sûr d'une réponse, vous pouvez dire "Je ne sais pas" ou "Je ne suis pas sûr".`,
       question = 'Bonjour, comment puis-je vous aider ?',
     } = params;
@@ -251,7 +236,7 @@ class ChatbotService {
     const history = await this.searchDocuments(
       baseUrl,
       session,
-      `is_parent = true and session contains "${session}" and !(role contains "system") order by date desc limit ${MAX_HISTORY}`,
+      `is_parent = true and !(role contains "system") order by date desc limit ${maxHistory}`,
     );
     messages = history
       .sort((a, b) => a.date - b.date)
@@ -335,6 +320,14 @@ class ChatbotService {
       temperature = 0, 
       baseUrlOllama = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER, 
       baseUrlVespa = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      promptSummary = `
+Résumé de l'historique la conversation:
+{summary}
+
+Nouveaux messages:
+{history}
+
+Résumer dans un texte court, précis et concis l'historique de la conversation en prenant en compte les nouveaux messages.`,
       assistant, 
       command, 
       sources, 
@@ -386,7 +379,7 @@ class ChatbotService {
     }));
 
     // Asynchronous history update
-    this.updateHistory(baseUrlVespa, session, memory, { modelName, temperature, baseUrl: baseUrlOllama });
+    this.updateHistory(baseUrlVespa, promptSummary, session, memory, { modelName, temperature, baseUrl: baseUrlOllama });
 
     return {
       assistant,
