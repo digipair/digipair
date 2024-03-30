@@ -7,7 +7,7 @@ import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { v4 } from 'uuid';
 
 type PinsSettings = any;
-const { executePinsList } = engine as any;
+const { executePinsList, preparePinsSettings } = engine as any;
 
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 const OLLAMA_SERVER = process.env['OLLAMA_SERVER'] ?? 'http://localhost:11434';
@@ -285,7 +285,7 @@ class ChatbotService {
 
   async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, limit = 100, orderby = '', targetHits = 50, language = 'fr', query } = params;
+    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, limit = 100, orderby = '', targetHits = 50, language = 'fr', filter = 'true', query } = params;
 
     if (
       orderby !== '' &&
@@ -299,13 +299,13 @@ class ChatbotService {
     const results = await this.searchParentDocuments(
       baseUrl,
       session,
-      `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) ${orderbySecured} limit ${parseInt(
+      `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) and (${filter}) ${orderbySecured} limit ${parseInt(
         limit,
       )}`,
       {
         'ranking.profile': 'fusion',
         'input.query(q)': queryEmbedding,
-        query: query,
+        query,
         language,
       },
     );
@@ -383,7 +383,7 @@ Résumer dans un texte court, précis et concis l'historique de la conversation 
 
     return {
       assistant,
-      command,
+      command: await Promise.all(command.map((settings: PinsSettings) => preparePinsSettings(settings, context))),
       sources,
       logs,
     };

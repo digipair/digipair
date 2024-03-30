@@ -176,6 +176,7 @@ class VespaService {
       orderby = '',
       targetHits = 50,
       language = 'fr',
+      filter = 'true',
       query,
     } = params;
 
@@ -191,13 +192,13 @@ class VespaService {
     const results = await this.searchParentDocuments(
       baseUrl,
       collection,
-      `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) ${orderbySecured} limit ${parseInt(
+      `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) and (${filter}) ${orderbySecured} limit ${parseInt(
         limit,
       )}`,
       {
         'ranking.profile': 'fusion',
         'input.query(q)': queryEmbedding,
-        query: query,
+        query,
         language,
       },
     );
@@ -224,6 +225,24 @@ class VespaService {
 
     return await this.pushDocuments(baseUrl, collection, results);
   }
+
+  async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', selection } = params;
+    const response = await fetch(`${baseUrl}/document/v1/Digipair_default/${collection}/docid?selection=${encodeURI(selection)}&cluster=Digipair_default`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('Error - VespaService:remove - fetching', error.root?.errors ?? error);
+      throw new Error(`Error - VespaService:remove - fetching ${collection}`);
+    }
+
+    return await response.json();
+  }
 }
 
 export const find = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -237,3 +256,6 @@ export const textSplitter = (params: any, pinsSettingsList: PinsSettings[], cont
 
 export const push = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new VespaService().push(params, pinsSettingsList, context);
+
+export const remove = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new VespaService().remove(params, pinsSettingsList, context);

@@ -202,6 +202,10 @@ export class DigipairFullElement extends LitElement {
 
     if (!boost.prompt && (boost.inputs || []).length === 0) {
       this.execute(boost);
+    } else {
+      setTimeout(() => {
+        (this.chatbot?.shadowRoot?.querySelector('#messageInput') as any).focus();
+      }, 1);
     }
   }
 

@@ -45,26 +45,6 @@ function jsonSchemaToZod(schema: any): any {
 }
 
 class OllamaService {
-  private extractJsonFromOutput(message: any): any {
-    const text = message.content;
-
-    // Define the regular expression pattern to match JSON blocks
-    const pattern = /```json\s*((.|\n)*?)\s*```/gs;
-
-    // Find all non-overlapping matches of the pattern in the string
-    const matches = pattern.exec(text);
-
-    if (matches && matches[1]) {
-      try {
-        return JSON.parse(matches[1].trim());
-      } catch (error) {
-        throw new Error(`Failed to parse: ${matches[1]}`);
-      }
-    } else {
-      throw new Error(`No JSON found in: ${message}`);
-    }
-  }
-
   async basic(params: any, _pins: PinsSettings[], _context: any) {
     const {
       modelName = 'mistral',
@@ -86,7 +66,7 @@ class OllamaService {
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${prompt ?? '{prompt}'}`,
+          `Answer the users question as best as possible.\n{format_instructions}\n${prompt ?? '{prompt}'}\n\nJSON:`,
           {
             partialVariables: {
               format_instructions: parser.getFormatInstructions(),
@@ -126,7 +106,7 @@ class OllamaService {
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${prompt ?? '{prompt}'}`,
+          `Answer the users question as best as possible.\n{format_instructions}\n${prompt ?? '{prompt}'}\n\nJSON:`,
           {
             partialVariables: {
               format_instructions: parser.getFormatInstructions(),
