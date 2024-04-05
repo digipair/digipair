@@ -328,8 +328,8 @@ Nouveaux messages:
 {history}
 
 Résumer dans un texte court, précis et concis l'historique de la conversation en prenant en compte les nouveaux messages.`,
-      assistant, 
-      command, 
+      command = [],
+      assistant,  
       sources, 
       logs 
     } = params;
