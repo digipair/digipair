@@ -273,12 +273,7 @@ export class ChatbotElement extends LitElement {
 
   private executeBoost(boost: any): void {
     this.currentBoost = boost;
-
-    if (!boost.prompt && (boost.inputs || []).length === 0) {
-      this.execute(boost);
-    } else if (boost.text) {
-      this.openResult();
-    }
+    this.openResult();
   }
 
   private pushAssistantMessage(message: string): void {
