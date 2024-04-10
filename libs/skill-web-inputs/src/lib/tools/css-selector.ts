@@ -1,6 +1,6 @@
 import getCssSelectorOrigin from 'css-selector-generator';
 
-function unescapeCSS(cssEscapedString: string) {
+function unescapeCSS(cssEscapedString: any) {
   return cssEscapedString.replace(/\\([0-9A-Fa-f]{1,6})\s?/g, (_match: any, charCode: any) =>
     String.fromCharCode(parseInt(charCode, 16))
   ).replace(/\\/g, '');

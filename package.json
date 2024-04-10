@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "publish": "yarn nx build engine && node tools/scripts/publish.mjs engine $npm_config_npmversion latest && yarn nx build chatbot && node tools/scripts/publish.mjs chatbot $npm_config_npmversion latest && yarn nx build skill-chatbot && node tools/scripts/publish.mjs skill-chatbot $npm_config_npmversion latest && yarn nx build skill-llm && node tools/scripts/publish.mjs skill-llm $npm_config_npmversion latest && yarn nx build skill-ollama && node tools/scripts/publish.mjs skill-ollama $npm_config_npmversion latest && yarn nx build skill-openai && node tools/scripts/publish.mjs skill-openai $npm_config_npmversion latest && yarn nx build skill-vespa && node tools/scripts/publish.mjs skill-vespa $npm_config_npmversion latest"
+    "publish": "yarn nx build engine && node tools/scripts/publish.mjs engine $npm_config_npmversion latest && yarn nx build chatbot && node tools/scripts/publish.mjs chatbot $npm_config_npmversion latest && yarn nx build skill-chatbot && node tools/scripts/publish.mjs skill-chatbot $npm_config_npmversion latest && yarn nx build skill-llm && node tools/scripts/publish.mjs skill-llm $npm_config_npmversion latest && yarn nx build skill-ollama && node tools/scripts/publish.mjs skill-ollama $npm_config_npmversion latest && yarn nx build skill-openai && node tools/scripts/publish.mjs skill-openai $npm_config_npmversion latest && yarn nx build skill-vespa && node tools/scripts/publish.mjs skill-vespa $npm_config_npmversion latest && yarn nx build skill-web-inputs && node tools/scripts/publish.mjs skill-web-inputs $npm_config_npmversion latest && yarn nx build skill-web-interact && node tools/scripts/publish.mjs skill-web-interact $npm_config_npmversion latest && yarn nx build skill-web-ocr && node tools/scripts/publish.mjs skill-web-ocr $npm_config_npmversion latest && yarn nx build skill-web-pdf && node tools/scripts/publish.mjs skill-web-pdf $npm_config_npmversion latest"
   },
   "private": true,
   "dependencies": {
@@ -13,6 +13,7 @@
     "@ui5/webcomponents-icons": "^1.23.1",
     "langchain": "^0.1.28",
     "mermaid": "10.3.0",
+    "tesseract.js": "^5.0.5",
     "tslib": "^2.3.0",
     "uuid": "^9.0.1",
     "zod": "^3.22.4"

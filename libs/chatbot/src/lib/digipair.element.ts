@@ -265,7 +265,7 @@ export class ChatbotElement extends LitElement {
         executePinsList(detail.command, {});
       }
     } catch (error) {
-      this.pushAssistantMessage('Oups, il y a eu une erreur...');
+      this.pushAssistantMessage('Oops...');
     }
 
     this.loading = false;

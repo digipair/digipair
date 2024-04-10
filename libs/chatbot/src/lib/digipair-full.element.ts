@@ -190,7 +190,7 @@ export class DigipairFullElement extends LitElement {
         executePins(detail.command, {});
       }
     } catch (error) {
-      this.pushAssistantMessage('Oups, il y a eu une erreur...');
+      this.pushAssistantMessage('Oops...');
     }
 
     this.loading = false;
