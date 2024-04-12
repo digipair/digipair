@@ -227,8 +227,8 @@ class ChatbotService {
     const {
       baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       maxHistory = 100,
-      system = `Vous êtes un assistant utile, capable d'expliquer des concepts de manière simple à comprendre. Si vous n'êtes pas sûr d'une réponse, vous pouvez dire "Je ne sais pas" ou "Je ne suis pas sûr".`,
-      question = 'Bonjour, comment puis-je vous aider ?',
+      system = `You are a useful assistant, capable of explaining concepts in an easy-to-understand manner. If you're not sure of an answer, you can say "I don't know" or "I'm not sure."`,
+      question = 'Hello, how can I help you?',
     } = params;
 
     let messages: any[] = [];
@@ -321,13 +321,13 @@ class ChatbotService {
       baseUrlOllama = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER, 
       baseUrlVespa = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       promptSummary = `
-Résumé de l'historique la conversation:
+Summary of conversation history:
 {summary}
 
-Nouveaux messages:
+New messages:
 {history}
 
-Résumer dans un texte court, précis et concis l'historique de la conversation en prenant en compte les nouveaux messages.`,
+Summarize the conversation history in a short, clear and concise text, taking into account the new messages.`,
       command = [],
       assistant,  
       sources, 
