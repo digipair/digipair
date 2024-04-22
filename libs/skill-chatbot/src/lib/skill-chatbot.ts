@@ -236,7 +236,7 @@ class ChatbotService {
     const history = await this.searchDocuments(
       baseUrl,
       session,
-      `is_parent = true and !(role contains "system") order by date desc limit ${maxHistory}`,
+      `is_parent = true and (role contains "assistant" or role contains "user") order by date desc limit ${maxHistory}`,
     );
     messages = history
       .sort((a, b) => a.date - b.date)
