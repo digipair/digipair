@@ -49,19 +49,21 @@ class OllamaService {
     const {
       modelName = 'mistral',
       temperature = 0,
+      keepAlive = '1440m',
       baseUrl = OLLAMA_SERVER,
       prompt,
       schema,
     } = params;
-    const model = new Ollama({ model: modelName, temperature, baseUrl });
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
+      const model = new Ollama({ model: modelName, temperature, keepAlive, baseUrl });
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
         model as any,
       ]);
     } else {
+      const model = new Ollama({ model: modelName, temperature, baseUrl, keepAlive, format: 'json' });
       const parser = new StructuredOutputParser(jsonSchemaToZod(schema) as any);
 
       chain = RunnableSequence.from([
@@ -85,23 +87,29 @@ class OllamaService {
     const {
       modelName = 'llava',
       temperature = 0,
+      keepAlive = '1440m',
       baseUrl = OLLAMA_SERVER,
       schema,
       prompt,
       image,
     } = params;
-    const model = new Ollama({ model: modelName, temperature, baseUrl }).bind({
-      images: [image.split(';base64,')[1]],
-      prompt,
-    } as any);
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
+      const model = new Ollama({ model: modelName, temperature, keepAlive, baseUrl }).bind({
+        images: [image.split(';base64,')[1]],
+        prompt,
+      } as any);
+
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
         model as any,
       ]);
     } else {
+      const model = new Ollama({ model: modelName, temperature, keepAlive, baseUrl, format: 'json' }).bind({
+        images: [image.split(';base64,')[1]],
+        prompt,
+      } as any);
       const parser = new StructuredOutputParser(jsonSchemaToZod(schema) as any);
 
       chain = RunnableSequence.from([
@@ -125,6 +133,7 @@ class OllamaService {
     const {
       modelName = 'mistral',
       temperature = 0,
+      keepAlive = '1440m',
       baseUrl = OLLAMA_SERVER,
       chunkSize = 1024,
 
@@ -141,7 +150,7 @@ class OllamaService {
       questionPrompt,
     } = params;
 
-    const model = new Ollama({ model: modelName, temperature, baseUrl });
+    const model = new Ollama({ model: modelName, temperature, keepAlive, baseUrl });
     const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize });
 
     const summarizationChain = loadSummarizationChain(model as any, {

@@ -68,7 +68,11 @@ class OpenAIService {
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${prompt ?? '{prompt}'}\n\nJSON:`,
+          `${prompt ?? '{prompt}'}
+          
+          Answer the users question as best as possible.\n{format_instructions}
+          
+          JSON:`,
           {
             partialVariables: {
               format_instructions: parser.getFormatInstructions(),
