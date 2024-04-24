@@ -394,6 +394,53 @@ Summarize the conversation history in a short, clear and concise text, taking in
     const result = await executePinsList(pinsSettingsList, context);
     return result;
   }
+
+  async getRole(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const session = `${context.request.digipair}-${context.request.body.userId}`;
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      role,
+    } = params;
+
+    const [document] = await this.searchDocuments(
+      baseUrl,
+      session,
+      `is_parent = true and userQuery() order by date desc limit 1`,
+      {
+        query: `role:"${role}"`, 
+      },
+    );
+
+    await document;
+  }
+
+  async setRole(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const session = `${context.request.digipair}-${context.request.body.userId}`;
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      role,
+      document,
+    } = params;
+
+    const [previous] = await this.searchDocuments(
+      baseUrl,
+      session,
+      `is_parent = true and userQuery() order by date desc limit 1`,
+      {
+        query: `role:"${role}"`, 
+      },
+    );
+
+    const next = {
+      session,
+      date: Date.now(),
+      role,
+      ...document,
+      uuid: previous?.uuid ?? v4(),
+      is_parent: true,
+    };
+    await this.updateDocuments(baseUrl, [next]);
+  }
 }
 
 export const history = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -410,3 +457,9 @@ export const chatbot = (params: any, pinsSettingsList: PinsSettings[], context: 
 
 export const boost = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ChatbotService().boost(params, pinsSettingsList, context);
+
+export const getRole = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ChatbotService().getRole(params, pinsSettingsList, context);
+
+export const setRole = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ChatbotService().setRole(params, pinsSettingsList, context);
