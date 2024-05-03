@@ -1,0 +1,24 @@
+{
+  "name": "factory",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/factory/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "factory:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "factory:build:development"
+        },
+        "production": {
+          "buildTarget": "factory:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
