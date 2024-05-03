@@ -411,7 +411,7 @@ Summarize the conversation history in a short, clear and concise text, taking in
       },
     );
 
-    await document;
+    return document;
   }
 
   async setRole(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -419,7 +419,7 @@ Summarize the conversation history in a short, clear and concise text, taking in
     const {
       baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       role,
-      document,
+      value,
     } = params;
 
     const [previous] = await this.searchDocuments(
@@ -431,15 +431,15 @@ Summarize the conversation history in a short, clear and concise text, taking in
       },
     );
 
-    const next = {
+    const document = {
       session,
       date: Date.now(),
       role,
-      ...document,
+      ...value,
       uuid: previous?.uuid ?? v4(),
       is_parent: true,
     };
-    await this.updateDocuments(baseUrl, [next]);
+    await this.updateDocuments(baseUrl, [document]);
   }
 }
 
