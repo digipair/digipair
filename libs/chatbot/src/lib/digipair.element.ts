@@ -8,9 +8,7 @@ import { ChatElement } from './chat.element';
 import { styles } from './digipair.data';
 import getCssSelector from './tools/css-selector';
 import { _config } from './config';
-import * as engine from '@digipair/engine';
-
-const { executePins, executePinsList } = engine as any;
+import { executePins, executePinsList } from '@digipair/engine';
 
 @customElement('digipair-chatbot')
 export class ChatbotElement extends LitElement {

@@ -1,0 +1,27 @@
+{
+  "name": "skill-common",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-common/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-common",
+        "main": "libs/skill-common/src/index.ts",
+        "tsConfig": "libs/skill-common/tsconfig.lib.json",
+        "assets": [],
+        "project": "libs/skill-common/package.json",
+        "compiler": "swc",
+        "format": ["esm", "cjs"],
+        "rollupConfig": ["libs/skill-common/rollup.build.cjs"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-common {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

@@ -14,7 +14,8 @@
         "assets": [],
         "project": "libs/skill-web-interact/package.json",
         "compiler": "swc",
-        "format": ["cjs", "esm"]
+        "format": ["cjs", "esm"],
+        "rollupConfig": ["libs/skill-web-interact/rollup.build.cjs"]
       }
     },
     "publish": {

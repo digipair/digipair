@@ -4,7 +4,7 @@ const alias = require('@rollup/plugin-alias');
 
 function getRollupOptions(options) {
   const extraGlobals = {};
-  const externals = ['@digipair/engine'];
+  const externals = [];
 
   const value = {
     ...options,

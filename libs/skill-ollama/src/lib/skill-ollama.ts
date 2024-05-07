@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { PinsSettings } from '@digipair/engine';
 import { Ollama } from '@langchain/community/llms/ollama';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { RunnableSequence } from '@langchain/core/runnables';
@@ -6,8 +7,6 @@ import { loadSummarizationChain } from 'langchain/chains';
 import { StructuredOutputParser } from 'langchain/output_parsers';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { z } from 'zod';
-
-type PinsSettings = any;
 
 const OLLAMA_SERVER = process.env['OLLAMA_SERVER'] ?? 'http://localhost:11434';
 

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { PinsSettings } from '@digipair/engine';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { v4 } from 'uuid';
-
-type PinsSettings = any;
 
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 

@@ -15,7 +15,7 @@
         "project": "libs/skill-openai/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],
-        "rollupConfig": ["libs/skill-openai/rollup.config.cjs"]
+        "rollupConfig": ["libs/skill-openai/rollup.build.cjs"]
       }
     },
     "publish": {

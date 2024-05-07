@@ -14,7 +14,8 @@
         "assets": [],
         "project": "libs/skill-web-ocr/package.json",
         "compiler": "swc",
-        "format": ["cjs", "esm"]
+        "format": ["cjs", "esm"],
+        "rollupConfig": ["libs/skill-web-ocr/rollup.build.cjs"]
       }
     },
     "publish": {

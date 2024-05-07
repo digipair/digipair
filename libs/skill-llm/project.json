@@ -15,7 +15,7 @@
         "project": "libs/skill-llm/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],
-        "rollupConfig": ["libs/skill-llm/rollup.config.cjs"]
+        "rollupConfig": ["libs/skill-llm/rollup.build.cjs"]
       }
     },
     "publish": {

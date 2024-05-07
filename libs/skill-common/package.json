@@ -1,5 +1,5 @@
 {
-  "name": "@digipair/chatbot",
+  "name": "@digipair/skill-common",
   "version": "0.0.1",
   "dependencies": {},
   "typings": "./index.d.ts",

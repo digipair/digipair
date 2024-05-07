@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as engine from '@digipair/engine';
+import { PinsSettings, executePins, executePinsList } from '@digipair/engine';
 import { RunnableSequence } from '@langchain/core/runnables';
-
-type PinsSettings = any;
-const { executePins, executePinsList } = engine as any;
 
 class LLMService {
   private objectToInput(obj: Record<string, any>): Record<string, () => any> {

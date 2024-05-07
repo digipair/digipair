@@ -1,16 +1,13 @@
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import '@ui5/webcomponents/dist/BusyIndicator';
 import '@ui5/webcomponents/dist/Icon';
-// import { executePins } from '@digipair/engine';
-import * as engine from '@digipair/engine';
+import { executePins } from '@digipair/engine';
 import { html, LitElement, nothing, TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import './chat.element';
 import { ChatElement } from './chat.element';
 import { styles } from './digipair-full.data';
 import { _config } from './config';
-
-const { executePins } = engine as any;
 
 @customElement('digipair-chatbot-full')
 export class DigipairFullElement extends LitElement {
@@ -47,9 +44,9 @@ export class DigipairFullElement extends LitElement {
   private isDigipairLoading = false;
 
   private metadata!: {
-    id: string,
-    avatar: string,
-    color: string,
+    id: string;
+    avatar: string;
+    color: string;
   };
 
   override connectedCallback(): void {
@@ -68,10 +65,18 @@ export class DigipairFullElement extends LitElement {
     }
   }
   private async loadBoosters(): Promise<void> {
-    this.cacheBoosters = (await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
-      digipair: this.code,
-    }))
-      .map(({ name, metadata }: any) => metadata?.boosts.map((boost: any) => ({ ...boost, scene: name, checkUrl: new RegExp(boost.url) })))
+    this.cacheBoosters = (
+      await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
+        digipair: this.code,
+      })
+    )
+      .map(({ name, metadata }: any) =>
+        metadata?.boosts.map((boost: any) => ({
+          ...boost,
+          scene: name,
+          checkUrl: new RegExp(boost.url),
+        })),
+      )
       .flat()
       .filter((boost: any) => boost && !boost.selector)
       .map((boost: any) => ({
@@ -89,8 +94,8 @@ export class DigipairFullElement extends LitElement {
             reasoning: boost.scene,
             input: {},
             apiUrl: _config.API_URL,
-          }
-        }
+          },
+        },
       }));
   }
 
@@ -127,7 +132,9 @@ export class DigipairFullElement extends LitElement {
   }
 
   private scrollDown(): void {
-    const container = (this.shadowRoot as unknown as HTMLElement).querySelector('.container') as HTMLElement;
+    const container = (this.shadowRoot as unknown as HTMLElement).querySelector(
+      '.container',
+    ) as HTMLElement;
     container.scrollTop = container.scrollHeight;
   }
 
@@ -176,11 +183,11 @@ export class DigipairFullElement extends LitElement {
         ...(!boost
           ? {}
           : {
-            boost: {
-              name: boost.name,
-              text: boost.text,
-            },
-          }),
+              boost: {
+                name: boost.name,
+                text: boost.text,
+              },
+            }),
       };
 
       const detail = await executePins(pins);
@@ -233,7 +240,7 @@ export class DigipairFullElement extends LitElement {
       },
       body: JSON.stringify(input),
     });
-  
+
     return await response.json();
   };
 
@@ -258,25 +265,31 @@ export class DigipairFullElement extends LitElement {
         </section>
 
         <section class="actions ${this.loading ? 'loading' : ''}">
-          ${this.boosters.map(boost => html`
-            <div>
-              <span class="action" style="border: 1px solid ${this.metadata.color}" @click=${() => this.executeBoost(boost)}>${boost.name}</span>
-            </div>
-          `,
-    )}
-          ${!this.currentBoost
-        ? nothing
-        : html`
+          ${this.boosters.map(
+            boost => html`
               <div>
                 <span
                   class="action"
                   style="border: 1px solid ${this.metadata.color}"
-                  @click=${() => {
-                    this.currentBoost = null;
-                  }}
-                  >Annuler</span
+                  @click=${() => this.executeBoost(boost)}
+                  >${boost.name}</span
                 >
               </div>
+            `,
+          )}
+          ${!this.currentBoost
+            ? nothing
+            : html`
+                <div>
+                  <span
+                    class="action"
+                    style="border: 1px solid ${this.metadata.color}"
+                    @click=${() => {
+                      this.currentBoost = null;
+                    }}
+                    >Annuler</span
+                  >
+                </div>
               `}
         </section>
 
@@ -284,7 +297,7 @@ export class DigipairFullElement extends LitElement {
         <img
           class="logo ${this.loading ? 'loading' : ''}"
           src=${this.metadata.avatar}
-          @click=${() => this.boosters.length <= 0 ? this.openMenu() : this.closeMenu()}
+          @click=${() => (this.boosters.length <= 0 ? this.openMenu() : this.closeMenu())}
         />
       </section>
     `;

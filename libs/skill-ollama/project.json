@@ -15,7 +15,7 @@
         "project": "libs/skill-ollama/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],
-        "rollupConfig": ["libs/skill-ollama/rollup.config.cjs"]
+        "rollupConfig": ["libs/skill-ollama/rollup.build.cjs"]
       }
     },
     "publish": {

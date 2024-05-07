@@ -1,0 +1,18 @@
+{
+  "description": "Library example.",
+  "library": "@digipair/skill-example",
+  "element": "example",
+  "metadata": {
+    "boosts": [
+      {
+        "name": "Boost example",
+        "prompt": false,
+        "required": false,
+        "text": "I am a boost example.",
+        "inputs": []
+      }
+    ]
+  },
+  "properties": {},
+  "pins": []
+}

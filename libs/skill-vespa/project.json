@@ -15,7 +15,7 @@
         "project": "libs/skill-vespa/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],
-        "rollupConfig": ["libs/skill-vespa/rollup.config.cjs"]
+        "rollupConfig": ["libs/skill-vespa/rollup.build.cjs"]
       }
     },
     "publish": {
