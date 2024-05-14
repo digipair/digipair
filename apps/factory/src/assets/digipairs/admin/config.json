@@ -1,0 +1,11 @@
+{
+  "name": "Admin",
+  "description": "Digipair admin.",
+  "metadata": {
+    "avatar": "avatar.png",
+    "color": "#3b82f6"
+  },
+  "libraries": {},
+  "variables": {},
+  "privates": {}
+}

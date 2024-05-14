@@ -1,0 +1,13 @@
+schema history inherits knowledge {
+    document history inherits knowledge {
+        field session type string {
+            indexing: summary | attribute
+        }
+        field date type long {
+            indexing: summary | attribute
+        }
+        field role type string {
+            indexing: summary | attribute
+        }
+    }
+}

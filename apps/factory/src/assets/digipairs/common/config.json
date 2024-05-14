@@ -2,7 +2,7 @@
   "name": "common",
   "description": "common actions.",
   "metadata": {
-    "avatar": "assets/avatar.png",
+    "avatar": "avatar.png",
     "color": "#3b82f6"
   },
   "libraries": {},

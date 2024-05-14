@@ -7,6 +7,6 @@ export interface PinsSettings {
   variables?: { [key: string]: any };
   requests?: { [key: string]: PinsSettings };
   pins?: PinsSettings[];
-  events?: { [key: string]: PinsSettings };
+  events?: { [key: string]: PinsSettings[] };
   context?: any;
 }

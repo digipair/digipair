@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings } from '@digipair/engine';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { v4 } from 'uuid';
+import { PinsSettings } from '@digipair/engine';
 
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 
@@ -31,7 +31,9 @@ class VespaService {
       throw new Error(`Error - VespaService:getDocuments - fetching ${collection}`);
     }
 
-    const messages = ((await response.json()).root.children || []).map((child: any) => child.fields);
+    const messages = ((await response.json()).root.children || []).map(
+      (child: any) => child.fields,
+    );
     return messages;
   }
 
@@ -109,7 +111,7 @@ class VespaService {
   }
 
   private async embedding(text: string) {
-    if (this.embeddingsModel === null) {      
+    if (this.embeddingsModel === null) {
       const { HuggingFaceTransformersEmbeddings } = await eval(
         `import('@langchain/community/embeddings/hf_transformers')`,
       );
@@ -145,7 +147,13 @@ class VespaService {
   }
 
   async find(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', limit = 100, orderby = '', query } = params;
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      collection = 'knowledge',
+      limit = 100,
+      orderby = '',
+      query,
+    } = params;
 
     if (
       orderby !== '' &&
@@ -219,20 +227,33 @@ class VespaService {
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', documents } = params;
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      collection = 'knowledge',
+      documents,
+    } = params;
     const results = await this.prepareDocuments(documents);
 
     return await this.pushDocuments(baseUrl, collection, results);
   }
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, collection = 'knowledge', selection } = params;
-    const response = await fetch(`${baseUrl}/document/v1/Digipair_default/${collection}/docid?selection=${encodeURI(selection)}&cluster=Digipair_default`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      collection = 'knowledge',
+      selection,
+    } = params;
+    const response = await fetch(
+      `${baseUrl}/document/v1/Digipair_default/${collection}/docid?selection=${encodeURI(
+        selection,
+      )}&cluster=Digipair_default`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    });
+    );
 
     if (!response.ok) {
       const error = await response.json();

@@ -11,7 +11,7 @@
         "outputPath": "dist/libs/skill-vespa",
         "main": "libs/skill-vespa/src/index.ts",
         "tsConfig": "libs/skill-vespa/tsconfig.lib.json",
-        "assets": [],
+        "assets": ["libs/skill-vespa/src/index.d.ts"],
         "project": "libs/skill-vespa/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],

@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <meta charset="UTF-8">
-      <title>@digipair/chatbot</title>
+    <meta charset="UTF-8" />
+    <title>@digipair/chatbot</title>
   </head>
   <body>
-    <digipair-chatbot></digipair-chatbot>
-    <script type="module" src="./index.esm.js"></script>
+    <script type="module">
+      import { config } from './index.esm.js';
+      config.set('API_URL', window.location.origin + '/agents');
+
+      // Load the chatbot
+      const chatbot = document.createElement('digipair-chatbot-full');
+      chatbot.setAttribute('code', 'admin');
+      document.body.appendChild(chatbot);
+    </script>
   </body>
 </html>
