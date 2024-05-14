@@ -7,7 +7,7 @@ configEngine.set('LIBRARIES', {
 
 type CONFIG_KEY = 'API_URL' | 'COMMON_EXPERIENCE' | 'BASE_URL' | 'LIBRARIES';
 export const _config = {
-  API_URL: 'https://wwww.digipair.ai/agents',
+  API_URL: 'https://agents.digipair.ai',
   COMMON_EXPERIENCE: 'common',
 };
 export const config = {

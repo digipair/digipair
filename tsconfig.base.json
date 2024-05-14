@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@digipair/chatbot": ["libs/chatbot/src/index.ts"],
       "@digipair/engine": ["libs/engine/src/index.ts"],
       "@digipair/skill-chatbot": ["libs/skill-chatbot/src/index.ts"],
       "@digipair/skill-common": ["libs/skill-common/src/index.ts"],
@@ -24,6 +23,7 @@
       "@digipair/skill-openai": ["libs/skill-openai/src/index.ts"],
       "@digipair/skill-vespa": ["libs/skill-vespa/src/index.ts"],
       "@digipair/skill-web": ["libs/skill-web/src/index.ts"],
+      "@digipair/skill-web-chatbot": ["libs/skill-web-chatbot/src/index.ts"],
       "@digipair/skill-web-inputs": ["libs/skill-web-inputs/src/index.ts"],
       "@digipair/skill-web-interact": ["libs/skill-web-interact/src/index.ts"],
       "@digipair/skill-web-ocr": ["libs/skill-web-ocr/src/index.ts"],

@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>@digipair/chatbot</title>
+    <title>@digipair/skill-web-chatbot</title>
   </head>
   <body>
     <script type="module">
       import { config } from './index.esm.js';
-      config.set('API_URL', window.location.origin + '/agents');
+      config.set('API_URL', window.location.origin);
 
       // Load the chatbot
       const chatbot = document.createElement('digipair-chatbot-full');
