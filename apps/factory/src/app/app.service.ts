@@ -33,9 +33,7 @@ export class AppService {
 
     const context = {
       private: config.private,
-      variables: {
-        ...config.variables,
-      },
+      variables: config.variables,
       request: {
         digipair,
         reasoning,

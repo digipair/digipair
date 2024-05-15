@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "publish": "yarn nx build engine && node tools/scripts/publish.mjs engine $npm_config_npmversion latest && yarn nx build skill-web-chatbot && node tools/scripts/publish.mjs skill-web-chatbot $npm_config_npmversion latest && yarn nx build skill-chatbot && node tools/scripts/publish.mjs skill-chatbot $npm_config_npmversion latest && yarn nx build skill-llm && node tools/scripts/publish.mjs skill-llm $npm_config_npmversion latest && yarn nx build skill-ollama && node tools/scripts/publish.mjs skill-ollama $npm_config_npmversion latest && yarn nx build skill-openai && node tools/scripts/publish.mjs skill-openai $npm_config_npmversion latest && yarn nx build skill-vespa && node tools/scripts/publish.mjs skill-vespa $npm_config_npmversion latest && yarn nx build skill-web-inputs && node tools/scripts/publish.mjs skill-web-inputs $npm_config_npmversion latest && yarn nx build skill-web-interact && node tools/scripts/publish.mjs skill-web-interact $npm_config_npmversion latest && yarn nx build skill-web-ocr && node tools/scripts/publish.mjs skill-web-ocr $npm_config_npmversion latest && yarn nx build skill-web-pdf && node tools/scripts/publish.mjs skill-web-pdf $npm_config_npmversion latest && yarn nx build skill-common && node tools/scripts/publish.mjs skill-common $npm_config_npmversion latest && yarn nx build skill-web && node tools/scripts/publish.mjs skill-web $npm_config_npmversion latest"
+    "publish": "yarn nx build engine && node tools/scripts/publish.mjs engine $npm_config_npmversion latest && yarn nx build skill-web-chatbot && node tools/scripts/publish.mjs skill-web-chatbot $npm_config_npmversion latest && yarn nx build skill-chatbot && node tools/scripts/publish.mjs skill-chatbot $npm_config_npmversion latest && yarn nx build skill-llm && node tools/scripts/publish.mjs skill-llm $npm_config_npmversion latest && yarn nx build skill-ollama && node tools/scripts/publish.mjs skill-ollama $npm_config_npmversion latest && yarn nx build skill-openai && node tools/scripts/publish.mjs skill-openai $npm_config_npmversion latest && yarn nx build skill-vespa && node tools/scripts/publish.mjs skill-vespa $npm_config_npmversion latest && yarn nx build skill-web-inputs && node tools/scripts/publish.mjs skill-web-inputs $npm_config_npmversion latest && yarn nx build skill-web-interact && node tools/scripts/publish.mjs skill-web-interact $npm_config_npmversion latest && yarn nx build skill-web-ocr && node tools/scripts/publish.mjs skill-web-ocr $npm_config_npmversion latest && yarn nx build skill-web-pdf && node tools/scripts/publish.mjs skill-web-pdf $npm_config_npmversion latest && yarn nx build skill-common && node tools/scripts/publish.mjs skill-common $npm_config_npmversion latest && yarn nx build skill-web && node tools/scripts/publish.mjs skill-web $npm_config_npmversion latest && yarn nx build skill-dsp && node tools/scripts/publish.mjs skill-dsp $npm_config_npmversion latest"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +19,7 @@
     "axios": "^1.6.0",
     "esm": "^3.2.25",
     "langchain": "^0.1.28",
+    "llmclient": "^8.0.26",
     "mermaid": "10.3.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",

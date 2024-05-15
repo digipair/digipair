@@ -1,0 +1,11 @@
+{
+  "name": "Digi",
+  "description": "Default digipair.",
+  "metadata": {
+    "avatar": "avatar.png",
+    "color": "#3b82f6"
+  },
+  "libraries": {},
+  "variables": {},
+  "privates": {}
+}

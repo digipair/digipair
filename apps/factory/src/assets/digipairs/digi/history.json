@@ -1,0 +1,9 @@
+{
+  "metadata": {},
+  "library": "@digipair/skill-chatbot",
+  "element": "history",
+  "properties": {
+    "question": "Welcome! How may I assist you today?",
+    "system": "You are a useful assistant, capable of explaining concepts in a simple way."
+  }
+}

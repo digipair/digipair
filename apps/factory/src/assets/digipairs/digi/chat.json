@@ -1,0 +1,14 @@
+{
+  "metadata": {},
+  "library": "@digipair/skill-web",
+  "element": "page",
+  "pins": [
+    {
+      "library": "@digipair/skill-web-chatbot",
+      "element": "digipair-chatbot-full",
+      "properties": {
+        "code": "digi"
+      }
+    }
+  ]
+}
