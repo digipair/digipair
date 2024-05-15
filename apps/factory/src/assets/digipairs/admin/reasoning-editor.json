@@ -1,0 +1,15 @@
+{
+  "metadata": {},
+  "library": "@digipair/skill-web",
+  "element": "page",
+  "pins": [
+    {
+      "library": "@digipair/skill-web-editor",
+      "element": "digipair-editor",
+      "properties": {
+        "digipair": "digi",
+        "reasoning": "chat"
+      }
+    }
+  ]
+}

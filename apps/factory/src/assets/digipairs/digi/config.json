@@ -5,7 +5,10 @@
     "avatar": "avatar.png",
     "color": "#3b82f6"
   },
-  "libraries": {},
+  "libraries": {
+    "@digipair/skill-web": "latest",
+    "@digipair/skill-web-chatbot": "latest"
+  },
   "variables": {},
   "privates": {}
 }

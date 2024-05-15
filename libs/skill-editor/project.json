@@ -1,0 +1,27 @@
+{
+  "name": "skill-editor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-editor/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-editor",
+        "main": "libs/skill-editor/src/index.ts",
+        "tsConfig": "libs/skill-editor/tsconfig.lib.json",
+        "assets": ["libs/skill-editor/src/index.d.ts"],
+        "rollupConfig": ["libs/skill-editor/rollup.build.cjs"],
+        "project": "libs/skill-editor/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-editor {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

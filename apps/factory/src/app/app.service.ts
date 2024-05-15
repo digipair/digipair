@@ -12,6 +12,7 @@ config.set('LIBRARIES', {
   '@digipair/skill-openai': require('@digipair/skill-openai'),
   '@digipair/skill-vespa': require('@digipair/skill-vespa'),
   '@digipair/skill-web': require('@digipair/skill-web'),
+  '@digipair/skill-editor': require('@digipair/skill-editor'),
 });
 
 @Injectable()

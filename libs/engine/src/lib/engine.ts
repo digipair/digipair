@@ -54,7 +54,9 @@ export const executePins = async (
   const version = options.libraries[settings.library] || 'latest';
   const library =
     _config.LIBRARIES[settings.library] ||
-    (await import(`${_config.BASE_URL}/${settings.library}@${version}/index.esm.js`));
+    (typeof window === 'undefined'
+      ? require(settings.library)
+      : await import(`${_config.BASE_URL}/${settings.library}@${version}/index.esm.js`));
   const pins = library?.[settings.element];
 
   if (!pins) {
