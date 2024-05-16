@@ -20,14 +20,18 @@ jsonGenerator['generic-scene-block'] = function (block: { getFieldValue: (arg0: 
     jsonGenerator.valueToCode(block, 'EXECUTE_PINS', jsonGenerator.PRECEDENCE) || 'null';
   const metadataCode =
     jsonGenerator.valueToCode(block, 'METADATA_INPUT', jsonGenerator.PRECEDENCE) || '{}';
+  const eventsCode =
+    jsonGenerator.valueToCode(block, 'EVENTS_INPUT', jsonGenerator.PRECEDENCE) || '{}';
 
   const pinsData = safeParse(pinsCode, null);
   const metadata = safeParse(metadataCode, {});
+  const events = safeParse(eventsCode, {});
 
   const objectToSerialize = {
     type: block.getFieldValue('SCENE_TYPE') || null,
     metadata: metadata,
     ...(pinsData !== null ? pinsData : {}),
+    events: events,
   };
 
   const serializedCode = JSON.stringify(objectToSerialize);
@@ -121,16 +125,20 @@ jsonGenerator.generatePin = function (block: { type: string; inputList: any[] })
     const connectedBlock = input.connection && input.connection.targetBlock();
     if (connectedBlock) {
       if (inputName !== 'pins' && input.type == 3) {
+        console.log('inputName', inputName, inputName.includes('__EVENT__/'));
         const inputCode = jsonGenerator.customStatementToCode(block, inputName);
-        propertiesCode += `    "${inputName}": [${inputCode}],`;
+
+        if (inputName.includes('__EVENT__/')) {
+          eventCode += `    "${inputName.split('__EVENT__/')[1]}": [${inputCode}],`;
+        } else {
+          propertiesCode += `    "${inputName}": [${inputCode}],`;
+        }
       } else {
         const codeToAdd = getCodeFromBlock(connectedBlock);
 
         if (inputName === 'pins') {
           const inputCode = jsonGenerator.customStatementToCode(block, inputName);
           code += `  "${inputName}": [${inputCode}],`;
-        } else if (inputName.includes('__EVENT__/')) {
-          eventCode += `    "${inputName.split('__EVENT__/')[1]}": ${codeToAdd},`;
         } else if (codeToAdd !== 'undefined') {
           propertiesCode += `    "${inputName}": ${codeToAdd},`;
         }

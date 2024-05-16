@@ -534,7 +534,7 @@ function itemListFromPinsSettings(
       if (!Object.prototype.hasOwnProperty.call(pinsSettings.properties, parameter.name)) {
         continue;
       }
-      inputArray.push({ id: parameter.name, name: parameter.name });
+      inputArray.push({ id: parameter.name, name: parameter.summary || parameter.name });
     }
   }
 

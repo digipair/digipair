@@ -10,28 +10,25 @@
     "/console": {
       "post": {
         "tags": [],
-        "summary": "console",
+        "summary": "Afficher dans la console",
         "description": "Element permettant d'afficher un message dans la console javascript",
         "parameters": [
           {
-            "name": "text",
-            "summary": "Texte",
+            "name": "label",
+            "summary": "Sujet",
             "required": true,
-            "description": "Texte à afficher",
+            "description": "Sujet du log",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "params",
-            "summary": "Paramètres",
+            "name": "value",
+            "summary": "Valeur",
             "required": false,
-            "description": "Paramètres supplémentaires à afficher",
+            "description": "Valeur supplémentaire à afficher",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
+              "type": "object"
             }
           }
         ],

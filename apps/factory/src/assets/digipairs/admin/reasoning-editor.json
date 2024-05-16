@@ -18,7 +18,8 @@
               "library": "@digipair/skill-web-debug",
               "element": "console",
               "properties": {
-                "text": "Un test"
+                "label": "Un test",
+                "value": "GET_VALUE:event"
               }
             }
           ]

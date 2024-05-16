@@ -126,6 +126,18 @@ export const blocksLegacy = [
         name: 'METADATA_INPUT',
       },
     ],
+    message4: '%1 %2',
+    args4: [
+      {
+        type: 'field_label_serializable',
+        name: 'NAME_EVENTS',
+        text: 'Events',
+      },
+      {
+        type: 'input_value',
+        name: 'EVENTS_INPUT',
+      },
+    ],
     colour: 0,
     tooltip: '',
     helpUrl: '',

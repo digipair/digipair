@@ -2,9 +2,9 @@ import { PinsSettings } from '@digipair/engine';
 
 class DebugService {
   async console(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { text, parameters = [] } = params;
+    const { label, value } = params;
 
-    window.console.log(text, ...parameters);
+    window.console.log(label, value);
   }
 }
 
