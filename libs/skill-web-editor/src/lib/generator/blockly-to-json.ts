@@ -125,7 +125,6 @@ jsonGenerator.generatePin = function (block: { type: string; inputList: any[] })
     const connectedBlock = input.connection && input.connection.targetBlock();
     if (connectedBlock) {
       if (inputName !== 'pins' && input.type == 3) {
-        console.log('inputName', inputName, inputName.includes('__EVENT__/'));
         const inputCode = jsonGenerator.customStatementToCode(block, inputName);
 
         if (inputName.includes('__EVENT__/')) {

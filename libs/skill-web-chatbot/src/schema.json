@@ -25,6 +25,25 @@
         ],
         "x-events": []
       }
+    },
+    "/digipair-chatbot": {
+      "post": {
+        "tags": [],
+        "summary": "Chatbot",
+        "description": "Affiche un chatbot sur une page internet",
+        "parameters": [
+          {
+            "name": "code",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Digipair à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

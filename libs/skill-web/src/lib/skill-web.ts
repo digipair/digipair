@@ -15,9 +15,6 @@ class WebService {
   <body>
     <script type="module">
       import { generateElementFromPins } from '${BASE_URL}/@digipair/engine/index.esm.js';
-      import { config } from '${BASE_URL}/@digipair/skill-web-chatbot/index.esm.js';
-      
-      config.set('API_URL', window.location.origin);
 
       const context = {
         variables: ${JSON.stringify(context.variables || {})},

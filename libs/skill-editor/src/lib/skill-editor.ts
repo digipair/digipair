@@ -24,7 +24,21 @@ class EditorService {
       content,
     };
   }
+
+  async save(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { digipair, reasoning, value } = params;
+
+    await promises.writeFile(
+      join(__dirname, `/assets/digipairs/${digipair}/${reasoning}.json`),
+      JSON.stringify(value),
+    );
+
+    return {};
+  }
 }
 
 export const read = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().read(params, pinsSettingsList, context);
+
+export const save = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().save(params, pinsSettingsList, context);
