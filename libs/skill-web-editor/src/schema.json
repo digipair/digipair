@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-editor",
+    "description": "Edition de raisonnements IA.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/digipair-editor": {
+      "post": {
+        "tags": [],
+        "summary": "Editeur de raisonnements",
+        "description": "Editeur no-code de raisonnements IA",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Propriétaire du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "save",
+            "summary": "Sauvegarde",
+            "required": false,
+            "description": "Action déclenchée lors de la sauvegarde du raisonnement",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

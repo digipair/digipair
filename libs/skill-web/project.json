@@ -11,7 +11,7 @@
         "outputPath": "dist/libs/skill-web",
         "main": "libs/skill-web/src/index.ts",
         "tsConfig": "libs/skill-web/tsconfig.lib.json",
-        "assets": ["libs/skill-web/src/index.d.ts"],
+        "assets": ["libs/skill-web/src/index.d.ts", "libs/skill-web/src/schema.json"],
         "project": "libs/skill-web/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"],

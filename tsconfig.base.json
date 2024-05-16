@@ -26,6 +26,7 @@
       "@digipair/skill-vespa": ["libs/skill-vespa/src/index.ts"],
       "@digipair/skill-web": ["libs/skill-web/src/index.ts"],
       "@digipair/skill-web-chatbot": ["libs/skill-web-chatbot/src/index.ts"],
+      "@digipair/skill-web-debug": ["libs/skill-web-debug/src/index.ts"],
       "@digipair/skill-web-editor": ["libs/skill-web-editor/src/index.ts"],
       "@digipair/skill-web-inputs": ["libs/skill-web-inputs/src/index.ts"],
       "@digipair/skill-web-interact": ["libs/skill-web-interact/src/index.ts"],

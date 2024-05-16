@@ -1,4 +1,12 @@
-import { All, Body, Controller, Param } from '@nestjs/common';
+import {
+  All,
+  Body,
+  Controller,
+  DefaultValuePipe,
+  Param,
+  ParseArrayPipe,
+  Req,
+} from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -6,12 +14,14 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @All('/:digipair/:reasoning')
+  @All('/:digipair/:reasoning*?')
   api(
     @Param('digipair') digipair: string,
     @Param('reasoning') reasoning: string,
+    @Req() request: Request,
     @Body() body: any,
   ) {
-    return this.appService.agent(digipair, reasoning, body);
+    const params = (request as any).params[0].replace(/^\//g, '').split('/');
+    return this.appService.agent(digipair, reasoning, body, params);
   }
 }

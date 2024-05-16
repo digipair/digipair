@@ -1,11 +1,12 @@
 //import { userService } from '@pinser-world/core/user';
 import { LitElement, TemplateResult, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import * as Toastify from 'toastify-js';
+import * as ToastifyJs from 'toastify-js';
 import { PinsSettings } from '@digipair/engine';
 import { blocksLegacy } from './blocks/json';
 import { initializeWorkspaceFromPinsAndLibraries } from './generator/json-to-blockly';
 
+const Toastify = (ToastifyJs as any).default;
 const BASE_URL = 'https://cdn.jsdelivr.net/npm';
 const BLOCKLY_VERSION = '10.4.3';
 declare const Blockly: any;
@@ -42,6 +43,12 @@ export class GenericSceneElement extends LitElement {
   }
 
   private async initialize() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${BASE_URL}/toastify-js/src/toastify.min.css`;
+    link.type = 'text/css';
+    document.head.appendChild(link);
+
     let script: any, promise: any;
 
     script = document.createElement('script');
@@ -130,26 +137,12 @@ export class GenericSceneElement extends LitElement {
   }
 
   private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
-    console.log('libraries', libraries);
-
     const list = await Promise.all(
       Object.keys(libraries).map(async (library: any, i: number) =>
         fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
       ),
     );
 
-    console.log('list', list);
-
-    // const response = await fetch(environment.SERVICE_URL, {
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ experience: environment.SERVICE_EXPERIENCEID, scene: 'libraries', input: { token: await userService.token(), libraries } }),
-    //   method: 'POST'
-    // });
-    // const list = await response.json()
-
-    // return list;
     return list;
   }
 
@@ -184,17 +177,15 @@ export class GenericSceneElement extends LitElement {
 
   private async saveScene(): Promise<void> {
     if (this.canSave == true) {
-      // const experienceId = this.experience;
-      // const sceneName = this.scene;
-      // const value = this.codeInWorkspace;
-
-      // await fetch(environment.SERVICE_URL, {
-      //   headers: {
-      //     'content-type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ experience: environment.SERVICE_EXPERIENCEID, scene: 'updateScene', input: { token: await userService.token(), experienceId, sceneName, value } }),
-      //   method: 'POST'
-      // });
+      this.dispatchEvent(
+        new CustomEvent('save', {
+          detail: {
+            digipair: this.digipair,
+            reasoning: this.reasoning,
+            value: this.codeInWorkspace,
+          },
+        }),
+      );
 
       Toastify({
         text: 'Successfully saved !',

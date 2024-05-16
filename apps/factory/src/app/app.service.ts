@@ -17,7 +17,7 @@ config.set('LIBRARIES', {
 
 @Injectable()
 export class AppService {
-  async agent(digipair: string, reasoning: string, body: any): Promise<any> {
+  async agent(digipair: string, reasoning: string, body: any, params: string[]): Promise<any> {
     let content: string;
 
     content = await promises.readFile(
@@ -39,6 +39,7 @@ export class AppService {
         digipair,
         reasoning,
         body,
+        params,
       },
     };
 

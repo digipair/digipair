@@ -1,0 +1,44 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web",
+    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {
+    "/page": {
+      "summary": "Page internet",
+      "description": "Affichage d'une page d'un site internet.",
+      "tags": [],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "body",
+          "summary": "Contenu",
+          "required": true,
+          "description": "Contenu de la page",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "title",
+          "summary": "Titre",
+          "required": false,
+          "description": "Titre de la page",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -23,6 +23,8 @@ function getPinsBlockDefinition(
   };
 
   const parameters = methodData.parameters;
+  const metadata = methodData.metadata || [];
+  const events = methodData['x-events'] || [];
 
   const requiredParamInputs = parameters.filter(
     (param: { required: boolean }) => param.required === true,
@@ -31,10 +33,10 @@ function getPinsBlockDefinition(
   const requiredFields = requiredParamInputs.map((param: { name: any }) => param.name);
 
   if (methodData['x-events']) {
-    Object.keys(methodData['x-events']).forEach(key => {
-      if (methodData['x-events'][key].required) {
-        requiredEventInputs.push(methodData['x-events'][key]);
-        requiredFields.push('__EVENT__/' + key);
+    methodData['x-events'].forEach((event: any) => {
+      if (event.required) {
+        requiredEventInputs.push(event);
+        requiredFields.push('__EVENT__/' + event.name);
       }
     });
   }
@@ -70,12 +72,9 @@ function getPinsBlockDefinition(
   }
 
   if (methodData['x-events']) {
-    for (const event in methodData['x-events']) {
-      if (
-        methodData['x-events'][event].required === false ||
-        !methodData['x-events'][event].required
-      ) {
-        mutatorToolbox.push('__EVENT__/' + event);
+    for (const event of methodData['x-events']) {
+      if (event.required === false || !event.required) {
+        mutatorToolbox.push('__EVENT__/' + event.name);
       }
     }
   }
@@ -115,23 +114,30 @@ function getPinsBlockDefinition(
   for (let i = 0; i < requiredEventInputs.length; i++) {
     const position = blockDefinition['args2'].length;
 
-    blockDefinition['message2'] += ' %' + (position + 1) + ' %' + (position + 2);
-
     blockDefinition['args2'].push({
       type: 'field_label',
       name: `NAME_INPUT`,
       text: '@' + (requiredEventInputs[i].summary || requiredEventInputs[i].name) + '*',
     });
 
+    blockDefinition['message2'] +=
+      ' %' + (position + 1) + ' %' + (position + 2) + ' %' + (position + 3);
     blockDefinition['args2'].push({
-      type: 'input_value',
+      type: 'input_dummy',
+    });
+    blockDefinition['args2'].push({
+      type: 'input_statement',
       name: '__EVENT__/' + requiredEventInputs[i].name,
     });
   }
 
   if (mutatorToolbox.length > 0) {
     blockDefinition.mutator = pinsId + '/mutator';
-    generateMutator(pinsId + '/mutator', mutatorToolbox, requiredFields, parameters);
+    generateMutator(pinsId + '/mutator', mutatorToolbox, requiredFields, [
+      ...parameters,
+      ...metadata,
+      ...events,
+    ]);
   }
   return blockDefinition;
 }
@@ -606,15 +612,16 @@ function generateMutator(
             continue;
           }
           if (!inputLoaded.includes(input.id)) {
-            const parameter =
-              parameters.find((param: { name: any }) => param.name === input.name) ?? {};
+            const id = input.id.indexOf('/') < 0 ? input.id : input.id.split('/')[1];
+            const parameter = parameters.find((param: { name: any }) => param.name === id) ?? {};
 
             if (
               parameter.schema?.type === 'array' &&
               (parameter.schema?.items.$ref === 'https://www.pinser.world/schemas/pinsSettings' ||
                 parameter.schema?.items.$ref?.includes('#/components/schemas/'))
             ) {
-              this.appendStatementInput(input.id).appendField(input.name);
+              this.appendDummyInput().appendField(input.name);
+              this.appendStatementInput(input.id);
             } else {
               this.appendValueInput(input.id).appendField(input.name);
             }

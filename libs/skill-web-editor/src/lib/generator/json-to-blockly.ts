@@ -14,24 +14,17 @@ function generateSceneBlock(pinsSettings: any, workspace: any) {
   let sceneBlockName = '';
   let sceneBlockLibrary = '';
   let hasSceneBlock = false;
-  let foundLibrary;
 
-  if (
-    pinsSettings.type &&
-    typeof pinsSettings.type === 'string' &&
-    pinsSettings.type.includes('/')
-  ) {
-    sceneBlockName = '/' + pinsSettings.element;
-    sceneBlockLibrary = pinsSettings.library;
+  sceneBlockName = '/' + pinsSettings.element;
+  sceneBlockLibrary = pinsSettings.library;
 
-    foundLibrary = libraries.find(
-      (library: { info: { title: string } }) => library.info.title === sceneBlockLibrary,
-    );
-    hasSceneBlock =
-      foundLibrary &&
-      foundLibrary['x-scene-blocks'] &&
-      Object.hasOwnProperty.call(foundLibrary['x-scene-blocks'], sceneBlockName);
-  }
+  const foundLibrary = libraries.find(
+    (library: { info: { title: string } }) => library.info.title === sceneBlockLibrary,
+  );
+  hasSceneBlock =
+    foundLibrary &&
+    foundLibrary['x-scene-blocks'] &&
+    Object.hasOwnProperty.call(foundLibrary['x-scene-blocks'], sceneBlockName);
 
   let sceneBlock;
   if (hasSceneBlock) {
@@ -261,29 +254,19 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
     }
   }
 
-  for (const eventName in pinsDefinition['x-events']) {
+  for (const event of pinsDefinition['x-events']) {
     if (
       !pinsSettings.events ||
-      !Object.prototype.hasOwnProperty.call(pinsSettings.events, eventName)
+      !Object.prototype.hasOwnProperty.call(pinsSettings.events, event.name)
     ) {
       continue;
     }
 
-    const valueToLoad = pinsSettings.events[eventName];
-    const schema = { $ref: 'https://www.pinser.world/schemas/pinsSettings' };
-    const eventBlock = generateParameterBlock(schema, valueToLoad, workspace, library);
-
-    eventBlock?.initSvg();
-    eventBlock?.render();
-
-    const input = pinsBlock.getInput('__EVENT__/' + eventName);
-    if (input) {
-      const inputConnection = input.connection;
-      connectBlock(eventBlock, inputConnection);
-    } else {
-      console.log(
-        `[generateBlockFromPins] - Block ${pinsBlock.type} has no input named __EVENT__/${eventName}`,
-      );
+    const valueToLoad = pinsSettings.events[event.name];
+    for (const propertyValue of (valueToLoad as any[]).reverse()) {
+      const parameterBlock = generateBlockFromPins(propertyValue, workspace);
+      const inputConnection = pinsBlock.getInput('__EVENT__/' + event.name).connection;
+      connectBlock(parameterBlock, inputConnection);
     }
   }
 
@@ -560,11 +543,14 @@ function itemListFromPinsSettings(
   }
 
   if (pinsDefinition['x-events'] && pinsSettings.events) {
-    for (const eventName in pinsDefinition['x-events']) {
-      if (!Object.prototype.hasOwnProperty.call(pinsSettings.events, eventName)) {
+    for (const event of pinsDefinition['x-events']) {
+      if (!Object.prototype.hasOwnProperty.call(pinsSettings.events, event.name)) {
         continue;
       }
-      inputArray.push({ id: '__EVENT__/' + eventName, name: '@' + eventName });
+      inputArray.push({
+        id: '__EVENT__/' + event.name,
+        name: '@' + (event.summary || event.name),
+      });
     }
   }
 

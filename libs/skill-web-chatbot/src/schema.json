@@ -1,0 +1,33 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-chatbot",
+    "description": "Intégration d'un chatbot interactif sur une page web pour améliorer l'engagement et la communication avec les utilisateurs.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/digipair-chatbot-full": {
+      "post": {
+        "tags": [],
+        "summary": "Chatbot en pleine page",
+        "description": "Affiche une conversation avec un chatbot en pleine page",
+        "parameters": [
+          {
+            "name": "code",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Digipair à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

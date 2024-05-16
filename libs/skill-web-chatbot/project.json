@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-web-chatbot",
         "main": "libs/skill-web-chatbot/src/index.ts",
         "tsConfig": "libs/skill-web-chatbot/tsconfig.lib.json",
-        "assets": ["libs/skill-web-chatbot/src/index.d.ts", "libs/skill-web-chatbot/src/debug.html"],
+        "assets": [
+          "libs/skill-web-chatbot/src/index.d.ts",
+          "libs/skill-web-chatbot/src/debug.html",
+          "libs/skill-web-chatbot/src/schema.json"
+        ],
         "project": "libs/skill-web-chatbot/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],

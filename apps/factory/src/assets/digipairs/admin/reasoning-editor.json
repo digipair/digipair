@@ -2,14 +2,28 @@
   "metadata": {},
   "library": "@digipair/skill-web",
   "element": "page",
-  "pins": [
-    {
-      "library": "@digipair/skill-web-editor",
-      "element": "digipair-editor",
-      "properties": {
-        "digipair": "digi",
-        "reasoning": "chat"
+  "properties": {
+    "body": [
+      {
+        "library": "@digipair/skill-web-editor",
+        "element": "digipair-editor",
+        "properties": {
+          "digipair": "{{request.params.[0]}}",
+          "reasoning": "{{request.params.[1]}}"
+        },
+        "events": {
+          "save": [
+            {
+              "type": "web",
+              "library": "@digipair/skill-web-debug",
+              "element": "console",
+              "properties": {
+                "text": "Un test"
+              }
+            }
+          ]
+        }
       }
-    }
-  ]
+    ]
+  }
 }
