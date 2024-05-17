@@ -69,7 +69,7 @@
                     "library": "@digipair/skill-llm",
                     "element": "reasoningStepValue",
                     "properties": {
-                      "value": "GET_VALUE:parent.previous.summary[0].content"
+                      "value": "EVALUATE:parent.previous.summary[1].content"
                     }
                   }
                 ]

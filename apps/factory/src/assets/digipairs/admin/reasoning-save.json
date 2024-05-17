@@ -5,6 +5,6 @@
   "properties": {
     "digipair": "{{request.body.digipair}}",
     "reasoning": "{{request.body.reasoning}}",
-    "value": "GET_VALUE:request.body.value"
+    "value": "EVALUATE:request.body.value"
   }
 }

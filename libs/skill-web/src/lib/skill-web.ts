@@ -14,7 +14,8 @@ class WebService {
   </head>
   <body>
     <script type="module">
-      import { generateElementFromPins } from '${BASE_URL}/@digipair/engine/index.esm.js';
+      // import { generateElementFromPins } from '${BASE_URL}/@digipair/engine/index.esm.js';
+      import { generateElementFromPins } from 'http://localhost:4000/engine/index.esm.js';
 
       const context = {
         variables: ${JSON.stringify(context.variables || {})},
@@ -36,7 +37,30 @@ class WebService {
 
     return html;
   }
+
+  async javascript(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { execute } = params;
+    const BASE_URL = 'https://cdn.jsdelivr.net/npm';
+    const js = `
+      import { executePins } from '${BASE_URL}/@digipair/engine/index.esm.js';
+
+      const context = {
+        variables: ${JSON.stringify(context.variables || {})},
+        request: ${JSON.stringify(context.request || {})},
+      };
+      const options = {
+        libraries: {},
+      };
+      
+      executePins(${JSON.stringify(execute)}, context, options);
+    `;
+
+    return js;
+  }
 }
 
 export const page = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WebService().page(params, pinsSettingsList, context);
+
+export const javascript = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WebService().javascript(params, pinsSettingsList, context);

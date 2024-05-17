@@ -9,7 +9,8 @@
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-editor": "latest",
-    "@digipair/skill-web-factory": "latest"
+    "@digipair/skill-web-factory": "latest",
+    "@digipair/skill-web-debug": "latest"
   },
   "variables": {},
   "privates": {}

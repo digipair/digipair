@@ -19,16 +19,16 @@
               "properties": {
                 "digipair": "{{request.digipair}}",
                 "reasoning": "reasoning-save",
-                "body": "GET_VALUE:event"
+                "body": "EVALUATE:event"
               }
+            },
+            {
+              "library": "@digipair/skill-web-editor",
+              "element": "information",
+              "properties": { "message": "Successfully saved !" }
             }
           ]
         }
-      },
-      {
-        "library": "@digipair/skill-web-chatbot",
-        "element": "digipair-chatbot",
-        "properties": { "code": "{{request.digipair}}" }
       }
     ]
   },

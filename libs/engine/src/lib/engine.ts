@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Handlebars from 'handlebars/dist/handlebars.min.js';
-import { JSONPath } from 'jsonpath/jsonpath.min.js';
 import { PinsSettings } from './pins-settings.interface';
+import { evaluate } from 'feelin';
 
 Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);
@@ -27,10 +27,9 @@ export const applyTemplate = (value: any, context: any) => {
     const template = Handlebars.compile(value, { noEscape: true });
     result = template(context);
 
-    if (result.startsWith('GET_VALUE:')) {
-      const path = result.replace('GET_VALUE:', '');
-      const jsonpath = new JSONPath();
-      result = jsonpath.value(context, path);
+    if (result.startsWith('EVALUATE:')) {
+      const path = result.replace(/^EVALUATE:/, '');
+      result = evaluate(path, context);
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
     result = value;
