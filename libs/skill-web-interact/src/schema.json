@@ -41,7 +41,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/setAttribute": {
@@ -78,7 +78,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

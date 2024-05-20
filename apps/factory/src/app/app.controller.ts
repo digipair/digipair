@@ -21,7 +21,7 @@ export class AppController {
     @Req() request: Request,
     @Body() body: any,
   ) {
-    const params = (request as any).params[0].replace(/^\//g, '').split('/');
+    const params = (request as any).params['0'].replace(/^\//g, '').split('/');
     return this.appService.agent(digipair, reasoning, body, params);
   }
 }

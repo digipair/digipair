@@ -59,7 +59,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/vision": {
@@ -123,7 +123,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/summarization": {
@@ -241,7 +241,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

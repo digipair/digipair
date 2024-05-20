@@ -5,7 +5,10 @@
     "avatar": "avatar.png",
     "color": "#3b82f6"
   },
-  "libraries": {},
+  "libraries": {
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-common": "latest"
+  },
   "variables": {},
   "privates": {}
 }

@@ -12,7 +12,7 @@
         "tags": [],
         "summary": "Lister les metadatas",
         "parameters": [],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/boosts": {
@@ -20,7 +20,7 @@
         "tags": [],
         "summary": "Lister les boosts",
         "parameters": [],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

@@ -68,7 +68,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/summarization": {
@@ -195,7 +195,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

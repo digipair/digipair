@@ -120,7 +120,7 @@ export class GenericSceneElement extends LitElement {
   }
 
   private async getReasoning(digipair: string, reasoning: string): Promise<PinsSettings | null> {
-    const response = await fetch(`${window.origin}/admin/reasoning-read`, {
+    const response = await fetch(`${window.location.origin}/admin/reasoning-read`, {
       headers: {
         'content-type': 'application/json',
       },
@@ -138,10 +138,7 @@ export class GenericSceneElement extends LitElement {
   private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
     const list = await Promise.all(
       Object.keys(libraries).map(async (library: any, i: number) =>
-        // fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
-
-        // @todo: to replace
-        fetch(`http://localhost:4000/${library.split('/')[1]}/schema.json`).then(res => res.json()),
+        fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
       ),
     );
 

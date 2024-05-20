@@ -4,7 +4,7 @@ class FactoryService {
   async post(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { digipair, reasoning, body } = params;
 
-    const response = await fetch(`${window.origin}/${digipair}/${reasoning}`, {
+    const response = await fetch(`${window.location.origin}/${digipair}/${reasoning}`, {
       headers: {
         'content-type': 'application/json',
       },
@@ -19,7 +19,7 @@ class FactoryService {
   async get(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { digipair, reasoning } = params;
 
-    const response = await fetch(`${window.origin}/${digipair}/${reasoning}`, {
+    const response = await fetch(`${window.location.origin}/${digipair}/${reasoning}`, {
       headers: {
         'content-type': 'application/json',
       },

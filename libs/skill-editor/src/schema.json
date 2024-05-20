@@ -31,7 +31,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/save": {
@@ -64,13 +64,13 @@
             "description": "Contenu du raisonnement à sauvegarder",
             "schema": {
               "type": "array",
-              "$items": {
+              "items": {
                 "$ref": "https://www.pinser.world/schemas/pinsSettings"
               }
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

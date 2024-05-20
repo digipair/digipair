@@ -9,5 +9,5 @@ class ServiceService {
   }
 }
 
-export const page = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+export const service = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ServiceService().service(params, pinsSettingsList, context);

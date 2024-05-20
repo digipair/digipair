@@ -94,7 +94,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/find": {
@@ -135,7 +135,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/search": {
@@ -201,7 +201,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/history": {
@@ -246,7 +246,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/getRole": {
@@ -273,7 +273,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/setRole": {
@@ -309,7 +309,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

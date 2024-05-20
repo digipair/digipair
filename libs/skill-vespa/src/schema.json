@@ -59,7 +59,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/search": {
@@ -141,7 +141,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/textSplitter": {
@@ -187,7 +187,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/push": {
@@ -227,7 +227,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/remove": {
@@ -264,7 +264,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

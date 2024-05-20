@@ -33,7 +33,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/reasoningStep": {
@@ -54,7 +54,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/reasoningStepValue": {
@@ -72,7 +72,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },

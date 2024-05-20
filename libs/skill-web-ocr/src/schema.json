@@ -41,7 +41,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     },
     "/digipair-input-ocr": {
@@ -87,7 +87,7 @@
             }
           }
         ],
-        "x-events": {}
+        "x-events": []
       }
     }
   },
