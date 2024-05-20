@@ -203,7 +203,11 @@ export class GenericSceneElement extends LitElement {
     const generatedBlocks = generateBlocklyBlockFromLibraries(this.librariesToLoad, blocksLegacy);
     this.blocks = Blockly.common.createBlockDefinitionsFromJsonArray(generatedBlocks);
 
-    this.toolbox = generateToolboxFromLibraries(this.librariesToLoad);
+    const tags =
+      this.librariesToLoad.find((library: any) => library.info.title === scene.library)?.[
+        'x-scene-blocks'
+      ]?.[`/${scene.element}`]?.tags || [];
+    this.toolbox = generateToolboxFromLibraries(this.librariesToLoad, tags);
     Blockly.common.defineBlocks(this.blocks);
     const container = this.renderRoot.querySelector('[data-scene]');
 

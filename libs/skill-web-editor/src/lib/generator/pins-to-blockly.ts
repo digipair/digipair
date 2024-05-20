@@ -222,7 +222,7 @@ function getComponentBlockDefinition(
   return blockDefinition;
 }
 
-export function generateToolboxFromLibraries(libraries: any[]) {
+export function generateToolboxFromLibraries(libraries: any[], tags: string[]) {
   const sortedLibraries = libraries.sort((a, b) => {
     const title1 = a.info.summary ?? a.info.title;
     const title2 = b.info.summary ?? b.info.title;
@@ -277,38 +277,46 @@ export function generateToolboxFromLibraries(libraries: any[]) {
           },
         ],
       },
-      ...sortedLibraries.map(library => ({
-        kind: 'category',
-        name: library.info['x-icon'] + ' ' + (library.info.summary ?? library.info.title),
-        contents: [
-          ...(library.paths
-            ? Object.entries(library.paths)
-                .sort((a, b) => a[0].localeCompare(b[0])) // Tri alphabétique par path
-                .map(([path, _pins]) => ({
-                  kind: 'block',
-                  type: library.info.title + '/__PINS__' + path,
-                }))
-            : []),
-          ...(library.components?.schemas
-            ? Object.entries(library.components.schemas)
-                .sort((a, b) => a[0].localeCompare(b[0])) // Tri alphabétique par componentName
-                .map(([componentName, _componentSchema]) => ({
-                  kind: 'block',
-                  type: library.info.title + '/__COMPONENTS__/' + componentName,
-                }))
-            : []),
+      ...sortedLibraries
+        .map(library => ({
+          kind: 'category',
+          name: library.info['x-icon'] + ' ' + (library.info.summary ?? library.info.title),
+          contents: [
+            ...(library.paths
+              ? Object.entries(library.paths as { [x: string]: any })
+                  .filter(([_path, pins]) =>
+                    pins.post.tags.some((tag: string) => tags.includes(tag)),
+                  )
+                  .sort((a, b) => a[0].localeCompare(b[0])) // Tri alphabétique par path
+                  .map(([path, _pins]) => ({
+                    kind: 'block',
+                    type: library.info.title + '/__PINS__' + path,
+                  }))
+              : []),
+            ...(library.components?.schemas
+              ? Object.entries(library.components.schemas as { [x: string]: any })
+                  .filter(([_componentName, schema]) =>
+                    schema.tags.some((tag: string) => tags.includes(tag)),
+                  )
+                  .sort((a, b) => a[0].localeCompare(b[0])) // Tri alphabétique par componentName
+                  .map(([componentName]) => ({
+                    kind: 'block',
+                    type: library.info.title + '/__COMPONENTS__/' + componentName,
+                  }))
+              : []),
 
-          // // @todo: to comment to remove scene blocks
-          // ...(library['x-scene-blocks']
-          //   ? Object.entries(library['x-scene-blocks'])
-          //     .sort((a, b) => a[0].localeCompare(b[0])) // Tri alphabétique par sceneBlock
-          //     .map(([sceneBlockName, _sceneBlockSchema]) => ({
-          //       kind: 'block',
-          //       type: library.info.title + '/__SCENEBLOCK__' + sceneBlockName,
-          //     }))
-          //   : []),
-        ],
-      })),
+            // // @todo: to comment to remove scene blocks
+            // ...(library['x-scene-blocks']
+            //   ? Object.entries(library['x-scene-blocks'])
+            //     .sort((a, b) => a[0].localeCompare(b[0])) // Tri alphabétique par sceneBlock
+            //     .map(([sceneBlockName, _sceneBlockSchema]) => ({
+            //       kind: 'block',
+            //       type: library.info.title + '/__SCENEBLOCK__' + sceneBlockName,
+            //     }))
+            //   : []),
+          ],
+        }))
+        .filter(library => library.contents.length > 0),
     ],
   };
 
