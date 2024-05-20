@@ -9,7 +9,7 @@
   "paths": {
     "/dispatchEvent": {
       "post": {
-        "tags": [],
+        "tags": ["web", "boost"],
         "summary": "Emettre un évènement",
         "description": "Emet un évènement sur un élément du DOM",
         "parameters": [
@@ -46,7 +46,7 @@
     },
     "/setAttribute": {
       "post": {
-        "tags": [],
+        "tags": ["web", "boost"],
         "summary": "Modifier un attribute",
         "description": "Permet de modifier la valeur d'un attribut d'un élément du DOM sans espace ni caractère spécial sauf '-'",
         "parameters": [

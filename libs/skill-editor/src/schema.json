@@ -9,7 +9,7 @@
   "paths": {
     "/read": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Lecture d'un raisonnement",
         "parameters": [
           {
@@ -22,7 +22,7 @@
             }
           },
           {
-            "name": "raisoning",
+            "name": "reasoning",
             "summary": "Raisonnement",
             "required": true,
             "description": "Nom du raisonnement",
@@ -36,7 +36,7 @@
     },
     "/save": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Sauvegarde d'un raisonnement",
         "parameters": [
           {
@@ -49,7 +49,7 @@
             }
           },
           {
-            "name": "raisoning",
+            "name": "reasoning",
             "summary": "Raisonnement",
             "required": true,
             "description": "Nom du raisonnement",

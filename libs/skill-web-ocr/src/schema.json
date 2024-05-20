@@ -9,7 +9,7 @@
   "paths": {
     "/digipair-input-ocr-selector": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Extraire le texte depuis une image du DOM",
         "description": "Element permettant de récupérer le texte à partir d'une image présente dans le DOM",
         "parameters": [
@@ -46,7 +46,7 @@
     },
     "/digipair-input-ocr": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Extraire le texte d'une image",
         "description": "Element permettant d'extraire le texte à partir d'une image fournie par l'utilisateur",
         "parameters": [

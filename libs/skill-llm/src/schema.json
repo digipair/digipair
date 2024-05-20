@@ -9,7 +9,7 @@
   "paths": {
     "/invoke": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "invoke",
         "parameters": [
           {
@@ -38,7 +38,7 @@
     },
     "/reasoningStep": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Etape de raisonnement",
         "parameters": [
           {
@@ -59,7 +59,7 @@
     },
     "/reasoningStepValue": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Valeur statique",
         "parameters": [
           {
@@ -79,6 +79,7 @@
   "components": {
     "schemas": {
       "reasonningStepAttribute": {
+        "tags": ["service"],
         "summary": "",
         "type": "object",
         "properties": {

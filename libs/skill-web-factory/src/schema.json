@@ -9,7 +9,7 @@
   "paths": {
     "/get": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Récupération de données",
         "description": "Récupération de données depuis le raisonnement d'un digipair",
         "parameters": [
@@ -37,7 +37,7 @@
     },
     "/post": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Envoie de données",
         "description": "Envoie de données depuis le raisonnement d'un digipair",
         "parameters": [

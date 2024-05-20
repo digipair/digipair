@@ -9,7 +9,7 @@
   "paths": {
     "/generate": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "generate",
         "parameters": [
           {

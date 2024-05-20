@@ -9,7 +9,7 @@
   "paths": {
     "/chatbot": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "chatbot",
         "parameters": [
           {
@@ -99,7 +99,7 @@
     },
     "/find": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "find",
         "parameters": [
           {
@@ -140,7 +140,7 @@
     },
     "/search": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "search",
         "parameters": [
           {
@@ -206,7 +206,7 @@
     },
     "/history": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Historique",
         "parameters": [
           {
@@ -251,7 +251,7 @@
     },
     "/getRole": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Récupération du rôle",
         "parameters": [
           {
@@ -278,7 +278,7 @@
     },
     "/setRole": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Mise à jour du rôle",
         "parameters": [
           {
@@ -317,6 +317,7 @@
     "schemas": {
       "Boost": {
         "type": "object",
+        "tags": ["boost"],
         "summary": "boost",
         "properties": {
           "name": {
@@ -352,7 +353,7 @@
     "/boost": {
       "summary": "Boost",
       "description": "Boost",
-      "tags": [],
+      "tags": ["boost", "service"],
       "metadata": [
         {
           "name": "boosts",

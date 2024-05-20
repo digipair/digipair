@@ -9,7 +9,7 @@
   "paths": {
     "/digipair-input-dom-attribute": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Lire un attribut d'un élément du DOM",
         "description": "Lire un attribut d'un élément du DOM",
         "parameters": [
@@ -46,7 +46,7 @@
     },
     "/digipair-input-fetch": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Récupérer les données d'une URL",
         "description": "Récupérer les données à partir d'une URL",
         "parameters": [
@@ -83,7 +83,7 @@
     },
     "/digipair-input-file": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Lecture d'un fichier",
         "description": "Lecture d'un fichier au format base 64",
         "parameters": [
@@ -120,7 +120,7 @@
     },
     "/digipair-input-hidden": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Retourne les données cachées",
         "description": "Retourne au boost les données cachées",
         "parameters": [
@@ -148,7 +148,7 @@
     },
     "/digipair-input-json": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Lecture d'un fichier JSON",
         "description": "Lecture d'un fichier JSON",
         "parameters": [
@@ -185,7 +185,7 @@
     },
     "/digipair-input-text": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Lecture d'un fichier texte",
         "description": "Lecture d'un fichier texte",
         "parameters": [

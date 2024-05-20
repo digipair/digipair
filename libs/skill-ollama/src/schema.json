@@ -9,7 +9,7 @@
   "paths": {
     "/basic": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Générer",
         "description": "Génération de texte via un model LLM",
         "parameters": [
@@ -64,7 +64,7 @@
     },
     "/vision": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Voir",
         "description": "Utiliser un model LLM qui sait lire des images et du texte en entrée",
         "parameters": [
@@ -128,7 +128,7 @@
     },
     "/summarization": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Résumer un texte",
         "description": "Résumer un texte via un model LLM",
         "parameters": [

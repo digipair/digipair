@@ -14,7 +14,7 @@
     "/service": {
       "summary": "Web service",
       "description": "Réponse à un appel http.",
-      "tags": [],
+      "tags": ["service"],
       "metadata": [],
       "parameters": [
         {

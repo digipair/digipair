@@ -9,7 +9,7 @@
   "paths": {
     "/digipair-editor": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Editeur de raisonnements",
         "description": "Editeur no-code de raisonnements IA",
         "parameters": [
@@ -50,7 +50,7 @@
     },
     "/information": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Affiche des information",
         "description": "Affiche des informations sur l'editeur de raisonnements",
         "parameters": [
@@ -69,7 +69,7 @@
     },
     "/error": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Affiche une erreurs",
         "description": "Affiche une erreur sur l'editeur de raisonnements",
         "parameters": [

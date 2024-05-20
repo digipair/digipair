@@ -9,7 +9,7 @@
   "paths": {
     "/metadata": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Lister les metadatas",
         "parameters": [],
         "x-events": []
@@ -17,7 +17,7 @@
     },
     "/boosts": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Lister les boosts",
         "parameters": [],
         "x-events": []

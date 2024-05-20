@@ -9,7 +9,7 @@
   "paths": {
     "/console": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Afficher dans la console",
         "description": "Element permettant d'afficher un message dans la console javascript",
         "parameters": [

@@ -9,7 +9,7 @@
   "paths": {
     "/basic": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Générer",
         "description": "Génération de texte via un model LLM",
         "parameters": [
@@ -73,7 +73,7 @@
     },
     "/summarization": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Résumer un texte",
         "description": "Résumer un texte via un model LLM",
         "parameters": [

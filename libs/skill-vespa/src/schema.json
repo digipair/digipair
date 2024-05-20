@@ -9,7 +9,7 @@
   "paths": {
     "/find": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Récupérer",
         "description": "Récupérer des valeurs dans la base de données",
         "parameters": [
@@ -64,7 +64,7 @@
     },
     "/search": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Rechercher",
         "description": "Recherche sémantique dans une collection",
         "parameters": [
@@ -146,7 +146,7 @@
     },
     "/textSplitter": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Découpage de texte",
         "description": "Découpe le texte en morceaux de texte",
         "parameters": [
@@ -192,7 +192,7 @@
     },
     "/push": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "push",
         "description": "Ajouter des documents",
         "parameters": [
@@ -232,7 +232,7 @@
     },
     "/remove": {
       "post": {
-        "tags": [],
+        "tags": ["service"],
         "summary": "Supprimer",
         "description": "Supprimer des documents dans la base de données.",
         "parameters": [

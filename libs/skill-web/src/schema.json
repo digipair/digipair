@@ -14,7 +14,7 @@
     "/page": {
       "summary": "Page internet",
       "description": "Affichage d'une page d'un site internet.",
-      "tags": [],
+      "tags": ["web"],
       "metadata": [],
       "parameters": [
         {

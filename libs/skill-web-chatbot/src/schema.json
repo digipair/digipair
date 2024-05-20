@@ -9,7 +9,7 @@
   "paths": {
     "/digipair-chatbot-full": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Chatbot en pleine page",
         "description": "Affiche une conversation avec un chatbot en pleine page",
         "parameters": [
@@ -28,7 +28,7 @@
     },
     "/digipair-chatbot": {
       "post": {
-        "tags": [],
+        "tags": ["web"],
         "summary": "Chatbot",
         "description": "Affiche un chatbot sur une page internet",
         "parameters": [
