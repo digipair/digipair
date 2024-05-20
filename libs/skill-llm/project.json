@@ -11,7 +11,7 @@
         "outputPath": "dist/libs/skill-llm",
         "main": "libs/skill-llm/src/index.ts",
         "tsConfig": "libs/skill-llm/tsconfig.lib.json",
-        "assets": ["libs/skill-llm/src/index.d.ts"],
+        "assets": ["libs/skill-llm/src/index.d.ts", "libs/skill-llm/src/schema.json"],
         "rollupConfig": ["libs/skill-llm/rollup.build.cjs"],
         "project": "libs/skill-llm/package.json",
         "compiler": "swc",

@@ -3,8 +3,12 @@ import { PinsSettings } from '@digipair/engine';
 
 class WebService {
   async page(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { body, title = 'Digipair' } = params;
-    const BASE_URL = 'https://cdn.jsdelivr.net/npm';
+    const {
+      body,
+      title = 'Digipair',
+      baseUrl = 'https://cdn.jsdelivr.net/npm',
+      libraries = {},
+    } = params;
     const html = `
 <!DOCTYPE html>
 <html>
@@ -14,8 +18,10 @@ class WebService {
   </head>
   <body>
     <script type="module">
-      // import { generateElementFromPins } from '${BASE_URL}/@digipair/engine/index.esm.js';
-      import { generateElementFromPins } from 'http://localhost:4000/engine/index.esm.js';
+      import { config, generateElementFromPins } from '${baseUrl}/@digipair/engine/index.esm.js';
+      
+      config.set('LIBRARIES', ${JSON.stringify(libraries)});
+      config.set('BASE_URL', '${baseUrl}');
 
       const context = {
         variables: ${JSON.stringify(context.variables || {})},

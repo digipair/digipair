@@ -1,124 +1,127 @@
 {
-  "type": "@digipair/skill-chatbot/boost",
   "metadata": {},
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "pins": [
-    {
-      "library": "@digipair/skill-llm",
-      "element": "invoke",
-      "pins": [
-        {
-          "library": "@digipair/skill-llm",
-          "element": "reasoningStep",
-          "properties": {
-            "attributes": [
-              {
-                "name": "summary",
-                "value": [
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-llm",
+        "element": "invoke",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-llm",
+              "element": "reasoningStep",
+              "properties": {
+                "attributes": [
                   {
-                    "library": "@digipair/skill-chatbot",
-                    "element": "find",
-                    "properties": {
-                      "query": "role:\"system\"",
-                      "limit": 1,
-                      "orderby": "date desc"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "knowledge",
-                "value": [
+                    "name": "summary",
+                    "value": [
+                      {
+                        "library": "@digipair/skill-chatbot",
+                        "element": "find",
+                        "properties": {
+                          "query": "role:\"system\"",
+                          "limit": 1,
+                          "orderby": "date desc"
+                        }
+                      }
+                    ]
+                  },
                   {
-                    "library": "@digipair/skill-vespa",
-                    "element": "search",
-                    "properties": {
-                      "query": "{{request.body.prompt}}",
-                      "filter": "!(metadata matches 'type:video*')",
-                      "limit": 2,
-                      "language": "en"
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "library": "@digipair/skill-llm",
-          "element": "reasoningStep",
-          "properties": {
-            "attributes": [
-              {
-                "name": "question",
-                "value": [
-                  {
-                    "library": "@digipair/skill-llm",
-                    "element": "reasoningStepValue",
-                    "properties": {
-                      "value": "{{request.body.prompt}}"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "summary",
-                "value": [
-                  {
-                    "library": "@digipair/skill-llm",
-                    "element": "reasoningStepValue",
-                    "properties": {
-                      "value": "EVALUATE:parent.previous.summary[1].content"
-                    }
-                  }
-                ]
-              },
-              {
-                "name": "knowledge",
-                "value": [
-                  {
-                    "library": "@digipair/skill-llm",
-                    "element": "reasoningStepValue",
-                    "properties": {
-                      "value": "{{#each parent.previous.knowledge}}\n  {{this.source}}: {{this.content}}\n{{/each}}"
-                    }
+                    "name": "knowledge",
+                    "value": [
+                      {
+                        "library": "@digipair/skill-vespa",
+                        "element": "search",
+                        "properties": {
+                          "query": "{{request.body.prompt}}",
+                          "filter": "!(metadata matches 'type:video*')",
+                          "limit": 2,
+                          "language": "en"
+                        }
+                      }
+                    ]
                   }
                 ]
               }
-            ]
-          }
-        },
-        {
-          "library": "@digipair/skill-llm",
-          "element": "reasoningStep",
-          "properties": {
-            "attributes": [
-              {
-                "name": "assistant",
-                "value": [
+            },
+            {
+              "library": "@digipair/skill-llm",
+              "element": "reasoningStep",
+              "properties": {
+                "attributes": [
                   {
-                    "library": "@digipair/skill-ollama",
-                    "element": "basic",
-                    "properties": {
-                      "prompt": "You are a useful assistant, capable of explaining concepts in a simple way. If you're not sure of an answer, you can say \"I don't know\" or \"I'm not sure\".\n\nConversation summary:\n{summary}\n\nKnowledge base:\n{knowledge}\n\nUser's question: {question}\n\nProvide a very short, precise, and concise answer in English to the user's question using only your knowledge base. The user should know anything about the conversation history.",
-                      "modelName": "phi3"
-                    }
+                    "name": "question",
+                    "value": [
+                      {
+                        "library": "@digipair/skill-llm",
+                        "element": "reasoningStepValue",
+                        "properties": {
+                          "value": "{{request.body.prompt}}"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "summary",
+                    "value": [
+                      {
+                        "library": "@digipair/skill-llm",
+                        "element": "reasoningStepValue",
+                        "properties": {
+                          "value": "EVALUATE:parent.previous.summary[1].content"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "knowledge",
+                    "value": [
+                      {
+                        "library": "@digipair/skill-llm",
+                        "element": "reasoningStepValue",
+                        "properties": {
+                          "value": "{{#each parent.previous.knowledge}}\n  {{this.source}}: {{this.content}}\n{{/each}}"
+                        }
+                      }
+                    ]
                   }
                 ]
               }
-            ]
-          }
+            },
+            {
+              "library": "@digipair/skill-llm",
+              "element": "reasoningStep",
+              "properties": {
+                "attributes": [
+                  {
+                    "name": "assistant",
+                    "value": [
+                      {
+                        "library": "@digipair/skill-ollama",
+                        "element": "basic",
+                        "properties": {
+                          "prompt": "You are a useful assistant, capable of explaining concepts in a simple way. If you're not sure of an answer, you can say \"I don't know\" or \"I'm not sure\".\n\nConversation summary:\n{summary}\n\nKnowledge base:\n{knowledge}\n\nUser's question: {question}\n\nProvide a very short, precise, and concise answer in English to the user's question using only your knowledge base. The user should know anything about the conversation history.",
+                          "modelName": "phi3"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
         }
-      ]
-    },
-    {
-      "library": "@digipair/skill-chatbot",
-      "element": "chatbot",
-      "properties": {
-        "assistant": "{{previous.assistant}}",
-        "modelName": "phi3"
+      },
+      {
+        "library": "@digipair/skill-chatbot",
+        "element": "chatbot",
+        "properties": {
+          "assistant": "{{previous.assistant}}",
+          "modelName": "phi3"
+        }
       }
-    }
-  ]
+    ]
+  }
 }

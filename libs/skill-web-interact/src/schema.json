@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-interact",
+    "description": "Cette compétence permet aux utilisateurs de communiquer avec le Document Object Model (DOM) d'une page HTML.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/dispatchEvent": {
+      "post": {
+        "tags": [],
+        "summary": "Emettre un évènement",
+        "description": "Emet un évènement sur un élément du DOM",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom de l'évènement",
+            "required": true,
+            "description": "Nom de l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément qui va recevoir l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "detail",
+            "summary": "Détails de l'évènements",
+            "required": false,
+            "description": "Données transmises dans l'évènements",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": {}
+      }
+    },
+    "/setAttribute": {
+      "post": {
+        "tags": [],
+        "summary": "Modifier un attribute",
+        "description": "Permet de modifier la valeur d'un attribut d'un élément du DOM sans espace ni caractère spécial sauf '-'",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribut",
+            "required": true,
+            "description": "Attribut à modifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Nouvelle valeur de l'attribut",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

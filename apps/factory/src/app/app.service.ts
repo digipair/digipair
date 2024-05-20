@@ -13,6 +13,7 @@ config.set('LIBRARIES', {
   '@digipair/skill-vespa': require('@digipair/skill-vespa'),
   '@digipair/skill-web': require('@digipair/skill-web'),
   '@digipair/skill-editor': require('@digipair/skill-editor'),
+  '@digipair/skill-service': require('@digipair/skill-service'),
 });
 
 @Injectable()

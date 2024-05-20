@@ -1,0 +1,27 @@
+{
+  "name": "skill-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-service/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-service",
+        "main": "libs/skill-service/src/index.ts",
+        "tsConfig": "libs/skill-service/tsconfig.lib.json",
+        "assets": ["libs/skill-service/src/index.d.ts", "libs/skill-service/src/schema.json"],
+        "rollupConfig": ["libs/skill-service/rollup.build.cjs"],
+        "project": "libs/skill-service/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-service {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

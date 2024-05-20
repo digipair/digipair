@@ -11,7 +11,10 @@
         "outputPath": "dist/libs/skill-web-interact",
         "main": "libs/skill-web-interact/src/index.ts",
         "tsConfig": "libs/skill-web-interact/tsconfig.lib.json",
-        "assets": ["libs/skill-web-interact/src/index.d.ts"],
+        "assets": [
+          "libs/skill-web-interact/src/index.d.ts",
+          "libs/skill-web-interact/src/schema.json"
+        ],
         "project": "libs/skill-web-interact/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"],

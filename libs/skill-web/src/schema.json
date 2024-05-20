@@ -37,6 +37,24 @@
           "schema": {
             "type": "string"
           }
+        },
+        {
+          "name": "baseUrl",
+          "summary": "Adresse des librairies",
+          "required": false,
+          "description": "Adresse de base des librairies front",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "libraries",
+          "summary": "Librairies",
+          "required": false,
+          "description": "Liste des libraries front à charger",
+          "schema": {
+            "type": "object"
+          }
         }
       ]
     }

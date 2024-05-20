@@ -425,8 +425,9 @@ Summarize the conversation history in a short, clear and concise text, taking in
   }
 
   // SCENES
-  async boost(_params: any, pinsSettingsList: PinsSettings[], context: any) {
-    const result = await executePinsList(pinsSettingsList, context);
+  async boost(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { execute } = params;
+    const result = await executePinsList(execute, context);
     return result;
   }
 

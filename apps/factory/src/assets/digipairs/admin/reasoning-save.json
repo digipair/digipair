@@ -1,10 +1,18 @@
 {
   "metadata": {},
-  "library": "@digipair/skill-editor",
-  "element": "save",
+  "library": "@digipair/skill-service",
+  "element": "service",
   "properties": {
-    "digipair": "{{request.body.digipair}}",
-    "reasoning": "{{request.body.reasoning}}",
-    "value": "EVALUATE:request.body.value"
+    "execute": [
+      {
+        "library": "@digipair/skill-editor",
+        "element": "save",
+        "properties": {
+          "digipair": "{{request.body.digipair}}",
+          "reasoning": "{{request.body.reasoning}}",
+          "value": "EVALUATE:request.body.value"
+        }
+      }
+    ]
   }
 }

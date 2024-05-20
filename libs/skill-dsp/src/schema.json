@@ -1,0 +1,69 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-dsp",
+    "description": "La compétence permet de gérer la communication avec le LLM en suivant le DSP de Stanford.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/generate": {
+      "post": {
+        "tags": [],
+        "summary": "generate",
+        "parameters": [
+          {
+            "name": "modelName",
+            "summary": "Nom du model",
+            "required": false,
+            "description": "Nom du model LLM à utiliser pour le résumé système",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "temperature",
+            "summary": "Temperature",
+            "required": false,
+            "description": "Temperature du model LLM",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "Url du serveur LLM",
+            "required": false,
+            "description": "Url du serveur LLM compatible Openai",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "signature",
+            "summary": "Signature",
+            "required": true,
+            "description": "Signature des données à extraire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "input",
+            "summary": "Données à traiter",
+            "required": true,
+            "description": "Chaine de caractère à traiter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

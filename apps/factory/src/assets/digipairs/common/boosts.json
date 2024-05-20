@@ -1,4 +1,13 @@
 {
-  "library": "@digipair/skill-common",
-  "element": "boosts"
+  "metadata": {},
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-common",
+        "element": "boosts"
+      }
+    ]
+  }
 }
