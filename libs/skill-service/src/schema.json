@@ -1,0 +1,36 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-service",
+    "summary": "Serveur HTTP",
+    "description": "Cette compétence permet de gérer les réponses à des appels http.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {
+    "/service": {
+      "summary": "Web service",
+      "description": "Réponse à un appel http.",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécute",
+          "required": true,
+          "description": "Commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

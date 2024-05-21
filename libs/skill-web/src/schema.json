@@ -1,0 +1,95 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web",
+    "summary": "Affichage de pages web",
+    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "dataAttribute": {
+        "tags": ["service"],
+        "summary": "Paramètre",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "summary": "Nom"
+          },
+          "value": {
+            "summary": "Valeur",
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        "required": ["name", "value"]
+      }
+    }
+  },
+  "x-scene-blocks": {
+    "/page": {
+      "summary": "Page internet",
+      "description": "Affichage d'une page d'un site internet.",
+      "tags": ["web", "service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "body",
+          "summary": "Contenu",
+          "required": true,
+          "description": "Contenu de la page",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "data",
+          "summary": "Préparation des données",
+          "required": false,
+          "description": "Préparation des données backend à envoyer à la page",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dataAttribute"
+            }
+          }
+        },
+        {
+          "name": "title",
+          "summary": "Titre",
+          "required": false,
+          "description": "Titre de la page",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "baseUrl",
+          "summary": "Adresse des librairies",
+          "required": false,
+          "description": "Adresse de base des librairies front",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "libraries",
+          "summary": "Librairies",
+          "required": false,
+          "description": "Liste des libraries front à charger",
+          "schema": {
+            "type": "object"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "skill-web-chatbot",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-web-chatbot/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-web-chatbot",
+        "main": "libs/skill-web-chatbot/src/index.ts",
+        "tsConfig": "libs/skill-web-chatbot/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-web-chatbot/src/index.d.ts",
+          "libs/skill-web-chatbot/src/debug.html",
+          "libs/skill-web-chatbot/src/schema.json"
+        ],
+        "project": "libs/skill-web-chatbot/package.json",
+        "compiler": "swc",
+        "format": ["esm", "cjs"],
+        "rollupConfig": ["libs/skill-web-chatbot/rollup.build.cjs"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-web-chatbot {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

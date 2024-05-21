@@ -1,0 +1,16 @@
+{
+  "name": "Digi",
+  "description": "Default digipair.",
+  "metadata": {
+    "avatar": "avatar.png",
+    "color": "#3b82f6"
+  },
+  "libraries": {
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-chatbot": "latest",
+    "@digipair/skill-web": "latest",
+    "@digipair/skill-web-chatbot": "latest"
+  },
+  "variables": {},
+  "privates": {}
+}

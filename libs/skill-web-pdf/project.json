@@ -11,10 +11,11 @@
         "outputPath": "dist/libs/skill-web-pdf",
         "main": "libs/skill-web-pdf/src/index.ts",
         "tsConfig": "libs/skill-web-pdf/tsconfig.lib.json",
-        "assets": [],
+        "assets": ["libs/skill-web-pdf/src/index.d.ts", "libs/skill-web-pdf/src/schema.json"],
         "project": "libs/skill-web-pdf/package.json",
         "compiler": "swc",
-        "format": ["cjs", "esm"]
+        "format": ["cjs", "esm"],
+        "rollupConfig": ["libs/skill-web-pdf/rollup.build.cjs"]
       }
     },
     "publish": {

@@ -1,0 +1,388 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-chatbot",
+    "summary": "Communication avec le chatbot",
+    "description": "La compétence permet de gérer la communication avec le chatbot.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/chatbot": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "chatbot",
+        "parameters": [
+          {
+            "name": "assistant",
+            "required": true,
+            "description": "Reponse de l'assistant",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "command",
+            "required": false,
+            "description": "Commande exécutée sur le chatbot",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "sources",
+            "required": false,
+            "description": "Liste des sources utilisées pour répondre a l'utilisateur",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "logs",
+            "required": false,
+            "description": "Informations utiles pour débogguer le raisonnement",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "modelName",
+            "required": false,
+            "description": "Nom du model LLM à utiliser pour le résumé système",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "temperature",
+            "required": false,
+            "description": "Temperature du model LLM",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "baseUrlOllama",
+            "required": false,
+            "description": "Url du serveur Ollama",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrlVespa",
+            "required": false,
+            "description": "Url du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "promptSummary",
+            "required": false,
+            "description": "Prompt utilisé pour le résumé système",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/find": {
+      "post": {
+        "tags": ["service"],
+        "summary": "find",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "description": "limit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "orderby",
+            "required": false,
+            "description": "orderby",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "required": true,
+            "description": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "required": false,
+            "description": "Url du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/search": {
+      "post": {
+        "tags": ["service"],
+        "summary": "search",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "description": "limit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "orderby",
+            "required": false,
+            "description": "orderby",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "targetHits",
+            "required": false,
+            "description": "targetHits",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "query",
+            "required": true,
+            "description": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+
+          {
+            "name": "baseUrl",
+            "required": false,
+            "description": "Url du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "required": false,
+            "description": "Langue de recherche",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "description": "Filtre de recherche",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/history": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Historique",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "summary": "Url du serveur Vespa",
+            "required": false,
+            "description": "Url du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxHistory",
+            "summary": "Nombre d'éléments maximum",
+            "required": false,
+            "description": "orderby",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "system",
+            "summary": "Système",
+            "required": false,
+            "description": "targetHits",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "question",
+            "summary": "Question de l'assistant",
+            "required": false,
+            "description": "Question de l'assistant",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getRole": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupération du rôle",
+        "parameters": [
+          {
+            "name": "role",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom du rôle",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "Url du serveur Vespa",
+            "required": false,
+            "description": "Url du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setRole": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Mise à jour du rôle",
+        "parameters": [
+          {
+            "name": "role",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom du rôle",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Valeur du rôle",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "Url du serveur Vespa",
+            "required": false,
+            "description": "Url du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Boost": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "boost",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "boolean"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "x-scene-blocks": {
+    "/boost": {
+      "summary": "Boost",
+      "description": "Boost",
+      "tags": ["boost", "service"],
+      "metadata": [
+        {
+          "name": "boosts",
+          "summary": "Liste des boosts",
+          "required": false,
+          "description": "boosts",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Boost"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécute",
+          "required": false,
+          "description": "Liste des commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

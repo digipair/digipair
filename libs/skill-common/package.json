@@ -1,0 +1,8 @@
+{
+  "name": "@digipair/skill-common",
+  "version": "0.0.1",
+  "dependencies": {},
+  "typings": "./index.d.ts",
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}

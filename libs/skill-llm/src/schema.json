@@ -1,0 +1,103 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-llm",
+    "summary": "Gestion de modèles LLM",
+    "description": "La compétence @digipair/skill-llm est une compétence qui permet d'utiliser un modèle de langage à grande échelle.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/invoke": {
+      "post": {
+        "tags": ["service"],
+        "summary": "invoke",
+        "parameters": [
+          {
+            "name": "execute",
+            "required": true,
+            "description": "Exécute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "input",
+            "summary": "Données d'entrée",
+            "required": false,
+            "description": "input",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/reasoningStep": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Etape de raisonnement",
+        "parameters": [
+          {
+            "name": "attributes",
+            "summary": "Données",
+            "required": true,
+            "description": "attributes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/reasonningStepAttribute"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/reasoningStepValue": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Valeur statique",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Contenu",
+            "required": true,
+            "description": "value",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "reasonningStepAttribute": {
+        "tags": ["service"],
+        "summary": "",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "summary": "Nom"
+          },
+          "value": {
+            "summary": "Valeur",
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        "required": ["name", "value"]
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export * from './libs/skill-vespa/src/index';

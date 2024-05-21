@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-pdf",
+    "summary": "Extraction de texte depuis un PDF",
+    "description": "Cette compétence permet d'extraire le texte depuis un PDF.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "tags": ["boost"],
+  "paths": {
+    "/digipair-input-pdf": {
+      "post": {
+        "tags": [],
+        "summary": "Extraire le texte d'un PDF",
+        "description": "Element permettant d'extraire le texte à partir d'un fichier PDF fourni par l'utilisateur",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Texte affiché",
+            "required": false,
+            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichiers acceptés",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

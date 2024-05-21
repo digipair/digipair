@@ -1,0 +1,14 @@
+{
+  "name": "common",
+  "description": "common actions.",
+  "metadata": {
+    "avatar": "avatar.png",
+    "color": "#3b82f6"
+  },
+  "libraries": {
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-common": "latest"
+  },
+  "variables": {},
+  "privates": {}
+}

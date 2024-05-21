@@ -1,0 +1,16 @@
+{
+  "metadata": {},
+  "library": "@digipair/skill-web",
+  "element": "page",
+  "properties": {
+    "body": [
+      {
+        "library": "@digipair/skill-web-chatbot",
+        "element": "digipair-chatbot-full",
+        "properties": {
+          "code": "admin"
+        }
+      }
+    ]
+  }
+}

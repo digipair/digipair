@@ -1,0 +1,275 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-vespa",
+    "summary": "Communication avec une base Vespa",
+    "description": "Cette compétence offre des fonctionnalités pour interagir avec les données d'une base vectorielle Vespa.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/find": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupérer",
+        "description": "Récupérer des valeurs dans la base de données",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Nom de la collection",
+            "required": false,
+            "description": "Nom de la collection dans laquelle effectuer la recherche",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "summary": "Limite",
+            "required": false,
+            "description": "Nombre maximum de réponses",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "orderby",
+            "summary": "Organisé par",
+            "required": false,
+            "description": "Organisation des réponses",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Requête",
+            "required": true,
+            "description": "Requête de recherche",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/search": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Rechercher",
+        "description": "Recherche sémantique dans une collection",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Nom de la collection",
+            "required": false,
+            "description": "Nom de la collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "summary": "Limite",
+            "required": false,
+            "description": "Nombre de résultats maximum",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "orderby",
+            "summary": "Organisé par",
+            "required": false,
+            "description": "Organisation des résultats",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "targetHits",
+            "summary": "",
+            "required": false,
+            "description": "targetHits",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "filter",
+            "summary": "Filtres",
+            "required": false,
+            "description": "Filtres de recherche",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "summary": "Langue",
+            "required": false,
+            "description": "Langue de recherche",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Texte à rechercher",
+            "required": true,
+            "description": "Requête de recherche sémantique",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/textSplitter": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Découpage de texte",
+        "description": "Découpe le texte en morceaux de texte",
+        "parameters": [
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille des morceaux de texte",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "overlap",
+            "summary": "Tolérance",
+            "required": false,
+            "description": "Tolérance de différence de taille pour s'adapter au texte",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "source",
+            "summary": "Source",
+            "required": true,
+            "description": "Metadata indiquant la source de la donnée",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte à découper",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/push": {
+      "post": {
+        "tags": ["service"],
+        "summary": "push",
+        "description": "Ajouter des documents",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Nom de la Collection",
+            "required": false,
+            "description": "Nom de la collection dans laquelle ajouter les documents",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "documents",
+            "summary": "Documents",
+            "required": true,
+            "description": "Liste des documents à ajouter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/remove": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Supprimer",
+        "description": "Supprimer des documents dans la base de données.",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Nom de la collection",
+            "required": false,
+            "description": "Nom de la collection dans laquelle supprimer les documents",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selection",
+            "summary": "Selection",
+            "required": true,
+            "description": "Filtre correspondant au documents à supprimer",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

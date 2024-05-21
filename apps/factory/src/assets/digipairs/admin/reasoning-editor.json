@@ -1,0 +1,36 @@
+{
+  "library": "@digipair/skill-web",
+  "element": "page",
+  "metadata": {},
+  "properties": {
+    "body": [
+      {
+        "library": "@digipair/skill-web-editor",
+        "element": "digipair-editor",
+        "properties": {
+          "digipair": "{{request.params.[0]}}",
+          "reasoning": "{{request.params.[1]}}"
+        },
+        "events": {
+          "save": [
+            {
+              "library": "@digipair/skill-web-factory",
+              "element": "post",
+              "properties": {
+                "digipair": "{{request.digipair}}",
+                "reasoning": "reasoning-save",
+                "body": "EVALUATE:event"
+              }
+            },
+            {
+              "library": "@digipair/skill-web-editor",
+              "element": "information",
+              "properties": { "message": "Successfully saved !" }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pins": []
+}

@@ -1,0 +1,228 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-inputs",
+    "summary": "Extraction de texte depuis un PDF",
+    "description": "Cette compétence permet d'extraire le texte depuis un PDF.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/digipair-input-dom-attribute": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Lire un attribut d'un élément du DOM",
+        "description": "Lire un attribut d'un élément du DOM",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément du DOM",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribut",
+            "required": true,
+            "description": "Nom de l'attribut à lire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-fetch": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Récupérer les données d'une URL",
+        "description": "Récupérer les données à partir d'une URL",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL du service web",
+            "required": true,
+            "description": "Adresse du service web à appeler",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type de données",
+            "required": true,
+            "description": "Type de données à récupérer (json ou text)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-file": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Lecture d'un fichier",
+        "description": "Lecture d'un fichier au format base 64",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Texte affiché",
+            "required": false,
+            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichiers acceptés",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-hidden": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Retourne les données cachées",
+        "description": "Retourne au boost les données cachées",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Données",
+            "required": true,
+            "description": "Données à envoyer au boost",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-json": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Lecture d'un fichier JSON",
+        "description": "Lecture d'un fichier JSON",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Texte affiché",
+            "required": false,
+            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichiers acceptés",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-text": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Lecture d'un fichier texte",
+        "description": "Lecture d'un fichier texte",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Texte affiché",
+            "required": false,
+            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichiers acceptés",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

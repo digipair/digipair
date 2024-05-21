@@ -11,11 +11,11 @@
         "outputPath": "dist/libs/skill-chatbot/",
         "main": "libs/skill-chatbot/src/index.ts",
         "tsConfig": "libs/skill-chatbot/tsconfig.lib.json",
-        "assets": [],
+        "assets": ["libs/skill-chatbot/src/index.d.ts", "libs/skill-chatbot/src/schema.json"],
         "project": "libs/skill-chatbot/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],
-        "rollupConfig": ["libs/skill-chatbot/rollup.config.cjs"]
+        "rollupConfig": ["libs/skill-chatbot/rollup.build.cjs"]
       }
     },
     "publish": {

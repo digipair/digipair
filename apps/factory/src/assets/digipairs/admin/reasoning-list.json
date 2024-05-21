@@ -1,0 +1,45 @@
+{
+  "library": "@digipair/skill-web",
+  "element": "page",
+  "metadata": {},
+  "properties": {
+    "body": [
+      {
+        "library": "web",
+        "element": "button",
+        "properties": {
+          "textContent": "{{item}}"
+        },
+        "conditions": {
+          "each": "EVALUATE:data.reasonings"
+        },
+        "events": {
+          "click": [
+            {
+              "library": "@digipair/skill-web-debug",
+              "element": "console",
+              "properties": {
+                "label": "reasoning",
+                "value": "{{item}}"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "data": [
+      {
+        "name": "reasonings",
+        "value": [
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasonings",
+            "properties": {
+              "digipair": "{{request.params.[0]}}"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -6,8 +6,7 @@ import { loadSummarizationChain } from 'langchain/chains';
 import { StructuredOutputParser } from 'langchain/output_parsers';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { z } from 'zod';
-
-type PinsSettings = any;
+import { PinsSettings } from '@digipair/engine';
 
 const OPENAI_SERVER = process.env['OPENAI_SERVER'];
 const OPENAI_API_KEY = process.env['OPENAI_API_KEY'];

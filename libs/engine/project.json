@@ -11,10 +11,11 @@
         "outputPath": "dist/libs/engine",
         "main": "libs/engine/src/index.ts",
         "tsConfig": "libs/engine/tsconfig.lib.json",
-        "assets": [],
+        "assets": ["libs/engine/src/index.d.ts", "libs/engine/src/schema.json"],
         "project": "libs/engine/package.json",
         "compiler": "swc",
-        "format": ["esm", "cjs"]
+        "format": ["esm", "cjs"],
+        "rollupConfig": ["libs/engine/rollup.build.cjs"]
       }
     },
     "publish": {

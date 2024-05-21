@@ -1,0 +1,94 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-editor",
+    "summary": "Affichage de l'éditeur de raisonnements",
+    "description": "Edition de raisonnements IA.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/digipair-editor": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Editeur de raisonnements",
+        "description": "Editeur no-code de raisonnements IA",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Propriétaire du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "save",
+            "summary": "Lors de la sauvegarde",
+            "required": false,
+            "description": "Action déclenchée lors de la sauvegarde du raisonnement",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/information": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche des information",
+        "description": "Affiche des informations sur l'editeur de raisonnements",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/error": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche une erreurs",
+        "description": "Affiche une erreur sur l'editeur de raisonnements",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,7 @@
+schema boost inherits knowledge {
+    document boost inherits knowledge {
+        field url type string {
+            indexing: summary | attribute
+        }
+    }
+}

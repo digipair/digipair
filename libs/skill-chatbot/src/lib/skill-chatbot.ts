@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as engine from '@digipair/engine';
+import { PinsSettings, executePinsList, preparePinsSettings } from '@digipair/engine';
 import { Ollama } from '@langchain/community/llms/ollama';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { RunnableSequence } from '@langchain/core/runnables';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { v4 } from 'uuid';
-
-type PinsSettings = any;
-const { executePinsList, preparePinsSettings } = engine as any;
 
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 const OLLAMA_SERVER = process.env['OLLAMA_SERVER'] ?? 'http://localhost:11434';
@@ -39,7 +36,9 @@ class ChatbotService {
       throw new Error(`Error - VespaService:searchDocuments - fetching history`);
     }
 
-    const messages = ((await response.json()).root.children || []).map((child: any) => child.fields);
+    const messages = ((await response.json()).root.children || []).map(
+      (child: any) => child.fields,
+    );
     return messages;
   }
 
@@ -84,7 +83,7 @@ class ChatbotService {
         return { ...document, uuid, parent_uuid: uuid, is_parent: true };
       });
 
-    const chunksPromises = parents.map(async (parent) => {
+    const chunksPromises = parents.map(async parent => {
       const text = parent.content;
       const v128 = new RecursiveCharacterTextSplitter({
         chunkSize: 128,
@@ -144,7 +143,8 @@ class ChatbotService {
     const results = [];
 
     for (const document of documents) {
-      const content_embedding = document.role === 'system' ? undefined : await this.embedding(document.content);
+      const content_embedding =
+        document.role === 'system' ? undefined : await this.embedding(document.content);
 
       const response = await fetch(
         `${baseUrl}/document/v1/Digipair_default/history/docid/${document.uuid}`,
@@ -184,7 +184,13 @@ class ChatbotService {
     return results;
   }
 
-  private async updateSummary(baseUrl: string, prompt: string, session: string, messages: any[], options: { modelName: string, temperature: number, baseUrl: string }): Promise<void> {
+  private async updateSummary(
+    baseUrl: string,
+    prompt: string,
+    session: string,
+    messages: any[],
+    options: { modelName: string; temperature: number; baseUrl: string },
+  ): Promise<void> {
     const [summary] = await this.searchDocuments(
       baseUrl,
       session,
@@ -193,7 +199,11 @@ class ChatbotService {
         query: 'role:"system"',
       },
     );
-    const model = new Ollama({ model: options.modelName, temperature: options.temperature, baseUrl: options.baseUrl });
+    const model = new Ollama({
+      model: options.modelName,
+      temperature: options.temperature,
+      baseUrl: options.baseUrl,
+    });
     const history = messages
       .sort((a, b) => a - b)
       .map(({ role, content }) => `${role}: ${content}`)
@@ -213,7 +223,13 @@ class ChatbotService {
     await this.updateDocuments(baseUrl, [document]);
   }
 
-  private async updateHistory(baseUrl: string, promptSummary: string, session: string, memory: any[], options: { modelName: string, temperature: number, baseUrl: string }): Promise<void> {
+  private async updateHistory(
+    baseUrl: string,
+    promptSummary: string,
+    session: string,
+    memory: any[],
+    options: { modelName: string; temperature: number; baseUrl: string },
+  ): Promise<void> {
     // add new messages
     const documents = await this.prepareHistory(memory);
     await this.pushDocuments(baseUrl, session, documents);
@@ -261,7 +277,12 @@ class ChatbotService {
 
   async find(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, limit = 100, orderby = '', query } = params;
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      limit = 100,
+      orderby = '',
+      query,
+    } = params;
 
     if (
       orderby !== '' &&
@@ -285,7 +306,15 @@ class ChatbotService {
 
   async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
-    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, limit = 100, orderby = '', targetHits = 50, language = 'fr', filter = 'true', query } = params;
+    const {
+      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      limit = 100,
+      orderby = '',
+      targetHits = 50,
+      language = 'fr',
+      filter = 'true',
+      query,
+    } = params;
 
     if (
       orderby !== '' &&
@@ -315,10 +344,10 @@ class ChatbotService {
 
   async chatbot(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
-    const { 
-      modelName = 'mistral', 
-      temperature = 0, 
-      baseUrlOllama = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER, 
+    const {
+      modelName = 'mistral',
+      temperature = 0,
+      baseUrlOllama = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER,
       baseUrlVespa = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       promptSummary = `
 Summary of conversation history:
@@ -329,9 +358,9 @@ New messages:
 
 Summarize the conversation history in a short, clear and concise text, taking into account the new messages.`,
       command = [],
-      assistant,  
-      sources, 
-      logs 
+      assistant,
+      sources,
+      logs,
     } = params;
     const input = context.request.body;
     const date = Date.now();
@@ -379,35 +408,39 @@ Summarize the conversation history in a short, clear and concise text, taking in
     }));
 
     // Asynchronous history update
-    this.updateHistory(baseUrlVespa, promptSummary, session, memory, { modelName, temperature, baseUrl: baseUrlOllama });
+    this.updateHistory(baseUrlVespa, promptSummary, session, memory, {
+      modelName,
+      temperature,
+      baseUrl: baseUrlOllama,
+    });
 
     return {
       assistant,
-      command: await Promise.all(command.map((settings: PinsSettings) => preparePinsSettings(settings, context))),
+      command: await Promise.all(
+        command.map((settings: PinsSettings) => preparePinsSettings(settings, context)),
+      ),
       sources,
       logs,
     };
   }
 
   // SCENES
-  async boost(_params: any, pinsSettingsList: PinsSettings[], context: any) {
-    const result = await executePinsList(pinsSettingsList, context);
+  async boost(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { execute } = params;
+    const result = await executePinsList(execute, context);
     return result;
   }
 
   async getRole(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
-    const {
-      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
-      role,
-    } = params;
+    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, role } = params;
 
     const [document] = await this.searchDocuments(
       baseUrl,
       session,
       `is_parent = true and userQuery() order by date desc limit 1`,
       {
-        query: `role:"${role}"`, 
+        query: `role:"${role}"`,
       },
     );
 
@@ -416,18 +449,14 @@ Summarize the conversation history in a short, clear and concise text, taking in
 
   async setRole(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
-    const {
-      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
-      role,
-      value,
-    } = params;
+    const { baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER, role, value } = params;
 
     const [previous] = await this.searchDocuments(
       baseUrl,
       session,
       `is_parent = true and userQuery() order by date desc limit 1`,
       {
-        query: `role:"${role}"`, 
+        query: `role:"${role}"`,
       },
     );
 

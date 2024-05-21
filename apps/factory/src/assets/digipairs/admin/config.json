@@ -1,0 +1,20 @@
+{
+  "name": "Admin",
+  "description": "Digipair admin.",
+  "metadata": {
+    "avatar": "avatar.png",
+    "color": "#3b82f6"
+  },
+  "libraries": {
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-chatbot": "latest",
+    "@digipair/skill-editor": "latest",
+    "@digipair/skill-web": "latest",
+    "@digipair/skill-web-chatbot": "latest",
+    "@digipair/skill-web-editor": "latest",
+    "@digipair/skill-web-factory": "latest",
+    "@digipair/skill-web-debug": "latest"
+  },
+  "variables": {},
+  "privates": {}
+}
