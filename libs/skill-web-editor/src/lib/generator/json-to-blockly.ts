@@ -48,6 +48,7 @@ function generateSceneBlock(pinsSettings: any, workspace: any) {
     if (pinsSettings.metadata) {
       for (const [metadataKey, metadataValue] of Object.entries(pinsSettings.metadata)) {
         const inputName = 'metadata--' + metadataKey;
+        
         if (sceneBlock.getInput(inputName)) {
           const parameter = foundLibrary['x-scene-blocks'][sceneBlockName].metadata?.find(
             (p: { name: string }) => p.name === metadataKey,

@@ -11,7 +11,7 @@
         "outputPath": "dist/libs/skill-web-inputs",
         "main": "libs/skill-web-inputs/src/index.ts",
         "tsConfig": "libs/skill-web-inputs/tsconfig.lib.json",
-        "assets": ["libs/skill-web-inputs/src/index.d.ts"],
+        "assets": ["libs/skill-web-inputs/src/index.d.ts", "libs/skill-web-inputs/src/schema.json"],
         "project": "libs/skill-web-inputs/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"],

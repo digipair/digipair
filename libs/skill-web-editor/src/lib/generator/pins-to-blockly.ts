@@ -483,8 +483,9 @@ export function generateBlocklyBlockFromLibraries(
       if (Object.hasOwnProperty.call(pinsLibrary['x-scene-blocks'], endpoint)) {
         const endpointSceneblock = pinsLibrary['x-scene-blocks'][endpoint];
         const sceneBlockId = pinsLibrary.info.title + '/__SCENEBLOCK__' + endpoint;
+        const block = getSceneBlockDefinition(pinsLibrary, endpointSceneblock, sceneBlockId);
 
-        blocksLibrary.push(getSceneBlockDefinition(pinsLibrary, endpointSceneblock, sceneBlockId));
+        blocksLibrary.push(block);
       }
     }
   }
@@ -700,7 +701,10 @@ function getSceneBlockDefinition(
   const requiredParamInputs = parameters.filter(
     (param: { required: boolean }) => param.required === true,
   );
-  const requiredFields = requiredParamInputs.map((param: { name: any }) => param.name);
+  const requiredFields = [
+    ...requiredParamInputs.map((param: { name: any }) => param.name),
+    ...metadata.map((param: { name: any }) => 'metadata--' + param.name),
+  ];
   requiredFields.push('');
 
   // metadata

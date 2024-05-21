@@ -268,7 +268,7 @@ export class GenericSceneElement extends LitElement {
     return html`
     <style>
       .blocklyToolboxDiv {
-        background-color: #09121d;
+        background-color: rgb(66, 133, 244);
         color: white;
         width: 370px;
       }
@@ -326,7 +326,7 @@ export class GenericSceneElement extends LitElement {
           transition: box-shadow 0.3s ease-in-out;
           text-align: center;
           font-weight: 500;
-          background-color:${this.canSave ? '#12b5cd' : '#5F5F5F'} ;
+          background-color:${this.canSave ? 'rgb(66, 133, 244)' : '#5F5F5F'} ;
           cursor: pointer;"
         class="material-icons"
         aria-hidden="true"

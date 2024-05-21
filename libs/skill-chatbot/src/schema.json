@@ -319,7 +319,7 @@
       "Boost": {
         "type": "object",
         "tags": ["boost"],
-        "summary": "boost",
+        "summary": "Déclencheur",
         "properties": {
           "name": {
             "type": "string"
@@ -352,15 +352,15 @@
   },
   "x-scene-blocks": {
     "/boost": {
-      "summary": "Boost",
+      "summary": "Boost proposé par le Digipair",
       "description": "Boost",
       "tags": ["boost", "service"],
       "metadata": [
         {
           "name": "boosts",
-          "summary": "Liste des boosts",
-          "required": false,
-          "description": "boosts",
+          "summary": "Liste des déclencheurs",
+          "required": true,
+          "description": "Liste des déclencheurs du boost",
           "schema": {
             "type": "array",
             "items": {
@@ -372,9 +372,9 @@
       "parameters": [
         {
           "name": "execute",
-          "summary": "Exécute",
+          "summary": "Exécution des actions",
           "required": false,
-          "description": "Liste des commandes à exécuter",
+          "description": "Liste des actions à exécuter",
           "schema": {
             "type": "array",
             "items": {

@@ -1,8 +1,7 @@
 {
   "name": "@digipair/skill-dsp",
   "version": "0.0.1",
-  "dependencies": {},
-  "type": "commonjs",
+  "dependencies": {},  
   "main": "./index.cjs",
   "module": "./index.js"
 }
