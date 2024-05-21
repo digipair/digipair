@@ -48,7 +48,7 @@ function generateSceneBlock(pinsSettings: any, workspace: any) {
     if (pinsSettings.metadata) {
       for (const [metadataKey, metadataValue] of Object.entries(pinsSettings.metadata)) {
         const inputName = 'metadata--' + metadataKey;
-        
+
         if (sceneBlock.getInput(inputName)) {
           const parameter = foundLibrary['x-scene-blocks'][sceneBlockName].metadata?.find(
             (p: { name: string }) => p.name === metadataKey,
@@ -624,7 +624,11 @@ function itemListFromComponentSettings(
   const inputArray = [];
 
   for (const [propertyKey, propertyValue] of Object.entries<any>(componentDefinition.properties)) {
-    if (!Object.prototype.hasOwnProperty.call(componentSettings, propertyKey)) {
+    if (
+      !Object.prototype.hasOwnProperty.call(componentSettings, propertyKey) ||
+      (propertyValue.type === 'array' &&
+        (!componentSettings[propertyKey] || componentSettings[propertyKey].length === 0))
+    ) {
       continue;
     }
     inputArray.push({ id: propertyKey, name: propertyValue.summary || propertyKey });

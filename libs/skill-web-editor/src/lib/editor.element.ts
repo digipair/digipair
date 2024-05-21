@@ -96,7 +96,7 @@ export class GenericSceneElement extends LitElement {
   }
 
   private async getReasoning(digipair: string, reasoning: string): Promise<PinsSettings | null> {
-    const response = await fetch(`${window.location.origin}/admin/reasoning-read`, {
+    const response = await fetch(`${window.location.origin}/admin/service-reasoning-read`, {
       headers: {
         'content-type': 'application/json',
       },

@@ -18,7 +18,7 @@
               "element": "post",
               "properties": {
                 "digipair": "{{request.digipair}}",
-                "reasoning": "reasoning-save",
+                "reasoning": "service-reasoning-save",
                 "body": "EVALUATE:event"
               }
             },
