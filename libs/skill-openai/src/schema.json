@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-openai",
+    "summary": "Communication avec les services d'OpenAI",
     "description": "Exécution des models LLM les services d'OpenAI.",
     "version": "0.1.0",
     "x-icon": "🚀"

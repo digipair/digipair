@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-editor",
+    "summary": "Affichage de l'éditeur de raisonnements",
     "description": "Edition de raisonnements IA.",
     "version": "0.1.0",
     "x-icon": "🚀"

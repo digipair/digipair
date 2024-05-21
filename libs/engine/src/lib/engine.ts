@@ -49,7 +49,22 @@ export const executePins = async (
   context: any = {},
   options: { libraries: { [key: string]: string } } = { libraries: {} },
 ): Promise<any> => {
-  const settings = await preparePinsSettings(settingsOrigin, context, options);
+  const settings = await preparePinsSettings(settingsOrigin, context);
+
+  if (settings.conditions?.each) {
+    return Promise.all(
+      settings.conditions.each
+        .filter(item => typeof item.conditions.if === 'undefined' || item.conditions.if)
+        .map(item =>
+          executePins(
+            { ...settingsOrigin, conditions: { ...settingsOrigin.conditions, each: undefined } },
+            { ...context, item, parent: { item: context.item, parent: context.parent } },
+            options,
+          ),
+        ),
+    );
+  }
+
   const version = options.libraries[settings.library] || 'latest';
   const library =
     _config.LIBRARIES[settings.library] ||
@@ -77,6 +92,10 @@ export const executePinsList = async (
   for (let i = 0; i < pinsSettingsList.length; i++) {
     const settings = pinsSettingsList[i];
 
+    if (typeof settings.conditions?.if !== 'undefined' && !settings.conditions.if) {
+      continue;
+    }
+
     previous = await executePins(
       settings,
       {
@@ -95,9 +114,29 @@ export const executePinsList = async (
 
 export const generateElementFromPins = async (
   pinsSettings: PinsSettings,
+  parent: Element,
   context: any,
   options: { libraries: { [key: string]: string } } = { libraries: {} },
-): Promise<Element> => {
+): Promise<Element | void> => {
+  const settings = await preparePinsSettings(pinsSettings, context);
+
+  if (settings.conditions?.each) {
+    for (let i = 0; i < settings.conditions.each.length; i++) {
+      const item = settings.conditions.each[i];
+      await generateElementFromPins(
+        { ...pinsSettings, conditions: { ...pinsSettings.conditions, each: undefined } },
+        parent,
+        { ...context, item, parent: { item: context.item, parent: context.parent } },
+        options,
+      );
+    }
+    return;
+  }
+
+  if (typeof settings.conditions?.if !== 'undefined' && !settings.conditions.if) {
+    return;
+  }
+
   const element = document.createElement(pinsSettings.element);
   element.setAttribute('data-digipair-pins', '');
 
@@ -107,7 +146,6 @@ export const generateElementFromPins = async (
     import(`${_config.BASE_URL}/${library}@${version}/index.esm.js`);
   }
 
-  const settings = await preparePinsSettings(pinsSettings, context, options);
   Object.entries(settings.properties || {}).forEach(([key, value]) => {
     if (key === 'textContent') {
       element.textContent = value;
@@ -131,9 +169,10 @@ export const generateElementFromPins = async (
   const pinsList = settings.pins || [];
   for (let i = 0; i < pinsList.length; i++) {
     const item = pinsList[i];
-    const child = await generateElementFromPins(item, settings.context, options);
-    element.appendChild(child);
+    await generateElementFromPins(item, element, settings.context, options);
   }
+
+  parent?.appendChild(element);
 
   return element;
 };
@@ -141,20 +180,20 @@ export const generateElementFromPins = async (
 export const preparePinsSettings = async (
   settings: PinsSettings,
   context: any,
-  options: { libraries: { [key: string]: string } } = { libraries: {} },
 ): Promise<PinsSettings> => {
   const localContext = {
     ...context,
     variables: context.variables || {},
-    requests: context.requests || {},
+    conditions: context.conditions || {},
   };
 
   for (const [key, value] of Object.entries(settings.variables || {})) {
     localContext.variables[key] = applyTemplate(value, localContext);
   }
 
-  for (const [key, value] of Object.entries(settings.requests || {})) {
-    localContext.requests[key] = await executePins(value, localContext, options);
+  const conditions = {} as any;
+  for (const [key, value] of Object.entries(settings.conditions || {})) {
+    conditions[key] = await applyTemplate(value, localContext);
   }
 
   const properties = {} as any;
@@ -162,5 +201,5 @@ export const preparePinsSettings = async (
     properties[key] = applyTemplate(value, localContext);
   }
 
-  return { ...settings, properties };
+  return { ...settings, properties, conditions };
 };

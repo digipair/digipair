@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-editor",
+    "summary": "Editions des raisonnements",
     "description": "La compétence permet de gérer l'édition des raisonnements des digipairs'.",
     "version": "0.1.0",
     "x-icon": "🚀"
@@ -67,6 +68,25 @@
               "items": {
                 "$ref": "https://www.pinser.world/schemas/pinsSettings"
               }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/reasonings": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste les raisonnements",
+        "descriptions": "Liste les raisonnements d'un digipair",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
             }
           }
         ],

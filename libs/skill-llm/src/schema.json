@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-llm",
+    "summary": "Gestion de modèles LLM",
     "description": "La compétence @digipair/skill-llm est une compétence qui permet d'utiliser un modèle de langage à grande échelle.",
     "version": "0.1.0",
     "x-icon": "🚀"

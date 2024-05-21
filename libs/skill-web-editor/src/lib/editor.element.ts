@@ -4,6 +4,7 @@ import * as ToastifyJs from 'toastify-js';
 import { PinsSettings } from '@digipair/engine';
 import { blocksLegacy } from './blocks/json';
 import { initializeWorkspaceFromPinsAndLibraries } from './generator/json-to-blockly';
+import { schemas as schemasWeb } from './schemas/web.schema';
 
 const Toastify = (ToastifyJs as any).default;
 const BASE_URL = 'https://cdn.jsdelivr.net/npm';
@@ -88,34 +89,9 @@ export class GenericSceneElement extends LitElement {
     );
   }
 
-  private loadReasoning(detail: any) {
-    const scene = {
-      ...detail,
-      properties: {
-        ...(detail.properties.trigger || []).reduce(
-          (acc: any, { name, value }: any) => ({ ...acc, [name]: value }),
-          {},
-        ),
-        actions: detail.properties.actions.map((action: any) => ({
-          ...action,
-          properties: action.properties?.reduce(
-            (acc: any, { name, value }: any) => ({ ...acc, [name]: value }),
-            {},
-          ),
-        })),
-        conditions: detail.properties.conditions.map((action: any) => ({
-          ...action,
-          properties: action.properties?.reduce(
-            (acc: any, { name, value }: any) => ({ ...acc, [name]: value }),
-            {},
-          ),
-        })),
-        pins: [],
-      },
-    };
-
+  private loadReasoning(reasoning: PinsSettings) {
     Blockly.Events.disable();
-    initializeWorkspaceFromPinsAndLibraries(scene, this.workspace, this.librariesToLoad);
+    initializeWorkspaceFromPinsAndLibraries(reasoning, this.workspace, this.librariesToLoad);
     Blockly.Events.enable();
   }
 
@@ -136,11 +112,14 @@ export class GenericSceneElement extends LitElement {
   }
 
   private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
-    const list = await Promise.all(
-      Object.keys(libraries).map(async (library: any, i: number) =>
-        fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
-      ),
-    );
+    const list = [
+      schemasWeb,
+      ...(await Promise.all(
+        Object.keys(libraries).map(async (library: any, i: number) =>
+          fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
+        ),
+      )),
+    ];
 
     return list;
   }
@@ -223,6 +202,50 @@ export class GenericSceneElement extends LitElement {
           drag: true,
           wheel: true,
         },
+        theme: Blockly.Theme.defineTheme('modest', {
+          blockStyles: {
+            logic_blocks: {
+              colourPrimary: '#D1C4E9',
+              colourSecondary: '#EDE7F6',
+              colorTertiary: '#B39DDB',
+            },
+            loop_blocks: {
+              colourPrimary: '#A5D6A7',
+              colourSecondary: '#E8F5E9',
+              colorTertiary: '#66BB6A',
+            },
+            math_blocks: {
+              colourPrimary: '#2196F3',
+              colourSecondary: '#1E88E5',
+              colorTertiary: '#0D47A1',
+            },
+            text_blocks: {
+              colourPrimary: '#FFCA28',
+              colourSecondary: '#FFF8E1',
+              colorTertiary: '#FF8F00',
+            },
+            list_blocks: {
+              colourPrimary: '#4DB6AC',
+              colourSecondary: '#B2DFDB',
+              colorTertiary: '#009688',
+            },
+            variable_blocks: {
+              colourPrimary: '#EF9A9A',
+              colourSecondary: '#FFEBEE',
+              colorTertiary: '#EF5350',
+            },
+            variable_dynamic_blocks: {
+              colourPrimary: '#EF9A9A',
+              colourSecondary: '#FFEBEE',
+              colorTertiary: '#EF5350',
+            },
+            procedure_blocks: {
+              colourPrimary: '#D7CCC8',
+              colourSecondary: '#EFEBE9',
+              colorTertiary: '#BCAAA4',
+            },
+          },
+        }),
       } as any,
     );
 
@@ -276,6 +299,14 @@ export class GenericSceneElement extends LitElement {
       .blocklyTreeRow {
         height: 30px;
         line-height: 30px;
+      }
+
+      .blocklyPath {
+        stroke: #fff;
+      }
+
+      .blocklyPathDark {
+        fill: #fff;
       }
     </style>
 

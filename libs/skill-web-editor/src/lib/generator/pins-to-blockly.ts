@@ -15,7 +15,7 @@ function getPinsBlockDefinition(
     args2: [], //Events inputs field
     message3: '',
     args3: [], //Pins input field
-    colour: '#1e2835',
+    colour: '#4285f4',
     tooltip: 'library : ' + library.info.title,
     inputsInline: false,
     previousStatement: null,
@@ -42,9 +42,13 @@ function getPinsBlockDefinition(
   }
 
   requiredFields.push('');
-  const mutatorToolbox = parameters
-    .map((param: { name: any }) => param.name)
-    .filter((name: any) => !requiredFields.includes(name));
+  const mutatorToolbox = [
+    ...parameters
+      .map((param: { name: any }) => param.name)
+      .filter((name: any) => !requiredFields.includes(name)),
+    '__CONDITION__/if',
+    '__CONDITION__/each',
+  ];
 
   if (methodData.tags) {
     if (methodData.tags.includes('needPins') && !methodData.tags.includes('requirePins')) {
@@ -145,16 +149,16 @@ function getPinsBlockDefinition(
 function getComponentBlockDefinition(
   library: { info: { [x: string]: string; title: string } },
   componentName: string,
-  methodData: { properties: any; required: any[] },
+  methodData: { summary: string; properties: any; required: any[] },
   componentId: string,
 ) {
   const blockDefinition: any = {
     type: componentId,
-    message0: library.info['x-icon'] + ' ' + componentName,
+    message0: library.info['x-icon'] + ' ' + (methodData.summary || componentName),
     args0: [],
     message1: '',
     args1: [],
-    colour: '#74dc04',
+    colour: '#ffca28',
     tooltip: 'library : ' + library.info.title,
     inputsInline: false,
     previousStatement: null,
@@ -167,20 +171,19 @@ function getComponentBlockDefinition(
   const mutatorToolbox: string[] = [];
   const parameters = Object.keys(properties).map(propertyName => ({
     name: propertyName,
+    summary: properties[propertyName].summary || propertyName,
     schema: properties[propertyName],
   }));
 
   let messageIndex = 0;
   parameters.forEach((parameter, _index) => {
-    const propertyName = parameter.name;
-
-    if (!requiredFields.includes(propertyName)) {
-      mutatorToolbox.push(propertyName);
+    if (!requiredFields.includes(parameter.name)) {
+      mutatorToolbox.push(parameter.name);
     } else {
       blockDefinition['args1'].push({
         type: 'field_label',
         name: 'NAME_INPUT',
-        text: propertyName + '*',
+        text: parameter.summary + '*',
       });
 
       if (
@@ -526,14 +529,23 @@ function generateMutator(
   mutatorName: string,
   toolboxItem: any[],
   requiredFields: string | any[],
-  parameters: any[],
+  originParameters: any[],
 ) {
+  const parameters = [
+    ...originParameters,
+    { name: '__CONDITION__/if', schema: { type: 'boolean' } },
+    { name: '__CONDITION__/each', schema: { type: 'array', items: { type: 'object' } } },
+  ];
   const toolboxList = [];
   for (const item of toolboxItem) {
     Blockly.Blocks[mutatorName + '/' + item] = {
       init: function () {
         this.appendDummyInput(item).appendField(
-          item.includes('__EVENT__/') ? item.replace('__EVENT__/', '@') : item,
+          item.includes('__EVENT__/')
+            ? item.replace('__EVENT__/', '@')
+            : item.includes('__CONDITION__/')
+            ? item.replace('__CONDITION__/', '#')
+            : item,
         );
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -564,7 +576,10 @@ function generateMutator(
         containerBlock.initSvg();
         let connection = containerBlock.getInput('STACK').connection;
         for (let i = 0; i < this.inputList.length; i++) {
-          if (requiredFields.includes(this.inputList[i].name)) {
+          if (
+            requiredFields.includes(this.inputList[i].name) ||
+            /__INPUT$/g.test(this.inputList[i].name)
+          ) {
             continue;
           }
           const inputBlock = workspace.newBlock(mutatorName + '/' + this.inputList[i].name);
@@ -610,7 +625,7 @@ function generateMutator(
 
         for (const input of inputLoaded) {
           if (requiredFields.includes(input)) continue;
-          if (!inputToEnableIds.includes(input)) {
+          if (!inputToEnableIds.includes(input.replace(/__INPUT$/g, ''))) {
             this.removeInput(input);
           }
         }
@@ -628,7 +643,10 @@ function generateMutator(
               (parameter.schema?.items.$ref === 'https://www.pinser.world/schemas/pinsSettings' ||
                 parameter.schema?.items.$ref?.includes('#/components/schemas/'))
             ) {
-              this.appendDummyInput().appendField(input.name);
+              this.appendDummyInput(input.id + '__INPUT').appendField(input.name);
+              this.appendStatementInput(input.id);
+            } else if (input.id === 'pins') {
+              this.appendDummyInput(input.id + '__INPUT').appendField(input.name);
               this.appendStatementInput(input.id);
             } else {
               this.appendValueInput(input.id).appendField(input.name);

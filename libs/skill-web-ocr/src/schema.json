@@ -1,7 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Extraction de texte OCR",
+    "title": "@digipair/skill-web-ocr",
+    "summary": "Extraction de texte OCR",
     "description": "Cette compétence utilise la technologie OCR pour analyser les images et en extraire le texte, permettant ainsi une saisie automatique des données.",
     "version": "0.1.0",
     "x-icon": "🚀"

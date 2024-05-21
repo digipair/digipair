@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-factory",
+    "summary": "Communication avec la factory Digipair",
     "description": "Communication avec la factory Digipair.",
     "version": "0.1.0",
     "x-icon": "🚀"

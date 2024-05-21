@@ -118,6 +118,7 @@ jsonGenerator.generatePin = function (block: { type: string; inputList: any[] })
 
   let propertiesCode = '';
   let eventCode = '';
+  let conditionCode = '';
 
   for (let i = 0, input; (input = block.inputList[i]); i++) {
     const inputName = input.name;
@@ -129,15 +130,19 @@ jsonGenerator.generatePin = function (block: { type: string; inputList: any[] })
 
         if (inputName.includes('__EVENT__/')) {
           eventCode += `    "${inputName.split('__EVENT__/')[1]}": [${inputCode}],`;
+        } else if (inputName.includes('__CONDITION__/')) {
+          conditionCode += `    "${inputName.split('__CONDITION__/')[1]}": [${inputCode}],`;
         } else {
           propertiesCode += `    "${inputName}": [${inputCode}],`;
         }
       } else {
         const codeToAdd = getCodeFromBlock(connectedBlock);
+        const inputCode = jsonGenerator.customStatementToCode(block, inputName);
 
         if (inputName === 'pins') {
-          const inputCode = jsonGenerator.customStatementToCode(block, inputName);
           code += `  "${inputName}": [${inputCode}],`;
+        } else if (inputName.includes('__CONDITION__/')) {
+          conditionCode += `    "${inputName.split('__CONDITION__/')[1]}": ${inputCode},`;
         } else if (codeToAdd !== 'undefined') {
           propertiesCode += `    "${inputName}": ${codeToAdd},`;
         }
@@ -151,11 +156,19 @@ jsonGenerator.generatePin = function (block: { type: string; inputList: any[] })
     }
     code += '\n"properties": {\n' + propertiesCode + '\n  },';
   }
+
   if (eventCode !== '') {
     if (eventCode.endsWith(',')) {
       eventCode = eventCode.slice(0, -1);
     }
     code += '\n"events": {\n' + eventCode + '\n  },';
+  }
+
+  if (conditionCode !== '') {
+    if (conditionCode.endsWith(',')) {
+      conditionCode = conditionCode.slice(0, -1);
+    }
+    code += '\n"conditions": {\n' + conditionCode + '\n  },';
   }
 
   if (code.endsWith(',')) {

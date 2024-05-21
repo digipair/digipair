@@ -15,10 +15,10 @@
           "libs/skill-web-interact/src/index.d.ts",
           "libs/skill-web-interact/src/schema.json"
         ],
+        "rollupConfig": ["libs/skill-web-interact/rollup.build.cjs"],
         "project": "libs/skill-web-interact/package.json",
         "compiler": "swc",
-        "format": ["cjs", "esm"],
-        "rollupConfig": ["libs/skill-web-interact/rollup.build.cjs"]
+        "format": ["cjs", "esm"]
       }
     },
     "publish": {

@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-chatbot",
+    "summary": "Affichage de chatbots",
     "description": "Intégration d'un chatbot interactif sur une page web pour améliorer l'engagement et la communication avec les utilisateurs.",
     "version": "0.1.0",
     "x-icon": "🚀"

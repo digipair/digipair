@@ -35,6 +35,15 @@ class EditorService {
 
     return {};
   }
+
+  async reasonings(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { digipair } = params;
+    const reasonings = (await promises.readdir(join(__dirname, `/assets/digipairs/${digipair}`)))
+      .filter((file: string) => file.endsWith('.json') && file !== 'config.json')
+      .map((file: string) => file.replace(/\.json$/, ''));
+
+    return reasonings;
+  }
 }
 
 export const read = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -42,3 +51,6 @@ export const read = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const save = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().save(params, pinsSettingsList, context);
+
+export const reasonings = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().reasonings(params, pinsSettingsList, context);

@@ -1,7 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Extraction de texte depuis un PDF",
+    "title": "@digipair/skill-web-pdf",
+    "summary": "Extraction de texte depuis un PDF",
     "description": "Cette compétence permet d'extraire le texte depuis un PDF.",
     "version": "0.1.0",
     "x-icon": "🚀"

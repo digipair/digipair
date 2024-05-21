@@ -24,7 +24,7 @@ export class InputsElement extends LitElement {
       ${(this.inputs || []).map(
         (pins: PinsSettings) =>
           html`${until(
-            generateElementFromPins(pins, this.context).then((el: Element) => {
+            generateElementFromPins(pins, null, this.context).then((el: Element) => {
               setTimeout(() => this.dispatchEvent(new CustomEvent('change')), 1);
               el.addEventListener('change', () => this.dispatchEvent(new CustomEvent('change')));
               return el;

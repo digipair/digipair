@@ -216,12 +216,11 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
     }
   }
 
-  if (!pinsSettings || !pinsSettings.properties) {
-    return pinsBlock;
-  }
-
   for (const parameter of pinsDefinition.parameters) {
-    if (!Object.prototype.hasOwnProperty.call(pinsSettings.properties, parameter.name)) {
+    if (
+      !pinsSettings.properties ||
+      !Object.prototype.hasOwnProperty.call(pinsSettings.properties, parameter.name)
+    ) {
       continue;
     }
 
@@ -239,8 +238,8 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
                 parameter.schema.items.$ref,
               )
             : generateBlockFromPins(propertyValue, workspace);
-        const sceneInputConnection = pinsBlock.getInput(parameter.name).connection;
-        connectBlock(parameterBlock, sceneInputConnection);
+        const inputConnection = pinsBlock.getInput(parameter.name).connection;
+        connectBlock(parameterBlock, inputConnection);
       }
     } else {
       const parameterBlock = generateParameterBlock(
@@ -249,12 +248,12 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
         workspace,
         library,
       );
-      const sceneInputConnection = pinsBlock.getInput(parameter.name).connection;
-      connectBlock(parameterBlock, sceneInputConnection);
+      const inputConnection = pinsBlock.getInput(parameter.name).connection;
+      connectBlock(parameterBlock, inputConnection);
     }
   }
 
-  for (const event of pinsDefinition['x-events']) {
+  for (const event of pinsDefinition['x-events'] || []) {
     if (
       !pinsSettings.events ||
       !Object.prototype.hasOwnProperty.call(pinsSettings.events, event.name)
@@ -266,6 +265,47 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
     for (const propertyValue of (valueToLoad as any[]).reverse()) {
       const parameterBlock = generateBlockFromPins(propertyValue, workspace);
       const inputConnection = pinsBlock.getInput('__EVENT__/' + event.name).connection;
+      connectBlock(parameterBlock, inputConnection);
+    }
+  }
+
+  const conditions = [
+    { name: 'if', schema: { type: 'boolean' } },
+    { name: 'each', schema: { type: 'array', items: { type: 'object' } } },
+  ] as any[];
+  for (const parameter of conditions) {
+    if (
+      !pinsSettings.conditions ||
+      !Object.prototype.hasOwnProperty.call(pinsSettings.conditions, parameter.name)
+    ) {
+      continue;
+    }
+
+    const valueToLoad = pinsSettings.conditions[parameter.name];
+    if (parameter.schema.type === 'array' && parameter.schema.items?.$ref) {
+      const parameterType = getParameterType(parameter.schema.items);
+
+      for (const propertyValue of (valueToLoad as any[]).reverse()) {
+        const parameterBlock =
+          parameterType === 'component'
+            ? generateBlockFromComponent(
+                propertyValue,
+                workspace,
+                library,
+                parameter.schema.items.$ref,
+              )
+            : generateBlockFromPins(propertyValue, workspace);
+        const inputConnection = pinsBlock.getInput('__CONDITION__/' + parameter.name).connection;
+        connectBlock(parameterBlock, inputConnection);
+      }
+    } else {
+      const parameterBlock = generateParameterBlock(
+        parameter.schema,
+        valueToLoad,
+        workspace,
+        library,
+      );
+      const inputConnection = pinsBlock.getInput('__CONDITION__/' + parameter.name).connection;
       connectBlock(parameterBlock, inputConnection);
     }
   }
@@ -519,7 +559,7 @@ function generateBlockFromJson(json_structure: any, workspace: any) {
 }
 
 function itemListFromPinsSettings(
-  pinsSettings: { properties: any; events: any },
+  pinsSettings: { properties: any; events: any; conditions: any },
   pinsDefinition: { [x: string]: any; parameters: any; tags: string | string[] },
 ): any {
   const inputArray: { id: any; name: any }[] = [];
@@ -551,6 +591,16 @@ function itemListFromPinsSettings(
         id: '__EVENT__/' + event.name,
         name: '@' + (event.summary || event.name),
       });
+    }
+  }
+
+  if (pinsSettings.conditions) {
+    if (pinsSettings.conditions.if) {
+      inputArray.push({ id: '__CONDITION__/if', name: '#if' });
+    }
+
+    if (pinsSettings.conditions.each) {
+      inputArray.push({ id: '__CONDITION__/each', name: '#each' });
     }
   }
 

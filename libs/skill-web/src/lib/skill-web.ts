@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings } from '@digipair/engine';
+import { PinsSettings, executePinsList } from '@digipair/engine';
 
 class WebService {
   async page(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       body,
+      data = [] as { name: string; execute: PinsSettings[] }[],
       title = 'Digipair',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
       libraries = {},
     } = params;
+    const engineVersion = libraries['@digipair/engine'] || 'latest';
+    const preparedData = {} as { [key: string]: PinsSettings };
+
+    for (const item of data) {
+      preparedData[item.name] = await executePinsList(item.value, context);
+    }
+
     const html = `
 <!DOCTYPE html>
 <html>
@@ -18,7 +26,7 @@ class WebService {
   </head>
   <body>
     <script type="module">
-      import { config, generateElementFromPins } from '${baseUrl}/@digipair/engine/index.esm.js';
+      import { config, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
       
       config.set('LIBRARIES', ${JSON.stringify(libraries)});
       config.set('BASE_URL', '${baseUrl}');
@@ -33,8 +41,9 @@ class WebService {
       const pinsList = ${JSON.stringify(body)};
       for (let i = 0; i < pinsList.length; i++) {
         const item = pinsList[i];
-        const child = await generateElementFromPins(item, context, options);
-        document.body.appendChild(child);
+        await generateElementFromPins(item, document.body, { ...context, data: ${JSON.stringify(
+          preparedData,
+        )} }, options);
       }
     </script>
   </body>

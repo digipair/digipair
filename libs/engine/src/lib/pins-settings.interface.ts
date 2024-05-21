@@ -5,7 +5,10 @@ export interface PinsSettings {
   library: string;
   properties?: { [key: string]: any };
   variables?: { [key: string]: any };
-  requests?: { [key: string]: PinsSettings };
+  conditions?: {
+    if?: boolean;
+    each?: any[];
+  };
   pins?: PinsSettings[];
   events?: { [key: string]: PinsSettings[] };
   context?: any;

@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-common",
+    "summary": "Comportements par défauts des agents",
     "description": "La compétence permet de gérer les comportements par défauts des agents.",
     "version": "0.1.0",
     "x-icon": "🚀"

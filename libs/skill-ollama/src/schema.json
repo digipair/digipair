@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-ollama",
+    "summary": "Communication avec un serveur Ollama",
     "description": "Exécution des models LLM via un serveur Ollama.",
     "version": "0.1.0",
     "x-icon": "🚀"
