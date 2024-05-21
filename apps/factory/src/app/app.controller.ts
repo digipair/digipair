@@ -1,12 +1,4 @@
-import {
-  All,
-  Body,
-  Controller,
-  DefaultValuePipe,
-  Param,
-  ParseArrayPipe,
-  Req,
-} from '@nestjs/common';
+import { All, Body, Controller, Param, Req } from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -21,7 +13,7 @@ export class AppController {
     @Req() request: Request,
     @Body() body: any,
   ) {
-    const params = (request as any).params['0'].replace(/^\//g, '').split('/');
+    const params = (request as any).params['0']?.replace(/^\//g, '').split('/');
     return this.appService.agent(digipair, reasoning, body, params);
   }
 }

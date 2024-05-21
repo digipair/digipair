@@ -1,0 +1,30 @@
+{
+  "name": "skill-data-management",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-data-management/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-data-management",
+        "main": "libs/skill-data-management/src/index.ts",
+        "tsConfig": "libs/skill-data-management/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-data-management/src/index.d.ts",
+          "libs/skill-data-management/src/schema.json"
+        ],
+        "rollupConfig": ["libs/skill-data-management/rollup.build.cjs"],
+        "project": "libs/skill-data-management/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-data-management {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

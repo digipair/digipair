@@ -72,6 +72,15 @@
           }
         },
         {
+          "name": "favicon",
+          "summary": "Icone de la page",
+          "required": false,
+          "description": "Icone de la page",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
           "name": "baseUrl",
           "summary": "Adresse des librairies",
           "required": false,

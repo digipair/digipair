@@ -52,17 +52,29 @@ export const executePins = async (
   const settings = await preparePinsSettings(settingsOrigin, context);
 
   if (settings.conditions?.each) {
-    return Promise.all(
-      settings.conditions.each
-        .filter(item => typeof item.conditions.if === 'undefined' || item.conditions.if)
-        .map(item =>
-          executePins(
-            { ...settingsOrigin, conditions: { ...settingsOrigin.conditions, each: undefined } },
-            { ...context, item, parent: { item: context.item, parent: context.parent } },
-            options,
-          ),
-        ),
-    );
+    const results = [] as any[];
+
+    for (const item of settings.conditions.each) {
+      const itemSettingsOrigin = {
+        ...settingsOrigin,
+        conditions: { ...settingsOrigin.conditions, each: undefined },
+      };
+      const itemContext = {
+        ...context,
+        item,
+        parent: { item: context.item, parent: context.parent },
+      };
+      const itemSettings = await preparePinsSettings(itemSettingsOrigin, itemContext);
+
+      if (typeof itemSettings.conditions?.if !== 'undefined' && !itemSettings.conditions.if) {
+        continue;
+      }
+
+      const itemResult = await executePins(itemSettingsOrigin, itemContext, options);
+      results.push(itemResult);
+    }
+
+    return results;
   }
 
   const version = options.libraries[settings.library] || 'latest';

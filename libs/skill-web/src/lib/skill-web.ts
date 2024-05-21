@@ -7,6 +7,7 @@ class WebService {
       body,
       data = [] as { name: string; execute: PinsSettings[] }[],
       title = 'Digipair',
+      favicon = 'https://www.digipair.ai/assets/images/favicon.ico',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
       libraries = {},
     } = params;
@@ -23,6 +24,7 @@ class WebService {
   <head>
     <meta charset="UTF-8" />
     <title>${title}</title>
+    <link rel="icon" type="image/x-icon" href="${favicon}">
   </head>
   <body>
     <script type="module">

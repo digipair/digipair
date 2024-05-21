@@ -3,5 +3,8 @@ schema boost inherits knowledge {
         field url type string {
             indexing: summary | attribute
         }
+        field trigger type object {
+            indexing: summary
+        }
     }
 }

@@ -2,22 +2,65 @@
   "description": "Initialise les boosts dans la base de connaissance.",
   "library": "@digipair/skill-service",
   "element": "service",
+  "metadata": {},
   "properties": {
     "execute": [
       {
-        "library": "@digipair/skill-vespa",
-        "element": "remove",
+        "library": "@digipair/skill-common",
+        "element": "boosts",
         "properties": {
-          "selection": "true",
-          "collection": "boost"
+          "digipair": "{{request.params.[0]}}"
         }
       },
       {
-        "library": "@digipair/skill-chatbot",
-        "element": "chatbot",
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
         "properties": {
-          "assistant": "Les boosts ont bien été initialisés.",
-          "logs": "EVALUATE:previous"
+          "execute": [
+            {
+              "library": "@digipair/skill-data-management",
+              "element": "transform",
+              "properties": {
+                "value": {
+                  "source": "{{request.params.[0]}}",
+                  "content": "{{item.name}}: {{parent.item.description}}",
+                  "url": "{{item.url}}",
+                  "trigger": {
+                    "name": "EVALUATE:item.name",
+                    "prompt": "EVALUATE:item.prompt",
+                    "required": "EVALUATE:item.required",
+                    "text": "EVALUATE:item.text",
+                    "inputs": "EVALUATE:item.inputs",
+                    "context": {},
+                    "command": {
+                      "library": "@digipair/actions-chatbot",
+                      "element": "executeRemoteReasoning",
+                      "properties": {
+                        "digipair": "{{request.params.[0]}}",
+                        "reasoning": "{{parent.item.name}}",
+                        "input": {},
+                        "apiUrl": "TODO"
+                      }
+                    }
+                  }
+                }
+              },
+              "conditions": {
+                "if": "EVALUATE:if item.selector then false else true",
+                "each": "EVALUATE:item.metadata.boosts"
+              }
+            }
+          ]
+        },
+        "conditions": {
+          "each": "EVALUATE:previous"
+        }
+      },
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
+        "properties": {
+          "value": "EVALUATE:flatten(previous)"
         }
       }
     ]

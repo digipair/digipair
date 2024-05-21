@@ -8,6 +8,7 @@
         "name": "Supprimer la base de connaissances",
         "prompt": true,
         "required": true,
+        "selector": "knowledge.source",
         "text": "Pour quel agent IA souhaitez-vous supprimer la base de connaissance ?",
         "inputs": []
       }

@@ -4,7 +4,6 @@ import { promises } from 'fs';
 import { join } from 'path';
 
 config.set('LIBRARIES', {
-  '@digipair/engine': require('@digipair/engine'),
   '@digipair/skill-chatbot': require('@digipair/skill-chatbot'),
   '@digipair/skill-common': require('@digipair/skill-common'),
   '@digipair/skill-llm': require('@digipair/skill-llm'),
@@ -14,6 +13,8 @@ config.set('LIBRARIES', {
   '@digipair/skill-web': require('@digipair/skill-web'),
   '@digipair/skill-editor': require('@digipair/skill-editor'),
   '@digipair/skill-service': require('@digipair/skill-service'),
+  // '@digipair/skill-dsp': require('@digipair/skill-dsp'),
+  '@digipair/skill-data-management': require('@digipair/skill-data-management'),
 });
 
 @Injectable()
