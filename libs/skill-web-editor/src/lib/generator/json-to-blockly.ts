@@ -1,3 +1,5 @@
+import { PinsSettings } from '@digipair/engine';
+
 let libraries: any[];
 
 export function initializeWorkspaceFromPinsAndLibraries(
@@ -205,7 +207,9 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
 
   if (
     library.paths['/' + pinsSettings.element].post.tags &&
-    library.paths['/' + pinsSettings.element].post.tags.includes('needPins')
+    library.paths['/' + pinsSettings.element].post.tags.includes('needPins') &&
+    pinsSettings.pins &&
+    pinsSettings.pins.length > 0
   ) {
     const pinsConnection = pinsBlock.getInput('pins').connection;
 
@@ -559,7 +563,7 @@ function generateBlockFromJson(json_structure: any, workspace: any) {
 }
 
 function itemListFromPinsSettings(
-  pinsSettings: { properties: any; events: any; conditions: any },
+  pinsSettings: { properties: any; events: any; conditions: any; pins: PinsSettings[] },
   pinsDefinition: { [x: string]: any; parameters: any; tags: string | string[] },
 ): any {
   const inputArray: { id: any; name: any }[] = [];
@@ -578,7 +582,12 @@ function itemListFromPinsSettings(
     }
   }
 
-  if (pinsDefinition.tags && pinsDefinition.tags.includes('needPins')) {
+  if (
+    pinsDefinition.tags &&
+    pinsDefinition.tags.includes('needPins') &&
+    pinsSettings.pins &&
+    pinsSettings.pins.length > 0
+  ) {
     inputArray.push({ id: 'pins', name: 'pins' });
   }
 
@@ -613,11 +622,11 @@ function itemListFromComponentSettings(
 ): any {
   const inputArray = [];
 
-  for (const [propertyKey, _propertyValue] of Object.entries<any>(componentDefinition.properties)) {
+  for (const [propertyKey, propertyValue] of Object.entries<any>(componentDefinition.properties)) {
     if (!Object.prototype.hasOwnProperty.call(componentSettings, propertyKey)) {
       continue;
     }
-    inputArray.push({ id: propertyKey, name: propertyKey });
+    inputArray.push({ id: propertyKey, name: propertyValue.summary || propertyKey });
   }
 
   return inputArray;
@@ -634,7 +643,7 @@ function itemListFromSceneSettings(
       if (!Object.prototype.hasOwnProperty.call(sceneSettings.properties, parameter.name)) {
         continue;
       }
-      inputArray.push({ id: parameter.name, name: parameter.name });
+      inputArray.push({ id: parameter.name, name: parameter.summary || parameter.name });
     }
   }
 

@@ -35,7 +35,7 @@
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "admin"
+              "digipair": "{{request.params.[0]}}"
             }
           }
         ]
