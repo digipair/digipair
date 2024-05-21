@@ -10,6 +10,7 @@
     "@digipair/skill-chatbot": "latest",
     "@digipair/skill-editor": "latest",
     "@digipair/skill-vespa": "latest",
+    "@digipair/skill-common": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-editor": "latest",

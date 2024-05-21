@@ -3,8 +3,8 @@ import { promises } from 'fs';
 import { join } from 'path';
 
 class CommonService {
-  async metadata(_params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const digipair = context.request.digipair;
+  async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { digipair } = params;
     const content = await promises.readFile(
       join(__dirname, `/assets/digipairs/${digipair}/config.json`),
       'utf8',
@@ -19,8 +19,8 @@ class CommonService {
     return { ...config.metadata, avatar: `data:image/png;base64,${avatar}` };
   }
 
-  async boosts(_params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const digipair = context.request.digipair;
+  async boosts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { digipair } = params;
     const files = await promises.readdir(join(__dirname, `/assets/digipairs/${digipair}`));
     const boosts = await Promise.all(
       files

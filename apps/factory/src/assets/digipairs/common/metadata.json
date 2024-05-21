@@ -6,7 +6,10 @@
     "execute": [
       {
         "library": "@digipair/skill-common",
-        "element": "metadata"
+        "element": "metadata",
+        "properties": {
+          "digipair": "{{request.body.digipair}}"
+        }
       }
     ]
   }

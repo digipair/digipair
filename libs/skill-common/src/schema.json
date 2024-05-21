@@ -12,7 +12,16 @@
       "post": {
         "tags": ["service"],
         "summary": "Lister les metadatas",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "digipair",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "x-events": []
       }
     },
@@ -20,7 +29,16 @@
       "post": {
         "tags": ["service"],
         "summary": "Lister les boosts",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "digipair",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "x-events": []
       }
     }

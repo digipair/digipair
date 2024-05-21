@@ -6,7 +6,10 @@
     "execute": [
       {
         "library": "@digipair/skill-common",
-        "element": "boosts"
+        "element": "boosts",
+        "properties": {
+          "digipair": "{{request.body.digipair}}"
+        }
       }
     ]
   }
