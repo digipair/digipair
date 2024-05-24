@@ -1,0 +1,177 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-spectrum",
+    "summary": "Design System Spectrum",
+    "description": "Cette compétence permet aux utilisateurs de créer des interfaces web en utilisant le design system Spectrum.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/sp-theme": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Thème",
+        "description": "Thème de l'interface",
+        "parameters": [
+          {
+            "name": "theme",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom du thème à appliquer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "Couleur",
+            "required": false,
+            "description": "Couleur du thème",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scale",
+            "summary": "Zoom",
+            "required": false,
+            "description": "Echelle du thème",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles du thème",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Tableau",
+        "description": "Tableau d'élements",
+        "parameters": [
+          {
+            "name": "selects",
+            "summary": "Type de sélection",
+            "required": false,
+            "description": "Type de sélection des lignes du tableau",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selected",
+            "summary": "Lignes sélectionnées",
+            "required": false,
+            "description": "Lignes sélectionnées à l'initialisation du tableau",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "change",
+            "summary": "Lors d'une modification",
+            "required": false,
+            "description": "Action déclenchée lors d'une modification de sélection de lignes dans le tableau",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-table-head": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Entête",
+        "description": "Entête d'un tableau",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-table-head-cell": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Cellule d'entête",
+        "description": "Cellule d'entête d'un tableau",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de la cellule d'entête",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table-body": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Contenu",
+        "description": "Contenu d'un tableau",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-table-row": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Ligne",
+        "description": "Ligne d'un tableau",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Identifiant",
+            "required": true,
+            "description": "Identifiant de la ligne du tableau",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table-cell": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Cellule",
+        "description": "Cellule d'un tableau",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de la cellule",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

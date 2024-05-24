@@ -188,7 +188,7 @@ export const generateElementFromPins = async (
   const pinsList = settings.pins || [];
   for (let i = 0; i < pinsList.length; i++) {
     const item = pinsList[i];
-    await generateElementFromPins(item, element, settings.context, options);
+    await generateElementFromPins(item, element, context, options);
   }
 
   parent?.appendChild(element);

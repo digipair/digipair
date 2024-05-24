@@ -5,26 +5,67 @@
   "properties": {
     "body": [
       {
-        "library": "web",
-        "element": "button",
+        "library": "@digipair/skill-web-spectrum",
+        "element": "sp-theme",
         "properties": {
-          "textContent": "{{item}}"
+          "scale": "large",
+          "theme": "dark"
         },
-        "conditions": {
-          "each": "EVALUATE:data.reasonings"
-        },
-        "events": {
-          "click": [
-            {
-              "library": "@digipair/skill-web-debug",
-              "element": "console",
-              "properties": {
-                "label": "reasoning",
-                "value": "{{item}}"
+        "pins": [
+          {
+            "library": "@digipair/skill-web-spectrum",
+            "element": "sp-table",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-table-head",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-table-head-cell",
+                    "properties": {
+                      "textContent": "Raisonnements"
+                    }
+                  }
+                ]
+              },
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-table-body",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-table-row",
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-table-cell",
+                        "properties": {
+                          "textContent": "{{item}}"
+                        }
+                      }
+                    ],
+                    "conditions": {
+                      "each": "EVALUATE:data.reasonings"
+                    }
+                  }
+                ]
               }
+            ],
+            "events": {
+              "change": [
+                {
+                  "library": "@digipair/skill-web-debug",
+                  "element": "console",
+                  "properties": {
+                    "label": "reasoning",
+                    "value": "EVALUATE:event"
+                  }
+                }
+              ]
             }
-          ]
-        }
+          }
+        ]
       }
     ],
     "data": [
@@ -41,5 +82,6 @@
         ]
       }
     ]
-  }
+  },
+  "pins": []
 }
