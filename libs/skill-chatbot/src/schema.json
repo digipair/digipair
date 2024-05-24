@@ -11,7 +11,7 @@
     "/chatbot": {
       "post": {
         "tags": ["boost"],
-        "summary": "chatbot",
+        "summary": "Retourner au chatbot",
         "parameters": [
           {
             "name": "assistant",
@@ -101,7 +101,8 @@
     "/find": {
       "post": {
         "tags": ["service"],
-        "summary": "find",
+        "summary": "Récupérer dans la conversation",
+        "description": "Récupérer des données dans l'historique de conversation",
         "parameters": [
           {
             "name": "limit",
@@ -142,7 +143,8 @@
     "/search": {
       "post": {
         "tags": ["service"],
-        "summary": "search",
+        "summary": "Rechercher dans la conversation",
+        "description": "Rechercher des données dans l'historique de conversation",
         "parameters": [
           {
             "name": "limit",
