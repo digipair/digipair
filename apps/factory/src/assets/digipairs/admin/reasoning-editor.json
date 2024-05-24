@@ -8,8 +8,8 @@
         "library": "@digipair/skill-web-editor",
         "element": "digipair-editor",
         "properties": {
-          "digipair": "{{request.params.[0]}}",
-          "reasoning": "{{request.params.[1]}}"
+          "digipair": "EVALUATE:data.digipair",
+          "reasoning": "EVALUATE:data.reasoning"
         },
         "events": {
           "save": [
@@ -29,6 +29,33 @@
             }
           ]
         }
+      }
+    ],
+    "data": [
+      {
+        "name": "digipair",
+        "value": [
+          {
+            "library": "@digipair/skill-editor",
+            "element": "digipair",
+            "properties": {
+              "digipair": "{{request.params.[0]}}"
+            }
+          }
+        ]
+      },
+      {
+        "name": "reasoning",
+        "value": [
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasoning",
+            "properties": {
+              "digipair": "{{request.params.[0]}}",
+              "reasoning": "{{request.params.[1]}}"
+            }
+          }
+        ]
       }
     ]
   },

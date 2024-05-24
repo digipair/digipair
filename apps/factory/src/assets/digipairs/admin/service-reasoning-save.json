@@ -6,7 +6,7 @@
     "execute": [
       {
         "library": "@digipair/skill-editor",
-        "element": "save",
+        "element": "setReasoning",
         "properties": {
           "digipair": "{{request.body.digipair}}",
           "reasoning": "{{request.body.reasoning}}",

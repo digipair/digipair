@@ -172,7 +172,7 @@ export const generateElementFromPins = async (
     if (typeof value === 'string') {
       element.setAttribute(key, value);
     } else {
-      (element as any)['__' + key] = value;
+      (element as any)[key] = value;
     }
   });
 

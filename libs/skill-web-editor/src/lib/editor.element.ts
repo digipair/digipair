@@ -16,17 +16,16 @@ let jsonGenerator: any,
   initializeMutator: any;
 
 @customElement('digipair-editor')
-export class GenericSceneElement extends LitElement {
+export class EditorElement extends LitElement {
   @property()
-  digipair!: string;
+  digipair!: any;
 
   @property()
-  reasoning!: string;
+  reasoning!: any;
 
   @state()
   private canSave = false;
 
-  private reasoningData: any;
   private workspace: any;
   private blocks: any;
   private toolbox: any;
@@ -95,22 +94,6 @@ export class GenericSceneElement extends LitElement {
     Blockly.Events.enable();
   }
 
-  private async getReasoning(digipair: string, reasoning: string): Promise<PinsSettings | null> {
-    const response = await fetch(`${window.location.origin}/admin/service-reasoning-read`, {
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        digipair,
-        reasoning,
-      }),
-      method: 'POST',
-    });
-    const content = await response.json();
-
-    return content;
-  }
-
   private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
     const list = [
       schemasWeb,
@@ -124,10 +107,9 @@ export class GenericSceneElement extends LitElement {
     return list;
   }
 
-  private async loadScene(digipair: string, reasoning: string): Promise<void> {
-    this.reasoningData = await this.getReasoning(digipair, reasoning);
-    const scene = this.reasoningData.content as PinsSettings;
-    this.librariesToLoad = await this.getLibraries(this.reasoningData.libraries);
+  private async loadScene(digipair: any, reasoning: PinsSettings): Promise<void> {
+    const scene = reasoning;
+    this.librariesToLoad = await this.getLibraries(digipair.libraries);
 
     this.loadBlockly(scene);
     if (!scene) {
@@ -141,8 +123,8 @@ export class GenericSceneElement extends LitElement {
 
     try {
       this.codeInWorkspace = {
-        summary: this.reasoningData.content.summary,
-        description: this.reasoningData.content.description,
+        name: this.reasoning.name,
+        description: this.reasoning.description,
         ...JSON.parse(code),
       };
 
@@ -157,8 +139,8 @@ export class GenericSceneElement extends LitElement {
       this.dispatchEvent(
         new CustomEvent('save', {
           detail: {
-            digipair: this.digipair,
-            reasoning: this.reasoning,
+            digipair: this.digipair.id,
+            reasoning: (this.reasoning as any).id,
             value: this.codeInWorkspace,
           },
         }),
