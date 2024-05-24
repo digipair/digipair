@@ -17,8 +17,6 @@ class DomService {
       element['__' + attribute] = value;
       element.requestUpdate();
     }
-
-    return;
   }
 
   async dispatchEvent(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
@@ -26,8 +24,11 @@ class DomService {
     const element = document.querySelector(selector) as any;
 
     element.dispatchEvent(new CustomEvent(name, { detail }));
+  }
 
-    return;
+  async goTo(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { url } = params;
+    window.location.href = url;
   }
 }
 
@@ -36,3 +37,6 @@ export const setAttribute = (params: any, pinsSettingsList: PinsSettings[], cont
 
 export const dispatchEvent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DomService().dispatchEvent(params, pinsSettingsList, context);
+
+export const goTo = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DomService().goTo(params, pinsSettingsList, context);

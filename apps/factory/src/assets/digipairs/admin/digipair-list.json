@@ -28,7 +28,7 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-table-head-cell",
                             "properties": {
-                              "textContent": "Raisonnements"
+                              "textContent": "Digipairs"
                             }
                           },
                           {
@@ -71,18 +71,19 @@
                                             "library": "@digipair/skill-web-spectrum",
                                             "element": "sp-icon",
                                             "properties": {
-                                              "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiIgY29sb3I9IndoaXRlIiByb2xlPSJpbWciIGZpbGw9ImN1cnJlbnRDb2xvciIgaGVpZ2h0PSIyNCIgd2lkdGg9IjI0IiBhcmlhLWhpZGRlbj0idHJ1ZSIgYXJpYS1sYWJlbD0iIj4KICAgIDxwYXRoIGQ9Ik0zMy41NjcgOC4yIDI3LjggMi40MzJhMS4yMTUgMS4yMTUgMCAwIDAtLjg2Ni0uMzUzSDI2LjlhMS4zNzEgMS4zNzEgMCAwIDAtLjkyNy40MDZMNS4wODQgMjMuMzcyYS45OS45OSAwIDAgMC0uMjUxLjQyMkwyLjA1NSAzMy4xYy0uMTE0LjM3Ny40NTkuODUxLjc4My44NTFhLjI1MS4yNTEgMCAwIDAgLjA2Mi0uMDA3Yy4yNzYtLjA2MyA3Ljg2Ni0yLjM0NCA5LjMxMS0yLjc3OGEuOTcyLjk3MiAwIDAgMCAuNDE0LS4yNDlsMjAuODg4LTIwLjg4OWExLjM3MiAxLjM3MiAwIDAgMCAuNC0uODgzIDEuMjIxIDEuMjIxIDAgMCAwLS4zNDYtLjk0NVpNMTEuNCAyOS4zMTZjLTIuMTYxLjY0OS00Ljg2MiAxLjQ2NS02LjcyOSAyLjAyMmwyLjAwOS02LjczWiI+PC9wYXRoPgogIDwvc3ZnPg==",
-                                              "slot": "icon"
+                                              "slot": "icon",
+                                              "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiIgY29sb3I9IndoaXRlIiByb2xlPSJpbWciIGZpbGw9ImN1cnJlbnRDb2xvciIgaGVpZ2h0PSIyNCIgd2lkdGg9IjI0IiBhcmlhLWhpZGRlbj0idHJ1ZSIgYXJpYS1sYWJlbD0iIj4KICAgIDxwYXRoIGQ9Ik0zMy41NjcgOC4yIDI3LjggMi40MzJhMS4yMTUgMS4yMTUgMCAwIDAtLjg2Ni0uMzUzSDI2LjlhMS4zNzEgMS4zNzEgMCAwIDAtLjkyNy40MDZMNS4wODQgMjMuMzcyYS45OS45OSAwIDAgMC0uMjUxLjQyMkwyLjA1NSAzMy4xYy0uMTE0LjM3Ny40NTkuODUxLjc4My44NTFhLjI1MS4yNTEgMCAwIDAgLjA2Mi0uMDA3Yy4yNzYtLjA2MyA3Ljg2Ni0yLjM0NCA5LjMxMS0yLjc3OGEuOTcyLjk3MiAwIDAgMCAuNDE0LS4yNDlsMjAuODg4LTIwLjg4OWExLjM3MiAxLjM3MiAwIDAgMCAuNC0uODgzIDEuMjIxIDEuMjIxIDAgMCAwLS4zNDYtLjk0NVpNMTEuNCAyOS4zMTZjLTIuMTYxLjY0OS00Ljg2MiAxLjQ2NS02LjcyOSAyLjAyMmwyLjAwOS02LjczWiI+PC9wYXRoPgogIDwvc3ZnPg=="
                                             }
                                           }
                                         ],
+                                        "properties": {},
                                         "events": {
                                           "click": [
                                             {
                                               "library": "@digipair/skill-web-interact",
                                               "element": "goTo",
                                               "properties": {
-                                                "url": "/admin/reasoning-editor/{{request.params.[0]}}/{{item}}"
+                                                "url": "/admin/reasoning-list/{{item}}"
                                               }
                                             }
                                           ]
@@ -99,7 +100,7 @@
                             ],
                             "properties": {},
                             "conditions": {
-                              "each": "EVALUATE:data.reasonings"
+                              "each": "EVALUATE:data.digipairs"
                             }
                           }
                         ]
@@ -125,14 +126,12 @@
     ],
     "data": [
       {
-        "name": "reasonings",
+        "name": "digipairs",
         "value": [
           {
             "library": "@digipair/skill-editor",
-            "element": "reasonings",
-            "properties": {
-              "digipair": "{{request.params.[0]}}"
-            }
+            "element": "digipairs",
+            "properties": {}
           }
         ]
       }

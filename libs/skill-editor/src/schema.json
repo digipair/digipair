@@ -92,6 +92,15 @@
         ],
         "x-events": []
       }
+    },
+    "/digipairs": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste les digipairs",
+        "descriptions": "Liste des digipairs disponibles",
+        "parameters": [],
+        "x-events": []
+      }
     }
   },
   "components": {

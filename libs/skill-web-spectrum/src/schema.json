@@ -34,7 +34,7 @@
           },
           {
             "name": "scale",
-            "summary": "Zoom",
+            "summary": "Taille",
             "required": false,
             "description": "Echelle du thème",
             "schema": {
@@ -106,14 +106,14 @@
     },
     "/sp-table-head-cell": {
       "post": {
-        "tags": ["web"],
+        "tags": ["web", "needPins"],
         "summary": "Cellule d'entête",
         "description": "Cellule d'entête d'un tableau",
         "parameters": [
           {
             "name": "textContent",
             "summary": "Texte",
-            "required": true,
+            "required": false,
             "description": "Texte de la cellule d'entête",
             "schema": {
               "type": "string"
@@ -153,15 +153,193 @@
     },
     "/sp-table-cell": {
       "post": {
-        "tags": ["web"],
+        "tags": ["web", "needPins"],
         "summary": "Cellule",
         "description": "Cellule d'un tableau",
         "parameters": [
           {
             "name": "textContent",
             "summary": "Texte",
-            "required": true,
+            "required": false,
             "description": "Texte de la cellule",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-action-group": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Groupe d'actions",
+        "description": "Groupe d'actions",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du groupe d'actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille des boutons du groupe d'actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dir",
+            "summary": "Direction",
+            "required": false,
+            "description": "Direction de l'écriture du texte (ltr ou rtl)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-action-button": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Bouton d'action",
+        "description": "Bouton d'action à intégrer dans un groupe d'actions",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de la cellule",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selected",
+            "summary": "Sélectionné",
+            "required": false,
+            "description": "Bouton sélectionné",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Bouton désactivé",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hold-affordance",
+            "summary": "Coche d'actions",
+            "required": false,
+            "description": "Affiche une coche indiquant la présence d'une liste d'actions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Discret",
+            "required": false,
+            "description": "Affiche le bouton en mode discret",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "toggle",
+            "summary": "Toggle",
+            "required": false,
+            "description": "Affiche un bouton activable/désactivable",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "required": false,
+            "description": "Emplacement de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors d'un clic",
+            "required": false,
+            "description": "Action déclenchée lors d'un clic sur le bouton",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-icon": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Icone",
+        "description": "Affiche une icone",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "Etiquette",
+            "required": false,
+            "description": "Texte d'étiquette de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "src",
+            "summary": "Image",
+            "required": false,
+            "description": "Lien de l'image à afficher",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "required": false,
+            "description": "Emplacement de l'icone",
             "schema": {
               "type": "string"
             }

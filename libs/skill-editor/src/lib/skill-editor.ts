@@ -44,6 +44,12 @@ class EditorService {
 
     return reasonings;
   }
+
+  async digipairs(_params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const digipairs = await promises.readdir(join(__dirname, `/assets/digipairs`));
+
+    return digipairs;
+  }
 }
 
 export const read = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -54,3 +60,6 @@ export const save = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const reasonings = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().reasonings(params, pinsSettingsList, context);
+
+export const digipairs = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().digipairs(params, pinsSettingsList, context);

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-interact",
-    "summary": "Intéraction avec le DOM d'une page web",
-    "description": "Cette compétence permet aux utilisateurs de communiquer avec le Document Object Model (DOM) d'une page HTML.",
+    "summary": "Intéraction avec une page web",
+    "description": "Cette compétence permet aux utilisateurs de communiquer avec une page HTML coté navigateur.",
     "version": "0.1.0",
     "x-icon": "🚀"
   },
@@ -76,6 +76,25 @@
             "description": "Nouvelle valeur de l'attribut",
             "schema": {
               "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/goTo": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Aller vers une page web",
+        "description": "Permet d'ouvrir une page web dans le navigateur",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Adresse",
+            "required": true,
+            "description": "Adresse de la page web",
+            "schema": {
+              "type": "string"
             }
           }
         ],

@@ -20,7 +20,8 @@
     "@digipair/skill-web-factory": "latest",
     "@digipair/skill-web-debug": "latest",
     "@digipair/skill-web-inputs": "latest",
-    "@digipair/skill-web-spectrum": "latest"
+    "@digipair/skill-web-spectrum": "latest",
+    "@digipair/skill-web-interact": "latest"
   },
   "variables": {},
   "privates": {}
