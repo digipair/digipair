@@ -141,8 +141,7 @@ export class GenericSceneElement extends LitElement {
 
     try {
       this.codeInWorkspace = {
-        type: this.reasoningData.content.type,
-        name: this.reasoning,
+        summary: this.reasoningData.content.summary,
         description: this.reasoningData.content.description,
         ...JSON.parse(code),
       };

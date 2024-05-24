@@ -41,11 +41,6 @@ class LLMService {
 
     return data;
   }
-
-  async reasoningStepValue(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { value } = params;
-    return value;
-  }
 }
 
 export const invoke = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -54,5 +49,3 @@ export const invoke = (params: any, pinsSettingsList: PinsSettings[], context: a
 export const reasoningStep = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new LLMService().reasoningStep(params, pinsSettingsList, context);
 
-export const reasoningStepValue = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new LLMService().reasoningStepValue(params, pinsSettingsList, context);

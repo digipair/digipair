@@ -11,12 +11,12 @@
     "/invoke": {
       "post": {
         "tags": ["service"],
-        "summary": "invoke",
+        "summary": "Raisonnement LLM",
         "parameters": [
           {
             "name": "execute",
             "required": true,
-            "description": "Exécute",
+            "description": "Exécuter",
             "schema": {
               "type": "array",
               "items": {
@@ -57,31 +57,13 @@
         ],
         "x-events": []
       }
-    },
-    "/reasoningStepValue": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Valeur statique",
-        "parameters": [
-          {
-            "name": "value",
-            "summary": "Contenu",
-            "required": true,
-            "description": "value",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
-      }
     }
   },
   "components": {
     "schemas": {
       "reasonningStepAttribute": {
         "tags": ["service"],
-        "summary": "",
+        "summary": "Donnée",
         "type": "object",
         "properties": {
           "name": {

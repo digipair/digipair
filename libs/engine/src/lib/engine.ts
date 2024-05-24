@@ -54,7 +54,8 @@ export const executePins = async (
   if (settings.conditions?.each) {
     const results = [] as any[];
 
-    for (const item of settings.conditions.each) {
+    for (let index = 0; index < settings.conditions.each.length; index++) {
+      const item = settings.conditions.each[index];
       const itemSettingsOrigin = {
         ...settingsOrigin,
         conditions: { ...settingsOrigin.conditions, each: undefined },
@@ -62,7 +63,8 @@ export const executePins = async (
       const itemContext = {
         ...context,
         item,
-        parent: { item: context.item, parent: context.parent },
+        index,
+        parent: { item: context.item, index: item.index, parent: context.parent },
       };
       const itemSettings = await preparePinsSettings(itemSettingsOrigin, itemContext);
 
@@ -133,12 +135,17 @@ export const generateElementFromPins = async (
   const settings = await preparePinsSettings(pinsSettings, context);
 
   if (settings.conditions?.each) {
-    for (let i = 0; i < settings.conditions.each.length; i++) {
-      const item = settings.conditions.each[i];
+    for (let index = 0; index < settings.conditions.each.length; index++) {
+      const item = settings.conditions.each[index];
       await generateElementFromPins(
         { ...pinsSettings, conditions: { ...pinsSettings.conditions, each: undefined } },
         parent,
-        { ...context, item, parent: { item: context.item, parent: context.parent } },
+        {
+          ...context,
+          item,
+          index,
+          parent: { item: context.item, index: item.index, parent: context.parent },
+        },
         options,
       );
     }

@@ -1,4 +1,5 @@
 {
+  "name": "service-initialize-boosts",
   "description": "Initialise les boosts dans la base de connaissance.",
   "library": "@digipair/skill-service",
   "element": "service",
@@ -23,7 +24,7 @@
               "properties": {
                 "value": {
                   "source": "{{request.params.[0]}}",
-                  "content": "{{item.name}}: {{parent.item.description}}",
+                  "content": "{{item.name}}: {{item.description}}",
                   "url": "{{item.url}}",
                   "trigger": {
                     "name": "EVALUATE:item.name",
@@ -61,6 +62,29 @@
         "element": "transform",
         "properties": {
           "value": "EVALUATE:flatten(previous)"
+        }
+      },
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "source": "{{item.source}}",
+            "content": "{{item.content}}",
+            "url": "{{item.url}}",
+            "trigger": "{{JSONstringify item.trigger}}"
+          }
+        },
+        "conditions": {
+          "each": "EVALUATE:previous"
+        }
+      },
+      {
+        "library": "@digipair/skill-vespa",
+        "element": "push",
+        "properties": {
+          "documents": "EVALUATE:previous",
+          "collection": "boost"
         }
       }
     ]

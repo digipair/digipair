@@ -13,6 +13,10 @@ export class AppController {
     @Req() request: Request,
     @Body() body: any,
   ) {
+    if (digipair === 'favicon.ico' || digipair === 'robots.txt' || digipair === 'sitemap.xml') {
+      return null;
+    }
+
     const params = (request as any).params['0']?.replace(/^\//g, '').split('/');
     return this.appService.agent(digipair, reasoning, body, params);
   }

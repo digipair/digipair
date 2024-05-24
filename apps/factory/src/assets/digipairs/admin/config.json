@@ -11,6 +11,8 @@
     "@digipair/skill-editor": "latest",
     "@digipair/skill-vespa": "latest",
     "@digipair/skill-common": "latest",
+    "@digipair/skill-llm": "latest",
+    "@digipair/skill-ollama": "latest",
     "@digipair/skill-data-management": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest",

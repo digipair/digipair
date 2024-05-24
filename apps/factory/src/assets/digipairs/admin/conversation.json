@@ -55,8 +55,8 @@
                     "name": "question",
                     "value": [
                       {
-                        "library": "@digipair/skill-llm",
-                        "element": "reasoningStepValue",
+                        "library": "@digipair/skill-data-management",
+                        "element": "transform",
                         "properties": {
                           "value": "{{request.body.prompt}}"
                         }
@@ -67,8 +67,8 @@
                     "name": "summary",
                     "value": [
                       {
-                        "library": "@digipair/skill-llm",
-                        "element": "reasoningStepValue",
+                        "library": "@digipair/skill-data-management",
+                        "element": "transform",
                         "properties": {
                           "value": "EVALUATE:parent.previous.summary[1].content"
                         }
@@ -79,8 +79,8 @@
                     "name": "knowledge",
                     "value": [
                       {
-                        "library": "@digipair/skill-llm",
-                        "element": "reasoningStepValue",
+                        "library": "@digipair/skill-data-management",
+                        "element": "transform",
                         "properties": {
                           "value": "{{#each parent.previous.knowledge}}\n  {{this.source}}: {{this.content}}\n{{/each}}"
                         }
@@ -102,8 +102,7 @@
                         "library": "@digipair/skill-ollama",
                         "element": "basic",
                         "properties": {
-                          "prompt": "You are a useful assistant, capable of explaining concepts in a simple way. If you're not sure of an answer, you can say \"I don't know\" or \"I'm not sure\".\n\nConversation summary:\n{summary}\n\nKnowledge base:\n{knowledge}\n\nUser's question: {question}\n\nProvide a very short, precise, and concise answer in English to the user's question using only your knowledge base. The user should know anything about the conversation history.",
-                          "modelName": "phi3"
+                          "prompt": "You are a useful assistant, capable of explaining concepts in a simple way. If you're not sure of an answer, you can say \"I don't know\" or \"I'm not sure\".\n\nConversation summary:\n{summary}\n\nKnowledge base:\n{knowledge}\n\nUser's question: {question}\n\nProvide a very short, precise, and concise answer in English to the user's question using only your knowledge base. The user should know anything about the conversation history."
                         }
                       }
                     ]
@@ -118,8 +117,7 @@
         "library": "@digipair/skill-chatbot",
         "element": "chatbot",
         "properties": {
-          "assistant": "{{previous.assistant}}",
-          "modelName": "phi3"
+          "assistant": "{{previous.assistant}}"
         }
       }
     ]
