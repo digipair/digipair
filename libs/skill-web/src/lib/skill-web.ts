@@ -8,6 +8,8 @@ class WebService {
       data = [] as { name: string; execute: PinsSettings[] }[],
       title = 'Digipair',
       favicon = 'https://www.digipair.ai/assets/images/favicon.ico',
+      styleHtml = '',
+      styleBody = '',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
       libraries = {},
     } = params;
@@ -20,13 +22,13 @@ class WebService {
 
     const html = `
 <!DOCTYPE html>
-<html>
+<html style=${styleHtml}>
   <head>
     <meta charset="UTF-8" />
     <title>${title}</title>
     <link rel="icon" type="image/x-icon" href="${favicon}">
   </head>
-  <body>
+  <body style=${styleBody}>
     <script type="module">
       import { config, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
       

@@ -81,21 +81,21 @@
           }
         },
         {
-          "name": "baseUrl",
-          "summary": "Adresse des librairies",
+          "name": "styleHtml",
+          "summary": "Style CSS du HTML",
           "required": false,
-          "description": "Adresse de base des librairies front",
+          "description": "Style css de l'élément HTML",
           "schema": {
             "type": "string"
           }
         },
         {
-          "name": "libraries",
-          "summary": "Librairies",
+          "name": "styleBody",
+          "summary": "Style CSS du BODY",
           "required": false,
-          "description": "Liste des libraries front à charger",
+          "description": "Style css de l'élément BODY",
           "schema": {
-            "type": "object"
+            "type": "string"
           }
         }
       ]

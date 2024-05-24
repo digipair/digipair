@@ -141,7 +141,7 @@
           {
             "name": "value",
             "summary": "Identifiant",
-            "required": true,
+            "required": false,
             "description": "Identifiant de la ligne du tableau",
             "schema": {
               "type": "string"
