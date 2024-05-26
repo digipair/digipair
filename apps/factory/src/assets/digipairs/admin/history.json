@@ -1,4 +1,6 @@
 {
+  "name": "Historique",
+  "description": "Service permettant de récupérer l'historique des conversations.",
   "metadata": {},
   "library": "@digipair/skill-service",
   "element": "service",

@@ -13,13 +13,19 @@ config.set('LIBRARIES', {
   '@digipair/skill-web': require('@digipair/skill-web'),
   '@digipair/skill-editor': require('@digipair/skill-editor'),
   '@digipair/skill-service': require('@digipair/skill-service'),
-  // '@digipair/skill-dsp': require('@digipair/skill-dsp'),
+  '@digipair/skill-dsp': require('@digipair/skill-dsp'),
   '@digipair/skill-data-management': require('@digipair/skill-data-management'),
 });
 
 @Injectable()
 export class AppService {
-  async agent(digipair: string, reasoning: string, body: any, params: string[]): Promise<any> {
+  async agent(
+    digipair: string,
+    reasoning: string,
+    body: any,
+    params: string[],
+    method: string,
+  ): Promise<any> {
     let content: string;
 
     content = await promises.readFile(
@@ -40,6 +46,7 @@ export class AppService {
       request: {
         digipair,
         reasoning,
+        method,
         body,
         params,
       },

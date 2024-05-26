@@ -7,7 +7,30 @@
     "version": "0.1.0",
     "x-icon": "🚀"
   },
-  "paths": {},
+  "paths": {
+    "/executeFactory": {
+      "post": {
+        "summary": "Dans la factory",
+        "description": "Exécution d'une liste de capacité dans la factory",
+        "tags": ["web"],
+        "metadata": [],
+        "parameters": [
+          {
+            "name": "execute",
+            "summary": "Exécuter",
+            "required": true,
+            "description": "Liste de capacité à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
   "components": {
     "schemas": {
       "dataAttribute": {
@@ -52,7 +75,7 @@
         },
         {
           "name": "data",
-          "summary": "Préparation des données",
+          "summary": "Préparation des données depuis la factory",
           "required": false,
           "description": "Préparation des données backend à envoyer à la page",
           "schema": {

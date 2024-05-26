@@ -19,6 +19,13 @@ class DomService {
     }
   }
 
+  async getAttribute(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { selector, attribute } = params;
+    const element = document.querySelector(selector) as any;
+
+    return element[attribute] ?? element.getAttribute(attribute);
+  }
+
   async dispatchEvent(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { selector, name, detail } = params;
     const element = document.querySelector(selector) as any;
@@ -34,6 +41,9 @@ class DomService {
 
 export const setAttribute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DomService().setAttribute(params, pinsSettingsList, context);
+
+export const getAttribute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DomService().getAttribute(params, pinsSettingsList, context);
 
 export const dispatchEvent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DomService().dispatchEvent(params, pinsSettingsList, context);

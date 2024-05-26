@@ -1,4 +1,5 @@
 {
+  "name": "Ajout d'un fichier PDF",
   "description": "Ajout d'un fichier PDF à la base de connaissances pour un partage et un accès facilité.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",

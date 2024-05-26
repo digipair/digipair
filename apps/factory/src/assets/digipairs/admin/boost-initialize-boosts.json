@@ -1,4 +1,5 @@
 {
+  "name": "Initialiser les boosts en base de connaissance",
   "description": "Initialise les boosts dans la base de connaissance.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",

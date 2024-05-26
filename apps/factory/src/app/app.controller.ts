@@ -18,6 +18,7 @@ export class AppController {
     }
 
     const params = (request as any).params['0']?.replace(/^\//g, '').split('/');
-    return this.appService.agent(digipair, reasoning, body, params);
+    const method = request.method;
+    return this.appService.agent(digipair, reasoning, body, params, method);
   }
 }

@@ -1,4 +1,6 @@
 {
+  "name": "Récupération des metadatas",
+  "description": "Récupère les metadatas d'un digipair",
   "metadata": {},
   "library": "@digipair/skill-service",
   "element": "service",

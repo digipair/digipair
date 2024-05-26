@@ -347,6 +347,43 @@
         ],
         "x-events": []
       }
+    },
+    "/sp-divider": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Barre de séparation",
+        "description": "Barre de séparation",
+        "parameters": [
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille de la barre de séparation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles du thème",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vertical",
+            "summary": "Varticale",
+            "required": false,
+            "description": "Place la barre de séparation verticalement",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

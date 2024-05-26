@@ -1,4 +1,6 @@
 {
+  "name": "Editeur de raisonnement",
+  "description": "Editeur de raisonnement",
   "library": "@digipair/skill-web",
   "element": "page",
   "metadata": {},
@@ -14,18 +16,28 @@
         "events": {
           "save": [
             {
-              "library": "@digipair/skill-web-factory",
-              "element": "post",
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
               "properties": {
-                "digipair": "{{request.digipair}}",
-                "reasoning": "service-reasoning-save",
-                "body": "EVALUATE:event"
+                "execute": [
+                  {
+                    "library": "@digipair/skill-editor",
+                    "element": "setReasoning",
+                    "properties": {
+                      "digipair": "{{event.digipair}}",
+                      "reasoning": "{{event.reasoning}}",
+                      "value": "EVALUATE:event.value"
+                    }
+                  }
+                ]
               }
             },
             {
               "library": "@digipair/skill-web-editor",
               "element": "information",
-              "properties": { "message": "Successfully saved !" }
+              "properties": {
+                "message": "Successfully saved !"
+              }
             }
           ]
         }

@@ -49,7 +49,7 @@
       "post": {
         "tags": ["web", "boost"],
         "summary": "Modifier un attribute",
-        "description": "Permet de modifier la valeur d'un attribut d'un élément du DOM sans espace ni caractère spécial sauf '-'",
+        "description": "Permet de modifier la valeur d'un attribut d'un élément du DOM",
         "parameters": [
           {
             "name": "selector",
@@ -76,6 +76,34 @@
             "description": "Nouvelle valeur de l'attribut",
             "schema": {
               "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getAttribute": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Lire un attribute",
+        "description": "Permet de lire la valeur d'un attribut d'un élément du DOM",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribut",
+            "required": true,
+            "description": "Attribut à modifier",
+            "schema": {
+              "type": "string"
             }
           }
         ],

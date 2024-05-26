@@ -83,10 +83,7 @@
             "required": true,
             "description": "Contenu du raisonnement à sauvegarder",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://www.pinser.world/schemas/pinsSettings"
-              }
+              "type": "object"
             }
           }
         ],
@@ -141,10 +138,7 @@
             "required": true,
             "description": "Contenu du raisonnement à sauvegarder",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://www.pinser.world/schemas/pinsSettings"
-              }
+              "type": "object"
             }
           }
         ],

@@ -1,14 +1,9 @@
 import { PinsSettings } from '@digipair/engine';
-import { AI, Generate } from 'llmclient';
 
 const LLM_SERVER = process.env['LLM_SERVER'] ?? 'http://localhost:11434';
 
 class DspService {
-  async generate(
-    params: any,
-    _pinsSettingsList: PinsSettings[],
-    _context: any
-  ) {
+  async generate(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const {
       modelName = 'mistral',
       temperature = 0,
@@ -18,6 +13,7 @@ class DspService {
       signature,
       input,
     } = params;
+    const { AI, Generate } = await eval('import("llmclient")');
 
     const ai = AI('openai', {
       apiKey: 'ollama',
@@ -32,8 +28,5 @@ class DspService {
   }
 }
 
-export const generate = (
-  params: any,
-  pinsSettingsList: PinsSettings[],
-  context: any
-) => new DspService().generate(params, pinsSettingsList, context);
+export const generate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DspService().generate(params, pinsSettingsList, context);

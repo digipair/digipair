@@ -1,4 +1,5 @@
 {
+  "name": "Effacer la base de connaissance",
   "description": "Effacer la base de connaissance.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",

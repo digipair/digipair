@@ -1,4 +1,6 @@
 {
+  "name": "Conversation",
+  "description": "Génération d'une réponse pour l'utilisateur via le chatbot.",
   "metadata": {},
   "library": "@digipair/skill-chatbot",
   "element": "boost",
