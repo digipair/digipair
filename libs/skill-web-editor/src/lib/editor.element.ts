@@ -23,6 +23,15 @@ export class EditorElement extends LitElement {
   @property()
   reasoning!: any;
 
+  @property()
+  menuColor = 'white';
+
+  @property()
+  menuBackgroundColor = 'rgb(66, 133, 244)';
+
+  @property()
+  contentStyle = 'position: fixed; top: 0; right: 0; bottom: 0; left: 0;';
+
   @state()
   private canSave = false;
 
@@ -249,8 +258,8 @@ export class EditorElement extends LitElement {
     return html`
     <style>
       .blocklyToolboxDiv {
-        background-color: rgb(66, 133, 244);
-        color: white;
+        background-color: ${this.menuBackgroundColor};
+        color: ${this.menuColor};
         width: 370px;
       }
 
@@ -293,7 +302,7 @@ export class EditorElement extends LitElement {
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <div>
-      <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0;" data-scene></div>
+      <div style=${this.contentStyle} data-scene></div>
       <div 
         style ="position: absolute;
           top: 24px;

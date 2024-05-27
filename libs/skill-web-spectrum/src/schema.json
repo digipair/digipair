@@ -428,7 +428,7 @@
     },
     "/sp-top-nav": {
       "post": {
-        "tags": ["web"],
+        "tags": ["web", "needPins", "requirePins"],
         "summary": "Barre de navigation",
         "description": "Barre de navigation horizontale",
         "parameters": [],

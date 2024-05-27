@@ -18,16 +18,43 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Propriétaire du raisonnement",
+            "description": "Informations du digipair propriétaire du raisonnement",
             "schema": {
-              "type": "string"
+              "type": "object"
             }
           },
           {
             "name": "reasoning",
             "summary": "Raisonnement",
             "required": true,
-            "description": "Nom du raisonnement",
+            "description": "Informations du raisonnement à éditer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "menuColor",
+            "summary": "Couleur de texte du menu",
+            "required": false,
+            "description": "Couleur de texte du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "menuBackgroundColor",
+            "summary": "Couleur de fond du menu",
+            "required": false,
+            "description": "Couleur de fond du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentStyle",
+            "summary": "Style personnalisé du conteneur",
+            "required": false,
+            "description": "Style personnalisé du conteneur",
             "schema": {
               "type": "string"
             }
