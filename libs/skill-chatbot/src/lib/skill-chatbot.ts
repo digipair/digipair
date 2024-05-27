@@ -426,6 +426,10 @@ Summarize the conversation history in a short, clear and concise text, taking in
 
   // SCENES
   async boost(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    if (context.request.method !== 'POST') {
+      return { error: 'Method not allowed' };
+    }
+
     const { execute } = params;
     const result = await executePinsList(execute, context);
     return result;

@@ -6,6 +6,31 @@
   "metadata": {
     "boosts": [
       {
+        "url": "^.*$",
+        "name": "Generer un simplex",
+        "description": "Generer une procédure ou un workflow simplex",
+        "prompt": true,
+        "required": true,
+        "text": "Que doit faire votre simplex ?",
+        "inputs": [
+          {
+            "library": "web",
+            "element": "tardigrade-input-dom-attribute",
+            "properties": {
+              "selector": "tardigrade-chatbot-assistant",
+              "attribute": "currentSimplex"
+            }
+          },
+          {
+            "library": "web",
+            "element": "tardigrade-input-fetch",
+            "properties": {
+              "url": "{{environment.TARDI_SIMPLEX_BFF_BASE_URL}}/simplex/group-actors"
+            }
+          }
+        ]
+      },
+      {
         "selector": "tardi-spx-simplex-task-list",
         "url": "^.*$",
         "name": "Generer un simplex",

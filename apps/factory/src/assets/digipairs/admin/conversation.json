@@ -1,127 +1,129 @@
 {
   "name": "Conversation",
   "description": "Génération d'une réponse pour l'utilisateur via le chatbot.",
-  "metadata": {},
   "library": "@digipair/skill-chatbot",
   "element": "boost",
+  "metadata": {
+      "boosts": []
+  },
   "properties": {
-    "execute": [
-      {
-        "library": "@digipair/skill-llm",
-        "element": "invoke",
-        "properties": {
-          "execute": [
-            {
+      "execute": [
+          {
               "library": "@digipair/skill-llm",
-              "element": "reasoningStep",
+              "element": "invoke",
               "properties": {
-                "attributes": [
-                  {
-                    "name": "summary",
-                    "value": [
+                  "execute": [
                       {
-                        "library": "@digipair/skill-chatbot",
-                        "element": "find",
-                        "properties": {
-                          "query": "role:\"system\"",
-                          "limit": 1,
-                          "orderby": "date desc"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "knowledge",
-                    "value": [
+                          "library": "@digipair/skill-llm",
+                          "element": "reasoningStep",
+                          "properties": {
+                              "attributes": [
+                                  {
+                                      "name": "summary",
+                                      "value": [
+                                          {
+                                              "library": "@digipair/skill-chatbot",
+                                              "element": "find",
+                                              "properties": {
+                                                  "query": "role:\"system\"",
+                                                  "limit": 1,
+                                                  "orderby": "date desc"
+                                              }
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "name": "knowledge",
+                                      "value": [
+                                          {
+                                              "library": "@digipair/skill-vespa",
+                                              "element": "search",
+                                              "properties": {
+                                                  "query": "{{request.body.prompt}}",
+                                                  "limit": 2,
+                                                  "language": "fr"
+                                              }
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      },
                       {
-                        "library": "@digipair/skill-vespa",
-                        "element": "search",
-                        "properties": {
-                          "query": "{{request.body.prompt}}",
-                          "filter": "!(metadata matches 'type:video*')",
-                          "limit": 2,
-                          "language": "en"
-                        }
+                          "library": "@digipair/skill-llm",
+                          "element": "reasoningStep",
+                          "properties": {
+                              "attributes": [
+                                  {
+                                      "name": "question",
+                                      "value": [
+                                          {
+                                              "library": "@digipair/skill-data-management",
+                                              "element": "transform",
+                                              "properties": {
+                                                  "value": "{{request.body.prompt}}"
+                                              }
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "name": "summary",
+                                      "value": [
+                                          {
+                                              "library": "@digipair/skill-data-management",
+                                              "element": "transform",
+                                              "properties": {
+                                                  "value": "EVALUATE:parent.previous.summary[1].content"
+                                              }
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "name": "knowledge",
+                                      "value": [
+                                          {
+                                              "library": "@digipair/skill-data-management",
+                                              "element": "transform",
+                                              "properties": {
+                                                  "value": "{{#each parent.previous.knowledge}}\n  {{this.source}}: {{this.content}}\n{{/each}}"
+                                              }
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      },
+                      {
+                          "library": "@digipair/skill-llm",
+                          "element": "reasoningStep",
+                          "properties": {
+                              "attributes": [
+                                  {
+                                      "name": "assistant",
+                                      "value": [
+                                          {
+                                              "library": "@digipair/skill-ollama",
+                                              "element": "basic",
+                                              "properties": {
+                                                  "prompt": "Vous êtes un assistant utile, capable d'expliquer des concepts de manière simple. Si vous n'êtes pas sûr d'une réponse, vous pouvez dire \"Je ne sais pas\" ou \"Je ne suis pas sûr\". \n\nConversation summary:\n{summary}\n\nKnowledge base:\n{knowledge}\n\nUser's question: {question}\n\nFournir une réponse très courte, précise et concise en français à la question de l'utilisateur en utilisant uniquement votre base de connaissances. L'utilisateur ne devrait rien savoir sur l'historique de la conversation."
+                                              }
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
                       }
-                    ]
-                  }
-                ]
+                  ]
               }
-            },
-            {
-              "library": "@digipair/skill-llm",
-              "element": "reasoningStep",
+          },
+          {
+              "library": "@digipair/skill-chatbot",
+              "element": "chatbot",
               "properties": {
-                "attributes": [
-                  {
-                    "name": "question",
-                    "value": [
-                      {
-                        "library": "@digipair/skill-data-management",
-                        "element": "transform",
-                        "properties": {
-                          "value": "{{request.body.prompt}}"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "summary",
-                    "value": [
-                      {
-                        "library": "@digipair/skill-data-management",
-                        "element": "transform",
-                        "properties": {
-                          "value": "EVALUATE:parent.previous.summary[1].content"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "name": "knowledge",
-                    "value": [
-                      {
-                        "library": "@digipair/skill-data-management",
-                        "element": "transform",
-                        "properties": {
-                          "value": "{{#each parent.previous.knowledge}}\n  {{this.source}}: {{this.content}}\n{{/each}}"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                  "assistant": "{{previous.assistant}}"
               }
-            },
-            {
-              "library": "@digipair/skill-llm",
-              "element": "reasoningStep",
-              "properties": {
-                "attributes": [
-                  {
-                    "name": "assistant",
-                    "value": [
-                      {
-                        "library": "@digipair/skill-ollama",
-                        "element": "basic",
-                        "properties": {
-                          "prompt": "You are a useful assistant, capable of explaining concepts in a simple way. If you're not sure of an answer, you can say \"I don't know\" or \"I'm not sure\".\n\nConversation summary:\n{summary}\n\nKnowledge base:\n{knowledge}\n\nUser's question: {question}\n\nProvide a very short, precise, and concise answer in English to the user's question using only your knowledge base. The user should know anything about the conversation history."
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      {
-        "library": "@digipair/skill-chatbot",
-        "element": "chatbot",
-        "properties": {
-          "assistant": "{{previous.assistant}}"
-        }
-      }
-    ]
-  }
+          }
+      ]
+  },
+  "pins": []
 }

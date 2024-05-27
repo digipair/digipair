@@ -20,6 +20,19 @@
                 "pins": [
                   {
                     "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-top-nav",
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "properties": {
+                          "textContent": "Acceuil"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table",
                     "pins": [
                       {

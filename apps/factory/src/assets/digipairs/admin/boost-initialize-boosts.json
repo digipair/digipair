@@ -16,10 +16,18 @@
   "properties": {
     "execute": [
       {
+        "library": "@digipair/skill-vespa",
+        "element": "remove",
+        "properties": {
+          "selection": "boost.source==\"{{request.body.prompt}}\"",
+          "collection": "boost"
+        }
+      },
+      {
         "library": "@digipair/skill-common",
         "element": "boosts",
         "properties": {
-          "digipair": "{{request.prompt}}"
+          "digipair": "{{request.body.prompt}}"
         }
       },
       {
@@ -33,7 +41,7 @@
               "properties": {
                 "value": {
                   "source": "{{request.body.prompt}}",
-                  "content": "{{item.name}}: {{item.description}}",
+                  "content": "{{item.description}}",
                   "url": "{{item.url}}",
                   "trigger": {
                     "name": "EVALUATE:item.name",
@@ -90,13 +98,6 @@
       },
       {
         "library": "@digipair/skill-vespa",
-        "element": "remove",
-        "properties": {
-          "selection": "boost.source==\"{{request.body.prompt}}\""
-        }
-      },
-      {
-        "library": "@digipair/skill-vespa",
         "element": "push",
         "properties": {
           "documents": "EVALUATE:previous",
@@ -107,7 +108,7 @@
         "library": "@digipair/skill-chatbot",
         "element": "chatbot",
         "properties": {
-          "assistant": "Les boosts ont bien été initialisés pour \"{{request.prompt}}\".",
+          "assistant": "Les boosts ont bien été initialisés pour \"{{request.body.prompt}}\".",
           "logs": "EVALUATE:previous"
         }
       }

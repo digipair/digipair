@@ -39,4 +39,4 @@ testem.log
 Thumbs.db
 
 .nx/cache
-tools/vespa/*.zip
+tools/vespa/configuration/*.zip

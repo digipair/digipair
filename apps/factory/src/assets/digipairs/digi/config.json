@@ -8,6 +8,10 @@
   "libraries": {
     "@digipair/skill-service": "latest",
     "@digipair/skill-chatbot": "latest",
+    "@digipair/skill-vespa": "latest",
+    "@digipair/skill-llm": "latest",
+    "@digipair/skill-ollama": "latest",
+    "@digipair/skill-data-management": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest"
   },

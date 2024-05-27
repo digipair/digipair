@@ -20,34 +20,24 @@
                 "pins": [
                   {
                     "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-action-group",
+                    "element": "sp-top-nav",
                     "pins": [
                       {
                         "library": "@digipair/skill-web-spectrum",
-                        "element": "sp-action-button",
+                        "element": "sp-top-nav-item",
                         "properties": {
-                          "textContent": "Liste des digipairs"
-                        },
-                        "events": {
-                          "click": [
-                            {
-                              "library": "@digipair/skill-web-interact",
-                              "element": "goTo",
-                              "properties": {
-                                "url": "/admin/digipair-list"
-                              }
-                            }
-                          ]
+                          "textContent": "Accueil",
+                          "href": "/admin/digipair-list"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "properties": {
+                          "textContent": "{{data.digipair.name}}"
                         }
                       }
                     ]
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-divider",
-                    "properties": {
-                      "style": "margin-top: 1rem; margin-bottom: 2rem;"
-                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -134,6 +124,31 @@
                                             }
                                           ]
                                         }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-web-spectrum",
+                                        "element": "sp-action-button",
+                                        "pins": [
+                                          {
+                                            "library": "@digipair/skill-web-spectrum",
+                                            "element": "sp-icon",
+                                            "properties": {
+                                              "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgd2lkdGg9IjE4Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmZpbGwgewogICAgICAgIGZpbGw6ICM0NjQ2NDY7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDx0aXRsZT5TIFByaW50UHJldmlldyAxOCBOPC90aXRsZT4KICA8cmVjdCBpZD0iQ2FudmFzIiBmaWxsPSIjZmYxM2RjIiBvcGFjaXR5PSIwIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIC8+PHBvbHlnb24gY2xhc3M9ImZpbGwiIHBvaW50cz0iNSAxIDUgNSAxIDUgNSAxIiAvPgogIDxwYXRoIGNsYXNzPSJmaWxsIiBkPSJNNS44NSwxMS41QTUuNjUsNS42NSwwLDAsMSwxMS41LDUuODVjLjE2OSwwLC4zMzUuMDEwNS41LjAyNVYxLjVhLjUuNSwwLDAsMC0uNS0uNUg2VjUuNWEuNS41LDAsMCwxLS41LjVIMXY3LjVhLjUuNSwwLDAsMCwuNS41SDYuNDM5QTUuNjE0NDIsNS42MTQ0MiwwLDAsMSw1Ljg1LDExLjVaIiAvPgogIDxwYXRoIGNsYXNzPSJmaWxsIiBkPSJNMTcuNTk1NSwxNi4wNzE1LDE1LjMyMywxMy44QTQuNTMzLDQuNTMzLDAsMSwwLDEzLjgsMTUuMzIzbDIuMjcyNSwyLjI3MjVhMS4wMjIsMS4wMjIsMCwwLDAsMS41MjQsMEExLjA5NzUsMS4wOTc1LDAsMCwwLDE3LjU5NTUsMTYuMDcxNVpNOC43MDYsMTEuNDlhMi43ODQsMi43ODQsMCwxLDEsMi43ODQ1LDIuNzgzNUgxMS40OUEyLjc4NCwyLjc4NCwwLDAsMSw4LjcwNiwxMS40OVoiIC8+Cjwvc3ZnPg==",
+                                              "slot": "icon"
+                                            }
+                                          }
+                                        ],
+                                        "events": {
+                                          "click": [
+                                            {
+                                              "library": "@digipair/skill-web-interact",
+                                              "element": "goTo",
+                                              "properties": {
+                                                "url": "/{{request.params.[0]}}/{{item.id}}"
+                                              }
+                                            }
+                                          ]
+                                        }
                                       }
                                     ],
                                     "properties": {
@@ -170,6 +185,18 @@
       }
     ],
     "data": [
+      {
+        "name": "digipair",
+        "value": [
+          {
+            "library": "@digipair/skill-editor",
+            "element": "digipair",
+            "properties": {
+              "digipair": "{{request.params.[0]}}"
+            }
+          }
+        ]
+      },
       {
         "name": "reasonings",
         "value": [

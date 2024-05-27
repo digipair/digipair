@@ -1,6 +1,6 @@
 {
-  "name": "Liste des raisonnements",
-  "description": "Liste des raisonnements",
+  "name": "Recherche des boosts",
+  "description": "Recherche des boosts",
   "library": "@digipair/skill-web",
   "element": "page",
   "metadata": {},

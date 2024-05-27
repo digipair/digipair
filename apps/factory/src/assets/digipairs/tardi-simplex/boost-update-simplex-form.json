@@ -6,6 +6,24 @@
   "metadata": {
     "boosts": [
       {
+        "url": "^.*$",
+        "name": "Modifier le formulaire",
+        "description": "Créer ou de modifier un formulaire",
+        "prompt": true,
+        "required": true,
+        "text": "Que souhaitez-vous modifier sur votre formulaire ?",
+        "inputs": [
+          {
+            "library": "web",
+            "element": "tardigrade-input-dom-attribute",
+            "properties": {
+              "selector": "tardigrade-chatbot-assistant",
+              "attribute": "currentFormSchema"
+            }
+          }
+        ]
+      },
+      {
         "selector": "FORM-EDITOR",
         "url": "^.*$",
         "name": "Modifier le formulaire",
