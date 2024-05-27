@@ -1,0 +1,173 @@
+{
+  "name": "boost-generate-simplex",
+  "description": "Génère un simplex à partir d'une demande NLP.",
+  "library": "@tardigrade/skill-chatbot",
+  "element": "boost",
+  "metadata": {
+    "boosts": [
+      {
+        "selector": "tardi-spx-simplex-task-list",
+        "url": "^.*$",
+        "name": "Generer un simplex",
+        "prompt": true,
+        "required": true,
+        "text": "Que doit faire votre simplex ?",
+        "inputs": [
+          {
+            "library": "web",
+            "element": "tardigrade-input-dom-attribute",
+            "properties": {
+              "selector": "tardigrade-chatbot-assistant",
+              "attribute": "currentSimplex"
+            }
+          },
+          {
+            "library": "web",
+            "element": "tardigrade-input-fetch",
+            "properties": {
+              "url": "{{environment.TARDI_SIMPLEX_BFF_BASE_URL}}/simplex/group-actors"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "properties": {},
+  "pins": [
+    {
+      "library": "@tardigrade/skill-llm",
+      "element": "invoke",
+      "pins": [
+        {
+          "library": "@tardigrade/skill-llm",
+          "element": "reasoningStep",
+          "properties": {
+            "attributes": [
+              {
+                "name": "participants",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "\n{{#each request.body.inputs.[1].value}}{{#if active}}- identifiant du participant: {{value}}, description du participant: {{label}}\n{{/if}}{{/each}}"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "prompt",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{request.body.prompt}}"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "library": "@tardigrade/skill-ollama",
+          "element": "basic",
+          "properties": {
+            "modelName": "mixtral",
+            "prompt": "Liste des participants possibles:\n{participants}\n\nGénérer les étapes d'une procédure par rapport à la demande donnée en entrée sachant qu'un participant peut participer a plusieurs etapes d'une meme procedure et que les participants doivent obligatoirement appartenir a la liste des participants possbibles.\n\nINPUT: {prompt}",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "assistant": {
+                  "type": "string",
+                  "description": "réponse en francais de l'assistant"
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "step": { "type": "number", "description": "numéro de l'étape" },
+                      "title": { "type": "string", "description": "titre de l'étapes" },
+                      "actor": {
+                        "type": "string",
+                        "description": "identifiant du participant au format string"
+                      },
+                      "actorDescription": {
+                        "type": "string",
+                        "description": "description du participant"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "library": "@tardigrade/skill-llm",
+          "element": "reasoningStep",
+          "properties": {
+            "attributes": [
+              {
+                "name": "assistant",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "EVALUATE:parent.previous.assistant"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "simplex",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-simplex",
+                    "element": "generate",
+                    "properties": {
+                      "steps": "EVALUATE:parent.previous.steps",
+                      "participants": "EVALUATE:request.body.inputs[2].value",
+                      "procedure_id": "{{request.body.inputs.[0].value.bpmnJson.procedure_id}}",
+                      "procedure_name": "{{request.body.inputs.[0].value.bpmnJson.procedure_name}}",
+                      "_rev": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "library": "@tardigrade/skill-chatbot",
+      "element": "chatbot",
+      "properties": {
+        "assistant": "EVALUATE:previous.assistant",
+        "command": [
+          {
+            "library": "@tardigrade/skill-dom",
+            "element": "dispatchEvent",
+            "properties": {
+              "name": "setCurrentSimplexFromChatbot",
+              "selector": "tardigrade-chatbot-assistant",
+              "detail": {
+                "simplexId": "{{request.body.inputs.[0].value.details.id}}",
+                "simplex": {
+                  "bpmnJson": "EVALUATE:previous.simplex",
+                  "settings": "EVALUATE:request.body.inputs[1].value.settings",
+                  "skills": "EVALUATE:request.body.inputs[1].value.skills",
+                  "details": "EVALUATE:request.body.inputs[1].value.details"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

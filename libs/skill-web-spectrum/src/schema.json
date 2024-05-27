@@ -425,6 +425,207 @@
           }
         ]
       }
+    },
+    "/sp-top-nav": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Barre de navigation",
+        "description": "Barre de navigation horizontale",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-top-nav-item": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Element de la de navigation",
+        "description": "Element de la barre de navigation horizontale",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de l'élément de navigation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "Adresse",
+            "required": false,
+            "description": "Adresse de redirection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles de la barre de navigation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors du clic",
+            "required": false,
+            "description": "Action déclenchée lors d'un clic sur le bouton",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-action-menu": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Menu d'actions",
+        "description": "Menu d'actions",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Etiquette",
+            "required": false,
+            "description": "Etiquette de description du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placement",
+            "summary": "Emplacement",
+            "required": false,
+            "description": "Emplacement du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles de la barre de navigation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Mode discret",
+            "required": false,
+            "description": "Active le mode discret du menu",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-menu": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Menu",
+        "description": "Menu",
+        "parameters": [
+          {
+            "name": "slot",
+            "summary": "Position",
+            "required": false,
+            "description": "Etiquette de description du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles de la barre de navigation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selectable",
+            "summary": "Sélectionnable",
+            "required": false,
+            "description": "Active le mode sélectionnable du menu",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-menu-item": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Element du menu",
+        "description": "Element du menu",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de l'élément du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur de l'élément du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Elément désactivée",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "selected",
+            "summary": "Sélectionné",
+            "required": false,
+            "description": "Sélectionne l'élement dans le menu",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors du clic",
+            "required": false,
+            "description": "Action déclenchée lors d'un clic sur l'élement du menu",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
     }
   },
   "components": {

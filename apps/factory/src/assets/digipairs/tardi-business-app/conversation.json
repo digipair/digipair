@@ -1,0 +1,150 @@
+{
+  "type": "@pinser-world/actions-chatbot/boost",
+  "name": "conversation",
+  "library": "@tardigrade/skill-chatbot",
+  "element": "boost",
+  "metadata": {},
+  "properties": {},
+  "pins": [
+    {
+      "library": "@tardigrade/skill-llm",
+      "element": "invoke",
+      "pins": [
+        {
+          "library": "@tardigrade/skill-llm",
+          "element": "reasoningStep",
+          "properties": {
+            "attributes": [
+              {
+                "name": "history",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-chatbot",
+                    "element": "find",
+                    "properties": {
+                      "query": "-role:\"system\"",
+                      "limit": 3,
+                      "orderby": "date desc"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "summary",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-chatbot",
+                    "element": "find",
+                    "properties": {
+                      "query": "role:\"system\"",
+                      "limit": 1,
+                      "orderby": "date desc"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "knowledge",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-vespa",
+                    "element": "search",
+                    "properties": {
+                      "query": "{{request.body.prompt}}",
+                      "filter": "source contains \"{{request.agent}}\"",
+                      "limit": 5
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "library": "@tardigrade/skill-llm",
+          "element": "reasoningStep",
+          "properties": {
+            "attributes": [
+              {
+                "name": "question",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{request.body.prompt}}"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "summary",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "EVALUATE:parent.previous.summary[1].content"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "history",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{#each parent.previous.history}}\n   {{this.role}}: {{this.content}}\n{{/each}}"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "knowledge",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{#each parent.previous.knowledge}}\n- {{this.content}}\n{{/each}}"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "library": "@tardigrade/skill-llm",
+          "element": "reasoningStep",
+          "properties": {
+            "attributes": [
+              {
+                "name": "assistant",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-ollama",
+                    "element": "basic",
+                    "properties": {
+                      "prompt": "Tu es un assistant utile, capable d'expliquer des concepts de manière simple à comprendre. Si tu n'es pas sûr d'une réponse, tu peux dire \"Je ne sais pas\" ou \"Je ne suis pas sûr\".\n\nrésume de la conversation:\n{summary}\n\nhistorique récent de conversation:\n{history}\n\nbase de connaissance:\n{knowledge}\n\nQuestion de l'utilisateur: {question}\n\nDonne une réponse très courte, précise, en français et la plus concise possible à la question de l'utilisateur et uniquement à la QUESTION de l'utilisateur en utilisant uniquement ton historique de conversation et ta base de connaissances.\n\nREPONSE EN FRANCAIS AU FORMAT MARKDOWN: ",
+                      "modelName": "mixtral"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "library": "@tardigrade/skill-chatbot",
+      "element": "chatbot",
+      "properties": {
+        "assistant": "{{previous.assistant}}"
+      }
+    }
+  ]
+}

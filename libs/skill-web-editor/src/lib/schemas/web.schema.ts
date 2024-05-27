@@ -40,6 +40,30 @@ export const schemas = {
         ],
       },
     },
+    '/span': {
+      post: {
+        tags: ['web'],
+        summary: 'Span',
+        parameters: [
+          {
+            name: 'textContent',
+            summary: 'Texte',
+            description: 'Texte du span',
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'slot',
+            summary: 'Position',
+            description: "Position du span dans l'élément parent",
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+      },
+    },
   },
   components: {
     schemas: {},

@@ -1,0 +1,230 @@
+{
+  "name": "update-simplex-form",
+  "description": "Permet de modifier un formulaire depuis un simplex.",
+  "library": "@tardigrade/skill-chatbot",
+  "element": "boost",
+  "metadata": {
+    "boosts": [
+      {
+        "selector": "FORM-EDITOR",
+        "url": "^.*$",
+        "name": "Modifier le formulaire",
+        "prompt": true,
+        "required": true,
+        "text": "Que souhaitez-vous modifier sur votre formulaire ?",
+        "inputs": [
+          {
+            "library": "web",
+            "element": "tardigrade-input-dom-attribute",
+            "properties": {
+              "selector": "tardigrade-chatbot-assistant",
+              "attribute": "currentFormSchema"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "properties": {},
+  "pins": [
+    {
+      "library": "@tardigrade/skill-llm",
+      "element": "invoke",
+      "pins": [
+        {
+          "library": "@tardigrade/skill-llm",
+          "element": "reasoningStep",
+          "properties": {
+            "attributes": [
+              {
+                "name": "prompt",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{request.body.prompt}}"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "components",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{JSONstringify request.body.inputs.[0].value.components}}"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "title",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{request.body.inputs.[0].value.formTitle}}"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "layout",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{ \"row\": \"row_[numero de la ligne]\" }"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "library": "@tardigrade/skill-ollama",
+          "element": "basic",
+          "properties": {
+            "prompt": "Contenu actuel de la balise components au format schema de la librairie @bpmn-io/form-js:\n{components}\nTitre actuel du formulaire: {title}\n\nEn tant qu'expert de la librarie javascript @bpmn-io/form-js. Definir les champs required quand c'est pertinent grace à l'attribut validate. Ne jamais mettre de bouton de validation. Placer plusieurs composants sur la même ligne par rapport à leur cohérence logique en placant le numero de la ligne dans l'attribut row de l'attribut layout pour chaque composant concerné (\"layout\": {layout}). Générer les informations suivantes en français d'un formulaire par rapport à la demande de l'utilisateur fournie entre triples quotes:\n\nINPUT: '''{prompt}'''",
+            "modelName": "mixtral",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "assistant": {
+                  "type": "string",
+                  "description": "réponse en francais de l'assistant à l'utilisateur pour lui donner des détails en francais sur le formulaire généré.L'utilisateur ne doit pas savoir qu'on utilise la librairie @bpmn-io/form-js."
+                },
+                "components": {
+                  "type": "array",
+                  "description": "tableau non vide correspondant au contenu actuel de la balise components au format schema de la librairie @bpmn-io/form-js pour un formulaire en français.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "description": "identifiant unique du composant coherent avec l'attribut 'label' et ne doit pas comporter de '_'"
+                      },
+                      "label": {
+                        "type": "string",
+                        "description": "texte affiché à l'utilisateur"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "'number' ou 'datetime' ou 'textfield' ou 'textarea' ou 'checkbox' ou 'checklist' ou 'radio' ou 'select' ou 'taglist' ou 'spacer'"
+                      },
+                      "layout": {
+                        "type": "object",
+                        "properties": {
+                          "row": {
+                            "type": "string",
+                            "description": "row_[numero de la ligne]"
+                          }
+                        }
+                      },
+                      "values": {
+                        "type": "array",
+                        "description": "tableau non vide de valeurs possibles pour les types 'radio' ou 'select' ou 'taglist', sinon tableau vide",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "label": {
+                              "type": "string",
+                              "description": "texte affiché à l'utilisateur"
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "valeur"
+                            }
+                          },
+                          "required": ["label", "value"]
+                        }
+                      },
+                      "validate": {
+                        "type": "object",
+                        "properties": {
+                          "required": {
+                            "type": "boolean",
+                            "description": "indique si le champ est obligatoire"
+                          }
+                        }
+                      }
+                    },
+                    "required": ["key", "type"]
+                  }
+                }
+              },
+              "required": ["assistant", "components"]
+            }
+          }
+        },
+        {
+          "library": "@tardigrade/skill-llm",
+          "element": "reasoningStep",
+          "properties": {
+            "attributes": [
+              {
+                "name": "assistant",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-llm",
+                    "element": "reasoningStepValue",
+                    "properties": {
+                      "value": "{{parent.previous.assistant}}"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "components",
+                "value": [
+                  {
+                    "library": "@tardigrade/skill-simplex",
+                    "element": "repairForm",
+                    "properties": {
+                      "components": "EVALUATE:parent.previous.components"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "library": "@tardigrade/skill-chatbot",
+      "element": "chatbot",
+      "properties": {
+        "assistant": "{{previous.assistant}}",
+        "command": [
+          {
+            "library": "@tardigrade/skill-dom",
+            "element": "dispatchEvent",
+            "properties": {
+              "name": "setCurrentFormSchema",
+              "selector": "tardigrade-chatbot-assistant",
+              "detail": {
+                "schema": {
+                  "type": "EVALUATE:request.body.inputs[1].value.type",
+                  "id": "EVALUATE:request.body.inputs[1].value.id",
+                  "schemaVersion": "{{#if request.body.inputs.[0].value.schemaVersion}}{{request.body.inputs.[0].value.schemaVersion}}{{else}}1{{/if}}",
+                  "formTitle": "EVALUATE:request.body.inputs[1].value.formTitle",
+                  "executionPlatform": "EVALUATE:request.body.inputs[1].value.executionPlatform",
+                  "executionPlatformVersion": "EVALUATE:request.body.inputs[1].value.executionPlatformVersion",
+                  "exporter": "EVALUATE:request.body.inputs[1].value.exporter",
+                  "components": "EVALUATE:previous.components"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

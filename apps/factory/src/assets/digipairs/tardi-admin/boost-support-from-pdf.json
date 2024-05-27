@@ -1,0 +1,52 @@
+{
+  "description": "Ajout d'un fichier PDF à la base de connaissances pour un partage et un accès facilité.",
+  "library": "@tardigrade/skill-chatbot",
+  "element": "boost",
+  "metadata": {
+    "boosts": [
+      {
+        "name": "Ajout d'un fichier PDF",
+        "prompt": true,
+        "required": true,
+        "text": "Quel fichier PDF souhaitez-vous ajouter à la base de connaissance et pour quel agent IA ?",
+        "inputs": [
+          {
+            "library": "web",
+            "element": "tardigrade-input-pdf",
+            "properties": {
+              "label": "Document pdf",
+              "accept": "pdf/*",
+              "required": true
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "properties": {},
+  "pins": [
+    {
+      "library": "@tardigrade/skill-vespa",
+      "element": "textSplitter",
+      "properties": {
+        "source": "{{request.body.prompt}}",
+        "text": "{{request.body.inputs.[0].value}}"
+      }
+    },
+    {
+      "library": "@tardigrade/skill-vespa",
+      "element": "push",
+      "properties": {
+        "documents": "EVALUATE:previous"
+      }
+    },
+    {
+      "library": "@tardigrade/skill-chatbot",
+      "element": "chatbot",
+      "properties": {
+        "assistant": "Texte ajouté pour l'agent '{{request.body.prompt}}'.",
+        "logs": "EVALUATE:previous"
+      }
+    }
+  ]
+}

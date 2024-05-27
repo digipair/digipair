@@ -1,0 +1,17 @@
+{
+  "name": "chatbot",
+  "type": "service/service",
+  "metadata": {},
+  "library": "@tardigrade/skill-chatbot",
+  "element": "chatbot",
+  "pins": [
+    {
+      "library": "@tardigrade/skill-chatbot",
+      "element": "chatbot",
+      "properties": {
+        "assistant": "{{request.body.input.assistant}}",
+        "command": "EVALUATE:request.body.input.command"
+      }
+    }
+  ]
+}

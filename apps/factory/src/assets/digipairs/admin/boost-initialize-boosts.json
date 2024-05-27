@@ -7,19 +7,99 @@
     "boosts": [
       {
         "name": "Initialiser les boosts en base de connaissances",
-        "prompt": false,
-        "required": false,
-        "text": "Etes-vous sûr de vouloir réinitialiser les boosts dans la base de connaissance ?"
+        "prompt": true,
+        "required": true,
+        "text": "Pour quel agent souhaitez vous initialiser les boosts ?"
       }
     ]
   },
   "properties": {
     "execute": [
       {
+        "library": "@digipair/skill-common",
+        "element": "boosts",
+        "properties": {
+          "digipair": "{{request.prompt}}"
+        }
+      },
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-data-management",
+              "element": "transform",
+              "properties": {
+                "value": {
+                  "source": "{{request.body.prompt}}",
+                  "content": "{{item.name}}: {{item.description}}",
+                  "url": "{{item.url}}",
+                  "trigger": {
+                    "name": "EVALUATE:item.name",
+                    "prompt": "EVALUATE:item.body.prompt",
+                    "required": "EVALUATE:item.required",
+                    "text": "EVALUATE:item.text",
+                    "inputs": "EVALUATE:item.inputs",
+                    "context": {},
+                    "command": {
+                      "library": "@digipair/actions-chatbot",
+                      "element": "executeRemoteReasoning",
+                      "properties": {
+                        "digipair": "{{request.body.prompt}}",
+                        "reasoning": "{{parent.item.name}}",
+                        "input": {},
+                        "apiUrl": "http://localhost:3000"
+                      }
+                    }
+                  }
+                }
+              },
+              "conditions": {
+                "if": "EVALUATE:if item.selector then false else true",
+                "each": "EVALUATE:item.metadata.boosts"
+              }
+            }
+          ]
+        },
+        "conditions": {
+          "each": "EVALUATE:previous"
+        }
+      },
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
+        "properties": {
+          "value": "EVALUATE:flatten(previous)"
+        }
+      },
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "source": "{{item.source}}",
+            "content": "{{item.content}}",
+            "url": "{{item.url}}",
+            "trigger": "{{JSONstringify item.trigger}}"
+          }
+        },
+        "conditions": {
+          "each": "EVALUATE:previous"
+        }
+      },
+      {
         "library": "@digipair/skill-vespa",
         "element": "remove",
         "properties": {
-          "selection": "true",
+          "selection": "boost.source==\"{{request.body.prompt}}\""
+        }
+      },
+      {
+        "library": "@digipair/skill-vespa",
+        "element": "push",
+        "properties": {
+          "documents": "EVALUATE:previous",
           "collection": "boost"
         }
       },
@@ -27,7 +107,7 @@
         "library": "@digipair/skill-chatbot",
         "element": "chatbot",
         "properties": {
-          "assistant": "Les boosts ont bien été initialisés.",
+          "assistant": "Les boosts ont bien été initialisés pour \"{{request.prompt}}\".",
           "logs": "EVALUATE:previous"
         }
       }

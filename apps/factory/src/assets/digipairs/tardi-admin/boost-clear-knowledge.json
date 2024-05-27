@@ -1,0 +1,35 @@
+{
+  "description": "Clear the knowledge base.",
+  "library": "@tardigrade/skill-chatbot",
+  "element": "boost",
+  "metadata": {
+    "boosts": [
+      {
+        "name": "Supprimer la base de connaissances",
+        "prompt": true,
+        "required": true,
+        "text": "Pour quel agent IA souhaitez-vous supprimer la base de connaissance ?",
+        "inputs": []
+      }
+    ]
+  },
+  "properties": {},
+  "pins": [
+    {
+      "library": "@tardigrade/skill-vespa",
+      "element": "remove",
+      "properties": {
+        "selection": "knowledge.source==\"{{request.body.prompt}}\"",
+        "collection": "knowledge"
+      }
+    },
+    {
+      "library": "@tardigrade/skill-chatbot",
+      "element": "chatbot",
+      "properties": {
+        "assistant": "La base de connaissance de l'agent '{{request.body.prompt}}' a été supprimée.",
+        "logs": "EVALUATE:previous"
+      }
+    }
+  ]
+}

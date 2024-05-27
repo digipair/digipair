@@ -1,0 +1,38 @@
+{
+  "name": "llm-basic",
+  "type": "service/service",
+  "metadata": {},
+  "library": "@tardigrade/skill-llm",
+  "element": "invoke",
+  "pins": [
+    {
+      "library": "@tardigrade/skill-llm",
+      "element": "reasoningStep",
+      "properties": {
+        "attributes": [
+          {
+            "name": "prompt",
+            "value": [
+              {
+                "library": "@tardigrade/skill-llm",
+                "element": "reasoningStepValue",
+                "properties": {
+                  "value": "{{request.body.input.prompt}}"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "library": "@tardigrade/skill-ollama",
+      "element": "basic",
+      "properties": {
+        "prompt": "{prompt}",
+        "schema": "EVALUATE:request.body.input.schema",
+        "model": "mixtral"
+      }
+    }
+  ]
+}
