@@ -384,6 +384,47 @@
         ],
         "x-events": []
       }
+    },
+    "/sp-search": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Barre de recherche",
+        "description": "Barre de recherche",
+        "parameters": [
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Barre de recherche désactivée",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Discret",
+            "required": false,
+            "description": "Affiche la barre de recherche en mode discret",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "submit",
+            "summary": "Lors de la soumission",
+            "required": false,
+            "description": "Action déclenchée lors de la soumission de la recherche",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
     }
   },
   "components": {

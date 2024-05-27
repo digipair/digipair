@@ -44,8 +44,6 @@ class WebService {
       { body },
     );
 
-    console.log('findFactoryPinsSettings final', path, pinsSettings.properties.execute);
-
     return pinsSettings.properties.execute;
   }
 
@@ -96,8 +94,6 @@ class WebService {
 
       const skillWeb = {
         executeFactory: async (params, pinsSettingsList, context) => {
-          console.log('executeFactory', params, pinsSettingsList, context);
-
           const result = await fetch(window.location, {
             headers: {
               'content-type': 'application/json',
