@@ -85,8 +85,8 @@
     "/digipair-input-file": {
       "post": {
         "tags": ["boost"],
-        "summary": "Lecture d'un fichier",
-        "description": "Lecture d'un fichier au format base 64",
+        "summary": "Lecture d'un fichier binaire",
+        "description": "Lecture d'un fichier binaire au format base 64",
         "parameters": [
           {
             "name": "label",

@@ -7,11 +7,10 @@
     "version": "0.1.0",
     "x-icon": "🚀"
   },
-  "tags": ["boost"],
   "paths": {
     "/digipair-input-pdf": {
       "post": {
-        "tags": [],
+        "tags": ["boost"],
         "summary": "Extraire le texte d'un PDF",
         "description": "Element permettant d'extraire le texte à partir d'un fichier PDF fourni par l'utilisateur",
         "parameters": [

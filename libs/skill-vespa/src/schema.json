@@ -194,7 +194,7 @@
     "/push": {
       "post": {
         "tags": ["service"],
-        "summary": "push",
+        "summary": "Ajouter des documents",
         "description": "Ajouter des documents",
         "parameters": [
           {
