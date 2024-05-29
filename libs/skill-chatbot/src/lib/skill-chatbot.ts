@@ -358,6 +358,8 @@ New messages:
 
 Summarize the conversation history in a short, clear and concise text, taking into account the new messages.`,
       command = [],
+      boosts = [],
+      minBoostSemanticScore = 0.65,
       assistant,
       sources,
       logs,
@@ -414,11 +416,25 @@ Summarize the conversation history in a short, clear and concise text, taking in
       baseUrl: baseUrlOllama,
     });
 
+    const filteredBoosts = [];
+    let i = boosts.length - 1;
+    while (i >= 0) {
+      if (boosts[i].matchfeatures.semantic_score >= minBoostSemanticScore) {
+        while (i >= 0) {
+          filteredBoosts.push(JSON.parse(boosts[i].trigger));
+          i--;
+        }
+      }
+
+      i--;
+    }
+
     return {
       assistant,
       command: await Promise.all(
         command.map((settings: PinsSettings) => preparePinsSettings(settings, context)),
       ),
+      boosts: filteredBoosts,
       sources,
       logs,
     };

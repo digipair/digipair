@@ -67,7 +67,15 @@ class VespaService {
       );
     }
 
-    return documents;
+    const results = [] as any[];
+    for (const chunk of chunks) {
+      const document = documents.find(({ parent_uuid }) => parent_uuid === chunk.parent_uuid);
+      if (document && !results.find(({ uuid }) => uuid === document.uuid)) {
+        results.push({ ...document, matchfeatures: chunk.matchfeatures });
+      }
+    }
+
+    return results;
   }
 
   private async prepareDocuments(documents: any[]) {

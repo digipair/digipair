@@ -29,19 +29,19 @@ export class AppService {
     let content: string;
 
     content = await promises.readFile(
-      join(__dirname, `/assets/digipairs/${digipair}/config.json`),
+      `/dist/apps/factory/assets/digipairs/${digipair}/config.json`,
       'utf8',
     );
     const config = JSON.parse(content);
 
     content = await promises.readFile(
-      join(__dirname, `/assets/digipairs/${digipair}/${reasoning}.json`),
+      `/dist/apps/factory/assets/digipairs/${digipair}/${reasoning}.json`,
       'utf8',
     );
     const settings = JSON.parse(content);
 
     const context = {
-      private: config.private,
+      privates: config.privates,
       variables: config.variables,
       request: {
         digipair,
