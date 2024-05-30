@@ -15,7 +15,7 @@ function getPinsBlockDefinition(
     args2: [], //Events inputs field
     message3: '',
     args3: [], //Pins input field
-    colour: '#4285f4',
+    colour: '#b3aeee',
     tooltip: 'library : ' + library.info.title,
     inputsInline: false,
     previousStatement: null,
@@ -676,7 +676,7 @@ function getSceneBlockDefinition(
     args2: [],
     message3: '',
     args3: [], //parameters inputs field (going in parameters)
-    colour: 230,
+    colour: '#212e3c',
     tooltip: 'library : ' + library.info.title,
   };
 

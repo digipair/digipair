@@ -22,7 +22,6 @@ export const styles = css`
     right: 20px;
     bottom: 20px;
     line-height: 0.8;
-    font-size: 0.8rem;
   }
 
   .panel {
