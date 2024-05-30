@@ -35,21 +35,19 @@ export class ElementElement extends LitElement {
       padding: 10px 15px;
       margin-bottom: 10px;
       line-height: 1.4;
-      border-color: rgb(220, 248, 198);
-      border: 1px solid rgb(153, 153, 153);
-      color: rgb(153, 153, 153);
+      border: 1px solid var(--digipair-color-primary, #52dfdb);
+      color: var(--digipair-color-primary, #52dfdb);
       align-self: flex-start;
       margin-right: auto;
       text-align: center;
     }
 
-    .digipair-input.unloaded ui5-icon {
-      color: rgb(153, 153, 153);
+    .digipair-input ui5-icon {
+      color: var(--digipair-color-secondary, #52dfdb);
     }
 
-    .digipair-input.loaded {
-      border: 1px solid rgb(213 213 213);
-      color: rgb(0, 0, 0);
+    .digipair-input.unloaded ui5-icon {
+      color: var(--digipair-color-primary, #52dfdb);
     }
 
     .digipair-input p {
@@ -111,13 +109,13 @@ export class ElementElement extends LitElement {
       this._content = `> $(${this._value})`;
       this.state = 'loaded';
       unsetCurrentElement();
-      
+
       this.dispatchEvent(new CustomEvent('change', { detail: { value: this.value } }));
 
       setTimeout(() => {
         digipairEl.openResult();
       }, 1);
-    }
+    };
 
     const mouseout = (event: any) => {
       if (event.target.closest('digipair-chatbot')) {
@@ -125,7 +123,7 @@ export class ElementElement extends LitElement {
       }
 
       unsetCurrentElement();
-      event.target.closest(this.filter)?.classList.add('digipair-input-element-selecting')
+      event.target.closest(this.filter)?.classList.add('digipair-input-element-selecting');
       this.requestUpdate();
     };
 
@@ -165,13 +163,26 @@ export class ElementElement extends LitElement {
     return html`
       <section
         class="digipair-input ${this.state}"
-        @click=${() => (['unloaded', 'loaded'].indexOf(this.state) >= 0 ? this.loadElement() : void 0)}
+        @click=${() =>
+          ['unloaded', 'loaded'].indexOf(this.state) >= 0 ? this.loadElement() : void 0}
       >
         ${this.state === 'loaded'
-        ? html` <ui5-icon name="attachment"></ui5-icon> <p>${this.label}<br />${this._content}</p> `
-        : this.state === 'selecting' ?
-          html` <ui5-icon name="locate-me"></ui5-icon> <p>${this.label}${document.querySelector('.digipair-input-element-selecting') ? html`<br />$(${getCssSelector(document.querySelector('.digipair-input-element-selecting'), { blacklist: ['.digipair-input-element-selecting'] })})` : nothing}</p>`
-          : html` <ui5-icon name="add-document"></ui5-icon> <p>${this.label}</p>`}
+          ? html`
+              <ui5-icon name="attachment"></ui5-icon>
+              <p>${this.label}<br />${this._content}</p>
+            `
+          : this.state === 'selecting'
+          ? html` <ui5-icon name="locate-me"></ui5-icon>
+              <p>
+                ${this.label}${document.querySelector('.digipair-input-element-selecting')
+                  ? html`<br />$(${getCssSelector(
+                        document.querySelector('.digipair-input-element-selecting'),
+                        { blacklist: ['.digipair-input-element-selecting'] },
+                      )})`
+                  : nothing}
+              </p>`
+          : html` <ui5-icon name="add-document"></ui5-icon>
+              <p>${this.label}</p>`}
       </section>
     `;
   }

@@ -4,7 +4,6 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import * as showdown from 'showdown';
 import { InputsElement } from './inputs.element';
-import { _config } from './config';
 import { WRITTING_IMAGE } from './common.data';
 import './inputs.element';
 
@@ -92,25 +91,34 @@ export class ChatElement extends LitElement {
       }
 
       .assistant {
-        background-color: #dcf8c6; /* Couleur de fond des messages de l'assistant */
-        color: #000; /* Couleur du texte des messages de l'assistant */
+        background-color: var(
+          --digipair-color-primary,
+          #52dfdb
+        ); /* Couleur de fond des messages de l'assistant */
+        color: var(
+          --digipair-color-text-primary,
+          #242e3b
+        ); /* Couleur du texte des messages de l'assistant */
         align-self: flex-start;
         margin-right: auto;
       }
 
       .user {
-        background-color: rgb(112, 183, 253);
-        color: #fff; /* Couleur du texte des messages de l'utilisateur */
+        background-color: var(--digipair-color-secondary, #242e3b);
+        color: var(
+          --digipair-color-text-secondary,
+          #FFFFFF
+        ); /* Couleur du texte des messages de l'utilisateur */
         align-self: flex-end;
         margin-left: auto;
       }
 
       .assistant a {
-        color: #000000;
+        color: var(--digipair-color-text-primary, #242e3b);
       }
 
       .user a {
-        color: #ffffff;
+        color: var(--digipair-color-text-secondary, #FFFFFF);
       }
 
       .input-container {
@@ -157,7 +165,7 @@ export class ChatElement extends LitElement {
         bottom: 5px;
         left: 8px;
         right: 40px;
-        margin-top: 5px; 
+        margin-top: 5px;
         margin-left: 4px;
         margin-bottom: 5px;
       }
@@ -188,17 +196,17 @@ export class ChatElement extends LitElement {
       p {
         margin: 0;
       }
-      
-      [name="microphone"] {
-          position: absolute;
-          right: 10px;
-          top: 12px;
-      }
-      
-      [name="begin"] {
+
+      [name='microphone'] {
         position: absolute;
-          right: 10px;
-          top: 40px;
+        right: 10px;
+        top: 12px;
+      }
+
+      [name='begin'] {
+        position: absolute;
+        right: 10px;
+        top: 40px;
       }
     `,
   ];
@@ -255,7 +263,10 @@ export class ChatElement extends LitElement {
   }
 
   private hasInputsValues(): boolean {
-    return this.inputsElement.values.reduce((acc, { value, required }) => (required && value === '' ? false : acc), true);
+    return this.inputsElement.values.reduce(
+      (acc, { value, required }) => (required && value === '' ? false : acc),
+      true,
+    );
   }
 
   pushMessage(message: any): void {
@@ -282,31 +293,36 @@ export class ChatElement extends LitElement {
     }, 1);
 
     return html`
-    <section class="container">
-    ${this.messages.map(
-      message => html`<section class="${message.role}">
-          ${unsafeHTML(
-        this.converter.makeHtml(
-          message.role === 'user'
-            ? message.content.replace(/\n/g, '  \n')
-            : message.content.replace(/```markdown([\s\S]*?)```/g, (_: unknown, group: string) => group),
-        ),
-      )}
-        </section>`,
-    )}
-    ${this.currentBoost?.name
-        ? html`<section class="user">${this.currentBoost.name}</section>`
-        : nothing}
-    ${this.currentBoost?.text
-        ? html`<section class="assistant">${this.currentBoost.text}</section>`
-        : nothing}
+      <section class="container">
+        ${this.messages.map(
+          message => html`<section class="${message.role}">
+            ${unsafeHTML(
+              this.converter.makeHtml(
+                message.role === 'user'
+                  ? message.content.replace(/\n/g, '  \n')
+                  : message.content.replace(
+                      /```markdown([\s\S]*?)```/g,
+                      (_: unknown, group: string) => group,
+                    ),
+              ),
+            )}
+          </section>`,
+        )}
+        ${this.currentBoost?.name
+          ? html`<section class="user">${this.currentBoost.name}</section>`
+          : nothing}
+        ${this.currentBoost?.text
+          ? html`<section class="assistant">${this.currentBoost.text}</section>`
+          : nothing}
         <digipair-chatbot-inputs
           @change=${() => this.requestUpdate()}
           .inputs=${this.currentBoost?.inputs || []}
           .context=${this.currentBoost?.context || {}}
         ></digipair-chatbot-inputs>
 
-        ${!this.loading ? nothing : html`<section class="loading"><img src=${WRITTING_IMAGE} /></section>`}
+        ${!this.loading
+          ? nothing
+          : html`<section class="loading"><img src=${WRITTING_IMAGE} /></section>`}
       </section>
 
       <section class="input-container">
@@ -315,30 +331,29 @@ export class ChatElement extends LitElement {
             id="messageInput"
             value=""
             placeholder=${this.currentBoost && !this.currentBoost.prompt
-        ? ''
-        : 'Saisir votre message'}
+              ? ''
+              : 'Saisir votre message'}
             @keydown=${() => this.requestUpdate()}
             @keyup=${(event: Event) => this.keypressManagement(event)}
-            ?disabled=${this.loading ||
-      (this.currentBoost && !this.currentBoost.prompt)}
+            ?disabled=${this.loading || (this.currentBoost && !this.currentBoost.prompt)}
           ></textarea>
         </section>
 
         <ui5-icon
           name="begin"
           class="button ${this.loading ||
-        ((!this.messageInput || this.messageInput.value === '') &&
-          (!this.currentBoost || this.currentBoost.required)) ||
-        !this.hasInputsValues()
-        ? 'disabled'
-        : ''}"
-          @click=${() =>
-        this.loading ||
           ((!this.messageInput || this.messageInput.value === '') &&
             (!this.currentBoost || this.currentBoost.required)) ||
           !this.hasInputsValues()
-          ? void 0
-          : this.addMessage(this.messageInput.value.trim())}
+            ? 'disabled'
+            : ''}"
+          @click=${() =>
+            this.loading ||
+            ((!this.messageInput || this.messageInput.value === '') &&
+              (!this.currentBoost || this.currentBoost.required)) ||
+            !this.hasInputsValues()
+              ? void 0
+              : this.addMessage(this.messageInput.value.trim())}
         ></ui5-icon>
       </section>
     `;

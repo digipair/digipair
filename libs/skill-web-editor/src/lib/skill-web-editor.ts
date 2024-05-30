@@ -11,8 +11,8 @@ class EditorService {
       text: message,
       position: 'center',
       style: {
-        'font-family': 'Arial, Helvetica, sans- serif',
-        background: 'linear-gradient(90deg, rgba(7,99,101,1) 0%, rgba(4,129,58,1) 100%)',
+        'font-family': '"Poppins", sans-serif',
+        background: '#52DFDB',
       },
       duration: 3000,
     }).showToast();
@@ -25,7 +25,7 @@ class EditorService {
       text: message,
       position: 'center',
       style: {
-        'font-family': 'Arial, Helvetica, sans- serif',
+        'font-family': '"Poppins", sans-serif',
         background: 'linear-gradient(90deg, rgba(121,9,9,1) 0%, rgba(203,62,62,1) 100%)',
       },
       duration: 3000,

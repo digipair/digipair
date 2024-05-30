@@ -10,6 +10,9 @@ import getCssSelector from './tools/css-selector';
 import { _config } from './config';
 import { executePins, executePinsList } from '@digipair/engine';
 
+let API_URL: string;
+let COMMON_EXPERIENCE: string;
+
 @customElement('digipair-chatbot')
 export class ChatbotElement extends LitElement {
   @property()
@@ -17,6 +20,12 @@ export class ChatbotElement extends LitElement {
 
   @property()
   firstOpenDelay = 60000;
+
+  @property()
+  apiUrl = _config.API_URL;
+
+  @property()
+  commonExperience = _config.COMMON_EXPERIENCE;
 
   @state()
   private boosters: any[] = [];
@@ -42,7 +51,7 @@ export class ChatbotElement extends LitElement {
     properties: {
       digipair,
       reasoning: 'conversation',
-      apiUrl: _config.API_URL,
+      apiUrl: API_URL,
     },
   });
 
@@ -51,9 +60,12 @@ export class ChatbotElement extends LitElement {
   private userId: string | null = null;
   private newUser!: boolean;
   private metadata!: {
-    id: string,
-    avatar: string,
-    color: string,
+    id: string;
+    avatar: string;
+    primary: string;
+    secondary: string;
+    textPrimary: string;
+    textSecondary: string;
   };
 
   private blurEvent = (event: Event) => {
@@ -65,6 +77,9 @@ export class ChatbotElement extends LitElement {
   };
 
   override connectedCallback(): void {
+    API_URL = this.apiUrl;
+    COMMON_EXPERIENCE = this.commonExperience;
+
     super.connectedCallback();
 
     this.loadUser();
@@ -88,21 +103,31 @@ export class ChatbotElement extends LitElement {
       this.newUser = true;
     }
   }
-  
+
   private async boostListener() {
     const digipair = this.code;
-    const boosts = (await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
-      digipair,
-    }))
-      .map(({ name, metadata }: any) => metadata?.boosts.map((boost: any) => ({ ...boost, scene: name, checkUrl: new RegExp(boost.url) })))
+    const boosts = (
+      await this.executeScene(COMMON_EXPERIENCE, 'boosts', {
+        digipair,
+      })
+    )
+      .map(({ name, metadata }: any) =>
+        metadata?.boosts.map((boost: any) => ({
+          ...boost,
+          scene: name,
+          checkUrl: new RegExp(boost.url),
+        })),
+      )
       .flat()
       .filter((boost: any) => boost && boost.selector);
-    let lastSelectedBoosts: any [] | null = [];
+    let lastSelectedBoosts: any[] | null = [];
 
     document.addEventListener(
       'mouseover',
       (event: any) => {
-        lastSelectedBoosts = event.target.closest('digipair-chatbot') ? null : this.getBoostsFromTarget(event.target, boosts);
+        lastSelectedBoosts = event.target.closest('digipair-chatbot')
+          ? null
+          : this.getBoostsFromTarget(event.target, boosts);
 
         setTimeout(async () => {
           // si on est sur le chatbot, on ne fait rien
@@ -131,9 +156,9 @@ export class ChatbotElement extends LitElement {
                   digipair: this.code,
                   reasoning: boost.scene,
                   input: {},
-                  apiUrl: _config.API_URL,
-                }
-              }
+                  apiUrl: API_URL,
+                },
+              },
             }));
         }, 1000);
       },
@@ -142,8 +167,9 @@ export class ChatbotElement extends LitElement {
   }
 
   private getBoostsFromTarget(target: any, boosts: any[]): any[] {
-    return boosts
-      .filter((boost) => boost.checkUrl.test(window.location.href) && !!target.closest(boost.selector));
+    return boosts.filter(
+      boost => boost.checkUrl.test(window.location.href) && !!target.closest(boost.selector),
+    );
   }
 
   private async loadDigipair(): Promise<void> {
@@ -151,7 +177,7 @@ export class ChatbotElement extends LitElement {
 
     const digipair = this.code;
     const reasoning = 'metadata';
-    const metadata = await this.executeScene(_config.COMMON_EXPERIENCE, reasoning, {
+    const metadata = await this.executeScene(COMMON_EXPERIENCE, reasoning, {
       digipair,
     });
 
@@ -200,7 +226,9 @@ export class ChatbotElement extends LitElement {
   }
 
   private scrollDown(): void {
-    const container = (this.shadowRoot as unknown as HTMLElement).querySelector('.container') as HTMLElement;
+    const container = (this.shadowRoot as unknown as HTMLElement).querySelector(
+      '.container',
+    ) as HTMLElement;
     container.scrollTop = container.scrollHeight;
   }
 
@@ -249,11 +277,11 @@ export class ChatbotElement extends LitElement {
         ...(!boost
           ? {}
           : {
-            boost: {
-              name: boost.name,
-              text: boost.text,
-            },
-          }),
+              boost: {
+                name: boost.name,
+                text: boost.text,
+              },
+            }),
       };
 
       const detail = await executePins(pins);
@@ -301,14 +329,14 @@ export class ChatbotElement extends LitElement {
     reasoning: string,
     input: any = {},
   ): Promise<any> => {
-    const response = await fetch(`${_config.API_URL}/${digipair}/${reasoning}`, {
+    const response = await fetch(`${API_URL}/${digipair}/${reasoning}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(input),
     });
-  
+
     return await response.json();
   };
 
@@ -322,8 +350,20 @@ export class ChatbotElement extends LitElement {
     }
 
     return html`
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        font-style: normal;
+
+        --digipair-color-primary: ${this.metadata.primary};
+        --digipair-color-text-primary: ${this.metadata.textPrimary};
+        --digipair-color-secondary: ${this.metadata.secondary};
+        --digipair-color-text-secondary: ${this.metadata.textSecondary};
+      </style>
+
       <section class="container result-${this.resultState}">
-        <section class="result" style="border: 1px solid ${this.metadata.color}">
+        <section class="result" style="border: 1px solid var(--digipair-color-primary, #52DFDB)">
           <digipair-chatbot-chat
             ?loading=${this.loading}
             .messages=${this.messages}
@@ -334,25 +374,33 @@ export class ChatbotElement extends LitElement {
 
         <section class="actions ${this.loading ? 'loading' : ''}">
           ${!this.currentBoost
-        ? this.boosters.map(
-          boost => html`
-                  <span class="action" style="border: 1px solid ${this.metadata.color}" @click=${() => this.executeBoost(boost)}>${boost.name}</span>
+            ? this.boosters.map(
+                boost => html`
+                  <span
+                    class="action"
+                    style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
+                    @click=${() => this.executeBoost(boost)}
+                    >${boost.name}</span
+                  >
                 `,
-        )
-        : html`
-          <span
-            class="action"
-            style="border: 1px solid ${this.metadata.color}"
-            @click=${() => {
-            this.currentBoost = null;
-            this.boosters = [];
-          }}
-              >Annuler</span
-          >
-        `}
+              )
+            : html`
+                <span
+                  class="action"
+                  style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
+                  @click=${() => {
+                    this.currentBoost = null;
+                    this.boosters = [];
+                  }}
+                  >Annuler</span
+                >
+              `}
         </section>
 
-        <section class="panel" style="border: 1px solid ${this.metadata.color}"></section>
+        <section
+          class="panel"
+          style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
+        ></section>
         <img
           @click=${() => (this.resultState !== 'closed' ? this.closeResult() : this.openResult())}
           class="logo ${this.loading ? 'loading' : ''}"

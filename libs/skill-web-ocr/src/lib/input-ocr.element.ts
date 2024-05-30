@@ -35,21 +35,19 @@ export class InputOcrElement extends LitElement {
       padding: 10px 15px;
       margin-bottom: 10px;
       line-height: 1.4;
-      border-color: rgb(220, 248, 198);
-      border: 1px solid rgb(112, 183, 253);
-      color: rgb(112, 183, 253);
+      border: 1px solid var(--digipair-color-primary, #52dfdb);
+      color: var(--digipair-color-primary, #52dfdb);
       align-self: flex-start;
       margin-right: auto;
       text-align: center;
     }
 
-    .download.unloaded ui5-icon {
-      color: rgb(112, 183, 253);
+    .download ui5-icon {
+      color: var(--digipair-color-secondary, #52dfdb);
     }
 
-    .download.loaded {
-      border: 1px solid rgb(213 213 213);
-      color: rgb(0, 0, 0);
+    .download.unloaded ui5-icon {
+      color: var(--digipair-color-primary, #52dfdb);
     }
 
     .download p {

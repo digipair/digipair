@@ -21,9 +21,6 @@ export const styles = css`
     z-index: 9999;
     right: 20px;
     bottom: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     line-height: 0.8;
     font-size: 0.8rem;
   }
@@ -49,8 +46,8 @@ export const styles = css`
     width: 70px;
     height: 70px;
     position: absolute;
-    right: -5px;
-    top: -55px;
+    right: -10px;
+    top: -58px;
     transition: scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
   }
 

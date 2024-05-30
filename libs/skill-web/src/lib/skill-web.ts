@@ -82,13 +82,13 @@ class WebService {
 
     const html = `
 <!DOCTYPE html>
-<html style=${styleHtml}>
+<html style="${styleHtml}">
   <head>
     <meta charset="UTF-8" />
     <title>${title}</title>
     <link rel="icon" type="image/x-icon" href="${favicon}">
   </head>
-  <body style=${styleBody}>
+  <body style="${styleBody}">
     <script type="module">
       import { config, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 

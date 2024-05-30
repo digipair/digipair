@@ -159,7 +159,7 @@ export class EditorElement extends LitElement {
         text: 'Your scene cannot be saved, invalid format',
         position: 'center',
         style: {
-          'font-family': 'Arial, Helvetica, sans- serif',
+          'font-family': '"Poppins", sans-serif',
           background: 'linear-gradient(90deg, rgba(121,9,9,1) 0%, rgba(203,62,62,1) 100%)',
         },
         duration: 3000,
@@ -257,6 +257,8 @@ export class EditorElement extends LitElement {
   override render(): TemplateResult {
     return html`
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
       .blocklyToolboxDiv {
         background-color: ${this.menuBackgroundColor};
         color: ${this.menuColor};
@@ -308,7 +310,7 @@ export class EditorElement extends LitElement {
           top: 24px;
           right: 24px;
           border-radius: 100%;
-          color: #fff;
+          color: #52DFDB;
           width: 56px;
           height: 56px;
           line-height: 56px;
@@ -316,7 +318,7 @@ export class EditorElement extends LitElement {
           transition: box-shadow 0.3s ease-in-out;
           text-align: center;
           font-weight: 500;
-          background-color:${this.canSave ? 'rgb(66, 133, 244)' : '#5F5F5F'} ;
+          background-color:${this.canSave ? '#242E3B' : '#5F5F5F'} ;
           cursor: pointer;"
         class="material-icons"
         aria-hidden="true"

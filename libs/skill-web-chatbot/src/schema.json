@@ -22,6 +22,24 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "apiUrl",
+            "summary": "Adresse de la factory",
+            "required": false,
+            "description": "Adresse URL de la factory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commonExperience",
+            "summary": "Digipair commun",
+            "required": false,
+            "description": "Digipair qui partage les raisonnements communs avec tous les chatbots",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -38,6 +56,24 @@
             "summary": "Digipair",
             "required": true,
             "description": "Digipair à afficher",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiUrl",
+            "summary": "Adresse de la factory",
+            "required": false,
+            "description": "Adresse URL de la factory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commonExperience",
+            "summary": "Digipair commun",
+            "required": false,
+            "description": "Digipair qui partage les raisonnements communs avec tous les chatbots",
             "schema": {
               "type": "string"
             }

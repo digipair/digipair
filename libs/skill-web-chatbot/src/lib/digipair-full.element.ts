@@ -9,10 +9,19 @@ import { ChatElement } from './chat.element';
 import { styles } from './digipair-full.data';
 import { _config } from './config';
 
+let API_URL: string;
+let COMMON_EXPERIENCE: string;
+
 @customElement('digipair-chatbot-full')
 export class DigipairFullElement extends LitElement {
   @property()
   code = 'common';
+
+  @property()
+  apiUrl = _config.API_URL;
+
+  @property()
+  commonExperience = _config.COMMON_EXPERIENCE;
 
   @state()
   private boosters: any[] = [];
@@ -35,22 +44,28 @@ export class DigipairFullElement extends LitElement {
     properties: {
       digipair,
       reasoning: 'conversation',
-      apiUrl: _config.API_URL,
+      apiUrl: API_URL,
     },
   });
 
   private cacheBoosters: any[] = [];
   private userId: string | null = null;
   private isDigipairLoading = false;
-
   private metadata!: {
     id: string;
     avatar: string;
-    color: string;
+    primary: string;
+    secondary: string;
+    textPrimary: string;
+    textSecondary: string;
   };
 
   override connectedCallback(): void {
+    API_URL = this.apiUrl;
+    COMMON_EXPERIENCE = this.commonExperience;
+
     super.connectedCallback();
+
     this.loadUser();
     this.loadBoosters();
   }
@@ -66,7 +81,7 @@ export class DigipairFullElement extends LitElement {
   }
   private async loadBoosters(): Promise<void> {
     this.cacheBoosters = (
-      await this.executeScene(_config.COMMON_EXPERIENCE, 'boosts', {
+      await this.executeScene(COMMON_EXPERIENCE, 'boosts', {
         digipair: this.code,
       })
     )
@@ -93,7 +108,7 @@ export class DigipairFullElement extends LitElement {
             digipair: this.code,
             reasoning: boost.scene,
             input: {},
-            apiUrl: _config.API_URL,
+            apiUrl: API_URL,
           },
         },
       }));
@@ -104,7 +119,7 @@ export class DigipairFullElement extends LitElement {
 
     const digipair = this.code;
     const reasoning = 'metadata';
-    const metadata = await this.executeScene(_config.COMMON_EXPERIENCE, reasoning, {
+    const metadata = await this.executeScene(COMMON_EXPERIENCE, reasoning, {
       digipair,
     });
 
@@ -233,7 +248,7 @@ export class DigipairFullElement extends LitElement {
     reasoning: string,
     input: any = {},
   ): Promise<any> => {
-    const response = await fetch(`${_config.API_URL}/${digipair}/${reasoning}`, {
+    const response = await fetch(`${API_URL}/${digipair}/${reasoning}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -254,8 +269,20 @@ export class DigipairFullElement extends LitElement {
     }
 
     return html`
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        font-style: normal;
+
+        --digipair-color-primary: ${this.metadata.primary};
+        --digipair-color-primary: ${this.metadata.secondary};
+        --digipair-color-text-primary: ${this.metadata.textPrimary};
+        --digipair-color-text-primary: ${this.metadata.textSecondary};
+      </style>
+
       <section class="container">
-        <section class="result" style="border: 1px solid ${this.metadata.color}">
+        <section class="result" style="border: 1px solid var(--digipair-color-primary, #52DFDB)">
           <digipair-chatbot-chat
             ?loading=${this.loading}
             .messages=${this.messages}
@@ -270,7 +297,7 @@ export class DigipairFullElement extends LitElement {
               <div>
                 <span
                   class="action"
-                  style="border: 1px solid ${this.metadata.color}"
+                  style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
                   @click=${() => this.executeBoost(boost)}
                   >${boost.name}</span
                 >
@@ -283,7 +310,7 @@ export class DigipairFullElement extends LitElement {
                 <div>
                   <span
                     class="action"
-                    style="border: 1px solid ${this.metadata.color}"
+                    style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
                     @click=${() => {
                       this.currentBoost = null;
                     }}
@@ -293,7 +320,10 @@ export class DigipairFullElement extends LitElement {
               `}
         </section>
 
-        <section class="panel" style="border: 1px solid ${this.metadata.color}"></section>
+        <section
+          class="panel"
+          style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
+        ></section>
         <img
           class="logo ${this.loading ? 'loading' : ''}"
           src=${this.metadata.avatar}

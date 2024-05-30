@@ -22,9 +22,6 @@ export const styles = css`
     bottom: 20px;
     right: 20px;
     left: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     line-height: 0.8;
     font-size: 0.8rem;
   }
@@ -50,7 +47,7 @@ export const styles = css`
     width: 70px;
     height: 70px;
     position: absolute;
-    right: -5px;
+    right: -15px;
     top: -15px;
     transition: scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
   }
@@ -103,7 +100,6 @@ export const styles = css`
     color: rgb(60, 60, 60);
   }
 `;
-
 
 /*
 .result {

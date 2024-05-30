@@ -1,36 +1,29 @@
 import { PinsSettings } from '@digipair/engine';
 import { promises } from 'fs';
-import { join } from 'path';
 
 class CommonService {
   async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path = context.privates?.EDITOR_PATH ?? './dist/apps/factory/assets/digipairs';
     const { digipair } = params;
-    const content = await promises.readFile(
-      join(__dirname, `/assets/digipairs/${digipair}/config.json`),
-      'utf8',
-    );
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);
 
-    const buffer = await promises.readFile(
-      join(__dirname, `/assets/digipairs/${digipair}/avatar.png`),
-    );
+    const buffer = await promises.readFile(`${path}/${digipair}/avatar.png`);
     const avatar = buffer.toString('base64');
 
     return { ...config.metadata, avatar: `data:image/png;base64,${avatar}` };
   }
 
   async boosts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path = context.privates?.EDITOR_PATH ?? './dist/apps/factory/assets/digipairs';
     const { digipair } = params;
-    const files = await promises.readdir(join(__dirname, `/assets/digipairs/${digipair}`));
+    const files = await promises.readdir(`${path}/${digipair}`);
     const boosts = await Promise.all(
       files
         .map(file => /^boost-(.*)\.json$/.exec(file)?.[1])
         .filter(name => name)
         .map(async name => {
-          const content = await promises.readFile(
-            join(__dirname, `/assets/digipairs/${digipair}/boost-${name}.json`),
-            'utf8',
-          );
+          const content = await promises.readFile(`${path}/${digipair}/boost-${name}.json`, 'utf8');
           const { description, metadata } = JSON.parse(content);
 
           return {
