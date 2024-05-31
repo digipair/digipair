@@ -127,7 +127,7 @@
                               }
                             ],
                             "conditions": {
-                              "each": "EVALUATE:data.digipairs"
+                              "each": "EVALUATE:variables.digipairs"
                             }
                           }
                         ]
@@ -151,33 +151,37 @@
         }
       }
     ],
-    "data": [
+    "factoryInitialize": [
       {
-        "name": "digipairs",
-        "value": [
-          {
-            "library": "@digipair/skill-editor",
-            "element": "digipairs"
-          },
-          {
-            "library": "@digipair/skill-data-management",
-            "element": "transform",
-            "properties": {
-              "execute": [
-                {
-                  "library": "@digipair/skill-editor",
-                  "element": "digipair",
-                  "properties": {
-                    "digipair": "{{item}}"
-                  }
-                }
-              ]
+        "library": "@digipair/skill-data-management",
+        "element": "setVariable",
+        "properties": {
+          "name": "digipairs",
+          "execute": [
+            {
+              "library": "@digipair/skill-editor",
+              "element": "digipairs"
             },
-            "conditions": {
-              "each": "EVALUATE:previous"
+            {
+              "library": "@digipair/skill-data-management",
+              "element": "transform",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-editor",
+                    "element": "digipair",
+                    "properties": {
+                      "digipair": "{{item}}"
+                    }
+                  }
+                ]
+              },
+              "conditions": {
+                "each": "EVALUATE:previous"
+              }
             }
-          }
-        ]
+          ]
+        }
       }
     ],
     "styleHtml": "color-scheme:dark;"

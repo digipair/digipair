@@ -38,6 +38,46 @@
         ],
         "x-events": []
       }
+    },
+    "/setVariable": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Enregistrer la variable",
+        "description": "Enregistre la variable dans le contexte de la compétence",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom de la variable",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à enregistrer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Exécute",
+            "required": false,
+            "description": "Actions à appliquer sur la donnée enregistrée",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

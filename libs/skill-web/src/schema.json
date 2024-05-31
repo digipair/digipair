@@ -29,6 +29,25 @@
           }
         ]
       }
+    },
+    "/requestUpdate": {
+      "post": {
+        "summary": "Mettre à jour les composants web",
+        "description": "Mettre à jour un composant web",
+        "tags": ["web"],
+        "metadata": [],
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS",
+            "required": true,
+            "description": "Sélecteur CSS permettant de sélectionner les composants à mettre à jour",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -74,18 +93,6 @@
           }
         },
         {
-          "name": "data",
-          "summary": "Préparation des données depuis la factory",
-          "required": false,
-          "description": "Préparation des données backend à envoyer à la page",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/dataAttribute"
-            }
-          }
-        },
-        {
           "name": "title",
           "summary": "Titre",
           "required": false,
@@ -119,6 +126,42 @@
           "description": "Style css de l'élément BODY",
           "schema": {
             "type": "string"
+          }
+        },
+        {
+          "name": "factoryInitialize",
+          "summary": "Lors de la l'initialisation coté factory",
+          "required": false,
+          "description": "Action déclenchée lors de l'initialisation coté factory",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "browserInitialize",
+          "summary": "Lors de la l'initialisation coté navigateur",
+          "required": false,
+          "description": "Action déclenchée lors de l'initialisation coté navigateur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "browserLoad",
+          "summary": "Lorsque la page est chargée",
+          "required": false,
+          "description": "Action déclenchée lorsque la page est chargée coté navigateur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
           }
         }
       ]

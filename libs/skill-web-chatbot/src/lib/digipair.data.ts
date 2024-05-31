@@ -35,7 +35,7 @@ export const styles = css`
     transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275),
       cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-delay: 0s, 0s;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0.25rem 0.75rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 4px 0.25rem 0.25rem;
     border: 1px solid rgb(134, 255, 0);
     width: 50px;
     background-color: rgb(255, 255, 255);

@@ -34,7 +34,7 @@
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-top-nav-item",
                         "properties": {
-                          "textContent": "{{data.digipair.name}}"
+                          "textContent": "{{variables.digipair.name}}"
                         }
                       }
                     ]
@@ -160,7 +160,7 @@
                               }
                             ],
                             "conditions": {
-                              "each": "EVALUATE:data.reasonings"
+                              "each": "EVALUATE:variables.reasonings"
                             }
                           }
                         ]
@@ -184,49 +184,57 @@
         }
       }
     ],
-    "data": [
+    "factoryInitialize": [
       {
-        "name": "digipair",
-        "value": [
-          {
-            "library": "@digipair/skill-editor",
-            "element": "digipair",
-            "properties": {
-              "digipair": "{{request.params.[0]}}"
+        "library": "@digipair/skill-data-management",
+        "element": "setVariable",
+        "properties": {
+          "name": "digipair",
+          "execute": [
+            {
+              "library": "@digipair/skill-editor",
+              "element": "digipair",
+              "properties": {
+                "digipair": "{{request.params.[0]}}"
+              }
             }
-          }
-        ]
+          ]
+        }
       },
       {
-        "name": "reasonings",
-        "value": [
-          {
-            "library": "@digipair/skill-editor",
-            "element": "reasonings",
-            "properties": {
-              "digipair": "{{request.params.[0]}}"
-            }
-          },
-          {
-            "library": "@digipair/skill-data-management",
-            "element": "transform",
-            "properties": {
-              "execute": [
-                {
-                  "library": "@digipair/skill-editor",
-                  "element": "reasoning",
-                  "properties": {
-                    "digipair": "{{request.params.[0]}}",
-                    "reasoning": "EVALUATE:item"
-                  }
-                }
-              ]
+        "library": "@digipair/skill-data-management",
+        "element": "setVariable",
+        "properties": {
+          "name": "reasonings",
+          "execute": [
+            {
+              "library": "@digipair/skill-editor",
+              "element": "reasonings",
+              "properties": {
+                "digipair": "{{request.params.[0]}}"
+              }
             },
-            "conditions": {
-              "each": "EVALUATE:previous"
+            {
+              "library": "@digipair/skill-data-management",
+              "element": "transform",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-editor",
+                    "element": "reasoning",
+                    "properties": {
+                      "digipair": "{{request.params.[0]}}",
+                      "reasoning": "EVALUATE:item"
+                    }
+                  }
+                ]
+              },
+              "conditions": {
+                "each": "EVALUATE:previous"
+              }
             }
-          }
-        ]
+          ]
+        }
       }
     ],
     "styleHtml": "color-scheme:dark;"

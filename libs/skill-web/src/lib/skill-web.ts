@@ -50,13 +50,15 @@ class WebService {
   async page(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       body,
-      data = [] as { name: string; execute: PinsSettings[] }[],
       title = 'Digipair',
       favicon = 'https://www.digipair.ai/assets/images/favicon.ico',
       styleHtml = '',
       styleBody = '',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
       libraries = {},
+      factoryInitialize = [],
+      browserInitialize = [],
+      browserLoad = [],
     } = params;
     const engineVersion = libraries['@digipair/engine'] || 'latest';
     const preparedData = {} as { [key: string]: PinsSettings };
@@ -72,9 +74,7 @@ class WebService {
       });
     }
 
-    for (const item of data) {
-      preparedData[item.name] = await executePinsList(item.value, context);
-    }
+    await executePinsList(factoryInitialize, context);
 
     const preparedBody = body.map((item: PinsSettings, index: number) =>
       this.filteredWebPinsSettings(item, `body[${index}]`),
@@ -90,7 +90,7 @@ class WebService {
   </head>
   <body style="${styleBody}">
     <script type="module">
-      import { config, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
+      import { config, executePinsList, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
       const skillWeb = {
         executeFactory: async (params, pinsSettingsList, context) => {
@@ -103,7 +103,18 @@ class WebService {
           });
 
           return await result.json();
-        }
+        },
+        requestUpdate: async (params, pinsSettingsList, context) => {
+          const { selector } = params;
+
+          const elements = document.querySelectorAll(selector);
+          for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            element.requestUpdate();
+          }
+
+          return null;
+        },
       };
       
       config.set('LIBRARIES', { '@digipair/skill-web': skillWeb, ...${JSON.stringify(libraries)} });
@@ -116,6 +127,9 @@ class WebService {
       const options = {
         libraries: {},
       };
+
+      await executePinsList(${JSON.stringify(browserInitialize)}, context);
+      
       const pinsList = ${JSON.stringify(preparedBody)};
       for (let i = 0; i < pinsList.length; i++) {
         const item = pinsList[i];
@@ -123,6 +137,10 @@ class WebService {
           preparedData,
         )} }, options);
       }
+
+      setTimeout(async () => {
+        await executePinsList(${JSON.stringify(browserLoad)}, context);
+      }, 1);
     </script>
   </body>
 </html>

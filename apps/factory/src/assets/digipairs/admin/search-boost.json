@@ -80,7 +80,7 @@
                               }
                             ],
                             "conditions": {
-                              "each": "EVALUATE:data.boosts"
+                              "each": "EVALUATE:variables.boosts"
                             }
                           }
                         ]
@@ -104,20 +104,24 @@
         }
       }
     ],
-    "data": [
+    "factoryInitialize": [
       {
-        "name": "boosts",
-        "value": [
-          {
-            "library": "@digipair/skill-vespa",
-            "element": "search",
-            "properties": {
-              "query": "{{request.params.[1]}}",
-              "collection": "boost",
-              "filter": "source matches \"{{request.params.[0]}}\""
+        "library": "@digipair/skill-data-management",
+        "element": "setVariable",
+        "properties": {
+          "name": "boosts",
+          "execute": [
+            {
+              "library": "@digipair/skill-vespa",
+              "element": "search",
+              "properties": {
+                "query": "{{request.params.[1]}}",
+                "collection": "boost",
+                "filter": "source matches \"{{request.params.[0]}}\""
+              }
             }
-          }
-        ]
+          ]
+        }
       }
     ],
     "styleHtml": "color-scheme:dark;"
