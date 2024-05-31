@@ -1,0 +1,30 @@
+{
+  "name": "skill-web-keycloak",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-web-keycloak/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-web-keycloak",
+        "main": "libs/skill-web-keycloak/src/index.ts",
+        "tsConfig": "libs/skill-web-keycloak/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-web-keycloak/src/index.d.ts",
+          "libs/skill-web-keycloak/src/schema.json"
+        ],
+        "rollupConfig": ["libs/skill-web-keycloak/rollup.build.cjs"],
+        "project": "libs/skill-web-keycloak/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-web-keycloak {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

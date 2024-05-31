@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-keycloak",
+    "summary": "Authentification web Keycloak",
+    "description": "Cette compétence permet de gérer une authentification Keycloak coté navigateur.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/initialize": {
+      "post": {
+        "tags": ["web", "spatial"],
+        "summary": "Initialisation Keycloak",
+        "description": "Initialise l'authentification Keycloak",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Keycloak",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "realm",
+            "summary": "Realm",
+            "required": false,
+            "description": "Realm Keycloak",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientId",
+            "summary": "clientId",
+            "required": false,
+            "description": "ClientId Keycloak",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/isLogged": {
+      "post": {
+        "tags": ["web", "spatial"],
+        "summary": "Utilisateur identifié",
+        "description": "Vérifie si l'utilisateur est identifié",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/token": {
+      "post": {
+        "tags": ["web", "spatial"],
+        "summary": "Token Keycloak",
+        "description": "Récupère le token Keycloak",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/logout": {
+      "post": {
+        "tags": ["web", "spatial"],
+        "summary": "Déconnecte l'utilisateur de Keycloak",
+        "description": "Déconnecte l'utilisateur de Keycloak",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["web", "spatial"],
+        "summary": "Connecte l'utilisateur à Keycloak",
+        "description": "Connecte l'utilisateur à Keycloak",
+        "parameters": [],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

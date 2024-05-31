@@ -33,6 +33,7 @@
       "@digipair/skill-web-factory": ["libs/skill-web-factory/src/index.ts"],
       "@digipair/skill-web-inputs": ["libs/skill-web-inputs/src/index.ts"],
       "@digipair/skill-web-interact": ["libs/skill-web-interact/src/index.ts"],
+      "@digipair/skill-web-keycloak": ["libs/skill-web-keycloak/src/index.ts"],
       "@digipair/skill-web-logic": ["libs/skill-web-logic/src/index.ts"],
       "@digipair/skill-web-ocr": ["libs/skill-web-ocr/src/index.ts"],
       "@digipair/skill-web-pdf": ["libs/skill-web-pdf/src/index.ts"],
