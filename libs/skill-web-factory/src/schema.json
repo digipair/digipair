@@ -5,7 +5,7 @@
     "summary": "Communication avec la factory Digipair",
     "description": "Communication avec la factory Digipair.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "🛠"
   },
   "paths": {
     "/get": {

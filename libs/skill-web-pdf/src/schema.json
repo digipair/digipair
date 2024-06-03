@@ -5,7 +5,7 @@
     "summary": "Extraction de texte depuis un PDF",
     "description": "Cette compétence permet d'extraire le texte depuis un PDF.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "📄"
   },
   "paths": {
     "/digipair-input-pdf": {

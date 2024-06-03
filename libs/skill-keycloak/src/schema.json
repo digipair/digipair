@@ -1,11 +1,11 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-web",
-    "summary": "Affichage de pages web",
-    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet.",
+    "title": "@digipair/skill-keycloak",
+    "summary": "Affichage de pages web sécurisée",
+    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet sécurisés par keycloak.",
     "version": "0.1.0",
-    "x-icon": "🌐"
+    "x-icon": "🔐"
   },
   "paths": {
     "/executeFactory": {

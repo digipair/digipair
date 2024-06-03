@@ -1,0 +1,62 @@
+{
+  "name": "Liste des raisonnements",
+  "description": "Liste des raisonnements",
+  "library": "@digipair/skill-keycloak",
+  "element": "page",
+  "metadata": {},
+  "properties": {
+    "body": [
+      {
+        "library": "@digipair/skill-web-spectrum",
+        "element": "sp-theme",
+        "pins": [
+          {
+            "library": "web",
+            "element": "section",
+            "pins": [
+              {
+                "library": "web",
+                "element": "section",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-top-nav",
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "properties": {
+                          "textContent": "Accueil",
+                          "href": "/645bc0e2e8c86bbd32bee42a/admin/digipair-list"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "properties": {
+                          "textContent": "Contact"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "properties": {
+                  "style": "width: 100%; max-width: 1080px;"
+                }
+              }
+            ],
+            "properties": {
+              "style": "display: flex; justify-content: center;"
+            }
+          }
+        ],
+        "properties": {
+          "color": "light",
+          "scale": "large"
+        }
+      }
+    ],
+    "styleHtml": "color-scheme:light;"
+  },
+  "pins": []
+}

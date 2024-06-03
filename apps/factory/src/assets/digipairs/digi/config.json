@@ -13,7 +13,8 @@
     "@digipair/skill-ollama": "latest",
     "@digipair/skill-data-management": "latest",
     "@digipair/skill-web": "latest",
-    "@digipair/skill-web-chatbot": "latest"
+    "@digipair/skill-web-chatbot": "latest",
+    "@digipair/skill-keycloak": "latest"
   },
   "variables": {},
   "privates": {}

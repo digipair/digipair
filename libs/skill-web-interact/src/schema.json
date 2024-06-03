@@ -5,7 +5,7 @@
     "summary": "Intéraction avec une page web",
     "description": "Cette compétence permet aux utilisateurs de communiquer avec une page HTML coté navigateur.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "📲"
   },
   "paths": {
     "/dispatchEvent": {

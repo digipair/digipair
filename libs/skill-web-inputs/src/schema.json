@@ -5,7 +5,7 @@
     "summary": "Saisie de données dans les boosts",
     "description": "Cette compétence permet de saisir des données dans les boosts.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "📥"
   },
   "paths": {
     "/digipair-input-dom-attribute": {

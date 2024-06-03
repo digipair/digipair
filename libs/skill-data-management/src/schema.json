@@ -5,7 +5,7 @@
     "summary": "Gestion des données",
     "description": "Cette compétence permet manipuler et transformer les données.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "📝"
   },
   "paths": {
     "/transform": {

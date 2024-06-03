@@ -5,7 +5,7 @@
     "summary": "Debug de page web",
     "description": "Cette compétence permet aux utilisateurs de déboguer des applications web, offrant des outils et des fonctionnalités pour identifier et résoudre les problèmes.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "🔧"
   },
   "paths": {
     "/console": {

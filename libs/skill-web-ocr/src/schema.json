@@ -5,7 +5,7 @@
     "summary": "Extraction de texte OCR",
     "description": "Cette compétence utilise la technologie OCR pour analyser les images et en extraire le texte, permettant ainsi une saisie automatique des données.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "📄"
   },
   "paths": {
     "/digipair-input-ocr-selector": {

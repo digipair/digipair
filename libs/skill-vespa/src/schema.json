@@ -5,7 +5,7 @@
     "summary": "Communication avec une base Vespa",
     "description": "Cette compétence offre des fonctionnalités pour interagir avec les données d'une base vectorielle Vespa.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "📘"
   },
   "paths": {
     "/find": {

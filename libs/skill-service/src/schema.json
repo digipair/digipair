@@ -5,7 +5,7 @@
     "summary": "Serveur HTTP",
     "description": "Cette compétence permet de gérer les réponses à des appels http.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "💻"
   },
   "paths": {},
   "components": {

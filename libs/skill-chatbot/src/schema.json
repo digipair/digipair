@@ -5,7 +5,7 @@
     "summary": "Communication avec le chatbot",
     "description": "La compétence permet de gérer la communication avec le chatbot.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "🤖"
   },
   "paths": {
     "/chatbot": {

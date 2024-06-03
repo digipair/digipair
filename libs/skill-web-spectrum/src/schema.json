@@ -5,7 +5,7 @@
     "summary": "Design System Spectrum",
     "description": "Cette compétence permet aux utilisateurs de créer des interfaces web en utilisant le design system Spectrum.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "🎨"
   },
   "paths": {
     "/sp-theme": {

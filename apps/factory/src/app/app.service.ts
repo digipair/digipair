@@ -15,6 +15,7 @@ config.set('LIBRARIES', {
   '@digipair/skill-service': require('@digipair/skill-service'),
   '@digipair/skill-dsp': require('@digipair/skill-dsp'),
   '@digipair/skill-data-management': require('@digipair/skill-data-management'),
+  '@digipair/skill-keycloak': require('@digipair/skill-keycloak'),
 });
 
 @Injectable()

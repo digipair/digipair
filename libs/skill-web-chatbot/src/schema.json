@@ -5,7 +5,7 @@
     "summary": "Affichage de chatbots",
     "description": "Intégration d'un chatbot interactif sur une page web pour améliorer l'engagement et la communication avec les utilisateurs.",
     "version": "0.1.0",
-    "x-icon": "🚀"
+    "x-icon": "🤖"
   },
   "paths": {
     "/digipair-chatbot-full": {

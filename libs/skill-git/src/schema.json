@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-git",
+    "summary": "Gestion d'un dépôt git",
+    "description": "Cette compétence permet de gérer un dépôt git.",
+    "version": "0.1.0",
+    "x-icon": "💾"
+  },
+  "paths": {},
+  "components": {},
+  "x-scene-blocks": {}
+}
