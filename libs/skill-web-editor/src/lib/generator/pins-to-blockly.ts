@@ -283,7 +283,7 @@ export function generateToolboxFromLibraries(libraries: any[], tags: string[]) {
       ...sortedLibraries
         .map(library => ({
           kind: 'category',
-          name: library.info['x-icon'] + ' ' + (library.info.summary ?? library.info.title),
+          name: (library.info.summary ?? library.info.title),
           contents: [
             ...(library.paths
               ? Object.entries(library.paths as { [x: string]: any })
