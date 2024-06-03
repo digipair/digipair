@@ -38,6 +38,53 @@
                         }
                       }
                     ]
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-action-button",
+                    "properties": {
+                      "textContent": "Test"
+                    },
+                    "events": {
+                      "click": [
+                        {
+                          "library": "@digipair/skill-keycloak",
+                          "element": "executeFactory",
+                          "properties": {
+                            "execute": [
+                              {
+                                "library": "@digipair/skill-ollama",
+                                "element": "basic",
+                                "properties": {
+                                  "prompt": "En tant qu'assistant, répondre à la question: bonjour, comment vas tu ?"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-action-button",
+                    "properties": {
+                      "textContent": "Se connecter"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-action-button",
+                    "properties": {
+                      "textContent": "se déconnecter"
+                    }
+                  },
+                  {
+                    "library": "web",
+                    "element": "span",
+                    "properties": {
+                      "textContent": "{{keycloak.isLogged}}"
+                    }
                   }
                 ],
                 "properties": {

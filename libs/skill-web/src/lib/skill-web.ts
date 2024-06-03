@@ -104,17 +104,6 @@ class WebService {
 
           return await result.json();
         },
-        requestUpdate: async (params, pinsSettingsList, context) => {
-          const { selector } = params;
-
-          const elements = document.querySelectorAll(selector);
-          for (let i = 0; i < elements.length; i++) {
-            const element = elements[i];
-            element.requestUpdate();
-          }
-
-          return null;
-        },
       };
       
       config.set('LIBRARIES', { '@digipair/skill-web': skillWeb, ...${JSON.stringify(libraries)} });

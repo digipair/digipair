@@ -26,6 +26,7 @@ export class AppService {
     body: any,
     params: string[],
     method: string,
+    headers: any,
   ): Promise<any> {
     let content: string;
 
@@ -50,6 +51,7 @@ export class AppService {
         method,
         body,
         params,
+        headers,
       },
     };
 

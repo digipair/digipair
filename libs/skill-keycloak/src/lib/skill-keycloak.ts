@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
+import * as jwt from 'jsonwebtoken';
 
 class KeycloakService {
   private filteredWebPinsSettings(item: any, path: string): any {
@@ -13,7 +14,7 @@ class KeycloakService {
       return item;
     }
 
-    if (item.library === '@digipair/skill-web' && item.element === 'executeFactory') {
+    if (item.library === '@digipair/skill-keycloak' && item.element === 'executeFactory') {
       return {
         library: item.library,
         element: item.element,
@@ -31,7 +32,7 @@ class KeycloakService {
     return result;
   }
 
-  private findFactoryPinsSettings(path: string, body: PinsSettings[]): PinsSettings[] {
+  private findFactoryPinsSettings(path: string, body: PinsSettings[]): PinsSettings {
     const pinsSettings = path.split('.').reduce(
       (acc: any, key: string) => {
         if (key.indexOf('[') !== -1) {
@@ -44,42 +45,33 @@ class KeycloakService {
       { body },
     );
 
-    return pinsSettings.properties.execute;
+    return pinsSettings;
+  }
+
+  private async decodedToken(url: string, realm: string, token: string) {
+    const response = await fetch(`${url}/realms/${realm}/protocol/openid-connect/certs`);
+    const infos = await response.json();
+    const publicKey = `-----BEGIN CERTIFICATE-----\n${
+      infos.keys.find(({ alg }: { alg: string; x5c: string }) => alg === 'RS256').x5c[0]
+    }\n-----END CERTIFICATE-----`;
+    const decodedtoken = jwt.verify(token, publicKey, { algorithms: ['RS256'] }) as any;
+
+    return decodedtoken;
   }
 
   private skillKeycloak = `(() => {
-    class DataManagementService {
-      set _keycloakPromise(promise: any) {
-        (window as any)['__DIGIPAIR_KEYCLOAK'] = promise;
-      }
-      get _keycloakPromise() {
-        return (window as any)['__DIGIPAIR_KEYCLOAK'];
-      }
-    
-      set _isLogged(isLogged: boolean) {
-        (window as any)['__DIGIPAIR_KEYCLOAK_IS_LOGGED'] = isLogged;
-      }
-      get _isLogged() {
-        return (window as any)['__DIGIPAIR_KEYCLOAK_IS_LOGGED'];
-      }
-    
-      private async authentification(): Promise<any> {
+    class KeycloakService {
+      async authentification() {
         const keycloak = await this._keycloakPromise;
     
-        if (this._isLogged) {
+        if (this.isLogged) {
           await keycloak.updateToken(60000);
         }
     
         return keycloak;
       }
-    
-      async isLogged(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<boolean> {
-        return this._isLogged;
-      }
-    
-      async initialize(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<void> {
-        const { url = context.variables.KEYCLOAK_URL, realm = context.variables.KEYCLOAK_REALM, clientId = context.variables.KEYCLOAK_CLIENTID } = params;
-    
+        
+      async initialize(url, realm, clientId) {
         this._keycloakPromise = (async () => {
           const keycloak = new Keycloak({
             url,
@@ -87,9 +79,9 @@ class KeycloakService {
             clientId,
           });
     
-          this._isLogged = false;
+          this.isLogged = false;
           try {
-            this._isLogged = await keycloak.init({
+            this.isLogged = await keycloak.init({
               onLoad: 'check-sso',
               silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
             });
@@ -103,39 +95,24 @@ class KeycloakService {
         await this.authentification();
       }
     
-      async token(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<string> {
+      async token() {
         const authentification = await this.authentification();
         return authentification.token;
       }
     
-      async logout(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<void> {
+      async logout(_params, _pinsSettingsList, _context) {
         const authentification = await this.authentification();
         authentification.logout();
       }
     
-      async login(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<void> {
+      async login(_params, _pinsSettingsList, _context) {
         const authentification = await this.authentification();
         await authentification.login();
       }
     }
-    
-    return {
-      isLogged: (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-        new DataManagementService().isLogged(params, pinsSettingsList, context)
-    
-      initialize: (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-        new DataManagementService().initialize(params, pinsSettingsList, context)
-    
-      token: (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-        new DataManagementService().token(params, pinsSettingsList, context)
-    
-      logout: (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-        new DataManagementService().logout(params, pinsSettingsList, context)
-    
-      login: (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-        new DataManagementService().login(params, pinsSettingsList, context)
-    }
-  )()`;
+    const keycloakService = new KeycloakService();
+    return keycloakService;
+  })()`;
 
   async page(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
@@ -145,6 +122,9 @@ class KeycloakService {
       styleHtml = '',
       styleBody = '',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
+      url = context.variables.KEYCLOAK_URL,
+      realm = context.variables.KEYCLOAK_REALM,
+      clientId = context.variables.KEYCLOAK_CLIENTID,
       libraries = {},
       factoryInitialize = [],
       browserInitialize = [],
@@ -159,7 +139,35 @@ class KeycloakService {
       context.request.method === 'POST' &&
       context.request.body?.type === 'DIGIPAIR_EXECUTE_FACTORY'
     ) {
-      const pinsSettingsList = this.findFactoryPinsSettings(context.request.body.params.path, body);
+      const pinsSettings = this.findFactoryPinsSettings(context.request.body.params.path, body);
+      const pinsSettingsList = pinsSettings.properties?.['execute'] || [];
+      const token =
+        /^Bearer /g.test(context.request.headers.authorization) &&
+        context.request.headers.authorization?.replace(/^Bearer /g, '');
+
+      if (token) {
+        context.keycloak = {
+          isLogged: true,
+          decodedToken: await this.decodedToken(
+            url,
+            realm,
+            context.request.headers.authorization.replace(/^Bearer /, ''),
+          ),
+        };
+      } else {
+        context.keycloak = {
+          isLogged: false,
+        };
+      }
+
+      if (
+        (typeof pinsSettings.properties?.['secured'] === 'undefined' ||
+          pinsSettings.properties?.['secured']) &&
+        !context.keycloak.decodedToken
+      ) {
+        throw new Error('Unauthorized');
+      }
+
       return await executePinsList(pinsSettingsList, {
         ...context.request.body.context,
         ...context,
@@ -182,13 +190,16 @@ class KeycloakService {
   </head>
   <body style="${styleBody}">
     <script type="module">
+      import '${url}/js/keycloak.js';
       import { config, executePinsList, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
+      const keycloakService = ${this.skillKeycloak};
       const skillWeb = {
         executeFactory: async (params, pinsSettingsList, context) => {
           const result = await fetch(window.location, {
             headers: {
               'content-type': 'application/json',
+              'authorization': keycloakService.isLogged ? 'Bearer ' + await keycloakService.token() : undefined,
             },
             body: JSON.stringify({ type: 'DIGIPAIR_EXECUTE_FACTORY', params, pinsSettingsList, context }),
             method: 'POST',
@@ -196,44 +207,36 @@ class KeycloakService {
 
           return await result.json();
         },
-        requestUpdate: async (params, pinsSettingsList, context) => {
-          const { selector } = params;
 
-          const elements = document.querySelectorAll(selector);
-          for (let i = 0; i < elements.length; i++) {
-            const element = elements[i];
-            element.requestUpdate();
-          }
-
-          return null;
-        },
-      };
-
-      const skillKeycloak = ${this.skillKeycloak};
+        logout: (params, pinsSettingsList, context) =>
+          keycloakService.logout(),
       
-      config.set('LIBRARIES', { '@digipair/skill-web': skillWeb,  '@digipair/skill-keycloak': skillKeycloak, ...${JSON.stringify(
+        login: (params, pinsSettingsList, context) =>
+          keycloakService.login(),
+      };
+      
+      config.set('LIBRARIES', { '@digipair/skill-keycloak': skillWeb, ...${JSON.stringify(
         libraries,
       )} });
       config.set('BASE_URL', '${baseUrl}');
+
+      // Keycloak initialization
+      await keycloakService.initialize( 
+        ${JSON.stringify(url)}, 
+        ${JSON.stringify(realm)}, 
+        ${JSON.stringify(clientId)});
      
       const context = {
         variables: ${JSON.stringify(context.variables || {})},
         request: ${JSON.stringify(context.request || {})},
+        keycloak: { isLogged: keycloakService.isLogged },
       };
 
-      // Keycloak initialization
-      await skillKeycloak.initialize({ 
-        url: ${JSON.stringify(params.url)}, 
-        realm: ${JSON.stringify(params.realm)}, 
-        clientId: ${JSON.stringify(params.clientId)} }, [], context);
-  
-      if (window['__DIGIPAIR_KEYCLOAK_IS_LOGGED']) {
+      if (keycloakService.isLogged) {
         await executePinsList(${JSON.stringify(logged)}, context);
       } else {
         await executePinsList(${JSON.stringify(unlogged)}, context);
       }
-
-      context.keycloak = { isLogged: window['__DIGIPAIR_KEYCLOAK_IS_LOGGED'] };
 
       // Pins initialization
       await executePinsList(${JSON.stringify(browserInitialize)}, context);

@@ -14,8 +14,14 @@
     "@digipair/skill-data-management": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest",
-    "@digipair/skill-keycloak": "latest"
+    "@digipair/skill-keycloak": "latest",
+    "@digipair/skill-web-interact": "latest",
+    "@digipair/skill-web-spectrum": "latest"
   },
-  "variables": {},
+  "variables": {
+    "KEYCLOAK_URL": "https://sso.digipair.ai",
+    "KEYCLOAK_REALM": "master",
+    "KEYCLOAK_CLIENTID": "digipair-editor"
+  },
   "privates": {}
 }

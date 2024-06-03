@@ -29,49 +29,10 @@
           }
         ]
       }
-    },
-    "/requestUpdate": {
-      "post": {
-        "summary": "Mettre à jour les composants web",
-        "description": "Mettre à jour un composant web",
-        "tags": ["web"],
-        "metadata": [],
-        "parameters": [
-          {
-            "name": "selector",
-            "summary": "Sélecteur CSS",
-            "required": true,
-            "description": "Sélecteur CSS permettant de sélectionner les composants à mettre à jour",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
     }
   },
   "components": {
-    "schemas": {
-      "dataAttribute": {
-        "tags": ["service"],
-        "summary": "Paramètre",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "summary": "Nom"
-          },
-          "value": {
-            "summary": "Valeur",
-            "type": "array",
-            "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
-            }
-          }
-        },
-        "required": ["name", "value"]
-      }
-    }
+    "schemas": {}
   },
   "x-scene-blocks": {
     "/page": {

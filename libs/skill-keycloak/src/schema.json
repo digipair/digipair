@@ -26,52 +26,40 @@
                 "$ref": "https://www.pinser.world/schemas/pinsSettings"
               }
             }
+          },
+          {
+            "name": "secured",
+            "summary": "Sécurisé",
+            "required": false,
+            "description": "Sécurise l'exécution via un token Keycloak",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ]
       }
     },
-    "/requestUpdate": {
+    "/login": {
       "post": {
-        "summary": "Mettre à jour les composants web",
-        "description": "Mettre à jour un composant web",
+        "summary": "Identification de l'utilisateur",
+        "description": "Identification de l'utilisateur sur le site internet via le serveur Keycloak",
         "tags": ["web"],
         "metadata": [],
-        "parameters": [
-          {
-            "name": "selector",
-            "summary": "Sélecteur CSS",
-            "required": true,
-            "description": "Sélecteur CSS permettant de sélectionner les composants à mettre à jour",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
+        "parameters": []
+      }
+    },
+    "/logout": {
+      "post": {
+        "summary": "Désidentification de l'utilisateur",
+        "description": "Désidentification de l'utilisateur sur le site internet via le serveur Keycloak",
+        "tags": ["web"],
+        "metadata": [],
+        "parameters": []
       }
     }
   },
   "components": {
-    "schemas": {
-      "dataAttribute": {
-        "tags": ["service"],
-        "summary": "Paramètre",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "summary": "Nom"
-          },
-          "value": {
-            "summary": "Valeur",
-            "type": "array",
-            "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
-            }
-          }
-        },
-        "required": ["name", "value"]
-      }
-    }
+    "schemas": {}
   },
   "x-scene-blocks": {
     "/page": {
@@ -129,6 +117,33 @@
           }
         },
         {
+          "name": "url",
+          "summary": "Adresse du Keycloak",
+          "required": false,
+          "description": "Adresse du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "realm",
+          "summary": "Realm",
+          "required": false,
+          "description": "Realm du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "clientId",
+          "summary": "Client ID",
+          "required": false,
+          "description": "Client ID du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
           "name": "factoryInitialize",
           "summary": "Lors de la l'initialisation coté factory",
           "required": false,
@@ -157,6 +172,30 @@
           "summary": "Lorsque la page est chargée",
           "required": false,
           "description": "Action déclenchée lorsque la page est chargée coté navigateur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "unlogged",
+          "summary": "Si l'utilisateur n'est pas identifié",
+          "required": false,
+          "description": "Action déclenchée lorsque la page est chargée coté navigateur si l'utilisateur n'est pas identifié",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "logged",
+          "summary": "Si l'utilisateur est identifié",
+          "required": false,
+          "description": "Action déclenchée lorsque la page est chargée coté navigateur si l'utilisateur est identifié",
           "schema": {
             "type": "array",
             "items": {
