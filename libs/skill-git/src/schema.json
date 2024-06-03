@@ -7,7 +7,212 @@
     "version": "0.1.0",
     "x-icon": "💾"
   },
-  "paths": {},
+  "paths": {
+    "/commit": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Commit GIT",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Path du dépot",
+            "required": false,
+            "description": "Path du dépot GIT",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selector",
+            "summary": "Sélecteur de fichier",
+            "required": false,
+            "description": "Sélecteur des fichiers à commiter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": false,
+            "description": "Message du commit",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/push": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Push GIT",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Path du dépot",
+            "required": false,
+            "description": "Path du dépot GIT",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options envoyées lors du push",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/show": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Show GIT",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Path du dépot",
+            "required": false,
+            "description": "Path du dépot GIT",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options envoyées lors du git show",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/log": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Log GIT",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Path du dépot",
+            "required": false,
+            "description": "Path du dépot GIT",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": false,
+            "description": "Fichier concerné par le log",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format de sortie",
+            "required": false,
+            "description": "Format de sortie décrit au pretty format",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "summary": "Commit de départ",
+            "required": false,
+            "description": "Identifiant du commit de départ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "summary": "Commit dse fin",
+            "required": false,
+            "description": "Identifiant du commit de fin",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mailMap",
+            "summary": "Mapping de mail",
+            "required": false,
+            "description": "Active l'utilisation du mapping des emails dans les valeurs de retour pour le courrier électronique et le nom à partir du format par défaut",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "maxCount",
+            "summary": "Nombre de résultats maximum",
+            "required": false,
+            "description": "Limite le nombre de résultats à retourner",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "multiline",
+            "summary": "Multiligne",
+            "required": false,
+            "description": "Active les valeurs multilignes dans le format par défaut",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "splitter",
+            "summary": "Splitter",
+            "required": false,
+            "description": "Séquence de caractères à utiliser comme délimiteur entre les champs dans le journal, doit être une valeur qui n'apparaît dans aucun message de journal (par défaut à ò)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "strictDate",
+            "summary": "Date stricte",
+            "required": false,
+            "description": "bascule la valeur de la date d'auteur d'un format similaire à ISO 8601 à un format ISO 8601 strict",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "symmetric",
+            "summary": "Date stricte",
+            "required": false,
+            "description": "Active le symmetric revision range plutôt que le two-dot range",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
   "components": {},
   "x-scene-blocks": {}
 }

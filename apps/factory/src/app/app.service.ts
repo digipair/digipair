@@ -16,6 +16,7 @@ config.set('LIBRARIES', {
   '@digipair/skill-dsp': require('@digipair/skill-dsp'),
   '@digipair/skill-data-management': require('@digipair/skill-data-management'),
   '@digipair/skill-keycloak': require('@digipair/skill-keycloak'),
+  '@digipair/skill-git': require('@digipair/skill-git'),
 });
 
 @Injectable()
@@ -29,15 +30,16 @@ export class AppService {
     headers: any,
   ): Promise<any> {
     let content: string;
+    const path = process.env.DIGIPAIRS_PATH || './dist/apps/factory/assets/digipairs';
 
     content = await promises.readFile(
-      `./dist/apps/factory/assets/digipairs/${digipair}/config.json`,
+      `${path}/${digipair}/config.json`,
       'utf8',
     );
     const config = JSON.parse(content);
 
     content = await promises.readFile(
-      `./dist/apps/factory/assets/digipairs/${digipair}/${reasoning}.json`,
+      `${path}/${digipair}/${reasoning}.json`,
       'utf8',
     );
     const settings = JSON.parse(content);
