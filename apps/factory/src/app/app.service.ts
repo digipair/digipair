@@ -32,16 +32,10 @@ export class AppService {
     let content: string;
     const path = process.env.DIGIPAIRS_PATH || './dist/apps/factory/assets/digipairs';
 
-    content = await promises.readFile(
-      `${path}/${digipair}/config.json`,
-      'utf8',
-    );
+    content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);
 
-    content = await promises.readFile(
-      `${path}/${digipair}/${reasoning}.json`,
-      'utf8',
-    );
+    content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
     const settings = JSON.parse(content);
 
     const context = {

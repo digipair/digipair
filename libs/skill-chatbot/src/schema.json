@@ -28,7 +28,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
               }
             }
           },
@@ -55,27 +55,27 @@
             }
           },
           {
-            "name": "modelName",
+            "name": "model",
+            "summary": "Modèle LLM",
             "required": false,
-            "description": "Nom du model LLM à utiliser pour le résumé système",
+            "description": "Modèle LLM à charger",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           },
           {
-            "name": "temperature",
+            "name": "embeddings",
+            "summary": "Modèle d'embeddings",
             "required": false,
-            "description": "Temperature du model LLM",
+            "description": "Modèle d'embeddings à charger",
             "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "baseUrlOllama",
-            "required": false,
-            "description": "Url du serveur Ollama",
-            "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           },
           {
@@ -146,6 +146,18 @@
         "summary": "Rechercher dans la conversation",
         "description": "Rechercher des données dans l'historique de conversation",
         "parameters": [
+          {
+            "name": "embeddings",
+            "summary": "Modèle d'embeddings",
+            "required": false,
+            "description": "Modèle d'embeddings à charger",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
           {
             "name": "limit",
             "required": false,
@@ -344,7 +356,7 @@
           "inputs": {
             "type": "array",
             "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         },
@@ -380,7 +392,7 @@
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         }

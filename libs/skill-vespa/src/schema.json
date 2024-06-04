@@ -70,6 +70,18 @@
         "description": "Recherche sémantique dans une collection",
         "parameters": [
           {
+            "name": "embeddings",
+            "summary": "Modèle d'embeddings",
+            "required": false,
+            "description": "Modèle d'embeddings",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
             "name": "baseUrl",
             "summary": "Adresse du serveur",
             "required": false,
@@ -197,6 +209,18 @@
         "summary": "Ajouter des documents",
         "description": "Ajouter des documents",
         "parameters": [
+          {
+            "name": "embeddings",
+            "summary": "Modèle d'embeddings",
+            "required": false,
+            "description": "Modèle d'embeddings",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
           {
             "name": "baseUrl",
             "summary": "Adresse du serveur",

@@ -23,7 +23,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
               }
             }
           }
@@ -49,7 +49,7 @@
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         },
@@ -97,7 +97,7 @@
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         },
@@ -109,7 +109,7 @@
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         },
@@ -121,7 +121,7 @@
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         }

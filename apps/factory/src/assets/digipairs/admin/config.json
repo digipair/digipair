@@ -25,5 +25,18 @@
     "@digipair/skill-web-interact": "latest"
   },
   "variables": {},
-  "privates": {}
+  "privates": {
+    "MODEL_LLM": [
+      {
+        "library": "@digipair/skill-openai",
+        "element": "model"
+      }
+    ],
+    "MODEL_EMBEDDINGS": [
+      {
+        "library": "@digipair/skill-openai",
+        "element": "embeddings"
+      }
+    ]
+  }
 }

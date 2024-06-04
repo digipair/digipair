@@ -142,7 +142,7 @@ class WebService {
     const { execute } = params;
     const BASE_URL = 'https://cdn.jsdelivr.net/npm';
     const js = `
-      import { executePins } from '${BASE_URL}/@digipair/engine/index.esm.js';
+      import { executePinsList } from '${BASE_URL}/@digipair/engine/index.esm.js';
 
       const context = {
         variables: ${JSON.stringify(context.variables || {})},
@@ -152,7 +152,7 @@ class WebService {
         libraries: {},
       };
       
-      executePins(${JSON.stringify(execute)}, context, options);
+      await executePinsList(${JSON.stringify(execute)}, context, options);
     `;
 
     return js;

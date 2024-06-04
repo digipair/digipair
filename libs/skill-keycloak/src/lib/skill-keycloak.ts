@@ -262,7 +262,43 @@ class KeycloakService {
 
     return html;
   }
+
+  async service(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const {
+      execute,
+      secured = true,
+      url = context.variables.KEYCLOAK_URL,
+      realm = context.variables.KEYCLOAK_REALM,
+    } = params;
+    const token =
+      /^Bearer /g.test(context.request.headers.authorization) &&
+      context.request.headers.authorization?.replace(/^Bearer /g, '');
+
+    if (token) {
+      context.keycloak = {
+        isLogged: true,
+        decodedToken: await this.decodedToken(
+          url,
+          realm,
+          context.request.headers.authorization.replace(/^Bearer /, ''),
+        ),
+      };
+    } else {
+      context.keycloak = {
+        isLogged: false,
+      };
+    }
+
+    if (secured && !context.keycloak.decodedToken) {
+      throw new Error('Unauthorized');
+    }
+
+    return await executePinsList(execute, context);
+  }
 }
 
 export const page = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new KeycloakService().page(params, pinsSettingsList, context);
+
+export const service = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new KeycloakService().service(params, pinsSettingsList, context);

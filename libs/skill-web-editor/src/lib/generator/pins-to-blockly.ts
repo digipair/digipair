@@ -93,8 +93,7 @@ function getPinsBlockDefinition(
     });
     if (
       requiredParamInputs[i].schema?.type === 'array' &&
-      (requiredParamInputs[i].schema?.items.$ref ===
-        'https://www.pinser.world/schemas/pinsSettings' ||
+      (requiredParamInputs[i].schema?.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
         requiredParamInputs[i].schema?.items.$ref?.includes('#/components/schemas/'))
     ) {
       blockDefinition['message1'] +=
@@ -188,7 +187,7 @@ function getComponentBlockDefinition(
 
       if (
         parameter.schema?.type === 'array' &&
-        (parameter.schema?.items.$ref === 'https://www.pinser.world/schemas/pinsSettings' ||
+        (parameter.schema?.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
           parameter.schema?.items.$ref.includes('#/components/schemas/'))
       ) {
         blockDefinition['message1'] +=
@@ -283,7 +282,7 @@ export function generateToolboxFromLibraries(libraries: any[], tags: string[]) {
       ...sortedLibraries
         .map(library => ({
           kind: 'category',
-          name: (library.info.summary ?? library.info.title),
+          name: library.info.summary ?? library.info.title,
           contents: [
             ...(library.paths
               ? Object.entries(library.paths as { [x: string]: any })
@@ -641,7 +640,7 @@ function generateMutator(
 
             if (
               parameter.schema?.type === 'array' &&
-              (parameter.schema?.items.$ref === 'https://www.pinser.world/schemas/pinsSettings' ||
+              (parameter.schema?.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
                 parameter.schema?.items.$ref?.includes('#/components/schemas/'))
             ) {
               this.appendDummyInput(input.id + '__INPUT').appendField(input.name);
@@ -691,7 +690,7 @@ function getSceneBlockDefinition(
       schema: {
         type: 'array',
         items: {
-          $ref: 'https://www.pinser.world/schemas/pinsSettings',
+          $ref: 'https://schemas.digipair.ai/pinsSettings',
         },
       },
     };
@@ -721,7 +720,7 @@ function getSceneBlockDefinition(
 
     if (
       parameter.schema?.type === 'array' &&
-      (parameter.schema.items.$ref === 'https://www.pinser.world/schemas/pinsSettings' ||
+      (parameter.schema.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
         parameter.schema.items.$ref?.includes('#/components/schemas/'))
     ) {
       blockDefinition['message1'] +=
@@ -763,7 +762,7 @@ function getSceneBlockDefinition(
 
     if (
       parameter.schema?.type === 'array' &&
-      (parameter.schema.items.$ref === 'https://www.pinser.world/schemas/pinsSettings' ||
+      (parameter.schema.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
         parameter.schema.items.$ref?.includes('#/components/schemas/'))
     ) {
       blockDefinition['message3'] +=

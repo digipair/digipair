@@ -8,25 +8,16 @@
     "x-icon": "🚀"
   },
   "paths": {
-    "/basic": {
+    "/model": {
       "post": {
         "tags": ["service"],
-        "summary": "Générer",
-        "description": "Génération de texte via un model LLM",
+        "summary": "Modèle LLM Ollama",
+        "description": "Exécution d'un modèle LLM depuis un serveur Ollama",
         "parameters": [
           {
-            "name": "prompt",
-            "summary": "Prompt",
-            "required": true,
-            "description": "Prompt à exécuter via le model LLM",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "modelName",
+            "name": "model",
             "summary": "Nom du model",
-            "required": false,
+            "required": true,
             "description": "Nom du model LLM à charger",
             "schema": {
               "type": "string"
@@ -49,31 +40,22 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "schema",
-            "summary": "Schema",
-            "required": false,
-            "description": "Schema JSON des données à extraire",
-            "schema": {
-              "type": "object"
-            }
           }
         ],
         "x-events": []
       }
     },
-    "/vision": {
+    "/embeddings": {
       "post": {
         "tags": ["service"],
-        "summary": "Voir",
-        "description": "Utiliser un model LLM qui sait lire des images et du texte en entrée",
+        "summary": "Modèle d'embeddings Ollama",
+        "description": "Exécution d'un modèle d'enbeddings depuis un serveur Ollama",
         "parameters": [
           {
-            "name": "modelName",
-            "summary": "Modèle",
-            "required": false,
-            "description": "Nom du modèle LLM à utiliser",
+            "name": "model",
+            "summary": "Nom du model",
+            "required": true,
+            "description": "Nom du model d'enbeddings à charger",
             "schema": {
               "type": "string"
             }
@@ -82,7 +64,7 @@
             "name": "temperature",
             "summary": "Temperature",
             "required": false,
-            "description": "Temperature du model LLM",
+            "description": "Temperature du model d'emdeddings",
             "schema": {
               "type": "number"
             }
@@ -94,151 +76,6 @@
             "description": "Adresse du serveur Ollama",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "prompt",
-            "summary": "Prompt",
-            "required": true,
-            "description": "Prompt à exécuter sur le modèle LLM",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "image",
-            "summary": "Image",
-            "required": true,
-            "description": "Image en base 64",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "schema",
-            "summary": "Schema JSON",
-            "required": false,
-            "description": "Schema JSON des données à extraire",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/summarization": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Résumer un texte",
-        "description": "Résumer un texte via un model LLM",
-        "parameters": [
-          {
-            "name": "modelName",
-            "summary": "Nom du modèle",
-            "required": false,
-            "description": "model name",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "temperature",
-            "summary": "Température du modèle",
-            "required": false,
-            "description": "Température du modèle LLM",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "baseUrl",
-            "summary": "Adresse du serveur",
-            "required": false,
-            "description": "Adresse du serveur Ollama",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "chunkSize",
-            "summary": "Taille des morceaux de texte",
-            "required": false,
-            "description": "Taille des morceaux de texte",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Algorithme",
-            "required": false,
-            "description": "Algorithme à utiliser pour résumer le texte",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "prompt",
-            "summary": "Texte",
-            "required": true,
-            "description": "Texte à résumer",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "combineMapPrompt",
-            "summary": "",
-            "required": false,
-            "description": "combineMapPrompt",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "combinePrompt",
-            "summary": "",
-            "required": false,
-            "description": "combinePrompt",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "returnIntermediateSteps",
-            "summary": "",
-            "required": false,
-            "description": "returnIntermediateSteps",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "refinePrompt",
-            "summary": "",
-            "required": false,
-            "description": "refinePrompt",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "questionPrompt",
-            "summary": "",
-            "required": false,
-            "description": "questionPrompt",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "verbose",
-            "summary": "Debug",
-            "required": false,
-            "description": "Ajoute des logs de debug",
-            "schema": {
-              "type": "boolean"
             }
           }
         ],

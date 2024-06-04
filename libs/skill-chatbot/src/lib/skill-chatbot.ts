@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList, preparePinsSettings } from '@digipair/engine';
-import { Ollama } from '@langchain/community/llms/ollama';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { RunnableSequence } from '@langchain/core/runnables';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { v4 } from 'uuid';
 
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
-const OLLAMA_SERVER = process.env['OLLAMA_SERVER'] ?? 'http://localhost:11434';
 
 class ChatbotService {
-  private embeddingsModel: any = null;
-
   private async searchDocuments(
     baseUrl: string,
     session: string,
@@ -126,25 +122,17 @@ class ChatbotService {
     ];
   }
 
-  private async embedding(text: string) {
-    if (!this.embeddingsModel) {
-      const { HuggingFaceTransformersEmbeddings } = await eval(
-        `import('@langchain/community/embeddings/hf_transformers')`,
-      );
-      this.embeddingsModel = new HuggingFaceTransformersEmbeddings({
-        modelName: 'Xenova/multilingual-e5-large',
-      });
-    }
-
-    return await this.embeddingsModel.embedQuery(text);
-  }
-
-  private async pushDocuments(baseUrl: string, session: string, documents: any[]) {
+  private async pushDocuments(
+    modelEmbeddings: any,
+    baseUrl: string,
+    session: string,
+    documents: any[],
+  ) {
     const results = [];
 
     for (const document of documents) {
       const content_embedding =
-        document.role === 'system' ? undefined : await this.embedding(document.content);
+        document.role === 'system' ? undefined : await modelEmbeddings.embedQuery(document.content);
 
       const response = await fetch(
         `${baseUrl}/document/v1/Digipair_default/history/docid/${document.uuid}`,
@@ -185,11 +173,11 @@ class ChatbotService {
   }
 
   private async updateSummary(
+    model: any,
     baseUrl: string,
     prompt: string,
     session: string,
     messages: any[],
-    options: { modelName: string; temperature: number; baseUrl: string },
   ): Promise<void> {
     const [summary] = await this.searchDocuments(
       baseUrl,
@@ -199,17 +187,12 @@ class ChatbotService {
         query: 'role:"system"',
       },
     );
-    const model = new Ollama({
-      model: options.modelName,
-      temperature: options.temperature,
-      baseUrl: options.baseUrl,
-    });
     const history = messages
       .sort((a, b) => a - b)
       .map(({ role, content }) => `${role}: ${content}`)
       .join('\n');
     const date = messages.reduce((acc, { date }) => Math.max(acc, date), 0);
-    const chain = RunnableSequence.from([PromptTemplate.fromTemplate(prompt), model as any]);
+    const chain = RunnableSequence.from([PromptTemplate.fromTemplate(prompt), model]);
     const content = await chain.invoke({ summary: summary.content, history });
     const document = {
       session,
@@ -224,23 +207,25 @@ class ChatbotService {
   }
 
   private async updateHistory(
+    model: any,
+    modelEmbeddings: any,
     baseUrl: string,
     promptSummary: string,
     session: string,
     memory: any[],
-    options: { modelName: string; temperature: number; baseUrl: string },
   ): Promise<void> {
     // add new messages
     const documents = await this.prepareHistory(memory);
-    await this.pushDocuments(baseUrl, session, documents);
+    await this.pushDocuments(modelEmbeddings, baseUrl, session, documents);
 
     // update summary
-    await this.updateSummary(baseUrl, promptSummary, session, memory, options);
+    await this.updateSummary(model, baseUrl, promptSummary, session, memory);
   }
 
   async history(params: any, _pins: PinsSettings[], context: any) {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
     const {
+      embeddings = context.privates.MODEL_EMBEDDINGS,
       baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       maxHistory = 100,
       system = `You are a useful assistant, capable of explaining concepts in an easy-to-understand manner. If you're not sure of an answer, you can say "I don't know" or "I'm not sure."`,
@@ -269,7 +254,8 @@ class ChatbotService {
       ];
 
       const documents = await this.prepareHistory(history);
-      await this.pushDocuments(baseUrl, session, documents);
+      const modelEmbeddings = await executePinsList(embeddings, context);
+      await this.pushDocuments(modelEmbeddings, baseUrl, session, documents);
     }
 
     return messages;
@@ -307,6 +293,7 @@ class ChatbotService {
   async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
     const {
+      embeddings = context.privates.MODEL_EMBEDDINGS,
       baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       limit = 100,
       orderby = '',
@@ -324,7 +311,8 @@ class ChatbotService {
     }
 
     const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
-    const queryEmbedding = await this.embedding(query);
+    const modelEmbeddings = await executePinsList(embeddings, context);
+    const queryEmbedding = await modelEmbeddings.embedQuery(query);
     const results = await this.searchParentDocuments(
       baseUrl,
       session,
@@ -345,9 +333,8 @@ class ChatbotService {
   async chatbot(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const session = `${context.request.digipair}-${context.request.body.userId}`;
     const {
-      modelName = 'mistral',
-      temperature = 0,
-      baseUrlOllama = context.private?.OLLAMA_SERVER ?? OLLAMA_SERVER,
+      embeddings = context.privates.MODEL_EMBEDDINGS,
+      model = context.privates.MODEL_LLM,
       baseUrlVespa = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       promptSummary = `
 Summary of conversation history:
@@ -410,11 +397,16 @@ Summarize the conversation history in a short, clear and concise text, taking in
     }));
 
     // Asynchronous history update
-    this.updateHistory(baseUrlVespa, promptSummary, session, memory, {
-      modelName,
-      temperature,
-      baseUrl: baseUrlOllama,
-    });
+    const modelEmbeddings = await executePinsList(embeddings, context);
+    const modelInstance = await executePinsList(model, context);
+    this.updateHistory(
+      modelInstance,
+      modelEmbeddings,
+      baseUrlVespa,
+      promptSummary,
+      session,
+      memory,
+    );
 
     const filteredBoosts = [];
     let i = boosts.length - 1;

@@ -20,7 +20,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "https://www.pinser.world/schemas/pinsSettings"
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
               }
             }
           },
@@ -57,6 +57,198 @@
         ],
         "x-events": []
       }
+    },
+    "/basic": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Générer",
+        "description": "Génération de texte via un model LLM",
+        "parameters": [
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": true,
+            "description": "Prompt à exécuter via le model LLM",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model",
+            "summary": "Modèle LLM",
+            "required": false,
+            "description": "Modèle LLM à charger",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "schema",
+            "summary": "Schema",
+            "required": false,
+            "description": "Schema JSON des données à extraire",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/vision": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Voir",
+        "description": "Utiliser un model LLM qui sait lire des images et du texte en entrée",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Modèle Vision",
+            "required": false,
+            "description": "Modèle Vision à charger",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": true,
+            "description": "Prompt à exécuter sur le modèle LLM",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "image",
+            "summary": "Image",
+            "required": true,
+            "description": "Image en base 64",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "schema",
+            "summary": "Schema JSON",
+            "required": false,
+            "description": "Schema JSON des données à extraire",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/summarization": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Résumer un texte",
+        "description": "Résumer un texte via un model LLM",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Modèle LLM",
+            "required": false,
+            "description": "Modèle LLM à charger",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "chunkSize",
+            "summary": "Taille des morceaux de texte",
+            "required": false,
+            "description": "Taille des morceaux de texte",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Algorithme",
+            "required": false,
+            "description": "Algorithme à utiliser pour résumer le texte",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prompt",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte à résumer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "combineMapPrompt",
+            "summary": "",
+            "required": false,
+            "description": "combineMapPrompt",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "combinePrompt",
+            "summary": "",
+            "required": false,
+            "description": "combinePrompt",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "returnIntermediateSteps",
+            "summary": "",
+            "required": false,
+            "description": "returnIntermediateSteps",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "refinePrompt",
+            "summary": "",
+            "required": false,
+            "description": "refinePrompt",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "questionPrompt",
+            "summary": "",
+            "required": false,
+            "description": "questionPrompt",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "verbose",
+            "summary": "Debug",
+            "required": false,
+            "description": "Ajoute des logs de debug",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
@@ -74,7 +266,7 @@
             "summary": "Valeur",
             "type": "array",
             "items": {
-              "$ref": "https://www.pinser.world/schemas/pinsSettings"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         },

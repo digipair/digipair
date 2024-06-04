@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { v4 } from 'uuid';
-import { PinsSettings } from '@digipair/engine';
+import { PinsSettings, executePinsList } from '@digipair/engine';
 
 const VESPA_SERVER = process.env['VESPA_SERVER'] ?? 'http://localhost:8080';
 
 class VespaService {
-  private embeddingsModel: any = null;
-
   private async searchDocuments(
     baseUrl: string,
     collection: string,
@@ -118,24 +116,16 @@ class VespaService {
     return result;
   }
 
-  private async embedding(text: string) {
-    if (this.embeddingsModel === null) {
-      const { HuggingFaceTransformersEmbeddings } = await eval(
-        `import('@langchain/community/embeddings/hf_transformers')`,
-      );
-      this.embeddingsModel = new HuggingFaceTransformersEmbeddings({
-        modelName: 'Xenova/multilingual-e5-large',
-      });
-    }
-
-    return await this.embeddingsModel.embedQuery(text);
-  }
-
-  private async pushDocuments(baseUrl: string, collection: string, documents: any[]) {
+  private async pushDocuments(
+    modelEmbeddings: any,
+    baseUrl: string,
+    collection: string,
+    documents: any[],
+  ) {
     const results = [];
 
     for (const document of documents) {
-      const content_embedding = await this.embedding(document.content);
+      const content_embedding = await modelEmbeddings.embedQuery(document.content);
 
       const response = await fetch(
         `${baseUrl}/document/v1/Digipair_default/${collection}/docid/${document.uuid}`,
@@ -185,6 +175,7 @@ class VespaService {
 
   async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
+      embeddings = context.privates.MODEL_EMBEDDINGS,
       baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
       collection = 'knowledge',
       limit = 100,
@@ -203,7 +194,8 @@ class VespaService {
     }
 
     const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
-    const queryEmbedding = await this.embedding(query);
+    const modelEmbeddings = await executePinsList(embeddings, context);
+    const queryEmbedding = await modelEmbeddings.embedQuery(query);
     const results = await this.searchParentDocuments(
       baseUrl,
       collection,
@@ -236,13 +228,15 @@ class VespaService {
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
-      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      embeddings = context.privates.MODEL_EMBEDDINGS,
+      baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
       collection = 'knowledge',
       documents,
     } = params;
+    const modelEmbeddings = await executePinsList(embeddings, context);
     const results = await this.prepareDocuments(documents);
 
-    return await this.pushDocuments(baseUrl, collection, results);
+    return await this.pushDocuments(modelEmbeddings, baseUrl, collection, results);
   }
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
