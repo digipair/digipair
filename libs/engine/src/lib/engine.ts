@@ -17,7 +17,7 @@ const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_
 
 export const config = {
   set: (key: CONFIG_KEY, value: any) => {
-    _config[key] = value;
+    _config[key] = key === 'LIBRARIES' && _config[key] ? { ..._config[key], ...value } : value;
   },
 };
 

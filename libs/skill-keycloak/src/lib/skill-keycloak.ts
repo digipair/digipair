@@ -32,7 +32,7 @@ class KeycloakService {
     return result;
   }
 
-  private findFactoryPinsSettings(path: string, body: PinsSettings[]): PinsSettings {
+  private findFactoryPinsSettings(path: string, item: PinsSettings[]): PinsSettings {
     const pinsSettings = path.split('.').reduce(
       (acc: any, key: string) => {
         if (key.indexOf('[') !== -1) {
@@ -42,7 +42,7 @@ class KeycloakService {
 
         return acc[key];
       },
-      { body },
+      { [path.split('[')[0]]: item },
     );
 
     return pinsSettings;
@@ -57,6 +57,14 @@ class KeycloakService {
     const decodedtoken = jwt.verify(token, publicKey, { algorithms: ['RS256'] }) as any;
 
     return decodedtoken;
+  }
+
+  private prepareBrowserPinsSettings(name: string, pinsSettings: PinsSettings[]): PinsSettings[] {
+    const preparedPinsSettings = pinsSettings.map((item: PinsSettings, index: number) =>
+      this.filteredWebPinsSettings(item, `${name}[${index}]`),
+    ) as PinsSettings[];
+
+    return preparedPinsSettings;
   }
 
   private skillKeycloak = `(() => {
@@ -139,7 +147,11 @@ class KeycloakService {
       context.request.method === 'POST' &&
       context.request.body?.type === 'DIGIPAIR_EXECUTE_FACTORY'
     ) {
-      const pinsSettings = this.findFactoryPinsSettings(context.request.body.params.path, body);
+      const param = context.request.body.params.path.split('[')[0];
+      const pinsSettings = this.findFactoryPinsSettings(
+        context.request.body.params.path,
+        params[param],
+      );
       const pinsSettingsList = pinsSettings.properties?.['execute'] || [];
       const token =
         /^Bearer /g.test(context.request.headers.authorization) &&
@@ -175,10 +187,6 @@ class KeycloakService {
     }
 
     await executePinsList(factoryInitialize, context);
-
-    const preparedBody = body.map((item: PinsSettings, index: number) =>
-      this.filteredWebPinsSettings(item, `body[${index}]`),
-    ) as PinsSettings[];
 
     const html = `
 <!DOCTYPE html>
@@ -233,18 +241,24 @@ class KeycloakService {
       };
 
       if (keycloakService.isLogged) {
-        await executePinsList(${JSON.stringify(logged)}, context);
+        await executePinsList(${JSON.stringify(
+          this.prepareBrowserPinsSettings('logged', logged),
+        )}, context);
       } else {
-        await executePinsList(${JSON.stringify(unlogged)}, context);
+        await executePinsList(${JSON.stringify(
+          this.prepareBrowserPinsSettings('unlogged', unlogged),
+        )}, context);
       }
 
       // Pins initialization
-      await executePinsList(${JSON.stringify(browserInitialize)}, context);
+      await executePinsList(${JSON.stringify(
+        this.prepareBrowserPinsSettings('browserInitialize', browserInitialize),
+      )}, context);
       
       const options = {
         libraries: {},
       };
-      const pinsList = ${JSON.stringify(preparedBody)};
+      const pinsList = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
       for (let i = 0; i < pinsList.length; i++) {
         const item = pinsList[i];
         await generateElementFromPins(item, document.body, { ...context, data: ${JSON.stringify(
@@ -253,7 +267,9 @@ class KeycloakService {
       }
 
       setTimeout(async () => {
-        await executePinsList(${JSON.stringify(browserLoad)}, context);
+        await executePinsList(${JSON.stringify(
+          this.prepareBrowserPinsSettings('browserLoad', browserLoad),
+        )}, context);
       }, 1);
     </script>
   </body>

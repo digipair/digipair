@@ -31,7 +31,7 @@ class WebService {
     return result;
   }
 
-  private findFactoryPinsSettings(path: string, body: PinsSettings[]): PinsSettings[] {
+  private findFactoryPinsSettings(path: string, item: PinsSettings[]): PinsSettings[] {
     const pinsSettings = path.split('.').reduce(
       (acc: any, key: string) => {
         if (key.indexOf('[') !== -1) {
@@ -41,10 +41,18 @@ class WebService {
 
         return acc[key];
       },
-      { body },
+      { [path.split('[')[0]]: item },
     );
 
     return pinsSettings.properties.execute;
+  }
+
+  private prepareBrowserPinsSettings(name: string, pinsSettings: PinsSettings[]): PinsSettings[] {
+    const preparedPinsSettings = pinsSettings.map((item: PinsSettings, index: number) =>
+      this.filteredWebPinsSettings(item, `${name}[${index}]`),
+    ) as PinsSettings[];
+
+    return preparedPinsSettings;
   }
 
   async page(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -67,7 +75,11 @@ class WebService {
       context.request.method === 'POST' &&
       context.request.body?.type === 'DIGIPAIR_EXECUTE_FACTORY'
     ) {
-      const pinsSettingsList = this.findFactoryPinsSettings(context.request.body.params.path, body);
+      const param = context.request.body.params.path.split('[')[0];
+      const pinsSettingsList = this.findFactoryPinsSettings(
+        context.request.body.params.path,
+        params[param],
+      );
       return await executePinsList(pinsSettingsList, {
         ...context.request.body.context,
         ...context,
@@ -75,10 +87,6 @@ class WebService {
     }
 
     await executePinsList(factoryInitialize, context);
-
-    const preparedBody = body.map((item: PinsSettings, index: number) =>
-      this.filteredWebPinsSettings(item, `body[${index}]`),
-    ) as PinsSettings[];
 
     const html = `
 <!DOCTYPE html>
@@ -117,9 +125,11 @@ class WebService {
         libraries: {},
       };
 
-      await executePinsList(${JSON.stringify(browserInitialize)}, context);
+      await executePinsList(${JSON.stringify(
+        this.prepareBrowserPinsSettings('browserInitialize', browserInitialize),
+      )}, context);
       
-      const pinsList = ${JSON.stringify(preparedBody)};
+      const pinsList = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
       for (let i = 0; i < pinsList.length; i++) {
         const item = pinsList[i];
         await generateElementFromPins(item, document.body, { ...context, data: ${JSON.stringify(
@@ -128,7 +138,9 @@ class WebService {
       }
 
       setTimeout(async () => {
-        await executePinsList(${JSON.stringify(browserLoad)}, context);
+        await executePinsList(${JSON.stringify(
+          this.prepareBrowserPinsSettings('browserLoad', browserLoad),
+        )}, context);
       }, 1);
     </script>
   </body>
