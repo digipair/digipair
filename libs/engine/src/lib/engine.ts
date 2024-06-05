@@ -45,7 +45,7 @@ export const applyTemplate = (value: any, context: any) => {
   return result;
 };
 
-export const executePins = async (
+const executePins = async (
   settingsOrigin: PinsSettings,
   context: any = {},
   options: { libraries: { [key: string]: string } } = { libraries: {} },
@@ -107,8 +107,11 @@ export const executePinsList = async (
   for (let i = 0; i < pinsSettingsList.length; i++) {
     const settings = pinsSettingsList[i];
 
-    if (typeof settings.conditions?.if !== 'undefined' && !settings.conditions.if) {
-      continue;
+    if (typeof settings.conditions?.if !== 'undefined') {
+      const preparedSettings = await preparePinsSettings(settings, context);
+      if (!(preparedSettings.conditions as any).if) {
+        continue;
+      }
     }
 
     previous = await executePins(

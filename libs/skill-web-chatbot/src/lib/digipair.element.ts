@@ -8,7 +8,7 @@ import { ChatElement } from './chat.element';
 import { styles } from './digipair.data';
 import getCssSelector from './tools/css-selector';
 import { _config } from './config';
-import { executePins, executePinsList } from '@digipair/engine';
+import { executePinsList } from '@digipair/engine';
 
 let API_URL: string;
 let COMMON_EXPERIENCE: string;
@@ -284,7 +284,7 @@ export class ChatbotElement extends LitElement {
             }),
       };
 
-      const detail = await executePins(pins);
+      const detail = await executePinsList([pins]);
       this.pushAssistantMessage(detail.assistant);
 
       if (detail.command && detail.command.length > 0) {

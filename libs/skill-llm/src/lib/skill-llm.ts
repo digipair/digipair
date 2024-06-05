@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings, executePins, executePinsList } from '@digipair/engine';
+import { PinsSettings, executePinsList } from '@digipair/engine';
 import { RunnableSequence } from '@langchain/core/runnables';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { loadSummarizationChain } from 'langchain/chains';
@@ -60,7 +60,7 @@ class LLMService {
     const { execute, input = {} }: { execute: PinsSettings[]; input: any } = params;
     const chain = RunnableSequence.from([
       this.objectToInput(input),
-      ...(await Promise.all(execute.map(pinsSettings => executePins(pinsSettings, context)))),
+      ...(await Promise.all(execute.map(pinsSettings => executePinsList([pinsSettings], context)))),
     ] as any);
 
     const result = await chain.invoke({});

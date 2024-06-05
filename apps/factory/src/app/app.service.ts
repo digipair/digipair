@@ -1,7 +1,6 @@
-import { config, executePins } from '@digipair/engine';
+import { config, executePinsList } from '@digipair/engine';
 import { Injectable } from '@nestjs/common';
 import { promises } from 'fs';
-import { join } from 'path';
 
 config.set('LIBRARIES', {
   '@digipair/skill-chatbot': require('@digipair/skill-chatbot'),
@@ -55,7 +54,7 @@ export class AppService {
       libraries: config.libraries,
     };
 
-    const result = executePins(settings, context, options);
+    const result = executePinsList([settings], context, options);
 
     return result;
   }
