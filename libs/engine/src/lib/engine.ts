@@ -9,10 +9,11 @@ Handlebars.registerHelper('JSONstringify', function (value: any) {
 });
 
 type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES';
-const _config = {
+const globalInstance: any = typeof window === 'undefined' ? global : window;
+const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_CONFIG__ ?? {
   LIBRARIES: {} as { [key: string]: string },
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
-};
+});
 
 export const config = {
   set: (key: CONFIG_KEY, value: any) => {
