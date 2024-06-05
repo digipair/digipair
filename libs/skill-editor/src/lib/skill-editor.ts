@@ -3,8 +3,13 @@ import { promises } from 'fs';
 
 class EditorService {
   async reasonings(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIRS_PATH'] ?? './dist/apps/factory/assets/digipairs';
-    const { digipair } = params;
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+      digipair,
+    } = params;
+
     const reasonings = (await promises.readdir(`${path}/${digipair}`))
       .filter(
         (file: string) => file.endsWith('.json') && !file.startsWith('.') && file !== 'config.json',
@@ -15,8 +20,13 @@ class EditorService {
   }
 
   async reasoning(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIRS_PATH'] ?? './dist/apps/factory/assets/digipairs';
-    const { digipair, reasoning } = params;
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+      digipair,
+      reasoning,
+    } = params;
 
     const text = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
     const content = JSON.parse(text);
@@ -29,25 +39,41 @@ class EditorService {
   }
 
   async setReasoning(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIRS_PATH'] ?? './dist/apps/factory/assets/digipairs';
-    const { digipair, reasoning, value } = params;
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+      digipair,
+      reasoning,
+      value,
+    } = params;
 
     await promises.writeFile(`${path}/${digipair}/${reasoning}.json`, JSON.stringify(value));
 
     return {};
   }
 
-  async digipairs(_params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIRS_PATH'] ?? './dist/apps/factory/assets/digipairs';
+  async digipairs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+    } = params;
+
     const digipairs = (await promises.readdir(path)).filter(
       (file: string) => !file.startsWith('.'),
     );
+
     return digipairs;
   }
 
   async digipair(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIRS_PATH'] ?? './dist/apps/factory/assets/digipairs';
-    const { digipair } = params;
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+      digipair,
+    } = params;
 
     const text = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(text);
@@ -59,8 +85,13 @@ class EditorService {
   }
 
   async setDigipair(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIRS_PATH'] ?? './dist/apps/factory/assets/digipairs';
-    const { digipair, value } = params;
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+      digipair,
+      value,
+    } = params;
 
     await promises.writeFile(`${path}/${digipair}/config.json`, JSON.stringify(value));
 

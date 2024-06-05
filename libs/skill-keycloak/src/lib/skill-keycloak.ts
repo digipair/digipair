@@ -122,9 +122,9 @@ class KeycloakService {
       styleHtml = '',
       styleBody = '',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
-      url = context.variables.KEYCLOAK_URL,
-      realm = context.variables.KEYCLOAK_REALM,
-      clientId = context.variables.KEYCLOAK_CLIENTID,
+      url = context.privates.KEYCLOAK_URL,
+      realm = context.privates.KEYCLOAK_REALM,
+      clientId = context.privates.KEYCLOAK_CLIENTID,
       libraries = {},
       factoryInitialize = [],
       browserInitialize = [],
@@ -267,8 +267,8 @@ class KeycloakService {
     const {
       execute,
       secured = true,
-      url = context.variables.KEYCLOAK_URL,
-      realm = context.variables.KEYCLOAK_REALM,
+      url = context.privates.KEYCLOAK_URL,
+      realm = context.privates.KEYCLOAK_REALM,
     } = params;
     const token =
       /^Bearer /g.test(context.request.headers.authorization) &&

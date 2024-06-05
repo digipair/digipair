@@ -30,7 +30,7 @@ export class AppService {
     headers: any,
   ): Promise<any> {
     let content: string;
-    const path = process.env.DIGIPAIRS_PATH || './dist/apps/factory/assets/digipairs';
+    const path = process.env.DIGIPAIR_AGENTS_PATH || './dist/apps/factory/assets/digipairs';
 
     content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);

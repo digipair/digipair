@@ -146,7 +146,7 @@ class VespaService {
 
   async find(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
-      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
       collection = 'knowledge',
       limit = 100,
       orderby = '',
@@ -176,7 +176,7 @@ class VespaService {
   async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       embeddings = context.privates.MODEL_EMBEDDINGS,
-      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
       collection = 'knowledge',
       limit = 100,
       orderby = '',
@@ -241,7 +241,7 @@ class VespaService {
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
-      baseUrl = context.private?.VESPA_SERVER ?? VESPA_SERVER,
+      baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
       collection = 'knowledge',
       selection,
     } = params;
