@@ -108,6 +108,9 @@ export const reasonings = (params: any, pinsSettingsList: PinsSettings[], contex
 export const reasoning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().reasoning(params, pinsSettingsList, context);
 
+export const setDigipair = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().setDigipair(params, pinsSettingsList, context);
+
 export const digipairs = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().digipairs(params, pinsSettingsList, context);
 

@@ -15,6 +15,15 @@
         "descriptions": "Liste les raisonnements d'un digipair",
         "parameters": [
           {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemain d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
@@ -32,6 +41,15 @@
         "tags": ["service"],
         "summary": "Informations d'un raisonnement",
         "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemain d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "digipair",
             "summary": "Digipair",
@@ -59,6 +77,15 @@
         "tags": ["service"],
         "summary": "Enregistrement d'un raisonnement",
         "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemain d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "digipair",
             "summary": "Digipair",
@@ -95,7 +122,17 @@
         "tags": ["service"],
         "summary": "Liste les digipairs",
         "descriptions": "Liste des digipairs disponibles",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemain d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "x-events": []
       }
     },
@@ -105,6 +142,15 @@
         "summary": "Informations d'un digipair",
         "descriptions": "Informations d'un digipair",
         "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemain d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "digipair",
             "summary": "Digipair",
@@ -123,6 +169,15 @@
         "tags": ["service"],
         "summary": "Enregistrement d'un digipair",
         "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemain d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "digipair",
             "summary": "Digipair",
