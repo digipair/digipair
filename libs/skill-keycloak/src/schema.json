@@ -56,53 +56,6 @@
         "metadata": [],
         "parameters": []
       }
-    },
-    "/service": {
-      "summary": "Web service",
-      "description": "Réponse à un appel http.",
-      "tags": ["service"],
-      "metadata": [],
-      "parameters": [
-        {
-          "name": "execute",
-          "summary": "Exécute",
-          "required": true,
-          "description": "Commandes à exécuter",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        {
-          "name": "secured",
-          "summary": "Sécurisé",
-          "required": false,
-          "description": "Accès autorisé seulement si un token Keycloak est fourni",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "url",
-          "summary": "Adresse du Keycloak",
-          "required": false,
-          "description": "Adresse du serveur Keycloak",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "realm",
-          "summary": "Realm",
-          "required": false,
-          "description": "Realm du serveur Keycloak",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
     }
   },
   "components": {
@@ -248,6 +201,53 @@
             "items": {
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
+          }
+        }
+      ]
+    },
+    "/service": {
+      "summary": "Web service",
+      "description": "Réponse à un appel http.",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécute",
+          "required": true,
+          "description": "Commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "secured",
+          "summary": "Sécurisé",
+          "required": false,
+          "description": "Accès autorisé seulement si un token Keycloak est fourni",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "summary": "Adresse du Keycloak",
+          "required": false,
+          "description": "Adresse du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "realm",
+          "summary": "Realm",
+          "required": false,
+          "description": "Realm du serveur Keycloak",
+          "schema": {
+            "type": "string"
           }
         }
       ]
