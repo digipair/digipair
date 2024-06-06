@@ -7,9 +7,9 @@ class DebugService {
     const message = `[${type}] ${label}`;
 
     if (value) {
-      window.console.log(message, value);
+      global.console.log(message, value);
     } else {
-      window.console.log(message);
+      global.console.log(message);
     }
 
     return value;

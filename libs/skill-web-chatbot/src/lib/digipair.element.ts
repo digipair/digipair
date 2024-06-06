@@ -284,7 +284,7 @@ export class ChatbotElement extends LitElement {
             }),
       };
 
-      const detail = await executePinsList([pins]);
+      const detail = await executePinsList([pins], {});
       this.pushAssistantMessage(detail.assistant);
 
       if (detail.command && detail.command.length > 0) {

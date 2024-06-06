@@ -13,10 +13,12 @@
     "@digipair/skill-common": "latest",
     "@digipair/skill-llm": "latest",
     "@digipair/skill-ollama": "latest",
+    "@digipair/skill-openai": "latest",
     "@digipair/skill-data-management": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-editor": "latest",
+    "@digipair/skill-web-jsoneditor": "latest",
     "@digipair/skill-web-factory": "latest",
     "@digipair/skill-web-debug": "latest",
     "@digipair/skill-web-inputs": "latest",
@@ -35,7 +37,8 @@
     "MODEL_EMBEDDINGS": [
       {
         "library": "@digipair/skill-openai",
-        "element": "embeddings"
+        "element": "embeddings",
+        "property": { "modelName": "text-embedding-3-small" }
       }
     ]
   }

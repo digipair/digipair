@@ -1,0 +1,30 @@
+{
+  "name": "skill-web-jsoneditor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-web-jsoneditor/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-web-jsoneditor",
+        "main": "libs/skill-web-jsoneditor/src/index.ts",
+        "tsConfig": "libs/skill-web-jsoneditor/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-web-jsoneditor/src/index.d.ts",
+          "libs/skill-web-jsoneditor/src/schema.json"
+        ],
+        "rollupConfig": ["libs/skill-web-jsoneditor/rollup.build.cjs"],
+        "project": "libs/skill-web-jsoneditor/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-web-jsoneditor {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

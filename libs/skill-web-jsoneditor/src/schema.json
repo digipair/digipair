@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-jsoneditor",
+    "summary": "Editeur JSON",
+    "description": "Cette compétence permet d'afficher un éditeur JSON dans une page web. L'utilisateur peut modifier le contenu JSON et récupérer le contenu modifié.",
+    "version": "0.1.0",
+    "x-icon": "📐"
+  },
+  "paths": {
+    "/digipair-jsoneditor": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Editeur JSON",
+        "description": "Editeur JSON",
+        "parameters": [
+          {
+            "name": "json",
+            "summary": "Contenu JSON",
+            "required": false,
+            "description": "Contenu json à afficher dans l'éditeur",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "contentStyle",
+            "summary": "Style personnalisé du conteneur",
+            "required": false,
+            "description": "Style personnalisé du conteneur",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "change",
+            "summary": "Lors d'un changement",
+            "required": false,
+            "description": "Action déclenchée lors d'un changement dans l'éditeur",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

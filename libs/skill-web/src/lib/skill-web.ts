@@ -160,11 +160,8 @@ class WebService {
         variables: ${JSON.stringify(context.variables || {})},
         request: ${JSON.stringify(context.request || {})},
       };
-      const options = {
-        libraries: {},
-      };
       
-      await executePinsList(${JSON.stringify(execute)}, context, options);
+      await executePinsList(${JSON.stringify(execute)}, context);
     `;
 
     return js;

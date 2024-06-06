@@ -1,0 +1,37 @@
+{
+  "name": "Effacer l'historique'",
+  "description": "Effacer l'historique'.",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": {
+    "boosts": [
+      {
+        "name": "Supprimer l'historique",
+        "prompt": false,
+        "required": false,
+        "text": "Etes-vous sûr de vouloir supprimer l'historique ?",
+        "inputs": []
+      }
+    ]
+  },
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-vespa",
+        "element": "remove",
+        "properties": {
+          "selection": "true",
+          "collection": "history"
+        }
+      },
+      {
+        "library": "@digipair/skill-chatbot",
+        "element": "chatbot",
+        "properties": {
+          "assistant": "L'historique a été supprimée.",
+          "logs": "EVALUATE:previous"
+        }
+      }
+    ]
+  }
+}

@@ -5,7 +5,7 @@
     "summary": "Affichage de l'éditeur de raisonnements",
     "description": "Edition de raisonnements IA.",
     "version": "0.1.0",
-    "x-icon": "📐"
+    "x-icon": "🏗"
   },
   "paths": {
     "/digipair-editor": {
