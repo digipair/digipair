@@ -43,6 +43,35 @@
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-top-nav-item",
                 "properties": {
+                  "textContent": "",
+                  "style": "margin-inline-start: auto;"
+                }
+              },
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-top-nav-item",
+                "properties": {
+                  "textContent": "Editeur"
+                },
+                "events": {
+                  "click": [
+                    {
+                      "library": "@digipair/skill-web-interact",
+                      "element": "goTo",
+                      "properties": {
+                        "url": "/admin/reasoning-editor/{{variables.digipair.id}}/{{variables.reasoning.id}}"
+                      }
+                    }
+                  ]
+                },
+                "conditions": {
+                  "if": "EVALUATE:request.params[2] != \"config\""
+                }
+              },
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-top-nav-item",
+                "properties": {
                   "textContent": "Enregistrer"
                 },
                 "events": {
@@ -71,6 +100,13 @@
                           }
                         ]
                       }
+                    },
+                    {
+                      "library": "@digipair/skill-web-notification",
+                      "element": "information",
+                      "properties": {
+                        "message": "Enregistrement effectué"
+                      }
                     }
                   ]
                 }
@@ -81,20 +117,8 @@
             "library": "@digipair/skill-web-jsoneditor",
             "element": "digipair-jsoneditor",
             "properties": {
-              "json": "EVALUATE:variables.json",
+              "json": "EVALUATE:variables.reasoning",
               "contentStyle": "position: fixed; top: 69px; right: 0; bottom: 0; left: 0;"
-            },
-            "events": {
-              "change": [
-                {
-                  "library": "@digipair/skill-web-debug",
-                  "element": "log",
-                  "properties": {
-                    "label": "onChange",
-                    "value": "EVALUATE:event"
-                  }
-                }
-              ]
             }
           }
         ],
@@ -117,7 +141,23 @@
         "library": "@digipair/skill-data-management",
         "element": "setVariable",
         "properties": {
-          "name": "json",
+          "name": "digipair",
+          "execute": [
+            {
+              "library": "@digipair/skill-editor",
+              "element": "digipair",
+              "properties": {
+                "digipair": "{{request.params.[0]}}"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "setVariable",
+        "properties": {
+          "name": "reasoning",
           "execute": [
             {
               "library": "@digipair/skill-editor",

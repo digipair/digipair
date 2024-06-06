@@ -1,4 +1,6 @@
 {
+  "id": "reasoning-list",
+  "digipair": "admin",
   "name": "Liste des raisonnements",
   "description": "Liste des raisonnements",
   "library": "@digipair/skill-web",
@@ -35,6 +37,15 @@
                         "element": "sp-top-nav-item",
                         "properties": {
                           "textContent": "{{variables.digipair.name}}"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "properties": {
+                          "textContent": "Configurer",
+                          "href": "/admin/json-editor/{{variables.digipair.id}}/config",
+                          "style": "margin-inline-start: auto;"
                         }
                       }
                     ]
@@ -184,6 +195,7 @@
         }
       }
     ],
+    "styleHtml": "color-scheme:dark;",
     "factoryInitialize": [
       {
         "library": "@digipair/skill-data-management",
@@ -236,8 +248,7 @@
           ]
         }
       }
-    ],
-    "styleHtml": "color-scheme:dark;"
+    ]
   },
   "pins": []
 }

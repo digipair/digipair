@@ -1,12 +1,10 @@
 import { LitElement, TemplateResult, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
-import * as ToastifyJs from 'toastify-js';
+import { customElement, property } from 'lit/decorators.js';
 import { PinsSettings } from '@digipair/engine';
 import { blocksLegacy } from './blocks/json';
 import { initializeWorkspaceFromPinsAndLibraries } from './generator/json-to-blockly';
 import { schemas as schemasWeb } from './schemas/web.schema';
 
-const Toastify = (ToastifyJs as any).default;
 const BASE_URL = 'https://cdn.jsdelivr.net/npm';
 const BLOCKLY_VERSION = '10.4.3';
 declare const Blockly: any;
@@ -32,13 +30,15 @@ export class EditorElement extends LitElement {
   @property()
   contentStyle = 'position: fixed; top: 0; right: 0; bottom: 0; left: 0;';
 
-  @state()
-  private canSave = false;
+  @property()
+  canSave = false;
+
+  @property()
+  codeInWorkspace: any;
 
   private workspace: any;
   private blocks: any;
   private toolbox: any;
-  private codeInWorkspace: any;
   private librariesToLoad: any;
 
   override createRenderRoot() {
@@ -51,12 +51,6 @@ export class EditorElement extends LitElement {
   }
 
   private async initialize() {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `${BASE_URL}/toastify-js/src/toastify.min.css`;
-    link.type = 'text/css';
-    document.head.appendChild(link);
-
     let script: any, promise: any;
 
     script = document.createElement('script');
@@ -140,30 +134,6 @@ export class EditorElement extends LitElement {
       return true;
     } catch (e) {
       return false;
-    }
-  }
-
-  private async saveScene(): Promise<void> {
-    if (this.canSave == true) {
-      this.dispatchEvent(
-        new CustomEvent('save', {
-          detail: {
-            digipair: this.digipair.id,
-            reasoning: (this.reasoning as any).id,
-            value: this.codeInWorkspace,
-          },
-        }),
-      );
-    } else {
-      Toastify({
-        text: 'Your scene cannot be saved, invalid format',
-        position: 'center',
-        style: {
-          'font-family': '"Poppins", sans-serif',
-          background: 'linear-gradient(90deg, rgba(121,9,9,1) 0%, rgba(203,62,62,1) 100%)',
-        },
-        duration: 3000,
-      }).showToast();
     }
   }
 
@@ -302,28 +272,8 @@ export class EditorElement extends LitElement {
       }
     </style>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <div>
       <div style=${this.contentStyle} data-scene></div>
-      <div 
-        style ="position: absolute;
-          top: 24px;
-          right: 24px;
-          border-radius: 100%;
-          color: #52DFDB;
-          width: 56px;
-          height: 56px;
-          line-height: 56px;
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-          transition: box-shadow 0.3s ease-in-out;
-          text-align: center;
-          font-weight: 500;
-          background-color:${this.canSave ? '#242E3B' : '#5F5F5F'} ;
-          cursor: pointer;"
-        class="material-icons"
-        aria-hidden="true"
-        @click=${() => this.saveScene()}>save</div>
-      </div>
     </div>
    `;
   }

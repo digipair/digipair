@@ -16,6 +16,7 @@ config.set('LIBRARIES', {
   '@digipair/skill-data-management': require('@digipair/skill-data-management'),
   '@digipair/skill-keycloak': require('@digipair/skill-keycloak'),
   '@digipair/skill-git': require('@digipair/skill-git'),
+  '@digipair/skill-debug': require('@digipair/skill-debug'),
 });
 
 @Injectable()

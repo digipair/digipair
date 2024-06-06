@@ -36,6 +36,68 @@
                 "properties": {
                   "textContent": "{{variables.reasoning.name}}"
                 }
+              },
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-top-nav-item",
+                "properties": {
+                  "textContent": "JSON",
+                  "style": "margin-inline-start: auto;"
+                },
+                "events": {
+                  "click": [
+                    {
+                      "library": "@digipair/skill-web-interact",
+                      "element": "goTo",
+                      "properties": {
+                        "url": "/admin/json-editor/{{variables.digipair.id}}/{{variables.reasoning.id}}"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-top-nav-item",
+                "properties": {
+                  "textContent": "Enregistrer"
+                },
+                "events": {
+                  "click": [
+                    {
+                      "library": "@digipair/skill-web-interact",
+                      "element": "getAttribute",
+                      "properties": {
+                        "selector": "digipair-editor",
+                        "attribute": "codeInWorkspace"
+                      }
+                    },
+                    {
+                      "library": "@digipair/skill-web",
+                      "element": "executeFactory",
+                      "properties": {
+                        "execute": [
+                          {
+                            "library": "@digipair/skill-editor",
+                            "element": "setReasoning",
+                            "properties": {
+                              "digipair": "{{request.params.[0]}}",
+                              "reasoning": "{{request.params.[1]}}",
+                              "value": "EVALUATE:parent.previous"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "library": "@digipair/skill-web-notification",
+                      "element": "information",
+                      "properties": {
+                        "message": "Enregistrement effectué"
+                      }
+                    }
+                  ]
+                }
               }
             ]
           },

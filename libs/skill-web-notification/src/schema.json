@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-notification",
+    "summary": "Affichage de notification",
+    "description": "Affichage de notifications sur une page web",
+    "version": "0.1.0",
+    "x-icon": "🔔"
+  },
+  "paths": {
+    "/information": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche d'une information",
+        "description": "Affiche une notification d'information",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/error": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche d'une erreur",
+        "description": "Affiche une notification d'erreur",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

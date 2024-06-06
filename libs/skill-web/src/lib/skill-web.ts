@@ -81,8 +81,8 @@ class WebService {
         params[param],
       );
       return await executePinsList(pinsSettingsList, {
-        ...context.request.body.context,
         ...context,
+        ...context.request.body.context,
       });
     }
 

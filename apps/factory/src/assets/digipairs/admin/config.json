@@ -15,6 +15,7 @@
     "@digipair/skill-ollama": "latest",
     "@digipair/skill-openai": "latest",
     "@digipair/skill-data-management": "latest",
+    "@digipair/skill-debug": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-editor": "latest",
@@ -24,7 +25,8 @@
     "@digipair/skill-web-inputs": "latest",
     "@digipair/skill-web-pdf": "latest",
     "@digipair/skill-web-spectrum": "latest",
-    "@digipair/skill-web-interact": "latest"
+    "@digipair/skill-web-interact": "latest",
+    "@digipair/skill-web-notification": "latest"
   },
   "variables": {},
   "privates": {
