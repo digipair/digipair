@@ -110,34 +110,7 @@
               "menuBackgroundColor": "#121212",
               "contentStyle": "position: fixed; top: 69px; right: 0; bottom: 0; left: 0;"
             },
-            "events": {
-              "save": [
-                {
-                  "library": "@digipair/skill-web",
-                  "element": "executeFactory",
-                  "properties": {
-                    "execute": [
-                      {
-                        "library": "@digipair/skill-editor",
-                        "element": "setReasoning",
-                        "properties": {
-                          "digipair": "{{event.digipair}}",
-                          "reasoning": "{{event.reasoning}}",
-                          "value": "EVALUATE:event.value"
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "library": "@digipair/skill-web-editor",
-                  "element": "information",
-                  "properties": {
-                    "message": "Successfully saved !"
-                  }
-                }
-              ]
-            }
+            "events": {}
           }
         ],
         "properties": {

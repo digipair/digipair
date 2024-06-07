@@ -60,20 +60,7 @@
             }
           }
         ],
-        "x-events": [
-          {
-            "name": "save",
-            "summary": "Lors de la sauvegarde",
-            "required": false,
-            "description": "Action déclenchée lors de la sauvegarde du raisonnement",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          }
-        ]
+        "x-events": []
       }
     },
     "/information": {

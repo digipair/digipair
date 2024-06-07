@@ -32,9 +32,9 @@ class EditorService {
     const content = JSON.parse(text);
 
     return {
-      id: reasoning,
-      digipair,
       ...content,
+      digipair,
+      id: reasoning,
     };
   }
 
@@ -79,8 +79,8 @@ class EditorService {
     const config = JSON.parse(text);
 
     return {
-      id: digipair,
       ...config,
+      id: digipair,
     };
   }
 

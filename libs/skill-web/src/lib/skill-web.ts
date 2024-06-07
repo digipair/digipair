@@ -55,6 +55,27 @@ class WebService {
     return preparedPinsSettings;
   }
 
+  private mergeConttext(context: any, newContext: any) {
+    const output = { ...context };
+
+    for (const key in newContext) {
+      if (Object.prototype.hasOwnProperty.call(newContext, key)) {
+        if (
+          typeof newContext[key] === 'object' &&
+          newContext[key] !== null &&
+          !Array.isArray(newContext[key]) &&
+          Object.prototype.hasOwnProperty.call(context, key)
+        ) {
+          output[key] = { ...context[key], ...newContext[key] };
+        } else if (typeof newContext[key] !== 'undefined') {
+          output[key] = newContext[key];
+        }
+      }
+    }
+
+    return output;
+  }
+
   async page(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       body,
@@ -80,10 +101,12 @@ class WebService {
         context.request.body.params.path,
         params[param],
       );
-      return await executePinsList(pinsSettingsList, {
-        ...context,
-        ...context.request.body.context,
-      });
+      return JSON.stringify(
+        await executePinsList(
+          pinsSettingsList,
+          this.mergeConttext(context.request.body.context, context),
+        ),
+      );
     }
 
     await executePinsList(factoryInitialize, context);
