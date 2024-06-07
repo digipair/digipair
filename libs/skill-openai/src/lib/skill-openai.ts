@@ -40,12 +40,14 @@ class OpenAIService {
 
   async embeddings(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      modelName = 'text-embedding-3-large',
+      modelName = 'text-embedding-3-small',
+      dimensions = 1024,
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
     } = params;
     const modelInstance = new OpenAIEmbeddings({
       modelName,
+      dimensions,
       configuration: { baseURL, apiKey },
     });
 
