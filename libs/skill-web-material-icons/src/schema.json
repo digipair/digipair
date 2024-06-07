@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-material-icons",
+    "summary": "Affichage d'icones material",
+    "description": "Affichage des icones material.",
+    "version": "0.1.0",
+    "x-icon": "🎨"
+  },
+  "paths": {
+    "/digipair-material-icons-icon": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Icone material",
+        "description": "Icone Google Material",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "iconStyle",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Style personnalisé de l'icone",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "required": false,
+            "description": "Emplacement de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -62,44 +62,6 @@
         ],
         "x-events": []
       }
-    },
-    "/information": {
-      "post": {
-        "tags": ["web"],
-        "summary": "Affiche des information",
-        "description": "Affiche des informations sur l'editeur de raisonnements",
-        "parameters": [
-          {
-            "name": "message",
-            "summary": "Message",
-            "required": true,
-            "description": "Message à afficher",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/error": {
-      "post": {
-        "tags": ["web"],
-        "summary": "Affiche une erreurs",
-        "description": "Affiche une erreur sur l'editeur de raisonnements",
-        "parameters": [
-          {
-            "name": "message",
-            "summary": "Message",
-            "required": true,
-            "description": "Message à afficher",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
     }
   },
   "components": {

@@ -39,6 +39,7 @@
       "@digipair/skill-web-jsoneditor": ["libs/skill-web-jsoneditor/src/index.ts"],
       "@digipair/skill-web-keycloak": ["libs/skill-web-keycloak/src/index.ts"],
       "@digipair/skill-web-logic": ["libs/skill-web-logic/src/index.ts"],
+      "@digipair/skill-web-material-icons": ["libs/skill-web-material-icons/src/index.ts"],
       "@digipair/skill-web-notification": ["libs/skill-web-notification/src/index.ts"],
       "@digipair/skill-web-ocr": ["libs/skill-web-ocr/src/index.ts"],
       "@digipair/skill-web-pdf": ["libs/skill-web-pdf/src/index.ts"],
