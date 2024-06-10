@@ -1,32 +1,43 @@
-import { PinsSettings } from '@digipair/engine';
+import { PinsSettings, executePinsList } from '@digipair/engine';
 
-const LLM_SERVER = process.env['LLM_SERVER'] ?? 'http://localhost:11434';
+const OLLAMA_SERVER = process.env['OLLAMA_SERVER'] ?? 'http://localhost:11434';
 
 class DspService {
-  async generate(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+  async model(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { AI } = await eval(`import('llmclient')`);
     const {
+      apiKey = 'none',
       modelName = 'mistral',
       temperature = 0,
-      keepAlive = '1440m',
-      baseUrl = LLM_SERVER,
+      keepAlive = 0,
+      baseUrl = OLLAMA_SERVER,
       debug = false,
-      signature,
-      input,
     } = params;
-    const { AI, Generate } = await eval('import("llmclient")');
 
-    const ai = AI('openai', {
-      apiKey: 'ollama',
+    const model = AI('openai', {
+      apiKey,
       apiURL: baseUrl + '/v1',
       config: { model: modelName, temperature, keepAlive },
       options: { debug },
     } as any);
 
-    const gen = new Generate(ai, signature);
+    return model;
+  }
 
-    return await gen.forward(input);
+  async generate(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { Generate } = await eval(`import('llmclient')`);
+    const { model = context.privates.MODEL_DSP, signature, input } = params;
+
+    const modelInstance = await executePinsList(model, context);
+    const gen = new Generate(modelInstance, signature);
+    const result = await gen.forward(input);
+
+    return result;
   }
 }
+
+export const model = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DspService().model(params, pinsSettingsList, context);
 
 export const generate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DspService().generate(params, pinsSettingsList, context);

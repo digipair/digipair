@@ -8,10 +8,10 @@
     "x-icon": "🚀"
   },
   "paths": {
-    "/generate": {
+    "/model": {
       "post": {
         "tags": ["service"],
-        "summary": "generate",
+        "summary": "Modèle DSP",
         "parameters": [
           {
             "name": "modelName",
@@ -36,6 +36,24 @@
             "summary": "Url du serveur LLM",
             "required": false,
             "description": "Url du serveur LLM compatible Openai",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/generate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "generate",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Modèle DSP",
+            "required": false,
+            "description": "Modèle DSP à utiliser pour la génération",
             "schema": {
               "type": "string"
             }
