@@ -22,18 +22,18 @@ class LLMService {
 
   private jsonSchemaToZod(schema: any): any {
     const zodProps: Record<string, any> = {};
-
+  
     switch (schema.type) {
       case 'string':
-        return z.string();
+        return z.string().optional();
       case 'number':
-        return z.number();
+        return z.number().optional();
       case 'boolean':
-        return z.boolean();
+        return z.boolean().optional();
       case 'object':
         for (const prop in schema.properties) {
           zodProps[prop] = this.jsonSchemaToZod(schema.properties[prop]);
-
+  
           if (schema.properties[prop].description) {
             zodProps[prop] = zodProps[prop].describe(schema.properties[prop].description);
           }
@@ -41,16 +41,14 @@ class LLMService {
         return z
           .object(zodProps)
           .required(
-            (schema.required ?? []).reduce(
-              (acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }),
-              {},
-            ),
-          );
+            (schema.required ?? []).reduce((acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }), {}),
+          )
+          .optional();
       case 'array':
         if (schema.items) {
-          return z.array(this.jsonSchemaToZod(schema.items));
+          return z.array(this.jsonSchemaToZod(schema.items)).optional();
         }
-        return z.array(z.unknown());
+        return z.array(z.unknown()).optional();
       default:
         throw new Error(`Unsupported JSON Schema type: ${schema.type}`);
     }

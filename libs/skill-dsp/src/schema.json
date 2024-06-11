@@ -151,7 +151,7 @@
           {
             "name": "model",
             "summary": "Modèle",
-            "required": false,
+            "required": true,
             "description": "Nom du modèle Ollama à utiliser pour la génération",
             "schema": {
               "type": "string"

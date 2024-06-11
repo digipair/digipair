@@ -40,6 +40,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "format",
+            "summary": "Format de sortie",
+            "required": false,
+            "description": "Format de sortie des données générées par le model",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []

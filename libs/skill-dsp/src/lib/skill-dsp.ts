@@ -6,7 +6,7 @@ class DspService {
     const { AI } = await eval(`import('llmclient')`);
     const { name, options } = params;
 
-    const modelInstance = AI(name, options);
+    const modelInstance = new AI(name, options);
 
     return modelInstance;
   }
@@ -20,7 +20,7 @@ class DspService {
       options,
     } = params;
 
-    const modelInstance = OpenAI({
+    const modelInstance = new OpenAI({
       apiKey,
       apiURL,
       config,
@@ -44,7 +44,7 @@ class DspService {
       options,
     } = params;
 
-    const modelInstance = AzureOpenAi({
+    const modelInstance = new AzureOpenAi({
       apiKey,
       resourceName,
       deploymentName,
@@ -70,7 +70,7 @@ class DspService {
       options,
     } = params;
 
-    const modelInstance = Ollama({ model, url, apiKey, config, options });
+    const modelInstance = new Ollama({ model, url, apiKey, config, options });
 
     return modelInstance;
   }
