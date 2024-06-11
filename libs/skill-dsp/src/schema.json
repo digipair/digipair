@@ -11,10 +11,10 @@
     "/model": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle DSP",
+        "summary": "Modèle Générique",
         "parameters": [
           {
-            "name": "modelName",
+            "name": "name",
             "summary": "Nom du model",
             "required": false,
             "description": "Nom du model LLM à utiliser pour le résumé système",
@@ -23,21 +23,174 @@
             }
           },
           {
-            "name": "temperature",
-            "summary": "Temperature",
+            "name": "options",
+            "summary": "Options",
             "required": false,
-            "description": "Temperature du model LLM",
+            "description": "Options du modèle LLM",
             "schema": {
-              "type": "number"
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/modelOpenAi": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle Générique",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "summary": "Api Key",
+            "required": false,
+            "description": "Api Key OpenAI",
+            "schema": {
+              "type": "string"
             }
           },
           {
-            "name": "baseUrl",
-            "summary": "Url du serveur LLM",
+            "name": "apiURL",
+            "summary": "Adresse du serveur",
             "required": false,
-            "description": "Url du serveur LLM compatible Openai",
+            "description": "Adresse du serveur OpenAI",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration du modèle OpenAI",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options du modèle OpenAI",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/modelAzureOpenAi": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle Générique",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "summary": "Api Key",
+            "required": false,
+            "description": "Api Key Azure OpenAI",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "resourceName",
+            "summary": "Nom de la ressource",
+            "required": false,
+            "description": "Nom de la ressource Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentName",
+            "summary": "Nom du déploiement",
+            "required": false,
+            "description": "Nom du déploiement Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version",
+            "required": false,
+            "description": "Version d'API OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration du modèle OpenAI",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options du modèle OpenAI",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/modelOllama": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle Générique",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Modèle",
+            "required": false,
+            "description": "Nom du modèle Ollama à utiliser pour la génération",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "url",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Addresse du serveur Ollama à utiliser pour la génération",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Api Key",
+            "required": false,
+            "description": "Api Key Ollama",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration du modèle Ollama",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options du modèle Ollama",
+            "schema": {
+              "type": "object"
             }
           }
         ],
@@ -47,13 +200,13 @@
     "/generate": {
       "post": {
         "tags": ["service"],
-        "summary": "generate",
+        "summary": "Génération DSP",
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle DSP",
+            "summary": "Modèle",
             "required": false,
-            "description": "Modèle DSP à utiliser pour la génération",
+            "description": "Modèle LLM à utiliser pour la génération",
             "schema": {
               "type": "string"
             }
