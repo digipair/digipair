@@ -26,7 +26,7 @@
     "feelin": "^3.1.0",
     "jsonwebtoken": "^9.0.2",
     "langchain": "^0.1.28",
-    "llmclient": "^8.1.20",
+    "llmclient": "^8.1.21",
     "mermaid": "10.3.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",

@@ -8991,10 +8991,10 @@ lit@^3.1.2:
     lit-element "^4.0.4"
     lit-html "^3.1.2"
 
-llmclient@^8.1.20:
-  version "8.1.20"
-  resolved "https://registry.yarnpkg.com/llmclient/-/llmclient-8.1.20.tgz#799b0f6edd7794eb392c5292f1ad64bb53077de5"
-  integrity sha512-/H7mT7is4XCYqo+8g3/yfNFAkR91W2TKbFzsAyGJm13rM6LY6dR1s5Mlt4m/a5v31zuhN7xR581bvaRY7jagTg==
+llmclient@^8.1.21:
+  version "8.1.21"
+  resolved "https://registry.yarnpkg.com/llmclient/-/llmclient-8.1.21.tgz#0a9cf08c0416e8a57cc5fb9ce758401937ac7142"
+  integrity sha512-muoekMtV2PLkKSQe1Myqfbf5GKpIHu6FSFiY9OH/2KYf5K4lJvlTRYtJX/CD75qxFdiSK3r9ozWIIjgL8YrnxA==
   dependencies:
     json5 "^2.2.3"
 
