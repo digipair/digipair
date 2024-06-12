@@ -25,11 +25,13 @@
         }
       },
       {
-        "library": "@digipair/skill-chatbot",
-        "element": "chatbot",
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
         "properties": {
-          "assistant": "L'historique a été supprimée.",
-          "logs": "EVALUATE:previous"
+          "value": {
+            "assistant": "L'historique a été supprimée.\n!!! ATTENTION: Merci de rafraichir la page pour réinitialiser mon historique... !!!",
+            "logs": "EVALUATE:previous"
+          }
         }
       }
     ]
