@@ -6,7 +6,7 @@ class DspService {
     const { AI } = await eval(`import('llmclient')`);
     const { name, options } = params;
 
-    const modelInstance = new AI(name, options);
+    const modelInstance = AI(name, options);
 
     return modelInstance;
   }

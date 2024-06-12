@@ -70,7 +70,7 @@
             }
           },
           {
-            "name": "azureOpenAIApiKey",
+            "name": "openAIApiKey",
             "summary": "API Key",
             "required": false,
             "description": "API Key de l'instance Azure OpenAI",
@@ -79,25 +79,25 @@
             }
           },
           {
-            "name": "azureOpenAIApiInstanceName",
-            "summary": "Nom de l'instance",
+            "name": "openAIBasePath",
+            "summary": "Adresse de l'instance",
             "required": false,
-            "description": "Nom de l'instance Azure OpenAI",
+            "description": "Adresse de l'instance Azure OpenAI",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "azureOpenAIApiDeploymentName",
+            "name": "deploymentName",
             "summary": "Nom du déploiement",
-            "required": false,
+            "required": true,
             "description": "Nom du déploiement Azure OpenAI",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "azureOpenAIApiVersion",
+            "name": "openAIApiVersion",
             "summary": "Version",
             "required": false,
             "description": "Version de l'API Azure OpenAI",

@@ -22,7 +22,7 @@ class LLMService {
 
   private jsonSchemaToZod(schema: any): any {
     const zodProps: Record<string, any> = {};
-  
+
     switch (schema.type) {
       case 'string':
         return z.string().optional();
@@ -33,7 +33,7 @@ class LLMService {
       case 'object':
         for (const prop in schema.properties) {
           zodProps[prop] = this.jsonSchemaToZod(schema.properties[prop]);
-  
+
           if (schema.properties[prop].description) {
             zodProps[prop] = zodProps[prop].describe(schema.properties[prop].description);
           }
@@ -41,7 +41,10 @@ class LLMService {
         return z
           .object(zodProps)
           .required(
-            (schema.required ?? []).reduce((acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }), {}),
+            (schema.required ?? []).reduce(
+              (acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }),
+              {},
+            ),
           )
           .optional();
       case 'array':
@@ -101,9 +104,12 @@ class LLMService {
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${
-            prompt ?? '{prompt}'
-          }\n\nJSON:`,
+          `${prompt ?? '{prompt}'}
+          
+          Answer the users question as best as possible.
+          {format_instructions}
+          
+          JSON:`,
           {
             partialVariables: {
               format_instructions: parser.getFormatInstructions(),
@@ -123,10 +129,7 @@ class LLMService {
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
-      const modelInstance = await executePinsList(
-        model ?? context.privates.MODEL_VISION,
-        context,
-      );
+      const modelInstance = await executePinsList(model ?? context.privates.MODEL_VISION, context);
       const modelVisionInstance = modelInstance.bind({
         images: [image.split(';base64,')[1]],
         prompt,
@@ -149,9 +152,12 @@ class LLMService {
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
-          `Answer the users question as best as possible.\n{format_instructions}\n${
-            prompt ?? '{prompt}'
-          }\n\nJSON:`,
+          `${prompt ?? '{prompt}'}
+
+          Answer the users question as best as possible.
+          {format_instructions}
+          
+          JSON:`,
           {
             partialVariables: {
               format_instructions: parser.getFormatInstructions(),
