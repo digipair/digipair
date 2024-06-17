@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import { Ollama } from '@langchain/community/llms/ollama';
+import { ChatOllama } from '@langchain/community/chat_models/ollama';
 import { OllamaEmbeddings } from '@langchain/community/embeddings/ollama';
 
 class OllamaService {
@@ -14,7 +14,7 @@ class OllamaService {
         'http://localhost:11434',
       format,
     } = params;
-    const modelInstance = new Ollama({ model, temperature, keepAlive, baseUrl });
+    const modelInstance = new ChatOllama({ model, temperature, keepAlive, baseUrl });
 
     return modelInstance;
   }

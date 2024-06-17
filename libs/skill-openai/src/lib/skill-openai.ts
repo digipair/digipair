@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AzureChatOpenAI, ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai';
+import {
+  AzureChatOpenAI,
+  AzureOpenAIEmbeddings,
+  ChatOpenAI,
+  OpenAIEmbeddings,
+} from '@langchain/openai';
 import { PinsSettings } from '@digipair/engine';
 
 class OpenAIService {
@@ -19,9 +24,9 @@ class OpenAIService {
     const {
       deploymentName,
       temperature = 0,
+      openAIApiInstanceName = context.privates.AZURE_OPENAI_API_INSTANCE_NAME ??
+        process.env['AZURE_OPENAI_API_INSTANCE_NAME'],
       openAIApiKey = context.privates.AZURE_OPENAI_API_KEY ?? process.env['AZURE_OPENAI_API_KEY'],
-      openAIBasePath = context.privates.AZURE_OPENAI_BASE_PATH ??
-        process.env['AZURE_OPENAI_BASE_PATH'],
       openAIApiVersion = context.privates.AZURE_OPENAI_API_VERSION ??
         process.env['AZURE_OPENAI_API_VERSION'],
     } = params;
@@ -29,8 +34,8 @@ class OpenAIService {
       deploymentName,
       temperature,
       openAIApiKey,
-      openAIBasePath,
       openAIApiVersion,
+      azureOpenAIApiInstanceName: openAIApiInstanceName,
     });
 
     return model;
@@ -51,6 +56,27 @@ class OpenAIService {
 
     return modelInstance;
   }
+
+  async embeddingsAzure(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      deploymentName,
+      dimensions = 1024,
+      openAIApiKey = context.privates.AZURE_OPENAI_API_KEY ?? process.env['AZURE_OPENAI_API_KEY'],
+      openAIApiInstanceName = context.privates.AZURE_OPENAI_API_INSTANCE_NAME ??
+        process.env['AZURE_OPENAI_API_INSTANCE_NAME'],
+      openAIApiVersion = context.privates.AZURE_OPENAI_API_VERSION ??
+        process.env['AZURE_OPENAI_API_VERSION'],
+    } = params;
+    const modelInstance = new AzureOpenAIEmbeddings({
+      deploymentName,
+      dimensions,
+      apiKey: openAIApiKey,
+      azureOpenAIApiInstanceName: openAIApiInstanceName,
+      openAIApiVersion,
+    });
+
+    return modelInstance;
+  }
 }
 
 export const model = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -61,3 +87,6 @@ export const modelAzure = (params: any, pinsSettingsList: PinsSettings[], contex
 
 export const embeddings = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new OpenAIService().embeddings(params, pinsSettingsList, context);
+
+export const embeddingsAzure = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new OpenAIService().embeddingsAzure(params, pinsSettingsList, context);
