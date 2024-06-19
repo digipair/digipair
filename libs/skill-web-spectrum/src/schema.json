@@ -625,33 +625,42 @@
             }
           }
         ]
-      },
-      "/sp-illustrated-message": {
-        "post": {
-          "tags": ["web", "needPins", "requirePins"],
-          "summary": "Message illustré",
-          "description": "Message illustré",
-          "parameters": [
-            {
-              "name": "heading",
-              "summary": "Titre",
-              "required": true,
-              "description": "Titre du message illustré",
-              "schema": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "description",
-              "summary": "Description",
-              "required": true,
-              "description": "Description du message illustré",
-              "schema": {
-                "type": "string"
-              }
+      }
+    },
+    "sp-menu-divider": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Diviseur du menu",
+        "description": "Diviseur du menu",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-illustrated-message": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Message illustré",
+        "description": "Message illustré",
+        "parameters": [
+          {
+            "name": "heading",
+            "summary": "Titre",
+            "required": true,
+            "description": "Titre du message illustré",
+            "schema": {
+              "type": "string"
             }
-          ]
-        }
+          },
+          {
+            "name": "description",
+            "summary": "Description",
+            "required": true,
+            "description": "Description du message illustré",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     }
   },
