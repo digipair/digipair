@@ -1,0 +1,30 @@
+{
+  "name": "skill-web-font-awesome",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-web-font-awesome/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-web-font-awesome",
+        "main": "libs/skill-web-font-awesome/src/index.ts",
+        "tsConfig": "libs/skill-web-font-awesome/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-web-font-awesome/src/index.d.ts",
+          "libs/skill-web-font-awesome/src/schema.json"
+        ],
+        "rollupConfig": ["libs/skill-web-font-awesome/rollup.build.cjs"],
+        "project": "libs/skill-web-font-awesome/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-web-font-awesome {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

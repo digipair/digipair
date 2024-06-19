@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-font-awesome",
+    "summary": "Affichage d'icones font-awesome",
+    "description": "Affichage des icones font-awesome.",
+    "version": "0.1.0",
+    "x-icon": "🎨"
+  },
+  "paths": {
+    "/digipair-font-awesome-icon": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Icone font-awesome",
+        "description": "Icone font-awesome",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "summary": "Categorie de l'icone",
+            "required": false,
+            "description": "Style personnalisé de l'icone",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "required": false,
+            "description": "Emplacement de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

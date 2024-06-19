@@ -12,7 +12,6 @@ export class IconElement extends LitElement {
   override render(): TemplateResult {
     return html`
       <link
-        id="digipair-material-icons-css"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet"
       />
