@@ -110,6 +110,46 @@
         "x-events": []
       }
     },
+    "/execute": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Execute une méthode",
+        "description": "Execute une méthode sur un élément du DOM",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom de la méthode",
+            "required": true,
+            "description": "Nom de l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément qui va exécuter la méthode",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "args",
+            "summary": "Arguments",
+            "required": false,
+            "description": "Liste des arguments de la méthode",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/goTo": {
       "post": {
         "tags": ["web", "boost"],

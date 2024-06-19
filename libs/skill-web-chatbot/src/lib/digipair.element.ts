@@ -84,11 +84,18 @@ export class ChatbotElement extends LitElement {
 
     this.loadUser();
     this.boostListener();
+    this.externalBoostListener();
     document.addEventListener('click', this.blurEvent);
   }
 
   override disconnectedCallback(): void {
     document.removeEventListener('click', this.blurEvent);
+  }
+
+  private externalBoostListener() {
+    this.addEventListener('executeBoost', ({ detail }: any) => {
+      setTimeout(() => this.executeBoost({ context: {}, ...detail }), 1);
+    });
   }
 
   private loadUser(): void {

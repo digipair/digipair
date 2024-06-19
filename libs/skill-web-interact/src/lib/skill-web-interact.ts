@@ -33,6 +33,13 @@ class DomService {
     element.dispatchEvent(new CustomEvent(name, { detail }));
   }
 
+  async execute(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { selector, name, args = [] } = params;
+    const element = document.querySelector(selector) as any;
+
+    element[name](...args);
+  }
+
   async goTo(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { url } = params;
     window.location.href = url;
@@ -47,6 +54,9 @@ export const getAttribute = (params: any, pinsSettingsList: PinsSettings[], cont
 
 export const dispatchEvent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DomService().dispatchEvent(params, pinsSettingsList, context);
+
+export const execute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DomService().execute(params, pinsSettingsList, context);
 
 export const goTo = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DomService().goTo(params, pinsSettingsList, context);

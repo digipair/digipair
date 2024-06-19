@@ -38,7 +38,7 @@
     "/modelOpenAi": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle Générique",
+        "summary": "Modèle OpenAI",
         "parameters": [
           {
             "name": "apiKey",
@@ -83,7 +83,7 @@
     "/modelAzureOpenAi": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle Générique",
+        "summary": "Modèle Azure OpenAI",
         "parameters": [
           {
             "name": "apiKey",
@@ -146,7 +146,7 @@
     "/modelOllama": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle Générique",
+        "summary": "Modèle Ollama",
         "parameters": [
           {
             "name": "model",

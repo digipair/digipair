@@ -22,6 +22,9 @@ export class EditorElement extends LitElement {
   reasoning!: any;
 
   @property()
+  schemas: any[] = [];
+
+  @property()
   menuColor = 'white';
 
   @property()
@@ -98,13 +101,18 @@ export class EditorElement extends LitElement {
   }
 
   private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
+    const privateSchemas = this.schemas.filter(schema => Object.keys(libraries).indexOf(schema.info.title)  >= 0);
     const list = [
       schemasWeb,
+      ...privateSchemas,
       ...(await Promise.all(
-        Object.keys(libraries).map(async (library: any, i: number) =>
-          fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
-        ),
-      )),
+        Object.keys(libraries)
+          .filter(library => !privateSchemas.find(schema => schema.info.title === library))
+          .map(async (library: any, i: number) =>
+            fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
+          ),
+        )
+      ),
     ];
 
     return list;

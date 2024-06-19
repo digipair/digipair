@@ -33,6 +33,15 @@
             }
           },
           {
+            "name": "schemas",
+            "summary": "Schemas",
+            "required": true,
+            "description": "Liste des schemas des compétences privées",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
             "name": "menuColor",
             "summary": "Couleur de texte du menu",
             "required": false,
