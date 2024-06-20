@@ -1,0 +1,30 @@
+{
+  "name": "skill-web-request",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-web-request/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-web-request",
+        "main": "libs/skill-web-request/src/index.ts",
+        "tsConfig": "libs/skill-web-request/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-web-request/src/index.d.ts",
+          "libs/skill-web-request/src/schema.json"
+        ],
+        "rollupConfig": ["libs/skill-web-request/rollup.build.cjs"],
+        "project": "libs/skill-web-request/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-web-request {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}
