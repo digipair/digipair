@@ -202,6 +202,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles du thème",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
