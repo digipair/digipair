@@ -80,7 +80,7 @@ class WebService {
     const {
       body,
       title = 'Digipair',
-      favicon = 'https://www.digipair.ai/assets/images/favicon.ico',
+      favicon = 'https://res.cloudinary.com/do87nxq3l/image/upload/fl_preserve_transparency/v1717769492/logo-digipair_oyvvxz.png?_s=public-apps',
       styleHtml = '',
       styleBody = '',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
