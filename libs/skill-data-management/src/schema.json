@@ -78,6 +78,44 @@
         ],
         "x-events": []
       }
+    },
+    "/struct2array": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Convertir une structure en tableau",
+        "description": "Convertit une structure de données en tableau",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Valeur à convertir",
+            "required": true,
+            "description": "Structure de données à convertir",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/jsonParse": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Parse un JSON",
+        "description": "Parse une chaine de caractère JSON",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Chaine de caractère au format JSON à convertir en structure de données",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
