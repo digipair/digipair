@@ -487,7 +487,7 @@
     },
     "/sp-action-menu": {
       "post": {
-        "tags": ["web"],
+        "tags": ["web", "needPins", "requirePins"],
         "summary": "Menu d'actions",
         "description": "Menu d'actions",
         "parameters": [
@@ -579,6 +579,15 @@
             "summary": "Texte",
             "required": false,
             "description": "Texte de l'élément du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "Lien",
+            "required": false,
+            "description": "Lien de l'élément du menu",
             "schema": {
               "type": "string"
             }
