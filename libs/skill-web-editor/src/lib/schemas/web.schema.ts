@@ -17,6 +17,7 @@ export const schemas = {
             name: 'style',
             summary: 'Style CSS',
             description: 'Style de la section',
+            required: false,
             schema: {
               type: 'string',
             },
@@ -25,6 +26,7 @@ export const schemas = {
             name: 'class',
             summary: 'Classe CSS',
             description: 'Classe de la section',
+            required: false,
             schema: {
               type: 'string',
             },
@@ -33,6 +35,7 @@ export const schemas = {
             name: 'id',
             summary: 'Identifiant',
             description: 'Identifiant de la section',
+            required: false,
             schema: {
               type: 'string',
             },
@@ -49,6 +52,7 @@ export const schemas = {
             name: 'textContent',
             summary: 'Texte',
             description: 'Texte du span',
+            required: true,
             schema: {
               type: 'string',
             },
@@ -57,6 +61,42 @@ export const schemas = {
             name: 'slot',
             summary: 'Position',
             description: "Position du span dans l'élément parent",
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+      },
+    },
+    '/img': {
+      post: {
+        tags: ['web'],
+        summary: 'Image',
+        parameters: [
+          {
+            name: 'src',
+            summary: 'Source',
+            description: "Source de l'image",
+            required: true,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'slot',
+            summary: 'Position',
+            description: "Position de l'image dans l'élément parent",
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'style',
+            summary: 'Style CSS',
+            description: "Style de l'image",
+            required: false,
             schema: {
               type: 'string',
             },

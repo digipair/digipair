@@ -1,7 +1,7 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { until } from 'lit/directives/until.js';
-import { PinsSettings, generateElementFromPins } from '@digipair/engine';
+import { generateElementFromPins } from '@digipair/engine';
 
 @customElement('digipair-chatbot-inputs')
 export class InputsElement extends LitElement {

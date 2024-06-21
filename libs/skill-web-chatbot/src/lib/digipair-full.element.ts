@@ -53,6 +53,8 @@ export class DigipairFullElement extends LitElement {
   private isDigipairLoading = false;
   private metadata!: {
     id: string;
+    config: { VERSIONS: { [key: string]: string } };
+    variables: { [key: string]: any };
     avatar: string;
     primary: string;
     secondary: string;
@@ -123,7 +125,7 @@ export class DigipairFullElement extends LitElement {
       digipair,
     });
 
-    this.metadata = { ...metadata, id: digipair };
+    this.metadata = { ...metadata, id: digipair, config: { VERSIONS: metadata.config.VERSIONS } };
     await this.loadHistory();
 
     setTimeout(() => {
@@ -205,11 +207,13 @@ export class DigipairFullElement extends LitElement {
             }),
       };
 
-      const detail = await executePinsList([pins], {});
+      const detail = await executePinsList([pins], {
+        config: { VERSIONS: this.metadata.config.VERSIONS },
+      });
       this.pushAssistantMessage(detail.assistant);
 
       if (detail.command && detail.command.library && detail.command.element) {
-        executePinsList([detail.command], {});
+        executePinsList([detail.command], { config: { VERSIONS: this.metadata.config.VERSIONS } });
       }
     } catch (error) {
       this.pushAssistantMessage('Oops...');
@@ -287,6 +291,7 @@ export class DigipairFullElement extends LitElement {
             ?loading=${this.loading}
             .messages=${this.messages}
             .currentBoost=${this.currentBoost}
+            .context=${{ config: this.metadata.config, variables: this.metadata.variables }}
             @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
           ></digipair-chatbot-chat>
         </section>

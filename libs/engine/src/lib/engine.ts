@@ -11,7 +11,7 @@ Handlebars.registerHelper('JSONstringify', function (value: any) {
 type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES';
 const globalInstance: any = typeof window === 'undefined' ? global : window;
 const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_CONFIG__ ?? {
-  LIBRARIES: {} as { [key: string]: string },
+  LIBRARIES: {} as { [key: string]: any },
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
 });
 
@@ -48,7 +48,6 @@ export const applyTemplate = (value: any, context: any) => {
 const executePins = async (
   settingsOrigin: PinsSettings,
   context: any = {},
-  options: { libraries: { [key: string]: string } } = { libraries: {} },
 ): Promise<any> => {
   const settings = await preparePinsSettings(settingsOrigin, context);
 
@@ -73,14 +72,14 @@ const executePins = async (
         continue;
       }
 
-      const itemResult = await executePins(itemSettingsOrigin, itemContext, options);
+      const itemResult = await executePins(itemSettingsOrigin, itemContext);
       results.push(itemResult);
     }
 
     return results;
   }
 
-  const version = options.libraries[settings.library] || 'latest';
+  const version = context.config.VERSIONS[settings.library] || 'latest';
   const library =
     _config.LIBRARIES[settings.library] ||
     (typeof window === 'undefined'
@@ -98,7 +97,6 @@ const executePins = async (
 export const executePinsList = async (
   pinsSettingsList: PinsSettings[],
   context: any,
-  options: { libraries: { [key: string]: string } } = { libraries: {} },
 ): Promise<any> => {
   let previous = {};
   const steps = [];
@@ -122,7 +120,6 @@ export const executePinsList = async (
         steps,
         parent: { previous: context.previous, steps: context.steps, parent: context.parent },
       },
-      options,
     );
     steps[i] = { name: settings.name, result: previous };
   }
@@ -134,7 +131,6 @@ export const generateElementFromPins = async (
   pinsSettings: PinsSettings,
   parent: Element,
   context: any,
-  options: { libraries: { [key: string]: string } } = { libraries: {} },
 ): Promise<Element | void> => {
   const settings = await preparePinsSettings(pinsSettings, context);
 
@@ -150,7 +146,6 @@ export const generateElementFromPins = async (
           index,
           parent: { item: context.item, index: item.index, parent: context.parent },
         },
-        options,
       );
     }
     return;
@@ -165,7 +160,7 @@ export const generateElementFromPins = async (
 
   const library = pinsSettings.library;
   if (library !== 'web' && !_config.LIBRARIES[library]) {
-    const version = options.libraries[library] || 'latest';
+    const version = context.config.VERSIONS[library] || 'latest';
     import(`${_config.BASE_URL}/${library}@${version}/index.esm.js`);
   }
 
@@ -184,7 +179,7 @@ export const generateElementFromPins = async (
     ([key, pinsList]) => {
       element.addEventListener(key as keyof HTMLElementEventMap, (_event: Event) => {
         const event = _event as CustomEvent;
-        executePinsList(pinsList, { ...context, event: event.detail }, options);
+        executePinsList(pinsList, { ...context, event: event.detail });
       });
     },
   );
@@ -192,7 +187,7 @@ export const generateElementFromPins = async (
   const pinsList = settings.pins || [];
   for (let i = 0; i < pinsList.length; i++) {
     const item = pinsList[i];
-    await generateElementFromPins(item, element, context, options);
+    await generateElementFromPins(item, element, context);
   }
 
   parent?.appendChild(element);

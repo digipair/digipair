@@ -142,11 +142,11 @@ class WebService {
       config.set('BASE_URL', '${baseUrl}');
 
       const context = {
+        config: {
+          VERSIONS: ${JSON.stringify(context.config.VERSIONS || {})},
+        },
         variables: ${JSON.stringify(context.variables || {})},
         request: ${JSON.stringify(context.request || {})},
-      };
-      const options = {
-        libraries: {},
       };
 
       await executePinsList(${JSON.stringify(
@@ -158,7 +158,7 @@ class WebService {
         const item = pinsList[i];
         await generateElementFromPins(item, document.body, { ...context, data: ${JSON.stringify(
           preparedData,
-        )} }, options);
+        )} });
       }
 
       setTimeout(async () => {

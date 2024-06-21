@@ -11,7 +11,12 @@ class CommonService {
     const buffer = await promises.readFile(`${path}/${digipair}/avatar.png`);
     const avatar = buffer.toString('base64');
 
-    return { ...config.metadata, avatar: `data:image/png;base64,${avatar}` };
+    return {
+      ...config.metadata,
+      avatar: `data:image/png;base64,${avatar}`,
+      config: { VERSIONS: config.libraries },
+      variables: config.variables,
+    };
   }
 
   async boosts(params: any, _pinsSettingsList: PinsSettings[], context: any) {

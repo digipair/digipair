@@ -18,6 +18,9 @@ export class ChatElement extends LitElement {
   @property({ type: Object })
   currentBoost: any;
 
+  @property({ type: Object })
+  context: any;
+
   @property({ type: Array })
   get inputs(): { [key: string]: any }[] {
     return this.inputsElement?.values || [];
@@ -317,7 +320,7 @@ export class ChatElement extends LitElement {
         <digipair-chatbot-inputs
           @change=${() => this.requestUpdate()}
           .inputs=${this.currentBoost?.inputs || []}
-          .context=${this.currentBoost?.context || {}}
+          .context=${{...this.context, ...(this.currentBoost?.context || {})}}
         ></digipair-chatbot-inputs>
 
         ${!this.loading

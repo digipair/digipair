@@ -455,14 +455,14 @@
     },
     "/sp-top-nav-item": {
       "post": {
-        "tags": ["web"],
+        "tags": ["web", "needPins"],
         "summary": "Element de la de navigation",
         "description": "Element de la barre de navigation horizontale",
         "parameters": [
           {
             "name": "textContent",
             "summary": "Texte",
-            "required": true,
+            "required": false,
             "description": "Texte de l'élément de navigation",
             "schema": {
               "type": "string"
@@ -694,6 +694,340 @@
             "description": "Description du message illustré",
             "schema": {
               "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/sp-field-label": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Etiquette de champ",
+        "description": "Etiquette de champ de formulaire",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for",
+            "summary": "Pour",
+            "required": true,
+            "description": "Identifiant du champ associé",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis",
+            "required": false,
+            "description": "Champ requis",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du champ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/sp-textfield": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Etiquette de champ",
+        "description": "Etiquette de champ de formulaire",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "summary": "Placeholder",
+            "required": false,
+            "description": "Texte de placeholder du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "valide",
+            "summary": "Valide",
+            "required": false,
+            "description": "Champ valide",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "invalide",
+            "summary": "Invalide",
+            "required": false,
+            "description": "Champ invalide",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Discret",
+            "required": false,
+            "description": "Champ en mode discret",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type",
+            "required": false,
+            "description": "Type du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "multiline",
+            "summary": "Multiligne",
+            "required": false,
+            "description": "Champ multiligne",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "grows",
+            "summary": "Grandit automatiquement",
+            "required": false,
+            "description": "Champ qui grandit automatiquement",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pattern",
+            "summary": "Pattern",
+            "required": false,
+            "description": "Pattern du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du champ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "input",
+            "summary": "Lors de la saisie",
+            "required": false,
+            "description": "Action déclenchée lors de la saisie dans le champ",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-help-text": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Texte d'aide",
+        "description": "Etiquette de champ de formulaire",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Emplacement",
+            "required": false,
+            "description": "Emplacement du texte d'aide",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/sp-button": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Etiquette de champ",
+        "description": "Etiquette de champ de formulaire",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "Adresse",
+            "required": false,
+            "description": "Adresse de redirection du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "Cible",
+            "required": false,
+            "description": "Cible de redirection du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autofocus",
+            "summary": "Autofocus",
+            "required": false,
+            "description": "Sélection automatique du bouton",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type",
+            "required": false,
+            "description": "Type du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "variant",
+            "summary": "Variante",
+            "required": false,
+            "description": "Variante du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "Etiquette",
+            "required": false,
+            "description": "Etiquette du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "icon-only",
+            "summary": "Icône seule",
+            "required": false,
+            "description": "Affiche l'icône seule",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "treatment",
+            "summary": "Traitement",
+            "required": false,
+            "description": "Traitement du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Bouton désactivé",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors du clic",
+            "required": false,
+            "description": "Action déclenchée lors du clic sur lesboutton",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ]

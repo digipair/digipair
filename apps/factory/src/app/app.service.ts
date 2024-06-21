@@ -39,6 +39,9 @@ export class AppService {
     const settings = JSON.parse(content);
 
     const context = {
+      config: {
+        VERSIONS: config.versions,
+      },
       privates: config.privates,
       variables: config.variables,
       request: {
@@ -51,11 +54,7 @@ export class AppService {
       },
     };
 
-    const options = {
-      libraries: config.libraries,
-    };
-
-    const result = executePinsList([settings], context, options);
+    const result = executePinsList([settings], context);
 
     return result;
   }

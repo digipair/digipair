@@ -259,6 +259,9 @@ class KeycloakService {
         ${JSON.stringify(clientId)});
      
       const context = {
+        config: {
+          VERSIONS: ${JSON.stringify(context.config.VERSIONS || {})},
+        },
         variables: ${JSON.stringify(context.variables || {})},
         request: ${JSON.stringify(context.request || {})},
         keycloak: { isLogged: keycloakService.isLogged },
@@ -279,15 +282,12 @@ class KeycloakService {
         this.prepareBrowserPinsSettings('browserInitialize', browserInitialize),
       )}, context);
       
-      const options = {
-        libraries: {},
-      };
       const pinsList = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
       for (let i = 0; i < pinsList.length; i++) {
         const item = pinsList[i];
         await generateElementFromPins(item, document.body, { ...context, data: ${JSON.stringify(
           preparedData,
-        )} }, options);
+        )} });
       }
 
       setTimeout(async () => {
