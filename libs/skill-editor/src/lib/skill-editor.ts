@@ -53,6 +53,20 @@ class EditorService {
     return {};
   }
 
+  async removeReasoning(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+      digipair,
+      reasoning
+    } = params;
+
+    await promises.unlink(`${path}/${digipair}/${reasoning}.json`);
+
+    return {};
+  }
+
   async digipairs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       path = context.privates.EDITOR_PATH ??
@@ -97,6 +111,21 @@ class EditorService {
 
     return {};
   }
+
+  async removeDigipair(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      path = context.privates.EDITOR_PATH ??
+        process.env['DIGIPAIR_AGENTS_PATH'] ??
+        './dist/apps/factory/assets/digipairs',
+      digipair,
+      value,
+    } = params;
+
+    // remove digipair folder
+    await promises.rmdir(`${path}/${digipair}`, { recursive: true });
+
+    return {};
+  }
 }
 
 export const setReasoning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -108,6 +137,9 @@ export const reasonings = (params: any, pinsSettingsList: PinsSettings[], contex
 export const reasoning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().reasoning(params, pinsSettingsList, context);
 
+export const removeReasoning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().removeReasoning(params, pinsSettingsList, context);
+
 export const setDigipair = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().setDigipair(params, pinsSettingsList, context);
 
@@ -116,3 +148,6 @@ export const digipairs = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const digipair = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().digipair(params, pinsSettingsList, context);
+
+export const removeDigipair = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().removeDigipair(params, pinsSettingsList, context);

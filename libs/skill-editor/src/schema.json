@@ -18,7 +18,7 @@
             "name": "path",
             "summary": "Chemin d'accès",
             "required": false,
-            "description": "Chemain d'accès vers le répertoire du digipair",
+            "description": "Chemin d'accès vers le répertoire du digipair",
             "schema": {
               "type": "string"
             }
@@ -45,7 +45,7 @@
             "name": "path",
             "summary": "Chemin d'accès",
             "required": false,
-            "description": "Chemain d'accès vers le répertoire du digipair",
+            "description": "Chemin d'accès vers le répertoire du digipair",
             "schema": {
               "type": "string"
             }
@@ -81,7 +81,7 @@
             "name": "path",
             "summary": "Chemin d'accès",
             "required": false,
-            "description": "Chemain d'accès vers le répertoire du digipair",
+            "description": "Chemin d'accès vers le répertoire du digipair",
             "schema": {
               "type": "string"
             }
@@ -117,6 +117,42 @@
         "x-events": []
       }
     },
+    "/removeReasoning": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Suppression d'un raisonnement",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/digipairs": {
       "post": {
         "tags": ["service"],
@@ -127,7 +163,7 @@
             "name": "path",
             "summary": "Chemin d'accès",
             "required": false,
-            "description": "Chemain d'accès vers le répertoire du digipair",
+            "description": "Chemin d'accès vers le répertoire du digipair",
             "schema": {
               "type": "string"
             }
@@ -146,7 +182,7 @@
             "name": "path",
             "summary": "Chemin d'accès",
             "required": false,
-            "description": "Chemain d'accès vers le répertoire du digipair",
+            "description": "Chemin d'accès vers le répertoire du digipair",
             "schema": {
               "type": "string"
             }
@@ -173,7 +209,7 @@
             "name": "path",
             "summary": "Chemin d'accès",
             "required": false,
-            "description": "Chemain d'accès vers le répertoire du digipair",
+            "description": "Chemin d'accès vers le répertoire du digipair",
             "schema": {
               "type": "string"
             }
@@ -194,6 +230,33 @@
             "description": "Contenu du raisonnement à sauvegarder",
             "schema": {
               "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/removeDigipair": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Suppression d'un digipair",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
             }
           }
         ],
