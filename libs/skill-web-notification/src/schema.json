@@ -45,6 +45,44 @@
         ],
         "x-events": []
       }
+    },
+    "/confirm": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche une confirmation",
+        "description": "Affiche une notification de confirmation",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/alert": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche une alerte",
+        "description": "Affiche une notification d'alerte",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

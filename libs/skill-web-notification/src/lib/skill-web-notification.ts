@@ -45,6 +45,18 @@ class NotificationService {
       duration: 3000,
     }).showToast();
   }
+
+  async confirm(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { message } = params;
+
+    return window.confirm(message);
+  }
+
+  async alert(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { message } = params;
+
+    return window.alert(message);
+  }
 }
 
 export const information = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -52,3 +64,9 @@ export const information = (params: any, pinsSettingsList: PinsSettings[], conte
 
 export const error = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new NotificationService().error(params, pinsSettingsList, context);
+
+export const confirm = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new NotificationService().confirm(params, pinsSettingsList, context);
+
+export const alert = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new NotificationService().alert(params, pinsSettingsList, context);
