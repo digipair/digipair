@@ -284,6 +284,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du boutons",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": [
@@ -534,6 +543,15 @@
             "description": "Active le mode discret du menu",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille des boutons du groupe d'actions",
+            "schema": {
+              "type": "string"
             }
           }
         ],

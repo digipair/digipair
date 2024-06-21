@@ -63,8 +63,8 @@
   },
   "x-scene-blocks": {
     "/page": {
-      "summary": "Page internet",
-      "description": "Affichage d'une page d'un site internet.",
+      "summary": "Page internet sécurisée",
+      "description": "Affichage d'une page d'un site internet sécurisée par Keycloak.",
       "tags": ["web", "service"],
       "metadata": [],
       "parameters": [
@@ -206,8 +206,8 @@
       ]
     },
     "/service": {
-      "summary": "Web service",
-      "description": "Réponse à un appel http.",
+      "summary": "Web service sécurisé",
+      "description": "Réponse à un appel http sécurisé par Keycloak.",
       "tags": ["service"],
       "metadata": [],
       "parameters": [

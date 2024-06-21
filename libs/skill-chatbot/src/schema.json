@@ -366,9 +366,9 @@
   },
   "x-scene-blocks": {
     "/boost": {
-      "summary": "Boost proposé par le Digipair",
-      "description": "Boost",
-      "tags": ["boost", "service"],
+      "summary": "Boost",
+      "description": "Boost proposé par le Digipair",
+      "tags": ["boost"],
       "metadata": [
         {
           "name": "boosts",

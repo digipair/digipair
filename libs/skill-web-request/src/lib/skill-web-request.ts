@@ -2,11 +2,11 @@ import { PinsSettings } from '@digipair/engine';
 
 class WebRequestService {
   async fetchJson(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { url, method = 'GET', body = {}, headers = [] } = params;
+    const { url, method = 'GET', body, headers = [] } = params;
 
     const response = await fetch(url, {
       headers: {
-        'content-type': 'application/json',
+        ...(!body ? {} : { 'content-type': 'application/json' }),
         ...headers.reduce((acc: any, item: any) => {
           acc[item.name] = item.value;
           return acc;
