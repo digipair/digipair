@@ -164,8 +164,26 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "target",
+            "summary": "Fenêtre cible",
+            "required": true,
+            "description": "Fenêtre cible",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
+        "x-events": []
+      }
+    },
+    "/reload": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Recharger la page actuelle",
+        "description": "Permet de recharger la page actuelle",
+        "parameters": [],
         "x-events": []
       }
     }

@@ -368,7 +368,7 @@
     "/boost": {
       "summary": "Boost",
       "description": "Boost proposé par le Digipair",
-      "tags": ["boost"],
+      "tags": ["boost", "service"],
       "metadata": [
         {
           "name": "boosts",

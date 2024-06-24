@@ -225,7 +225,25 @@ class KeycloakService {
       import '${url}/js/keycloak.js';
       import { config, executePinsList, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
+      const serverUrl = '${process.env['FACTORY_URL'] || 'https://factory.digipair.ai'}';
       const keycloakService = ${this.skillKeycloak};
+
+      const originalFetch = window.fetch;
+      window.fetch = async (url, options) => {
+        if (typeof(url) !== 'string' || !url.includes(serverUrl)) {
+          return originalFetch(url, options);
+        }
+
+        return originalFetch(url, {
+          ...options,
+          headers: {
+            ...options.headers,
+            'Content-Type': 'application/json',
+            'authorization': keycloakService.isLogged ? 'Bearer ' + await keycloakService.token() : undefined,
+          },
+        });
+      };
+
       const skillWeb = {
         executeFactory: async (params, pinsSettingsList, context) => {
           const result = await fetch(window.location, {
@@ -335,6 +353,44 @@ class KeycloakService {
 
     return await executePinsList(execute, context);
   }
+
+  async boost(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    if (context.request.method !== 'POST') {
+      return { error: 'Method not allowed' };
+    }
+
+    const {
+      execute,
+      secured = true,
+      url = context.privates.KEYCLOAK_URL,
+      realm = context.privates.KEYCLOAK_REALM,
+    } = params;
+    const token =
+      /^Bearer /g.test(context.request.headers.authorization) &&
+      context.request.headers.authorization?.replace(/^Bearer /g, '');
+
+    if (token) {
+      context.keycloak = {
+        isLogged: true,
+        decodedToken: await this.decodedToken(
+          url,
+          realm,
+          context.request.headers.authorization.replace(/^Bearer /, ''),
+        ),
+      };
+    } else {
+      context.keycloak = {
+        isLogged: false,
+      };
+    }
+
+    if (secured && !context.keycloak.decodedToken) {
+      throw new Error('Unauthorized');
+    }
+
+    const result = await executePinsList(execute, context);
+    return result;
+  }
 }
 
 export const page = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -342,3 +398,6 @@ export const page = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const service = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new KeycloakService().service(params, pinsSettingsList, context);
+
+export const boost = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new KeycloakService().boost(params, pinsSettingsList, context);

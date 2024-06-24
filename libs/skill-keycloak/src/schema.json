@@ -59,7 +59,40 @@
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "SecuredBoost": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Déclencheur sécurisé",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "boolean"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": []
+      }
+    }
   },
   "x-scene-blocks": {
     "/page": {
@@ -216,6 +249,66 @@
           "summary": "Exécute",
           "required": true,
           "description": "Commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "secured",
+          "summary": "Sécurisé",
+          "required": false,
+          "description": "Accès autorisé seulement si un token Keycloak est fourni",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "summary": "Adresse du Keycloak",
+          "required": false,
+          "description": "Adresse du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "realm",
+          "summary": "Realm",
+          "required": false,
+          "description": "Realm du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/boost": {
+      "summary": "Boost sécurisé",
+      "description": "Boost proposé par le Digipair sécurisé par Keycloak",
+      "tags": ["boost", "service"],
+      "metadata": [
+        {
+          "name": "boosts",
+          "summary": "Liste des déclencheurs",
+          "required": true,
+          "description": "Liste des déclencheurs du boost",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecuredBoost"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécution des actions",
+          "required": false,
+          "description": "Liste des actions à exécuter",
           "schema": {
             "type": "array",
             "items": {

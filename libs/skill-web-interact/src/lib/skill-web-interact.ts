@@ -37,12 +37,16 @@ class DomService {
     const { selector, name, args = [] } = params;
     const element = document.querySelector(selector) as any;
 
-    element[name](...args);
+    return element[name](...args);
   }
 
-  async goTo(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
-    const { url } = params;
-    window.location.href = url;
+  async goTo(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    window.location.reload();
+  }
+
+  async reload(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { url, target = '_self' } = params;
+    window.open(url, target);
   }
 }
 
@@ -60,3 +64,6 @@ export const execute = (params: any, pinsSettingsList: PinsSettings[], context: 
 
 export const goTo = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DomService().goTo(params, pinsSettingsList, context);
+
+export const reload = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DomService().reload(params, pinsSettingsList, context);

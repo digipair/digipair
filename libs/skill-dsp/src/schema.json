@@ -224,9 +224,9 @@
             "name": "input",
             "summary": "Données à traiter",
             "required": true,
-            "description": "Chaine de caractère à traiter",
+            "description": "Données d'entrées à traiter",
             "schema": {
-              "type": "string"
+              "type": "object"
             }
           }
         ],
