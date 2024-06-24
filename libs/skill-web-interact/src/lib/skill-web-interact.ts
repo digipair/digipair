@@ -40,13 +40,13 @@ class DomService {
     return element[name](...args);
   }
 
-  async goTo(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
-    window.location.reload();
-  }
-
-  async reload(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async goTo(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { url, target = '_self' } = params;
     window.open(url, target);
+  }
+
+  async reload(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    window.location.reload();
   }
 }
 

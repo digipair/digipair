@@ -60,6 +60,30 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "ok",
+            "summary": "Si c'est confirmé",
+            "required": false,
+            "description": "Actions à effectuer si c'est confirmé",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ko",
+            "summary": "Sinon",
+            "required": false,
+            "description": "Actions à effectuer si ce n'est pas confirmé confirmé",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
           }
         ],
         "x-events": []

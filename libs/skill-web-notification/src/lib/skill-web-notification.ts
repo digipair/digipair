@@ -1,4 +1,4 @@
-import { PinsSettings } from '@digipair/engine';
+import { PinsSettings, executePinsList } from '@digipair/engine';
 import * as ToastifyJs from 'toastify-js';
 
 const BASE_URL = 'https://cdn.jsdelivr.net/npm';
@@ -46,10 +46,16 @@ class NotificationService {
     }).showToast();
   }
 
-  async confirm(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { message } = params;
+  async confirm(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { message, ok = [], ko = [] } = params;
 
-    return window.confirm(message);
+    if (!window.confirm(message)) {
+      await executePinsList(ko, context);
+      return false;
+    }
+
+    await executePinsList(ok, context);
+    return true;
   }
 
   async alert(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
