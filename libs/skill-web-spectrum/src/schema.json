@@ -1041,6 +1041,52 @@
           }
         ]
       }
+    },
+    "/sp-toast": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Message d'alerte",
+        "description": "Message d'alerte",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "open",
+            "summary": "Ouvert",
+            "required": true,
+            "description": "Affiche le message d'alerte",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "variant",
+            "summary": "Variante",
+            "required": false,
+            "description": "Variante du message d'alerte",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du message d'alerte",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
