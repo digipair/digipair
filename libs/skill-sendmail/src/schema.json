@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-sendmail",
+    "summary": "Envoi de mail",
+    "description": "Envoi de mail",
+    "version": "0.1.0",
+    "x-icon": "📨"
+  },
+  "paths": {
+    "/send": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoi de mail",
+        "description": "Envoi de mail",
+        "parameters": [
+          {
+            "name": "from",
+            "summary": "Expéditeur",
+            "required": true,
+            "description": "Expéditeur du mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "summary": "Destinataires",
+            "required": true,
+            "description": "Destinataires du mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "summary": "Sujet",
+            "required": true,
+            "description": "Sujet du mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte du mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "html",
+            "summary": "HTML",
+            "required": true,
+            "description": "HTML du mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration du serveur de mail",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

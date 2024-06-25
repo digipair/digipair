@@ -12,10 +12,10 @@
         "main": "libs/skill-openai/src/index.ts",
         "tsConfig": "libs/skill-openai/tsconfig.lib.json",
         "assets": ["libs/skill-openai/src/index.d.ts", "libs/skill-openai/src/schema.json"],
+        "rollupConfig": ["libs/skill-openai/rollup.build.cjs"],
         "project": "libs/skill-openai/package.json",
         "compiler": "swc",
-        "format": ["esm", "cjs"],
-        "rollupConfig": ["libs/skill-openai/rollup.build.cjs"]
+        "format": ["esm", "cjs"]
       }
     },
     "publish": {
