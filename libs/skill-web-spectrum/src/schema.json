@@ -126,7 +126,7 @@
     "/sp-table-body": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Contenu",
+        "summary": "Contenu du tableau",
         "description": "Contenu d'un tableau",
         "parameters": [],
         "x-events": []
@@ -747,8 +747,8 @@
     "/sp-textfield": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Etiquette de champ",
-        "description": "Etiquette de champ de formulaire",
+        "summary": "Champs texte",
+        "description": "Champs texte de formulaire",
         "parameters": [
           {
             "name": "id",
@@ -857,6 +857,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": [
@@ -879,7 +888,7 @@
       "post": {
         "tags": ["web"],
         "summary": "Texte d'aide",
-        "description": "Etiquette de champ de formulaire",
+        "description": "Texte d'aide",
         "parameters": [
           {
             "name": "textContent",
@@ -905,8 +914,8 @@
     "/sp-button": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Etiquette de champ",
-        "description": "Etiquette de champ de formulaire",
+        "summary": "Boutton",
+        "description": "Boutton",
         "parameters": [
           {
             "name": "id",

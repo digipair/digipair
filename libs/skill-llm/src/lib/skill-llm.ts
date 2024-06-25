@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import { RunnableSequence } from '@langchain/core/runnables';
+import { HumanMessage } from '@langchain/core/messages';
 import { PromptTemplate } from '@langchain/core/prompts';
+import { RunnableSequence } from '@langchain/core/runnables';
 import { loadSummarizationChain } from 'langchain/chains';
 import { StructuredOutputParser } from 'langchain/output_parsers';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
@@ -125,46 +126,70 @@ class LLMService {
   }
 
   async vision(params: any, _pins: PinsSettings[], context: any) {
-    const { model, schema, prompt, image } = params;
+    const { model, prompt, schema, image } = params;
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
       const modelInstance = await executePinsList(model ?? context.privates.MODEL_VISION, context);
-      const modelVisionInstance = modelInstance.bind({
-        images: [image.split(';base64,')[1]],
-        prompt,
-      } as any);
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
-        modelVisionInstance,
+        (text: any) => [
+          new HumanMessage({
+            content: [
+              {
+                type: 'text',
+                text: text.value,
+              },
+              {
+                type: 'image_url',
+                image_url: {
+                  url: image,
+                },
+              },
+            ],
+          }),
+        ],
+        modelInstance,
       ]);
     } else {
       const modelInstance = await executePinsList(
         model ?? context.privates.MODEL_VISION_JSON ?? context.privates.MODEL_VISION,
         context,
       );
-      const modelVisionInstance = modelInstance.bind({
-        images: [image.split(';base64,')[1]],
-        prompt,
-      } as any);
       const parser = new StructuredOutputParser(this.jsonSchemaToZod(schema) as any);
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(
           `${prompt ?? '{prompt}'}
-
-          Answer the users question as best as possible.
-          {format_instructions}
-          
-          JSON:`,
+            
+            Answer the users question as best as possible.
+            {format_instructions}
+            
+            JSON:`,
           {
             partialVariables: {
               format_instructions: parser.getFormatInstructions(),
             },
           },
         ),
-        modelVisionInstance,
+        (text: any) => [
+          new HumanMessage({
+            content: [
+              {
+                type: 'text',
+                text: text.value,
+              },
+              {
+                type: 'image_url',
+                image_url: {
+                  url: image,
+                },
+              },
+            ],
+          }),
+        ],
+        modelInstance,
         parser,
       ]);
     }

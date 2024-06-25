@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, noChange, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { until } from 'lit/directives/until.js';
 import { generateElementFromPins } from '@digipair/engine';
@@ -11,6 +11,8 @@ export class InputsElement extends LitElement {
   @property({ type: Object })
   context: any = {};
 
+  private cache = '';
+
   get values(): { [key: string]: any }[] {
     return Array.from((this.shadowRoot as unknown as HTMLElement).children).map((el: any) => ({
       value: el.value,
@@ -20,6 +22,13 @@ export class InputsElement extends LitElement {
   }
 
   override render() {
+    const cache = JSON.stringify(this.inputs);
+
+    if (this.cache === cache) {
+      return noChange;
+    }
+    this.cache = cache;
+
     return html`
       ${(this.inputs || []).map(
         (pins: PinsSettings) =>

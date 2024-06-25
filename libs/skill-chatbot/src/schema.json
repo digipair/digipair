@@ -48,10 +48,7 @@
             "required": false,
             "description": "Informations utiles pour débogguer le raisonnement",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
+              "type": "object"
             }
           },
           {
