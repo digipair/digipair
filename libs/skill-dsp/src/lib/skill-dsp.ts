@@ -3,16 +3,16 @@ import { PinsSettings, executePinsList } from '@digipair/engine';
 
 class DspService {
   async model(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { AI } = await eval(`import('llmclient')`);
+    const { AxAI } = await eval(`import('@ax-llm/ax')`);
     const { name, options } = params;
 
-    const modelInstance = AI(name, options);
+    const modelInstance = new AxAI({ name, ...options });
 
     return modelInstance;
   }
 
   async modelOpenAI(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { OpenAI } = await eval(`import('llmclient')`);
+    const { AxAIOpenAI } = await eval(`import('@ax-llm/ax')`);
     const {
       apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
       apiURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
@@ -20,7 +20,7 @@ class DspService {
       options,
     } = params;
 
-    const modelInstance = new OpenAI({
+    const modelInstance = new AxAIOpenAI({
       apiKey,
       apiURL,
       config,
@@ -31,7 +31,7 @@ class DspService {
   }
 
   async modelAzureOpenAi(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { AzureOpenAi } = await eval(`import('llmclient')`);
+    const { AxAIAzureOpenAI } = await eval(`import('@ax-llm/ax')`);
     const {
       apiKey = context.privates.AZURE_OPENAI_API_KEY ?? process.env['AZURE_OPENAI_API_KEY'],
       resourceName = context.privates.AZURE_OPENAI_API_INSTANCE_NAME ??
@@ -44,7 +44,7 @@ class DspService {
       options,
     } = params;
 
-    const modelInstance = new AzureOpenAi({
+    const modelInstance = new AxAIAzureOpenAI({
       apiKey,
       resourceName,
       deploymentName,
@@ -57,7 +57,7 @@ class DspService {
   }
 
   async modelOllama(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { Ollama } = await eval(`import('llmclient')`);
+    const { AxAIOllama } = await eval(`import('@ax-llm/ax')`);
     const {
       model,
       url = context.privates.OLLAMA_SERVER
@@ -70,17 +70,17 @@ class DspService {
       options,
     } = params;
 
-    const modelInstance = new Ollama({ model, url, apiKey, config, options });
+    const modelInstance = new AxAIOllama({ model, url, apiKey, config, options });
 
     return modelInstance;
   }
 
   async generate(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { Generate } = await eval(`import('llmclient')`);
+    const { AxGenerate } = await eval(`import('@ax-llm/ax')`);
     const { model = context.privates.MODEL_DSP, signature, input } = params;
 
     const modelInstance = await executePinsList(model, context);
-    const gen = new Generate(modelInstance, signature);
+    const gen = new AxGenerate(modelInstance, signature);
     const result = await gen.forward(input);
 
     return result;

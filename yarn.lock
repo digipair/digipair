@@ -65,6 +65,13 @@
     ora "5.4.1"
     rxjs "7.8.1"
 
+"@ax-llm/ax@^9.0.14":
+  version "9.0.14"
+  resolved "https://registry.yarnpkg.com/@ax-llm/ax/-/ax-9.0.14.tgz#32a786f4026a469a8301e0d11b73772196d0de03"
+  integrity sha512-fWO/LO/0AQY7CVmhqBokeC5QfIiCp3KDnCfOiPiAeE6js5x86cru45whoBrj2GPE4E6vWhI0/Hu8CZ+PXCH0kw==
+  dependencies:
+    json5 "^2.2.3"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.23.5":
   version "7.23.5"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.23.5.tgz"
@@ -9957,13 +9964,6 @@ lit@^3.1.4:
     "@lit/reactive-element" "^2.0.4"
     lit-element "^4.0.4"
     lit-html "^3.1.2"
-
-llmclient@^8.1.22:
-  version "8.1.22"
-  resolved "https://registry.yarnpkg.com/llmclient/-/llmclient-8.1.22.tgz#2918d055f90f045cd4ad49a75c85c5b6c7bf5216"
-  integrity sha512-6jSVzpdYhE/jcPL5HM/rBtxsJwaWSpx++abfQ4VNjLCSzXBUTODiYKQU7A0il1hLdORxf0JNmKVnA5K+IQ46Fg==
-  dependencies:
-    json5 "^2.2.3"
 
 loader-runner@^4.2.0:
   version "4.3.0"
