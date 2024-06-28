@@ -45,10 +45,7 @@ export const applyTemplate = (value: any, context: any) => {
   return result;
 };
 
-const executePins = async (
-  settingsOrigin: PinsSettings,
-  context: any = {},
-): Promise<any> => {
+const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Promise<any> => {
   const settings = await preparePinsSettings(settingsOrigin, context);
 
   if (settings.conditions?.each) {
@@ -112,15 +109,12 @@ export const executePinsList = async (
       }
     }
 
-    previous = await executePins(
-      settings,
-      {
-        ...context,
-        previous,
-        steps,
-        parent: { previous: context.previous, steps: context.steps, parent: context.parent },
-      },
-    );
+    previous = await executePins(settings, {
+      ...context,
+      previous,
+      steps,
+      parent: { previous: context.previous, steps: context.steps, parent: context.parent },
+    });
     steps[i] = { name: settings.name, result: previous };
   }
 
@@ -167,8 +161,9 @@ export const generateElementFromPins = async (
   Object.entries(settings.properties || {}).forEach(([key, value]) => {
     if (key === 'textContent') {
       element.textContent = value;
-    }
-    if (typeof value === 'string') {
+    } else if (key === 'innerHTML') {
+      element.innerHTML = value;
+    } else if (typeof value === 'string') {
       element.setAttribute(key, value);
     } else {
       (element as any)[key] = value;

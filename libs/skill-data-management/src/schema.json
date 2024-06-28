@@ -11,7 +11,7 @@
     "/transform": {
       "post": {
         "tags": ["web", "service", "spatial"],
-        "summary": "Tramsformer la donnée",
+        "summary": "Transformer la donnée",
         "description": "Transforme une valeur grace aus mécaniques standard de transformation de données du moteur",
         "parameters": [
           {

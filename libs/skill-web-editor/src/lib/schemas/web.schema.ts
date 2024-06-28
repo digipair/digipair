@@ -40,6 +40,24 @@ export const schemas = {
               type: 'string',
             },
           },
+          {
+            name: 'innerHTML',
+            summary: 'Code HTML',
+            description: 'Code HTML de la section',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'textContent',
+            summary: 'Texte',
+            description: 'Texte de la section',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
         ],
       },
     },
