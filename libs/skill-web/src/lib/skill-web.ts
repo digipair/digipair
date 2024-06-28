@@ -84,12 +84,11 @@ class WebService {
       styleHtml = '',
       styleBody = '',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
-      libraries = {},
       factoryInitialize = [],
       browserInitialize = [],
       browserLoad = [],
     } = params;
-    const engineVersion = libraries['@digipair/engine'] || 'latest';
+    const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
     const preparedData = {} as { [key: string]: PinsSettings };
 
     if (
@@ -138,7 +137,7 @@ class WebService {
         },
       };
       
-      config.set('LIBRARIES', { '@digipair/skill-web': skillWeb, ...${JSON.stringify(libraries)} });
+      config.set('LIBRARIES', { '@digipair/skill-web': skillWeb });
       config.set('BASE_URL', '${baseUrl}');
 
       const context = {

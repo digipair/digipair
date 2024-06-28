@@ -177,6 +177,15 @@
           }
         },
         {
+          "name": "factoryUrl",
+          "summary": "Adresse de la factory",
+          "required": false,
+          "description": "Adresse de la factory Digipair",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
           "name": "factoryInitialize",
           "summary": "Lors de la l'initialisation coté factory",
           "required": false,

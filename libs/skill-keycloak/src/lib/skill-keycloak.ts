@@ -154,14 +154,16 @@ class KeycloakService {
       url = context.privates.KEYCLOAK_URL,
       realm = context.privates.KEYCLOAK_REALM,
       clientId = context.privates.KEYCLOAK_CLIENTID,
-      libraries = {},
       factoryInitialize = [],
       browserInitialize = [],
       browserLoad = [],
       logged = [],
       unlogged = [],
+      factoryUrl = context.privates.FACTORY_URL ||
+        process.env['FACTORY_URL'] ||
+        'https://factory.digipair.ai',
     } = params;
-    const engineVersion = libraries['@digipair/engine'] || 'latest';
+    const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
     const preparedData = {} as { [key: string]: PinsSettings };
 
     if (
@@ -225,7 +227,7 @@ class KeycloakService {
       import '${url}/js/keycloak.js';
       import { config, executePinsList, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
-      const serverUrl = '${process.env['FACTORY_URL'] || 'https://factory.digipair.ai'}';
+      const serverUrl = '${factoryUrl}';
       const keycloakService = ${this.skillKeycloak};
 
       const originalFetch = window.fetch;
@@ -265,9 +267,7 @@ class KeycloakService {
           keycloakService.login(),
       };
       
-      config.set('LIBRARIES', { '@digipair/skill-keycloak': skillWeb, ...${JSON.stringify(
-        libraries,
-      )} });
+      config.set('LIBRARIES', { '@digipair/skill-keycloak': skillWeb });
       config.set('BASE_URL', '${baseUrl}');
 
       // Keycloak initialization

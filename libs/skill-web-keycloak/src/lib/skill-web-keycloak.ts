@@ -2,7 +2,7 @@ import { PinsSettings } from '@digipair/engine';
 
 declare const Keycloak: any;
 
-class DataManagementService {
+class WebKeycloakService {
   set _keycloakPromise(promise: any) {
     (window as any)['__DIGIPAIR_KEYCLOAK'] = promise;
   }
@@ -74,16 +74,16 @@ class DataManagementService {
 }
 
 export const isLogged = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().isLogged(params, pinsSettingsList, context);
+  new WebKeycloakService().isLogged(params, pinsSettingsList, context);
 
 export const initialize = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().initialize(params, pinsSettingsList, context);
+  new WebKeycloakService().initialize(params, pinsSettingsList, context);
 
 export const token = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().token(params, pinsSettingsList, context);
+  new WebKeycloakService().token(params, pinsSettingsList, context);
 
 export const logout = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().logout(params, pinsSettingsList, context);
+  new WebKeycloakService().logout(params, pinsSettingsList, context);
 
 export const login = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().login(params, pinsSettingsList, context);
+  new WebKeycloakService().login(params, pinsSettingsList, context);
