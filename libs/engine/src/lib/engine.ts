@@ -15,6 +15,15 @@ const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
 });
 
+const isPinsSettings = (value: any): boolean => {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    typeof value.element === 'string' &&
+    typeof value.library === 'string'
+  );
+}
+
 export const config = {
   set: (key: CONFIG_KEY, value: any) => {
     _config[key] = key === 'LIBRARIES' && _config[key] ? { ..._config[key], ...value } : value;
@@ -33,7 +42,7 @@ export const applyTemplate = (value: any, context: any) => {
       result = evaluate(path, context);
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
-    result = value;
+    result = value.map((item) => isPinsSettings(item) ? item : applyTemplate(item, context));
   } else if (typeof value === 'object') {
     result = {} as any;
 
