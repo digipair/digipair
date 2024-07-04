@@ -1,0 +1,27 @@
+{
+  "name": "skill-twilio",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-twilio/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-twilio",
+        "main": "libs/skill-twilio/src/index.ts",
+        "tsConfig": "libs/skill-twilio/tsconfig.lib.json",
+        "assets": ["libs/skill-twilio/src/index.d.ts", "libs/skill-twilio/src/schema.json"],
+        "rollupConfig": ["libs/skill-twilio/rollup.build.cjs"],
+        "project": "libs/skill-twilio/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-twilio {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

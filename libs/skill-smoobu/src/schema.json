@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-smoobu",
+    "summary": "Gestion des locations via Smoobu",
+    "description": "Cette compétence permet d'utiliser le service Smoobu",
+    "version": "0.1.0",
+    "x-icon": "🏡"
+  },
+  "paths": {
+    "/getReservationWithId": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Information d'une réservation Smoobu",
+        "parameters": [
+          {
+            "name": "reservationId",
+            "summary": "Identifiant de la réservation",
+            "required": true,
+            "description": "Identifiant de la réservation Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_KEY",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

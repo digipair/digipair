@@ -14,7 +14,7 @@ class CronService {
 
   async start(path: string) {
     const content = await promises.readFile(`${path}/planning.json`, 'utf8');
-    const planning = JSON.parse(content);
+    const planning = JSON.parse(`[${content}]`);
 
     for (const plan of planning) {
       const job = new CronJob(
@@ -205,4 +205,3 @@ export const disableCron = (params: any, pinsSettingsList: PinsSettings[], conte
 
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.task(params, pinsSettingsList, context);
-

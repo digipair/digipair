@@ -1,0 +1,27 @@
+{
+  "name": "skill-mongodb",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-mongodb/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-mongodb",
+        "main": "libs/skill-mongodb/src/index.ts",
+        "tsConfig": "libs/skill-mongodb/tsconfig.lib.json",
+        "assets": ["libs/skill-mongodb/src/index.d.ts", "libs/skill-mongodb/src/schema.json"],
+        "rollupConfig": ["libs/skill-mongodb/rollup.build.cjs"],
+        "project": "libs/skill-mongodb/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-mongodb {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

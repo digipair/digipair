@@ -208,7 +208,10 @@
             "required": false,
             "description": "Modèle LLM à utiliser pour la génération",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           },
           {

@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-pushbullet",
+    "summary": "Gestion du service Pushbullet",
+    "description": "Cette compétence permet d'utiliser le service Pushbullet",
+    "version": "0.1.0",
+    "x-icon": "📲"
+  },
+  "paths": {
+    "/sendSms": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoie un SMS via Pushbullet",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à envoyer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNumber",
+            "summary": "Numéro de téléphone",
+            "required": true,
+            "description": "Numéro de téléphone du destinataire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PUSHBULLET_ACCESS_TOKEN",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Pushbullet",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PUSHBULLET_TARGET_DEVICE_ID",
+            "summary": "Identifiant du périphérique",
+            "required": false,
+            "description": "Identifiant du périphérique Pushbullet",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PUSHBULLET_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Pushbullet",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
