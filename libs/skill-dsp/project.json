@@ -12,10 +12,10 @@
         "main": "libs/skill-dsp/src/index.ts",
         "tsConfig": "libs/skill-dsp/tsconfig.lib.json",
         "assets": ["libs/skill-dsp/src/index.d.ts", "libs/skill-dsp/src/schema.json"],
+        "rollupConfig": ["libs/skill-dsp/rollup.build.cjs"],
         "project": "libs/skill-dsp/package.json",
         "compiler": "swc",
-        "format": ["cjs", "esm"],
-        "rollupConfig": ["libs/skill-dsp/rollup.build.cjs"]
+        "format": ["cjs", "esm"]
       }
     },
     "publish": {

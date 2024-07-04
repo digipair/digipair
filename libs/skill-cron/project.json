@@ -1,0 +1,27 @@
+{
+  "name": "skill-cron",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-cron/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-cron",
+        "main": "libs/skill-cron/src/index.ts",
+        "tsConfig": "libs/skill-cron/tsconfig.lib.json",
+        "assets": ["libs/skill-cron/src/index.d.ts", "libs/skill-cron/src/schema.json"],
+        "rollupConfig": ["libs/skill-cron/rollup.build.cjs"],
+        "project": "libs/skill-cron/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-cron {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

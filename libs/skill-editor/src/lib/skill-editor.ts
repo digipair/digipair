@@ -59,7 +59,7 @@ class EditorService {
         process.env['DIGIPAIR_AGENTS_PATH'] ??
         './dist/apps/factory/assets/digipairs',
       digipair,
-      reasoning
+      reasoning,
     } = params;
 
     await promises.unlink(`${path}/${digipair}/${reasoning}.json`);
@@ -75,7 +75,7 @@ class EditorService {
     } = params;
 
     const digipairs = (await promises.readdir(path)).filter(
-      (file: string) => !file.startsWith('.'),
+      (file: string) => !file.startsWith('.') && !file.endsWith('.json'),
     );
 
     return digipairs;

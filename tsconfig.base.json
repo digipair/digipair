@@ -18,6 +18,7 @@
       "@digipair/engine": ["libs/engine/src/index.ts"],
       "@digipair/skill-chatbot": ["libs/skill-chatbot/src/index.ts"],
       "@digipair/skill-common": ["libs/skill-common/src/index.ts"],
+      "@digipair/skill-cron": ["libs/skill-cron/src/index.ts"],
       "@digipair/skill-data-management": ["libs/skill-data-management/src/index.ts"],
       "@digipair/skill-debug": ["libs/skill-debug/src/index.ts"],
       "@digipair/skill-dsp": ["libs/skill-dsp/src/index.ts"],
