@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings } from '@digipair/engine';
+import { PinsSettings, executePinsList } from '@digipair/engine';
 
 class SmoobuService {
   private readonly SMOOBU_API_KEY: string;
@@ -45,9 +45,34 @@ class SmoobuService {
   ): Promise<any> {
     return await this.call(`/reservations`, 'GET');
   }
+
+  async event(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const {
+      updateRates = [],
+      newReservation = [],
+      cancelReservation = [],
+      updateReservation = [],
+    } = params;
+    const actions = { updateRates, newReservation, cancelReservation, updateReservation };
+
+    return await executePinsList(
+      actions[
+        context.request.body.action as
+          | 'updateRates'
+          | 'newReservation'
+          | 'cancelReservation'
+          | 'updateReservation'
+      ],
+      context,
+    );
+  }
 }
+
+export const event = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new SmoobuService(context, params).event(params, pinsSettingsList, context);
 
 export const getReservationWithId = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new SmoobuService(context, params).getReservationWithId(params, pinsSettingsList, context);
+
 export const getAllReservations = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new SmoobuService(context, params).getAllReservations(params, pinsSettingsList, context);
