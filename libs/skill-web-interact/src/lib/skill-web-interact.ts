@@ -48,6 +48,52 @@ class DomService {
   async reload(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     window.location.reload();
   }
+
+  async upload(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { accept = '*' } = params;
+
+    const result = await new Promise(resolve => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.multiple = false;
+      input.accept = accept;
+      input.onchange = (event: any) => {
+        const files = event.target.files;
+        const file = files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          resolve({ value: reader.result as string, filename: file.name });
+        };
+      };
+      input.click();
+    });
+
+    return result;
+  }
+
+  async uploadText(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { accept = 'text/plain' } = params;
+
+    const result = await new Promise(resolve => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.multiple = false;
+      input.accept = accept;
+      input.onchange = (event: any) => {
+        const files = event.target.files;
+        const file = files[0];
+        const reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = () => {
+          resolve({ value: reader.result as string, filename: file.name });
+        };
+      };
+      input.click();
+    });
+
+    return result;
+  }
 }
 
 export const setAttribute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -67,3 +113,9 @@ export const goTo = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const reload = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DomService().reload(params, pinsSettingsList, context);
+
+export const upload = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DomService().upload(params, pinsSettingsList, context);
+
+export const uploadText = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DomService().uploadText(params, pinsSettingsList, context);

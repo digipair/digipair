@@ -186,6 +186,44 @@
         "parameters": [],
         "x-events": []
       }
+    },
+    "/upload": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Uploader un fichier binaire",
+        "description": "Permet d'uploader un fichier binaire en base64",
+        "parameters": [
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichier accepté",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/uploadText": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Uploader un fichier texte",
+        "description": "Permet d'uploader un fichier en texte",
+        "parameters": [
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichier accepté",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

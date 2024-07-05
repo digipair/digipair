@@ -36,6 +36,15 @@ class DataManagementService {
 
     return JSON.parse(value);
   }
+
+  async convertText2Base64(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    _context: any,
+  ): Promise<string> {
+    const { value } = params;
+    return btoa(value);
+  }
 }
 
 export const transform = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -49,3 +58,6 @@ export const struct2array = (params: any, pinsSettingsList: PinsSettings[], cont
 
 export const jsonParse = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DataManagementService().jsonParse(params, pinsSettingsList, context);
+
+export const convertText2Base64 = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new DataManagementService().convertText2Base64(params, pinsSettingsList, context);

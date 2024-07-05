@@ -58,7 +58,7 @@
         {
           "name": "updateRates",
           "summary": "Lors de la mise à jour des tarifs",
-          "required": true,
+          "required": false,
           "description": "Commandes à exécuter lors de la mise à jour des tarifs",
           "schema": {
             "type": "array",
@@ -70,7 +70,7 @@
         {
           "name": "newReservation",
           "summary": "Lors d'une nouvelle réservation",
-          "required": true,
+          "required": false,
           "description": "Commandes à exécuter lors d'une nouvelle réservation",
           "schema": {
             "type": "array",
@@ -82,7 +82,7 @@
         {
           "name": "cancelReservation",
           "summary": "Lors d'une annulation",
-          "required": true,
+          "required": false,
           "description": "Commandes à exécuter lors d'une annulation",
           "schema": {
             "type": "array",
@@ -94,7 +94,7 @@
         {
           "name": "updateReservation",
           "summary": "Lors de la mise à jour d'une réservation",
-          "required": true,
+          "required": false,
           "description": "Commandes à exécuter lors de la mise à jour d'une réservation",
           "schema": {
             "type": "array",

@@ -116,6 +116,25 @@
         ],
         "x-events": []
       }
+    },
+    "/convertText2Base64": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Convertir un texte en base64",
+        "description": "Convertit un texte en base64",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Texte à convertir en base64",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
