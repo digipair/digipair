@@ -40,7 +40,7 @@ export class AppService {
 
     const context = {
       config: {
-        VERSIONS: config.versions,
+        VERSIONS: config.libraries,
       },
       privates: config.privates,
       variables: config.variables,
