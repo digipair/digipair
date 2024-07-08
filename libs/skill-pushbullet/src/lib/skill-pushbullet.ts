@@ -3,9 +3,9 @@
 import { PinsSettings } from '@digipair/engine';
 
 class PushbulletService {
-  private readonly TARGET_DEVICE_ID: string;
-  private readonly PUSHBULLET_ACCESS_TOKEN: string;
-  private readonly API_ENDPOINT: string;
+  private TARGET_DEVICE_ID: string;
+  private PUSHBULLET_ACCESS_TOKEN: string;
+  private API_ENDPOINT: string;
 
   constructor(context: any, params: any) {
     this.PUSHBULLET_ACCESS_TOKEN =

@@ -3,8 +3,8 @@
 import { PinsSettings } from '@digipair/engine';
 
 class NukiService {
-  private readonly NUKI_API_KEY: string;
-  private readonly API_ENDPOINT: string;
+  private NUKI_API_KEY: string;
+  private API_ENDPOINT: string;
 
   constructor(context: any, params: any) {
     this.NUKI_API_KEY =

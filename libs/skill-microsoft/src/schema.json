@@ -1,0 +1,367 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-microsoft",
+    "summary": "Communication avec les services Microsoft",
+    "description": "Cette compétence permet d'utiliser les services Microsoft",
+    "version": "0.1.0",
+    "x-icon": "❖"
+  },
+  "paths": {
+    "/request": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Exécute un service Microsoft",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "method",
+            "summary": "Méthode HTTP",
+            "required": false,
+            "description": "Méthode HTTP à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_ID",
+            "summary": "Identifiant du client OAuth",
+            "required": false,
+            "description": "Identifiant du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_SECRET",
+            "summary": "Secret du client OAuth",
+            "required": false,
+            "description": "Secret du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TENANT_ID",
+            "summary": "ID du locataire",
+            "required": false,
+            "description": "ID du locataire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/create": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ajoute une ressource Microsoft",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_ID",
+            "summary": "Identifiant du client OAuth",
+            "required": false,
+            "description": "Identifiant du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_SECRET",
+            "summary": "Secret du client OAuth",
+            "required": false,
+            "description": "Secret du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TENANT_ID",
+            "summary": "ID du locataire",
+            "required": false,
+            "description": "ID du locataire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/read": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Lit une ressource Microsoft",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_ID",
+            "summary": "Identifiant du client OAuth",
+            "required": false,
+            "description": "Identifiant du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_SECRET",
+            "summary": "Secret du client OAuth",
+            "required": false,
+            "description": "Secret du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TENANT_ID",
+            "summary": "ID du locataire",
+            "required": false,
+            "description": "ID du locataire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/update": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modifie une ressource Microsoft",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_ID",
+            "summary": "Identifiant du client OAuth",
+            "required": false,
+            "description": "Identifiant du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_SECRET",
+            "summary": "Secret du client OAuth",
+            "required": false,
+            "description": "Secret du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TENANT_ID",
+            "summary": "ID du locataire",
+            "required": false,
+            "description": "ID du locataire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/remove": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Supprime une ressource Microsoft",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_ID",
+            "summary": "Identifiant du client OAuth",
+            "required": false,
+            "description": "Identifiant du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OAUTH_CLIENT_SECRET",
+            "summary": "Secret du client OAuth",
+            "required": false,
+            "description": "Secret du client OAuth",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TENANT_ID",
+            "summary": "ID du locataire",
+            "required": false,
+            "description": "ID du locataire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
