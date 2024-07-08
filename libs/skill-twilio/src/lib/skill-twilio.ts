@@ -3,10 +3,10 @@
 import { PinsSettings } from '@digipair/engine';
 
 class TwilioService {
-  private readonly FROM_NUMBER: string;
-  private readonly TWILIO_SID: string;
-  private readonly TWILIO_TOKEN: string;
-  private readonly API_ENDPOINT: string;
+  private FROM_NUMBER: string;
+  private TWILIO_SID: string;
+  private TWILIO_TOKEN: string;
+  private API_ENDPOINT: string;
 
   constructor(context: any, params: any) {
     this.TWILIO_SID =

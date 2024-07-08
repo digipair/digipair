@@ -3,8 +3,8 @@
 import { PinsSettings, executePinsList } from '@digipair/engine';
 
 class SmoobuService {
-  private readonly SMOOBU_API_KEY: string;
-  private readonly API_ENDPOINT: string;
+  private SMOOBU_API_KEY: string;
+  private API_ENDPOINT: string;
 
   constructor(context: any, params: any) {
     this.SMOOBU_API_KEY =
