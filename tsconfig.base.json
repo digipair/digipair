@@ -25,6 +25,7 @@
       "@digipair/skill-editor": ["libs/skill-editor/src/index.ts"],
       "@digipair/skill-git": ["libs/skill-git/src/index.ts"],
       "@digipair/skill-keycloak": ["libs/skill-keycloak/src/index.ts"],
+      "@digipair/skill-linkedin": ["libs/skill-linkedin/src/index.ts"],
       "@digipair/skill-llm": ["libs/skill-llm/src/index.ts"],
       "@digipair/skill-microsoft": ["libs/skill-microsoft/src/index.ts"],
       "@digipair/skill-mongodb": ["libs/skill-mongodb/src/index.ts"],

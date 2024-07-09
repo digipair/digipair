@@ -1,17 +1,17 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-microsoft",
-    "summary": "Communication avec les services Microsoft",
-    "description": "Cette compétence permet d'utiliser les services Microsoft",
+    "title": "@digipair/skill-linkedin",
+    "summary": "Communication avec les services LinkedIn",
+    "description": "Cette compétence permet d'utiliser les services LinkedIn",
     "version": "0.1.0",
-    "x-icon": "❖"
+    "x-icon": "👤"
   },
   "paths": {
     "/request": {
       "post": {
         "tags": ["service"],
-        "summary": "Exécute un service Microsoft",
+        "summary": "Exécute un service LinkedIn",
         "parameters": [
           {
             "name": "path",
@@ -59,28 +59,10 @@
             }
           },
           {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
             "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
+            "description": "Jeton d'accès à utiliser",
             "schema": {
               "type": "string"
             }
@@ -92,7 +74,7 @@
     "/create": {
       "post": {
         "tags": ["service"],
-        "summary": "Ajoute une ressource Microsoft",
+        "summary": "Ajoute une ressource LinkedIn",
         "parameters": [
           {
             "name": "path",
@@ -131,28 +113,10 @@
             }
           },
           {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
             "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
+            "description": "Jeton d'accès à utiliser",
             "schema": {
               "type": "string"
             }
@@ -164,7 +128,7 @@
     "/read": {
       "post": {
         "tags": ["service"],
-        "summary": "Lit une ressource Microsoft",
+        "summary": "Lit une ressource LinkedIn",
         "parameters": [
           {
             "name": "path",
@@ -194,28 +158,10 @@
             }
           },
           {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
             "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
+            "description": "Jeton d'accès à utiliser",
             "schema": {
               "type": "string"
             }
@@ -227,7 +173,7 @@
     "/update": {
       "post": {
         "tags": ["service"],
-        "summary": "Modifie une ressource Microsoft",
+        "summary": "Modifie une ressource LinkedIn",
         "parameters": [
           {
             "name": "path",
@@ -266,28 +212,10 @@
             }
           },
           {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
             "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
+            "description": "Jeton d'accès à utiliser",
             "schema": {
               "type": "string"
             }
@@ -299,7 +227,7 @@
     "/partialUpdate": {
       "post": {
         "tags": ["service"],
-        "summary": "Modifie une partie d'une ressource Microsoft",
+        "summary": "Modifie une partie d'une ressource LinkedIn",
         "parameters": [
           {
             "name": "path",
@@ -338,28 +266,10 @@
             }
           },
           {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
             "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
+            "description": "Jeton d'accès à utiliser",
             "schema": {
               "type": "string"
             }
@@ -371,7 +281,7 @@
     "/remove": {
       "post": {
         "tags": ["service"],
-        "summary": "Supprime une ressource Microsoft",
+        "summary": "Supprime une ressource LinkedIn",
         "parameters": [
           {
             "name": "path",
@@ -401,28 +311,10 @@
             }
           },
           {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
             "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
+            "description": "Jeton d'accès à utiliser",
             "schema": {
               "type": "string"
             }

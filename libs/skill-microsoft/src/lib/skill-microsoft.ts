@@ -13,12 +13,12 @@ class MicrosoftService {
 
   constructor(context: any, params: any) {
     this.OAUTH_CLIENT_ID =
-      context.privates.OAUTH_CLIENT_ID ?? params?.OAUTH_CLIENT_ID ?? process.env['OAUTH_CLIENT_ID'];
+      context.privates.MICROSOFT_OAUTH_CLIENT_ID ?? params?.MICROSOFT_OAUTH_CLIENT_ID ?? process.env['MICROSOFT_OAUTH_CLIENT_ID'];
     this.OAUTH_CLIENT_SECRET =
-      context.privates.OAUTH_CLIENT_SECRET ??
-      params?.OAUTH_CLIENT_SECRET ??
-      process.env['OAUTH_CLIENT_SECRET'];
-    this.TENANT_ID = context.privates.TENANT_ID ?? params?.TENANT_ID ?? process.env['TENANT_ID'];
+      context.privates.MICROSOFT_OAUTH_CLIENT_SECRET ??
+      params?.MICROSOFT_OAUTH_CLIENT_SECRET ??
+      process.env['MICROSOFT_OAUTH_CLIENT_SECRET'];
+    this.TENANT_ID = context.privates.MICROSOFT_TENANT_ID ?? params?.MICROSOFT_TENANT_ID ?? process.env['MICROSOFT_TENANT_ID'];
   }
 
   private async getAccessToken() {
@@ -74,8 +74,14 @@ class MicrosoftService {
 
   async update(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { path, body = {}, version = 'v1.0', headers = {} } = params;
+    return await this.call(path, 'PUT', version, body, headers);
+  }
+
+  async partialUpdate(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { path, body = {}, version = 'v1.0', headers = {} } = params;
     return await this.call(path, 'PATCH', version, body, headers);
   }
+
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { path, version = 'v1.0', headers = {} } = params;
@@ -95,6 +101,9 @@ export const read = (params: any, pinsSettingsList: PinsSettings[], context: any
   new MicrosoftService(context, params).read(params, pinsSettingsList, context);
 
 export const update = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new MicrosoftService(context, params).update(params, pinsSettingsList, context);
+
+export const partialUpdate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new MicrosoftService(context, params).update(params, pinsSettingsList, context);
 
 export const remove = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
