@@ -65,10 +65,10 @@
     ora "5.4.1"
     rxjs "7.8.1"
 
-"@ax-llm/ax@^9.0.18":
-  version "9.0.19"
-  resolved "https://registry.yarnpkg.com/@ax-llm/ax/-/ax-9.0.19.tgz#65fe3d746b1ba9dffe3545a958e14b89e0d0eb2d"
-  integrity sha512-R4CJ0C3JOt6R1S8D0Pg1LDs59SY3pu+8+y186HkdV95ZoJeFqgK0RLC2GBxPHriAcLeRp4PUB8cX0nb9pikd7g==
+"@ax-llm/ax@^9.0.28":
+  version "9.0.28"
+  resolved "https://registry.yarnpkg.com/@ax-llm/ax/-/ax-9.0.28.tgz#54ab4c4d3024e419cd82f121f0244a7318fc0251"
+  integrity sha512-zsyEOcBg6fzwf7vPZ6NweuqUpo90jXTZKM91FZy05+OVEuz4cFKvem3ZeDNHMXWgYbfiWnLURHk7HONxDPc+3g==
   dependencies:
     json5 "^2.2.3"
 

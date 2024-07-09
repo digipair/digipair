@@ -7,7 +7,7 @@
   },
   "private": true,
   "dependencies": {
-    "@ax-llm/ax": "^9.0.18",
+    "@ax-llm/ax": "^9.0.28",
     "@azure/msal-node": "^2.10.0",
     "@langchain/community": "^0.2.11",
     "@langchain/openai": "^0.1.3",

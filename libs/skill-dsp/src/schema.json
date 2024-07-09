@@ -231,6 +231,201 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "functions",
+            "summary": "Fonctions DSP",
+            "required": false,
+            "description": "Fonctions utilisables pour la génération",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Function"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/chainOfThought": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Chaine de pensée DSP",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Modèle",
+            "required": false,
+            "description": "Modèle LLM à utiliser pour la génération",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "signature",
+            "summary": "Signature",
+            "required": true,
+            "description": "Signature des données à extraire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "input",
+            "summary": "Données à traiter",
+            "required": true,
+            "description": "Données d'entrées à traiter",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "functions",
+            "summary": "Fonctions DSP",
+            "required": false,
+            "description": "Fonctions utilisables pour la chaine de pensée",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Function"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/react": {
+      "post": {
+        "tags": ["service"],
+        "summary": "ReAct DSP",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Modèle",
+            "required": false,
+            "description": "Modèle LLM à utiliser pour la génération",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "signature",
+            "summary": "Signature",
+            "required": true,
+            "description": "Signature des données à extraire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "input",
+            "summary": "Données à traiter",
+            "required": true,
+            "description": "Données d'entrées à traiter",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "functions",
+            "summary": "Fonctions DSP",
+            "required": false,
+            "description": "Fonctions utilisables pour la génération",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Function"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/agent": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Agent DSP",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Modèle",
+            "required": false,
+            "description": "Modèle LLM à utiliser pour la génération",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom de l'agent",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "summary": "Description",
+            "required": true,
+            "description": "Description de l'agent",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "signature",
+            "summary": "Signature",
+            "required": true,
+            "description": "Signature des données à extraire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "input",
+            "summary": "Données à traiter",
+            "required": true,
+            "description": "Données d'entrées à traiter",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "functions",
+            "summary": "Fonctions DSP",
+            "required": false,
+            "description": "Fonctions utilisables pour la génération",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Function"
+              }
+            }
+          },
+          {
+            "name": "agents",
+            "summary": "Agents DSP",
+            "required": false,
+            "description": "Autres agents utilisables par l'agent",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
           }
         ],
         "x-events": []
@@ -238,7 +433,31 @@
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "Function": {
+        "tags": ["service"],
+        "summary": "Fonction DSP",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "descriptions": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "func": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": ["name", "description", "parameters", "func"]
+      }
+    }
   },
   "x-scene-blocks": {}
 }
