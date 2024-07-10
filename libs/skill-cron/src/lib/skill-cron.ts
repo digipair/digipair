@@ -23,7 +23,7 @@ class CronService {
           await this.startTask(path, plan.digipair, plan.reasoning);
         },
         null,
-        true,
+        !!plan.enabled,
         'Europe/Paris',
       );
 
@@ -106,6 +106,7 @@ class CronService {
       time,
       digipair,
       reasoning,
+      enabled: true,
     };
     await promises.appendFile(`${path}/planning.json`, '\n' + JSON.stringify(cron), 'utf8');
     this.addJob(path, cron.id, digipair, reasoning, time);
@@ -140,10 +141,10 @@ class CronService {
     } = params;
 
     const text = await promises.readFile(`${path}/planning.json`, 'utf8');
-    const crons = JSON.parse(`[${text}]`).filter((cron: any) => cron.id !== id);
+    const crons = JSON.parse(`[${text}]`);
     const cron = crons.find((cron: any) => cron.id === id);
 
-    cron.enable = true;
+    cron.enabled = true;
 
     const ndjson = crons.map(JSON.stringify).join('\n');
     await promises.writeFile(`${path}/planning.json`, ndjson, 'utf8');
@@ -162,10 +163,10 @@ class CronService {
     } = params;
 
     const text = await promises.readFile(`${path}/planning.json`, 'utf8');
-    const crons = JSON.parse(`[${text}]`).filter((cron: any) => cron.id !== id);
+    const crons = JSON.parse(`[${text}]`);
     const cron = crons.find((cron: any) => cron.id === id);
 
-    cron.enable = false;
+    cron.enabled = false;
     this.disableJob(id);
 
     const ndjson = crons.map(JSON.stringify).join('\n');
