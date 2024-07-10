@@ -14,6 +14,7 @@ const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_
   LIBRARIES: {} as { [key: string]: any },
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
 });
+const isRemoteVersion = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
 
 const isPinsSettings = (value: any): boolean => {
   return (
@@ -22,7 +23,7 @@ const isPinsSettings = (value: any): boolean => {
     typeof value.element === 'string' &&
     typeof value.library === 'string'
   );
-}
+};
 
 export const config = {
   set: (key: CONFIG_KEY, value: any) => {
@@ -42,7 +43,7 @@ export const applyTemplate = (value: any, context: any) => {
       result = evaluate(path, context);
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
-    result = value.map((item) => isPinsSettings(item) ? item : applyTemplate(item, context));
+    result = value.map(item => (isPinsSettings(item) ? item : applyTemplate(item, context)));
   } else if (typeof value === 'object') {
     result = {} as any;
 
@@ -90,7 +91,11 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
     _config.LIBRARIES[settings.library] ||
     (typeof window === 'undefined'
       ? require(settings.library)
-      : await import(`${_config.BASE_URL}/${settings.library}@${version}/index.esm.js`));
+      : await import(
+          isRemoteVersion.test(version)
+            ? `${version}`
+            : `${_config.BASE_URL}/${settings.library}@${version}/index.esm.js`
+        ));
   const pins = library?.[settings.element];
 
   if (!pins) {
@@ -164,7 +169,11 @@ export const generateElementFromPins = async (
   const library = pinsSettings.library;
   if (library !== 'web' && !_config.LIBRARIES[library]) {
     const version = context.config.VERSIONS[library] || 'latest';
-    import(`${_config.BASE_URL}/${library}@${version}/index.esm.js`);
+    import(
+      isRemoteVersion.test(version)
+        ? `${version}`
+        : `${_config.BASE_URL}/${library}@${version}/index.esm.js`
+    );
   }
 
   Object.entries(settings.properties || {}).forEach(([key, value]) => {
