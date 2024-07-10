@@ -16,16 +16,11 @@ import {
 class DspService {
   private async prepareFunctions(functions: AxFunction[], context: any): Promise<AxFunction[]> {
     return await Promise.all(
-      functions.map(async f => {
-        if ((f as any).library && (f as any).element) {
-          return await executePinsList([f as PinsSettings], context);
-        }
-
-        return {
-          ...f,
-          func: async () => await executePinsList(f.func as any as PinsSettings[], context),
-        };
-      }),
+      functions.map(async f => ({
+        ...f,
+        func: async (params) =>
+          await executePinsList(f.func as any as PinsSettings[], { ...context, params }),
+      })),
     );
   }
 
