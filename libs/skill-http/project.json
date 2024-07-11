@@ -1,0 +1,27 @@
+{
+  "name": "skill-http",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-http/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-http",
+        "main": "libs/skill-http/src/index.ts",
+        "tsConfig": "libs/skill-http/tsconfig.lib.json",
+        "assets": ["libs/skill-http/src/index.d.ts", "libs/skill-http/src/schema.json"],
+        "rollupConfig": ["libs/skill-http/rollup.build.cjs"],
+        "project": "libs/skill-http/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-http {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

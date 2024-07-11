@@ -9,16 +9,18 @@ function getRollupOptions(options) {
 
   const value = {
     ...options,
-    external: name => {
+    external: (name) => {
       return externals.includes(name);
     },
     plugins: [
       ...options.plugins,
       alias({
-        entries: Object.getOwnPropertyNames(tsconfig.compilerOptions.paths).map(property => ({
-          find: property,
-          replacement: path.resolve(tsconfig.compilerOptions.paths[property][0]),
-        })),
+        entries: Object.getOwnPropertyNames(tsconfig.compilerOptions.paths).map(
+          (property) => ({
+            find: property,
+            replacement: path.resolve(tsconfig.compilerOptions.paths[property][0]),
+          })
+        ),
       }),
     ],
     output: {
