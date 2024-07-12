@@ -5,7 +5,7 @@
     "summary": "Gestion des communications via Twilio",
     "description": "Cette compétence permet d'utiliser le service Twilio",
     "version": "0.1.0",
-    "x-icon": "📱"
+    "x-icon": "🗣"
   },
   "paths": {
     "/sendSms": {

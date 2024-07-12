@@ -1,8 +1,9 @@
 import { config, executePinsList } from '@digipair/engine';
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { promises } from 'fs';
 
 config.set('LIBRARIES', {
+  '@digipair/engine': require('@digipair/engine'),
   '@digipair/skill-chatbot': require('@digipair/skill-chatbot'),
   '@digipair/skill-common': require('@digipair/skill-common'),
   '@digipair/skill-llm': require('@digipair/skill-llm'),
@@ -17,11 +18,49 @@ config.set('LIBRARIES', {
   '@digipair/skill-keycloak': require('@digipair/skill-keycloak'),
   '@digipair/skill-git': require('@digipair/skill-git'),
   '@digipair/skill-debug': require('@digipair/skill-debug'),
+  '@digipair/skill-cron': require('@digipair/skill-cron'),
+  '@digipair/skill-http': require('@digipair/skill-http'),
+  '@digipair/skill-linkedin': require('@digipair/skill-linkedin'),
+  '@digipair/skill-microsoft': require('@digipair/skill-microsoft'),
+  '@digipair/skill-mongodb': require('@digipair/skill-mongodb'),
+  '@digipair/skill-nuki': require('@digipair/skill-nuki'),
+  '@digipair/skill-pushbullet': require('@digipair/skill-pushbullet'),
+  '@digipair/skill-sendmail': require('@digipair/skill-sendmail'),
+  '@digipair/skill-smoobu': require('@digipair/skill-smoobu'),
+  '@digipair/skill-temporal': require('@digipair/skill-temporal'),
+  '@digipair/skill-twilio': require('@digipair/skill-twilio'),
 });
 
 @Injectable()
-export class AppService {
+export class AppService implements OnModuleInit {
+  async onModuleInit() {
+    // start cron manager
+    try {
+      const skillCron = require('@digipair/skill-cron');
+      const path = process.env.DIGIPAIRAI_ASSETS_PATH || './dist/apps/factory/assets';
+
+      skillCron.initialize((path: string, digipair: string, reasoning: string) =>
+        this.agent(path, digipair, reasoning, {}, [], null, {}),
+      );
+      skillCron.start(`${path}`);
+    } catch (error) {
+      console.error(error);
+    }
+
+    // start workflow manager
+    try {
+      const skillTemporal = require('@digipair/skill-temporal');
+
+      if (process.env.TEMPORAL_CLUSTER_HOST) {
+        skillTemporal.initialize();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async agent(
+    path: string,
     digipair: string,
     reasoning: string,
     body: any,
@@ -30,7 +69,6 @@ export class AppService {
     headers: any,
   ): Promise<any> {
     let content: string;
-    const path = process.env.DIGIPAIR_AGENTS_PATH || './dist/apps/factory/assets/digipairs';
 
     content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);

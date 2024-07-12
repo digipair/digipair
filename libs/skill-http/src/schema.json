@@ -5,7 +5,7 @@
     "summary": "Communication avec les services HTTP",
     "description": "Cette compétence permet d'utiliser les services HTTP",
     "version": "0.1.0",
-    "x-icon": ""
+    "x-icon": "🌐"
   },
   "paths": {
     "/request": {

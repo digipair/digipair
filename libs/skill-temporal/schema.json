@@ -1,0 +1,150 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-temporal",
+    "summary": "Gestion des workflows temporal",
+    "description": "Cette compétence permet de gérer des workflows temporal",
+    "version": "0.1.0",
+    "x-icon": "👩‍💻"
+  },
+  "paths": {
+    "/activity": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Activitée",
+        "description": "Définit une activité",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de l'étape",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Exécute",
+            "required": true,
+            "description": "Liste des actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sleep": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Attente",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de l'étape",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "duration",
+            "summary": "Durée",
+            "required": true,
+            "description": "Durée de l'attente",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/goto": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Aller à l'étape",
+        "parameters": [
+          {
+            "name": "target",
+            "summary": "Nom de la destination",
+            "required": true,
+            "description": "Nom de l'étape de destination",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de l'étape",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/stop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Arrête le workflow",
+        "description": "Arrête le workflow",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de l'étape",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {
+    "/workflow": {
+      "summary": "Workflow Temporal",
+      "description": "Execute un workflow Temporal",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "steps",
+          "summary": "Exécute les étapes suivantes",
+          "required": true,
+          "description": "Contenu de la page",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "options",
+          "summary": "Options temporal",
+          "required": false,
+          "description": "Options du workflow temporal",
+          "schema": {
+            "type": "object"
+          }
+        }
+      ]
+    }
+  }
+}
