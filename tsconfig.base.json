@@ -23,6 +23,7 @@
       "@digipair/skill-debug": ["libs/skill-debug/src/index.ts"],
       "@digipair/skill-dsp": ["libs/skill-dsp/src/index.ts"],
       "@digipair/skill-editor": ["libs/skill-editor/src/index.ts"],
+      "@digipair/skill-factory": ["libs/skill-factory/src/index.ts"],
       "@digipair/skill-git": ["libs/skill-git/src/index.ts"],
       "@digipair/skill-http": ["libs/skill-http/src/index.ts"],
       "@digipair/skill-keycloak": ["libs/skill-keycloak/src/index.ts"],

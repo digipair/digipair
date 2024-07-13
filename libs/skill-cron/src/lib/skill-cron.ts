@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings, executePinsList } from '@digipair/engine';
+import { PinsSettings } from '@digipair/engine';
 import { promises } from 'fs';
 import { CronJob } from 'cron';
 import { v4 } from 'uuid';
@@ -174,12 +174,6 @@ class CronService {
 
     return cron;
   }
-
-  async task(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { execute } = params;
-
-    return await executePinsList(execute, context);
-  }
 }
 
 let instance: CronService;
@@ -203,6 +197,3 @@ export const enableCron = (params: any, pinsSettingsList: PinsSettings[], contex
 
 export const disableCron = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.disableCron(params, pinsSettingsList, context);
-
-export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.task(params, pinsSettingsList, context);

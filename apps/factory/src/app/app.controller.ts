@@ -31,7 +31,6 @@ export class AppController {
 
     if (domains[host]) {
       params = path.split('/');
-      team = domains[host].team;
       digipair = domains[host].digipair;
       reasoning = params[0];
       params = params.slice(1);
@@ -42,10 +41,9 @@ export class AppController {
       }
     } else {
       params = path.split('/');
-      team = params[0];
-      digipair = params[1];
-      reasoning = params[2];
-      params = params.slice(3);
+      digipair = params[0];
+      reasoning = params[1];
+      params = params.slice(2);
     }
 
     const method = request.method;

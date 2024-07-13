@@ -31,6 +31,26 @@
           }
         }
       ]
+    },
+    "/task": {
+      "summary": "Tache",
+      "description": "Exécution d'une tache.",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécute",
+          "required": true,
+          "description": "Commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
     }
   }
 }

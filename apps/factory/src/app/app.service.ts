@@ -29,15 +29,23 @@ config.set('LIBRARIES', {
   '@digipair/skill-smoobu': require('@digipair/skill-smoobu'),
   '@digipair/skill-temporal': require('@digipair/skill-temporal'),
   '@digipair/skill-twilio': require('@digipair/skill-twilio'),
+  '@digipair/skill-factory': require('@digipair/skill-factory'),
 });
 
 @Injectable()
 export class AppService implements OnModuleInit {
   async onModuleInit() {
+    const path = process.env.DIGIPAIRAI_ASSETS_PATH || './dist/apps/factory/assets';
+
+    // initialize factory skill
+    const skillFactory = require('@digipair/skill-cron');
+    skillFactory.initialize((_context: any, digipair: string, reasoning: string, body: any) =>
+      this.agent(path, digipair, reasoning, body, [], null, {}),
+    );
+
     // start cron manager
     try {
       const skillCron = require('@digipair/skill-cron');
-      const path = process.env.DIGIPAIRAI_ASSETS_PATH || './dist/apps/factory/assets';
 
       skillCron.initialize((path: string, digipair: string, reasoning: string) =>
         this.agent(path, digipair, reasoning, {}, [], null, {}),
