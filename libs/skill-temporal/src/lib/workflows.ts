@@ -8,7 +8,7 @@ import { PinsSettings, preparePinsSettings } from '@digipair/engine';
 async function executePins(
   executePinsList: any,
   steps: PinsSettings[],
-  state: { step: number; stop: boolean },
+  state: { step: number },
   settingsOrigin: PinsSettings,
   context: any,
 ) {
@@ -36,24 +36,37 @@ async function executePins(
         continue;
       }
 
-      const itemResult = await executePins(
-        executePinsList,
-        steps,
-        state,
-        itemSettingsOrigin,
-        itemContext,
-      );
+      let itemResult = null;
+      try {
+        itemResult = await executePins(
+          executePinsList,
+          steps,
+          state,
+          itemSettingsOrigin,
+          itemContext,
+        );
+      } catch (error) {
+        if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
+          continue;
+        }
+
+        throw error;
+      }
+
       results.push(itemResult);
     }
 
     return results;
   }
 
+  if (typeof settings.conditions?.if !== 'undefined' && !settings.conditions.if) {
+    throw 'DIGIPAIR_CONDITIONS_IF_FALSE';
+  }
+
   if (settings.element === 'sleep') {
     await sleep((settings.properties as any)['duration']);
   } else if (settings.element === 'stop') {
-    state.stop = true;
-    return;
+    throw 'DIGIPAIR_WORKFLOW_STOP';
   } else if (settings.element === 'goto') {
     const step = steps
       .filter(current => !!current.properties?.['name'])
@@ -103,24 +116,23 @@ export async function workflow({ steps, context, options }: WorkflowArgs): Promi
   }
 
   // parcourir tous les pins
-  for (let state = { step: 0, stop: false }; state.step < steps.length; state.step++) {
+  for (let state = { step: 0 }; state.step < steps.length; state.step++) {
     const pinsSettings = steps[state.step];
 
-    if (typeof pinsSettings.conditions?.if !== 'undefined') {
-      const preparedSettings = await preparePinsSettings(pinsSettings, context);
-      if (!(preparedSettings.conditions as any).if) {
+    try {
+      result = await executePins(executePinsList, steps, state, pinsSettings, context);
+    } catch (error) {
+      if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
         continue;
+      } else if (error === 'DIGIPAIR_WORKFLOW_STOP') {
+        return result;
       }
-    }
 
-    result = await executePins(executePinsList, steps, state, pinsSettings, context);
+      throw error;
+    }
 
     if (pinsSettings.properties?.['name']) {
       context.variables.workflow[pinsSettings.properties['name']] = result;
-    }
-
-    if (state.stop) {
-      return result;
     }
   }
 

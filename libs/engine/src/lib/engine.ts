@@ -79,11 +79,25 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
         continue;
       }
 
-      const itemResult = await executePins(itemSettingsOrigin, itemContext);
+      let itemResult = null;
+      try {
+        itemResult = await executePins(itemSettingsOrigin, itemContext);
+      } catch (error) {
+        if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
+          continue;
+        }
+
+        throw error;
+      }
+
       results.push(itemResult);
     }
 
     return results;
+  }
+
+  if (typeof settings.conditions?.if !== 'undefined' && !settings.conditions.if) {
+    throw 'DIGIPAIR_CONDITIONS_IF_FALSE';
   }
 
   const version = context.config.VERSIONS[settings.library] || 'latest';
@@ -116,19 +130,21 @@ export const executePinsList = async (
   for (let i = 0; i < pinsSettingsList.length; i++) {
     const settings = pinsSettingsList[i];
 
-    if (typeof settings.conditions?.if !== 'undefined') {
-      const preparedSettings = await preparePinsSettings(settings, context);
-      if (!(preparedSettings.conditions as any).if) {
+    try {
+      previous = await executePins(settings, {
+        ...context,
+        previous,
+        steps,
+        parent: { previous: context.previous, steps: context.steps, parent: context.parent },
+      });
+    } catch (error) {
+      if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
         continue;
       }
+
+      throw error;
     }
 
-    previous = await executePins(settings, {
-      ...context,
-      previous,
-      steps,
-      parent: { previous: context.previous, steps: context.steps, parent: context.parent },
-    });
     steps[i] = { name: settings.name, result: previous };
   }
 
