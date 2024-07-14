@@ -5,7 +5,7 @@ import { Connection, WorkflowClient } from '@temporalio/client';
 import { NativeConnection, Worker } from '@temporalio/worker';
 import { v4 } from 'uuid';
 
-import { workflow as workflowJob } from './workflows';
+import { dataSignal, workflow as workflowJob } from './workflows';
 import { namespace, taskQueue } from './shared';
 import * as activities from './activities';
 
@@ -46,7 +46,7 @@ class TemporalService {
   }
 
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { steps, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
+    const { id, steps, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
     const workflowOptions = {
       // RetryPolicy specifies how to automatically handle retries if an Activity fails.
       retry: {
@@ -64,8 +64,24 @@ class TemporalService {
     this.client.start(workflowJob, {
       args: [{ steps, context, options: workflowOptions }],
       taskQueue,
-      workflowId: `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-${v4()}`,
+      workflowId: `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-${id}`,
     });
+  }
+
+  async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id, data } = params;
+    const handle = this.client.getHandle(
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-${id}`,
+    );
+    await handle.signal(dataSignal, data);
+  }
+
+  async terminate(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id } = params;
+    const handle = this.client.getHandle(
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-${id}`,
+    );
+    await handle.terminate();
   }
 }
 
@@ -76,3 +92,9 @@ export const initialize = (adresse: string) =>
 
 export const workflow = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.workflow(params, pinsSettingsList, context);
+
+export const push = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.push(params, pinsSettingsList, context);
+
+export const terminate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.terminate(params, pinsSettingsList, context);

@@ -1,9 +1,12 @@
-import { sleep, proxyActivities } from '@temporalio/workflow';
+import { sleep, proxyActivities, condition, setHandler, defineSignal } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
+import { PinsSettings, preparePinsSettings } from '@digipair/engine';
+import { evaluate } from 'feelin';
 
 import type * as activities from './activities';
 import { WorkflowArgs } from './shared';
-import { PinsSettings, preparePinsSettings } from '@digipair/engine';
+
+export const dataSignal = defineSignal<[any]>('data');
 
 async function executePins(
   executePinsList: any,
@@ -64,7 +67,12 @@ async function executePins(
   }
 
   if (settings.element === 'sleep') {
-    await sleep((settings.properties as any)['duration']);
+    result = await sleep((settings.properties as any)['duration']);
+  } else if (settings.element === 'condition') {
+    result = await condition(
+      () => evaluate(settings.properties.condition, context),
+      settings.properties.timeout,
+    );
   } else if (settings.element === 'stop') {
     throw 'DIGIPAIR_WORKFLOW_STOP';
   } else if (settings.element === 'goto') {
@@ -79,7 +87,7 @@ async function executePins(
         (settings.properties as any)['name'],
       ]);
     }
-    state.step = step;
+    result = state.step = step;
   } else if (settings.element === 'activity') {
     try {
       result = await executePinsList({
@@ -101,9 +109,12 @@ async function executePins(
 export async function workflow({ steps, context, options }: WorkflowArgs): Promise<any> {
   let result: any;
 
-  context.variables.workflow = {};
+  context.workflow = { steps: {}, data: {} };
 
   const { executePinsList } = proxyActivities<typeof activities>(options);
+  setHandler(dataSignal, (data: any) => {
+    context.workflow.data = { ...context.workflow.data, ...data };
+  });
 
   // vérifie si tous les pinsSettings sont bien de la librairie @digipair/skill-temporal
   const indexSkillNoWorkflow = steps.findIndex(
@@ -132,7 +143,7 @@ export async function workflow({ steps, context, options }: WorkflowArgs): Promi
     }
 
     if (pinsSettings.properties?.['name']) {
-      context.variables.workflow[pinsSettings.properties['name']] = result;
+      context.workflow.steps[pinsSettings.properties['name']] = result;
     }
   }
 

@@ -11,7 +11,7 @@
     "/sendSms": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoie un SMS via Pushbullet",
+        "summary": "Envoi un SMS via Pushbullet",
         "parameters": [
           {
             "name": "message",

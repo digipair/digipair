@@ -66,6 +66,34 @@
         "x-events": []
       }
     },
+    "/condition": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Condition d'attente",
+        "description": "Condition d'attente dans un workflow",
+        "parameters": [
+          {
+            "name": "condition",
+            "summary": "Condition",
+            "required": true,
+            "description": "Condition d'attente au format Feel",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timeout",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Timeout de la condition",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/goto": {
       "post": {
         "tags": ["service"],
@@ -111,6 +139,53 @@
         ],
         "x-events": []
       }
+    },
+    "/push": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoi de nouvelles données dans un workflow",
+        "description": "Envoi de nouvelles données dans le workflow",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant du workflow",
+            "required": true,
+            "description": "Identifiant du workflow",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Données",
+            "required": true,
+            "description": "Données",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/terminate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Arrête un workflow",
+        "description": "Arrête un workflow",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant du workflow",
+            "required": true,
+            "description": "Identifiant du workflow",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
@@ -123,6 +198,15 @@
       "tags": ["service"],
       "metadata": [],
       "parameters": [
+        {
+          "name": "id",
+          "summary": "Identifiant",
+          "required": true,
+          "description": "Identifiant du workflow",
+          "schema": {
+            "type": "string"
+          }
+        },
         {
           "name": "steps",
           "summary": "Exécute les étapes suivantes",

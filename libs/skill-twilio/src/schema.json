@@ -11,7 +11,7 @@
     "/sendSms": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoie d'un sms via Twilio",
+        "summary": "Envoi d'un sms via Twilio",
         "parameters": [
           {
             "name": "message",
@@ -74,7 +74,7 @@
     "/sendWhatsapp": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoie d'un Whatsapp via Twilio",
+        "summary": "Envoi d'un Whatsapp via Twilio",
         "parameters": [
           {
             "name": "message",
