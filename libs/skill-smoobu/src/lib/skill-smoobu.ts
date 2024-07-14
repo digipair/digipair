@@ -39,11 +39,61 @@ class SmoobuService {
   }
 
   async getAllReservations(
-    _params: any,
+    params: any,
     _pinsSettingsList: PinsSettings[],
     _context: any,
   ): Promise<any> {
-    return await this.call(`/reservations`, 'GET');
+    const {
+      created_from,
+      created_to,
+      from,
+      to,
+      modifiedFrom,
+      modifiedTo,
+      arrivalFrom,
+      arrivalTo,
+      departureFrom,
+      departureTo,
+      showCancellation,
+      excludeBlocked,
+      page,
+      pageSize,
+      apartmentId,
+      includeRelated,
+      includePriceElements,
+    } = params;
+    const queryParams = new URLSearchParams();
+
+    if (created_from) queryParams.append('created_from', created_from);
+    if (created_to) queryParams.append('created_to', created_to);
+    if (from) queryParams.append('from', from);
+    if (to) queryParams.append('to', to);
+    if (modifiedFrom) queryParams.append('modifiedFrom', modifiedFrom);
+    if (modifiedTo) queryParams.append('modifiedTo', modifiedTo);
+    if (arrivalFrom) queryParams.append('arrivalFrom', arrivalFrom);
+    if (arrivalTo) queryParams.append('arrivalTo', arrivalTo);
+    if (departureFrom) queryParams.append('departureFrom', departureFrom);
+    if (departureTo) queryParams.append('departureTo', departureTo);
+    if (showCancellation) queryParams.append('showCancellation', showCancellation);
+    if (excludeBlocked) queryParams.append('excludeBlocked', excludeBlocked);
+    if (page) queryParams.append('page', page);
+    if (pageSize) queryParams.append('pageSize', pageSize);
+    if (apartmentId) queryParams.append('apartmentId', apartmentId);
+    if (includeRelated) queryParams.append('includeRelated', includeRelated);
+    if (includePriceElements) queryParams.append('includePriceElements', includePriceElements);
+
+    return await this.call(`/reservations?${queryParams.toString()}`, 'GET');
+  }
+
+  async sendMessage(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { reservationId, message } = params;
+    return await this.call(
+      `/reservations/${reservationId}/messages/send-message-to-guest`,
+      'POST',
+      JSON.stringify({
+        messageBody: message,
+      }),
+    );
   }
 
   async event(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
