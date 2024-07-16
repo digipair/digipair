@@ -323,6 +323,61 @@
         ],
         "x-events": []
       }
+    },
+    "/answer": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Réponse du chatbot",
+        "parameters": [
+          {
+            "name": "assistant",
+            "required": true,
+            "description": "Reponse de l'assistant",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "command",
+            "required": false,
+            "description": "Commandes exécutées sur le chatbot",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "boosts",
+            "required": false,
+            "description": "Liste des boosts proposés",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "sources",
+            "required": false,
+            "description": "Liste des sources utilisées pour répondre a l'utilisateur",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "logs",
+            "required": false,
+            "description": "Informations utiles pour débogguer le raisonnement",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

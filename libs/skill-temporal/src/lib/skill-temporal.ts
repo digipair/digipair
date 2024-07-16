@@ -47,6 +47,10 @@ class TemporalService {
 
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id, steps, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
     const workflowOptions = {
       // RetryPolicy specifies how to automatically handle retries if an Activity fails.
       retry: {
@@ -64,23 +68,27 @@ class TemporalService {
     this.client.start(workflowJob, {
       args: [{ steps, context, options: workflowOptions }],
       taskQueue,
-      workflowId: `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-${id}`,
+      workflowId: `${prefix}${id}`,
     });
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id, data } = params;
-    const handle = this.client.getHandle(
-      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-${id}`,
-    );
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    const handle = this.client.getHandle(`${prefix}${id}`);
     await handle.signal(dataSignal, data);
   }
 
   async terminate(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id } = params;
-    const handle = this.client.getHandle(
-      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-${id}`,
-    );
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    const handle = this.client.getHandle(`${prefix}${id}`);
     await handle.terminate();
   }
 }

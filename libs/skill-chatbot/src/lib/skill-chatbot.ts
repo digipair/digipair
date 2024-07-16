@@ -482,6 +482,25 @@ Summarize the conversation history in a short, clear and concise text, taking in
     };
     await this.updateDocuments(baseUrl, [document]);
   }
+
+  async answer(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      command = [],
+      boosts = [],
+      assistant,
+      sources,
+      logs,
+    } = params;
+    return {
+      assistant,
+      command: await Promise.all(
+        command.map((settings: PinsSettings) => preparePinsSettings(settings, context)),
+      ),
+      boosts,
+      sources,
+      logs,
+    };
+  }
 }
 
 export const history = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -504,3 +523,6 @@ export const getRole = (params: any, pinsSettingsList: PinsSettings[], context: 
 
 export const setRole = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ChatbotService().setRole(params, pinsSettingsList, context);
+
+export const answer = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ChatbotService().answer(params, pinsSettingsList, context);

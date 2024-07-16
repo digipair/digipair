@@ -152,6 +152,7 @@ class VespaService {
       orderby = '',
       query,
     } = params;
+    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
 
     if (
       orderby !== '' &&
@@ -163,7 +164,7 @@ class VespaService {
     const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
     const results = await this.searchDocuments(
       baseUrl,
-      collection,
+      `${prefix}${collection}`,
       `is_parent = true and userQuery() ${orderbySecured} limit ${parseInt(limit)}`,
       {
         query,
@@ -185,6 +186,7 @@ class VespaService {
       filter = 'true',
       query,
     } = params;
+    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
 
     if (
       orderby !== '' &&
@@ -198,7 +200,7 @@ class VespaService {
     const queryEmbedding = await modelEmbeddings.embedQuery(query);
     const results = await this.searchParentDocuments(
       baseUrl,
-      collection,
+      `${prefix}${collection}`,
       `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) and (${filter}) ${orderbySecured} limit ${parseInt(
         limit,
       )}`,
@@ -235,8 +237,9 @@ class VespaService {
     } = params;
     const modelEmbeddings = await executePinsList(embeddings, context);
     const results = await this.prepareDocuments(documents);
+    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
 
-    return await this.pushDocuments(modelEmbeddings, baseUrl, collection, results);
+    return await this.pushDocuments(modelEmbeddings, baseUrl, `${prefix}${collection}`, results);
   }
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -245,8 +248,9 @@ class VespaService {
       collection = 'knowledge',
       selection,
     } = params;
+    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
     const response = await fetch(
-      `${baseUrl}/document/v1/Digipair_default/${collection}/docid?selection=${encodeURI(
+      `${baseUrl}/document/v1/Digipair_default/${prefix}${collection}/docid?selection=${encodeURI(
         selection,
       )}&cluster=Digipair_default`,
       {
