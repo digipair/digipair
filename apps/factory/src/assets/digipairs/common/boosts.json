@@ -1,6 +1,6 @@
 {
-  "name": "Récupération des boosts",
-  "description": "Récupère les boosts d'un digipair",
+  "name": "Get boosts",
+  "description": "Get boosts for a Digipair.",
   "metadata": {},
   "library": "@digipair/skill-service",
   "element": "service",

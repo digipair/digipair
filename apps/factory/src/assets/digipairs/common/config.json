@@ -1,27 +1,10 @@
 {
   "name": "common",
   "description": "common actions.",
-  "metadata": {
-    "avatar": "avatar.png",
-    "color": "#3b82f6"
-  },
-  "libraries": {
-    "@digipair/skill-service": "latest",
-    "@digipair/skill-common": "latest"
-  },
+  "metadata": { "avatar": "avatar.png", "color": "#3b82f6" },
+  "libraries": { "@digipair/skill-service": "latest", "@digipair/skill-common": "latest" },
   "variables": {},
-  "privates": {
-    "MODEL_LLM": [
-      {
-        "library": "@digipair/skill-openai",
-        "element": "model"
-      }
-    ],
-    "MODEL_EMBEDDINGS": [
-      {
-        "library": "@digipair/skill-openai",
-        "element": "embeddings"
-      }
-    ]
-  }
+  "privates": {},
+  "digipair": "common",
+  "id": "config"
 }

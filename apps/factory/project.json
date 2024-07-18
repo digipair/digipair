@@ -4,6 +4,34 @@
   "sourceRoot": "apps/factory/src",
   "projectType": "application",
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/factory",
+        "main": "apps/factory/src/main.ts",
+        "tsConfig": "apps/factory/tsconfig.app.json",
+        "assets": ["apps/factory/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "sourceMap": false
+        }
+      }
+    },
+    "prepare": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx build factory && nx run factory:copy-assets"
+      }
+    },
+    "copy-assets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cpx 'apps/factory/src/assets/**/*' dist/apps/factory/src/assets && cpx 'apps/factory/bin/*' dist/apps/factory/bin"
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",

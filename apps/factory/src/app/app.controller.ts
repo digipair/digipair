@@ -1,4 +1,4 @@
-import { All, Body, Controller, Get, Param, Req, Res } from '@nestjs/common';
+import { All, Body, Controller, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { promises } from 'fs';
 import { AppService } from './app.service';
@@ -7,21 +7,12 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('/assets/silent-check-sso.html')
-  async silentCheckSso() {
-    const content = await promises.readFile(
-      './dist/apps/factory/assets/silent-check-sso.html',
-      'utf8',
-    );
-    return content;
-  }
-
   @All('*')
   async domain(@Res() res: Response, @Req() request: Request, @Body() body: any) {
-    const assets = process.env.DIGIPAIRAI_ASSETS_PATH || './dist/apps/factory/assets';
+    const assets = process.env.DIGIPAIR_AGENTS_PATH || './factory';
     const host = request.headers.host.split(':')[0];
     const path = request.params['0'];
-    let params: string[], team: string, digipair: string, reasoning: string;
+    let params: string[], digipair: string, reasoning: string;
 
     const domains = JSON.parse(await promises.readFile(`${assets}/domains.json`, 'utf8'));
 
@@ -29,8 +20,8 @@ export class AppController {
       return res.send(null);
     }
 
+    params = path.split('/');
     if (domains[host]) {
-      params = path.split('/');
       digipair = domains[host].digipair;
       reasoning = params[0];
       params = params.slice(1);
@@ -39,8 +30,10 @@ export class AppController {
         res.redirect(`/${domains[host].reasoning}`);
         return;
       }
+    } else if (params.length < 2) {
+      res.redirect(`/admin/digipair-list`);
+      return;
     } else {
-      params = path.split('/');
       digipair = params[0];
       reasoning = params[1];
       params = params.slice(2);
@@ -49,7 +42,7 @@ export class AppController {
     const method = request.method;
     res.send(
       await this.appService.agent(
-        assets,
+        `${assets}/digipairs`,
         digipair,
         reasoning,
         body,

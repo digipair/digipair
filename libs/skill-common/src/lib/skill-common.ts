@@ -3,7 +3,7 @@ import { promises } from 'fs';
 
 class CommonService {
   async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? './dist/apps/factory/assets/digipairs';
+    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIR_AGENTS_PATH']  ? `${process.env['DIGIPAIR_AGENTS_PATH']}` : './factory/digipairs';
     const { digipair } = params;
     const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);
@@ -20,7 +20,7 @@ class CommonService {
   }
 
   async boosts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path = context.privates?.EDITOR_PATH ?? './dist/apps/factory/assets/digipairs';
+    const path = context.privates?.EDITOR_PATH ?? process.env['DIGIPAIR_AGENTS_PATH']  ? `${process.env['DIGIPAIR_AGENTS_PATH']}` : './factory/digipairs';
     const { digipair } = params;
     const files = await promises.readdir(`${path}/${digipair}`);
     const boosts = await Promise.all(

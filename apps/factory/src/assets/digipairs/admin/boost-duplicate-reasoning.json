@@ -1,0 +1,62 @@
+{
+  "name": "Duplication of reasoning",
+  "description": "This action allows for duplicating an already existing reasoning.",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": { "boosts": [] },
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "setVariable",
+        "properties": {
+          "name": "infos",
+          "execute": [
+            {
+              "library": "@digipair/skill-dsp",
+              "element": "generate",
+              "properties": {
+                "signature": "\"Extract the information from the duplicated reasoning based on the user's comment.\" comment:string \"User's comment describing the duplicated reasoning\" -> \n  id:string \"reasoning identifier in kebab case\", \n  name:string \"Very short name of the reasoning\", \n  description:string \"Short description of the reasoning \", \n  assistant:string \"Assistant's response to confirm that the reasoning has been successfully duplicated\"",
+                "input": { "comment": "EVALUATE:request.body.prompt" }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-editor",
+        "element": "reasoning",
+        "properties": {
+          "digipair": "{{request.body.digipair}}",
+          "reasoning": "{{request.body.reasoning}}"
+        }
+      },
+      {
+        "library": "@digipair/skill-editor",
+        "element": "setReasoning",
+        "properties": {
+          "digipair": "{{request.body.digipair}}",
+          "reasoning": "EVALUATE:if previous.element = \"boost\" then \n \"boost-\" + variables.infos.id\nelse \n  variables.infos.id",
+          "value": {
+            "name": "{{variables.infos.name}}",
+            "description": "{{variables.infos.description}}",
+            "library": "{{previous.library}}",
+            "element": "{{previous.element}}",
+            "properties": "EVALUATE:previous.properties",
+            "pins": "EVALUATE:previous.pins",
+            "metadata": "EVALUATE:previous.metadata"
+          }
+        }
+      },
+      {
+        "library": "@digipair/skill-chatbot",
+        "element": "answer",
+        "properties": {
+          "assistant": "{{variables.infos.assistant}}",
+          "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
+        }
+      }
+    ]
+  },
+  "pins": []
+}
