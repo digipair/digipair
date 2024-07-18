@@ -182,7 +182,7 @@
                                           {
                                             "library": "@digipair/skill-web-spectrum",
                                             "element": "sp-menu-item",
-                                            "properties": { "textContent": "Supprimer" },
+                                            "properties": { "textContent": "Remove" },
                                             "events": {
                                               "click": [
                                                 {

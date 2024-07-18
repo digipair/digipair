@@ -1,5 +1,5 @@
 import { PinsSettings } from '@digipair/engine';
-import { promises } from 'fs';
+import { promises, existsSync } from 'fs';
 
 class EditorService {
   async reasonings(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -135,7 +135,7 @@ class EditorService {
     } = params;
 
     // if digipair folder exists, return error
-    if (await promises.readdir(`${path}/${digipair}`)) {
+    if (existsSync(`${path}/${digipair}`)) {
       throw new Error('[DIGIPAIR-EDITOR] Digipair already exists');
     }
 

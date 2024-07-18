@@ -153,6 +153,50 @@
                                     "pins": [
                                       {
                                         "library": "@digipair/skill-web-spectrum",
+                                        "element": "sp-action-menu",
+                                        "pins": [
+                                          {
+                                            "library": "@digipair/skill-web-spectrum",
+                                            "element": "sp-menu-item",
+                                            "properties": { "textContent": "Remove" },
+                                            "events": {
+                                              "click": [
+                                                {
+                                                  "library": "@digipair/skill-web-notification",
+                                                  "element": "confirm",
+                                                  "properties": {
+                                                    "message": "Are you sure to remove \"{{item.name}}\" ?",
+                                                    "ok": [
+                                                      {
+                                                        "library": "@digipair/skill-web",
+                                                        "element": "executeFactory",
+                                                        "properties": {
+                                                          "execute": [
+                                                            {
+                                                              "library": "@digipair/skill-editor",
+                                                              "element": "removeDigipair",
+                                                              "properties": {
+                                                                "digipair": "{{item.id}}"
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      },
+                                                      {
+                                                        "library": "@digipair/skill-web-interact",
+                                                        "element": "reload"
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        "properties": { "quiet": true, "size": "s" }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-web-spectrum",
                                         "element": "sp-action-button",
                                         "pins": [
                                           {
@@ -169,7 +213,9 @@
                                             {
                                               "library": "@digipair/skill-web-interact",
                                               "element": "goTo",
-                                              "properties": { "url": "/admin/reasoning-list/{{item.id}}" }
+                                              "properties": {
+                                                "url": "/admin/reasoning-list/{{item.id}}"
+                                              }
                                             }
                                           ]
                                         }

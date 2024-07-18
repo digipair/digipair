@@ -119,6 +119,7 @@ class VespaService {
   private async pushDocuments(
     modelEmbeddings: any,
     baseUrl: string,
+    namespace: string,
     collection: string,
     documents: any[],
   ) {
@@ -128,7 +129,7 @@ class VespaService {
       const content_embedding = await modelEmbeddings.embedQuery(document.content);
 
       const response = await fetch(
-        `${baseUrl}/document/v1/Digipair_default/${collection}/docid/${document.uuid}`,
+        `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
         {
           method: 'POST',
           body: JSON.stringify({ fields: { ...document, content_embedding } }),
@@ -152,7 +153,6 @@ class VespaService {
       orderby = '',
       query,
     } = params;
-    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
 
     if (
       orderby !== '' &&
@@ -164,7 +164,7 @@ class VespaService {
     const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
     const results = await this.searchDocuments(
       baseUrl,
-      `${prefix}${collection}`,
+      collection,
       `is_parent = true and userQuery() ${orderbySecured} limit ${parseInt(limit)}`,
       {
         query,
@@ -182,11 +182,10 @@ class VespaService {
       limit = 100,
       orderby = '',
       targetHits = 50,
-      language = 'fr',
       filter = 'true',
+      language,
       query,
     } = params;
-    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
 
     if (
       orderby !== '' &&
@@ -200,7 +199,7 @@ class VespaService {
     const queryEmbedding = await modelEmbeddings.embedQuery(query);
     const results = await this.searchParentDocuments(
       baseUrl,
-      `${prefix}${collection}`,
+      collection,
       `((userQuery()) or ({targetHits:${targetHits}}nearestNeighbor(content_embedding,q))) and (${filter}) ${orderbySecured} limit ${parseInt(
         limit,
       )}`,
@@ -232,27 +231,31 @@ class VespaService {
     const {
       embeddings = context.privates.MODEL_EMBEDDINGS,
       baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
+      namespace = context.privates.VESPA_NAMESPACE ??
+        process.env['VESPA_NAMESPACE'] ??
+        'Digipair_default',
       collection = 'knowledge',
       documents,
     } = params;
     const modelEmbeddings = await executePinsList(embeddings, context);
     const results = await this.prepareDocuments(documents);
-    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
 
-    return await this.pushDocuments(modelEmbeddings, baseUrl, `${prefix}${collection}`, results);
+    return await this.pushDocuments(modelEmbeddings, baseUrl, namespace, collection, results);
   }
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
+      namespace = context.privates.VESPA_NAMESPACE ??
+        process.env['VESPA_NAMESPACE'] ??
+        'Digipair_default',
       collection = 'knowledge',
       selection,
     } = params;
-    const prefix = context.privates.VESPA_PREFIX ?? process.env['VESPA_PREFIX'] ?? '';
     const response = await fetch(
-      `${baseUrl}/document/v1/Digipair_default/${prefix}${collection}/docid?selection=${encodeURI(
+      `${baseUrl}/document/v1/${namespace}/${collection}/docid?selection=${encodeURI(
         selection,
-      )}&cluster=Digipair_default`,
+      )}&cluster=${namespace}`,
       {
         method: 'DELETE',
         headers: {

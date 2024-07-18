@@ -138,7 +138,7 @@
           {
             "name": "language",
             "summary": "Langue",
-            "required": false,
+            "required": true,
             "description": "Langue de recherche",
             "schema": {
               "type": "string"

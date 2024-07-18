@@ -1,6 +1,6 @@
 {
-  "name": "Editeur de raisonnement",
-  "description": "Editeur de raisonnement",
+  "name": "Reasoning editor",
+  "description": "Reasoning editor",
   "library": "@digipair/skill-web",
   "element": "page",
   "metadata": {},

@@ -32,9 +32,10 @@
       },
       {
         "library": "@digipair/skill-editor",
-        "element": "getReasoning",
+        "element": "reasoning",
         "properties": {
-          "digipair": "{{variables.infos.id}}"
+          "digipair": "{{variables.infos.id}}",
+          "reasoning": "config"
         }
       },
       {
@@ -42,6 +43,7 @@
         "element": "setReasoning",
         "properties": {
           "digipair": "{{variables.infos.id}}",
+          "reasoning": "config",
           "value": {
             "name": "{{variables.infos.name}}",
             "description": "{{variables.infos.description}}",
