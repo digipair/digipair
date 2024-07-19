@@ -4,9 +4,10 @@ import { promises, existsSync } from 'fs';
 class EditorService {
   async reasonings(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
     } = params;
 
@@ -21,9 +22,10 @@ class EditorService {
 
   async reasoning(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
       reasoning,
     } = params;
@@ -40,9 +42,10 @@ class EditorService {
 
   async setReasoning(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
       reasoning,
       value,
@@ -55,9 +58,10 @@ class EditorService {
 
   async removeReasoning(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
       reasoning,
     } = params;
@@ -69,9 +73,10 @@ class EditorService {
 
   async digipairs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
     } = params;
 
     const digipairs = (await promises.readdir(path)).filter(
@@ -83,9 +88,10 @@ class EditorService {
 
   async digipair(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
     } = params;
 
@@ -100,9 +106,10 @@ class EditorService {
 
   async setDigipair(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
       value,
     } = params;
@@ -114,9 +121,10 @@ class EditorService {
 
   async removeDigipair(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
     } = params;
 
@@ -128,9 +136,10 @@ class EditorService {
 
   async addDigipair(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       digipair,
     } = params;
 

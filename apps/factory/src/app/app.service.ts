@@ -5,7 +5,9 @@ import { promises } from 'fs';
 @Injectable()
 export class AppService implements OnModuleInit {
   async onModuleInit() {
-    const path = process.env.DIGIPAIR_AGENTS_PATH ? `${process.env.DIGIPAIR_AGENTS_PATH}/digipairs` : './factory/digipairs';
+    const path = process.env.DIGIPAIR_FACTORY_PATH
+      ? `${process.env.DIGIPAIR_FACTORY_PATH}/digipairs`
+      : './factory/digipairs';
 
     // initialize factory skill
     const skillFactory = require('@digipair/skill-cron');

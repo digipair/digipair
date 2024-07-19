@@ -80,9 +80,10 @@ class CronService {
 
   async crons(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
     } = params;
 
     const text = await promises.readFile(`${path}/planning.json`, 'utf8');
@@ -93,9 +94,10 @@ class CronService {
 
   async addCron(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       time,
       digipair,
       reasoning,
@@ -116,9 +118,10 @@ class CronService {
 
   async deleteCron(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       id,
     } = params;
 
@@ -134,9 +137,10 @@ class CronService {
 
   async enableCron(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       id,
     } = params;
 
@@ -156,9 +160,10 @@ class CronService {
 
   async disableCron(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.privates?.EDITOR_PATH ?? (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
-        : './factory/digipairs'),
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
       id,
     } = params;
 

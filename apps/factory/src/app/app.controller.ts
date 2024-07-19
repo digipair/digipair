@@ -9,7 +9,7 @@ export class AppController {
 
   @All('*')
   async domain(@Res() res: Response, @Req() request: Request, @Body() body: any) {
-    const assets = process.env.DIGIPAIR_AGENTS_PATH || './factory';
+    const assets = process.env.DIGIPAIR_FACTORY_PATH || './factory';
     const host = request.headers.host.split(':')[0];
     const path = request.params['0'];
     let params: string[], digipair: string, reasoning: string;

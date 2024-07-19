@@ -5,8 +5,8 @@ class CommonService {
   async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const path =
       context.privates?.EDITOR_PATH ??
-      (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
+      (process.env['DIGIPAIR_FACTORY_PATH']
+        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
     const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
@@ -26,8 +26,8 @@ class CommonService {
   async boosts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const path =
       context.privates?.EDITOR_PATH ??
-      (process.env['DIGIPAIR_AGENTS_PATH']
-        ? `${process.env['DIGIPAIR_AGENTS_PATH']}/digipairs`
+      (process.env['DIGIPAIR_FACTORY_PATH']
+        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
     const files = await promises.readdir(`${path}/${digipair}`);
