@@ -40,7 +40,7 @@ export const applyTemplate = (value: any, context: any) => {
 
     if (result.startsWith('EVALUATE:')) {
       const path = result.replace(/^EVALUATE:/, '');
-      result = evaluate(path, context);
+      result = evaluate(path, { ...context, getTime: (time: string) => new Date(time).getTime() });
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
     result = value.map(item => (isPinsSettings(item) ? item : applyTemplate(item, context)));

@@ -36,14 +36,6 @@ class DataManagementService {
 
     return JSON.parse(value);
   }
-
-  async current(
-    _params: any,
-    _pinsSettingsList: PinsSettings[],
-    _context: any,
-  ): Promise<string> {
-    return new Date().toISOString()
-  }
 }
 
 export const transform = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -57,6 +49,3 @@ export const struct2array = (params: any, pinsSettingsList: PinsSettings[], cont
 
 export const jsonParse = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DataManagementService().jsonParse(params, pinsSettingsList, context);
-
-export const current = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().current(params, pinsSettingsList, context);

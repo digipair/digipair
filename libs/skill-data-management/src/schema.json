@@ -116,15 +116,6 @@
         ],
         "x-events": []
       }
-    },
-    "/current": {
-      "post": {
-        "tags": ["web", "service", "spatial"],
-        "summary": "Current date",
-        "description": "Current date in ISO format",
-        "parameters": [],
-        "x-events": []
-      }
     }
   },
   "components": {
