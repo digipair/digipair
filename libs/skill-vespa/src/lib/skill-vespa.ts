@@ -29,8 +29,8 @@ class VespaService {
       throw new Error(`Error - VespaService:getDocuments - fetching ${collection}`);
     }
 
-    const messages = ((await response.json()).root.children || []).map(
-      (child: any) => child.fields,
+    const messages = ((await response.json()).root.children || []).map((child: any) =>
+      child.id === 'group:root:0' ? child.children[0].children : child.fields,
     );
     return messages;
   }
@@ -152,6 +152,7 @@ class VespaService {
       limit = 100,
       orderby = '',
       query,
+      grouping,
     } = params;
 
     if (
@@ -165,7 +166,8 @@ class VespaService {
     const results = await this.searchDocuments(
       baseUrl,
       collection,
-      `is_parent = true and userQuery() ${orderbySecured} limit ${parseInt(limit)}`,
+      `is_parent = true and userQuery() ${orderbySecured} limit ${parseInt(limit)}` +
+        (grouping ? ` | ${grouping}` : ''),
       {
         query,
       },

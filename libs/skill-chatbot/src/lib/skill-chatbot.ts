@@ -484,13 +484,7 @@ Summarize the conversation history in a short, clear and concise text, taking in
   }
 
   async answer(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      command = [],
-      boosts = [],
-      assistant,
-      sources,
-      logs,
-    } = params;
+    const { command = [], boosts = [], assistant, sources, logs } = params;
     return {
       assistant,
       command: await Promise.all(
@@ -515,14 +509,14 @@ export const search = (params: any, pinsSettingsList: PinsSettings[], context: a
 export const chatbot = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ChatbotService().chatbot(params, pinsSettingsList, context);
 
-export const boost = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new ChatbotService().boost(params, pinsSettingsList, context);
-
 export const getRole = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ChatbotService().getRole(params, pinsSettingsList, context);
 
 export const setRole = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ChatbotService().setRole(params, pinsSettingsList, context);
+
+export const boost = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ChatbotService().boost(params, pinsSettingsList, context);
 
 export const answer = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ChatbotService().answer(params, pinsSettingsList, context);

@@ -58,6 +58,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "grouping",
+            "summary": "Filtre de regroupement",
+            "required": false,
+            "description": "Filtre de regroupement des réponses",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []

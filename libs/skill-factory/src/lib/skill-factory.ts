@@ -2,7 +2,6 @@
 import { PinsSettings } from '@digipair/engine';
 
 class FactoryService {
-  private path!: string;
   private startTask!: Function;
 
   async initialize(startTask: Function) {

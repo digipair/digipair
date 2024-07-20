@@ -16,7 +16,7 @@ class SmoobuService {
       'https://login.smoobu.com/api';
   }
 
-  async call(url: string, method: string, data: any = null, headers: any = {}) {
+  private async call(url: string, method: string, data: any = null, headers: any = {}) {
     const response = await fetch(`${this.API_ENDPOINT}${url}`, {
       method,
       headers: {
@@ -126,3 +126,6 @@ export const getReservationWithId = (params: any, pinsSettingsList: PinsSettings
 
 export const getAllReservations = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new SmoobuService(context, params).getAllReservations(params, pinsSettingsList, context);
+
+export const sendMessage = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new SmoobuService(context, params).sendMessage(params, pinsSettingsList, context);
