@@ -38,12 +38,17 @@ class TwilioService {
     return await response.json();
   }
 
-  async sendSms(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async sendSms(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    _context: any,
+    whatsapp: boolean = false,
+  ): Promise<any> {
     const { message, phoneNumber } = params;
     return await this.call(
       `/Accounts/${this.TWILIO_SID}/Messages.json`,
       'POST',
-      `From=${encodeURIComponent(`${this.FROM_NUMBER}`)}&Body=${encodeURIComponent(message)}&To=${encodeURIComponent(`${phoneNumber}`)}`,
+      `From=${encodeURIComponent(`${whatsapp ? 'whatsapp:' : ''}${this.FROM_NUMBER}`)}&Body=${encodeURIComponent(message)}&To=${encodeURIComponent(`${phoneNumber}`)}`,
       {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -55,4 +60,4 @@ export const sendSms = (params: any, pinsSettingsList: PinsSettings[], context: 
   new TwilioService(context, params).sendSms(params, pinsSettingsList, context);
 
 export const sendWhatsapp = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new TwilioService(context, params).sendSms(params, pinsSettingsList, context);
+  new TwilioService(context, params).sendSms(params, pinsSettingsList, context, true);
