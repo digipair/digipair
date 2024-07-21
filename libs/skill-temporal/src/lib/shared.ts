@@ -3,6 +3,7 @@ import { PinsSettings } from '@digipair/engine';
 export type WorkflowArgs = {
   steps: PinsSettings[];
   context: any;
+  data: any;
   options: any;
 };
 

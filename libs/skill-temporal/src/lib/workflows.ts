@@ -106,10 +106,10 @@ async function executePins(
   return result;
 }
 
-export async function workflow({ steps, context, options }: WorkflowArgs): Promise<any> {
+export async function workflow({ steps, context, data, options }: WorkflowArgs): Promise<any> {
   let result: any;
 
-  context.workflow = { steps: {}, data: {} };
+  context.workflow = { steps: {}, data };
 
   const { executePinsList } = proxyActivities<typeof activities>(options);
   setHandler(dataSignal, (data: any) => {

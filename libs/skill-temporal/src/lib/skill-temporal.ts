@@ -3,7 +3,6 @@
 import { PinsSettings } from '@digipair/engine';
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { v4 } from 'uuid';
 
 import { dataSignal, workflow as workflowJob } from './workflows';
 import { namespace, taskQueue } from './shared';
@@ -46,7 +45,7 @@ class TemporalService {
   }
 
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, steps, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
+    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
@@ -66,7 +65,7 @@ class TemporalService {
     };
 
     this.client.start(workflowJob, {
-      args: [{ steps, context, options: workflowOptions }],
+      args: [{ steps, context, data, options: workflowOptions }],
       taskQueue,
       workflowId: `${prefix}${id}`,
     });

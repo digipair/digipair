@@ -220,6 +220,15 @@
           }
         },
         {
+          "name": "data",
+          "summary": "Données du workflow",
+          "required": false,
+          "description": "Données du workflow temporal",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
           "name": "options",
           "summary": "Options temporal",
           "required": false,
