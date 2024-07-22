@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/client';
 import { NativeConnection, Worker } from '@temporalio/worker';
 
 import { dataSignal, workflow as workflowJob } from './workflows';
@@ -90,6 +90,22 @@ class TemporalService {
     const handle = this.client.getHandle(`${prefix}${id}`);
     await handle.terminate();
   }
+
+  async list(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { query = `ExecutionStatus = "Running"` } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+
+    const workflowIterator = this.client.list({ query: `(WorkflowId > '${prefix}' and WorkflowId < '${prefix}~') and (${query})` });
+    const workflows = [] as WorkflowExecutionInfo[];
+    for await (const workflow of workflowIterator) {
+      workflows.push(workflow);
+    }
+
+    return workflows;
+  }
 }
 
 let instance: TemporalService;
@@ -105,3 +121,6 @@ export const push = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const terminate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.terminate(params, pinsSettingsList, context);
+
+export const list = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.list(params, pinsSettingsList, context);

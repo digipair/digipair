@@ -186,6 +186,25 @@
         ],
         "x-events": []
       }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste les workflows",
+        "description": "Liste les workflows",
+        "parameters": [
+          {
+            "name": "query",
+            "summary": "Requête",
+            "required": false,
+            "description": "Requête de recherche",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
