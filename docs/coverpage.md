@@ -1,6 +1,6 @@
 ![Digipair](https://res.cloudinary.com/do87nxq3l/image/upload/v1718985104/Fichier_1_lilpuw.png)
 
-> Crée ton équipe de facilitatuers numériques
+> Crée ton équipe de facilitateurs numériques
 
 - Opensource
 - No-code
