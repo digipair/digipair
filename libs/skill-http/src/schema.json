@@ -14,7 +14,7 @@
         "summary": "Exécute un service HTTP",
         "parameters": [
           {
-            "name": "url",
+            "name": "path",
             "summary": "Adresse du service",
             "required": true,
             "description": "Adresse du service à exécuter",
@@ -68,7 +68,7 @@
         "summary": "Ajoute une ressource HTTP",
         "parameters": [
           {
-            "name": "url",
+            "name": "path",
             "summary": "Adresse du service",
             "required": true,
             "description": "Adresse du service à exécuter",
@@ -113,7 +113,7 @@
         "summary": "Lit une ressource HTTP",
         "parameters": [
           {
-            "name": "url",
+            "name": "path",
             "summary": "Adresse du service",
             "required": true,
             "description": "Adresse du service à exécuter",
@@ -149,7 +149,7 @@
         "summary": "Modifie une ressource HTTP",
         "parameters": [
           {
-            "name": "url",
+            "name": "path",
             "summary": "Adresse du service",
             "required": true,
             "description": "Adresse du service à exécuter",
@@ -194,7 +194,7 @@
         "summary": "Modifie une partie d'une ressource HTTP",
         "parameters": [
           {
-            "name": "url",
+            "name": "path",
             "summary": "Adresse du service",
             "required": true,
             "description": "Adresse du service à exécuter",
@@ -239,7 +239,7 @@
         "summary": "Supprime une ressource HTTP",
         "parameters": [
           {
-            "name": "URL",
+            "name": "path",
             "summary": "Adresse du service",
             "required": true,
             "description": "Adresse du service à exécuter",
