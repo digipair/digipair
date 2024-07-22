@@ -1,6 +1,9 @@
 - [Usage](/#main)
 - [Get Started](get-started)
+- [La mission](mission)
+- [Les concepts](concept)
 - [How it works](how-it-works)
+- [Les compétences](competence)
 - **Links**
 - [Discord](https://discord.gg/kCqF8xaMHJ)
 - [Github](https://github.com/digipair/digipair)
