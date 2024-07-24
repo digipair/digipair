@@ -10,7 +10,7 @@ import { PinsSettings } from '@digipair/engine';
 class OpenAIService {
   async model(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      modelName = 'gpt-4o',
+      modelName = 'gpt-4o-mini',
       temperature = 0,
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],

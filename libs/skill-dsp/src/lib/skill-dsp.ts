@@ -18,7 +18,7 @@ class DspService {
     return await Promise.all(
       functions.map(async f => ({
         ...f,
-        func: async (params) =>
+        func: async params =>
           await executePinsList(f.func as any as PinsSettings[], { ...context, params }),
       })),
     );
@@ -36,7 +36,7 @@ class DspService {
     const {
       apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
       apiURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
-      config,
+      config = { model: 'gpt-4o-mini' },
       options,
     } = params;
 
