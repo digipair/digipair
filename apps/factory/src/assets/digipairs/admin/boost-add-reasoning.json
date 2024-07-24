@@ -28,7 +28,7 @@
         "element": "setReasoning",
         "properties": {
           "digipair": "{{request.body.digipair}}",
-          "reasoning": "EVALUATE:\nif request.body.element = \"boost\" then \n  concatenate(\"boost-\", variables.infos.id) \nelse \n  variables.infos.id",
+          "reasoning": "EVALUATE:\nif request.body.element = \"boost\" then \n  \"boost-\" + variables.infos.id \nelse \n  variables.infos.id",
           "value": {
             "name": "{{variables.infos.name}}",
             "description": "{{variables.infos.description}}",
