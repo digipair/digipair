@@ -40,7 +40,15 @@ export const applyTemplate = (value: any, context: any) => {
 
     if (result.startsWith('EVALUATE:')) {
       const path = result.replace(/^EVALUATE:/, '');
-      result = evaluate(path, { ...context, getTime: (time: string) => new Date(time).getTime(), atob: (value: string) => atob(value), btoa: (value: string) => btoa(value), encodeURIComponent: (value: string | number | boolean) => encodeURIComponent(value), decodeURIComponent: (value: string) => decodeURIComponent(value) });
+      result = evaluate(path, {
+        ...context,
+        getTime: (time: string) => new Date(time).getTime(),
+        fromTime: (time: number) => new Date(time).toISOString(),
+        atob: (value: string) => atob(value),
+        btoa: (value: string) => btoa(value),
+        encodeURIComponent: (value: string | number | boolean) => encodeURIComponent(value),
+        decodeURIComponent: (value: string) => decodeURIComponent(value),
+      });
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
     result = value.map(item => (isPinsSettings(item) ? item : applyTemplate(item, context)));
