@@ -59,6 +59,3 @@
   },
   "exclude": ["node_modules", "tmp"]
 }
-
-
-"skill-chatbot", "skill-common", "skill-cron", "skill-data-management", "skill-debug", "skill-dsp", "skill-editor", "skill-factory", "skill-git", "skill-http", "skill-keycloak", "skill-linkedin", "skill-llm", "skill-microsoft", "skill-mongodb", "skill-nuki", "skill-ollama", "skill-openai", "skill-pushbullet", "skill-sendmail", "skill-service", "skill-smoobu", "skill-temporal", "skill-twilio", "skill-vespa", "skill-web", "skill-web-chatbot", "skill-web-debug", "skill-web-editor", "skill-web-font-awesome", "skill-web-inputs", "skill-web-interact", "skill-web-jsoneditor", "skill-web-keycloak", "skill-web-material-icons", "skill-web-notification", "skill-web-ocr", "skill-web-pdf", "skill-web-spectrum", 
