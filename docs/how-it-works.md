@@ -18,6 +18,34 @@ Le langage PINS est utilisé pour programmer les agents IA, leur permettant de p
 - **Contexte maîtrisé** : Le langage offre un contrôle total sur le contexte dans lequel les agents opèrent, garantissant une compréhension et une gestion précises des situations.
 - **Périmètre sans limite** : PINS permet une extensibilité infinie, offrant la possibilité de développer des agents IA avec des capacités variées et évolutives.
 
+### Les moustaches
+
+Les moustaches sont une caractéristique syntaxique du langage PINS qui permet d'intégrer des variables directement dans les chaînes de caractères. Elles facilitent la personnalisation et l'adaptabilité des scripts en insérant dynamiquement des valeurs au moment de l'exécution.
+
+#### Exemple d'utilisation des moustaches
+
+```pins
+{
+  "message": "Bonjour, {{name}}! Bienvenue dans notre service."
+}
+```
+
+Dans cet exemple, la variable `{{name}}` sera remplacée par la valeur réelle du nom au moment de l'exécution.
+
+### Le langage FEEL
+
+FEEL (Friendly Enough Expression Language) est un langage d'expression utilisé dans PINS pour évaluer des conditions, manipuler des données et définir des logiques complexes de manière intuitive et lisible.
+
+#### Exemple d'utilisation de FEEL
+
+```pins
+{
+  "condition": "EVALUATE: if (age > 18) then 'adulte' else 'mineur'"
+}
+```
+
+Dans cet exemple, l'expression FEEL évalue si l'âge est supérieur à 18 pour déterminer si l'individu est adulte ou mineur. Le mot-clé `EVALUATE:` est utilisé pour indiquer que l'expression FEEL doit être évaluée.
+
 ## Moteur
 
 ### Qu'est-ce que le moteur ?
