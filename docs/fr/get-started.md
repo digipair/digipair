@@ -1,6 +1,6 @@
-# Installation de l'application DigiPair
+# Installation de l'application Digipair
 
-Cette section décrit les étapes nécessaires pour installer et configurer l'application DigiPair.
+Cette section décrit les étapes nécessaires pour installer et configurer l'application Digipair.
 
 ## Prérequis
 
@@ -8,11 +8,11 @@ Cette section décrit les étapes nécessaires pour installer et configurer l'ap
 
 ## Installation
 
-Il existe deux façons d'installer DigiPair : en utilisant `npm` ou `npx`.
+Il existe deux façons d'installer Digipair : en utilisant `npm` ou `npx`.
 
 ### Installation avec `npm`
 
-Pour installer DigiPair globalement sur votre système, exécutez la commande suivante :
+Pour installer Digipair globalement sur votre système, exécutez la commande suivante :
 
 ```sh
 npm install -g digipair
@@ -20,7 +20,7 @@ npm install -g digipair
 
 ### Utilisation avec `npx`
 
-Si vous préférez utiliser DigiPair sans l'installer globalement, vous pouvez utiliser `npx` :
+Si vous préférez utiliser Digipair sans l'installer globalement, vous pouvez utiliser `npx` :
 
 ```sh
 npx digipair
@@ -28,7 +28,7 @@ npx digipair
 
 ## Lancement du serveur
 
-Une fois DigiPair installé, vous pouvez lancer le serveur web en exécutant la commande suivante :
+Une fois Digipair installé, vous pouvez lancer le serveur web en exécutant la commande suivante :
 
 ```sh
 digipair
@@ -38,9 +38,9 @@ Par défaut, le serveur web sera lancé sur le port `8080`.
 
 ## Configuration initiale
 
-Lors du premier lancement du serveur, DigiPair va créer un répertoire appelé `factory` dans le répertoire d'exécution du serveur s'il n'existe pas déjà. Ce répertoire `factory` contiendra :
+Lors du premier lancement du serveur, Digipair va créer un répertoire appelé `factory` dans le répertoire d'exécution du serveur s'il n'existe pas déjà. Ce répertoire `factory` contiendra :
 
-- L'équipe de DigiPair
+- L'équipe de Digipair
 - La configuration du serveur
 
 Le serveur lui-même est également appelé `factory`.
@@ -49,7 +49,7 @@ Assurez-vous d'avoir les permissions nécessaires pour créer des répertoires e
 
 ## Accès au serveur
 
-Une fois le serveur lancé, vous pouvez accéder à l'application DigiPair via votre navigateur web à l'adresse suivante :
+Une fois le serveur lancé, vous pouvez accéder à l'application Digipair via votre navigateur web à l'adresse suivante :
 
 ```
 http://localhost:8080
@@ -59,4 +59,4 @@ http://localhost:8080
 
 ## Conclusion
 
-Vous avez maintenant installé et configuré DigiPair. Si vous rencontrez des problèmes ou avez des questions, veuillez consulter la documentation complète ou contacter le support technique de DigiPair.
+Vous avez maintenant installé et configuré Digipair. Si vous rencontrez des problèmes ou avez des questions, veuillez consulter la documentation complète ou contacter le support technique de Digipair.

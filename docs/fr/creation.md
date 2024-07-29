@@ -1,8 +1,8 @@
-# Documentation Technique pour DigiPair
+# Documentation Technique pour Digipair
 
-## 1. Création d'un DigiPair
+## 1. Création d'un Digipair
 
-Pour créer un DigiPair, suivez les étapes ci-dessous :
+Pour créer un Digipair, suivez les étapes ci-dessous :
 
 1. **Accéder à la Factory**
 
@@ -11,8 +11,8 @@ Pour créer un DigiPair, suivez les étapes ci-dessous :
    ![Aperçu](./assets/screenshots/creation_digipair.png)
 
 2. **Nommer et spécifier l'utilité**
-   - Le chatbot apparaîtra et vous demandera de nommer le DigiPair ainsi que de spécifier son utilité.
-   - Répondez au chatbot en nommant le DigiPair `exemple` et en précisant qu'il va servir à remplir automatiquement un formulaire à partir d'une image.
+   - Le chatbot apparaîtra et vous demandera de nommer le Digipair ainsi que de spécifier son utilité.
+   - Répondez au chatbot en nommant le Digipair `exemple` et en précisant qu'il va servir à remplir automatiquement un formulaire à partir d'une image.
 
 ## 2. Programme pour le Boost
 
@@ -164,9 +164,9 @@ Pour intégrer le chatbot sur la page web du formulaire, ajoutez le code suivant
 <digipair-chatbot apiurl="http://localhost:8080" code="exemple-digipaire"></digipair-chatbot>
 ```
 
-## 5. Test du DigiPair
+## 5. Test du Digipair
 
-Avec le DigiPair créé, vous pouvez remplir le formulaire grâce à une image.
+Avec le Digipair créé, vous pouvez remplir le formulaire grâce à une image.
 
 1. **Tester le formulaire**
    - Rendez-vous sur la page du formulaire.
@@ -176,6 +176,6 @@ Avec le DigiPair créé, vous pouvez remplir le formulaire grâce à une image.
 
 ## 6. Conclusion
 
-Vous avez maintenant un DigiPair configuré pour remplir automatiquement un formulaire à partir d'une image. Grâce à cette documentation, vous pouvez créer et intégrer des DigiPairs pour automatiser vos tâches et améliorer l'efficacité de vos processus.
+Vous avez maintenant un Digipair configuré pour remplir automatiquement un formulaire à partir d'une image. Grâce à cette documentation, vous pouvez créer et intégrer des Digipairs pour automatiser vos tâches et améliorer l'efficacité de vos processus.
 
-**DigiPair, simplifiez vos opérations quotidiennes grâce à l'intelligence artificielle !**
+**Digipair, simplifiez vos opérations quotidiennes grâce à l'intelligence artificielle !**
