@@ -1202,6 +1202,24 @@
         ],
         "x-events": []
       }
+    },
+    "/sleep": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Attend un certain temps",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "temps en secondes",
+            "required": true,
+            "description": "temps en secondes à attendre",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {},

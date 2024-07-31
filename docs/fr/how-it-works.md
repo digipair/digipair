@@ -1,4 +1,4 @@
-# How it Works
+# Comment ça fonctionne
 
 Cette section explique le fonctionnement de Digipairs en quatre grandes parties : le langage PINS, le moteur, la factory et l'éditeur no-code.
 

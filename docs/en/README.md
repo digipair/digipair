@@ -45,7 +45,7 @@ We invite you to join our active community and participate in discussions on Dis
 
 To learn more about Digipair and start using our platform, please refer to the following sections of our documentation:
 
-- [Getting Started](https://opensource.digipair.ai/en#/get-started)
-- [The Mission](https://opensource.digipair.ai/en#/mission)
-- [The Concepts](https://opensource.digipair.ai/en#/concept)
-- [How It Works](https://opensource.digipair.ai/en#/how-it-works)
+- [Getting Started](get-started)
+- [The Mission](mission)
+- [The Concepts](concept)
+- [How It Works](how-it-works)

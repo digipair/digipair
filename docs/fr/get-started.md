@@ -5,6 +5,7 @@ Cette section décrit les étapes nécessaires pour installer et configurer l'ap
 ## Prérequis
 
 - Node.js doit être installé sur votre machine. Vous pouvez télécharger et installer Node.js depuis le site officiel : [Node.js](https://nodejs.org/).
+- La variable d'environnement OPENAI_API_KEY doit être configurée sur votre système avec une clé OpenAI valide [openai.com](https://openai.com).
 
 ## Installation
 
@@ -54,8 +55,6 @@ Une fois le serveur lancé, vous pouvez accéder à l'application Digipair via v
 ```
 http://localhost:8080
 ```
-
-# TO DO
 
 ## Conclusion
 

@@ -591,6 +591,15 @@ class MyBuddyService {
 
     return data;
   }
+
+  // TOOLS
+  async sleep(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { time } = params;
+
+    await new Promise(resolve => setTimeout(resolve, time * 1000));
+
+    return context.previous;
+  }
 }
 
 export const sendAngles = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -722,3 +731,6 @@ export const getBasicOutput = (params: any, pinsSettingsList: PinsSettings[], co
 
 export const isGripperMoving = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new MyBuddyService().isGripperMoving(params, pinsSettingsList, context);
+
+export const sleep = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new MyBuddyService().sleep(params, pinsSettingsList, context);

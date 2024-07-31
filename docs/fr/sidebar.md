@@ -21,6 +21,7 @@
 - [skill-llm](skill-llm)
 - [skill-microsoft](skill-microsoft)
 - [skill-mongodb](skill-mongodb)
+- [skill-mybuddy](skill-mybuddy)
 - [skill-nuki](skill-nuki)
 - [skill-ollama](skill-ollama)
 - [skill-openai](skill-openai)
