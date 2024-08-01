@@ -90,7 +90,7 @@
                           "library": "@digipair/skill-web-interact",
                           "element": "goTo",
                           "properties": {
-                            "url": "https://factory.digipair.ai/{{variables.team}}/{{variables.digipair.id}}/{{variables.reasoning.id}}"
+                            "url": "/{{variables.digipair.id}}/{{variables.reasoning.id}}"
                           }
                         }
                       ]

@@ -89,7 +89,7 @@
                           "library": "@digipair/skill-web-interact",
                           "element": "goTo",
                           "properties": {
-                            "url": "/admin/{{variables.digipair.id}}/{{variables.reasoning.id}}"
+                            "url": "/{{variables.digipair.id}}/{{variables.reasoning.id}}"
                           }
                         }
                       ]

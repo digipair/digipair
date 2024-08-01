@@ -352,7 +352,7 @@
                                               "library": "@digipair/skill-web-interact",
                                               "element": "goTo",
                                               "properties": {
-                                                "url": "/admin/{{request.params.[0]}}/{{item.id}}"
+                                                "url": "/{{request.params.[0]}}/{{item.id}}"
                                               }
                                             }
                                           ]
