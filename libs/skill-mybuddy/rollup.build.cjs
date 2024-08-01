@@ -5,7 +5,7 @@ const path = require('path');
 
 function getRollupOptions(options) {
   const extraGlobals = {};
-  const externals = [];
+  const externals = ['@marcbuils/mybuddy'];
 
   const value = {
     ...options,

@@ -2,8 +2,7 @@
   "name": "@digipair/skill-mybuddy",
   "version": "0.0.1",
   "dependencies": {
-
-    "@marcbuils/mybuddy": "^0.0.8"
+    "@marcbuils/mybuddy": "^0.0.9"
   },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
