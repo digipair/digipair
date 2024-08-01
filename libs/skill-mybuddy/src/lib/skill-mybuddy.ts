@@ -13,7 +13,7 @@ class MyBuddyService {
     const { device, angles, speed = 50 } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendAngles(device, angles, speed));
-    connection.close();
+
     return result;
   }
 
@@ -21,7 +21,7 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.powerOn(device));
-    connection.close();
+
     return result;
   }
 
@@ -29,7 +29,7 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.powerOff(device));
-    connection.close();
+
     return result;
   }
 
@@ -37,7 +37,7 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.releaseAllServos(device));
-    connection.close();
+
     return result;
   }
 
@@ -45,7 +45,7 @@ class MyBuddyService {
     const { device, id = 1, degree = 0, speed = 60 } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendAngle(device, id, degree, speed));
-    connection.close();
+
     return result;
   }
 
@@ -53,7 +53,7 @@ class MyBuddyService {
     const { device, coords, speed, mode } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendCoords(device, coords, speed, mode));
-    connection.close();
+
     return result;
   }
 
@@ -61,7 +61,7 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.programPause(device));
-    connection.close();
+
     return result;
   }
 
@@ -69,7 +69,7 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.programResume(device));
-    connection.close();
+
     return result;
   }
 
@@ -77,7 +77,7 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.stop(device));
-    connection.close();
+
     return result;
   }
 
@@ -85,7 +85,7 @@ class MyBuddyService {
     const { device, joint_id, direction, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.jogAngle(device, joint_id, direction, speed));
-    connection.close();
+
     return result;
   }
 
@@ -93,7 +93,7 @@ class MyBuddyService {
     const { device, coord_id, direction, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.jogCoord(device, coord_id, direction, speed));
-    connection.close();
+
     return result;
   }
 
@@ -101,7 +101,7 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.jogStop(device));
-    connection.close();
+
     return result;
   }
 
@@ -109,7 +109,7 @@ class MyBuddyService {
     const { device, joint_id, encoder } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setEncoder(device, joint_id, encoder));
-    connection.close();
+
     return result;
   }
 
@@ -117,7 +117,7 @@ class MyBuddyService {
     const { device, encoders, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setEncoders(device, encoders, speed));
-    connection.close();
+
     return result;
   }
 
@@ -125,7 +125,7 @@ class MyBuddyService {
     const { device, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setSpeed(device, speed));
-    connection.close();
+
     return result;
   }
 
@@ -133,7 +133,7 @@ class MyBuddyService {
     const { device, servo_no, data_id, value } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setServoData(device, servo_no, data_id, value));
-    connection.close();
+
     return result;
   }
 
@@ -141,7 +141,7 @@ class MyBuddyService {
     const { device, servo_no } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setServoCalibration(device, servo_no));
-    connection.close();
+
     return result;
   }
 
@@ -149,7 +149,7 @@ class MyBuddyService {
     const { device, servo_no } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.releaseServo(device, servo_no));
-    connection.close();
+
     return result;
   }
 
@@ -157,7 +157,7 @@ class MyBuddyService {
     const { device, servo_no } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.focusServo(device, servo_no));
-    connection.close();
+
     return result;
   }
 
@@ -165,7 +165,7 @@ class MyBuddyService {
     const { device, pin_no, pin_mode } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setPinMode(device, pin_no, pin_mode));
-    connection.close();
+
     return result;
   }
 
@@ -173,7 +173,7 @@ class MyBuddyService {
     const { device, pin_no, pin_signal } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setDigitalOutput(device, pin_no, pin_signal));
-    connection.close();
+
     return result;
   }
 
@@ -181,7 +181,7 @@ class MyBuddyService {
     const { device, flag, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setGripperState(device, flag, speed));
-    connection.close();
+
     return result;
   }
 
@@ -189,14 +189,14 @@ class MyBuddyService {
     const { device, value, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setGripperValue(device, value, speed));
-    connection.close();
+
     return result;
   }
 
   async setGripperIni(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setGripperIni());
-    connection.close();
+
     return result;
   }
 
@@ -204,7 +204,7 @@ class MyBuddyService {
     const { device, pin_no, pin_signal } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setBasicOutput(device, pin_no, pin_signal));
-    connection.close();
+
     return result;
   }
 
@@ -212,7 +212,7 @@ class MyBuddyService {
     const { device, r, g, b } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setColor(device, r, g, b));
-    connection.close();
+
     return result;
   }
 
@@ -264,10 +264,26 @@ class MyBuddyService {
   }
 
   async isControllerConnect(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { device } = params;
+    let data = null;
+
     const connection = await this.connect(params, context);
-    const result = connection.write(mybuddy.isControllerConnect());
-    connection.close();
-    return result;
+
+    connection.on('data', (data: Buffer) => {
+      if (
+        data[0] === 0xfe &&
+        data[1] === 0xfe &&
+        data[2] === device &&
+        data[4] === parseInt(mybuddy.COMMAND.IS_CONTROLLER_CONNECTED, 16)
+      ) {
+        data = mybuddy.processReceived(data);
+        connection.close();
+      }
+    });
+
+    connection.write(mybuddy.isControllerConnect());
+
+    return data;
   }
 
   async getCoords(params: any, _pinsSettingsList: PinsSettings[], context: any) {

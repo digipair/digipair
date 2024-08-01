@@ -857,7 +857,17 @@
       "post": {
         "tags": ["service"],
         "summary": "Vérifie si le contrôleur est connecté",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
         "x-events": []
       }
     },
