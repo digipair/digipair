@@ -13,7 +13,8 @@ class MyBuddyService {
     const { device, angles, speed = 50 } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendAngles(device, angles, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -21,7 +22,8 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.powerOn(device));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -29,7 +31,8 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.powerOff(device));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -37,7 +40,8 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.releaseAllServos(device));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -45,7 +49,8 @@ class MyBuddyService {
     const { device, id = 1, degree = 0, speed = 60 } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendAngle(device, id, degree, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -53,7 +58,8 @@ class MyBuddyService {
     const { device, coords, speed, mode } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendCoords(device, coords, speed, mode));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -61,7 +67,8 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.programPause(device));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -69,7 +76,8 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.programResume(device));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -77,7 +85,8 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.stop(device));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -85,7 +94,8 @@ class MyBuddyService {
     const { device, joint_id, direction, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.jogAngle(device, joint_id, direction, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -93,7 +103,8 @@ class MyBuddyService {
     const { device, coord_id, direction, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.jogCoord(device, coord_id, direction, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -101,7 +112,8 @@ class MyBuddyService {
     const { device } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.jogStop(device));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -109,7 +121,8 @@ class MyBuddyService {
     const { device, joint_id, encoder } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setEncoder(device, joint_id, encoder));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -117,7 +130,8 @@ class MyBuddyService {
     const { device, encoders, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setEncoders(device, encoders, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -125,7 +139,8 @@ class MyBuddyService {
     const { device, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setSpeed(device, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -133,7 +148,8 @@ class MyBuddyService {
     const { device, servo_no, data_id, value } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setServoData(device, servo_no, data_id, value));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -141,7 +157,8 @@ class MyBuddyService {
     const { device, servo_no } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setServoCalibration(device, servo_no));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -149,7 +166,8 @@ class MyBuddyService {
     const { device, servo_no } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.releaseServo(device, servo_no));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -157,7 +175,8 @@ class MyBuddyService {
     const { device, servo_no } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.focusServo(device, servo_no));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -165,7 +184,8 @@ class MyBuddyService {
     const { device, pin_no, pin_mode } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setPinMode(device, pin_no, pin_mode));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -173,7 +193,8 @@ class MyBuddyService {
     const { device, pin_no, pin_signal } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setDigitalOutput(device, pin_no, pin_signal));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -181,7 +202,8 @@ class MyBuddyService {
     const { device, flag, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setGripperState(device, flag, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -189,14 +211,16 @@ class MyBuddyService {
     const { device, value, speed } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setGripperValue(device, value, speed));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
   async setGripperIni(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setGripperIni());
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -204,7 +228,8 @@ class MyBuddyService {
     const { device, pin_no, pin_signal } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setBasicOutput(device, pin_no, pin_signal));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
@@ -212,7 +237,8 @@ class MyBuddyService {
     const { device, r, g, b } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.setColor(device, r, g, b));
-
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
     return result;
   }
 
