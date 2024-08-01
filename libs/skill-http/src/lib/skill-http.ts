@@ -15,14 +15,14 @@ class HttpService {
     const response = await fetch(url, {
       method,
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: this.IS_JSON ? 'application/json' : '*/*',
+        ...(data ? { 'Content-Type': 'application/json' } : {}),
         ...headers,
       },
       body: data ? (this.IS_JSON ? JSON.stringify(data) : data) : undefined,
     });
     if (!response.ok) throw new Error('[SKILL-HTTP] REQUEST FAILED: ' + response.status);
-    return (await this.IS_JSON) ? response.json() : response.text();
+    return this.IS_JSON ? response.json() : response.text();
   }
 
   async create(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {

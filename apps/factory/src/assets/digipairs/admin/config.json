@@ -16,6 +16,7 @@
     "@digipair/skill-common": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-web": "latest",
+    "@digipair/skill-http": "latest",
     "@digipair/skill-data-management": "latest",
     "@digipair/skill-web-jsoneditor": "latest",
     "@digipair/skill-web-notification": "latest",

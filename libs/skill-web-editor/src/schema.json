@@ -35,7 +35,7 @@
           {
             "name": "schemas",
             "summary": "Schemas",
-            "required": true,
+            "required": false,
             "description": "Liste des schemas des compétences privées",
             "schema": {
               "type": "object"

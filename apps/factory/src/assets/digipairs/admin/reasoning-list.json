@@ -515,7 +515,7 @@
                                         "events": {
                                           "click": [
                                             {
-                                              "library": "@digipair/skill-<eb",
+                                              "library": "@digipair/skill-web",
                                               "element": "executeFactory",
                                               "properties": {
                                                 "execute": [
@@ -686,10 +686,10 @@
               "properties": {
                 "execute": [
                   {
-                    "library": "@digipair/skill-web-request",
-                    "element": "fetchJson",
+                    "library": "@digipair/skill-http",
+                    "element": "read",
                     "properties": {
-                      "url": "https://cdn.jsdelivr.net/npm/{{item.key}}@{{item.value}}/schema.json"
+                      "path": "https://cdn.jsdelivr.net/npm/{{item.key}}@{{item.value}}/schema.json"
                     }
                   },
                   {
