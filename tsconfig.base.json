@@ -55,7 +55,8 @@
       "@digipair/skill-web-notification": ["libs/skill-web-notification/src/index.ts"],
       "@digipair/skill-web-ocr": ["libs/skill-web-ocr/src/index.ts"],
       "@digipair/skill-web-pdf": ["libs/skill-web-pdf/src/index.ts"],
-      "@digipair/skill-web-spectrum": ["libs/skill-web-spectrum/src/index.ts"]
+      "@digipair/skill-web-spectrum": ["libs/skill-web-spectrum/src/index.ts"],
+      "@digipair/skill-webcam": ["libs/skill-webcam/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

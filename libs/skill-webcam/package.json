@@ -1,0 +1,9 @@
+{
+  "name": "@digipair/skill-webcam",
+  "version": "0.0.1",
+  "dependencies": {
+    "node-webcam": "^0.8.2"
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}
