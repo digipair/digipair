@@ -10,7 +10,7 @@ export class AppService implements OnModuleInit {
       : './factory/digipairs';
 
     // initialize factory skill
-    const skillFactory = require('@digipair/skill-cron');
+    const skillFactory = require('@digipair/skill-factory');
     skillFactory.initialize((_context: any, digipair: string, reasoning: string, body: any) =>
       this.agent(path, digipair, reasoning, body, [], null, {}),
     );

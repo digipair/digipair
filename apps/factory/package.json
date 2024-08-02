@@ -22,7 +22,6 @@
     "@digipair/skill-llm": "latest",
     "@digipair/skill-microsoft": "latest",
     "@digipair/skill-mongodb": "latest",
-    "@digipair/skill-mybuddy": "latest",
     "@digipair/skill-nuki": "latest",
     "@digipair/skill-ollama": "latest",
     "@digipair/skill-openai": "latest",

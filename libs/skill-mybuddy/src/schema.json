@@ -164,6 +164,51 @@
         "x-events": []
       }
     },
+    "/sendCoord": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoie les coordonnées",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Coordonnée à modifier",
+            "required": true,
+            "description": "Identifiant de la coordonnée à envoyer",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "coord",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Valeur de la coordonnée à envoyer",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/sendCoords": {
       "post": {
         "tags": ["service"],

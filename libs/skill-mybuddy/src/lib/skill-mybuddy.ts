@@ -1,10 +1,11 @@
 import { PinsSettings } from '@digipair/engine';
 import mybuddy from '@marcbuils/mybuddy';
 
+const TIMEOUT_READ_COMMANDS = 1000;
+
 class MyBuddyService {
   private async connect(params: any, context: any) {
-    const { MY_BUDDY = context.privates.MY_BUDDY ?? { port: '/dev/ttyACM0', baud: 115200 } } =
-      params;
+    const { MY_BUDDY = context.privates.MY_BUDDY ?? { port: '/dev/ttyACM0', baud: 115200 } } = params;
     return mybuddy.connect(MY_BUDDY.port, MY_BUDDY.baud);
   }
 
@@ -46,7 +47,7 @@ class MyBuddyService {
   }
 
   async sendAngle(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { device, id = 1, degree = 0, speed = 60 } = params;
+    const { device, id, degree, speed = 50 } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendAngle(device, id, degree, speed));
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -54,8 +55,17 @@ class MyBuddyService {
     return result;
   }
 
+  async sendCoord(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { device, id, coord, speed = 50 } = params;
+    const connection = await this.connect(params, context);
+    const result = connection.write(mybuddy.sendCoord(device, id, coord, speed));
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    connection.close();
+    return result;
+  }
+
   async sendCoords(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { device, coords, speed, mode } = params;
+    const { device, coords, speed = 50, mode = 0 } = params;
     const connection = await this.connect(params, context);
     const result = connection.write(mybuddy.sendCoords(device, coords, speed, mode));
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -245,393 +255,478 @@ class MyBuddyService {
   // Data Retrieval
   async getAngles(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_ANGLES, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_ANGLES, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+      
+      connection.write(mybuddy.getAngles(device));
     });
-
-    connection.write(mybuddy.getAngles(device));
-
-    return data;
   }
 
   async isPowerOn(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.IS_POWER_ON, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.IS_POWER_ON, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.isPowerOn(device));
     });
-
-    connection.write(mybuddy.isPowerOn(device));
-
-    return data;
   }
 
   async isControllerConnect(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.IS_CONTROLLER_CONNECTED, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.IS_CONTROLLER_CONNECTED, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.isControllerConnect());
     });
-
-    connection.write(mybuddy.isControllerConnect());
-
-    return data;
   }
 
   async getCoords(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_COORDS, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_COORDS, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getCoords(device));
     });
-
-    connection.write(mybuddy.getCoords(device));
-
-    return data;
   }
 
   async isInPosition(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, data, flag } = params;
-    let result = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.IS_IN_POSITION, 16)
-      ) {
-        result = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.IS_IN_POSITION, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.isInPosition(device, data, flag));
     });
-
-    connection.write(mybuddy.isInPosition(device, data, flag));
-
-    return result;
   }
 
   async getEncoder(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, joint_id } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_ENCODER, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_ENCODER, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getEncoder(device, joint_id));
     });
-
-    connection.write(mybuddy.getEncoder(device, joint_id));
-
-    return data;
   }
 
   async getEncoders(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_ENCODER, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_ENCODER, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getEncoders(device));
     });
-
-    connection.write(mybuddy.getEncoders(device));
-
-    return data;
   }
 
   async getSpeed(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_SPEED, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_SPEED, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getSpeed(device));
     });
-
-    connection.write(mybuddy.getSpeed(device));
-
-    return data;
   }
 
   async getJointMin(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, joint_id } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_JOINT_MIN_ANGLE, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_JOINT_MIN_ANGLE, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getJointMin(device, joint_id));
     });
-
-    connection.write(mybuddy.getJointMin(device, joint_id));
-
-    return data;
   }
 
   async getJointMax(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, joint_id } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_JOINT_MAX_ANGLE, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_JOINT_MAX_ANGLE, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getJointMax(device, joint_id));
     });
-
-    connection.write(mybuddy.getJointMax(device, joint_id));
-
-    return data;
   }
 
   async isServoEnable(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, servo_id } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.IS_SERVO_ENABLE, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.IS_SERVO_ENABLE, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.isServoEnable(device, servo_id));
     });
-
-    connection.write(mybuddy.isServoEnable(device, servo_id));
-
-    return data;
   }
 
   async isAllServoEnable(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.IS_ALL_SERVO_ENABLE, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.IS_ALL_SERVO_ENABLE, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.isAllServoEnable(device));
     });
-
-    connection.write(mybuddy.isAllServoEnable(device));
-
-    return data;
   }
 
   async getServodata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, servo_no, data_id } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_SERVO_DATA, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_SERVO_DATA, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getServodata(device, servo_no, data_id));
     });
-
-    connection.write(mybuddy.getServodata(device, servo_no, data_id));
-
-    return data;
   }
 
   async getDigitalInput(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, pin_no } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_DIGITAL_INPUT, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_DIGITAL_INPUT, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getDigitalInput(device, pin_no));
     });
-
-    connection.write(mybuddy.getDigitalInput(device, pin_no));
-
-    return data;
   }
 
   async getGripperValue(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_GRIPPER_VALUE, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_GRIPPER_VALUE, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getGripperValue(device));
     });
-
-    connection.write(mybuddy.getGripperValue(device));
-
-    return data;
   }
 
   async getBasicOutput(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device, pin_no } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.GET_BASIC_INPUT, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.GET_BASIC_INPUT, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.getBasicOutput(device, pin_no));
     });
-
-    connection.write(mybuddy.getBasicOutput(device, pin_no));
-
-    return data;
   }
 
   async isGripperMoving(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { device } = params;
-    let data = null;
-
     const connection = await this.connect(params, context);
 
-    connection.on('data', (data: Buffer) => {
-      if (
-        data[0] === 0xfe &&
-        data[1] === 0xfe &&
-        data[2] === device &&
-        data[4] === parseInt(mybuddy.COMMAND.IS_GRIPPER_MOVING, 16)
-      ) {
-        data = mybuddy.processReceived(data);
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
         connection.close();
-      }
+        reject('TIMEOUT_READ_COMMANDS');
+      }, TIMEOUT_READ_COMMANDS);
+
+      connection.on('data', (data: Buffer) => {
+        if (
+          data[0] === 0xfe &&
+          data[1] === 0xfe &&
+          data[2] === device &&
+          data[4] === parseInt(mybuddy.COMMAND.IS_GRIPPER_MOVING, 16)
+        ) {
+          clearTimeout(timeoutId);
+          const result = mybuddy.processReceived(data);
+          connection.close();
+          resolve(result);
+        }
+      });
+
+      connection.write(mybuddy.isGripperMoving(device));
     });
-
-    connection.write(mybuddy.isGripperMoving(device));
-
-    return data;
   }
 
   // TOOLS
@@ -662,6 +757,9 @@ export const releaseAllServos = (params: any, pinsSettingsList: PinsSettings[], 
 
 export const sendAngle = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new MyBuddyService().sendAngle(params, pinsSettingsList, context);
+
+export const sendCoord = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new MyBuddyService().sendCoord(params, pinsSettingsList, context);
 
 export const sendCoords = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new MyBuddyService().sendCoords(params, pinsSettingsList, context);
