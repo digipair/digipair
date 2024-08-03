@@ -1,0 +1,11 @@
+{
+  "name": "@digipair/skill-tensorflow",
+  "version": "0.0.1",
+  "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.2.3",
+    "@tensorflow-models/face-detection": "^1.0.2",
+    "@tensorflow/tfjs-node": "^4.20.0"
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}
