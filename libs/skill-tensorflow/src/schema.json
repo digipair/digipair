@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-tensorfow",
+    "title": "@digipair/skill-tensorflow",
     "summary": "Analyse par Deep Learning",
     "description": "Cette compétence permet aux utilisateurs d'analyser des données par Deep Learning.",
     "version": "0.1.0",
