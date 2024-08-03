@@ -125,7 +125,7 @@
     "/strokeRect": {
       "post": {
         "tags": ["service"],
-        "summary": "Dessiner un rectangle",
+        "summary": "Dessiner un rectangle vide",
         "description": "Dessine le contour d'un rectangle aux coordonnées spécifiées.",
         "parameters": [
           {
@@ -171,8 +171,8 @@
     "/fillRect": {
       "post": {
         "tags": ["service"],
-        "summary": "Déssine un rectangle",
-        "description": "Déssine un rectangle aux coordonnées spécifiées.",
+        "summary": "Déssine un rectangle plein",
+        "description": "Déssine un rectangle plein aux coordonnées spécifiées.",
         "parameters": [
           {
             "name": "x",

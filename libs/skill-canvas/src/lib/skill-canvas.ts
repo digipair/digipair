@@ -94,3 +94,7 @@ export const fillStyle = (params: any, pinsSettingsList: PinsSettings[], context
 export const lineWidth = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CanvasService().lineWidth(params, pinsSettingsList, context);
 
+export const measureText = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new CanvasService().measureText(params, pinsSettingsList, context);
+
+
