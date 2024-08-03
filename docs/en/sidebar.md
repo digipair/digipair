@@ -7,6 +7,7 @@
 - [How It Works](how-it-works)
 - **Skills**
 - [skill-dsp](skill-dsp)
+- [skill-canvas](skill-canvas)
 - [skill-chatbot](skill-chatbot)
 - [skill-common](skill-common)
 - [skill-cron](skill-cron)
@@ -30,8 +31,10 @@
 - [skill-service](skill-service)
 - [skill-smoobu](skill-smoobu)
 - [skill-temporal](skill-temporal)
+- [skill-tensorflow](skill-tensorflow)
 - [skill-twilio](skill-twilio)
 - [skill-vespa](skill-vespa)
+- [skill-webcam](skill-webcam)
 - [skill-web](skill-web)
 - [skill-web-chatbot](skill-web-chatbot)
 - [skill-web-debug](skill-web-debug)
