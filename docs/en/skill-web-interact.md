@@ -7,29 +7,52 @@
 
 ## Table of Contents
 
-- [Functions](#functions)
-  - [dispatchEvent](#dispatchevent)
-  - [setAttribute](#setattribute)
-  - [getAttribute](#getattribute)
-  - [execute](#execute)
-  - [goTo](#goto)
-  - [reload](#reload)
-  - [upload](#upload)
-  - [uploadText](#uploadtext)
+- [@digipair/skill-web-interact](#digipairskill-web-interact)
+  - [Table of Contents](#table-of-contents)
+  - [Functions](#functions)
+    - [dispatchEvent](#dispatchevent)
+      - [Parameters](#parameters)
+      - [Example](#example)
+    - [setAttribute](#setattribute)
+      - [Parameters](#parameters-1)
+      - [Example](#example-1)
+    - [getAttribute](#getattribute)
+      - [Parameters](#parameters-2)
+      - [Example](#example-2)
+    - [execute](#execute)
+      - [Parameters](#parameters-3)
+      - [Example](#example-3)
+    - [goTo](#goto)
+      - [Parameters](#parameters-4)
+      - [Example](#example-4)
+    - [reload](#reload)
+      - [Example](#example-5)
+    - [upload](#upload)
+      - [Parameters](#parameters-5)
+      - [Example](#example-6)
+    - [uploadText](#uploadtext)
+      - [Parameters](#parameters-6)
+      - [Example](#example-7)
+    - [capture](#capture)
+      - [Parameters](#parameters-7)
+      - [Example](#example-8)
+    - [getMediaDevices](#getmediadevices)
+      - [Example](#example-9)
+  - [Notes](#notes)
 
 ## Functions
 
 ### dispatchEvent
 
-Emit an event on a DOM element.
+Triggers an event on a DOM element.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| name     | string | Yes      | Name of the event |
-| selector | string | Yes      | CSS selector of the element that will receive the event |
-| detail   | object | No       | Data passed with the event |
+| Name      | Type   | Required | Description |
+|-----------|--------|----------|-------------|
+| name      | string | Yes      | Name of the event to trigger. |
+| selector  | string | Yes      | CSS selector of the element that will receive the event. |
+| detail    | object | No       | Data passed with the event. |
 
 #### Example
 
@@ -47,17 +70,19 @@ Emit an event on a DOM element.
 }
 ```
 
+---
+
 ### setAttribute
 
-Modify the value of an attribute of a DOM element.
+Allows modifying the value of an attribute of a DOM element.
 
 #### Parameters
 
 | Name      | Type   | Required | Description |
 |-----------|--------|----------|-------------|
-| selector  | string | Yes      | CSS selector of the element |
-| attribute | string | Yes      | Attribute to modify |
-| value     | object | Yes      | New value of the attribute |
+| selector  | string | Yes      | CSS selector of the element. |
+| attribute | string | Yes      | Attribute to modify. |
+| value     | object | Yes      | New value for the attribute. |
 
 #### Example
 
@@ -66,23 +91,25 @@ Modify the value of an attribute of a DOM element.
   "library": "@digipair/skill-web-interact",
   "element": "setAttribute",
   "properties": {
-    "selector": "#myInput",
-    "attribute": "value",
+    "selector": "#myElement",
+    "attribute": "data-custom",
     "value": "newValue"
   }
 }
 ```
 
+---
+
 ### getAttribute
 
-Read the value of an attribute of a DOM element.
+Allows reading the value of an attribute of a DOM element.
 
 #### Parameters
 
 | Name      | Type   | Required | Description |
 |-----------|--------|----------|-------------|
-| selector  | string | Yes      | CSS selector of the element |
-| attribute | string | Yes      | Attribute to read |
+| selector  | string | Yes      | CSS selector of the element. |
+| attribute | string | Yes      | Attribute to read. |
 
 #### Example
 
@@ -91,23 +118,25 @@ Read the value of an attribute of a DOM element.
   "library": "@digipair/skill-web-interact",
   "element": "getAttribute",
   "properties": {
-    "selector": "#myInput",
-    "attribute": "value"
+    "selector": "#myElement",
+    "attribute": "data-custom"
   }
 }
 ```
 
+---
+
 ### execute
 
-Execute a method on a DOM element.
+Executes a method on a DOM element.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| name     | string | Yes      | Name of the method |
-| selector | string | Yes      | CSS selector of the element that will execute the method |
-| args     | array  | No       | List of method arguments |
+| Name      | Type   | Required | Description |
+|-----------|--------|----------|-------------|
+| name      | string | Yes      | Name of the method to execute. |
+| selector  | string | Yes      | CSS selector of the element that will execute the method. |
+| args      | array  | No       | List of arguments for the method. |
 
 #### Example
 
@@ -123,16 +152,18 @@ Execute a method on a DOM element.
 }
 ```
 
+---
+
 ### goTo
 
-Open a web page in the browser.
+Allows opening a web page in the browser.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| url      | string | Yes      | URL of the web page |
-| target   | string | Yes      | Target window |
+| Name      | Type   | Required | Description |
+|-----------|--------|----------|-------------|
+| url       | string | Yes      | URL of the web page to open. |
+| target    | string | Yes      | Target window (e.g., "_blank", "_self"). |
 
 #### Example
 
@@ -147,13 +178,11 @@ Open a web page in the browser.
 }
 ```
 
+---
+
 ### reload
 
-Reload the current page.
-
-#### Parameters
-
-No parameters required.
+Allows reloading the current page.
 
 #### Example
 
@@ -165,15 +194,17 @@ No parameters required.
 }
 ```
 
+---
+
 ### upload
 
-Upload a binary file in base64.
+Allows uploading a binary file in base64.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| accept   | string | No       | Accepted file type |
+| Name      | Type   | Required | Description |
+|-----------|--------|----------|-------------|
+| accept    | string | No       | Accepted file type. |
 
 #### Example
 
@@ -182,20 +213,22 @@ Upload a binary file in base64.
   "library": "@digipair/skill-web-interact",
   "element": "upload",
   "properties": {
-    "accept": "image/png"
+    "accept": "image/*"
   }
 }
 ```
 
+---
+
 ### uploadText
 
-Upload a text file.
+Allows uploading a text file.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| accept   | string | No       | Accepted file type |
+| Name      | Type   | Required | Description |
+|-----------|--------|----------|-------------|
+| accept    | string | No       | Accepted file type. |
 
 #### Example
 
@@ -209,7 +242,53 @@ Upload a text file.
 }
 ```
 
+---
+
+### capture
+
+Allows capturing an image from the webcam.
+
+#### Parameters
+
+| Name        | Type    | Required | Description |
+|-------------|---------|----------|-------------|
+| deviceId    | string  | No       | Identifier of the capture device. |
+| width       | number  | No       | Width of the captured image. |
+| height      | number  | No       | Height of the captured image. |
+| facingMode  | string  | No       | Capture mode of the image (e.g., "user", "environment"). |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-web-interact",
+  "element": "capture",
+  "properties": {
+    "deviceId": "myDeviceId",
+    "width": 640,
+    "height": 480,
+    "facingMode": "user"
+  }
+}
+```
+
+---
+
+### getMediaDevices
+
+Lists the available capture devices.
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-web-interact",
+  "element": "getMediaDevices",
+  "properties": {}
+}
+```
+
 ## Notes
 
-- The functions in this library allow interaction with DOM elements and manipulation of web pages directly from the browser.
-- Ensure to provide valid CSS selectors and existing attributes/methods to avoid errors during function execution.
+- The functions in this library allow interaction with the DOM and perform various actions on the elements of the web page.
+- Ensure to provide valid CSS selectors for the `selector` parameters and adhere to the expected data types for each parameter.

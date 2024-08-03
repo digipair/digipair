@@ -224,6 +224,61 @@
         ],
         "x-events": []
       }
+    },
+    "/capture": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Capture une image de la webcam",
+        "description": "Permet de capturer une image de la webcam",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "summary": "Identifiant du périphérique",
+            "required": false,
+            "description": "Identifiant du périphérique de capture",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "summary": "Largeur de l'image",
+            "required": false,
+            "description": "Largeur de l'image capturée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "summary": "Hauteur de l'image",
+            "required": false,
+            "description": "Hauteur de l'image capturée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "facingMode",
+            "summary": "Mode de capture",
+            "required": false,
+            "description": "Mode de capture de l'image",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getMediaDevices": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Liste des périphériques",
+        "description": "Liste les périphériques de capture disponibles",
+        "parameters": [],
+        "x-events": []
+      }
     }
   },
   "components": {

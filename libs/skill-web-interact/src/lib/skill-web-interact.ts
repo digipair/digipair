@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
 
-class DomService {
+class WebInteractService {
   async setAttribute(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { selector, attribute, value } = params;
     const element = document.querySelector(selector) as any;
@@ -94,28 +94,67 @@ class DomService {
 
     return result;
   }
+
+  async capture(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { deviceId, width = 4096, height = 2160, facingMode = 'environment' } = params;
+
+    const constraints = {
+      audio: false,
+      video: {
+        width: { ideal: width },
+        height: { ideal: height },
+        facingMode,
+        deviceId
+      }
+    };
+
+    const video = document.createElement('video');
+    video.autoplay = true;
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    video.srcObject = stream;
+    await new Promise(resolve => video.onloadedmetadata = resolve);
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const image = canvas.toDataURL('image/jpeg');
+    stream.getTracks().forEach(track => track.stop());
+
+    return image;
+  }
+
+  async getMediaDevices(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    return navigator.mediaDevices.enumerateDevices();
+  }
 }
 
 export const setAttribute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().setAttribute(params, pinsSettingsList, context);
+  new WebInteractService().setAttribute(params, pinsSettingsList, context);
 
 export const getAttribute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().getAttribute(params, pinsSettingsList, context);
+  new WebInteractService().getAttribute(params, pinsSettingsList, context);
 
 export const dispatchEvent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().dispatchEvent(params, pinsSettingsList, context);
+  new WebInteractService().dispatchEvent(params, pinsSettingsList, context);
 
 export const execute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().execute(params, pinsSettingsList, context);
+  new WebInteractService().execute(params, pinsSettingsList, context);
 
 export const goTo = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().goTo(params, pinsSettingsList, context);
+  new WebInteractService().goTo(params, pinsSettingsList, context);
 
 export const reload = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().reload(params, pinsSettingsList, context);
+  new WebInteractService().reload(params, pinsSettingsList, context);
 
 export const upload = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().upload(params, pinsSettingsList, context);
+  new WebInteractService().upload(params, pinsSettingsList, context);
 
 export const uploadText = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DomService().uploadText(params, pinsSettingsList, context);
+  new WebInteractService().uploadText(params, pinsSettingsList, context);
+
+export const capture = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WebInteractService().capture(params, pinsSettingsList, context);
+
+export const getMediaDevices = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WebInteractService().getMediaDevices(params, pinsSettingsList, context);
