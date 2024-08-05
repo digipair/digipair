@@ -12,9 +12,12 @@ class TensorflowService {
   };
 
   async cocoSsd(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { image } = params;
+    const { image, base = 'lite_mobilenet_v2', modelUrl } = params;
 
-    const model = await cocoSsdModel.load();
+    const model = await cocoSsdModel.load({
+      base,
+      modelUrl
+    });
     const imageLoaded = await this.base64ToImage(image);
     const imageData = tf.node.decodeImage(imageLoaded, 3);
     const predictions = await model.detect(imageData as any);
@@ -23,13 +26,13 @@ class TensorflowService {
   }
 
   async faceDetection(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { image } = params;
+    const { image, runtime = 'mediapipe' } = params;
 
     const model = faceDetectionModel.SupportedModels.MediaPipeFaceDetector;
     const imageLoaded = await this.base64ToImage(image);
     const imageData = tf.node.decodeImage(imageLoaded, 3);
     const detectorConfig: MediaPipeFaceDetectorMediaPipeModelConfig = {
-      runtime: 'mediapipe', // or 'tfjs'
+      runtime, // 'mediapipe' or 'tfjs'
     }
     const detector = await faceDetectionModel.createDetector(model, detectorConfig);
     const faces = await detector.estimateFaces(imageData as any);
