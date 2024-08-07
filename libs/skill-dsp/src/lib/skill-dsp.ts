@@ -102,6 +102,18 @@ class DspService {
     } as AxGenerateOptions);
     const result = await gen.forward(input);
 
+    // add comsumption
+    const consumption = modelInstance.ai.modelUsage;
+    const modelInfo = modelInstance.getModelInfo();
+    const skillLogger = require('@digipair/skill-logger');
+    await skillLogger.addConsumption(
+      context,
+      modelInfo.provider,
+      modelInfo.name,
+      consumption.promptTokens,
+      consumption.completionTokens,
+    );
+
     return result;
   }
 
@@ -114,6 +126,18 @@ class DspService {
     });
     const result = await gen.forward(input);
 
+    // add comsumption
+    const consumption = modelInstance.ai.modelUsage;
+    const modelInfo = modelInstance.getModelInfo();
+    const skillLogger = require('@digipair/skill-logger');
+    await skillLogger.addConsumption(
+      context,
+      modelInfo.provider,
+      modelInfo.name,
+      consumption.promptTokens,
+      consumption.completionTokens,
+    );
+
     return result;
   }
 
@@ -125,6 +149,18 @@ class DspService {
       functions: await this.prepareFunctions(functions, context),
     });
     const result = await gen.forward(input);
+
+    // add comsumption
+    const consumption = modelInstance.ai.modelUsage;
+    const modelInfo = modelInstance.getModelInfo();
+    const skillLogger = require('@digipair/skill-logger');
+    await skillLogger.addConsumption(
+      context,
+      modelInfo.provider,
+      modelInfo.name,
+      consumption.promptTokens,
+      consumption.completionTokens,
+    );
 
     return result;
   }
@@ -163,6 +199,19 @@ class DspService {
     }
 
     const result = await agent.forward(input);
+
+    // add comsumption
+    const consumption = modelInstance.ai.modelUsage;
+    const modelInfo = modelInstance.getModelInfo();
+    const skillLogger = require('@digipair/skill-logger');
+    await skillLogger.addConsumption(
+      context,
+      modelInfo.provider,
+      modelInfo.name,
+      consumption.promptTokens,
+      consumption.completionTokens,
+    );
+
     return result;
   }
 }

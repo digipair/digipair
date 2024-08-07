@@ -1,0 +1,193 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-logger",
+    "summary": "Gestion des logs et de la consommations LLM",
+    "description": "Gestion des logs et de la consommations LLM",
+    "version": "0.1.0",
+    "x-icon": "🔢"
+  },
+  "paths": {
+    "/consumptions": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Consommations LLM",
+        "description": "Lecture des consommations LLM d'un mois ou d'un jour donné",
+        "parameters": [
+          {
+            "name": "date",
+            "summary": "Date",
+            "required": true,
+            "description": "Date de la consommation LLM (mois ou jour)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemins d'accès du répertoire Digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/dailyConsumptions": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste des jours de consommation LLM",
+        "description": "Liste les jours de consommation LLM",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemins d'accès du répertoire Digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/monthlyConsumptions": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste des mois de consommation LLM",
+        "description": "Liste les mois de consommation LLM",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemins d'accès du répertoire Digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/logs": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Logs",
+        "description": "Lecture des logs d'un jour donné",
+        "parameters": [
+          {
+            "name": "date",
+            "summary": "Date",
+            "required": true,
+            "description": "Date des logs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemins d'accès du répertoire Digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/dailyLogs": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste des jours de logs",
+        "description": "Liste les jours logs",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemins d'accès du répertoire Digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/computeDailyConsumption": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Calcul et sauvegarde de la consommation journalière",
+        "description": "Calcul et sauvegarde de la consommation journalière dans le fichier de consommation mensuelle LLM",
+        "parameters": [
+          {
+            "name": "date",
+            "summary": "Date",
+            "required": true,
+            "description": "Date du jour de la consommation LLM à ajouter dans le fichier de consommation mensuelle",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemins d'accès du répertoire Digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/clearOldLogs": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Efface les anciens logs",
+        "description": "Efface les anciens fichiers de logs",
+        "parameters": [
+          {
+            "name": "type",
+            "summary": "Type de logs",
+            "required": true,
+            "description": "Type de logs à effacer (factory, consumption-daily, consumption-monthly)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "summary": "Jusqu'à",
+            "required": true,
+            "description": "Date jusqu'à laquelle les logs doivent être conservés",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemins d'accès du répertoire Digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -13,9 +13,9 @@ class OpenAIService {
       modelName = 'gpt-4o-mini',
       temperature = 0,
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
-      apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
+      openAIApiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
     } = params;
-    const model = new ChatOpenAI({ modelName, temperature, configuration: { baseURL, apiKey } });
+    const model = new ChatOpenAI({ modelName, temperature, openAIApiKey, configuration: { baseURL } });
 
     return model;
   }
@@ -46,12 +46,13 @@ class OpenAIService {
       modelName = 'text-embedding-3-small',
       dimensions = 1024,
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
-      apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
+      openAIApiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
     } = params;
     const modelInstance = new OpenAIEmbeddings({
       modelName,
       dimensions,
-      configuration: { baseURL, apiKey },
+      openAIApiKey,
+      configuration: { baseURL },
     });
 
     return modelInstance;

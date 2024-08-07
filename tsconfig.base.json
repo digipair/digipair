@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@digipair/engine": ["libs/engine/src/index.ts"],
+      "@digipair/skill-logger": ["libs/skill-logger/src/index.ts"],
       "@digipair/skill-canvas": ["libs/skill-canvas/src/index.ts"],
       "@digipair/skill-chatbot": ["libs/skill-chatbot/src/index.ts"],
       "@digipair/skill-common": ["libs/skill-common/src/index.ts"],
