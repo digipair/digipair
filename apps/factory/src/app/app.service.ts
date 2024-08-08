@@ -9,6 +9,10 @@ export class AppService implements OnModuleInit {
       ? `${process.env.DIGIPAIR_FACTORY_PATH}/digipairs`
       : './factory/digipairs';
 
+    // initialize logs management
+    const skillLogger = require('@digipair/skill-logger');
+    await skillLogger.initialize();
+
     // initialize factory skill
     const skillFactory = require('@digipair/skill-factory');
     skillFactory.initialize((_context: any, digipair: string, reasoning: string, body: any) =>
@@ -22,7 +26,7 @@ export class AppService implements OnModuleInit {
       skillCron.initialize((path: string, digipair: string, reasoning: string) =>
         this.agent(path, digipair, reasoning, {}, [], null, {}),
       );
-      skillCron.start(`${path}`);
+      skillCron.start(path);
     } catch (error) {
       console.error(error);
     }
@@ -49,31 +53,43 @@ export class AppService implements OnModuleInit {
     headers: any,
   ): Promise<any> {
     let content: string;
+    let result: any;
+    let context: any;
 
-    content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
-    const config = JSON.parse(content);
+    try {
+      content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+      const config = JSON.parse(content);
 
-    content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
-    const settings = JSON.parse(content);
+      context = {
+        config: {
+          VERSIONS: config.libraries,
+        },
+        privates: config.privates,
+        variables: config.variables,
+        request: {
+          digipair,
+          reasoning,
+          method,
+          body,
+          params,
+          headers,
+        },
+      };
 
-    const context = {
-      config: {
-        VERSIONS: config.libraries,
-      },
-      privates: config.privates,
-      variables: config.variables,
-      request: {
-        digipair,
-        reasoning,
-        method,
-        body,
-        params,
-        headers,
-      },
-    };
+      content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
+      const settings = JSON.parse(content);
 
-    const result = executePinsList([settings], context);
+      result = executePinsList([settings], context);
 
-    return result;
+      return result;
+    } catch (error) {
+      if (!context) {
+        console.error(error);
+        return;
+      }
+
+      const skillLogger = require('@digipair/skill-logger');
+      skillLogger.addLog(context, 'error', error.message);
+    }
   }
 }

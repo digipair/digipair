@@ -65,7 +65,40 @@ class LLMService {
       ...(await Promise.all(execute.map(pinsSettings => executePinsList([pinsSettings], context)))),
     ] as any);
 
-    const result = await chain.invoke({});
+    let model: string;
+    let service: string;
+    const result = await chain.invoke(
+      {},
+      {
+        callbacks: [
+          {
+            handleChatModelStart: async ({ id }, _1, _2, _3, extrasParams) => {
+              model = (extrasParams?.['invocation_params'] as any).model;
+              service = id[2];
+            },
+            handleLLMStart: async ({ id }, _1, _2, _3, extrasParams) => {
+              model = (extrasParams?.['invocation_params'] as any).model;
+              service = id[2];
+            },
+            handleLLMEnd: async infos => {
+              const { completionTokens, promptTokens } = infos.llmOutput?.['tokenUsage'] || {
+                completionTokens: 0,
+                promptTokens: 0,
+              };
+              const skillLogger = require('@digipair/skill-logger');
+              await skillLogger.addConsumption(
+                context,
+                service,
+                model,
+                promptTokens,
+                completionTokens,
+              );
+            },
+          },
+        ],
+      },
+    );
+
     return result;
   }
 
