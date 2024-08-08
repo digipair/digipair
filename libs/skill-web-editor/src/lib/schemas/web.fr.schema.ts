@@ -2,8 +2,8 @@ export const schemas = {
   openapi: '3.0.0',
   info: {
     title: 'web',
-    summary: 'Basic HTML Elements',
-    description: 'Description of the web pins library',
+    summary: 'Eléments HTML de base',
+    description: 'description de la librairie de pins web',
     version: '1.0.11',
     'x-icon': '🌐',
   },
@@ -15,8 +15,8 @@ export const schemas = {
         parameters: [
           {
             name: 'style',
-            summary: 'CSS Style',
-            description: 'Style of the section',
+            summary: 'Style CSS',
+            description: 'Style de la section',
             required: false,
             schema: {
               type: 'string',
@@ -24,8 +24,8 @@ export const schemas = {
           },
           {
             name: 'class',
-            summary: 'CSS Class',
-            description: 'Class of the section',
+            summary: 'Classe CSS',
+            description: 'Classe de la section',
             required: false,
             schema: {
               type: 'string',
@@ -33,8 +33,8 @@ export const schemas = {
           },
           {
             name: 'id',
-            summary: 'Identifier',
-            description: 'Identifier of the section',
+            summary: 'Identifiant',
+            description: 'Identifiant de la section',
             required: false,
             schema: {
               type: 'string',
@@ -42,8 +42,8 @@ export const schemas = {
           },
           {
             name: 'innerHTML',
-            summary: 'HTML Code',
-            description: 'HTML code of the section',
+            summary: 'Code HTML',
+            description: 'Code HTML de la section',
             required: false,
             schema: {
               type: 'string',
@@ -51,8 +51,8 @@ export const schemas = {
           },
           {
             name: 'textContent',
-            summary: 'Text',
-            description: 'Text of the section',
+            summary: 'Texte',
+            description: 'Texte de la section',
             required: false,
             schema: {
               type: 'string',
@@ -68,8 +68,8 @@ export const schemas = {
         parameters: [
           {
             name: 'id',
-            summary: 'Identifier',
-            description: 'Identifier of the section',
+            summary: 'Identifiant',
+            description: 'Identifiant de la section',
             required: false,
             schema: {
               type: 'string',
@@ -77,8 +77,8 @@ export const schemas = {
           },
           {
             name: 'textContent',
-            summary: 'Text',
-            description: 'Text of the span',
+            summary: 'Texte',
+            description: 'Texte du span',
             required: true,
             schema: {
               type: 'string',
@@ -87,7 +87,7 @@ export const schemas = {
           {
             name: 'slot',
             summary: 'Position',
-            description: 'Position of the span in the parent element',
+            description: "Position du span dans l'élément parent",
             required: false,
             schema: {
               type: 'string',
@@ -103,8 +103,8 @@ export const schemas = {
         parameters: [
           {
             name: 'id',
-            summary: 'Identifier',
-            description: 'Identifier of the section',
+            summary: 'Identifiant',
+            description: 'Identifiant de la section',
             required: false,
             schema: {
               type: 'string',
@@ -113,7 +113,7 @@ export const schemas = {
           {
             name: 'src',
             summary: 'Source',
-            description: 'Source of the image',
+            description: "Source de l'image",
             required: true,
             schema: {
               type: 'string',
@@ -122,7 +122,7 @@ export const schemas = {
           {
             name: 'slot',
             summary: 'Position',
-            description: 'Position of the image in the parent element',
+            description: "Position de l'image dans l'élément parent",
             required: false,
             schema: {
               type: 'string',
@@ -130,8 +130,8 @@ export const schemas = {
           },
           {
             name: 'style',
-            summary: 'CSS Style',
-            description: 'Style of the image',
+            summary: 'Style CSS',
+            description: "Style de l'image",
             required: false,
             schema: {
               type: 'string',

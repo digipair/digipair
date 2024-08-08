@@ -13,7 +13,7 @@ class CronService {
   }
 
   async start(path: string) {
-    const content = await promises.readFile(`${path}/planning.json`, 'utf8');
+    const content = await promises.readFile(`${path}/planning.jsonl`, 'utf8');
     const lines = content.split('\n').filter(line => line !== '');
     const planning = lines.map((line: string) => JSON.parse(line));
 
@@ -87,7 +87,7 @@ class CronService {
           : './factory/digipairs'),
     } = params;
 
-    const text = await promises.readFile(`${path}/planning.json`, 'utf8');
+    const text = await promises.readFile(`${path}/planning.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const crons = lines.map((line: string) => JSON.parse(line));
 
@@ -112,7 +112,7 @@ class CronService {
       reasoning,
       enabled: true,
     };
-    await promises.appendFile(`${path}/planning.json`, '\n' + JSON.stringify(cron), 'utf8');
+    await promises.appendFile(`${path}/planning.jsonl`, '\n' + JSON.stringify(cron), 'utf8');
     this.addJob(path, cron.id, digipair, reasoning, time);
 
     return cron;
@@ -127,13 +127,13 @@ class CronService {
       id,
     } = params;
 
-    const text = await promises.readFile(`${path}/planning.json`, 'utf8');
+    const text = await promises.readFile(`${path}/planning.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const crons = lines.map((line: string) => JSON.parse(line)).filter((cron: any) => cron.id !== id);
     const ndjson = crons.map((line) => JSON.stringify(line)).join('\n');
 
     this.deleteJob(id);
-    await promises.writeFile(`${path}/planning.json`, ndjson, 'utf8');
+    await promises.writeFile(`${path}/planning.jsonl`, ndjson, 'utf8');
 
     return { id };
   }
@@ -147,7 +147,7 @@ class CronService {
       id,
     } = params;
 
-    const text = await promises.readFile(`${path}/planning.json`, 'utf8');
+    const text = await promises.readFile(`${path}/planning.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const crons = lines.map((line: string) => JSON.parse(line));
     const cron = crons.find((cron: any) => cron.id === id);
@@ -155,7 +155,7 @@ class CronService {
     cron.enabled = true;
 
     const ndjson = crons.map((line) => JSON.stringify(line)).join('\n');
-    await promises.writeFile(`${path}/planning.json`, ndjson, 'utf8');
+    await promises.writeFile(`${path}/planning.jsonl`, ndjson, 'utf8');
 
     this.enableJob(id);
 
@@ -171,7 +171,7 @@ class CronService {
       id,
     } = params;
 
-    const text = await promises.readFile(`${path}/planning.json`, 'utf8');
+    const text = await promises.readFile(`${path}/planning.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const crons = lines.map((line: string) => JSON.parse(line));
     const cron = crons.find((cron: any) => cron.id === id);
@@ -180,7 +180,7 @@ class CronService {
     this.disableJob(id);
 
     const ndjson = crons.map((line) => JSON.stringify(line)).join('\n');
-    await promises.writeFile(`${path}/planning.json`, ndjson, 'utf8');
+    await promises.writeFile(`${path}/planning.jsonl`, ndjson, 'utf8');
 
     return cron;
   }
