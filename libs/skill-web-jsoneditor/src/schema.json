@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-jsoneditor",
-    "summary": "Editeur JSON",
-    "description": "Cette compétence permet d'afficher un éditeur JSON dans une page web. L'utilisateur peut modifier le contenu JSON et récupérer le contenu modifié.",
+    "summary": "JSON Editor",
+    "description": "This skill allows displaying a JSON editor on a web page. The user can modify the JSON content and retrieve the modified content.",
     "version": "0.1.0",
     "x-icon": "📐"
   },
@@ -11,23 +11,23 @@
     "/digipair-jsoneditor": {
       "post": {
         "tags": ["web"],
-        "summary": "Editeur JSON",
-        "description": "Editeur JSON",
+        "summary": "JSON Editor",
+        "description": "JSON Editor",
         "parameters": [
           {
             "name": "json",
-            "summary": "Contenu JSON",
+            "summary": "JSON Content",
             "required": false,
-            "description": "Contenu json à afficher dans l'éditeur",
+            "description": "JSON content to display in the editor",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "contentStyle",
-            "summary": "Style personnalisé du conteneur",
+            "summary": "Custom Container Style",
             "required": false,
-            "description": "Style personnalisé du conteneur",
+            "description": "Custom style for the container",
             "schema": {
               "type": "string"
             }
@@ -36,9 +36,9 @@
         "x-events": [
           {
             "name": "change",
-            "summary": "Lors d'un changement",
+            "summary": "On Change",
             "required": false,
-            "description": "Action déclenchée lors d'un changement dans l'éditeur",
+            "description": "Action triggered when a change occurs in the editor",
             "schema": {
               "type": "array",
               "items": {

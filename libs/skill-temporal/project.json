@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-temporal",
         "main": "libs/skill-temporal/src/index.ts",
         "tsConfig": "libs/skill-temporal/tsconfig.lib.json",
-        "assets": ["libs/skill-temporal/index.d.ts", "libs/skill-temporal/schema.json"]
+        "assets": [
+          "libs/skill-temporal/index.d.ts",
+          "libs/skill-temporal/schema.json",
+          "libs/skill-temporal/schema.fr.json"
+        ]
       }
     },
     "publish": {

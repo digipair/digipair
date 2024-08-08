@@ -1,0 +1,1095 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-spectrum",
+    "summary": "Design System Spectrum",
+    "description": "Cette compétence permet aux utilisateurs de créer des interfaces web en utilisant le design system Spectrum.",
+    "version": "0.1.0",
+    "x-icon": "🎨"
+  },
+  "paths": {
+    "/sp-theme": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Thème",
+        "description": "Thème de l'interface",
+        "parameters": [
+          {
+            "name": "theme",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom du thème à appliquer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "Couleur",
+            "required": false,
+            "description": "Couleur du thème",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scale",
+            "summary": "Taille",
+            "required": false,
+            "description": "Echelle du thème",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles du thème",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Tableau",
+        "description": "Tableau d'élements",
+        "parameters": [
+          {
+            "name": "selects",
+            "summary": "Type de sélection",
+            "required": false,
+            "description": "Type de sélection des lignes du tableau",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selected",
+            "summary": "Lignes sélectionnées",
+            "required": false,
+            "description": "Lignes sélectionnées à l'initialisation du tableau",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "change",
+            "summary": "Lors d'une modification",
+            "required": false,
+            "description": "Action déclenchée lors d'une modification de sélection de lignes dans le tableau",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-table-head": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Entête",
+        "description": "Entête d'un tableau",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-table-head-cell": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Cellule d'entête",
+        "description": "Cellule d'entête d'un tableau",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de la cellule d'entête",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table-body": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Contenu du tableau",
+        "description": "Contenu d'un tableau",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-table-row": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Ligne",
+        "description": "Ligne d'un tableau",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant de la ligne du tableau",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table-cell": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Cellule",
+        "description": "Cellule d'un tableau",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de la cellule",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-action-group": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Groupe d'actions",
+        "description": "Groupe d'actions",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du groupe d'actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille des boutons du groupe d'actions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dir",
+            "summary": "Direction",
+            "required": false,
+            "description": "Direction de l'écriture du texte (ltr ou rtl)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles du thème",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-action-button": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Bouton d'action",
+        "description": "Bouton d'action à intégrer dans un groupe d'actions",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de la cellule",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selected",
+            "summary": "Sélectionné",
+            "required": false,
+            "description": "Bouton sélectionné",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Bouton désactivé",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hold-affordance",
+            "summary": "Coche d'actions",
+            "required": false,
+            "description": "Affiche une coche indiquant la présence d'une liste d'actions",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Discret",
+            "required": false,
+            "description": "Affiche le bouton en mode discret",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "toggle",
+            "summary": "Toggle",
+            "required": false,
+            "description": "Affiche un bouton activable/désactivable",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "required": false,
+            "description": "Emplacement de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du boutons",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors d'un clic",
+            "required": false,
+            "description": "Action déclenchée lors d'un clic sur le bouton",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-icon": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Icone",
+        "description": "Affiche une icone",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "Etiquette",
+            "required": false,
+            "description": "Texte d'étiquette de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "src",
+            "summary": "Image",
+            "required": false,
+            "description": "Lien de l'image à afficher",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "required": false,
+            "description": "Emplacement de l'icone",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-divider": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Barre de séparation",
+        "description": "Barre de séparation",
+        "parameters": [
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille de la barre de séparation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles du thème",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vertical",
+            "summary": "Varticale",
+            "required": false,
+            "description": "Place la barre de séparation verticalement",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-search": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Barre de recherche",
+        "description": "Barre de recherche",
+        "parameters": [
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Barre de recherche désactivée",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Discret",
+            "required": false,
+            "description": "Affiche la barre de recherche en mode discret",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "submit",
+            "summary": "Lors de la soumission",
+            "required": false,
+            "description": "Action déclenchée lors de la soumission de la recherche",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-top-nav": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Barre de navigation",
+        "description": "Barre de navigation horizontale",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-top-nav-item": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Element de la de navigation",
+        "description": "Element de la barre de navigation horizontale",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de l'élément de navigation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "Adresse",
+            "required": false,
+            "description": "Adresse de redirection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles de la barre de navigation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors du clic",
+            "required": false,
+            "description": "Action déclenchée lors d'un clic sur le bouton",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-action-menu": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Menu d'actions",
+        "description": "Menu d'actions",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Etiquette",
+            "required": false,
+            "description": "Etiquette de description du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placement",
+            "summary": "Emplacement",
+            "required": false,
+            "description": "Emplacement du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles de la barre de navigation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Mode discret",
+            "required": false,
+            "description": "Active le mode discret du menu",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille des boutons du groupe d'actions",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-menu": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Menu",
+        "description": "Menu",
+        "parameters": [
+          {
+            "name": "slot",
+            "summary": "Position",
+            "required": false,
+            "description": "Etiquette de description du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles de la barre de navigation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selectable",
+            "summary": "Sélectionnable",
+            "required": false,
+            "description": "Active le mode sélectionnable du menu",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-menu-item": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Element du menu",
+        "description": "Element du menu",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de l'élément du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "Lien",
+            "required": false,
+            "description": "Lien de l'élément du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur de l'élément du menu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Elément désactivée",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "selected",
+            "summary": "Sélectionné",
+            "required": false,
+            "description": "Sélectionne l'élement dans le menu",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors du clic",
+            "required": false,
+            "description": "Action déclenchée lors d'un clic sur l'élement du menu",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "sp-menu-divider": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Diviseur du menu",
+        "description": "Diviseur du menu",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-illustrated-message": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Message illustré",
+        "description": "Message illustré",
+        "parameters": [
+          {
+            "name": "heading",
+            "summary": "Titre",
+            "required": true,
+            "description": "Titre du message illustré",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "summary": "Description",
+            "required": true,
+            "description": "Description du message illustré",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/sp-field-label": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Etiquette de champ",
+        "description": "Etiquette de champ de formulaire",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for",
+            "summary": "Pour",
+            "required": true,
+            "description": "Identifiant du champ associé",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis",
+            "required": false,
+            "description": "Champ requis",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du champ",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/sp-textfield": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Champs texte",
+        "description": "Champs texte de formulaire",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "summary": "Placeholder",
+            "required": false,
+            "description": "Texte de placeholder du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "valide",
+            "summary": "Valide",
+            "required": false,
+            "description": "Champ valide",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "invalide",
+            "summary": "Invalide",
+            "required": false,
+            "description": "Champ invalide",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quiet",
+            "summary": "Discret",
+            "required": false,
+            "description": "Champ en mode discret",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type",
+            "required": false,
+            "description": "Type du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "multiline",
+            "summary": "Multiligne",
+            "required": false,
+            "description": "Champ multiligne",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "grows",
+            "summary": "Grandit automatiquement",
+            "required": false,
+            "description": "Champ qui grandit automatiquement",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pattern",
+            "summary": "Pattern",
+            "required": false,
+            "description": "Pattern du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style personnalisé",
+            "required": false,
+            "description": "Personnalisation des styles",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "input",
+            "summary": "Lors de la saisie",
+            "required": false,
+            "description": "Action déclenchée lors de la saisie dans le champ",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-help-text": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Texte d'aide",
+        "description": "Texte d'aide",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Emplacement",
+            "required": false,
+            "description": "Emplacement du texte d'aide",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/sp-button": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Boutton",
+        "description": "Boutton",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du champ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "Adresse",
+            "required": false,
+            "description": "Adresse de redirection du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "Cible",
+            "required": false,
+            "description": "Cible de redirection du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autofocus",
+            "summary": "Autofocus",
+            "required": false,
+            "description": "Sélection automatique du bouton",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type",
+            "required": false,
+            "description": "Type du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Taille",
+            "required": false,
+            "description": "Taille du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "variant",
+            "summary": "Variante",
+            "required": false,
+            "description": "Variante du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "Etiquette",
+            "required": false,
+            "description": "Etiquette du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "icon-only",
+            "summary": "Icône seule",
+            "required": false,
+            "description": "Affiche l'icône seule",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "treatment",
+            "summary": "Traitement",
+            "required": false,
+            "description": "Traitement du bouton",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "Désactivé",
+            "required": false,
+            "description": "Bouton désactivé",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Lors du clic",
+            "required": false,
+            "description": "Action déclenchée lors du clic sur lesboutton",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-toast": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Message d'alerte",
+        "description": "Message d'alerte",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Texte",
+            "required": true,
+            "description": "Texte de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "open",
+            "summary": "Ouvert",
+            "required": true,
+            "description": "Affiche le message d'alerte",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "variant",
+            "summary": "Variante",
+            "required": false,
+            "description": "Variante du message d'alerte",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": false,
+            "description": "Identifiant du message d'alerte",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

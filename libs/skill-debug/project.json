@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-debug",
         "main": "libs/skill-debug/src/index.ts",
         "tsConfig": "libs/skill-debug/tsconfig.lib.json",
-        "assets": ["libs/skill-debug/src/index.d.ts", "libs/skill-debug/src/schema.json"],
+        "assets": [
+          "libs/skill-debug/src/index.d.ts",
+          "libs/skill-debug/src/schema.json",
+          "libs/skill-debug/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-debug/rollup.build.cjs"],
         "project": "libs/skill-debug/package.json",
         "compiler": "swc",

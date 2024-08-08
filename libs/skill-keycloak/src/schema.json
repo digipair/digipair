@@ -2,24 +2,24 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-keycloak",
-    "summary": "Affichage de pages web sécurisée",
-    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet sécurisés par keycloak.",
+    "summary": "Display of secure web pages",
+    "description": "This skill encompasses the knowledge and use of web technologies necessary to develop and maintain websites secured by Keycloak.",
     "version": "0.1.0",
     "x-icon": "🔐"
   },
   "paths": {
     "/executeFactory": {
       "post": {
-        "summary": "Dans la factory",
-        "description": "Exécution d'une liste de capacité dans la factory",
+        "summary": "In the factory",
+        "description": "Execution of a list of capabilities in the factory",
         "tags": ["web"],
         "metadata": [],
         "parameters": [
           {
             "name": "execute",
-            "summary": "Exécuter",
+            "summary": "Execute",
             "required": true,
-            "description": "Liste de capacité à exécuter",
+            "description": "List of capabilities to execute",
             "schema": {
               "type": "array",
               "items": {
@@ -29,9 +29,9 @@
           },
           {
             "name": "secured",
-            "summary": "Sécurisé",
+            "summary": "Secured",
             "required": false,
-            "description": "Sécurise l'exécution via un token Keycloak",
+            "description": "Secures execution via a Keycloak token",
             "schema": {
               "type": "boolean"
             }
@@ -41,8 +41,8 @@
     },
     "/login": {
       "post": {
-        "summary": "Identification de l'utilisateur",
-        "description": "Identification de l'utilisateur sur le site internet via le serveur Keycloak",
+        "summary": "User authentication",
+        "description": "User authentication on the website via the Keycloak server",
         "tags": ["web"],
         "metadata": [],
         "parameters": []
@@ -50,8 +50,8 @@
     },
     "/logout": {
       "post": {
-        "summary": "Désidentification de l'utilisateur",
-        "description": "Désidentification de l'utilisateur sur le site internet via le serveur Keycloak",
+        "summary": "User logout",
+        "description": "User logout from the website via the Keycloak server",
         "tags": ["web"],
         "metadata": [],
         "parameters": []
@@ -63,7 +63,7 @@
       "SecuredBoost": {
         "type": "object",
         "tags": ["boost"],
-        "summary": "Déclencheur sécurisé",
+        "summary": "Secure trigger",
         "properties": {
           "name": {
             "type": "string"
@@ -96,16 +96,16 @@
   },
   "x-scene-blocks": {
     "/page": {
-      "summary": "Page internet sécurisée",
-      "description": "Affichage d'une page d'un site internet sécurisée par Keycloak.",
+      "summary": "Secure web page",
+      "description": "Display of a web page secured by Keycloak.",
       "tags": ["web", "service"],
       "metadata": [],
       "parameters": [
         {
           "name": "body",
-          "summary": "Contenu",
+          "summary": "Content",
           "required": true,
-          "description": "Contenu de la page",
+          "description": "Content of the page",
           "schema": {
             "type": "array",
             "items": {
@@ -115,45 +115,45 @@
         },
         {
           "name": "title",
-          "summary": "Titre",
+          "summary": "Title",
           "required": false,
-          "description": "Titre de la page",
+          "description": "Title of the page",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "favicon",
-          "summary": "Icone de la page",
+          "summary": "Page icon",
           "required": false,
-          "description": "Icone de la page",
+          "description": "Icon of the page",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "styleHtml",
-          "summary": "Style CSS du HTML",
+          "summary": "HTML CSS style",
           "required": false,
-          "description": "Style css de l'élément HTML",
+          "description": "CSS style of the HTML element",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "styleBody",
-          "summary": "Style CSS du BODY",
+          "summary": "BODY CSS style",
           "required": false,
-          "description": "Style css de l'élément BODY",
+          "description": "CSS style of the BODY element",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "url",
-          "summary": "Adresse du Keycloak",
+          "summary": "Keycloak address",
           "required": false,
-          "description": "Adresse du serveur Keycloak",
+          "description": "Address of the Keycloak server",
           "schema": {
             "type": "string"
           }
@@ -162,7 +162,7 @@
           "name": "realm",
           "summary": "Realm",
           "required": false,
-          "description": "Realm du serveur Keycloak",
+          "description": "Realm of the Keycloak server",
           "schema": {
             "type": "string"
           }
@@ -171,25 +171,25 @@
           "name": "clientId",
           "summary": "Client ID",
           "required": false,
-          "description": "Client ID du serveur Keycloak",
+          "description": "Client ID of the Keycloak server",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "factoryUrl",
-          "summary": "Adresse de la factory",
+          "summary": "Factory address",
           "required": false,
-          "description": "Adresse de la factory Digipair",
+          "description": "Address of the Digipair factory",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "factoryInitialize",
-          "summary": "Lors de la l'initialisation coté factory",
+          "summary": "During factory initialization",
           "required": false,
-          "description": "Action déclenchée lors de l'initialisation coté factory",
+          "description": "Action triggered during factory initialization",
           "schema": {
             "type": "array",
             "items": {
@@ -199,9 +199,9 @@
         },
         {
           "name": "browserInitialize",
-          "summary": "Lors de la l'initialisation coté navigateur",
+          "summary": "During browser initialization",
           "required": false,
-          "description": "Action déclenchée lors de l'initialisation coté navigateur",
+          "description": "Action triggered during browser initialization",
           "schema": {
             "type": "array",
             "items": {
@@ -211,9 +211,9 @@
         },
         {
           "name": "browserLoad",
-          "summary": "Lorsque la page est chargée",
+          "summary": "When the page is loaded",
           "required": false,
-          "description": "Action déclenchée lorsque la page est chargée coté navigateur",
+          "description": "Action triggered when the page is loaded in the browser",
           "schema": {
             "type": "array",
             "items": {
@@ -223,9 +223,9 @@
         },
         {
           "name": "unlogged",
-          "summary": "Si l'utilisateur n'est pas identifié",
+          "summary": "If the user is not authenticated",
           "required": false,
-          "description": "Action déclenchée lorsque la page est chargée coté navigateur si l'utilisateur n'est pas identifié",
+          "description": "Action triggered when the page is loaded in the browser if the user is not authenticated",
           "schema": {
             "type": "array",
             "items": {
@@ -235,9 +235,9 @@
         },
         {
           "name": "logged",
-          "summary": "Si l'utilisateur est identifié",
+          "summary": "If the user is authenticated",
           "required": false,
-          "description": "Action déclenchée lorsque la page est chargée coté navigateur si l'utilisateur est identifié",
+          "description": "Action triggered when the page is loaded in the browser if the user is authenticated",
           "schema": {
             "type": "array",
             "items": {
@@ -248,16 +248,16 @@
       ]
     },
     "/service": {
-      "summary": "Web service sécurisé",
-      "description": "Réponse à un appel http sécurisé par Keycloak.",
+      "summary": "Secure web service",
+      "description": "Response to an HTTP call secured by Keycloak.",
       "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
           "name": "execute",
-          "summary": "Exécute",
+          "summary": "Execute",
           "required": true,
-          "description": "Commandes à exécuter",
+          "description": "Commands to execute",
           "schema": {
             "type": "array",
             "items": {
@@ -267,18 +267,18 @@
         },
         {
           "name": "secured",
-          "summary": "Sécurisé",
+          "summary": "Secured",
           "required": false,
-          "description": "Accès autorisé seulement si un token Keycloak est fourni",
+          "description": "Access allowed only if a Keycloak token is provided",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "url",
-          "summary": "Adresse du Keycloak",
+          "summary": "Keycloak address",
           "required": false,
-          "description": "Adresse du serveur Keycloak",
+          "description": "Address of the Keycloak server",
           "schema": {
             "type": "string"
           }
@@ -287,7 +287,7 @@
           "name": "realm",
           "summary": "Realm",
           "required": false,
-          "description": "Realm du serveur Keycloak",
+          "description": "Realm of the Keycloak server",
           "schema": {
             "type": "string"
           }
@@ -295,15 +295,15 @@
       ]
     },
     "/boost": {
-      "summary": "Boost sécurisé",
-      "description": "Boost proposé par le Digipair sécurisé par Keycloak",
+      "summary": "Secure boost",
+      "description": "Boost offered by Digipair secured by Keycloak",
       "tags": ["boost", "service"],
       "metadata": [
         {
           "name": "boosts",
-          "summary": "Liste des déclencheurs",
+          "summary": "List of triggers",
           "required": true,
-          "description": "Liste des déclencheurs du boost",
+          "description": "List of triggers for the boost",
           "schema": {
             "type": "array",
             "items": {
@@ -315,9 +315,9 @@
       "parameters": [
         {
           "name": "execute",
-          "summary": "Exécution des actions",
+          "summary": "Execution of actions",
           "required": false,
-          "description": "Liste des actions à exécuter",
+          "description": "List of actions to execute",
           "schema": {
             "type": "array",
             "items": {
@@ -327,18 +327,18 @@
         },
         {
           "name": "secured",
-          "summary": "Sécurisé",
+          "summary": "Secured",
           "required": false,
-          "description": "Accès autorisé seulement si un token Keycloak est fourni",
+          "description": "Access allowed only if a Keycloak token is provided",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "url",
-          "summary": "Adresse du Keycloak",
+          "summary": "Keycloak address",
           "required": false,
-          "description": "Adresse du serveur Keycloak",
+          "description": "Address of the Keycloak server",
           "schema": {
             "type": "string"
           }
@@ -347,7 +347,7 @@
           "name": "realm",
           "summary": "Realm",
           "required": false,
-          "description": "Realm du serveur Keycloak",
+          "description": "Realm of the Keycloak server",
           "schema": {
             "type": "string"
           }

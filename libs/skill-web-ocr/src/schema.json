@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-ocr",
-    "summary": "Extraction de texte OCR",
-    "description": "Cette compétence utilise la technologie OCR pour analyser les images et en extraire le texte, permettant ainsi une saisie automatique des données.",
+    "summary": "OCR Text Extraction",
+    "description": "This skill uses OCR technology to analyze images and extract text, enabling automatic data entry.",
     "version": "0.1.0",
     "x-icon": "📄"
   },
@@ -11,32 +11,32 @@
     "/digipair-input-ocr-selector": {
       "post": {
         "tags": ["boost"],
-        "summary": "Extraire le texte depuis une image du DOM",
-        "description": "Element permettant de récupérer le texte à partir d'une image présente dans le DOM",
+        "summary": "Extract text from an image in the DOM",
+        "description": "Element for retrieving text from an image present in the DOM",
         "parameters": [
           {
             "name": "selector",
-            "summary": "Sélecteur CSS de l'image",
+            "summary": "CSS selector of the image",
             "required": true,
-            "description": "Sélecteur CSS de l'image présente dans le DOM",
+            "description": "CSS selector of the image present in the DOM",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "language",
-            "summary": "Langue du texte à extraire",
+            "summary": "Language of the text to extract",
             "required": true,
-            "description": "Langue du texte à extraire",
+            "description": "Language of the text to extract",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Lorsque le champs est requis, le boost ne peut pas être exécuté tant qu'aucune valeur n'a été saisie",
+            "description": "When the field is required, the boost cannot be executed until a value has been entered",
             "schema": {
               "type": "boolean"
             }
@@ -48,41 +48,41 @@
     "/digipair-input-ocr": {
       "post": {
         "tags": ["boost"],
-        "summary": "Extraire le texte d'une image",
-        "description": "Element permettant d'extraire le texte à partir d'une image fournie par l'utilisateur",
+        "summary": "Extract text from an image",
+        "description": "Element for extracting text from an image provided by the user",
         "parameters": [
           {
             "name": "language",
-            "summary": "Langue du texte",
+            "summary": "Language of the text",
             "required": true,
-            "description": "Langue du texte à extraire",
+            "description": "Language of the text to extract",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "label",
-            "summary": "Texte affiché",
+            "summary": "Displayed text",
             "required": false,
-            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "description": "Text displayed to the user to guide them in their input",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "accept",
-            "summary": "Type de fichier",
+            "summary": "File type",
             "required": false,
-            "description": "Type de fichiers acceptés",
+            "description": "Accepted file types",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost",
             "schema": {
               "type": "boolean"
             }

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-smoobu",
-    "summary": "Gestion des locations via Smoobu",
-    "description": "Cette compétence permet d'utiliser le service Smoobu",
+    "summary": "Management of rentals via Smoobu",
+    "description": "This skill allows the use of the Smoobu service",
     "version": "0.1.0",
     "x-icon": "🏡"
   },
@@ -11,31 +11,31 @@
     "/getReservationWithId": {
       "post": {
         "tags": ["service"],
-        "summary": "Information d'une réservation Smoobu",
+        "summary": "Information about a Smoobu reservation",
         "parameters": [
           {
             "name": "reservationId",
-            "summary": "Identifiant de la réservation",
+            "summary": "Reservation ID",
             "required": true,
-            "description": "Identifiant de la réservation Smoobu",
+            "description": "Smoobu reservation ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "SMOOBU_API_KEY",
-            "summary": "Clé d'API",
+            "summary": "API Key",
             "required": false,
-            "description": "Clé d'API Smoobu",
+            "description": "Smoobu API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "SMOOBU_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API Endpoint",
             "required": false,
-            "description": "Endpoint de l'API Smoobu",
+            "description": "Smoobu API endpoint",
             "schema": {
               "type": "string"
             }
@@ -47,13 +47,13 @@
     "/sendMessage": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoi d'un message via Smoobu",
+        "summary": "Send a message via Smoobu",
         "parameters": [
           {
             "name": "reservationId",
-            "summary": "Identifiant de la réservation",
+            "summary": "Reservation ID",
             "required": true,
-            "description": "Identifiant de la réservation Smoobu",
+            "description": "Smoobu reservation ID",
             "schema": {
               "type": "string"
             }
@@ -62,25 +62,25 @@
             "name": "message",
             "summary": "Message",
             "required": true,
-            "description": "Message à envoyer",
+            "description": "Message to send",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "SMOOBU_API_KEY",
-            "summary": "Clé d'API",
+            "summary": "API Key",
             "required": false,
-            "description": "Clé d'API Smoobu",
+            "description": "Smoobu API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "SMOOBU_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API Endpoint",
             "required": false,
-            "description": "Endpoint de l'API Smoobu",
+            "description": "Smoobu API endpoint",
             "schema": {
               "type": "string"
             }
@@ -92,112 +92,112 @@
     "/getAllReservations": {
       "post": {
         "tags": ["service"],
-        "summary": "Liste des réservations Smoobu",
+        "summary": "List of Smoobu reservations",
         "parameters": [
           {
             "name": "created_from",
-            "summary": "Créé depuis",
+            "summary": "Created from",
             "required": false,
-            "description": "Date de création depuis",
+            "description": "Creation date from",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "created_to",
-            "summary": "Créé jusqu'à",
+            "summary": "Created until",
             "required": false,
-            "description": "Date de création jusqu'à",
+            "description": "Creation date until",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "from",
-            "summary": "Début",
+            "summary": "Start",
             "required": false,
-            "description": "Date de début",
+            "description": "Start date",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "to",
-            "summary": "Fin",
+            "summary": "End",
             "required": false,
-            "description": "Date de fin",
+            "description": "End date",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "modifiedFrom",
-            "summary": "Modifié depuis",
+            "summary": "Modified from",
             "required": false,
-            "description": "Date de modification depuis",
+            "description": "Modification date from",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "modifiedTo",
-            "summary": "Modifié jusqu'à",
+            "summary": "Modified until",
             "required": false,
-            "description": "Date de modification jusqu'à",
+            "description": "Modification date until",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "arrivalFrom",
-            "summary": "Arrivée depuis",
+            "summary": "Arrival from",
             "required": false,
-            "description": "Date d'arrivée depuis",
+            "description": "Arrival date from",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "arrivalTo",
-            "summary": "Arrivée jusqu'à",
+            "summary": "Arrival until",
             "required": false,
-            "description": "Date d'arrivée jusqu'à",
+            "description": "Arrival date until",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "departureFrom",
-            "summary": "Départ depuis",
+            "summary": "Departure from",
             "required": false,
-            "description": "Date de départ depuis",
+            "description": "Departure date from",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "departureTo",
-            "summary": "Départ jusqu'à",
+            "summary": "Departure until",
             "required": false,
-            "description": "Date de départ jusqu'à",
+            "description": "Departure date until",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "showCancellation",
-            "summary": "Afficher les annulations",
+            "summary": "Show cancellations",
             "required": false,
-            "description": "Afficher les annulations",
+            "description": "Show cancellations",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "excludeBlocked",
-            "summary": "Exclure les bloqués",
+            "summary": "Exclude blocked",
             "required": false,
-            "description": "Exclure les bloqués",
+            "description": "Exclude blocked",
             "schema": {
               "type": "string"
             }
@@ -213,54 +213,54 @@
           },
           {
             "name": "pageSize",
-            "summary": "Taille de la page",
+            "summary": "Page size",
             "required": false,
-            "description": "Taille de la page",
+            "description": "Size of the page",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "apartmentId",
-            "summary": "Identifiant de l'appartement",
+            "summary": "Apartment ID",
             "required": false,
-            "description": "Identifiant de l'appartement",
+            "description": "Apartment ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "includeRelated",
-            "summary": "Inclure les détails",
+            "summary": "Include details",
             "required": false,
-            "description": "Inclure les détails",
+            "description": "Include details",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "includePriceElements",
-            "summary": "Inclure les éléments de prix",
+            "summary": "Include price elements",
             "required": false,
-            "description": "Inclure les éléments de prix",
+            "description": "Include price elements",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "SMOOBU_API_KEY",
-            "summary": "Clé d'API",
+            "summary": "API Key",
             "required": false,
-            "description": "Clé d'API Smoobu",
+            "description": "Smoobu API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "SMOOBU_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API Endpoint",
             "required": false,
-            "description": "Endpoint de l'API Smoobu",
+            "description": "Smoobu API endpoint",
             "schema": {
               "type": "string"
             }
@@ -275,16 +275,16 @@
   },
   "x-scene-blocks": {
     "/event": {
-      "summary": "Réservation Smoobu",
-      "description": "Gestion des évènements sur les réservations",
+      "summary": "Smoobu reservation",
+      "description": "Management of events on reservations",
       "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
           "name": "updateRates",
-          "summary": "Lors de la mise à jour des tarifs",
+          "summary": "When updating rates",
           "required": false,
-          "description": "Commandes à exécuter lors de la mise à jour des tarifs",
+          "description": "Commands to execute when updating rates",
           "schema": {
             "type": "array",
             "items": {
@@ -294,9 +294,9 @@
         },
         {
           "name": "newReservation",
-          "summary": "Lors d'une nouvelle réservation",
+          "summary": "When a new reservation is made",
           "required": false,
-          "description": "Commandes à exécuter lors d'une nouvelle réservation",
+          "description": "Commands to execute when a new reservation is made",
           "schema": {
             "type": "array",
             "items": {
@@ -306,9 +306,9 @@
         },
         {
           "name": "cancelReservation",
-          "summary": "Lors d'une annulation",
+          "summary": "When a cancellation occurs",
           "required": false,
-          "description": "Commandes à exécuter lors d'une annulation",
+          "description": "Commands to execute when a cancellation occurs",
           "schema": {
             "type": "array",
             "items": {
@@ -318,9 +318,9 @@
         },
         {
           "name": "updateReservation",
-          "summary": "Lors de la mise à jour d'une réservation",
+          "summary": "When updating a reservation",
           "required": false,
-          "description": "Commandes à exécuter lors de la mise à jour d'une réservation",
+          "description": "Commands to execute when updating a reservation",
           "schema": {
             "type": "array",
             "items": {

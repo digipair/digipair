@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/engine",
         "main": "libs/engine/src/index.ts",
         "tsConfig": "libs/engine/tsconfig.lib.json",
-        "assets": ["libs/engine/src/index.d.ts", "libs/engine/src/schema.json"],
+        "assets": [
+          "libs/engine/src/index.d.ts",
+          "libs/engine/src/schema.json",
+          "libs/engine/src/schema.fr.json"
+        ],
         "project": "libs/engine/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],

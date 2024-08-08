@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-pushbullet",
         "main": "libs/skill-pushbullet/src/index.ts",
         "tsConfig": "libs/skill-pushbullet/tsconfig.lib.json",
-        "assets": ["libs/skill-pushbullet/src/index.d.ts", "libs/skill-pushbullet/src/schema.json"],
+        "assets": [
+          "libs/skill-pushbullet/src/index.d.ts",
+          "libs/skill-pushbullet/src/schema.json",
+          "libs/skill-pushbullet/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-pushbullet/rollup.build.cjs"],
         "project": "libs/skill-pushbullet/package.json",
         "compiler": "swc",

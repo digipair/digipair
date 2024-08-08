@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-twilio",
         "main": "libs/skill-twilio/src/index.ts",
         "tsConfig": "libs/skill-twilio/tsconfig.lib.json",
-        "assets": ["libs/skill-twilio/src/index.d.ts", "libs/skill-twilio/src/schema.json"],
+        "assets": [
+          "libs/skill-twilio/src/index.d.ts",
+          "libs/skill-twilio/src/schema.json",
+          "libs/skill-twilio/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-twilio/rollup.build.cjs"],
         "project": "libs/skill-twilio/package.json",
         "compiler": "swc",

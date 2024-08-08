@@ -1,0 +1,160 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-cron",
+    "summary": "Gestion des taches planifiées",
+    "description": "La compétence permet de gérer l'exécutions des taches planifiées",
+    "version": "0.1.0",
+    "x-icon": "📆"
+  },
+  "paths": {
+    "/crons": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste des taches planifiées",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/addCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ajoute une plannification",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time",
+            "summary": "Plannification",
+            "required": true,
+            "description": "Plannification au format cron",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair qui exécute le raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/deleteCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Supprime une plannification",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": true,
+            "description": "Identifiant de la plannification",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/enableCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Active une plannification",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": true,
+            "description": "Identifiant de la plannification",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/disableCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Désactive une plannification",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant",
+            "required": true,
+            "description": "Identifiant de la plannification",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-ocr",
+    "summary": "Extraction de texte OCR",
+    "description": "Cette compétence utilise la technologie OCR pour analyser les images et en extraire le texte, permettant ainsi une saisie automatique des données.",
+    "version": "0.1.0",
+    "x-icon": "📄"
+  },
+  "paths": {
+    "/digipair-input-ocr-selector": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Extraire le texte depuis une image du DOM",
+        "description": "Element permettant de récupérer le texte à partir d'une image présente dans le DOM",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'image",
+            "required": true,
+            "description": "Sélecteur CSS de l'image présente dans le DOM",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "summary": "Langue du texte à extraire",
+            "required": true,
+            "description": "Langue du texte à extraire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Lorsque le champs est requis, le boost ne peut pas être exécuté tant qu'aucune valeur n'a été saisie",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-ocr": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Extraire le texte d'une image",
+        "description": "Element permettant d'extraire le texte à partir d'une image fournie par l'utilisateur",
+        "parameters": [
+          {
+            "name": "language",
+            "summary": "Langue du texte",
+            "required": true,
+            "description": "Langue du texte à extraire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "Texte affiché",
+            "required": false,
+            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichiers acceptés",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Requis ?",
+            "required": false,
+            "description": "Champs requis pour exécuter le boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

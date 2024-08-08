@@ -14,7 +14,8 @@
         "assets": [
           "libs/skill-web-chatbot/src/index.d.ts",
           "libs/skill-web-chatbot/src/debug.html",
-          "libs/skill-web-chatbot/src/schema.json"
+          "libs/skill-web-chatbot/src/schema.json",
+          "libs/skill-web-chatbot/src/schema.fr.json"
         ],
         "project": "libs/skill-web-chatbot/package.json",
         "compiler": "swc",

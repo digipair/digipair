@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-debug",
-    "summary": "Debug de page web",
-    "description": "Cette compétence permet aux utilisateurs de déboguer des applications web, offrant des outils et des fonctionnalités pour identifier et résoudre les problèmes.",
+    "summary": "Web Page Debugging",
+    "description": "This skill allows users to debug web applications, providing tools and features to identify and resolve issues.",
     "version": "0.1.0",
     "x-icon": "🔧"
   },
@@ -11,14 +11,14 @@
     "/log": {
       "post": {
         "tags": ["web", "spatial"],
-        "summary": "Afficher dans la console",
-        "description": "Element permettant d'afficher un message dans la console javascript",
+        "summary": "Display in Console",
+        "description": "Element for displaying a message in the JavaScript console",
         "parameters": [
           {
             "name": "label",
-            "summary": "Sujet",
+            "summary": "Subject",
             "required": true,
-            "description": "Sujet du log",
+            "description": "Log subject",
             "schema": {
               "type": "string"
             }
@@ -27,16 +27,16 @@
             "name": "type",
             "summary": "Type",
             "required": false,
-            "description": "Type de log",
+            "description": "Log type",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur supplémentaire à afficher",
+            "description": "Additional value to display",
             "schema": {
               "type": "object"
             }

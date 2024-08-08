@@ -1,0 +1,131 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web",
+    "summary": "Affichage de pages web",
+    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet.",
+    "version": "0.1.0",
+    "x-icon": "🌐"
+  },
+  "paths": {
+    "/executeFactory": {
+      "post": {
+        "summary": "Dans la factory",
+        "description": "Exécution d'une liste de capacité dans la factory",
+        "tags": ["web"],
+        "metadata": [],
+        "parameters": [
+          {
+            "name": "execute",
+            "summary": "Exécuter",
+            "required": true,
+            "description": "Liste de capacité à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {
+    "/page": {
+      "summary": "Page internet",
+      "description": "Affichage d'une page d'un site internet.",
+      "tags": ["web", "service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "body",
+          "summary": "Contenu",
+          "required": true,
+          "description": "Contenu de la page",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "title",
+          "summary": "Titre",
+          "required": false,
+          "description": "Titre de la page",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "favicon",
+          "summary": "Icone de la page",
+          "required": false,
+          "description": "Icone de la page",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "styleHtml",
+          "summary": "Style CSS du HTML",
+          "required": false,
+          "description": "Style css de l'élément HTML",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "styleBody",
+          "summary": "Style CSS du BODY",
+          "required": false,
+          "description": "Style css de l'élément BODY",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "factoryInitialize",
+          "summary": "Lors de la l'initialisation coté factory",
+          "required": false,
+          "description": "Action déclenchée lors de l'initialisation coté factory",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "browserInitialize",
+          "summary": "Lors de la l'initialisation coté navigateur",
+          "required": false,
+          "description": "Action déclenchée lors de l'initialisation coté navigateur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "browserLoad",
+          "summary": "Lorsque la page est chargée",
+          "required": false,
+          "description": "Action déclenchée lorsque la page est chargée coté navigateur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

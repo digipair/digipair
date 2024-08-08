@@ -1,0 +1,287 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-interact",
+    "summary": "Intéraction avec une page web",
+    "description": "Cette compétence permet aux utilisateurs de communiquer avec une page HTML coté navigateur.",
+    "version": "0.1.0",
+    "x-icon": "📲"
+  },
+  "paths": {
+    "/dispatchEvent": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Emettre un évènement",
+        "description": "Emet un évènement sur un élément du DOM",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom de l'évènement",
+            "required": true,
+            "description": "Nom de l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément qui va recevoir l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "detail",
+            "summary": "Détails de l'évènements",
+            "required": false,
+            "description": "Données transmises dans l'évènements",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setAttribute": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Modifier un attribute",
+        "description": "Permet de modifier la valeur d'un attribut d'un élément du DOM",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribut",
+            "required": true,
+            "description": "Attribut à modifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Nouvelle valeur de l'attribut",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getAttribute": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Lire un attribute",
+        "description": "Permet de lire la valeur d'un attribut d'un élément du DOM",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribut",
+            "required": true,
+            "description": "Attribut à modifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Execute une méthode",
+        "description": "Execute une méthode sur un élément du DOM",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom de la méthode",
+            "required": true,
+            "description": "Nom de l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selector",
+            "summary": "Sélecteur CSS de l'élément",
+            "required": true,
+            "description": "Sélecteur CSS de l'élément qui va exécuter la méthode",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "args",
+            "summary": "Arguments",
+            "required": false,
+            "description": "Liste des arguments de la méthode",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/goTo": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Aller vers une page web",
+        "description": "Permet d'ouvrir une page web dans le navigateur",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Adresse",
+            "required": true,
+            "description": "Adresse de la page web",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "Fenêtre cible",
+            "required": true,
+            "description": "Fenêtre cible",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/reload": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Recharger la page actuelle",
+        "description": "Permet de recharger la page actuelle",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Uploader un fichier binaire",
+        "description": "Permet d'uploader un fichier binaire en base64",
+        "parameters": [
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichier accepté",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/uploadText": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Uploader un fichier texte",
+        "description": "Permet d'uploader un fichier en texte",
+        "parameters": [
+          {
+            "name": "accept",
+            "summary": "Type de fichier",
+            "required": false,
+            "description": "Type de fichier accepté",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/capture": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Capture une image de la webcam",
+        "description": "Permet de capturer une image de la webcam",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "summary": "Identifiant du périphérique",
+            "required": false,
+            "description": "Identifiant du périphérique de capture",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "summary": "Largeur de l'image",
+            "required": false,
+            "description": "Largeur de l'image capturée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "summary": "Hauteur de l'image",
+            "required": false,
+            "description": "Hauteur de l'image capturée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "facingMode",
+            "summary": "Mode de capture",
+            "required": false,
+            "description": "Mode de capture de l'image",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getMediaDevices": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Liste des périphériques",
+        "description": "Liste les périphériques de capture disponibles",
+        "parameters": [],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

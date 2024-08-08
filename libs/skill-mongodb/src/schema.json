@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-mongodb",
-    "summary": "Accès à une base MongoDB",
-    "description": "Cette compétence permet de gérer une base de données MongoDB.",
+    "summary": "Access to a MongoDB database",
+    "description": "This skill allows you to manage a MongoDB database.",
     "version": "0.1.0",
     "x-icon": "💻"
   },
@@ -11,22 +11,22 @@
     "/database": {
       "post": {
         "tags": ["service"],
-        "summary": "Connecter à une base MongoDB",
+        "summary": "Connect to a MongoDB database",
         "parameters": [
           {
             "name": "url",
-            "summary": "Adresse du serveur",
+            "summary": "Server address",
             "required": true,
-            "description": "Adresse du serveur MongoDB",
+            "description": "MongoDB server address",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "database",
-            "summary": "Base de données",
+            "summary": "Database",
             "required": true,
-            "description": "Nom de la base de données",
+            "description": "Name of the database",
             "schema": {
               "type": "string"
             }
@@ -38,13 +38,13 @@
     "/find": {
       "post": {
         "tags": ["service"],
-        "summary": "Rechercher dans une base MongoDB",
+        "summary": "Search in a MongoDB database",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection à la base de données",
+            "summary": "Database connection",
             "required": false,
-            "description": "Client de connexion à la base de données",
+            "description": "Database connection client",
             "schema": {
               "type": "array",
               "items": {
@@ -56,7 +56,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Search options",
             "schema": {
               "type": "object"
             }
@@ -65,16 +65,16 @@
             "name": "collection",
             "summary": "Collection",
             "required": true,
-            "description": "Nom de la collection",
+            "description": "Name of the collection",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "filter",
-            "summary": "Filtre",
+            "summary": "Filter",
             "required": true,
-            "description": "Filtre de recherche",
+            "description": "Search filter",
             "schema": {
               "type": "object"
             }
@@ -86,13 +86,13 @@
     "/findOne": {
       "post": {
         "tags": ["service"],
-        "summary": "Rechercher un élément dans une base MongoDB",
+        "summary": "Search for an item in a MongoDB database",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection à la base de données",
+            "summary": "Database connection",
             "required": false,
-            "description": "Client de connexion à la base de données",
+            "description": "Database connection client",
             "schema": {
               "type": "array",
               "items": {
@@ -104,7 +104,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Search options",
             "schema": {
               "type": "object"
             }
@@ -113,16 +113,16 @@
             "name": "collection",
             "summary": "Collection",
             "required": true,
-            "description": "Nom de la collection",
+            "description": "Name of the collection",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "filter",
-            "summary": "Filtre",
+            "summary": "Filter",
             "required": true,
-            "description": "Filtre de recherche",
+            "description": "Search filter",
             "schema": {
               "type": "object"
             }
@@ -134,13 +134,13 @@
     "/findById": {
       "post": {
         "tags": ["service"],
-        "summary": "Rechercher un élément par ID dans une base MongoDB",
+        "summary": "Search for an item by ID in a MongoDB database",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection à la base de données",
+            "summary": "Database connection",
             "required": false,
-            "description": "Client de connexion à la base de données",
+            "description": "Database connection client",
             "schema": {
               "type": "array",
               "items": {
@@ -152,7 +152,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Search options",
             "schema": {
               "type": "object"
             }
@@ -161,16 +161,16 @@
             "name": "collection",
             "summary": "Collection",
             "required": true,
-            "description": "Nom de la collection",
+            "description": "Name of the collection",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": true,
-            "description": "Identifiant de l'élément",
+            "description": "Identifier of the item",
             "schema": {
               "type": "object"
             }
@@ -182,13 +182,13 @@
     "/insertOne": {
       "post": {
         "tags": ["service"],
-        "summary": "Insérer un élément dans une base MongoDB",
+        "summary": "Insert an item into a MongoDB database",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection à la base de données",
+            "summary": "Database connection",
             "required": false,
-            "description": "Client de connexion à la base de données",
+            "description": "Database connection client",
             "schema": {
               "type": "array",
               "items": {
@@ -200,7 +200,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Insert options",
             "schema": {
               "type": "object"
             }
@@ -209,7 +209,7 @@
             "name": "collection",
             "summary": "Collection",
             "required": true,
-            "description": "Nom de la collection",
+            "description": "Name of the collection",
             "schema": {
               "type": "string"
             }
@@ -218,7 +218,7 @@
             "name": "document",
             "summary": "Document",
             "required": true,
-            "description": "Document à insérer",
+            "description": "Document to insert",
             "schema": {
               "type": "object"
             }
@@ -230,13 +230,13 @@
     "/updateOne": {
       "post": {
         "tags": ["service"],
-        "summary": "Mettre à jour un élément dans une base MongoDB",
+        "summary": "Update an item in a MongoDB database",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection à la base de données",
+            "summary": "Database connection",
             "required": false,
-            "description": "Client de connexion à la base de données",
+            "description": "Database connection client",
             "schema": {
               "type": "array",
               "items": {
@@ -248,7 +248,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Update options",
             "schema": {
               "type": "object"
             }
@@ -257,25 +257,25 @@
             "name": "collection",
             "summary": "Collection",
             "required": true,
-            "description": "Nom de la collection",
+            "description": "Name of the collection",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "filter",
-            "summary": "Filtre",
+            "summary": "Filter",
             "required": true,
-            "description": "Filtre de recherche",
+            "description": "Search filter",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "update",
-            "summary": "Filtre de mise à jour",
+            "summary": "Update filter",
             "required": true,
-            "description": "Filtre de mise à jour",
+            "description": "Update filter",
             "schema": {
               "type": "object"
             }
@@ -287,13 +287,13 @@
     "/updateById": {
       "post": {
         "tags": ["service"],
-        "summary": "Mettre à jour un élément par ID dans une base MongoDB",
+        "summary": "Update an item by ID in a MongoDB database",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection à la base de données",
+            "summary": "Database connection",
             "required": false,
-            "description": "Client de connexion à la base de données",
+            "description": "Database connection client",
             "schema": {
               "type": "array",
               "items": {
@@ -305,16 +305,16 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Update options",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": true,
-            "description": "Identifiant de l'élément",
+            "description": "Identifier of the item",
             "schema": {
               "type": "string"
             }
@@ -323,16 +323,16 @@
             "name": "collection",
             "summary": "Collection",
             "required": true,
-            "description": "Nom de la collection",
+            "description": "Name of the collection",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "update",
-            "summary": "Filtre de mise à jour",
+            "summary": "Update filter",
             "required": true,
-            "description": "Filtre de mise à jour",
+            "description": "Update filter",
             "schema": {
               "type": "object"
             }

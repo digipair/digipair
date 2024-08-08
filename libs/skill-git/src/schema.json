@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-git",
-    "summary": "Gestion d'un dépôt git",
-    "description": "Cette compétence permet de gérer un dépôt git.",
+    "summary": "Management of a git repository",
+    "description": "This skill allows you to manage a git repository.",
     "version": "0.1.0",
     "x-icon": "💾"
   },
@@ -11,22 +11,22 @@
     "/commit": {
       "post": {
         "tags": ["service"],
-        "summary": "Commit GIT",
+        "summary": "GIT Commit",
         "parameters": [
           {
             "name": "path",
-            "summary": "Path du dépot",
+            "summary": "Repository path",
             "required": false,
-            "description": "Path du dépot GIT",
+            "description": "Path of the GIT repository",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "selector",
-            "summary": "Sélecteur de fichier",
+            "summary": "File selector",
             "required": false,
-            "description": "Sélecteur des fichiers à commiter",
+            "description": "Selector for the files to commit",
             "schema": {
               "type": "string"
             }
@@ -35,7 +35,7 @@
             "name": "message",
             "summary": "Message",
             "required": false,
-            "description": "Message du commit",
+            "description": "Commit message",
             "schema": {
               "type": "string"
             }
@@ -47,13 +47,13 @@
     "/push": {
       "post": {
         "tags": ["service"],
-        "summary": "Push GIT",
+        "summary": "GIT Push",
         "parameters": [
           {
             "name": "path",
-            "summary": "Path du dépot",
+            "summary": "Repository path",
             "required": false,
-            "description": "Path du dépot GIT",
+            "description": "Path of the GIT repository",
             "schema": {
               "type": "string"
             }
@@ -62,7 +62,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options envoyées lors du push",
+            "description": "Options sent during the push",
             "schema": {
               "type": "array",
               "items": {
@@ -77,13 +77,13 @@
     "/show": {
       "post": {
         "tags": ["service"],
-        "summary": "Show GIT",
+        "summary": "GIT Show",
         "parameters": [
           {
             "name": "path",
-            "summary": "Path du dépot",
+            "summary": "Repository path",
             "required": false,
-            "description": "Path du dépot GIT",
+            "description": "Path of the GIT repository",
             "schema": {
               "type": "string"
             }
@@ -92,7 +92,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options envoyées lors du git show",
+            "description": "Options sent during the git show",
             "schema": {
               "type": "array",
               "items": {
@@ -107,76 +107,76 @@
     "/log": {
       "post": {
         "tags": ["service"],
-        "summary": "Log GIT",
+        "summary": "GIT Log",
         "parameters": [
           {
             "name": "path",
-            "summary": "Path du dépot",
+            "summary": "Repository path",
             "required": false,
-            "description": "Path du dépot GIT",
+            "description": "Path of the GIT repository",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "file",
-            "summary": "Fichier",
+            "summary": "File",
             "required": false,
-            "description": "Fichier concerné par le log",
+            "description": "File concerned by the log",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "format",
-            "summary": "Format de sortie",
+            "summary": "Output format",
             "required": false,
-            "description": "Format de sortie décrit au pretty format",
+            "description": "Output format described in pretty format",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "from",
-            "summary": "Commit de départ",
+            "summary": "Starting commit",
             "required": false,
-            "description": "Identifiant du commit de départ",
+            "description": "Identifier of the starting commit",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "to",
-            "summary": "Commit dse fin",
+            "summary": "Ending commit",
             "required": false,
-            "description": "Identifiant du commit de fin",
+            "description": "Identifier of the ending commit",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "mailMap",
-            "summary": "Mapping de mail",
+            "summary": "Mail mapping",
             "required": false,
-            "description": "Active l'utilisation du mapping des emails dans les valeurs de retour pour le courrier électronique et le nom à partir du format par défaut",
+            "description": "Enables the use of email mapping in return values for email and name from the default format",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "maxCount",
-            "summary": "Nombre de résultats maximum",
+            "summary": "Maximum number of results",
             "required": false,
-            "description": "Limite le nombre de résultats à retourner",
+            "description": "Limits the number of results to return",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "multiline",
-            "summary": "Multiligne",
+            "summary": "Multiline",
             "required": false,
-            "description": "Active les valeurs multilignes dans le format par défaut",
+            "description": "Enables multiline values in the default format",
             "schema": {
               "type": "boolean"
             }
@@ -185,25 +185,25 @@
             "name": "splitter",
             "summary": "Splitter",
             "required": false,
-            "description": "Séquence de caractères à utiliser comme délimiteur entre les champs dans le journal, doit être une valeur qui n'apparaît dans aucun message de journal (par défaut à ò)",
+            "description": "Character sequence to use as a delimiter between fields in the log, must be a value that does not appear in any log message (defaults to ò)",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "strictDate",
-            "summary": "Date stricte",
+            "summary": "Strict date",
             "required": false,
-            "description": "bascule la valeur de la date d'auteur d'un format similaire à ISO 8601 à un format ISO 8601 strict",
+            "description": "Switches the author date value from a format similar to ISO 8601 to a strict ISO 8601 format",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "symmetric",
-            "summary": "Date stricte",
+            "summary": "Symmetric",
             "required": false,
-            "description": "Active le symmetric revision range plutôt que le two-dot range",
+            "description": "Enables the symmetric revision range rather than the two-dot range",
             "schema": {
               "type": "boolean"
             }

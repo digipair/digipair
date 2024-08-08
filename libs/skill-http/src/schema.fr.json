@@ -1,0 +1,277 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-http",
+    "summary": "Communication avec les services HTTP",
+    "description": "Cette compétence permet d'utiliser les services HTTP",
+    "version": "0.1.0",
+    "x-icon": "🌐"
+  },
+  "paths": {
+    "/request": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Exécute un service HTTP",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Adresse du service",
+            "required": true,
+            "description": "Adresse du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "method",
+            "summary": "Méthode HTTP",
+            "required": false,
+            "description": "Méthode HTTP à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "IS_JSON",
+            "summary": "API JSON",
+            "required": false,
+            "description": "Indique si l'API est en JSON",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/create": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Ajoute une ressource HTTP",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Adresse du service",
+            "required": true,
+            "description": "Adresse du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "IS_JSON",
+            "summary": "API JSON",
+            "required": false,
+            "description": "Indique si l'API est en JSON",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/read": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Lit une ressource HTTP",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Adresse du service",
+            "required": true,
+            "description": "Adresse du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "IS_JSON",
+            "summary": "API JSON",
+            "required": false,
+            "description": "Indique si l'API est en JSON",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/update": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Modifie une ressource HTTP",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Adresse du service",
+            "required": true,
+            "description": "Adresse du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "IS_JSON",
+            "summary": "API JSON",
+            "required": false,
+            "description": "Indique si l'API est en JSON",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/partialUpdate": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Modifie une partie d'une ressource HTTP",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Adresse du service",
+            "required": true,
+            "description": "Adresse du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "IS_JSON",
+            "summary": "API JSON",
+            "required": false,
+            "description": "Indique si l'API est en JSON",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/remove": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Supprime une ressource HTTP",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Adresse du service",
+            "required": true,
+            "description": "Adresse du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "IS_JSON",
+            "summary": "API JSON",
+            "required": false,
+            "description": "Indique si l'API est en JSON",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-interact",
-    "summary": "Intéraction avec une page web",
-    "description": "Cette compétence permet aux utilisateurs de communiquer avec une page HTML coté navigateur.",
+    "summary": "Interaction with a web page",
+    "description": "This skill allows users to communicate with an HTML page on the client side.",
     "version": "0.1.0",
     "x-icon": "📲"
   },
@@ -11,32 +11,32 @@
     "/dispatchEvent": {
       "post": {
         "tags": ["web", "boost"],
-        "summary": "Emettre un évènement",
-        "description": "Emet un évènement sur un élément du DOM",
+        "summary": "Emit an event",
+        "description": "Emits an event on a DOM element",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom de l'évènement",
+            "summary": "Event name",
             "required": true,
-            "description": "Nom de l'évènement",
+            "description": "Name of the event",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "selector",
-            "summary": "Sélecteur CSS de l'élément",
+            "summary": "CSS selector of the element",
             "required": true,
-            "description": "Sélecteur CSS de l'élément qui va recevoir l'évènement",
+            "description": "CSS selector of the element that will receive the event",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "detail",
-            "summary": "Détails de l'évènements",
+            "summary": "Event details",
             "required": false,
-            "description": "Données transmises dans l'évènements",
+            "description": "Data passed in the event",
             "schema": {
               "type": "object"
             }
@@ -48,32 +48,32 @@
     "/setAttribute": {
       "post": {
         "tags": ["web", "boost"],
-        "summary": "Modifier un attribute",
-        "description": "Permet de modifier la valeur d'un attribut d'un élément du DOM",
+        "summary": "Modify an attribute",
+        "description": "Allows modifying the value of an attribute of a DOM element",
         "parameters": [
           {
             "name": "selector",
-            "summary": "Sélecteur CSS de l'élément",
+            "summary": "CSS selector of the element",
             "required": true,
-            "description": "Sélecteur CSS de l'élément",
+            "description": "CSS selector of the element",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "attribute",
-            "summary": "Attribut",
+            "summary": "Attribute",
             "required": true,
-            "description": "Attribut à modifier",
+            "description": "Attribute to modify",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": true,
-            "description": "Nouvelle valeur de l'attribut",
+            "description": "New value of the attribute",
             "schema": {
               "type": "object"
             }
@@ -85,23 +85,23 @@
     "/getAttribute": {
       "post": {
         "tags": ["web"],
-        "summary": "Lire un attribute",
-        "description": "Permet de lire la valeur d'un attribut d'un élément du DOM",
+        "summary": "Read an attribute",
+        "description": "Allows reading the value of an attribute of a DOM element",
         "parameters": [
           {
             "name": "selector",
-            "summary": "Sélecteur CSS de l'élément",
+            "summary": "CSS selector of the element",
             "required": true,
-            "description": "Sélecteur CSS de l'élément",
+            "description": "CSS selector of the element",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "attribute",
-            "summary": "Attribut",
+            "summary": "Attribute",
             "required": true,
-            "description": "Attribut à modifier",
+            "description": "Attribute to read",
             "schema": {
               "type": "string"
             }
@@ -113,23 +113,23 @@
     "/execute": {
       "post": {
         "tags": ["web", "boost"],
-        "summary": "Execute une méthode",
-        "description": "Execute une méthode sur un élément du DOM",
+        "summary": "Execute a method",
+        "description": "Executes a method on a DOM element",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom de la méthode",
+            "summary": "Method name",
             "required": true,
-            "description": "Nom de l'évènement",
+            "description": "Name of the method",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "selector",
-            "summary": "Sélecteur CSS de l'élément",
+            "summary": "CSS selector of the element",
             "required": true,
-            "description": "Sélecteur CSS de l'élément qui va exécuter la méthode",
+            "description": "CSS selector of the element that will execute the method",
             "schema": {
               "type": "string"
             }
@@ -138,7 +138,7 @@
             "name": "args",
             "summary": "Arguments",
             "required": false,
-            "description": "Liste des arguments de la méthode",
+            "description": "List of method arguments",
             "schema": {
               "type": "array",
               "items": {
@@ -153,23 +153,23 @@
     "/goTo": {
       "post": {
         "tags": ["web", "boost"],
-        "summary": "Aller vers une page web",
-        "description": "Permet d'ouvrir une page web dans le navigateur",
+        "summary": "Go to a web page",
+        "description": "Allows opening a web page in the browser",
         "parameters": [
           {
             "name": "url",
-            "summary": "Adresse",
+            "summary": "Address",
             "required": true,
-            "description": "Adresse de la page web",
+            "description": "Address of the web page",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "target",
-            "summary": "Fenêtre cible",
+            "summary": "Target window",
             "required": true,
-            "description": "Fenêtre cible",
+            "description": "Target window",
             "schema": {
               "type": "string"
             }
@@ -181,8 +181,8 @@
     "/reload": {
       "post": {
         "tags": ["web", "boost"],
-        "summary": "Recharger la page actuelle",
-        "description": "Permet de recharger la page actuelle",
+        "summary": "Reload the current page",
+        "description": "Allows reloading the current page",
         "parameters": [],
         "x-events": []
       }
@@ -190,14 +190,14 @@
     "/upload": {
       "post": {
         "tags": ["web"],
-        "summary": "Uploader un fichier binaire",
-        "description": "Permet d'uploader un fichier binaire en base64",
+        "summary": "Upload a binary file",
+        "description": "Allows uploading a binary file in base64",
         "parameters": [
           {
             "name": "accept",
-            "summary": "Type de fichier",
+            "summary": "File type",
             "required": false,
-            "description": "Type de fichier accepté",
+            "description": "Accepted file type",
             "schema": {
               "type": "string"
             }
@@ -209,14 +209,14 @@
     "/uploadText": {
       "post": {
         "tags": ["web"],
-        "summary": "Uploader un fichier texte",
-        "description": "Permet d'uploader un fichier en texte",
+        "summary": "Upload a text file",
+        "description": "Allows uploading a text file",
         "parameters": [
           {
             "name": "accept",
-            "summary": "Type de fichier",
+            "summary": "File type",
             "required": false,
-            "description": "Type de fichier accepté",
+            "description": "Accepted file type",
             "schema": {
               "type": "string"
             }
@@ -228,41 +228,41 @@
     "/capture": {
       "post": {
         "tags": ["web"],
-        "summary": "Capture une image de la webcam",
-        "description": "Permet de capturer une image de la webcam",
+        "summary": "Capture an image from the webcam",
+        "description": "Allows capturing an image from the webcam",
         "parameters": [
           {
             "name": "deviceId",
-            "summary": "Identifiant du périphérique",
+            "summary": "Device ID",
             "required": false,
-            "description": "Identifiant du périphérique de capture",
+            "description": "ID of the capture device",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "width",
-            "summary": "Largeur de l'image",
+            "summary": "Image width",
             "required": false,
-            "description": "Largeur de l'image capturée",
+            "description": "Width of the captured image",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "height",
-            "summary": "Hauteur de l'image",
+            "summary": "Image height",
             "required": false,
-            "description": "Hauteur de l'image capturée",
+            "description": "Height of the captured image",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "facingMode",
-            "summary": "Mode de capture",
+            "summary": "Capture mode",
             "required": false,
-            "description": "Mode de capture de l'image",
+            "description": "Mode of image capture",
             "schema": {
               "type": "string"
             }
@@ -274,8 +274,8 @@
     "/getMediaDevices": {
       "post": {
         "tags": ["web"],
-        "summary": "Liste des périphériques",
-        "description": "Liste les périphériques de capture disponibles",
+        "summary": "List of devices",
+        "description": "Lists available capture devices",
         "parameters": [],
         "x-events": []
       }

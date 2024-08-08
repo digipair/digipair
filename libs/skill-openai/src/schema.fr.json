@@ -1,0 +1,217 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-openai",
+    "summary": "Communication avec les services d'OpenAI",
+    "description": "Exécution des models LLM depuis les services d'OpenAI.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/model": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle LLM OpenAI",
+        "description": "Modèle LLM OpenAI",
+        "parameters": [
+          {
+            "name": "modelName",
+            "summary": "Nom du model",
+            "required": false,
+            "description": "Nom du model LLM à charger",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "temperature",
+            "summary": "Temperature",
+            "required": false,
+            "description": "Temperature du model LLM",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Api Key",
+            "required": false,
+            "description": "Api Key OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/modelAzure": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle LLM OpenAI sur Azure",
+        "description": "Modèle LLM OpenAI sur Azure",
+        "parameters": [
+          {
+            "name": "temperature",
+            "summary": "Temperature",
+            "required": false,
+            "description": "Temperature du model LLM",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "openAIApiKey",
+            "summary": "API Key",
+            "required": false,
+            "description": "API Key de l'instance Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "openAIApiInstanceName",
+            "summary": "Nom de l'instance",
+            "required": false,
+            "description": "Nom de l'instance Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentName",
+            "summary": "Nom du déploiement",
+            "required": true,
+            "description": "Nom du déploiement Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "openAIApiVersion",
+            "summary": "Version",
+            "required": false,
+            "description": "Version de l'API Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/embeddings": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle d'embeddings OpenAI",
+        "description": "Modèle d'embeddings OpenAI",
+        "parameters": [
+          {
+            "name": "modelName",
+            "summary": "Nom du model",
+            "required": false,
+            "description": "Nom du model d'embeddings à charger",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dimension",
+            "summary": "Dimension de l'embedding",
+            "required": false,
+            "description": "Dimension de l'embeddings à charger",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Api Key",
+            "required": false,
+            "description": "Api Key OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/embeddingsAzure": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle d'embeddings OpenAI",
+        "description": "Modèle d'enbeddings OpenAI",
+        "parameters": [
+          {
+            "name": "dimension",
+            "summary": "Dimension de l'embedding",
+            "required": false,
+            "description": "Dimension de l'embeddings à charger",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "openAIApiKey",
+            "summary": "API Key",
+            "required": false,
+            "description": "API Key de l'instance Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "openAIApiInstanceName",
+            "summary": "Nom de l'instance",
+            "required": false,
+            "description": "Nom de l'instance Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentName",
+            "summary": "Nom du déploiement",
+            "required": true,
+            "description": "Nom du déploiement Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "openAIApiVersion",
+            "summary": "Version",
+            "required": false,
+            "description": "Version de l'API Azure OpenAI",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

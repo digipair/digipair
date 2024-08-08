@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-canvas",
         "main": "libs/skill-canvas/src/index.ts",
         "tsConfig": "libs/skill-canvas/tsconfig.lib.json",
-        "assets": ["libs/skill-canvas/src/index.d.ts", "libs/skill-canvas/src/schema.json"],
+        "assets": [
+          "libs/skill-canvas/src/index.d.ts",
+          "libs/skill-canvas/src/schema.json",
+          "libs/skill-canvas/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-canvas/rollup.build.cjs"],
         "project": "libs/skill-canvas/package.json",
         "compiler": "swc",

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-pdf",
-    "summary": "Extraction de texte depuis un PDF",
-    "description": "Cette compétence permet d'extraire le texte depuis un PDF.",
+    "summary": "Text extraction from a PDF",
+    "description": "This skill allows for the extraction of text from a PDF.",
     "version": "0.1.0",
     "x-icon": "📄"
   },
@@ -11,32 +11,32 @@
     "/digipair-input-pdf": {
       "post": {
         "tags": ["boost"],
-        "summary": "Extraire le texte d'un PDF",
-        "description": "Element permettant d'extraire le texte à partir d'un fichier PDF fourni par l'utilisateur",
+        "summary": "Extract text from a PDF",
+        "description": "Element that allows extracting text from a PDF file provided by the user.",
         "parameters": [
           {
             "name": "label",
-            "summary": "Texte affiché",
+            "summary": "Displayed text",
             "required": false,
-            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "description": "Text displayed to the user to guide them in their input.",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "accept",
-            "summary": "Type de fichier",
+            "summary": "File type",
             "required": false,
-            "description": "Type de fichiers acceptés",
+            "description": "Accepted file types.",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost.",
             "schema": {
               "type": "boolean"
             }

@@ -1,0 +1,142 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-twilio",
+    "summary": "Gestion des communications via Twilio",
+    "description": "Cette compétence permet d'utiliser le service Twilio",
+    "version": "0.1.0",
+    "x-icon": "🗣"
+  },
+  "paths": {
+    "/sendSms": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoi d'un sms via Twilio",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message à envoyer",
+            "required": true,
+            "description": "Message à envoyer par sms",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNumber",
+            "summary": "Numéro de téléphone",
+            "required": true,
+            "description": "Numéro de téléphone du destinataire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_FROM_NUMBER",
+            "summary": "Numéro Twilio",
+            "required": false,
+            "description": "Numéro Twilio",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_SID",
+            "summary": "Identifiant Twilio",
+            "required": false,
+            "description": "Identifiant Twilio",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_TOKEN",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Twilio",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Twilio",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sendWhatsapp": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoi d'un Whatsapp via Twilio",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message à envoyer",
+            "required": true,
+            "description": "Message à envoyer par sms",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNumber",
+            "summary": "Numéro de téléphone",
+            "required": true,
+            "description": "Numéro de téléphone du destinataire",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_FROM_NUMBER",
+            "summary": "Numéro Twilio",
+            "required": false,
+            "description": "Numéro Twilio",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_SID",
+            "summary": "Identifiant Twilio",
+            "required": false,
+            "description": "Identifiant Twilio",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_TOKEN",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Twilio",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TWILIO_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Twilio",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

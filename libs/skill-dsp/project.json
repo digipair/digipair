@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-dsp",
         "main": "libs/skill-dsp/src/index.ts",
         "tsConfig": "libs/skill-dsp/tsconfig.lib.json",
-        "assets": ["libs/skill-dsp/src/index.d.ts", "libs/skill-dsp/src/schema.json"],
+        "assets": [
+          "libs/skill-dsp/src/index.d.ts",
+          "libs/skill-dsp/src/schema.json",
+          "libs/skill-dsp/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-dsp/rollup.build.cjs"],
         "project": "libs/skill-dsp/package.json",
         "compiler": "swc",

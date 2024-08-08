@@ -13,7 +13,8 @@
         "tsConfig": "libs/skill-keycloak/tsconfig.lib.json",
         "assets": [
           "libs/skill-keycloak/src/index.d.ts",
-          "libs/skill-keycloak/src/schema.json"
+          "libs/skill-keycloak/src/schema.json",
+          "libs/skill-keycloak/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-keycloak/rollup.build.cjs"],
         "project": "libs/skill-keycloak/package.json",

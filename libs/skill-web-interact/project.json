@@ -13,7 +13,8 @@
         "tsConfig": "libs/skill-web-interact/tsconfig.lib.json",
         "assets": [
           "libs/skill-web-interact/src/index.d.ts",
-          "libs/skill-web-interact/src/schema.json"
+          "libs/skill-web-interact/src/schema.json",
+          "libs/skill-web-interact/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-web-interact/rollup.build.cjs"],
         "project": "libs/skill-web-interact/package.json",

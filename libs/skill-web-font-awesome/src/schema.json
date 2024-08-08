@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-font-awesome",
-    "summary": "Affichage d'icones font-awesome",
-    "description": "Affichage des icones font-awesome.",
+    "summary": "Display of font-awesome icons",
+    "description": "Display of font-awesome icons.",
     "version": "0.1.0",
     "x-icon": "🎨"
   },
@@ -11,23 +11,23 @@
     "/digipair-font-awesome-icon": {
       "post": {
         "tags": ["web"],
-        "summary": "Icone font-awesome",
-        "description": "Icone font-awesome",
+        "summary": "Font-awesome icon",
+        "description": "Font-awesome icon",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": true,
-            "description": "Nom de l'icone",
+            "description": "Name of the icon",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "category",
-            "summary": "Categorie de l'icone",
+            "summary": "Icon category",
             "required": false,
-            "description": "Style personnalisé de l'icone",
+            "description": "Custom style of the icon",
             "schema": {
               "type": "object"
             }
@@ -36,7 +36,7 @@
             "name": "slot",
             "summary": "Slot",
             "required": false,
-            "description": "Emplacement de l'icone",
+            "description": "Location of the icon",
             "schema": {
               "type": "string"
             }

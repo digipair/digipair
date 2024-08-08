@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-keycloak",
-    "summary": "Authentification web Keycloak",
-    "description": "Cette compétence permet de gérer une authentification Keycloak coté navigateur.",
+    "summary": "Keycloak Web Authentication",
+    "description": "This skill allows managing Keycloak authentication on the browser side.",
     "version": "0.1.0",
     "x-icon": "🔑"
   },
@@ -11,14 +11,14 @@
     "/initialize": {
       "post": {
         "tags": ["web", "spatial"],
-        "summary": "Initialisation Keycloak",
-        "description": "Initialise l'authentification Keycloak",
+        "summary": "Keycloak Initialization",
+        "description": "Initializes Keycloak authentication",
         "parameters": [
           {
             "name": "url",
-            "summary": "Adresse du serveur",
+            "summary": "Server Address",
             "required": false,
-            "description": "Adresse du serveur Keycloak",
+            "description": "Address of the Keycloak server",
             "schema": {
               "type": "string"
             }
@@ -27,7 +27,7 @@
             "name": "realm",
             "summary": "Realm",
             "required": false,
-            "description": "Realm Keycloak",
+            "description": "Keycloak Realm",
             "schema": {
               "type": "string"
             }
@@ -36,7 +36,7 @@
             "name": "clientId",
             "summary": "clientId",
             "required": false,
-            "description": "ClientId Keycloak",
+            "description": "Keycloak ClientId",
             "schema": {
               "type": "string"
             }
@@ -48,8 +48,8 @@
     "/isLogged": {
       "post": {
         "tags": ["web", "spatial"],
-        "summary": "Utilisateur identifié",
-        "description": "Vérifie si l'utilisateur est identifié",
+        "summary": "User Identified",
+        "description": "Checks if the user is identified",
         "parameters": [],
         "x-events": []
       }
@@ -57,8 +57,8 @@
     "/token": {
       "post": {
         "tags": ["web", "spatial"],
-        "summary": "Token Keycloak",
-        "description": "Récupère le token Keycloak",
+        "summary": "Keycloak Token",
+        "description": "Retrieves the Keycloak token",
         "parameters": [],
         "x-events": []
       }
@@ -66,8 +66,8 @@
     "/logout": {
       "post": {
         "tags": ["web", "spatial"],
-        "summary": "Déconnecte l'utilisateur de Keycloak",
-        "description": "Déconnecte l'utilisateur de Keycloak",
+        "summary": "Logout User from Keycloak",
+        "description": "Logs the user out of Keycloak",
         "parameters": [],
         "x-events": []
       }
@@ -75,8 +75,8 @@
     "/login": {
       "post": {
         "tags": ["web", "spatial"],
-        "summary": "Connecte l'utilisateur à Keycloak",
-        "description": "Connecte l'utilisateur à Keycloak",
+        "summary": "Login User to Keycloak",
+        "description": "Logs the user into Keycloak",
         "parameters": [],
         "x-events": []
       }

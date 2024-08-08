@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-material-icons",
-    "summary": "Affichage d'icones material",
-    "description": "Affichage des icones material.",
+    "summary": "Display of material icons",
+    "description": "Display of material icons.",
     "version": "0.1.0",
     "x-icon": "🎨"
   },
@@ -11,23 +11,23 @@
     "/digipair-material-icons-icon": {
       "post": {
         "tags": ["web"],
-        "summary": "Icone material",
-        "description": "Icone Google Material",
+        "summary": "Material icon",
+        "description": "Google Material icon",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": true,
-            "description": "Nom de l'icone",
+            "description": "Name of the icon",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "iconStyle",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Style personnalisé de l'icone",
+            "description": "Custom style of the icon",
             "schema": {
               "type": "object"
             }
@@ -36,7 +36,7 @@
             "name": "slot",
             "summary": "Slot",
             "required": false,
-            "description": "Emplacement de l'icone",
+            "description": "Placement of the icon",
             "schema": {
               "type": "string"
             }

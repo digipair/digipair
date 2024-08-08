@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/engine",
-    "summary": "Gestion des Pin's",
-    "description": "Moteur de Pin's de Digipair.",
+    "summary": "Pin Management",
+    "description": "Digipair's Pin Engine.",
     "version": "0.1.0",
     "x-icon": "🚀"
   },

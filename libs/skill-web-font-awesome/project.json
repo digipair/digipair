@@ -13,7 +13,8 @@
         "tsConfig": "libs/skill-web-font-awesome/tsconfig.lib.json",
         "assets": [
           "libs/skill-web-font-awesome/src/index.d.ts",
-          "libs/skill-web-font-awesome/src/schema.json"
+          "libs/skill-web-font-awesome/src/schema.json",
+          "libs/skill-web-font-awesome/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-web-font-awesome/rollup.build.cjs"],
         "project": "libs/skill-web-font-awesome/package.json",

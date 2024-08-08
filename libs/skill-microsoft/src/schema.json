@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-microsoft",
-    "summary": "Communication avec les services Microsoft",
-    "description": "Cette compétence permet d'utiliser les services Microsoft",
+    "summary": "Communication with Microsoft services",
+    "description": "This skill allows the use of Microsoft services",
     "version": "0.1.0",
     "x-icon": "❖"
   },
@@ -11,76 +11,76 @@
     "/request": {
       "post": {
         "tags": ["service"],
-        "summary": "Exécute un service Microsoft",
+        "summary": "Executes a Microsoft service",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "method",
-            "summary": "Méthode HTTP",
+            "summary": "HTTP method",
             "required": false,
-            "description": "Méthode HTTP à utiliser",
+            "description": "HTTP method to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "summary": "OAuth client ID",
             "required": false,
-            "description": "Identifiant du client OAuth",
+            "description": "OAuth client ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
+            "summary": "OAuth client secret",
             "required": false,
-            "description": "Secret du client OAuth",
+            "description": "OAuth client secret",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TENANT_ID",
-            "summary": "ID du locataire",
+            "summary": "Tenant ID",
             "required": false,
-            "description": "ID du locataire",
+            "description": "Tenant ID",
             "schema": {
               "type": "string"
             }
@@ -92,67 +92,67 @@
     "/create": {
       "post": {
         "tags": ["service"],
-        "summary": "Ajoute une ressource Microsoft",
+        "summary": "Adds a Microsoft resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "summary": "OAuth client ID",
             "required": false,
-            "description": "Identifiant du client OAuth",
+            "description": "OAuth client ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
+            "summary": "OAuth client secret",
             "required": false,
-            "description": "Secret du client OAuth",
+            "description": "OAuth client secret",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TENANT_ID",
-            "summary": "ID du locataire",
+            "summary": "Tenant ID",
             "required": false,
-            "description": "ID du locataire",
+            "description": "Tenant ID",
             "schema": {
               "type": "string"
             }
@@ -164,58 +164,58 @@
     "/read": {
       "post": {
         "tags": ["service"],
-        "summary": "Lit une ressource Microsoft",
+        "summary": "Reads a Microsoft resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "summary": "OAuth client ID",
             "required": false,
-            "description": "Identifiant du client OAuth",
+            "description": "OAuth client ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
+            "summary": "OAuth client secret",
             "required": false,
-            "description": "Secret du client OAuth",
+            "description": "OAuth client secret",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TENANT_ID",
-            "summary": "ID du locataire",
+            "summary": "Tenant ID",
             "required": false,
-            "description": "ID du locataire",
+            "description": "Tenant ID",
             "schema": {
               "type": "string"
             }
@@ -227,67 +227,67 @@
     "/update": {
       "post": {
         "tags": ["service"],
-        "summary": "Modifie une ressource Microsoft",
+        "summary": "Modifies a Microsoft resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "summary": "OAuth client ID",
             "required": false,
-            "description": "Identifiant du client OAuth",
+            "description": "OAuth client ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
+            "summary": "OAuth client secret",
             "required": false,
-            "description": "Secret du client OAuth",
+            "description": "OAuth client secret",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TENANT_ID",
-            "summary": "ID du locataire",
+            "summary": "Tenant ID",
             "required": false,
-            "description": "ID du locataire",
+            "description": "Tenant ID",
             "schema": {
               "type": "string"
             }
@@ -299,67 +299,67 @@
     "/partialUpdate": {
       "post": {
         "tags": ["service"],
-        "summary": "Modifie une partie d'une ressource Microsoft",
+        "summary": "Modifies part of a Microsoft resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "summary": "OAuth client ID",
             "required": false,
-            "description": "Identifiant du client OAuth",
+            "description": "OAuth client ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
+            "summary": "OAuth client secret",
             "required": false,
-            "description": "Secret du client OAuth",
+            "description": "OAuth client secret",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TENANT_ID",
-            "summary": "ID du locataire",
+            "summary": "Tenant ID",
             "required": false,
-            "description": "ID du locataire",
+            "description": "Tenant ID",
             "schema": {
               "type": "string"
             }
@@ -371,58 +371,58 @@
     "/remove": {
       "post": {
         "tags": ["service"],
-        "summary": "Supprime une ressource Microsoft",
+        "summary": "Deletes a Microsoft resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
+            "summary": "OAuth client ID",
             "required": false,
-            "description": "Identifiant du client OAuth",
+            "description": "OAuth client ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
+            "summary": "OAuth client secret",
             "required": false,
-            "description": "Secret du client OAuth",
+            "description": "OAuth client secret",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TENANT_ID",
-            "summary": "ID du locataire",
+            "summary": "Tenant ID",
             "required": false,
-            "description": "ID du locataire",
+            "description": "Tenant ID",
             "schema": {
               "type": "string"
             }

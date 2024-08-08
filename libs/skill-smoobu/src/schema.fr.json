@@ -1,0 +1,334 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-smoobu",
+    "summary": "Gestion des locations via Smoobu",
+    "description": "Cette compétence permet d'utiliser le service Smoobu",
+    "version": "0.1.0",
+    "x-icon": "🏡"
+  },
+  "paths": {
+    "/getReservationWithId": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Information d'une réservation Smoobu",
+        "parameters": [
+          {
+            "name": "reservationId",
+            "summary": "Identifiant de la réservation",
+            "required": true,
+            "description": "Identifiant de la réservation Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_KEY",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sendMessage": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoi d'un message via Smoobu",
+        "parameters": [
+          {
+            "name": "reservationId",
+            "summary": "Identifiant de la réservation",
+            "required": true,
+            "description": "Identifiant de la réservation Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à envoyer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_KEY",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getAllReservations": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste des réservations Smoobu",
+        "parameters": [
+          {
+            "name": "created_from",
+            "summary": "Créé depuis",
+            "required": false,
+            "description": "Date de création depuis",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "created_to",
+            "summary": "Créé jusqu'à",
+            "required": false,
+            "description": "Date de création jusqu'à",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "summary": "Début",
+            "required": false,
+            "description": "Date de début",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "summary": "Fin",
+            "required": false,
+            "description": "Date de fin",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modifiedFrom",
+            "summary": "Modifié depuis",
+            "required": false,
+            "description": "Date de modification depuis",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "modifiedTo",
+            "summary": "Modifié jusqu'à",
+            "required": false,
+            "description": "Date de modification jusqu'à",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "arrivalFrom",
+            "summary": "Arrivée depuis",
+            "required": false,
+            "description": "Date d'arrivée depuis",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "arrivalTo",
+            "summary": "Arrivée jusqu'à",
+            "required": false,
+            "description": "Date d'arrivée jusqu'à",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "departureFrom",
+            "summary": "Départ depuis",
+            "required": false,
+            "description": "Date de départ depuis",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "departureTo",
+            "summary": "Départ jusqu'à",
+            "required": false,
+            "description": "Date de départ jusqu'à",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "showCancellation",
+            "summary": "Afficher les annulations",
+            "required": false,
+            "description": "Afficher les annulations",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeBlocked",
+            "summary": "Exclure les bloqués",
+            "required": false,
+            "description": "Exclure les bloqués",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "summary": "Page",
+            "required": false,
+            "description": "Page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "summary": "Taille de la page",
+            "required": false,
+            "description": "Taille de la page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apartmentId",
+            "summary": "Identifiant de l'appartement",
+            "required": false,
+            "description": "Identifiant de l'appartement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeRelated",
+            "summary": "Inclure les détails",
+            "required": false,
+            "description": "Inclure les détails",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includePriceElements",
+            "summary": "Inclure les éléments de prix",
+            "required": false,
+            "description": "Inclure les éléments de prix",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_KEY",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SMOOBU_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Smoobu",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {
+    "/event": {
+      "summary": "Réservation Smoobu",
+      "description": "Gestion des évènements sur les réservations",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "updateRates",
+          "summary": "Lors de la mise à jour des tarifs",
+          "required": false,
+          "description": "Commandes à exécuter lors de la mise à jour des tarifs",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "newReservation",
+          "summary": "Lors d'une nouvelle réservation",
+          "required": false,
+          "description": "Commandes à exécuter lors d'une nouvelle réservation",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "cancelReservation",
+          "summary": "Lors d'une annulation",
+          "required": false,
+          "description": "Commandes à exécuter lors d'une annulation",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "updateReservation",
+          "summary": "Lors de la mise à jour d'une réservation",
+          "required": false,
+          "description": "Commandes à exécuter lors de la mise à jour d'une réservation",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-chatbot",
-    "summary": "Communication avec le chatbot",
-    "description": "La compétence permet de gérer la communication avec le chatbot.",
+    "summary": "Communication with the chatbot",
+    "description": "The skill allows managing communication with the chatbot.",
     "version": "0.1.0",
     "x-icon": "🤖"
   },
@@ -11,12 +11,12 @@
     "/chatbot": {
       "post": {
         "tags": ["boost"],
-        "summary": "Retourner au chatbot",
+        "summary": "Return to the chatbot",
         "parameters": [
           {
             "name": "assistant",
             "required": true,
-            "description": "Reponse de l'assistant",
+            "description": "Response from the assistant",
             "schema": {
               "type": "string"
             }
@@ -24,7 +24,7 @@
           {
             "name": "command",
             "required": false,
-            "description": "Commande exécutée sur le chatbot",
+            "description": "Command executed on the chatbot",
             "schema": {
               "type": "array",
               "items": {
@@ -35,7 +35,7 @@
           {
             "name": "sources",
             "required": false,
-            "description": "Liste des sources utilisées pour répondre a l'utilisateur",
+            "description": "List of sources used to respond to the user",
             "schema": {
               "type": "array",
               "items": {
@@ -46,16 +46,16 @@
           {
             "name": "logs",
             "required": false,
-            "description": "Informations utiles pour débogguer le raisonnement",
+            "description": "Useful information for debugging reasoning",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "model",
-            "summary": "Modèle LLM",
+            "summary": "LLM Model",
             "required": false,
-            "description": "Modèle LLM à charger",
+            "description": "LLM model to load",
             "schema": {
               "type": "array",
               "items": {
@@ -65,9 +65,9 @@
           },
           {
             "name": "embeddings",
-            "summary": "Modèle d'embeddings",
+            "summary": "Embeddings Model",
             "required": false,
-            "description": "Modèle d'embeddings à charger",
+            "description": "Embeddings model to load",
             "schema": {
               "type": "array",
               "items": {
@@ -78,7 +78,7 @@
           {
             "name": "baseUrlVespa",
             "required": false,
-            "description": "Url du serveur Vespa",
+            "description": "URL of the Vespa server",
             "schema": {
               "type": "string"
             }
@@ -86,7 +86,7 @@
           {
             "name": "promptSummary",
             "required": false,
-            "description": "Prompt utilisé pour le résumé système",
+            "description": "Prompt used for the system summary",
             "schema": {
               "type": "string"
             }
@@ -98,8 +98,8 @@
     "/find": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupérer dans la conversation",
-        "description": "Récupérer des données dans l'historique de conversation",
+        "summary": "Retrieve from the conversation",
+        "description": "Retrieve data from the conversation history",
         "parameters": [
           {
             "name": "limit",
@@ -128,7 +128,7 @@
           {
             "name": "baseUrl",
             "required": false,
-            "description": "Url du serveur Vespa",
+            "description": "URL of the Vespa server",
             "schema": {
               "type": "string"
             }
@@ -140,14 +140,14 @@
     "/search": {
       "post": {
         "tags": ["service"],
-        "summary": "Rechercher dans la conversation",
-        "description": "Rechercher des données dans l'historique de conversation",
+        "summary": "Search in the conversation",
+        "description": "Search for data in the conversation history",
         "parameters": [
           {
             "name": "embeddings",
-            "summary": "Modèle d'embeddings",
+            "summary": "Embeddings Model",
             "required": false,
-            "description": "Modèle d'embeddings à charger",
+            "description": "Embeddings model to load",
             "schema": {
               "type": "array",
               "items": {
@@ -187,11 +187,10 @@
               "type": "string"
             }
           },
-
           {
             "name": "baseUrl",
             "required": false,
-            "description": "Url du serveur Vespa",
+            "description": "URL of the Vespa server",
             "schema": {
               "type": "string"
             }
@@ -199,7 +198,7 @@
           {
             "name": "language",
             "required": false,
-            "description": "Langue de recherche",
+            "description": "Search language",
             "schema": {
               "type": "string"
             }
@@ -207,7 +206,7 @@
           {
             "name": "filter",
             "required": false,
-            "description": "Filtre de recherche",
+            "description": "Search filter",
             "schema": {
               "type": "string"
             }
@@ -219,20 +218,20 @@
     "/history": {
       "post": {
         "tags": ["service"],
-        "summary": "Historique",
+        "summary": "History",
         "parameters": [
           {
             "name": "baseUrl",
-            "summary": "Url du serveur Vespa",
+            "summary": "URL of the Vespa server",
             "required": false,
-            "description": "Url du serveur Vespa",
+            "description": "URL of the Vespa server",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "maxHistory",
-            "summary": "Nombre d'éléments maximum",
+            "summary": "Maximum number of items",
             "required": false,
             "description": "orderby",
             "schema": {
@@ -241,7 +240,7 @@
           },
           {
             "name": "system",
-            "summary": "Système",
+            "summary": "System",
             "required": false,
             "description": "targetHits",
             "schema": {
@@ -250,9 +249,9 @@
           },
           {
             "name": "question",
-            "summary": "Question de l'assistant",
+            "summary": "Assistant's question",
             "required": false,
-            "description": "Question de l'assistant",
+            "description": "Assistant's question",
             "schema": {
               "type": "string"
             }
@@ -264,22 +263,22 @@
     "/getRole": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupération du rôle",
+        "summary": "Role retrieval",
         "parameters": [
           {
             "name": "role",
-            "summary": "Nom",
+            "summary": "Name",
             "required": true,
-            "description": "Nom du rôle",
+            "description": "Role name",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "baseUrl",
-            "summary": "Url du serveur Vespa",
+            "summary": "URL of the Vespa server",
             "required": false,
-            "description": "Url du serveur Vespa",
+            "description": "URL of the Vespa server",
             "schema": {
               "type": "string"
             }
@@ -291,31 +290,31 @@
     "/setRole": {
       "post": {
         "tags": ["service"],
-        "summary": "Mise à jour du rôle",
+        "summary": "Role update",
         "parameters": [
           {
             "name": "role",
-            "summary": "Nom",
+            "summary": "Name",
             "required": true,
-            "description": "Nom du rôle",
+            "description": "Role name",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": true,
-            "description": "Valeur du rôle",
+            "description": "Role value",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "baseUrl",
-            "summary": "Url du serveur Vespa",
+            "summary": "URL of the Vespa server",
             "required": false,
-            "description": "Url du serveur Vespa",
+            "description": "URL of the Vespa server",
             "schema": {
               "type": "string"
             }
@@ -327,12 +326,12 @@
     "/answer": {
       "post": {
         "tags": ["boost"],
-        "summary": "Réponse du chatbot",
+        "summary": "Chatbot response",
         "parameters": [
           {
             "name": "assistant",
             "required": true,
-            "description": "Reponse de l'assistant",
+            "description": "Response from the assistant",
             "schema": {
               "type": "string"
             }
@@ -340,7 +339,7 @@
           {
             "name": "command",
             "required": false,
-            "description": "Commandes exécutées sur le chatbot",
+            "description": "Commands executed on the chatbot",
             "schema": {
               "type": "array",
               "items": {
@@ -351,7 +350,7 @@
           {
             "name": "boosts",
             "required": false,
-            "description": "Liste des boosts proposés",
+            "description": "List of proposed boosts",
             "schema": {
               "type": "object"
             }
@@ -359,7 +358,7 @@
           {
             "name": "sources",
             "required": false,
-            "description": "Liste des sources utilisées pour répondre a l'utilisateur",
+            "description": "List of sources used to respond to the user",
             "schema": {
               "type": "array",
               "items": {
@@ -370,7 +369,7 @@
           {
             "name": "logs",
             "required": false,
-            "description": "Informations utiles pour débogguer le raisonnement",
+            "description": "Useful information for debugging reasoning",
             "schema": {
               "type": "object"
             }
@@ -385,7 +384,7 @@
       "Boost": {
         "type": "object",
         "tags": ["boost"],
-        "summary": "Déclencheur",
+        "summary": "Trigger",
         "properties": {
           "name": {
             "type": "string"
@@ -419,14 +418,14 @@
   "x-scene-blocks": {
     "/boost": {
       "summary": "Boost",
-      "description": "Boost proposé par le Digipair",
+      "description": "Boost proposed by Digipair",
       "tags": ["boost", "service"],
       "metadata": [
         {
           "name": "boosts",
-          "summary": "Liste des déclencheurs",
+          "summary": "List of triggers",
           "required": true,
-          "description": "Liste des déclencheurs du boost",
+          "description": "List of boost triggers",
           "schema": {
             "type": "array",
             "items": {
@@ -438,9 +437,9 @@
       "parameters": [
         {
           "name": "execute",
-          "summary": "Exécution des actions",
+          "summary": "Execution of actions",
           "required": false,
-          "description": "Liste des actions à exécuter",
+          "description": "List of actions to execute",
           "schema": {
             "type": "array",
             "items": {

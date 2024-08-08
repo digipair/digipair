@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-service",
-    "summary": "Serveur HTTP",
-    "description": "Cette compétence permet de gérer les réponses à des appels http.",
+    "summary": "HTTP Server",
+    "description": "This skill allows managing responses to HTTP calls.",
     "version": "0.1.0",
     "x-icon": "💻"
   },
@@ -14,15 +14,15 @@
   "x-scene-blocks": {
     "/service": {
       "summary": "Web service",
-      "description": "Réponse à un appel http.",
+      "description": "Response to an HTTP call.",
       "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
           "name": "execute",
-          "summary": "Exécute",
+          "summary": "Execute",
           "required": true,
-          "description": "Commandes à exécuter",
+          "description": "Commands to execute",
           "schema": {
             "type": "array",
             "items": {
@@ -33,16 +33,16 @@
       ]
     },
     "/task": {
-      "summary": "Tache",
-      "description": "Exécution d'une tache.",
+      "summary": "Task",
+      "description": "Execution of a task.",
       "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
           "name": "execute",
-          "summary": "Exécute",
+          "summary": "Execute",
           "required": true,
-          "description": "Commandes à exécuter",
+          "description": "Commands to execute",
           "schema": {
             "type": "array",
             "items": {

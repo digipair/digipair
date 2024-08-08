@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-debug",
+    "summary": "Debug de la factory",
+    "description": "Cette compétence permet aux utilisateurs de déboguer des actions exécutées sur la factory, offrant des outils et des fonctionnalités pour identifier et résoudre les problèmes.",
+    "version": "0.1.0",
+    "x-icon": "🔧"
+  },
+  "paths": {
+    "/log": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Afficher dans les logs",
+        "description": "Element permettant d'afficher un message dans les logs",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Sujet",
+            "required": true,
+            "description": "Sujet du log",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type",
+            "required": false,
+            "description": "Type de log",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur supplémentaire à afficher",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

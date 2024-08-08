@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-http",
-    "summary": "Communication avec les services HTTP",
-    "description": "Cette compétence permet d'utiliser les services HTTP",
+    "summary": "Communication with HTTP services",
+    "description": "This skill allows the use of HTTP services",
     "version": "0.1.0",
     "x-icon": "🌐"
   },
@@ -11,49 +11,49 @@
     "/request": {
       "post": {
         "tags": ["service", "web", "spatial"],
-        "summary": "Exécute un service HTTP",
+        "summary": "Executes an HTTP service",
         "parameters": [
           {
             "name": "path",
-            "summary": "Adresse du service",
+            "summary": "Service address",
             "required": true,
-            "description": "Adresse du service à exécuter",
+            "description": "Address of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "method",
-            "summary": "Méthode HTTP",
+            "summary": "HTTP method",
             "required": false,
-            "description": "Méthode HTTP à utiliser",
+            "description": "HTTP method to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "IS_JSON",
-            "summary": "API JSON",
+            "summary": "JSON API",
             "required": false,
-            "description": "Indique si l'API est en JSON",
+            "description": "Indicates if the API is in JSON",
             "schema": {
               "type": "boolean"
             }
@@ -65,40 +65,40 @@
     "/create": {
       "post": {
         "tags": ["service", "web", "spatial"],
-        "summary": "Ajoute une ressource HTTP",
+        "summary": "Adds an HTTP resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Adresse du service",
+            "summary": "Service address",
             "required": true,
-            "description": "Adresse du service à exécuter",
+            "description": "Address of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "IS_JSON",
-            "summary": "API JSON",
+            "summary": "JSON API",
             "required": false,
-            "description": "Indique si l'API est en JSON",
+            "description": "Indicates if the API is in JSON",
             "schema": {
               "type": "boolean"
             }
@@ -110,31 +110,31 @@
     "/read": {
       "post": {
         "tags": ["service", "web", "spatial"],
-        "summary": "Lit une ressource HTTP",
+        "summary": "Reads an HTTP resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Adresse du service",
+            "summary": "Service address",
             "required": true,
-            "description": "Adresse du service à exécuter",
+            "description": "Address of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "IS_JSON",
-            "summary": "API JSON",
+            "summary": "JSON API",
             "required": false,
-            "description": "Indique si l'API est en JSON",
+            "description": "Indicates if the API is in JSON",
             "schema": {
               "type": "boolean"
             }
@@ -146,40 +146,40 @@
     "/update": {
       "post": {
         "tags": ["service", "web", "spatial"],
-        "summary": "Modifie une ressource HTTP",
+        "summary": "Modifies an HTTP resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Adresse du service",
+            "summary": "Service address",
             "required": true,
-            "description": "Adresse du service à exécuter",
+            "description": "Address of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "IS_JSON",
-            "summary": "API JSON",
+            "summary": "JSON API",
             "required": false,
-            "description": "Indique si l'API est en JSON",
+            "description": "Indicates if the API is in JSON",
             "schema": {
               "type": "boolean"
             }
@@ -191,40 +191,40 @@
     "/partialUpdate": {
       "post": {
         "tags": ["service", "web", "spatial"],
-        "summary": "Modifie une partie d'une ressource HTTP",
+        "summary": "Modifies part of an HTTP resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Adresse du service",
+            "summary": "Service address",
             "required": true,
-            "description": "Adresse du service à exécuter",
+            "description": "Address of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "IS_JSON",
-            "summary": "API JSON",
+            "summary": "JSON API",
             "required": false,
-            "description": "Indique si l'API est en JSON",
+            "description": "Indicates if the API is in JSON",
             "schema": {
               "type": "boolean"
             }
@@ -236,31 +236,31 @@
     "/remove": {
       "post": {
         "tags": ["service", "web", "spatial"],
-        "summary": "Supprime une ressource HTTP",
+        "summary": "Deletes an HTTP resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Adresse du service",
+            "summary": "Service address",
             "required": true,
-            "description": "Adresse du service à exécuter",
+            "description": "Address of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "IS_JSON",
-            "summary": "API JSON",
+            "summary": "JSON API",
             "required": false,
-            "description": "Indique si l'API est en JSON",
+            "description": "Indicates if the API is in JSON",
             "schema": {
               "type": "boolean"
             }

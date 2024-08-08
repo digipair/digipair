@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-http",
         "main": "libs/skill-http/src/index.ts",
         "tsConfig": "libs/skill-http/tsconfig.lib.json",
-        "assets": ["libs/skill-http/src/index.d.ts", "libs/skill-http/src/schema.json"],
+        "assets": [
+          "libs/skill-http/src/index.d.ts",
+          "libs/skill-http/src/schema.json",
+          "libs/skill-http/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-http/rollup.build.cjs"],
         "project": "libs/skill-http/package.json",
         "compiler": "swc",

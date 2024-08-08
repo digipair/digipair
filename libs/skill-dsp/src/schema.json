@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-dsp",
-    "summary": "LLM via DSP de Stanford",
-    "description": "La compétence permet de gérer la communication avec le LLM en suivant le DSP de Stanford.",
+    "summary": "LLM via Stanford DSP",
+    "description": "The skill allows managing communication with the LLM following the Stanford DSP.",
     "version": "0.1.0",
     "x-icon": "🚀"
   },
@@ -11,13 +11,13 @@
     "/model": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle Générique",
+        "summary": "Generic Model",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom du model",
+            "summary": "Model Name",
             "required": false,
-            "description": "Nom du model LLM à utiliser pour le résumé système",
+            "description": "Name of the LLM model to use for system summary",
             "schema": {
               "type": "string"
             }
@@ -26,7 +26,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options du modèle LLM",
+            "description": "LLM model options",
             "schema": {
               "type": "object"
             }
@@ -38,22 +38,22 @@
     "/modelOpenAi": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle OpenAI",
+        "summary": "OpenAI Model",
         "parameters": [
           {
             "name": "apiKey",
-            "summary": "Api Key",
+            "summary": "API Key",
             "required": false,
-            "description": "Api Key OpenAI",
+            "description": "OpenAI API Key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "apiURL",
-            "summary": "Adresse du serveur",
+            "summary": "Server Address",
             "required": false,
-            "description": "Adresse du serveur OpenAI",
+            "description": "OpenAI server address",
             "schema": {
               "type": "object"
             }
@@ -62,7 +62,7 @@
             "name": "config",
             "summary": "Configuration",
             "required": false,
-            "description": "Configuration du modèle OpenAI",
+            "description": "OpenAI model configuration",
             "schema": {
               "type": "object"
             }
@@ -71,7 +71,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options du modèle OpenAI",
+            "description": "OpenAI model options",
             "schema": {
               "type": "object"
             }
@@ -83,31 +83,31 @@
     "/modelAzureOpenAi": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle Azure OpenAI",
+        "summary": "Azure OpenAI Model",
         "parameters": [
           {
             "name": "apiKey",
-            "summary": "Api Key",
+            "summary": "API Key",
             "required": false,
-            "description": "Api Key Azure OpenAI",
+            "description": "Azure OpenAI API Key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "resourceName",
-            "summary": "Nom de la ressource",
+            "summary": "Resource Name",
             "required": false,
-            "description": "Nom de la ressource Azure OpenAI",
+            "description": "Azure OpenAI resource name",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "deploymentName",
-            "summary": "Nom du déploiement",
+            "summary": "Deployment Name",
             "required": false,
-            "description": "Nom du déploiement Azure OpenAI",
+            "description": "Azure OpenAI deployment name",
             "schema": {
               "type": "string"
             }
@@ -116,7 +116,7 @@
             "name": "version",
             "summary": "Version",
             "required": false,
-            "description": "Version d'API OpenAI",
+            "description": "OpenAI API version",
             "schema": {
               "type": "string"
             }
@@ -125,7 +125,7 @@
             "name": "config",
             "summary": "Configuration",
             "required": false,
-            "description": "Configuration du modèle OpenAI",
+            "description": "OpenAI model configuration",
             "schema": {
               "type": "object"
             }
@@ -134,7 +134,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options du modèle OpenAI",
+            "description": "OpenAI model options",
             "schema": {
               "type": "object"
             }
@@ -146,31 +146,31 @@
     "/modelOllama": {
       "post": {
         "tags": ["service"],
-        "summary": "Modèle Ollama",
+        "summary": "Ollama Model",
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle",
+            "summary": "Model",
             "required": true,
-            "description": "Nom du modèle Ollama à utiliser pour la génération",
+            "description": "Name of the Ollama model to use for generation",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "url",
-            "summary": "Adresse du serveur",
+            "summary": "Server Address",
             "required": false,
-            "description": "Addresse du serveur Ollama à utiliser pour la génération",
+            "description": "Address of the Ollama server to use for generation",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "apiKey",
-            "summary": "Api Key",
+            "summary": "API Key",
             "required": false,
-            "description": "Api Key Ollama",
+            "description": "Ollama API Key",
             "schema": {
               "type": "string"
             }
@@ -179,7 +179,7 @@
             "name": "config",
             "summary": "Configuration",
             "required": false,
-            "description": "Configuration du modèle Ollama",
+            "description": "Ollama model configuration",
             "schema": {
               "type": "object"
             }
@@ -188,7 +188,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options du modèle Ollama",
+            "description": "Ollama model options",
             "schema": {
               "type": "object"
             }
@@ -200,13 +200,13 @@
     "/generate": {
       "post": {
         "tags": ["service"],
-        "summary": "Génération DSP",
+        "summary": "DSP Generation",
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle",
+            "summary": "Model",
             "required": false,
-            "description": "Modèle LLM à utiliser pour la génération",
+            "description": "LLM model to use for generation",
             "schema": {
               "type": "array",
               "items": {
@@ -218,25 +218,25 @@
             "name": "signature",
             "summary": "Signature",
             "required": true,
-            "description": "Signature des données à extraire",
+            "description": "Signature of the data to extract",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "input",
-            "summary": "Données à traiter",
+            "summary": "Data to Process",
             "required": true,
-            "description": "Données d'entrées à traiter",
+            "description": "Input data to process",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "functions",
-            "summary": "Fonctions DSP",
+            "summary": "DSP Functions",
             "required": false,
-            "description": "Fonctions utilisables pour la génération",
+            "description": "Functions usable for generation",
             "schema": {
               "type": "array",
               "items": {
@@ -251,13 +251,13 @@
     "/chainOfThought": {
       "post": {
         "tags": ["service"],
-        "summary": "Chaine de pensée DSP",
+        "summary": "DSP Chain of Thought",
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle",
+            "summary": "Model",
             "required": false,
-            "description": "Modèle LLM à utiliser pour la génération",
+            "description": "LLM model to use for generation",
             "schema": {
               "type": "array",
               "items": {
@@ -269,25 +269,25 @@
             "name": "signature",
             "summary": "Signature",
             "required": true,
-            "description": "Signature des données à extraire",
+            "description": "Signature of the data to extract",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "input",
-            "summary": "Données à traiter",
+            "summary": "Data to Process",
             "required": true,
-            "description": "Données d'entrées à traiter",
+            "description": "Input data to process",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "functions",
-            "summary": "Fonctions DSP",
+            "summary": "DSP Functions",
             "required": false,
-            "description": "Fonctions utilisables pour la chaine de pensée",
+            "description": "Functions usable for the chain of thought",
             "schema": {
               "type": "array",
               "items": {
@@ -306,9 +306,9 @@
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle",
+            "summary": "Model",
             "required": false,
-            "description": "Modèle LLM à utiliser pour la génération",
+            "description": "LLM model to use for generation",
             "schema": {
               "type": "array",
               "items": {
@@ -320,25 +320,25 @@
             "name": "signature",
             "summary": "Signature",
             "required": true,
-            "description": "Signature des données à extraire",
+            "description": "Signature of the data to extract",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "input",
-            "summary": "Données à traiter",
+            "summary": "Data to Process",
             "required": true,
-            "description": "Données d'entrées à traiter",
+            "description": "Input data to process",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "functions",
-            "summary": "Fonctions DSP",
+            "summary": "DSP Functions",
             "required": false,
-            "description": "Fonctions utilisables pour la génération",
+            "description": "Functions usable for generation",
             "schema": {
               "type": "array",
               "items": {
@@ -353,13 +353,13 @@
     "/agent": {
       "post": {
         "tags": ["service"],
-        "summary": "Agent DSP",
+        "summary": "DSP Agent",
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle",
+            "summary": "Model",
             "required": false,
-            "description": "Modèle LLM à utiliser pour la génération",
+            "description": "LLM model to use for generation",
             "schema": {
               "type": "array",
               "items": {
@@ -369,9 +369,9 @@
           },
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": true,
-            "description": "Nom de l'agent",
+            "description": "Name of the agent",
             "schema": {
               "type": "string"
             }
@@ -380,7 +380,7 @@
             "name": "description",
             "summary": "Description",
             "required": true,
-            "description": "Description de l'agent",
+            "description": "Description of the agent",
             "schema": {
               "type": "string"
             }
@@ -389,25 +389,25 @@
             "name": "signature",
             "summary": "Signature",
             "required": true,
-            "description": "Signature des données à extraire",
+            "description": "Signature of the data to extract",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "input",
-            "summary": "Données à traiter",
+            "summary": "Data to Process",
             "required": false,
-            "description": "Données d'entrées à traiter",
+            "description": "Input data to process",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "functions",
-            "summary": "Fonctions DSP",
+            "summary": "DSP Functions",
             "required": false,
-            "description": "Fonctions utilisables pour la génération",
+            "description": "Functions usable for generation",
             "schema": {
               "type": "array",
               "items": {
@@ -417,9 +417,9 @@
           },
           {
             "name": "agents",
-            "summary": "Agents DSP",
+            "summary": "DSP Agents",
             "required": false,
-            "description": "Autres agents utilisables par l'agent",
+            "description": "Other agents usable by the agent",
             "schema": {
               "type": "array",
               "items": {
@@ -436,7 +436,7 @@
     "schemas": {
       "Function": {
         "tags": ["service"],
-        "summary": "Fonction DSP",
+        "summary": "DSP Function",
         "type": "object",
         "properties": {
           "name": {

@@ -13,7 +13,8 @@
         "tsConfig": "libs/skill-mybuddy/tsconfig.lib.json",
         "assets": [
           "libs/skill-mybuddy/src/index.d.ts",
-          "libs/skill-mybuddy/src/schema.json"
+          "libs/skill-mybuddy/src/schema.json",
+          "libs/skill-mybuddy/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-mybuddy/rollup.build.cjs"],
         "project": "libs/skill-mybuddy/package.json",

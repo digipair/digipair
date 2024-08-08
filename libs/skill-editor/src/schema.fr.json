@@ -1,0 +1,298 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-editor",
+    "summary": "Editions des raisonnements",
+    "description": "La compétence permet de gérer l'édition des raisonnements des digipairs'.",
+    "version": "0.1.0",
+    "x-icon": "🏗"
+  },
+  "paths": {
+    "/reasonings": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste les raisonnements",
+        "descriptions": "Liste les raisonnements d'un digipair",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/reasoning": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Informations d'un raisonnement",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setReasoning": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Enregistrement d'un raisonnement",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Contenu",
+            "required": true,
+            "description": "Contenu du raisonnement à sauvegarder",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/removeReasoning": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Suppression d'un raisonnement",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipairs": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste les digipairs",
+        "descriptions": "Liste des digipairs disponibles",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Informations d'un digipair",
+        "descriptions": "Informations d'un digipair",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setDigipair": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Enregistrement d'un digipair",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Contenu",
+            "required": true,
+            "description": "Contenu du raisonnement à sauvegarder",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/removeDigipair": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Suppression d'un digipair",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/addDigipair": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ajoute un digipair",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

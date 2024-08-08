@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-factory",
         "main": "libs/skill-factory/src/index.ts",
         "tsConfig": "libs/skill-factory/tsconfig.lib.json",
-        "assets": ["libs/skill-factory/src/index.d.ts", "libs/skill-factory/src/schema.json"],
+        "assets": [
+          "libs/skill-factory/src/index.d.ts",
+          "libs/skill-factory/src/schema.json",
+          "libs/skill-factory/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-factory/rollup.build.cjs"],
         "project": "libs/skill-factory/package.json",
         "compiler": "swc",

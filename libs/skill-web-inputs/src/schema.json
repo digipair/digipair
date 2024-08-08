@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-inputs",
-    "summary": "Saisie de données dans les boosts",
-    "description": "Cette compétence permet de saisir des données dans les boosts.",
+    "summary": "Data entry in boosts",
+    "description": "This skill allows data entry in boosts.",
     "version": "0.1.0",
     "x-icon": "📥"
   },
@@ -11,32 +11,32 @@
     "/digipair-input-dom-attribute": {
       "post": {
         "tags": ["boost"],
-        "summary": "Lire un attribut d'un élément du DOM",
-        "description": "Lire un attribut d'un élément du DOM",
+        "summary": "Read a DOM element attribute",
+        "description": "Read an attribute of a DOM element",
         "parameters": [
           {
             "name": "selector",
-            "summary": "Sélecteur CSS",
+            "summary": "CSS Selector",
             "required": true,
-            "description": "Sélecteur CSS de l'élément du DOM",
+            "description": "CSS selector of the DOM element",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "attribute",
-            "summary": "Attribut",
+            "summary": "Attribute",
             "required": true,
-            "description": "Nom de l'attribut à lire",
+            "description": "Name of the attribute to read",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost",
             "schema": {
               "type": "boolean"
             }
@@ -48,32 +48,32 @@
     "/digipair-input-fetch": {
       "post": {
         "tags": ["boost"],
-        "summary": "Récupérer les données d'une URL",
-        "description": "Récupérer les données à partir d'une URL",
+        "summary": "Fetch data from a URL",
+        "description": "Fetch data from a URL",
         "parameters": [
           {
             "name": "url",
-            "summary": "URL du service web",
+            "summary": "Web service URL",
             "required": true,
-            "description": "Adresse du service web à appeler",
+            "description": "Address of the web service to call",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "type",
-            "summary": "Type de données",
+            "summary": "Data type",
             "required": true,
-            "description": "Type de données à récupérer (json ou text)",
+            "description": "Type of data to fetch (json or text)",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost",
             "schema": {
               "type": "boolean"
             }
@@ -85,32 +85,32 @@
     "/digipair-input-file": {
       "post": {
         "tags": ["boost"],
-        "summary": "Lecture d'un fichier binaire",
-        "description": "Lecture d'un fichier binaire au format base 64",
+        "summary": "Read a binary file",
+        "description": "Read a binary file in base 64 format",
         "parameters": [
           {
             "name": "label",
-            "summary": "Texte affiché",
+            "summary": "Displayed text",
             "required": false,
-            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "description": "Text displayed to the user to guide them in their input",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "accept",
-            "summary": "Type de fichier",
+            "summary": "File type",
             "required": false,
-            "description": "Type de fichiers acceptés",
+            "description": "Accepted file types",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost",
             "schema": {
               "type": "boolean"
             }
@@ -122,23 +122,23 @@
     "/digipair-input-hidden": {
       "post": {
         "tags": ["boost"],
-        "summary": "Retourne les données cachées",
-        "description": "Retourne au boost les données cachées",
+        "summary": "Return hidden data",
+        "description": "Return hidden data to the boost",
         "parameters": [
           {
             "name": "value",
-            "summary": "Données",
+            "summary": "Data",
             "required": true,
-            "description": "Données à envoyer au boost",
+            "description": "Data to send to the boost",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost",
             "schema": {
               "type": "boolean"
             }
@@ -150,32 +150,32 @@
     "/digipair-input-json": {
       "post": {
         "tags": ["boost"],
-        "summary": "Lecture d'un fichier JSON",
-        "description": "Lecture d'un fichier JSON",
+        "summary": "Read a JSON file",
+        "description": "Read a JSON file",
         "parameters": [
           {
             "name": "label",
-            "summary": "Texte affiché",
+            "summary": "Displayed text",
             "required": false,
-            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "description": "Text displayed to the user to guide them in their input",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "accept",
-            "summary": "Type de fichier",
+            "summary": "File type",
             "required": false,
-            "description": "Type de fichiers acceptés",
+            "description": "Accepted file types",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost",
             "schema": {
               "type": "boolean"
             }
@@ -187,32 +187,32 @@
     "/digipair-input-text": {
       "post": {
         "tags": ["boost"],
-        "summary": "Lecture d'un fichier texte",
-        "description": "Lecture d'un fichier texte",
+        "summary": "Read a text file",
+        "description": "Read a text file",
         "parameters": [
           {
             "name": "label",
-            "summary": "Texte affiché",
+            "summary": "Displayed text",
             "required": false,
-            "description": "Texte affiché à l'utilisateur pour le guider dans sa saisie",
+            "description": "Text displayed to the user to guide them in their input",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "accept",
-            "summary": "Type de fichier",
+            "summary": "File type",
             "required": false,
-            "description": "Type de fichiers acceptés",
+            "description": "Accepted file types",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis ?",
+            "summary": "Required?",
             "required": false,
-            "description": "Champs requis pour exécuter le boost",
+            "description": "Fields required to execute the boost",
             "schema": {
               "type": "boolean"
             }

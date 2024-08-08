@@ -13,7 +13,8 @@
         "tsConfig": "libs/skill-web-jsoneditor/tsconfig.lib.json",
         "assets": [
           "libs/skill-web-jsoneditor/src/index.d.ts",
-          "libs/skill-web-jsoneditor/src/schema.json"
+          "libs/skill-web-jsoneditor/src/schema.json",
+          "libs/skill-web-jsoneditor/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-web-jsoneditor/rollup.build.cjs"],
         "project": "libs/skill-web-jsoneditor/package.json",

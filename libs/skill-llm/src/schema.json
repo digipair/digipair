@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-llm",
-    "summary": "Gestion de modèles LLM",
-    "description": "La compétence @digipair/skill-llm est une compétence qui permet d'utiliser un modèle de langage à grande échelle.",
+    "summary": "LLM Model Management",
+    "description": "The @digipair/skill-llm skill allows the use of a large-scale language model.",
     "version": "0.1.0",
     "x-icon": "🚀"
   },
@@ -11,12 +11,12 @@
     "/invoke": {
       "post": {
         "tags": ["service"],
-        "summary": "Raisonnement LLM",
+        "summary": "LLM Reasoning",
         "parameters": [
           {
             "name": "execute",
             "required": true,
-            "description": "Exécuter",
+            "description": "Execute",
             "schema": {
               "type": "array",
               "items": {
@@ -26,7 +26,7 @@
           },
           {
             "name": "input",
-            "summary": "Données d'entrée",
+            "summary": "Input Data",
             "required": false,
             "description": "input",
             "schema": {
@@ -40,11 +40,11 @@
     "/reasoningStep": {
       "post": {
         "tags": ["service"],
-        "summary": "Etape de raisonnement",
+        "summary": "Reasoning Step",
         "parameters": [
           {
             "name": "attributes",
-            "summary": "Données",
+            "summary": "Data",
             "required": true,
             "description": "attributes",
             "schema": {
@@ -61,23 +61,23 @@
     "/basic": {
       "post": {
         "tags": ["service"],
-        "summary": "Générer",
-        "description": "Génération de texte via un model LLM",
+        "summary": "Generate",
+        "description": "Text generation via an LLM model",
         "parameters": [
           {
             "name": "prompt",
             "summary": "Prompt",
             "required": true,
-            "description": "Prompt à exécuter via le model LLM",
+            "description": "Prompt to execute via the LLM model",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "model",
-            "summary": "Modèle LLM",
+            "summary": "LLM Model",
             "required": false,
-            "description": "Modèle LLM à charger",
+            "description": "LLM model to load",
             "schema": {
               "type": "array",
               "items": {
@@ -89,7 +89,7 @@
             "name": "schema",
             "summary": "Schema",
             "required": false,
-            "description": "Schema JSON des données à extraire",
+            "description": "JSON schema of the data to extract",
             "schema": {
               "type": "object"
             }
@@ -101,14 +101,14 @@
     "/vision": {
       "post": {
         "tags": ["service"],
-        "summary": "Voir",
-        "description": "Utiliser un model LLM qui sait lire des images et du texte en entrée",
+        "summary": "See",
+        "description": "Use an LLM model that can read images and text as input",
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle Vision",
+            "summary": "Vision Model",
             "required": false,
-            "description": "Modèle Vision à charger",
+            "description": "Vision model to load",
             "schema": {
               "type": "array",
               "items": {
@@ -120,7 +120,7 @@
             "name": "prompt",
             "summary": "Prompt",
             "required": true,
-            "description": "Prompt à exécuter sur le modèle LLM",
+            "description": "Prompt to execute on the LLM model",
             "schema": {
               "type": "string"
             }
@@ -129,16 +129,16 @@
             "name": "image",
             "summary": "Image",
             "required": true,
-            "description": "Image en base 64",
+            "description": "Base64 image",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "schema",
-            "summary": "Schema JSON",
+            "summary": "JSON Schema",
             "required": false,
-            "description": "Schema JSON des données à extraire",
+            "description": "JSON schema of the data to extract",
             "schema": {
               "type": "object"
             }
@@ -150,14 +150,14 @@
     "/summarization": {
       "post": {
         "tags": ["service"],
-        "summary": "Résumer un texte",
-        "description": "Résumer un texte via un model LLM",
+        "summary": "Summarize Text",
+        "description": "Summarize text via an LLM model",
         "parameters": [
           {
             "name": "model",
-            "summary": "Modèle LLM",
+            "summary": "LLM Model",
             "required": false,
-            "description": "Modèle LLM à charger",
+            "description": "LLM model to load",
             "schema": {
               "type": "array",
               "items": {
@@ -167,27 +167,27 @@
           },
           {
             "name": "chunkSize",
-            "summary": "Taille des morceaux de texte",
+            "summary": "Text Chunk Size",
             "required": false,
-            "description": "Taille des morceaux de texte",
+            "description": "Size of text chunks",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "type",
-            "summary": "Algorithme",
+            "summary": "Algorithm",
             "required": false,
-            "description": "Algorithme à utiliser pour résumer le texte",
+            "description": "Algorithm to use for summarizing the text",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "prompt",
-            "summary": "Texte",
+            "summary": "Text",
             "required": true,
-            "description": "Texte à résumer",
+            "description": "Text to summarize",
             "schema": {
               "type": "string"
             }
@@ -241,7 +241,7 @@
             "name": "verbose",
             "summary": "Debug",
             "required": false,
-            "description": "Ajoute des logs de debug",
+            "description": "Adds debug logs",
             "schema": {
               "type": "boolean"
             }
@@ -255,15 +255,15 @@
     "schemas": {
       "reasonningStepAttribute": {
         "tags": ["service"],
-        "summary": "Donnée",
+        "summary": "Data",
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
-            "summary": "Nom"
+            "summary": "Name"
           },
           "value": {
-            "summary": "Valeur",
+            "summary": "Value",
             "type": "array",
             "items": {
               "$ref": "https://schemas.digipair.ai/pinsSettings"

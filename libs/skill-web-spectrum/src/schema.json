@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-web-spectrum",
     "summary": "Design System Spectrum",
-    "description": "Cette compétence permet aux utilisateurs de créer des interfaces web en utilisant le design system Spectrum.",
+    "description": "This skill allows users to create web interfaces using the Spectrum design system.",
     "version": "0.1.0",
     "x-icon": "🎨"
   },
@@ -11,41 +11,41 @@
     "/sp-theme": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Thème",
-        "description": "Thème de l'interface",
+        "summary": "Theme",
+        "description": "Interface theme",
         "parameters": [
           {
             "name": "theme",
-            "summary": "Nom",
+            "summary": "Name",
             "required": false,
-            "description": "Nom du thème à appliquer",
+            "description": "Name of the theme to apply",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "color",
-            "summary": "Couleur",
+            "summary": "Color",
             "required": false,
-            "description": "Couleur du thème",
+            "description": "Theme color",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "scale",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Echelle du thème",
+            "description": "Theme scale",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "style",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Personnalisation des styles du thème",
+            "description": "Customization of theme styles",
             "schema": {
               "type": "string"
             }
@@ -57,23 +57,23 @@
     "/sp-table": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Tableau",
-        "description": "Tableau d'élements",
+        "summary": "Table",
+        "description": "Table of elements",
         "parameters": [
           {
             "name": "selects",
-            "summary": "Type de sélection",
+            "summary": "Selection type",
             "required": false,
-            "description": "Type de sélection des lignes du tableau",
+            "description": "Type of row selection in the table",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "selected",
-            "summary": "Lignes sélectionnées",
+            "summary": "Selected rows",
             "required": false,
-            "description": "Lignes sélectionnées à l'initialisation du tableau",
+            "description": "Rows selected at table initialization",
             "schema": {
               "type": "string"
             }
@@ -82,9 +82,9 @@
         "x-events": [
           {
             "name": "change",
-            "summary": "Lors d'une modification",
+            "summary": "On change",
             "required": false,
-            "description": "Action déclenchée lors d'une modification de sélection de lignes dans le tableau",
+            "description": "Action triggered when the selection of rows in the table changes",
             "schema": {
               "type": "array",
               "items": {
@@ -98,8 +98,8 @@
     "/sp-table-head": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Entête",
-        "description": "Entête d'un tableau",
+        "summary": "Header",
+        "description": "Table header",
         "parameters": [],
         "x-events": []
       }
@@ -107,14 +107,14 @@
     "/sp-table-head-cell": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Cellule d'entête",
-        "description": "Cellule d'entête d'un tableau",
+        "summary": "Header cell",
+        "description": "Header cell of a table",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": false,
-            "description": "Texte de la cellule d'entête",
+            "description": "Text of the header cell",
             "schema": {
               "type": "string"
             }
@@ -126,8 +126,8 @@
     "/sp-table-body": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Contenu du tableau",
-        "description": "Contenu d'un tableau",
+        "summary": "Table content",
+        "description": "Content of a table",
         "parameters": [],
         "x-events": []
       }
@@ -135,14 +135,14 @@
     "/sp-table-row": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Ligne",
-        "description": "Ligne d'un tableau",
+        "summary": "Row",
+        "description": "Row of a table",
         "parameters": [
           {
             "name": "value",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": false,
-            "description": "Identifiant de la ligne du tableau",
+            "description": "Identifier of the table row",
             "schema": {
               "type": "string"
             }
@@ -154,14 +154,14 @@
     "/sp-table-cell": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Cellule",
-        "description": "Cellule d'un tableau",
+        "summary": "Cell",
+        "description": "Cell of a table",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": false,
-            "description": "Texte de la cellule",
+            "description": "Text of the cell",
             "schema": {
               "type": "string"
             }
@@ -173,23 +173,23 @@
     "/sp-action-group": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Groupe d'actions",
-        "description": "Groupe d'actions",
+        "summary": "Action group",
+        "description": "Group of actions",
         "parameters": [
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": false,
-            "description": "Identifiant du groupe d'actions",
+            "description": "Identifier of the action group",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille des boutons du groupe d'actions",
+            "description": "Size of the action group buttons",
             "schema": {
               "type": "string"
             }
@@ -198,16 +198,16 @@
             "name": "dir",
             "summary": "Direction",
             "required": false,
-            "description": "Direction de l'écriture du texte (ltr ou rtl)",
+            "description": "Text writing direction (ltr or rtl)",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "style",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Personnalisation des styles du thème",
+            "description": "Customization of theme styles",
             "schema": {
               "type": "string"
             }
@@ -219,50 +219,50 @@
     "/sp-action-button": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Bouton d'action",
-        "description": "Bouton d'action à intégrer dans un groupe d'actions",
+        "summary": "Action button",
+        "description": "Action button to integrate into an action group",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": false,
-            "description": "Texte de la cellule",
+            "description": "Text of the button",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "selected",
-            "summary": "Sélectionné",
+            "summary": "Selected",
             "required": false,
-            "description": "Bouton sélectionné",
+            "description": "Selected button",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "disabled",
-            "summary": "Désactivé",
+            "summary": "Disabled",
             "required": false,
-            "description": "Bouton désactivé",
+            "description": "Disabled button",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "hold-affordance",
-            "summary": "Coche d'actions",
+            "summary": "Action check",
             "required": false,
-            "description": "Affiche une coche indiquant la présence d'une liste d'actions",
+            "description": "Displays a check indicating the presence of a list of actions",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "quiet",
-            "summary": "Discret",
+            "summary": "Quiet",
             "required": false,
-            "description": "Affiche le bouton en mode discret",
+            "description": "Displays the button in quiet mode",
             "schema": {
               "type": "boolean"
             }
@@ -271,7 +271,7 @@
             "name": "toggle",
             "summary": "Toggle",
             "required": false,
-            "description": "Affiche un bouton activable/désactivable",
+            "description": "Displays a toggleable button",
             "schema": {
               "type": "boolean"
             }
@@ -280,16 +280,16 @@
             "name": "slot",
             "summary": "Slot",
             "required": false,
-            "description": "Emplacement de l'icone",
+            "description": "Icon placement",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille du boutons",
+            "description": "Size of the button",
             "schema": {
               "type": "string"
             }
@@ -298,9 +298,9 @@
         "x-events": [
           {
             "name": "click",
-            "summary": "Lors d'un clic",
+            "summary": "On click",
             "required": false,
-            "description": "Action déclenchée lors d'un clic sur le bouton",
+            "description": "Action triggered when clicking the button",
             "schema": {
               "type": "array",
               "items": {
@@ -314,32 +314,32 @@
     "/sp-icon": {
       "post": {
         "tags": ["web"],
-        "summary": "Icone",
-        "description": "Affiche une icone",
+        "summary": "Icon",
+        "description": "Displays an icon",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": false,
-            "description": "Nom de l'icone",
+            "description": "Name of the icon",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille de l'icone",
+            "description": "Size of the icon",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "label",
-            "summary": "Etiquette",
+            "summary": "Label",
             "required": false,
-            "description": "Texte d'étiquette de l'icone",
+            "description": "Label text of the icon",
             "schema": {
               "type": "string"
             }
@@ -348,7 +348,7 @@
             "name": "src",
             "summary": "Image",
             "required": false,
-            "description": "Lien de l'image à afficher",
+            "description": "Link to the image to display",
             "schema": {
               "type": "string"
             }
@@ -357,7 +357,7 @@
             "name": "slot",
             "summary": "Slot",
             "required": false,
-            "description": "Emplacement de l'icone",
+            "description": "Icon placement",
             "schema": {
               "type": "string"
             }
@@ -369,32 +369,32 @@
     "/sp-divider": {
       "post": {
         "tags": ["web"],
-        "summary": "Barre de séparation",
-        "description": "Barre de séparation",
+        "summary": "Divider",
+        "description": "Divider bar",
         "parameters": [
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille de la barre de séparation",
+            "description": "Size of the divider bar",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "style",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Personnalisation des styles du thème",
+            "description": "Customization of theme styles",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "vertical",
-            "summary": "Varticale",
+            "summary": "Vertical",
             "required": false,
-            "description": "Place la barre de séparation verticalement",
+            "description": "Places the divider bar vertically",
             "schema": {
               "type": "boolean"
             }
@@ -406,23 +406,23 @@
     "/sp-search": {
       "post": {
         "tags": ["web"],
-        "summary": "Barre de recherche",
-        "description": "Barre de recherche",
+        "summary": "Search bar",
+        "description": "Search bar",
         "parameters": [
           {
             "name": "disabled",
-            "summary": "Désactivé",
+            "summary": "Disabled",
             "required": false,
-            "description": "Barre de recherche désactivée",
+            "description": "Disabled search bar",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "quiet",
-            "summary": "Discret",
+            "summary": "Quiet",
             "required": false,
-            "description": "Affiche la barre de recherche en mode discret",
+            "description": "Displays the search bar in quiet mode",
             "schema": {
               "type": "boolean"
             }
@@ -431,9 +431,9 @@
         "x-events": [
           {
             "name": "submit",
-            "summary": "Lors de la soumission",
+            "summary": "On submission",
             "required": false,
-            "description": "Action déclenchée lors de la soumission de la recherche",
+            "description": "Action triggered when submitting the search",
             "schema": {
               "type": "array",
               "items": {
@@ -447,8 +447,8 @@
     "/sp-top-nav": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Barre de navigation",
-        "description": "Barre de navigation horizontale",
+        "summary": "Navigation bar",
+        "description": "Horizontal navigation bar",
         "parameters": [],
         "x-events": []
       }
@@ -456,32 +456,32 @@
     "/sp-top-nav-item": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Element de la de navigation",
-        "description": "Element de la barre de navigation horizontale",
+        "summary": "Navigation item",
+        "description": "Item of the horizontal navigation bar",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": false,
-            "description": "Texte de l'élément de navigation",
+            "description": "Text of the navigation item",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "href",
-            "summary": "Adresse",
+            "summary": "Address",
             "required": false,
-            "description": "Adresse de redirection",
+            "description": "Redirection address",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "style",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Personnalisation des styles de la barre de navigation",
+            "description": "Customization of navigation bar styles",
             "schema": {
               "type": "string"
             }
@@ -490,9 +490,9 @@
         "x-events": [
           {
             "name": "click",
-            "summary": "Lors du clic",
+            "summary": "On click",
             "required": false,
-            "description": "Action déclenchée lors d'un clic sur le bouton",
+            "description": "Action triggered when clicking the button",
             "schema": {
               "type": "array",
               "items": {
@@ -506,50 +506,50 @@
     "/sp-action-menu": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Menu d'actions",
-        "description": "Menu d'actions",
+        "summary": "Action menu",
+        "description": "Menu of actions",
         "parameters": [
           {
             "name": "label",
-            "summary": "Etiquette",
+            "summary": "Label",
             "required": false,
-            "description": "Etiquette de description du menu",
+            "description": "Description label of the menu",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "placement",
-            "summary": "Emplacement",
+            "summary": "Placement",
             "required": false,
-            "description": "Emplacement du menu",
+            "description": "Placement of the menu",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "style",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Personnalisation des styles de la barre de navigation",
+            "description": "Customization of navigation bar styles",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "quiet",
-            "summary": "Mode discret",
+            "summary": "Quiet mode",
             "required": false,
-            "description": "Active le mode discret du menu",
+            "description": "Enables quiet mode for the menu",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille des boutons du groupe d'actions",
+            "description": "Size of the action group buttons",
             "schema": {
               "type": "string"
             }
@@ -568,25 +568,25 @@
             "name": "slot",
             "summary": "Position",
             "required": false,
-            "description": "Etiquette de description du menu",
+            "description": "Description label of the menu",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "style",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Personnalisation des styles de la barre de navigation",
+            "description": "Customization of navigation bar styles",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "selectable",
-            "summary": "Sélectionnable",
+            "summary": "Selectable",
             "required": false,
-            "description": "Active le mode sélectionnable du menu",
+            "description": "Enables selectable mode for the menu",
             "schema": {
               "type": "boolean"
             }
@@ -598,50 +598,50 @@
     "/sp-menu-item": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Element du menu",
-        "description": "Element du menu",
+        "summary": "Menu item",
+        "description": "Item of the menu",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": false,
-            "description": "Texte de l'élément du menu",
+            "description": "Text of the menu item",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "href",
-            "summary": "Lien",
+            "summary": "Link",
             "required": false,
-            "description": "Lien de l'élément du menu",
+            "description": "Link of the menu item",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur de l'élément du menu",
+            "description": "Value of the menu item",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "disabled",
-            "summary": "Désactivé",
+            "summary": "Disabled",
             "required": false,
-            "description": "Elément désactivée",
+            "description": "Disabled item",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "selected",
-            "summary": "Sélectionné",
+            "summary": "Selected",
             "required": false,
-            "description": "Sélectionne l'élement dans le menu",
+            "description": "Selects the item in the menu",
             "schema": {
               "type": "boolean"
             }
@@ -650,9 +650,9 @@
         "x-events": [
           {
             "name": "click",
-            "summary": "Lors du clic",
+            "summary": "On click",
             "required": false,
-            "description": "Action déclenchée lors d'un clic sur l'élement du menu",
+            "description": "Action triggered when clicking the menu item",
             "schema": {
               "type": "array",
               "items": {
@@ -666,8 +666,8 @@
     "sp-menu-divider": {
       "post": {
         "tags": ["web"],
-        "summary": "Diviseur du menu",
-        "description": "Diviseur du menu",
+        "summary": "Menu divider",
+        "description": "Menu divider",
         "parameters": [],
         "x-events": []
       }
@@ -675,14 +675,14 @@
     "/sp-illustrated-message": {
       "post": {
         "tags": ["web", "needPins", "requirePins"],
-        "summary": "Message illustré",
-        "description": "Message illustré",
+        "summary": "Illustrated message",
+        "description": "Illustrated message",
         "parameters": [
           {
             "name": "heading",
-            "summary": "Titre",
+            "summary": "Title",
             "required": true,
-            "description": "Titre du message illustré",
+            "description": "Title of the illustrated message",
             "schema": {
               "type": "string"
             }
@@ -691,7 +691,7 @@
             "name": "description",
             "summary": "Description",
             "required": true,
-            "description": "Description du message illustré",
+            "description": "Description of the illustrated message",
             "schema": {
               "type": "string"
             }
@@ -702,41 +702,41 @@
     "/sp-field-label": {
       "post": {
         "tags": ["web"],
-        "summary": "Etiquette de champ",
-        "description": "Etiquette de champ de formulaire",
+        "summary": "Field label",
+        "description": "Form field label",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": true,
-            "description": "Texte de l'élément",
+            "description": "Text of the element",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "for",
-            "summary": "Pour",
+            "summary": "For",
             "required": true,
-            "description": "Identifiant du champ associé",
+            "description": "Identifier of the associated field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "required",
-            "summary": "Requis",
+            "summary": "Required",
             "required": false,
-            "description": "Champ requis",
+            "description": "Required field",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille du champ",
+            "description": "Size of the field",
             "schema": {
               "type": "string"
             }
@@ -747,23 +747,23 @@
     "/sp-textfield": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Champs texte",
-        "description": "Champs texte de formulaire",
+        "summary": "Text field",
+        "description": "Form text field",
         "parameters": [
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": false,
-            "description": "Identifiant du champ",
+            "description": "Identifier of the field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": false,
-            "description": "Nom du champ",
+            "description": "Name of the field",
             "schema": {
               "type": "string"
             }
@@ -772,43 +772,43 @@
             "name": "placeholder",
             "summary": "Placeholder",
             "required": false,
-            "description": "Texte de placeholder du champ",
+            "description": "Placeholder text of the field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "valide",
-            "summary": "Valide",
+            "summary": "Valid",
             "required": false,
-            "description": "Champ valide",
+            "description": "Valid field",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "invalide",
-            "summary": "Invalide",
+            "summary": "Invalid",
             "required": false,
-            "description": "Champ invalide",
+            "description": "Invalid field",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur du champ",
+            "description": "Value of the field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "quiet",
-            "summary": "Discret",
+            "summary": "Quiet",
             "required": false,
-            "description": "Champ en mode discret",
+            "description": "Field in quiet mode",
             "schema": {
               "type": "boolean"
             }
@@ -817,25 +817,25 @@
             "name": "type",
             "summary": "Type",
             "required": false,
-            "description": "Type du champ",
+            "description": "Type of the field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "multiline",
-            "summary": "Multiligne",
+            "summary": "Multiline",
             "required": false,
-            "description": "Champ multiligne",
+            "description": "Multiline field",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "grows",
-            "summary": "Grandit automatiquement",
+            "summary": "Grows automatically",
             "required": false,
-            "description": "Champ qui grandit automatiquement",
+            "description": "Field that grows automatically",
             "schema": {
               "type": "boolean"
             }
@@ -844,25 +844,25 @@
             "name": "pattern",
             "summary": "Pattern",
             "required": false,
-            "description": "Pattern du champ",
+            "description": "Pattern of the field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille du champ",
+            "description": "Size of the field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "style",
-            "summary": "Style personnalisé",
+            "summary": "Custom style",
             "required": false,
-            "description": "Personnalisation des styles",
+            "description": "Customization of styles",
             "schema": {
               "type": "string"
             }
@@ -871,9 +871,9 @@
         "x-events": [
           {
             "name": "input",
-            "summary": "Lors de la saisie",
+            "summary": "On input",
             "required": false,
-            "description": "Action déclenchée lors de la saisie dans le champ",
+            "description": "Action triggered when typing in the field",
             "schema": {
               "type": "array",
               "items": {
@@ -887,23 +887,23 @@
     "/sp-help-text": {
       "post": {
         "tags": ["web"],
-        "summary": "Texte d'aide",
-        "description": "Texte d'aide",
+        "summary": "Help text",
+        "description": "Help text",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": true,
-            "description": "Texte de l'élément",
+            "description": "Text of the element",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "slot",
-            "summary": "Emplacement",
+            "summary": "Placement",
             "required": false,
-            "description": "Emplacement du texte d'aide",
+            "description": "Placement of the help text",
             "schema": {
               "type": "string"
             }
@@ -914,41 +914,41 @@
     "/sp-button": {
       "post": {
         "tags": ["web", "needPins"],
-        "summary": "Boutton",
-        "description": "Boutton",
+        "summary": "Button",
+        "description": "Button",
         "parameters": [
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": false,
-            "description": "Identifiant du champ",
+            "description": "Identifier of the field",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": false,
-            "description": "Texte de l'élément",
+            "description": "Text of the element",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "href",
-            "summary": "Adresse",
+            "summary": "Address",
             "required": false,
-            "description": "Adresse de redirection du bouton",
+            "description": "Redirection address of the button",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "target",
-            "summary": "Cible",
+            "summary": "Target",
             "required": false,
-            "description": "Cible de redirection du bouton",
+            "description": "Redirection target of the button",
             "schema": {
               "type": "string"
             }
@@ -957,7 +957,7 @@
             "name": "autofocus",
             "summary": "Autofocus",
             "required": false,
-            "description": "Sélection automatique du bouton",
+            "description": "Automatic selection of the button",
             "schema": {
               "type": "boolean"
             }
@@ -966,61 +966,61 @@
             "name": "type",
             "summary": "Type",
             "required": false,
-            "description": "Type du bouton",
+            "description": "Type of the button",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille du bouton",
+            "description": "Size of the button",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "variant",
-            "summary": "Variante",
+            "summary": "Variant",
             "required": false,
-            "description": "Variante du bouton",
+            "description": "Variant of the button",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "label",
-            "summary": "Etiquette",
+            "summary": "Label",
             "required": false,
-            "description": "Etiquette du bouton",
+            "description": "Label of the button",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "icon-only",
-            "summary": "Icône seule",
+            "summary": "Icon only",
             "required": false,
-            "description": "Affiche l'icône seule",
+            "description": "Displays the icon only",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "treatment",
-            "summary": "Traitement",
+            "summary": "Treatment",
             "required": false,
-            "description": "Traitement du bouton",
+            "description": "Treatment of the button",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "disabled",
-            "summary": "Désactivé",
+            "summary": "Disabled",
             "required": false,
-            "description": "Bouton désactivé",
+            "description": "Disabled button",
             "schema": {
               "type": "boolean"
             }
@@ -1029,9 +1029,9 @@
         "x-events": [
           {
             "name": "click",
-            "summary": "Lors du clic",
+            "summary": "On click",
             "required": false,
-            "description": "Action déclenchée lors du clic sur lesboutton",
+            "description": "Action triggered when clicking the button",
             "schema": {
               "type": "array",
               "items": {
@@ -1045,41 +1045,41 @@
     "/sp-toast": {
       "post": {
         "tags": ["web"],
-        "summary": "Message d'alerte",
-        "description": "Message d'alerte",
+        "summary": "Alert message",
+        "description": "Alert message",
         "parameters": [
           {
             "name": "textContent",
-            "summary": "Texte",
+            "summary": "Text",
             "required": true,
-            "description": "Texte de l'élément",
+            "description": "Text of the element",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "open",
-            "summary": "Ouvert",
+            "summary": "Open",
             "required": true,
-            "description": "Affiche le message d'alerte",
+            "description": "Displays the alert message",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "variant",
-            "summary": "Variante",
+            "summary": "Variant",
             "required": false,
-            "description": "Variante du message d'alerte",
+            "description": "Variant of the alert message",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": false,
-            "description": "Identifiant du message d'alerte",
+            "description": "Identifier of the alert message",
             "schema": {
               "type": "string"
             }

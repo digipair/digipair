@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-microsoft",
         "main": "libs/skill-microsoft/src/index.ts",
         "tsConfig": "libs/skill-microsoft/tsconfig.lib.json",
-        "assets": ["libs/skill-microsoft/src/index.d.ts", "libs/skill-microsoft/src/schema.json"],
+        "assets": [
+          "libs/skill-microsoft/src/index.d.ts",
+          "libs/skill-microsoft/src/schema.json",
+          "libs/skill-microsoft/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-microsoft/rollup.build.cjs"],
         "project": "libs/skill-microsoft/package.json",
         "compiler": "swc",

@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-smoobu",
         "main": "libs/skill-smoobu/src/index.ts",
         "tsConfig": "libs/skill-smoobu/tsconfig.lib.json",
-        "assets": ["libs/skill-smoobu/src/index.d.ts", "libs/skill-smoobu/src/schema.json"],
+        "assets": [
+          "libs/skill-smoobu/src/index.d.ts",
+          "libs/skill-smoobu/src/schema.json",
+          "libs/skill-smoobu/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-smoobu/rollup.build.cjs"],
         "project": "libs/skill-smoobu/package.json",
         "compiler": "swc",

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-linkedin",
-    "summary": "Communication avec les services LinkedIn",
-    "description": "Cette compétence permet d'utiliser les services LinkedIn",
+    "summary": "Communication with LinkedIn services",
+    "description": "This skill allows the use of LinkedIn services",
     "version": "0.1.0",
     "x-icon": "👤"
   },
@@ -11,58 +11,58 @@
     "/request": {
       "post": {
         "tags": ["service"],
-        "summary": "Exécute un service LinkedIn",
+        "summary": "Executes a LinkedIn service",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "method",
-            "summary": "Méthode HTTP",
+            "summary": "HTTP method",
             "required": false,
-            "description": "Méthode HTTP à utiliser",
+            "description": "HTTP method to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "TOKEN",
-            "summary": "Jeton d'accès",
+            "summary": "Access token",
             "required": false,
-            "description": "Jeton d'accès à utiliser",
+            "description": "Access token to use",
             "schema": {
               "type": "string"
             }
@@ -74,49 +74,49 @@
     "/create": {
       "post": {
         "tags": ["service"],
-        "summary": "Ajoute une ressource LinkedIn",
+        "summary": "Adds a LinkedIn resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "TOKEN",
-            "summary": "Jeton d'accès",
+            "summary": "Access token",
             "required": false,
-            "description": "Jeton d'accès à utiliser",
+            "description": "Access token to use",
             "schema": {
               "type": "string"
             }
@@ -128,40 +128,40 @@
     "/read": {
       "post": {
         "tags": ["service"],
-        "summary": "Lit une ressource LinkedIn",
+        "summary": "Reads a LinkedIn resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "TOKEN",
-            "summary": "Jeton d'accès",
+            "summary": "Access token",
             "required": false,
-            "description": "Jeton d'accès à utiliser",
+            "description": "Access token to use",
             "schema": {
               "type": "string"
             }
@@ -173,49 +173,49 @@
     "/update": {
       "post": {
         "tags": ["service"],
-        "summary": "Modifie une ressource LinkedIn",
+        "summary": "Modifies a LinkedIn resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "TOKEN",
-            "summary": "Jeton d'accès",
+            "summary": "Access token",
             "required": false,
-            "description": "Jeton d'accès à utiliser",
+            "description": "Access token to use",
             "schema": {
               "type": "string"
             }
@@ -227,49 +227,49 @@
     "/partialUpdate": {
       "post": {
         "tags": ["service"],
-        "summary": "Modifie une partie d'une ressource LinkedIn",
+        "summary": "Modifies part of a LinkedIn resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à envoyer",
+            "description": "Value to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "TOKEN",
-            "summary": "Jeton d'accès",
+            "summary": "Access token",
             "required": false,
-            "description": "Jeton d'accès à utiliser",
+            "description": "Access token to use",
             "schema": {
               "type": "string"
             }
@@ -281,40 +281,40 @@
     "/remove": {
       "post": {
         "tags": ["service"],
-        "summary": "Supprime une ressource LinkedIn",
+        "summary": "Deletes a LinkedIn resource",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin du service",
+            "summary": "Service path",
             "required": true,
-            "description": "Chemin du service à exécuter",
+            "description": "Path of the service to execute",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "version",
-            "summary": "Version de l'API",
+            "summary": "API version",
             "required": false,
-            "description": "Version de l'API à utiliser",
+            "description": "API version to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "headers",
-            "summary": "En-têtes",
+            "summary": "Headers",
             "required": false,
-            "description": "En-têtes à envoyer",
+            "description": "Headers to send",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "TOKEN",
-            "summary": "Jeton d'accès",
+            "summary": "Access token",
             "required": false,
-            "description": "Jeton d'accès à utiliser",
+            "description": "Access token to use",
             "schema": {
               "type": "string"
             }

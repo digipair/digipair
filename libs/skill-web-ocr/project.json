@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-web-ocr",
         "main": "libs/skill-web-ocr/src/index.ts",
         "tsConfig": "libs/skill-web-ocr/tsconfig.lib.json",
-        "assets": ["libs/skill-web-ocr/src/index.d.ts", "libs/skill-web-ocr/src/schema.json"],
+        "assets": [
+          "libs/skill-web-ocr/src/index.d.ts",
+          "libs/skill-web-ocr/src/schema.json",
+          "libs/skill-web-ocr/src/schema.fr.json"
+        ],
         "project": "libs/skill-web-ocr/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"],

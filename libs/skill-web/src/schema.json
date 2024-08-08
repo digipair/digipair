@@ -2,24 +2,24 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web",
-    "summary": "Affichage de pages web",
-    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet.",
+    "summary": "Web page display",
+    "description": "This skill encompasses the knowledge and use of web technologies necessary to develop and maintain websites.",
     "version": "0.1.0",
     "x-icon": "🌐"
   },
   "paths": {
     "/executeFactory": {
       "post": {
-        "summary": "Dans la factory",
-        "description": "Exécution d'une liste de capacité dans la factory",
+        "summary": "In the factory",
+        "description": "Execution of a list of capabilities in the factory",
         "tags": ["web"],
         "metadata": [],
         "parameters": [
           {
             "name": "execute",
-            "summary": "Exécuter",
+            "summary": "Execute",
             "required": true,
-            "description": "Liste de capacité à exécuter",
+            "description": "List of capabilities to execute",
             "schema": {
               "type": "array",
               "items": {
@@ -36,16 +36,16 @@
   },
   "x-scene-blocks": {
     "/page": {
-      "summary": "Page internet",
-      "description": "Affichage d'une page d'un site internet.",
+      "summary": "Web page",
+      "description": "Display of a page from a website.",
       "tags": ["web", "service"],
       "metadata": [],
       "parameters": [
         {
           "name": "body",
-          "summary": "Contenu",
+          "summary": "Content",
           "required": true,
-          "description": "Contenu de la page",
+          "description": "Content of the page",
           "schema": {
             "type": "array",
             "items": {
@@ -55,45 +55,45 @@
         },
         {
           "name": "title",
-          "summary": "Titre",
+          "summary": "Title",
           "required": false,
-          "description": "Titre de la page",
+          "description": "Title of the page",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "favicon",
-          "summary": "Icone de la page",
+          "summary": "Page icon",
           "required": false,
-          "description": "Icone de la page",
+          "description": "Icon of the page",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "styleHtml",
-          "summary": "Style CSS du HTML",
+          "summary": "HTML CSS style",
           "required": false,
-          "description": "Style css de l'élément HTML",
+          "description": "CSS style of the HTML element",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "styleBody",
-          "summary": "Style CSS du BODY",
+          "summary": "BODY CSS style",
           "required": false,
-          "description": "Style css de l'élément BODY",
+          "description": "CSS style of the BODY element",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "factoryInitialize",
-          "summary": "Lors de la l'initialisation coté factory",
+          "summary": "During factory initialization",
           "required": false,
-          "description": "Action déclenchée lors de l'initialisation coté factory",
+          "description": "Action triggered during factory initialization",
           "schema": {
             "type": "array",
             "items": {
@@ -103,9 +103,9 @@
         },
         {
           "name": "browserInitialize",
-          "summary": "Lors de la l'initialisation coté navigateur",
+          "summary": "During browser initialization",
           "required": false,
-          "description": "Action déclenchée lors de l'initialisation coté navigateur",
+          "description": "Action triggered during browser initialization",
           "schema": {
             "type": "array",
             "items": {
@@ -115,9 +115,9 @@
         },
         {
           "name": "browserLoad",
-          "summary": "Lorsque la page est chargée",
+          "summary": "When the page is loaded",
           "required": false,
-          "description": "Action déclenchée lorsque la page est chargée coté navigateur",
+          "description": "Action triggered when the page is loaded in the browser",
           "schema": {
             "type": "array",
             "items": {

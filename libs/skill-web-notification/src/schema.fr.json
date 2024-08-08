@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-notification",
+    "summary": "Affichage de notification",
+    "description": "Affichage de notifications sur une page web",
+    "version": "0.1.0",
+    "x-icon": "🔔"
+  },
+  "paths": {
+    "/information": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche d'une information",
+        "description": "Affiche une notification d'information",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/error": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche d'une erreur",
+        "description": "Affiche une notification d'erreur",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/confirm": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche une confirmation",
+        "description": "Affiche une notification de confirmation",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ok",
+            "summary": "Si c'est confirmé",
+            "required": false,
+            "description": "Actions à effectuer si c'est confirmé",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ko",
+            "summary": "Sinon",
+            "required": false,
+            "description": "Actions à effectuer si ce n'est pas confirmé confirmé",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/alert": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Affiche une alerte",
+        "description": "Affiche une notification d'alerte",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à afficher",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

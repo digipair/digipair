@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-web-editor",
         "main": "libs/skill-web-editor/src/index.ts",
         "tsConfig": "libs/skill-web-editor/tsconfig.lib.json",
-        "assets": ["libs/skill-web-editor/src/index.d.ts", "libs/skill-web-editor/src/schema.json"],
+        "assets": [
+          "libs/skill-web-editor/src/index.d.ts",
+          "libs/skill-web-editor/src/schema.json",
+          "libs/skill-web-editor/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-web-editor/rollup.build.cjs"],
         "project": "libs/skill-web-editor/package.json",
         "compiler": "swc",

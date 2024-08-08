@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-editor",
-    "summary": "Editions des raisonnements",
-    "description": "La compétence permet de gérer l'édition des raisonnements des digipairs'.",
+    "summary": "Editing Reasonings",
+    "description": "The skill allows managing the editing of the reasonings of digipairs.",
     "version": "0.1.0",
     "x-icon": "🏗"
   },
@@ -11,14 +11,14 @@
     "/reasonings": {
       "post": {
         "tags": ["service"],
-        "summary": "Liste les raisonnements",
-        "descriptions": "Liste les raisonnements d'un digipair",
+        "summary": "List Reasonings",
+        "descriptions": "Lists the reasonings of a digipair",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -27,7 +27,7 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }
@@ -39,13 +39,13 @@
     "/reasoning": {
       "post": {
         "tags": ["service"],
-        "summary": "Informations d'un raisonnement",
+        "summary": "Reasoning Information",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -54,16 +54,16 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "reasoning",
-            "summary": "Raisonnement",
+            "summary": "Reasoning",
             "required": true,
-            "description": "Nom du raisonnement",
+            "description": "Name of the reasoning",
             "schema": {
               "type": "string"
             }
@@ -75,13 +75,13 @@
     "/setReasoning": {
       "post": {
         "tags": ["service"],
-        "summary": "Enregistrement d'un raisonnement",
+        "summary": "Register a Reasoning",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -90,25 +90,25 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "reasoning",
-            "summary": "Raisonnement",
+            "summary": "Reasoning",
             "required": true,
-            "description": "Nom du raisonnement",
+            "description": "Name of the reasoning",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "value",
-            "summary": "Contenu",
+            "summary": "Content",
             "required": true,
-            "description": "Contenu du raisonnement à sauvegarder",
+            "description": "Content of the reasoning to be saved",
             "schema": {
               "type": "object"
             }
@@ -120,13 +120,13 @@
     "/removeReasoning": {
       "post": {
         "tags": ["service"],
-        "summary": "Suppression d'un raisonnement",
+        "summary": "Remove a Reasoning",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -135,16 +135,16 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "reasoning",
-            "summary": "Raisonnement",
+            "summary": "Reasoning",
             "required": true,
-            "description": "Nom du raisonnement",
+            "description": "Name of the reasoning",
             "schema": {
               "type": "string"
             }
@@ -156,14 +156,14 @@
     "/digipairs": {
       "post": {
         "tags": ["service"],
-        "summary": "Liste les digipairs",
-        "descriptions": "Liste des digipairs disponibles",
+        "summary": "List Digipairs",
+        "descriptions": "Lists the available digipairs",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -175,14 +175,14 @@
     "/digipair": {
       "post": {
         "tags": ["service"],
-        "summary": "Informations d'un digipair",
-        "descriptions": "Informations d'un digipair",
+        "summary": "Digipair Information",
+        "descriptions": "Information about a digipair",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -191,7 +191,7 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }
@@ -203,13 +203,13 @@
     "/setDigipair": {
       "post": {
         "tags": ["service"],
-        "summary": "Enregistrement d'un digipair",
+        "summary": "Register a Digipair",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -218,16 +218,16 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "value",
-            "summary": "Contenu",
+            "summary": "Content",
             "required": true,
-            "description": "Contenu du raisonnement à sauvegarder",
+            "description": "Content of the reasoning to be saved",
             "schema": {
               "type": "object"
             }
@@ -239,13 +239,13 @@
     "/removeDigipair": {
       "post": {
         "tags": ["service"],
-        "summary": "Suppression d'un digipair",
+        "summary": "Remove a Digipair",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -254,7 +254,7 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }
@@ -266,13 +266,13 @@
     "/addDigipair": {
       "post": {
         "tags": ["service"],
-        "summary": "Ajoute un digipair",
+        "summary": "Add a Digipair",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire du digipair",
+            "description": "Access path to the digipair's directory",
             "schema": {
               "type": "string"
             }
@@ -281,7 +281,7 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair",
+            "description": "Name of the digipair",
             "schema": {
               "type": "string"
             }

@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-linkedin",
         "main": "libs/skill-linkedin/src/index.ts",
         "tsConfig": "libs/skill-linkedin/tsconfig.lib.json",
-        "assets": ["libs/skill-linkedin/src/index.d.ts", "libs/skill-linkedin/src/schema.json"],
+        "assets": [
+          "libs/skill-linkedin/src/index.d.ts",
+          "libs/skill-linkedin/src/schema.json",
+          "libs/skill-linkedin/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-linkedin/rollup.build.cjs"],
         "project": "libs/skill-linkedin/package.json",
         "compiler": "swc",

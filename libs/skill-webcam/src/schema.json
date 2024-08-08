@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-webcam",
-    "summary": "Gestion de la webcam",
-    "description": "Cette compétence permet d'accéder aux images des webcams.",
+    "summary": "Webcam Management",
+    "description": "This skill allows access to webcam images.",
     "version": "0.1.0",
     "x-icon": "📷"
   },
@@ -11,41 +11,41 @@
     "/capture": {
       "post": {
         "tags": ["service"],
-        "summary": "Capture de la webcam",
-        "description": "Capture une image de la webcam",
+        "summary": "Webcam Capture",
+        "description": "Captures an image from the webcam",
         "parameters": [
           {
             "name": "width",
-            "summary": "Largeur",
+            "summary": "Width",
             "required": false,
-            "description": "Largeur de l'image",
+            "description": "Width of the image",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "height",
-            "summary": "Hauteur",
+            "summary": "Height",
             "required": false,
-            "description": "Hauteur de l'image",
+            "description": "Height of the image",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "quality",
-            "summary": "Qualité",
+            "summary": "Quality",
             "required": false,
-            "description": "Qualité de l'image",
+            "description": "Quality of the image",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "output",
-            "summary": "Type de sortie",
+            "summary": "Output Type",
             "required": false,
-            "description": "Type de sortie de l'image (jpeg, png)",
+            "description": "Output type of the image (jpeg, png)",
             "schema": {
               "type": "string"
             }
@@ -54,16 +54,16 @@
             "name": "device",
             "summary": "Camera",
             "required": false,
-            "description": "Nom de la caméra à utiliser",
+            "description": "Name of the camera to use",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "verbose",
-            "summary": "Verbeux",
+            "summary": "Verbose",
             "required": false,
-            "description": "Affiche des informations supplémentaires",
+            "description": "Displays additional information",
             "schema": {
               "type": "boolean"
             }
@@ -75,8 +75,8 @@
     "/list": {
       "post": {
         "tags": ["service"],
-        "summary": "Liste des webcams",
-        "description": "Retourne la liste des webcams présentent sur le système",
+        "summary": "List of Webcams",
+        "description": "Returns the list of webcams present on the system",
         "parameters": [],
         "x-events": []
       }

@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-webcam",
         "main": "libs/skill-webcam/src/index.ts",
         "tsConfig": "libs/skill-webcam/tsconfig.lib.json",
-        "assets": ["libs/skill-webcam/src/index.d.ts", "libs/skill-webcam/src/schema.json"],
+        "assets": [
+          "libs/skill-webcam/src/index.d.ts",
+          "libs/skill-webcam/src/schema.json",
+          "libs/skill-webcam/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-webcam/rollup.build.cjs"],
         "project": "libs/skill-webcam/package.json",
         "compiler": "swc",

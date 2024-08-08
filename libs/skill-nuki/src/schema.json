@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-nuki",
-    "summary": "Gestion d'une serrure Nuki",
-    "description": "Cette compétence permet de gérer une serrure Nuki",
+    "summary": "Management of a Nuki lock",
+    "description": "This skill allows you to manage a Nuki lock",
     "version": "0.1.0",
     "x-icon": "🔐"
   },
@@ -11,31 +11,31 @@
     "/unlock": {
       "post": {
         "tags": ["service"],
-        "summary": "Ouvre une serrure Nuki",
+        "summary": "Unlocks a Nuki lock",
         "parameters": [
           {
             "name": "id",
-            "summary": "Identifiant de la serrure",
+            "summary": "Lock identifier",
             "required": true,
-            "description": "Identifiant de la serrure Nuki",
+            "description": "Identifier of the Nuki lock",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "NUKI_API_KEY",
-            "summary": "Clé d'API",
+            "summary": "API key",
             "required": false,
-            "description": "Clé d'API Nuki",
+            "description": "Nuki API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "NUKI_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API endpoint",
             "required": false,
-            "description": "Endpoint de l'API Nuki",
+            "description": "Nuki API endpoint",
             "schema": {
               "type": "string"
             }
@@ -47,31 +47,31 @@
     "/lock": {
       "post": {
         "tags": ["service"],
-        "summary": "Ferme une serrure Nuki",
+        "summary": "Locks a Nuki lock",
         "parameters": [
           {
             "name": "id",
-            "summary": "Identifiant de la serrure",
+            "summary": "Lock identifier",
             "required": true,
-            "description": "Identifiant de la serrure Nuki",
+            "description": "Identifier of the Nuki lock",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "NUKI_API_KEY",
-            "summary": "Clé d'API",
+            "summary": "API key",
             "required": false,
-            "description": "Clé d'API Nuki",
+            "description": "Nuki API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "NUKI_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API endpoint",
             "required": false,
-            "description": "Endpoint de l'API Nuki",
+            "description": "Nuki API endpoint",
             "schema": {
               "type": "string"
             }

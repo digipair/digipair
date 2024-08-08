@@ -1,0 +1,331 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-linkedin",
+    "summary": "Communication avec les services LinkedIn",
+    "description": "Cette compétence permet d'utiliser les services LinkedIn",
+    "version": "0.1.0",
+    "x-icon": "👤"
+  },
+  "paths": {
+    "/request": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Exécute un service LinkedIn",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "method",
+            "summary": "Méthode HTTP",
+            "required": false,
+            "description": "Méthode HTTP à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
+            "required": false,
+            "description": "Jeton d'accès à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/create": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ajoute une ressource LinkedIn",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
+            "required": false,
+            "description": "Jeton d'accès à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/read": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Lit une ressource LinkedIn",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
+            "required": false,
+            "description": "Jeton d'accès à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/update": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modifie une ressource LinkedIn",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
+            "required": false,
+            "description": "Jeton d'accès à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/partialUpdate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modifie une partie d'une ressource LinkedIn",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
+            "required": false,
+            "description": "Jeton d'accès à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/remove": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Supprime une ressource LinkedIn",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin du service",
+            "required": true,
+            "description": "Chemin du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version de l'API",
+            "required": false,
+            "description": "Version de l'API à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "TOKEN",
+            "summary": "Jeton d'accès",
+            "required": false,
+            "description": "Jeton d'accès à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

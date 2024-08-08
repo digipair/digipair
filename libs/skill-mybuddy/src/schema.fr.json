@@ -1,0 +1,1282 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-mybuddy",
+    "summary": "Gestion d'un robot myBuddy",
+    "description": "Cette compétence permet de gérer un robot elephant robotics myBuddy.",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/sendAngles": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoie la liste des angles",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "angles",
+            "summary": "Liste des angles",
+            "required": true,
+            "description": "Liste des angles à envoyer",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getAngles": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère la liste des angles",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/powerOn": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Allume tous les servos",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/powerOff": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Éteint tous les servos",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/releaseAllServos": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Relâche tous les servos",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sendAngle": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoie un angle spécifique",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant du servo",
+            "required": true,
+            "description": "Identifiant du servo concerné",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "degree",
+            "summary": "Angle",
+            "required": true,
+            "description": "Angle à envoyer",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sendCoord": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoie les coordonnées",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Coordonnée à modifier",
+            "required": true,
+            "description": "Identifiant de la coordonnée à envoyer",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "coord",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Valeur de la coordonnée à envoyer",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sendCoords": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoie les coordonnées",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "coords",
+            "summary": "Liste des coordonnées",
+            "required": true,
+            "description": "Liste des coordonnées à envoyer",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "Mode",
+            "required": false,
+            "description": "Mode de déplacement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/programPause": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Pause le programme",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/programResume": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Reprend le programme",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/stop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Arrête le programme",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/jogAngle": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Déplace un angle spécifique",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "joint_id",
+            "summary": "Identifiant de l'articulation",
+            "required": true,
+            "description": "Identifiant de l'articulation concernée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "direction",
+            "summary": "Direction",
+            "required": true,
+            "description": "Direction de déplacement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/jogCoord": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Déplace une coordonnée spécifique",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "coord_id",
+            "summary": "Identifiant de la coordonnée",
+            "required": true,
+            "description": "Identifiant de la coordonnée concernée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "direction",
+            "summary": "Direction",
+            "required": true,
+            "description": "Direction de déplacement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/jogStop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Arrête le déplacement",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setEncoder": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit une valeur d'encoder",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "joint_id",
+            "summary": "Identifiant de l'articulation",
+            "required": true,
+            "description": "Identifiant de l'articulation concernée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "encoder",
+            "summary": "Valeur de l'encoder",
+            "required": true,
+            "description": "Valeur de l'encoder à définir",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setEncoders": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit les valeurs des encoders",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "encoders",
+            "summary": "Liste des valeurs des encoders",
+            "required": true,
+            "description": "Liste des valeurs des encoders à définir",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setSpeed": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit la vitesse",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": true,
+            "description": "Vitesse à définir",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setServoData": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit les données d'un servo",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "servo_no",
+            "summary": "Numéro du servo",
+            "required": true,
+            "description": "Numéro du servo concerné",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "data_id",
+            "summary": "Identifiant des données",
+            "required": true,
+            "description": "Identifiant des données à définir",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Valeur à définir",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setServoCalibration": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit l'étalonnage d'un servo",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "servo_no",
+            "summary": "Numéro du servo",
+            "required": true,
+            "description": "Numéro du servo concerné",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/releaseServo": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Relâche un servo spécifique",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "servo_no",
+            "summary": "Numéro du servo",
+            "required": true,
+            "description": "Numéro du servo concerné",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/focusServo": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Active un servo spécifique",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "servo_no",
+            "summary": "Numéro du servo",
+            "required": true,
+            "description": "Numéro du servo concerné",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setPinMode": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit le mode d'une broche",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_no",
+            "summary": "Numéro de la broche",
+            "required": true,
+            "description": "Numéro de la broche concernée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_mode",
+            "summary": "Mode de la broche",
+            "required": true,
+            "description": "Mode de la broche à définir",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setDigitalOutput": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit la sortie numérique d'une broche",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_no",
+            "summary": "Numéro de la broche",
+            "required": true,
+            "description": "Numéro de la broche concernée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_signal",
+            "summary": "Signal de la broche",
+            "required": true,
+            "description": "Signal de la broche à définir",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setGripperState": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit l'état du gripper",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "flag",
+            "summary": "État du gripper",
+            "required": true,
+            "description": "État du gripper à définir",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setGripperValue": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit la valeur du gripper",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur du gripper",
+            "required": true,
+            "description": "Valeur du gripper à définir",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "speed",
+            "summary": "Vitesse",
+            "required": false,
+            "description": "Vitesse de déplacement",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setGripperIni": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit l'initialisation du gripper",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/setBasicOutput": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit la sortie de base d'une broche",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_no",
+            "summary": "Numéro de la broche",
+            "required": true,
+            "description": "Numéro de la broche concernée",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_signal",
+            "summary": "Signal de la broche",
+            "required": true,
+            "description": "Signal de la broche à définir",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setColor": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définit la couleur RGB",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "r",
+            "summary": "Valeur du rouge",
+            "required": true,
+            "description": "Valeur du rouge à définir",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "g",
+            "summary": "Valeur du vert",
+            "required": true,
+            "description": "Valeur du vert à définir",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "b",
+            "summary": "Valeur du bleu",
+            "required": true,
+            "description": "Valeur du bleu à définir",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/isPowerOn": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Vérifie si le device est allumé",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/isControllerConnect": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Vérifie si le contrôleur est connecté",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getCoords": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère les coordonnées",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/isInPosition": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Vérifie si le device est en position",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Données de position",
+            "required": true,
+            "description": "Données de position à vérifier",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "flag",
+            "summary": "Indicateur",
+            "required": true,
+            "description": "Indicateur de position",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getEncoder": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère la valeur d'un encoder",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "joint_id",
+            "summary": "Identifiant de l'articulation",
+            "required": true,
+            "description": "Identifiant de l'articulation concernée",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getEncoders": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère les valeurs des encoders",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getSpeed": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère la vitesse",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getJointMin": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère l'angle minimum d'une articulation",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "joint_id",
+            "summary": "Identifiant de l'articulation",
+            "required": true,
+            "description": "Identifiant de l'articulation concernée",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getJointMax": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère l'angle maximum d'une articulation",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "joint_id",
+            "summary": "Identifiant de l'articulation",
+            "required": true,
+            "description": "Identifiant de l'articulation concernée",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/isServoEnable": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Vérifie si un servo est activé",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "servo_id",
+            "summary": "Identifiant du servo",
+            "required": true,
+            "description": "Identifiant du servo concerné",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/isAllServoEnable": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Vérifie si tous les servos sont activés",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getServodata": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère les données d'un servo",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "servo_no",
+            "summary": "Numéro du servo",
+            "required": true,
+            "description": "Numéro du servo concerné",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "data_id",
+            "summary": "Identifiant des données",
+            "required": true,
+            "description": "Identifiant des données à récupérer",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getDigitalInput": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère l'entrée numérique d'une broche",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_no",
+            "summary": "Numéro de la broche",
+            "required": true,
+            "description": "Numéro de la broche concernée",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getGripperValue": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère la valeur du gripper",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getBasicOutput": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère la sortie de base d'une broche",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pin_no",
+            "summary": "Numéro de la broche",
+            "required": true,
+            "description": "Numéro de la broche concernée",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/isGripperMoving": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Vérifie si le gripper est en mouvement",
+        "parameters": [
+          {
+            "name": "device",
+            "summary": "Identifiant du device",
+            "required": true,
+            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sleep": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Attend un certain temps",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "temps en secondes",
+            "required": true,
+            "description": "temps en secondes à attendre",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {},
+  "x-scene-blocks": {}
+}

@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-tensorflow",
+    "summary": "Analyse par Deep Learning",
+    "description": "Cette compétence permet aux utilisateurs d'analyser des données par Deep Learning.",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/cocoSsd": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Détecte les objets",
+        "description": "Détecte les objets dans une image",
+        "parameters": [
+          {
+            "name": "image",
+            "summary": "Image",
+            "required": true,
+            "description": "Image à analyser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "base",
+            "summary": "Base",
+            "required": false,
+            "description": "Model de base (mobilenet_v1, mobilenet_v2 ou lite_mobilenet_v2)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/faceDetection": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Détecte les visages",
+        "description": "Détecte les visages dans une image",
+        "parameters": [
+          {
+            "name": "image",
+            "summary": "Image",
+            "required": true,
+            "description": "Image à analyser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "runtime",
+            "summary": "Environnement d'exécution",
+            "required": false,
+            "description": "Environnement d'exécution (mediapipe or tfjs)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

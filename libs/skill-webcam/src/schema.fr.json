@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-webcam",
+    "summary": "Gestion de la webcam",
+    "description": "Cette compétence permet d'accéder aux images des webcams.",
+    "version": "0.1.0",
+    "x-icon": "📷"
+  },
+  "paths": {
+    "/capture": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Capture de la webcam",
+        "description": "Capture une image de la webcam",
+        "parameters": [
+          {
+            "name": "width",
+            "summary": "Largeur",
+            "required": false,
+            "description": "Largeur de l'image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "summary": "Hauteur",
+            "required": false,
+            "description": "Hauteur de l'image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "quality",
+            "summary": "Qualité",
+            "required": false,
+            "description": "Qualité de l'image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "output",
+            "summary": "Type de sortie",
+            "required": false,
+            "description": "Type de sortie de l'image (jpeg, png)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device",
+            "summary": "Camera",
+            "required": false,
+            "description": "Nom de la caméra à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "verbose",
+            "summary": "Verbeux",
+            "required": false,
+            "description": "Affiche des informations supplémentaires",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste des webcams",
+        "description": "Retourne la liste des webcams présentent sur le système",
+        "parameters": [],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

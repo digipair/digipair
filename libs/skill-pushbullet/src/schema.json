@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-pushbullet",
-    "summary": "Gestion du service Pushbullet",
-    "description": "Cette compétence permet d'utiliser le service Pushbullet",
+    "summary": "Management of the Pushbullet service",
+    "description": "This skill allows the use of the Pushbullet service",
     "version": "0.1.0",
     "x-icon": "💬"
   },
@@ -11,49 +11,49 @@
     "/sendSms": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoi un SMS via Pushbullet",
+        "summary": "Sends an SMS via Pushbullet",
         "parameters": [
           {
             "name": "message",
             "summary": "Message",
             "required": true,
-            "description": "Message à envoyer",
+            "description": "Message to be sent",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "phoneNumber",
-            "summary": "Numéro de téléphone",
+            "summary": "Phone Number",
             "required": true,
-            "description": "Numéro de téléphone du destinataire",
+            "description": "Recipient's phone number",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "PUSHBULLET_ACCESS_TOKEN",
-            "summary": "Clé d'API",
+            "summary": "API Key",
             "required": false,
-            "description": "Clé d'API Pushbullet",
+            "description": "Pushbullet API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "PUSHBULLET_TARGET_DEVICE_ID",
-            "summary": "Identifiant du périphérique",
+            "summary": "Device ID",
             "required": false,
-            "description": "Identifiant du périphérique Pushbullet",
+            "description": "Pushbullet device ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "PUSHBULLET_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API Endpoint",
             "required": false,
-            "description": "Endpoint de l'API Pushbullet",
+            "description": "Pushbullet API endpoint",
             "schema": {
               "type": "string"
             }

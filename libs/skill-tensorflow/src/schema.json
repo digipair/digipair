@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-tensorflow",
-    "summary": "Analyse par Deep Learning",
-    "description": "Cette compétence permet aux utilisateurs d'analyser des données par Deep Learning.",
+    "summary": "Deep Learning Analysis",
+    "description": "This skill allows users to analyze data using Deep Learning.",
     "version": "0.1.0",
     "x-icon": "🤖"
   },
@@ -11,14 +11,14 @@
     "/cocoSsd": {
       "post": {
         "tags": ["service"],
-        "summary": "Détecte les objets",
-        "description": "Détecte les objets dans une image",
+        "summary": "Detects objects",
+        "description": "Detects objects in an image",
         "parameters": [
           {
             "name": "image",
             "summary": "Image",
             "required": true,
-            "description": "Image à analyser",
+            "description": "Image to analyze",
             "schema": {
               "type": "string"
             }
@@ -27,7 +27,7 @@
             "name": "base",
             "summary": "Base",
             "required": false,
-            "description": "Model de base (mobilenet_v1, mobilenet_v2 ou lite_mobilenet_v2)",
+            "description": "Base model (mobilenet_v1, mobilenet_v2, or lite_mobilenet_v2)",
             "schema": {
               "type": "string"
             }
@@ -39,23 +39,23 @@
     "/faceDetection": {
       "post": {
         "tags": ["service"],
-        "summary": "Détecte les visages",
-        "description": "Détecte les visages dans une image",
+        "summary": "Detects faces",
+        "description": "Detects faces in an image",
         "parameters": [
           {
             "name": "image",
             "summary": "Image",
             "required": true,
-            "description": "Image à analyser",
+            "description": "Image to analyze",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "runtime",
-            "summary": "Environnement d'exécution",
+            "summary": "Runtime environment",
             "required": false,
-            "description": "Environnement d'exécution (mediapipe or tfjs)",
+            "description": "Runtime environment (mediapipe or tfjs)",
             "schema": {
               "type": "string"
             }

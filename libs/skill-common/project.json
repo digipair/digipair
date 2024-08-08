@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-common",
         "main": "libs/skill-common/src/index.ts",
         "tsConfig": "libs/skill-common/tsconfig.lib.json",
-        "assets": ["libs/skill-common/src/index.d.ts", "libs/skill-common/src/schema.json"],
+        "assets": [
+          "libs/skill-common/src/index.d.ts",
+          "libs/skill-common/src/schema.json",
+          "libs/skill-common/src/schema.fr.json"
+        ],
         "project": "libs/skill-common/package.json",
         "compiler": "swc",
         "format": ["esm", "cjs"],

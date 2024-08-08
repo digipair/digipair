@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-temporal",
-    "summary": "Gestion des workflows temporal",
-    "description": "Cette compétence permet de gérer des workflows temporal",
+    "summary": "Temporal workflow management",
+    "description": "This skill allows managing temporal workflows",
     "version": "0.1.0",
     "x-icon": "👩‍💻"
   },
@@ -11,23 +11,23 @@
     "/activity": {
       "post": {
         "tags": ["service"],
-        "summary": "Activitée",
-        "description": "Définit une activité",
+        "summary": "Activity",
+        "description": "Defines an activity",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": false,
-            "description": "Nom de l'étape",
+            "description": "Name of the step",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "execute",
-            "summary": "Exécute",
+            "summary": "Execute",
             "required": true,
-            "description": "Liste des actions à exécuter",
+            "description": "List of actions to execute",
             "schema": {
               "type": "array",
               "items": {
@@ -42,22 +42,22 @@
     "/sleep": {
       "post": {
         "tags": ["service"],
-        "summary": "Attente",
+        "summary": "Wait",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": false,
-            "description": "Nom de l'étape",
+            "description": "Name of the step",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "duration",
-            "summary": "Durée",
+            "summary": "Duration",
             "required": true,
-            "description": "Durée de l'attente",
+            "description": "Duration of the wait",
             "schema": {
               "type": "string"
             }
@@ -69,14 +69,14 @@
     "/condition": {
       "post": {
         "tags": ["service"],
-        "summary": "Condition d'attente",
-        "description": "Condition d'attente dans un workflow",
+        "summary": "Wait condition",
+        "description": "Wait condition in a workflow",
         "parameters": [
           {
             "name": "condition",
             "summary": "Condition",
             "required": true,
-            "description": "Condition d'attente au format Feel",
+            "description": "Wait condition in Feel format",
             "schema": {
               "type": "string"
             }
@@ -85,7 +85,7 @@
             "name": "timeout",
             "summary": "Timeout",
             "required": false,
-            "description": "Timeout de la condition",
+            "description": "Timeout of the condition",
             "schema": {
               "type": "number"
             }
@@ -97,22 +97,22 @@
     "/goto": {
       "post": {
         "tags": ["service"],
-        "summary": "Aller à l'étape",
+        "summary": "Go to step",
         "parameters": [
           {
             "name": "target",
-            "summary": "Nom de la destination",
+            "summary": "Destination name",
             "required": true,
-            "description": "Nom de l'étape de destination",
+            "description": "Name of the destination step",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": false,
-            "description": "Nom de l'étape",
+            "description": "Name of the step",
             "schema": {
               "type": "string"
             }
@@ -124,14 +124,14 @@
     "/stop": {
       "post": {
         "tags": ["service"],
-        "summary": "Arrête le workflow",
-        "description": "Arrête le workflow",
+        "summary": "Stop the workflow",
+        "description": "Stop the workflow",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": false,
-            "description": "Nom de l'étape",
+            "description": "Name of the step",
             "schema": {
               "type": "string"
             }
@@ -143,23 +143,23 @@
     "/push": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoi de nouvelles données dans un workflow",
-        "description": "Envoi de nouvelles données dans le workflow",
+        "summary": "Send new data to a workflow",
+        "description": "Send new data to the workflow",
         "parameters": [
           {
             "name": "id",
-            "summary": "Identifiant du workflow",
+            "summary": "Workflow ID",
             "required": true,
-            "description": "Identifiant du workflow",
+            "description": "Workflow ID",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "data",
-            "summary": "Données",
+            "summary": "Data",
             "required": true,
-            "description": "Données",
+            "description": "Data",
             "schema": {
               "type": "object"
             }
@@ -171,14 +171,14 @@
     "/terminate": {
       "post": {
         "tags": ["service"],
-        "summary": "Arrête un workflow",
-        "description": "Arrête un workflow",
+        "summary": "Stop a workflow",
+        "description": "Stop a workflow",
         "parameters": [
           {
             "name": "id",
-            "summary": "Identifiant du workflow",
+            "summary": "Workflow ID",
             "required": true,
-            "description": "Identifiant du workflow",
+            "description": "Workflow ID",
             "schema": {
               "type": "string"
             }
@@ -190,14 +190,14 @@
     "/list": {
       "post": {
         "tags": ["service"],
-        "summary": "Liste les workflows",
-        "description": "Liste les workflows",
+        "summary": "List workflows",
+        "description": "List workflows",
         "parameters": [
           {
             "name": "query",
-            "summary": "Requête",
+            "summary": "Query",
             "required": false,
-            "description": "Requête de recherche",
+            "description": "Search query",
             "schema": {
               "type": "string"
             }
@@ -212,25 +212,25 @@
   },
   "x-scene-blocks": {
     "/workflow": {
-      "summary": "Workflow Temporal",
-      "description": "Execute un workflow Temporal",
+      "summary": "Temporal Workflow",
+      "description": "Execute a Temporal workflow",
       "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
           "name": "id",
-          "summary": "Identifiant",
+          "summary": "ID",
           "required": true,
-          "description": "Identifiant du workflow",
+          "description": "Workflow ID",
           "schema": {
             "type": "string"
           }
         },
         {
           "name": "steps",
-          "summary": "Exécute les étapes suivantes",
+          "summary": "Execute the following steps",
           "required": true,
-          "description": "Contenu de la page",
+          "description": "Content of the page",
           "schema": {
             "type": "array",
             "items": {
@@ -240,18 +240,18 @@
         },
         {
           "name": "data",
-          "summary": "Données du workflow",
+          "summary": "Workflow data",
           "required": false,
-          "description": "Données du workflow temporal",
+          "description": "Temporal workflow data",
           "schema": {
             "type": "object"
           }
         },
         {
           "name": "options",
-          "summary": "Options temporal",
+          "summary": "Temporal options",
           "required": false,
-          "description": "Options du workflow temporal",
+          "description": "Temporal workflow options",
           "schema": {
             "type": "object"
           }

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-editor",
-    "summary": "Affichage de l'éditeur de raisonnements",
-    "description": "Edition de raisonnements IA.",
+    "summary": "Display of the reasoning editor",
+    "description": "Editing of AI reasonings.",
     "version": "0.1.0",
     "x-icon": "🏗"
   },
@@ -11,23 +11,23 @@
     "/digipair-editor": {
       "post": {
         "tags": ["web"],
-        "summary": "Editeur de raisonnements",
-        "description": "Editeur no-code de raisonnements IA",
+        "summary": "Reasoning editor",
+        "description": "No-code editor for AI reasonings",
         "parameters": [
           {
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Informations du digipair propriétaire du raisonnement",
+            "description": "Information of the digipair owning the reasoning",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "reasoning",
-            "summary": "Raisonnement",
+            "summary": "Reasoning",
             "required": true,
-            "description": "Informations du raisonnement à éditer",
+            "description": "Information of the reasoning to be edited",
             "schema": {
               "type": "object"
             }
@@ -36,34 +36,34 @@
             "name": "schemas",
             "summary": "Schemas",
             "required": false,
-            "description": "Liste des schemas des compétences privées",
+            "description": "List of private skill schemas",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "menuColor",
-            "summary": "Couleur de texte du menu",
+            "summary": "Menu text color",
             "required": false,
-            "description": "Couleur de texte du menu",
+            "description": "Color of the menu text",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "menuBackgroundColor",
-            "summary": "Couleur de fond du menu",
+            "summary": "Menu background color",
             "required": false,
-            "description": "Couleur de fond du menu",
+            "description": "Color of the menu background",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "contentStyle",
-            "summary": "Style personnalisé du conteneur",
+            "summary": "Custom container style",
             "required": false,
-            "description": "Style personnalisé du conteneur",
+            "description": "Custom style for the container",
             "schema": {
               "type": "string"
             }

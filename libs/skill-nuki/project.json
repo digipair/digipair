@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-nuki",
         "main": "libs/skill-nuki/src/index.ts",
         "tsConfig": "libs/skill-nuki/tsconfig.lib.json",
-        "assets": ["libs/skill-nuki/src/index.d.ts", "libs/skill-nuki/src/schema.json"],
+        "assets": [
+          "libs/skill-nuki/src/index.d.ts",
+          "libs/skill-nuki/src/schema.json",
+          "libs/skill-nuki/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-nuki/rollup.build.cjs"],
         "project": "libs/skill-nuki/package.json",
         "compiler": "swc",

@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-sendmail",
         "main": "libs/skill-sendmail/src/index.ts",
         "tsConfig": "libs/skill-sendmail/tsconfig.lib.json",
-        "assets": ["libs/skill-sendmail/src/index.d.ts", "libs/skill-sendmail/src/schema.json"],
+        "assets": [
+          "libs/skill-sendmail/src/index.d.ts",
+          "libs/skill-sendmail/src/schema.json",
+          "libs/skill-sendmail/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-sendmail/rollup.build.cjs"],
         "project": "libs/skill-sendmail/package.json",
         "compiler": "swc",

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-vespa",
-    "summary": "Communication avec une base Vespa",
-    "description": "Cette compétence offre des fonctionnalités pour interagir avec les données d'une base vectorielle Vespa.",
+    "summary": "Communication with a Vespa database",
+    "description": "This skill provides functionalities to interact with the data of a Vespa vector database.",
     "version": "0.1.0",
     "x-icon": "📘"
   },
@@ -11,59 +11,59 @@
     "/find": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupérer",
-        "description": "Récupérer des valeurs dans la base de données",
+        "summary": "Retrieve",
+        "description": "Retrieve values from the database",
         "parameters": [
           {
             "name": "baseUrl",
-            "summary": "Adresse du serveur",
+            "summary": "Server address",
             "required": false,
-            "description": "Adresse du serveur Vespa",
+            "description": "Address of the Vespa server",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "collection",
-            "summary": "Nom de la collection",
+            "summary": "Collection name",
             "required": false,
-            "description": "Nom de la collection dans laquelle effectuer la recherche",
+            "description": "Name of the collection to search in",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "limit",
-            "summary": "Limite",
+            "summary": "Limit",
             "required": false,
-            "description": "Nombre maximum de réponses",
+            "description": "Maximum number of responses",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "orderby",
-            "summary": "Organisé par",
+            "summary": "Ordered by",
             "required": false,
-            "description": "Organisation des réponses",
+            "description": "Ordering of the responses",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "query",
-            "summary": "Requête",
+            "summary": "Query",
             "required": true,
-            "description": "Requête de recherche",
+            "description": "Search query",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "grouping",
-            "summary": "Filtre de regroupement",
+            "summary": "Grouping filter",
             "required": false,
-            "description": "Filtre de regroupement des réponses",
+            "description": "Grouping filter for the responses",
             "schema": {
               "type": "string"
             }
@@ -75,14 +75,14 @@
     "/search": {
       "post": {
         "tags": ["service"],
-        "summary": "Rechercher",
-        "description": "Recherche sémantique dans une collection",
+        "summary": "Search",
+        "description": "Semantic search in a collection",
         "parameters": [
           {
             "name": "embeddings",
-            "summary": "Modèle d'embeddings",
+            "summary": "Embeddings model",
             "required": false,
-            "description": "Modèle d'embeddings",
+            "description": "Embeddings model",
             "schema": {
               "type": "array",
               "items": {
@@ -92,36 +92,36 @@
           },
           {
             "name": "baseUrl",
-            "summary": "Adresse du serveur",
+            "summary": "Server address",
             "required": false,
-            "description": "Adresse du serveur Vespa",
+            "description": "Address of the Vespa server",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "collection",
-            "summary": "Nom de la collection",
+            "summary": "Collection name",
             "required": false,
-            "description": "Nom de la collection",
+            "description": "Name of the collection",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "limit",
-            "summary": "Limite",
+            "summary": "Limit",
             "required": false,
-            "description": "Nombre de résultats maximum",
+            "description": "Maximum number of results",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "orderby",
-            "summary": "Organisé par",
+            "summary": "Ordered by",
             "required": false,
-            "description": "Organisation des résultats",
+            "description": "Ordering of the results",
             "schema": {
               "type": "string"
             }
@@ -137,27 +137,27 @@
           },
           {
             "name": "filter",
-            "summary": "Filtres",
+            "summary": "Filters",
             "required": false,
-            "description": "Filtres de recherche",
+            "description": "Search filters",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "language",
-            "summary": "Langue",
+            "summary": "Language",
             "required": true,
-            "description": "Langue de recherche",
+            "description": "Search language",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "query",
-            "summary": "Texte à rechercher",
+            "summary": "Text to search",
             "required": true,
-            "description": "Requête de recherche sémantique",
+            "description": "Semantic search query",
             "schema": {
               "type": "string"
             }
@@ -169,23 +169,23 @@
     "/textSplitter": {
       "post": {
         "tags": ["service"],
-        "summary": "Découpage de texte",
-        "description": "Découpe le texte en morceaux de texte",
+        "summary": "Text splitting",
+        "description": "Splits the text into pieces",
         "parameters": [
           {
             "name": "size",
-            "summary": "Taille",
+            "summary": "Size",
             "required": false,
-            "description": "Taille des morceaux de texte",
+            "description": "Size of the text pieces",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "overlap",
-            "summary": "Tolérance",
+            "summary": "Tolerance",
             "required": false,
-            "description": "Tolérance de différence de taille pour s'adapter au texte",
+            "description": "Size difference tolerance to fit the text",
             "schema": {
               "type": "number"
             }
@@ -194,16 +194,16 @@
             "name": "source",
             "summary": "Source",
             "required": true,
-            "description": "Metadata indiquant la source de la donnée",
+            "description": "Metadata indicating the source of the data",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "text",
-            "summary": "Texte",
+            "summary": "Text",
             "required": true,
-            "description": "Texte à découper",
+            "description": "Text to split",
             "schema": {
               "type": "string"
             }
@@ -215,14 +215,14 @@
     "/push": {
       "post": {
         "tags": ["service"],
-        "summary": "Ajouter des documents",
-        "description": "Ajouter des documents",
+        "summary": "Add documents",
+        "description": "Add documents",
         "parameters": [
           {
             "name": "embeddings",
-            "summary": "Modèle d'embeddings",
+            "summary": "Embeddings model",
             "required": false,
-            "description": "Modèle d'embeddings",
+            "description": "Embeddings model",
             "schema": {
               "type": "array",
               "items": {
@@ -232,18 +232,18 @@
           },
           {
             "name": "baseUrl",
-            "summary": "Adresse du serveur",
+            "summary": "Server address",
             "required": false,
-            "description": "Adresse du serveur Vespa",
+            "description": "Address of the Vespa server",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "collection",
-            "summary": "Nom de la Collection",
+            "summary": "Collection name",
             "required": false,
-            "description": "Nom de la collection dans laquelle ajouter les documents",
+            "description": "Name of the collection to add documents to",
             "schema": {
               "type": "string"
             }
@@ -252,7 +252,7 @@
             "name": "documents",
             "summary": "Documents",
             "required": true,
-            "description": "Liste des documents à ajouter",
+            "description": "List of documents to add",
             "schema": {
               "type": "array",
               "items": {
@@ -267,23 +267,23 @@
     "/remove": {
       "post": {
         "tags": ["service"],
-        "summary": "Supprimer",
-        "description": "Supprimer des documents dans la base de données.",
+        "summary": "Delete",
+        "description": "Delete documents from the database.",
         "parameters": [
           {
             "name": "baseUrl",
-            "summary": "Adresse du serveur",
+            "summary": "Server address",
             "required": false,
-            "description": "Adresse du serveur Vespa",
+            "description": "Address of the Vespa server",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "collection",
-            "summary": "Nom de la collection",
+            "summary": "Collection name",
             "required": false,
-            "description": "Nom de la collection dans laquelle supprimer les documents",
+            "description": "Name of the collection to delete documents from",
             "schema": {
               "type": "string"
             }
@@ -292,7 +292,7 @@
             "name": "selection",
             "summary": "Selection",
             "required": true,
-            "description": "Filtre correspondant au documents à supprimer",
+            "description": "Filter corresponding to the documents to delete",
             "schema": {
               "type": "string"
             }

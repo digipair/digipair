@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-mybuddy",
-    "summary": "Gestion d'un robot myBuddy",
-    "description": "Cette compétence permet de gérer un robot elephant robotics myBuddy.",
+    "summary": "Management of a myBuddy robot",
+    "description": "This skill allows you to manage an elephant robotics myBuddy robot.",
     "version": "0.1.0",
     "x-icon": "🤖"
   },
@@ -11,22 +11,22 @@
     "/sendAngles": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoie la liste des angles",
+        "summary": "Sends the list of angles",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "angles",
-            "summary": "Liste des angles",
+            "summary": "List of angles",
             "required": true,
-            "description": "Liste des angles à envoyer",
+            "description": "List of angles to send",
             "schema": {
               "type": "array",
               "items": {
@@ -36,9 +36,9 @@
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -50,13 +50,13 @@
     "/getAngles": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère la liste des angles",
+        "summary": "Retrieves the list of angles",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -68,13 +68,13 @@
     "/powerOn": {
       "post": {
         "tags": ["service"],
-        "summary": "Allume tous les servos",
+        "summary": "Turns on all servos",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -86,13 +86,13 @@
     "/powerOff": {
       "post": {
         "tags": ["service"],
-        "summary": "Éteint tous les servos",
+        "summary": "Turns off all servos",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -104,13 +104,13 @@
     "/releaseAllServos": {
       "post": {
         "tags": ["service"],
-        "summary": "Relâche tous les servos",
+        "summary": "Releases all servos",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -122,22 +122,22 @@
     "/sendAngle": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoie un angle spécifique",
+        "summary": "Sends a specific angle",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "id",
-            "summary": "Identifiant du servo",
+            "summary": "Servo identifier",
             "required": true,
-            "description": "Identifiant du servo concerné",
+            "description": "Identifier of the concerned servo",
             "schema": {
               "type": "number"
             }
@@ -146,16 +146,16 @@
             "name": "degree",
             "summary": "Angle",
             "required": true,
-            "description": "Angle à envoyer",
+            "description": "Angle to send",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -167,40 +167,40 @@
     "/sendCoord": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoie les coordonnées",
+        "summary": "Sends coordinates",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "id",
-            "summary": "Coordonnée à modifier",
+            "summary": "Coordinate to modify",
             "required": true,
-            "description": "Identifiant de la coordonnée à envoyer",
+            "description": "Identifier of the coordinate to send",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "coord",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": true,
-            "description": "Valeur de la coordonnée à envoyer",
+            "description": "Value of the coordinate to send",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -212,22 +212,22 @@
     "/sendCoords": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoie les coordonnées",
+        "summary": "Sends coordinates",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "coords",
-            "summary": "Liste des coordonnées",
+            "summary": "List of coordinates",
             "required": true,
-            "description": "Liste des coordonnées à envoyer",
+            "description": "List of coordinates to send",
             "schema": {
               "type": "array",
               "items": {
@@ -237,9 +237,9 @@
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -248,7 +248,7 @@
             "name": "mode",
             "summary": "Mode",
             "required": false,
-            "description": "Mode de déplacement",
+            "description": "Movement mode",
             "schema": {
               "type": "string"
             }
@@ -260,13 +260,13 @@
     "/programPause": {
       "post": {
         "tags": ["service"],
-        "summary": "Pause le programme",
+        "summary": "Pauses the program",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -278,13 +278,13 @@
     "/programResume": {
       "post": {
         "tags": ["service"],
-        "summary": "Reprend le programme",
+        "summary": "Resumes the program",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -296,13 +296,13 @@
     "/stop": {
       "post": {
         "tags": ["service"],
-        "summary": "Arrête le programme",
+        "summary": "Stops the program",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -314,22 +314,22 @@
     "/jogAngle": {
       "post": {
         "tags": ["service"],
-        "summary": "Déplace un angle spécifique",
+        "summary": "Moves a specific angle",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "joint_id",
-            "summary": "Identifiant de l'articulation",
+            "summary": "Joint identifier",
             "required": true,
-            "description": "Identifiant de l'articulation concernée",
+            "description": "Identifier of the concerned joint",
             "schema": {
               "type": "number"
             }
@@ -338,16 +338,16 @@
             "name": "direction",
             "summary": "Direction",
             "required": true,
-            "description": "Direction de déplacement",
+            "description": "Direction of movement",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -359,22 +359,22 @@
     "/jogCoord": {
       "post": {
         "tags": ["service"],
-        "summary": "Déplace une coordonnée spécifique",
+        "summary": "Moves a specific coordinate",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "coord_id",
-            "summary": "Identifiant de la coordonnée",
+            "summary": "Coordinate identifier",
             "required": true,
-            "description": "Identifiant de la coordonnée concernée",
+            "description": "Identifier of the concerned coordinate",
             "schema": {
               "type": "number"
             }
@@ -383,16 +383,16 @@
             "name": "direction",
             "summary": "Direction",
             "required": true,
-            "description": "Direction de déplacement",
+            "description": "Direction of movement",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -404,13 +404,13 @@
     "/jogStop": {
       "post": {
         "tags": ["service"],
-        "summary": "Arrête le déplacement",
+        "summary": "Stops the movement",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -422,31 +422,31 @@
     "/setEncoder": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit une valeur d'encoder",
+        "summary": "Sets an encoder value",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "joint_id",
-            "summary": "Identifiant de l'articulation",
+            "summary": "Joint identifier",
             "required": true,
-            "description": "Identifiant de l'articulation concernée",
+            "description": "Identifier of the concerned joint",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "encoder",
-            "summary": "Valeur de l'encoder",
+            "summary": "Encoder value",
             "required": true,
-            "description": "Valeur de l'encoder à définir",
+            "description": "Value of the encoder to set",
             "schema": {
               "type": "number"
             }
@@ -458,22 +458,22 @@
     "/setEncoders": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit les valeurs des encoders",
+        "summary": "Sets the encoder values",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "encoders",
-            "summary": "Liste des valeurs des encoders",
+            "summary": "List of encoder values",
             "required": true,
-            "description": "Liste des valeurs des encoders à définir",
+            "description": "List of encoder values to set",
             "schema": {
               "type": "array",
               "items": {
@@ -483,9 +483,9 @@
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -497,22 +497,22 @@
     "/setSpeed": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit la vitesse",
+        "summary": "Sets the speed",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": true,
-            "description": "Vitesse à définir",
+            "description": "Speed to set",
             "schema": {
               "type": "number"
             }
@@ -524,40 +524,40 @@
     "/setServoData": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit les données d'un servo",
+        "summary": "Sets servo data",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "servo_no",
-            "summary": "Numéro du servo",
+            "summary": "Servo number",
             "required": true,
-            "description": "Numéro du servo concerné",
+            "description": "Number of the concerned servo",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "data_id",
-            "summary": "Identifiant des données",
+            "summary": "Data identifier",
             "required": true,
-            "description": "Identifiant des données à définir",
+            "description": "Identifier of the data to set",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": true,
-            "description": "Valeur à définir",
+            "description": "Value to set",
             "schema": {
               "type": "number"
             }
@@ -569,22 +569,22 @@
     "/setServoCalibration": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit l'étalonnage d'un servo",
+        "summary": "Sets the calibration of a servo",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "servo_no",
-            "summary": "Numéro du servo",
+            "summary": "Servo number",
             "required": true,
-            "description": "Numéro du servo concerné",
+            "description": "Number of the concerned servo",
             "schema": {
               "type": "number"
             }
@@ -596,22 +596,22 @@
     "/releaseServo": {
       "post": {
         "tags": ["service"],
-        "summary": "Relâche un servo spécifique",
+        "summary": "Releases a specific servo",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "servo_no",
-            "summary": "Numéro du servo",
+            "summary": "Servo number",
             "required": true,
-            "description": "Numéro du servo concerné",
+            "description": "Number of the concerned servo",
             "schema": {
               "type": "number"
             }
@@ -623,22 +623,22 @@
     "/focusServo": {
       "post": {
         "tags": ["service"],
-        "summary": "Active un servo spécifique",
+        "summary": "Activates a specific servo",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "servo_no",
-            "summary": "Numéro du servo",
+            "summary": "Servo number",
             "required": true,
-            "description": "Numéro du servo concerné",
+            "description": "Number of the concerned servo",
             "schema": {
               "type": "number"
             }
@@ -650,31 +650,31 @@
     "/setPinMode": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit le mode d'une broche",
+        "summary": "Sets the mode of a pin",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_no",
-            "summary": "Numéro de la broche",
+            "summary": "Pin number",
             "required": true,
-            "description": "Numéro de la broche concernée",
+            "description": "Number of the concerned pin",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_mode",
-            "summary": "Mode de la broche",
+            "summary": "Pin mode",
             "required": true,
-            "description": "Mode de la broche à définir",
+            "description": "Mode of the pin to set",
             "schema": {
               "type": "string"
             }
@@ -686,31 +686,31 @@
     "/setDigitalOutput": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit la sortie numérique d'une broche",
+        "summary": "Sets the digital output of a pin",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_no",
-            "summary": "Numéro de la broche",
+            "summary": "Pin number",
             "required": true,
-            "description": "Numéro de la broche concernée",
+            "description": "Number of the concerned pin",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_signal",
-            "summary": "Signal de la broche",
+            "summary": "Pin signal",
             "required": true,
-            "description": "Signal de la broche à définir",
+            "description": "Signal of the pin to set",
             "schema": {
               "type": "number"
             }
@@ -722,31 +722,31 @@
     "/setGripperState": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit l'état du gripper",
+        "summary": "Sets the state of the gripper",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "flag",
-            "summary": "État du gripper",
+            "summary": "Gripper state",
             "required": true,
-            "description": "État du gripper à définir",
+            "description": "State of the gripper to set",
             "schema": {
               "type": "boolean"
             }
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -758,31 +758,31 @@
     "/setGripperValue": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit la valeur du gripper",
+        "summary": "Sets the value of the gripper",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur du gripper",
+            "summary": "Gripper value",
             "required": true,
-            "description": "Valeur du gripper à définir",
+            "description": "Value of the gripper to set",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "speed",
-            "summary": "Vitesse",
+            "summary": "Speed",
             "required": false,
-            "description": "Vitesse de déplacement",
+            "description": "Movement speed",
             "schema": {
               "type": "number"
             }
@@ -794,7 +794,7 @@
     "/setGripperIni": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit l'initialisation du gripper",
+        "summary": "Sets the initialization of the gripper",
         "parameters": [],
         "x-events": []
       }
@@ -802,31 +802,31 @@
     "/setBasicOutput": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit la sortie de base d'une broche",
+        "summary": "Sets the basic output of a pin",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_no",
-            "summary": "Numéro de la broche",
+            "summary": "Pin number",
             "required": true,
-            "description": "Numéro de la broche concernée",
+            "description": "Number of the concerned pin",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_signal",
-            "summary": "Signal de la broche",
+            "summary": "Pin signal",
             "required": true,
-            "description": "Signal de la broche à définir",
+            "description": "Signal of the pin to set",
             "schema": {
               "type": "number"
             }
@@ -838,40 +838,40 @@
     "/setColor": {
       "post": {
         "tags": ["service"],
-        "summary": "Définit la couleur RGB",
+        "summary": "Sets the RGB color",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "r",
-            "summary": "Valeur du rouge",
+            "summary": "Red value",
             "required": true,
-            "description": "Valeur du rouge à définir",
+            "description": "Red value to set",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "g",
-            "summary": "Valeur du vert",
+            "summary": "Green value",
             "required": true,
-            "description": "Valeur du vert à définir",
+            "description": "Green value to set",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "b",
-            "summary": "Valeur du bleu",
+            "summary": "Blue value",
             "required": true,
-            "description": "Valeur du bleu à définir",
+            "description": "Blue value to set",
             "schema": {
               "type": "number"
             }
@@ -883,13 +883,13 @@
     "/isPowerOn": {
       "post": {
         "tags": ["service"],
-        "summary": "Vérifie si le device est allumé",
+        "summary": "Checks if the device is powered on",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -901,13 +901,13 @@
     "/isControllerConnect": {
       "post": {
         "tags": ["service"],
-        "summary": "Vérifie si le contrôleur est connecté",
+        "summary": "Checks if the controller is connected",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -919,13 +919,13 @@
     "/getCoords": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère les coordonnées",
+        "summary": "Retrieves the coordinates",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -937,31 +937,31 @@
     "/isInPosition": {
       "post": {
         "tags": ["service"],
-        "summary": "Vérifie si le device est en position",
+        "summary": "Checks if the device is in position",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "data",
-            "summary": "Données de position",
+            "summary": "Position data",
             "required": true,
-            "description": "Données de position à vérifier",
+            "description": "Position data to check",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "flag",
-            "summary": "Indicateur",
+            "summary": "Indicator",
             "required": true,
-            "description": "Indicateur de position",
+            "description": "Position indicator",
             "schema": {
               "type": "boolean"
             }
@@ -973,22 +973,22 @@
     "/getEncoder": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère la valeur d'un encoder",
+        "summary": "Retrieves the value of an encoder",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "joint_id",
-            "summary": "Identifiant de l'articulation",
+            "summary": "Joint identifier",
             "required": true,
-            "description": "Identifiant de l'articulation concernée",
+            "description": "Identifier of the concerned joint",
             "schema": {
               "type": "number"
             }
@@ -1000,13 +1000,13 @@
     "/getEncoders": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère les valeurs des encoders",
+        "summary": "Retrieves the values of the encoders",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -1018,13 +1018,13 @@
     "/getSpeed": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère la vitesse",
+        "summary": "Retrieves the speed",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -1036,22 +1036,22 @@
     "/getJointMin": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère l'angle minimum d'une articulation",
+        "summary": "Retrieves the minimum angle of a joint",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "joint_id",
-            "summary": "Identifiant de l'articulation",
+            "summary": "Joint identifier",
             "required": true,
-            "description": "Identifiant de l'articulation concernée",
+            "description": "Identifier of the concerned joint",
             "schema": {
               "type": "number"
             }
@@ -1063,22 +1063,22 @@
     "/getJointMax": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère l'angle maximum d'une articulation",
+        "summary": "Retrieves the maximum angle of a joint",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "joint_id",
-            "summary": "Identifiant de l'articulation",
+            "summary": "Joint identifier",
             "required": true,
-            "description": "Identifiant de l'articulation concernée",
+            "description": "Identifier of the concerned joint",
             "schema": {
               "type": "number"
             }
@@ -1090,22 +1090,22 @@
     "/isServoEnable": {
       "post": {
         "tags": ["service"],
-        "summary": "Vérifie si un servo est activé",
+        "summary": "Checks if a servo is enabled",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "servo_id",
-            "summary": "Identifiant du servo",
+            "summary": "Servo identifier",
             "required": true,
-            "description": "Identifiant du servo concerné",
+            "description": "Identifier of the concerned servo",
             "schema": {
               "type": "number"
             }
@@ -1117,13 +1117,13 @@
     "/isAllServoEnable": {
       "post": {
         "tags": ["service"],
-        "summary": "Vérifie si tous les servos sont activés",
+        "summary": "Checks if all servos are enabled",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -1135,31 +1135,31 @@
     "/getServodata": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère les données d'un servo",
+        "summary": "Retrieves the data of a servo",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "servo_no",
-            "summary": "Numéro du servo",
+            "summary": "Servo number",
             "required": true,
-            "description": "Numéro du servo concerné",
+            "description": "Number of the concerned servo",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "data_id",
-            "summary": "Identifiant des données",
+            "summary": "Data identifier",
             "required": true,
-            "description": "Identifiant des données à récupérer",
+            "description": "Identifier of the data to retrieve",
             "schema": {
               "type": "number"
             }
@@ -1171,22 +1171,22 @@
     "/getDigitalInput": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère l'entrée numérique d'une broche",
+        "summary": "Retrieves the digital input of a pin",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_no",
-            "summary": "Numéro de la broche",
+            "summary": "Pin number",
             "required": true,
-            "description": "Numéro de la broche concernée",
+            "description": "Number of the concerned pin",
             "schema": {
               "type": "number"
             }
@@ -1198,13 +1198,13 @@
     "/getGripperValue": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère la valeur du gripper",
+        "summary": "Retrieves the value of the gripper",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -1216,22 +1216,22 @@
     "/getBasicOutput": {
       "post": {
         "tags": ["service"],
-        "summary": "Récupère la sortie de base d'une broche",
+        "summary": "Retrieves the basic output of a pin",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
           },
           {
             "name": "pin_no",
-            "summary": "Numéro de la broche",
+            "summary": "Pin number",
             "required": true,
-            "description": "Numéro de la broche concernée",
+            "description": "Number of the concerned pin",
             "schema": {
               "type": "number"
             }
@@ -1243,13 +1243,13 @@
     "/isGripperMoving": {
       "post": {
         "tags": ["service"],
-        "summary": "Vérifie si le gripper est en mouvement",
+        "summary": "Checks if the gripper is moving",
         "parameters": [
           {
             "name": "device",
-            "summary": "Identifiant du device",
+            "summary": "Device identifier",
             "required": true,
-            "description": "Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps)",
+            "description": "Identifier of the concerned device (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body)",
             "schema": {
               "type": "number"
             }
@@ -1261,13 +1261,13 @@
     "/sleep": {
       "post": {
         "tags": ["service"],
-        "summary": "Attend un certain temps",
+        "summary": "Waits for a certain time",
         "parameters": [
           {
             "name": "time",
-            "summary": "temps en secondes",
+            "summary": "time in seconds",
             "required": true,
-            "description": "temps en secondes à attendre",
+            "description": "time in seconds to wait",
             "schema": {
               "type": "number"
             }

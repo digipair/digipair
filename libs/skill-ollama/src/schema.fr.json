@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-ollama",
+    "summary": "Communication avec un serveur Ollama",
+    "description": "Exécution des models LLM via un serveur Ollama.",
+    "version": "0.1.0",
+    "x-icon": "🚀"
+  },
+  "paths": {
+    "/model": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle LLM Ollama",
+        "description": "Exécution d'un modèle LLM depuis un serveur Ollama",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Nom du model",
+            "required": true,
+            "description": "Nom du model LLM à charger",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "temperature",
+            "summary": "Temperature",
+            "required": false,
+            "description": "Temperature du model LLM",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Ollama",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format de sortie",
+            "required": false,
+            "description": "Format de sortie des données générées par le model",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/embeddings": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Modèle d'embeddings Ollama",
+        "description": "Exécution d'un modèle d'enbeddings depuis un serveur Ollama",
+        "parameters": [
+          {
+            "name": "model",
+            "summary": "Nom du model",
+            "required": true,
+            "description": "Nom du model d'enbeddings à charger",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "temperature",
+            "summary": "Temperature",
+            "required": false,
+            "description": "Temperature du model d'emdeddings",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Ollama",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

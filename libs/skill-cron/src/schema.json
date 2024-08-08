@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-cron",
-    "summary": "Gestion des taches planifiées",
-    "description": "La compétence permet de gérer l'exécutions des taches planifiées",
+    "summary": "Scheduled Task Management",
+    "description": "The skill allows for the management of scheduled task executions.",
     "version": "0.1.0",
     "x-icon": "📆"
   },
@@ -11,13 +11,13 @@
     "/crons": {
       "post": {
         "tags": ["service"],
-        "summary": "Liste des taches planifiées",
+        "summary": "List of Scheduled Tasks",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "description": "Access path to the digipairs directory",
             "schema": {
               "type": "string"
             }
@@ -29,22 +29,22 @@
     "/addCron": {
       "post": {
         "tags": ["service"],
-        "summary": "Ajoute une plannification",
+        "summary": "Adds a Schedule",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "description": "Access path to the digipairs directory",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "time",
-            "summary": "Plannification",
+            "summary": "Schedule",
             "required": true,
-            "description": "Plannification au format cron",
+            "description": "Schedule in cron format",
             "schema": {
               "type": "string"
             }
@@ -53,16 +53,16 @@
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
-            "description": "Nom du digipair qui exécute le raisonnement",
+            "description": "Name of the digipair executing the reasoning",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "reasoning",
-            "summary": "Raisonnement",
+            "summary": "Reasoning",
             "required": true,
-            "description": "Nom du raisonnement à exécuter",
+            "description": "Name of the reasoning to be executed",
             "schema": {
               "type": "string"
             }
@@ -74,22 +74,22 @@
     "/deleteCron": {
       "post": {
         "tags": ["service"],
-        "summary": "Supprime une plannification",
+        "summary": "Deletes a Schedule",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "description": "Access path to the digipairs directory",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": true,
-            "description": "Identifiant de la plannification",
+            "description": "Identifier of the schedule",
             "schema": {
               "type": "string"
             }
@@ -101,22 +101,22 @@
     "/enableCron": {
       "post": {
         "tags": ["service"],
-        "summary": "Active une plannification",
+        "summary": "Enables a Schedule",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "description": "Access path to the digipairs directory",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": true,
-            "description": "Identifiant de la plannification",
+            "description": "Identifier of the schedule",
             "schema": {
               "type": "string"
             }
@@ -128,22 +128,22 @@
     "/disableCron": {
       "post": {
         "tags": ["service"],
-        "summary": "Désactive une plannification",
+        "summary": "Disables a Schedule",
         "parameters": [
           {
             "name": "path",
-            "summary": "Chemin d'accès",
+            "summary": "Access Path",
             "required": false,
-            "description": "Chemin d'accès vers le répertoire des digipairs",
+            "description": "Access path to the digipairs directory",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Identifier",
             "required": true,
-            "description": "Identifiant de la plannification",
+            "description": "Identifier of the schedule",
             "schema": {
               "type": "string"
             }

@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-nuki",
+    "summary": "Gestion d'une serrure Nuki",
+    "description": "Cette compétence permet de gérer une serrure Nuki",
+    "version": "0.1.0",
+    "x-icon": "🔐"
+  },
+  "paths": {
+    "/unlock": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ouvre une serrure Nuki",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant de la serrure",
+            "required": true,
+            "description": "Identifiant de la serrure Nuki",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_KEY",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Nuki",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Nuki",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/lock": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ferme une serrure Nuki",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant de la serrure",
+            "required": true,
+            "description": "Identifiant de la serrure Nuki",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_KEY",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Nuki",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Nuki",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

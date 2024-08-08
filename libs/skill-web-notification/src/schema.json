@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-notification",
-    "summary": "Affichage de notification",
-    "description": "Affichage de notifications sur une page web",
+    "summary": "Display of notifications",
+    "description": "Display of notifications on a web page",
     "version": "0.1.0",
     "x-icon": "🔔"
   },
@@ -11,14 +11,14 @@
     "/information": {
       "post": {
         "tags": ["web"],
-        "summary": "Affiche d'une information",
-        "description": "Affiche une notification d'information",
+        "summary": "Displays an information",
+        "description": "Displays an information notification",
         "parameters": [
           {
             "name": "message",
             "summary": "Message",
             "required": true,
-            "description": "Message à afficher",
+            "description": "Message to display",
             "schema": {
               "type": "string"
             }
@@ -30,14 +30,14 @@
     "/error": {
       "post": {
         "tags": ["web"],
-        "summary": "Affiche d'une erreur",
-        "description": "Affiche une notification d'erreur",
+        "summary": "Displays an error",
+        "description": "Displays an error notification",
         "parameters": [
           {
             "name": "message",
             "summary": "Message",
             "required": true,
-            "description": "Message à afficher",
+            "description": "Message to display",
             "schema": {
               "type": "string"
             }
@@ -49,23 +49,23 @@
     "/confirm": {
       "post": {
         "tags": ["web"],
-        "summary": "Affiche une confirmation",
-        "description": "Affiche une notification de confirmation",
+        "summary": "Displays a confirmation",
+        "description": "Displays a confirmation notification",
         "parameters": [
           {
             "name": "message",
             "summary": "Message",
             "required": true,
-            "description": "Message à afficher",
+            "description": "Message to display",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "ok",
-            "summary": "Si c'est confirmé",
+            "summary": "If confirmed",
             "required": false,
-            "description": "Actions à effectuer si c'est confirmé",
+            "description": "Actions to perform if confirmed",
             "schema": {
               "type": "array",
               "items": {
@@ -75,9 +75,9 @@
           },
           {
             "name": "ko",
-            "summary": "Sinon",
+            "summary": "Otherwise",
             "required": false,
-            "description": "Actions à effectuer si ce n'est pas confirmé confirmé",
+            "description": "Actions to perform if not confirmed",
             "schema": {
               "type": "array",
               "items": {
@@ -92,14 +92,14 @@
     "/alert": {
       "post": {
         "tags": ["web"],
-        "summary": "Affiche une alerte",
-        "description": "Affiche une notification d'alerte",
+        "summary": "Displays an alert",
+        "description": "Displays an alert notification",
         "parameters": [
           {
             "name": "message",
             "summary": "Message",
             "required": true,
-            "description": "Message à afficher",
+            "description": "Message to display",
             "schema": {
               "type": "string"
             }

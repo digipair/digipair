@@ -11,7 +11,11 @@
         "outputPath": "dist/libs/skill-mongodb",
         "main": "libs/skill-mongodb/src/index.ts",
         "tsConfig": "libs/skill-mongodb/tsconfig.lib.json",
-        "assets": ["libs/skill-mongodb/src/index.d.ts", "libs/skill-mongodb/src/schema.json"],
+        "assets": [
+          "libs/skill-mongodb/src/index.d.ts",
+          "libs/skill-mongodb/src/schema.json",
+          "libs/skill-mongodb/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-mongodb/rollup.build.cjs"],
         "project": "libs/skill-mongodb/package.json",
         "compiler": "swc",

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-sendmail",
-    "summary": "Envoi de mail",
-    "description": "Envoi de mail",
+    "summary": "Send Mail",
+    "description": "Send Mail",
     "version": "0.1.0",
     "x-icon": "📨"
   },
@@ -11,41 +11,41 @@
     "/send": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoi de mail",
-        "description": "Envoi de mail",
+        "summary": "Send Mail",
+        "description": "Send Mail",
         "parameters": [
           {
             "name": "from",
-            "summary": "Expéditeur",
+            "summary": "Sender",
             "required": true,
-            "description": "Expéditeur du mail",
+            "description": "Sender of the email",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "to",
-            "summary": "Destinataires",
+            "summary": "Recipients",
             "required": true,
-            "description": "Destinataires du mail",
+            "description": "Recipients of the email",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "subject",
-            "summary": "Sujet",
+            "summary": "Subject",
             "required": true,
-            "description": "Sujet du mail",
+            "description": "Subject of the email",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "text",
-            "summary": "Texte",
+            "summary": "Text",
             "required": true,
-            "description": "Texte du mail",
+            "description": "Text of the email",
             "schema": {
               "type": "string"
             }
@@ -54,7 +54,7 @@
             "name": "html",
             "summary": "HTML",
             "required": true,
-            "description": "HTML du mail",
+            "description": "HTML of the email",
             "schema": {
               "type": "string"
             }
@@ -63,7 +63,7 @@
             "name": "config",
             "summary": "Configuration",
             "required": false,
-            "description": "Configuration du serveur de mail",
+            "description": "Mail server configuration",
             "schema": {
               "type": "object"
             }

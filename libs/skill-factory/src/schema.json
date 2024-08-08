@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-factory",
-    "summary": "Actions dans la factory Digipair",
-    "description": "Actions dans la factory Digipair.",
+    "summary": "Actions in the Digipair factory",
+    "description": "Actions in the Digipair factory.",
     "version": "0.1.0",
     "x-icon": "🛠"
   },
@@ -11,32 +11,32 @@
     "/start": {
       "post": {
         "tags": ["service"],
-        "summary": "Démarrage d'un raisonnement",
-        "description": "Démarrage d'un raisonnement depuis la factory Digipair",
+        "summary": "Start a reasoning",
+        "description": "Start a reasoning from the Digipair factory",
         "parameters": [
           {
             "name": "digipair",
             "summary": "Digipair",
             "required": false,
-            "description": "Propriétaire du raisonnement",
+            "description": "Owner of the reasoning",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "reasoning",
-            "summary": "Raisonnement",
+            "summary": "Reasoning",
             "required": true,
-            "description": "Nom du raisonnement",
+            "description": "Name of the reasoning",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "body",
-            "summary": "Données",
+            "summary": "Data",
             "required": false,
-            "description": "Données à envoyer",
+            "description": "Data to send",
             "schema": {
               "type": "object"
             }

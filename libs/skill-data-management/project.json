@@ -13,7 +13,8 @@
         "tsConfig": "libs/skill-data-management/tsconfig.lib.json",
         "assets": [
           "libs/skill-data-management/src/index.d.ts",
-          "libs/skill-data-management/src/schema.json"
+          "libs/skill-data-management/src/schema.json",
+          "libs/skill-data-management/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-data-management/rollup.build.cjs"],
         "project": "libs/skill-data-management/package.json",

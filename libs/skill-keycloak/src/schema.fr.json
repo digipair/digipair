@@ -1,0 +1,358 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-keycloak",
+    "summary": "Affichage de pages web sécurisée",
+    "description": "Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet sécurisés par keycloak.",
+    "version": "0.1.0",
+    "x-icon": "🔐"
+  },
+  "paths": {
+    "/executeFactory": {
+      "post": {
+        "summary": "Dans la factory",
+        "description": "Exécution d'une liste de capacité dans la factory",
+        "tags": ["web"],
+        "metadata": [],
+        "parameters": [
+          {
+            "name": "execute",
+            "summary": "Exécuter",
+            "required": true,
+            "description": "Liste de capacité à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "secured",
+            "summary": "Sécurisé",
+            "required": false,
+            "description": "Sécurise l'exécution via un token Keycloak",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Identification de l'utilisateur",
+        "description": "Identification de l'utilisateur sur le site internet via le serveur Keycloak",
+        "tags": ["web"],
+        "metadata": [],
+        "parameters": []
+      }
+    },
+    "/logout": {
+      "post": {
+        "summary": "Désidentification de l'utilisateur",
+        "description": "Désidentification de l'utilisateur sur le site internet via le serveur Keycloak",
+        "tags": ["web"],
+        "metadata": [],
+        "parameters": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SecuredBoost": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Déclencheur sécurisé",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "boolean"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "x-scene-blocks": {
+    "/page": {
+      "summary": "Page internet sécurisée",
+      "description": "Affichage d'une page d'un site internet sécurisée par Keycloak.",
+      "tags": ["web", "service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "body",
+          "summary": "Contenu",
+          "required": true,
+          "description": "Contenu de la page",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "title",
+          "summary": "Titre",
+          "required": false,
+          "description": "Titre de la page",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "favicon",
+          "summary": "Icone de la page",
+          "required": false,
+          "description": "Icone de la page",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "styleHtml",
+          "summary": "Style CSS du HTML",
+          "required": false,
+          "description": "Style css de l'élément HTML",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "styleBody",
+          "summary": "Style CSS du BODY",
+          "required": false,
+          "description": "Style css de l'élément BODY",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "summary": "Adresse du Keycloak",
+          "required": false,
+          "description": "Adresse du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "realm",
+          "summary": "Realm",
+          "required": false,
+          "description": "Realm du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "clientId",
+          "summary": "Client ID",
+          "required": false,
+          "description": "Client ID du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "factoryUrl",
+          "summary": "Adresse de la factory",
+          "required": false,
+          "description": "Adresse de la factory Digipair",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "factoryInitialize",
+          "summary": "Lors de la l'initialisation coté factory",
+          "required": false,
+          "description": "Action déclenchée lors de l'initialisation coté factory",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "browserInitialize",
+          "summary": "Lors de la l'initialisation coté navigateur",
+          "required": false,
+          "description": "Action déclenchée lors de l'initialisation coté navigateur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "browserLoad",
+          "summary": "Lorsque la page est chargée",
+          "required": false,
+          "description": "Action déclenchée lorsque la page est chargée coté navigateur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "unlogged",
+          "summary": "Si l'utilisateur n'est pas identifié",
+          "required": false,
+          "description": "Action déclenchée lorsque la page est chargée coté navigateur si l'utilisateur n'est pas identifié",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "logged",
+          "summary": "Si l'utilisateur est identifié",
+          "required": false,
+          "description": "Action déclenchée lorsque la page est chargée coté navigateur si l'utilisateur est identifié",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/service": {
+      "summary": "Web service sécurisé",
+      "description": "Réponse à un appel http sécurisé par Keycloak.",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécute",
+          "required": true,
+          "description": "Commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "secured",
+          "summary": "Sécurisé",
+          "required": false,
+          "description": "Accès autorisé seulement si un token Keycloak est fourni",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "summary": "Adresse du Keycloak",
+          "required": false,
+          "description": "Adresse du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "realm",
+          "summary": "Realm",
+          "required": false,
+          "description": "Realm du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/boost": {
+      "summary": "Boost sécurisé",
+      "description": "Boost proposé par le Digipair sécurisé par Keycloak",
+      "tags": ["boost", "service"],
+      "metadata": [
+        {
+          "name": "boosts",
+          "summary": "Liste des déclencheurs",
+          "required": true,
+          "description": "Liste des déclencheurs du boost",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SecuredBoost"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécution des actions",
+          "required": false,
+          "description": "Liste des actions à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        {
+          "name": "secured",
+          "summary": "Sécurisé",
+          "required": false,
+          "description": "Accès autorisé seulement si un token Keycloak est fourni",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "summary": "Adresse du Keycloak",
+          "required": false,
+          "description": "Adresse du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "realm",
+          "summary": "Realm",
+          "required": false,
+          "description": "Realm du serveur Keycloak",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  }
+}

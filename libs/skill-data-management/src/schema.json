@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-data-management",
-    "summary": "Gestion des données",
-    "description": "Cette compétence permet manipuler et transformer les données.",
+    "summary": "Data Management",
+    "description": "This skill allows for the manipulation and transformation of data.",
     "version": "0.1.0",
     "x-icon": "📝"
   },
@@ -11,23 +11,23 @@
     "/transform": {
       "post": {
         "tags": ["web", "service", "spatial"],
-        "summary": "Transformer la donnée",
-        "description": "Transforme une valeur grace aus mécaniques standard de transformation de données du moteur",
+        "summary": "Transform the data",
+        "description": "Transforms a value using the standard data transformation mechanics of the engine.",
         "parameters": [
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à transformer",
+            "description": "Value to be transformed",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "execute",
-            "summary": "Exécute",
+            "summary": "Execute",
             "required": false,
-            "description": "Actions à appliquer sur la donnée",
+            "description": "Actions to apply to the data",
             "schema": {
               "type": "array",
               "items": {
@@ -42,32 +42,32 @@
     "/setVariable": {
       "post": {
         "tags": ["web", "service", "spatial"],
-        "summary": "Enregistrer la variable",
-        "description": "Enregistre la variable dans le contexte de la compétence",
+        "summary": "Save the variable",
+        "description": "Saves the variable in the context of the skill.",
         "parameters": [
           {
             "name": "name",
-            "summary": "Nom",
+            "summary": "Name",
             "required": true,
-            "description": "Nom de la variable",
+            "description": "Name of the variable",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": false,
-            "description": "Valeur à enregistrer",
+            "description": "Value to be saved",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "execute",
-            "summary": "Exécute",
+            "summary": "Execute",
             "required": false,
-            "description": "Actions à appliquer sur la donnée enregistrée",
+            "description": "Actions to apply to the saved data",
             "schema": {
               "type": "array",
               "items": {
@@ -82,14 +82,14 @@
     "/struct2array": {
       "post": {
         "tags": ["web", "service", "spatial"],
-        "summary": "Convertir une structure en tableau",
-        "description": "Convertit une structure de données en tableau",
+        "summary": "Convert a structure to an array",
+        "description": "Converts a data structure into an array.",
         "parameters": [
           {
             "name": "value",
-            "summary": "Valeur à convertir",
+            "summary": "Value to convert",
             "required": true,
-            "description": "Structure de données à convertir",
+            "description": "Data structure to be converted",
             "schema": {
               "type": "object"
             }
@@ -101,14 +101,14 @@
     "/jsonParse": {
       "post": {
         "tags": ["web", "service", "spatial"],
-        "summary": "Parse un JSON",
-        "description": "Parse une chaine de caractère JSON",
+        "summary": "Parse a JSON",
+        "description": "Parses a JSON string.",
         "parameters": [
           {
             "name": "value",
-            "summary": "Valeur",
+            "summary": "Value",
             "required": true,
-            "description": "Chaine de caractère au format JSON à convertir en structure de données",
+            "description": "String in JSON format to be converted into a data structure",
             "schema": {
               "type": "string"
             }

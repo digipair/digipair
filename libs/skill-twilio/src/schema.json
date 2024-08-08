@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-twilio",
-    "summary": "Gestion des communications via Twilio",
-    "description": "Cette compétence permet d'utiliser le service Twilio",
+    "summary": "Management of communications via Twilio",
+    "description": "This skill allows the use of the Twilio service",
     "version": "0.1.0",
     "x-icon": "🗣"
   },
@@ -11,58 +11,58 @@
     "/sendSms": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoi d'un sms via Twilio",
+        "summary": "Sending an SMS via Twilio",
         "parameters": [
           {
             "name": "message",
-            "summary": "Message à envoyer",
+            "summary": "Message to send",
             "required": true,
-            "description": "Message à envoyer par sms",
+            "description": "Message to be sent via SMS",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "phoneNumber",
-            "summary": "Numéro de téléphone",
+            "summary": "Phone number",
             "required": true,
-            "description": "Numéro de téléphone du destinataire",
+            "description": "Recipient's phone number",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_FROM_NUMBER",
-            "summary": "Numéro Twilio",
+            "summary": "Twilio number",
             "required": false,
-            "description": "Numéro Twilio",
+            "description": "Twilio number",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_SID",
-            "summary": "Identifiant Twilio",
+            "summary": "Twilio identifier",
             "required": false,
-            "description": "Identifiant Twilio",
+            "description": "Twilio identifier",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_TOKEN",
-            "summary": "Clé d'API",
+            "summary": "API key",
             "required": false,
-            "description": "Clé d'API Twilio",
+            "description": "Twilio API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API endpoint",
             "required": false,
-            "description": "Endpoint de l'API Twilio",
+            "description": "Twilio API endpoint",
             "schema": {
               "type": "string"
             }
@@ -74,58 +74,58 @@
     "/sendWhatsapp": {
       "post": {
         "tags": ["service"],
-        "summary": "Envoi d'un Whatsapp via Twilio",
+        "summary": "Sending a WhatsApp message via Twilio",
         "parameters": [
           {
             "name": "message",
-            "summary": "Message à envoyer",
+            "summary": "Message to send",
             "required": true,
-            "description": "Message à envoyer par sms",
+            "description": "Message to be sent via WhatsApp",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "phoneNumber",
-            "summary": "Numéro de téléphone",
+            "summary": "Phone number",
             "required": true,
-            "description": "Numéro de téléphone du destinataire",
+            "description": "Recipient's phone number",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_FROM_NUMBER",
-            "summary": "Numéro Twilio",
+            "summary": "Twilio number",
             "required": false,
-            "description": "Numéro Twilio",
+            "description": "Twilio number",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_SID",
-            "summary": "Identifiant Twilio",
+            "summary": "Twilio identifier",
             "required": false,
-            "description": "Identifiant Twilio",
+            "description": "Twilio identifier",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_TOKEN",
-            "summary": "Clé d'API",
+            "summary": "API key",
             "required": false,
-            "description": "Clé d'API Twilio",
+            "description": "Twilio API key",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "TWILIO_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
+            "summary": "API endpoint",
             "required": false,
-            "description": "Endpoint de l'API Twilio",
+            "description": "Twilio API endpoint",
             "schema": {
               "type": "string"
             }

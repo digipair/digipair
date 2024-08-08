@@ -13,7 +13,8 @@
         "tsConfig": "libs/skill-web-notification/tsconfig.lib.json",
         "assets": [
           "libs/skill-web-notification/src/index.d.ts",
-          "libs/skill-web-notification/src/schema.json"
+          "libs/skill-web-notification/src/schema.json",
+          "libs/skill-web-notification/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-web-notification/rollup.build.cjs"],
         "project": "libs/skill-web-notification/package.json",

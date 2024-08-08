@@ -1,0 +1,124 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-data-management",
+    "summary": "Gestion des données",
+    "description": "Cette compétence permet manipuler et transformer les données.",
+    "version": "0.1.0",
+    "x-icon": "📝"
+  },
+  "paths": {
+    "/transform": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Transformer la donnée",
+        "description": "Transforme une valeur grace aus mécaniques standard de transformation de données du moteur",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à transformer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Exécute",
+            "required": false,
+            "description": "Actions à appliquer sur la donnée",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setVariable": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Enregistrer la variable",
+        "description": "Enregistre la variable dans le contexte de la compétence",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom de la variable",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": false,
+            "description": "Valeur à enregistrer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Exécute",
+            "required": false,
+            "description": "Actions à appliquer sur la donnée enregistrée",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/struct2array": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Convertir une structure en tableau",
+        "description": "Convertit une structure de données en tableau",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Valeur à convertir",
+            "required": true,
+            "description": "Structure de données à convertir",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/jsonParse": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Parse un JSON",
+        "description": "Parse une chaine de caractère JSON",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Valeur",
+            "required": true,
+            "description": "Chaine de caractère au format JSON à convertir en structure de données",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
