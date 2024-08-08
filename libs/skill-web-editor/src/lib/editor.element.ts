@@ -4,6 +4,7 @@ import { PinsSettings } from '@digipair/engine';
 import { blocksLegacy } from './blocks/json';
 import { initializeWorkspaceFromPinsAndLibraries } from './generator/json-to-blockly';
 import { schemas as schemasWeb } from './schemas/web.schema';
+import { schemas as schemasWebFr } from './schemas/web.fr.schema';
 
 const BASE_URL = 'https://cdn.jsdelivr.net/npm';
 const BLOCKLY_VERSION = '10.4.3';
@@ -32,6 +33,9 @@ export class EditorElement extends LitElement {
 
   @property()
   contentStyle = 'position: fixed; top: 0; right: 0; bottom: 0; left: 0;';
+
+  @property()
+  language = 'en';
 
   @property()
   canSave = false;
@@ -101,18 +105,33 @@ export class EditorElement extends LitElement {
   }
 
   private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
-    const privateSchemas = this.schemas.filter(schema => Object.keys(libraries).indexOf(schema.info.title)  >= 0);
+    const privateSchemas = this.schemas.filter(
+      schema => Object.keys(libraries).indexOf(schema.info.title) >= 0,
+    );
     const list = [
-      schemasWeb,
+      this.language === 'fr' ? schemasWebFr : schemasWeb,
       ...privateSchemas,
       ...(await Promise.all(
         Object.keys(libraries)
           .filter(library => !privateSchemas.find(schema => schema.info.title === library))
-          .map(async (library: any, i: number) =>
-            fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`).then(res => res.json()),
-          ),
-        )
-      ),
+          .map(async (library: any, i: number) => {
+            let res;
+
+            if (this.language !== 'en') {
+              try {
+                res = await fetch(
+                  `${BASE_URL}/${library}@${libraries[library]}/schema.${this.language}.json`,
+                );
+              } catch (e) {
+                res = await fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`);
+              }
+            } else {
+              res = await fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`);
+            }
+
+            return await res.json();
+          }),
+      )),
     ];
 
     return list;
@@ -234,55 +253,55 @@ export class EditorElement extends LitElement {
 
   override render(): TemplateResult {
     return html`
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-      .blocklyToolboxDiv {
-        background-color: ${this.menuBackgroundColor};
-        color: ${this.menuColor};
-        width: 370px;
-      }
+        .blocklyToolboxDiv {
+          background-color: ${this.menuBackgroundColor};
+          color: ${this.menuColor};
+          width: 370px;
+        }
 
-      .header {
-        position: unset !important;
-      }
+        .header {
+          position: unset !important;
+        }
 
-      .menu-item > a::after {
-        content: '> ';
-        margin-left: 30px;
-      }
+        .menu-item > a::after {
+          content: '> ';
+          margin-left: 30px;
+        }
 
-      .header__logo {
-        margin-left: 80px;
-      }
+        .header__logo {
+          margin-left: 80px;
+        }
 
-      .header .main-nav {
-        position: unset;
-        margin-top: 50px;
-        margin-left: 60px;
-      }
+        .header .main-nav {
+          position: unset;
+          margin-top: 50px;
+          margin-left: 60px;
+        }
 
-      .header .container {
-        margin: 0;
-      }
+        .header .container {
+          margin: 0;
+        }
 
-      .blocklyTreeRow {
-        height: 30px;
-        line-height: 30px;
-      }
+        .blocklyTreeRow {
+          height: 30px;
+          line-height: 30px;
+        }
 
-      .blocklyPath {
-        stroke: #fff;
-      }
+        .blocklyPath {
+          stroke: #fff;
+        }
 
-      .blocklyPathDark {
-        fill: #fff;
-      }
-    </style>
+        .blocklyPathDark {
+          fill: #fff;
+        }
+      </style>
 
-    <div>
-      <div style=${this.contentStyle} data-scene></div>
-    </div>
-   `;
+      <div>
+        <div style=${this.contentStyle} data-scene></div>
+      </div>
+    `;
   }
 }
