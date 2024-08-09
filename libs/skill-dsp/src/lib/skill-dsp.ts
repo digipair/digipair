@@ -103,8 +103,9 @@ class DspService {
     const result = await gen.forward(input);
 
     // add comsumption
-    const consumption = modelInstance.ai.modelUsage;
-    const modelInfo = modelInstance.getModelInfo();
+    const ai = modelInstance.ai ?? modelInstance;
+    const consumption = ai.modelUsage;
+    const modelInfo = ai.getModelInfo();
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
@@ -127,8 +128,9 @@ class DspService {
     const result = await gen.forward(input);
 
     // add comsumption
-    const consumption = modelInstance.ai.modelUsage;
-    const modelInfo = modelInstance.getModelInfo();
+    const ai = modelInstance.ai ?? modelInstance;
+    const consumption = ai.modelUsage;
+    const modelInfo = ai.getModelInfo();
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
@@ -151,8 +153,9 @@ class DspService {
     const result = await gen.forward(input);
 
     // add comsumption
-    const consumption = modelInstance.ai.modelUsage;
-    const modelInfo = modelInstance.getModelInfo();
+    const ai = modelInstance.ai ?? modelInstance;
+    const consumption = ai.modelUsage;
+    const modelInfo = ai.getModelInfo();
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
@@ -201,8 +204,9 @@ class DspService {
     const result = await agent.forward(input);
 
     // add comsumption
-    const consumption = modelInstance.ai.modelUsage;
-    const modelInfo = modelInstance.getModelInfo();
+    const ai = modelInstance.ai ?? modelInstance;
+    const consumption = ai.modelUsage;
+    const modelInfo = ai.getModelInfo();
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
