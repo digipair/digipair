@@ -52,12 +52,10 @@ export class AppService implements OnModuleInit {
     method: string,
     headers: any,
   ): Promise<any> {
-    let content: string;
-    let result: any;
     let context: any;
 
     try {
-      content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+      let content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
       const config = JSON.parse(content);
 
       context = {
@@ -79,7 +77,7 @@ export class AppService implements OnModuleInit {
       content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
       const settings = JSON.parse(content);
 
-      result = executePinsList([settings], context);
+      const result = executePinsList([settings], context);
 
       return result;
     } catch (error) {

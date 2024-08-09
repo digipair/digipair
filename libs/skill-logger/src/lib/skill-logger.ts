@@ -2,7 +2,7 @@ import { PinsSettings } from '@digipair/engine';
 import { promises } from 'fs';
 
 class LoggerService {
-  async initialize(path = process.env['DIGIPAIR_LOGS_PATH'] ?? './factory/digipairs/logs') {
+  async initialize(path = process.env['DIGIPAIR_LOGS_PATH'] ?? './factory/logs') {
     // create logs directory if it doesn't exist
     await promises.mkdir(`${path}/factory`, { recursive: true });
 
@@ -21,9 +21,9 @@ class LoggerService {
     completionTokens: number,
   ) {
     const DIGIPAIR_LOGS_PATH =
-      context.DIGIPAIR_LOGS_PATH ??
+      context.privates.DIGIPAIR_LOGS_PATH ??
       process.env['DIGIPAIR_LOGS_PATH'] ??
-      './factory/digipairs/logs';
+      './factory/logs';
     const current = new Date();
     const line = {
       date: current.getTime(),
@@ -45,9 +45,9 @@ class LoggerService {
   async computeDailyConsumption(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       date,
-      path = context.DIGIPAIR_LOGS_PATH ??
+      path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/digipairs/logs',
+        './factory/logs',
     } = params;
     const text = await promises.readFile(`${path}/consumption-daily/${date}.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
@@ -88,9 +88,9 @@ class LoggerService {
   async consumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       date,
-      path = context.DIGIPAIR_LOGS_PATH ??
+      path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/digipairs/logs',
+        './factory/logs',
     } = params;
     const text = await promises.readFile(`${path}/consumption-daily/${date}.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
@@ -101,9 +101,9 @@ class LoggerService {
 
   async dailyConsumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.DIGIPAIR_LOGS_PATH ??
+      path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/digipairs/logs',
+        './factory/logs',
     } = params;
 
     const files = (await promises.readdir(`${path}/consumption-daily`)).map(
@@ -115,9 +115,9 @@ class LoggerService {
 
   async monthlyConsumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.DIGIPAIR_LOGS_PATH ??
+      path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/digipairs/logs',
+        './factory/logs',
     } = params;
 
     const files = (await promises.readdir(`${path}/consumption-monthly`)).map(
@@ -129,9 +129,9 @@ class LoggerService {
 
   async addLog(context: any, type: string, message: string) {
     const DIGIPAIR_LOGS_PATH =
-      context.DIGIPAIR_LOGS_PATH ??
+      context.privates.DIGIPAIR_LOGS_PATH ??
       process.env['DIGIPAIR_LOGS_PATH'] ??
-      './factory/digipairs/logs';
+      './factory/logs';
     const current = new Date();
     const line = {
       date: current.getTime(),
@@ -151,9 +151,9 @@ class LoggerService {
   async logs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       date,
-      path = context.DIGIPAIR_LOGS_PATH ??
+      path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/digipairs/logs',
+        './factory/logs',
     } = params;
     const text = await promises.readFile(`${path}/factory/${date}.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
@@ -164,9 +164,9 @@ class LoggerService {
 
   async dailyLogs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.DIGIPAIR_LOGS_PATH ??
+      path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/digipairs/logs',
+        './factory/logs',
     } = params;
 
     const files = (await promises.readdir(`${path}/factory`))
@@ -180,9 +180,9 @@ class LoggerService {
     const {
       type,
       to,
-      path = context.DIGIPAIR_LOGS_PATH ??
+      path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/digipairs/logs',
+        './factory/logs',
     } = params;
     const files = await promises.readdir(`${path}/${type}`);
 
