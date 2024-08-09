@@ -2,15 +2,15 @@ import { PinsSettings } from '@digipair/engine';
 import { promises } from 'fs';
 
 class LoggerService {
-  async initialize(path = process.env['DIGIPAIR_FACTORY_PATH'] ?? './factory/digipairs') {
+  async initialize(path = process.env['DIGIPAIR_LOGS_PATH'] ?? './factory/digipairs/logs') {
     // create logs directory if it doesn't exist
-    await promises.mkdir(`${path}/logs/factory`, { recursive: true });
+    await promises.mkdir(`${path}/factory`, { recursive: true });
 
     // create consumption-daily directory if it doesn't exist
-    await promises.mkdir(`${path}/logs/consumption-daily`, { recursive: true });
+    await promises.mkdir(`${path}/consumption-daily`, { recursive: true });
 
     // create consumption-monthly directory if it doesn't exist
-    await promises.mkdir(`${path}/logs/consumption-monthly`, { recursive: true });
+    await promises.mkdir(`${path}/consumption-monthly`, { recursive: true });
   }
 
   async addConsumption(
@@ -20,10 +20,10 @@ class LoggerService {
     promptTokens: number,
     completionTokens: number,
   ) {
-    const DIGIPAIR_FACTORY_PATH =
-      context.DIGIPAIR_FACTORY_PATH ??
-      process.env['DIGIPAIR_FACTORY_PATH'] ??
-      './factory/digipairs';
+    const DIGIPAIR_LOGS_PATH =
+      context.DIGIPAIR_LOGS_PATH ??
+      process.env['DIGIPAIR_LOGS_PATH'] ??
+      './factory/digipairs/logs';
     const current = new Date();
     const line = {
       date: current.getTime(),
@@ -36,7 +36,7 @@ class LoggerService {
     };
 
     await promises.appendFile(
-      `${DIGIPAIR_FACTORY_PATH}/logs/consumption-daily/${current.toISOString().split('T')[0]}.jsonl`,
+      `${DIGIPAIR_LOGS_PATH}/consumption-daily/${current.toISOString().split('T')[0]}.jsonl`,
       '\n' + JSON.stringify(line),
       'utf8',
     );
@@ -45,11 +45,11 @@ class LoggerService {
   async computeDailyConsumption(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       date,
-      path = context.DIGIPAIR_FACTORY_PATH ??
-        process.env['DIGIPAIR_FACTORY_PATH'] ??
-        './factory/digipairs',
+      path = context.DIGIPAIR_LOGS_PATH ??
+        process.env['DIGIPAIR_LOGS_PATH'] ??
+        './factory/digipairs/logs',
     } = params;
-    const text = await promises.readFile(`${path}/logs/consumption-daily/${date}.jsonl`, 'utf8');
+    const text = await promises.readFile(`${path}/consumption-daily/${date}.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const result = lines.map((line: string) => JSON.parse(line));
 
@@ -79,7 +79,7 @@ class LoggerService {
     }, []);
 
     await promises.appendFile(
-      `${path}/logs/consumption-monthly/${date.substring(0, 7)}.jsonl`,
+      `${path}/consumption-monthly/${date.substring(0, 7)}.jsonl`,
       '\n' + dayLines.map((line: any) => JSON.stringify(line)).join('\n'),
       'utf8',
     );
@@ -88,11 +88,11 @@ class LoggerService {
   async consumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       date,
-      path = context.DIGIPAIR_FACTORY_PATH ??
-        process.env['DIGIPAIR_FACTORY_PATH'] ??
-        './factory/digipairs',
+      path = context.DIGIPAIR_LOGS_PATH ??
+        process.env['DIGIPAIR_LOGS_PATH'] ??
+        './factory/digipairs/logs',
     } = params;
-    const text = await promises.readFile(`${path}/logs/consumption-daily/${date}.jsonl`, 'utf8');
+    const text = await promises.readFile(`${path}/consumption-daily/${date}.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const result = lines.map((line: string) => JSON.parse(line));
 
@@ -101,12 +101,12 @@ class LoggerService {
 
   async dailyConsumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.DIGIPAIR_FACTORY_PATH ??
-        process.env['DIGIPAIR_FACTORY_PATH'] ??
-        './factory/digipairs',
+      path = context.DIGIPAIR_LOGS_PATH ??
+        process.env['DIGIPAIR_LOGS_PATH'] ??
+        './factory/digipairs/logs',
     } = params;
 
-    const files = (await promises.readdir(`${path}/logs/consumption-daily`)).map(
+    const files = (await promises.readdir(`${path}/consumption-daily`)).map(
       file => file.split('.')[0],
     );
 
@@ -115,12 +115,12 @@ class LoggerService {
 
   async monthlyConsumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.DIGIPAIR_FACTORY_PATH ??
-        process.env['DIGIPAIR_FACTORY_PATH'] ??
-        './factory/digipairs',
+      path = context.DIGIPAIR_LOGS_PATH ??
+        process.env['DIGIPAIR_LOGS_PATH'] ??
+        './factory/digipairs/logs',
     } = params;
 
-    const files = (await promises.readdir(`${path}/logs/consumption-monthly`)).map(
+    const files = (await promises.readdir(`${path}/consumption-monthly`)).map(
       file => file.split('.')[0],
     );
 
@@ -128,10 +128,10 @@ class LoggerService {
   }
 
   async addLog(context: any, type: string, message: string) {
-    const DIGIPAIR_FACTORY_PATH =
-      context.DIGIPAIR_FACTORY_PATH ??
-      process.env['DIGIPAIR_FACTORY_PATH'] ??
-      './factory/digipairs';
+    const DIGIPAIR_LOGS_PATH =
+      context.DIGIPAIR_LOGS_PATH ??
+      process.env['DIGIPAIR_LOGS_PATH'] ??
+      './factory/digipairs/logs';
     const current = new Date();
     const line = {
       date: current.getTime(),
@@ -142,7 +142,7 @@ class LoggerService {
     };
 
     await promises.appendFile(
-      `${DIGIPAIR_FACTORY_PATH}/logs/${current.toISOString().split('T')[0]}.jsonl`,
+      `${DIGIPAIR_LOGS_PATH}/${current.toISOString().split('T')[0]}.jsonl`,
       '\n' + JSON.stringify(line),
       'utf8',
     );
@@ -151,11 +151,11 @@ class LoggerService {
   async logs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       date,
-      path = context.DIGIPAIR_FACTORY_PATH ??
-        process.env['DIGIPAIR_FACTORY_PATH'] ??
-        './factory/digipairs',
+      path = context.DIGIPAIR_LOGS_PATH ??
+        process.env['DIGIPAIR_LOGS_PATH'] ??
+        './factory/digipairs/logs',
     } = params;
-    const text = await promises.readFile(`${path}/logs/factory/${date}.jsonl`, 'utf8');
+    const text = await promises.readFile(`${path}/factory/${date}.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const result = lines.map((line: string) => JSON.parse(line));
 
@@ -164,12 +164,12 @@ class LoggerService {
 
   async dailyLogs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      path = context.DIGIPAIR_FACTORY_PATH ??
-        process.env['DIGIPAIR_FACTORY_PATH'] ??
-        './factory/digipairs',
+      path = context.DIGIPAIR_LOGS_PATH ??
+        process.env['DIGIPAIR_LOGS_PATH'] ??
+        './factory/digipairs/logs',
     } = params;
 
-    const files = (await promises.readdir(`${path}/logs/factory`))
+    const files = (await promises.readdir(`${path}/factory`))
       .filter(file => /\.jsonl$/g.test(file))
       .map(file => file.split('.')[0]);
 
@@ -180,16 +180,16 @@ class LoggerService {
     const {
       type,
       to,
-      path = context.DIGIPAIR_FACTORY_PATH ??
-        process.env['DIGIPAIR_FACTORY_PATH'] ??
-        './factory/digipairs',
+      path = context.DIGIPAIR_LOGS_PATH ??
+        process.env['DIGIPAIR_LOGS_PATH'] ??
+        './factory/digipairs/logs',
     } = params;
-    const files = await promises.readdir(`${path}/logs/${type}`);
+    const files = await promises.readdir(`${path}/${type}`);
 
     for (const file of files) {
-      const stats = await promises.stat(`${path}/${file}`);
+      const stats = await promises.stat(`${path}/${type}/${file}`);
       if (stats.mtime.getTime() < to) {
-        promises.unlink(`${path}/${file}`);
+        promises.unlink(`${path}/${type}/${file}`);
       }
     }
   }
