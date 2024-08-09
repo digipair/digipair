@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "@digipair/engine": ["libs/engine/src/index.ts"],
-      "@digipair/skill-logger": ["libs/skill-logger/src/index.ts"],
       "@digipair/skill-canvas": ["libs/skill-canvas/src/index.ts"],
       "@digipair/skill-chatbot": ["libs/skill-chatbot/src/index.ts"],
       "@digipair/skill-common": ["libs/skill-common/src/index.ts"],
@@ -31,6 +30,7 @@
       "@digipair/skill-keycloak": ["libs/skill-keycloak/src/index.ts"],
       "@digipair/skill-linkedin": ["libs/skill-linkedin/src/index.ts"],
       "@digipair/skill-llm": ["libs/skill-llm/src/index.ts"],
+      "@digipair/skill-logger": ["libs/skill-logger/src/index.ts"],
       "@digipair/skill-microsoft": ["libs/skill-microsoft/src/index.ts"],
       "@digipair/skill-mongodb": ["libs/skill-mongodb/src/index.ts"],
       "@digipair/skill-mybuddy": ["libs/skill-mybuddy/src/index.ts"],
@@ -59,7 +59,8 @@
       "@digipair/skill-web-ocr": ["libs/skill-web-ocr/src/index.ts"],
       "@digipair/skill-web-pdf": ["libs/skill-web-pdf/src/index.ts"],
       "@digipair/skill-web-spectrum": ["libs/skill-web-spectrum/src/index.ts"],
-      "@digipair/skill-webcam": ["libs/skill-webcam/src/index.ts"]
+      "@digipair/skill-webcam": ["libs/skill-webcam/src/index.ts"],
+      "@digipair/skill-yolo": ["libs/skill-yolo/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,32 @@
+{
+  "name": "skill-yolo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-yolo/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-yolo",
+        "main": "libs/skill-yolo/src/index.ts",
+        "tsConfig": "libs/skill-yolo/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-yolo/src/index.d.ts",
+          "libs/skill-yolo/src/yolov8m.onnx",
+          "libs/skill-yolo/src/schema.json",
+          "libs/skill-yolo/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-yolo/rollup.build.cjs"],
+        "project": "libs/skill-yolo/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-yolo {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}
