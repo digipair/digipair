@@ -80,7 +80,7 @@ class EditorService {
     } = params;
 
     const digipairs = (await promises.readdir(path)).filter(
-      (file: string) => !file.startsWith('.') && !file.endsWith('.json'),
+      (file: string) => !file.startsWith('.') && !file.endsWith('.json')  && !file.endsWith('.jsonl'),
     );
 
     return digipairs;
