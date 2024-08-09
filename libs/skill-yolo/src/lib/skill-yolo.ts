@@ -18,7 +18,7 @@ class YoloService {
    * @returns Array of pixels
    */
   private async prepare_input(buf: any): Promise<[any, number, number]> {
-    const img = sharp(buf);
+    const img = (sharp as any).default(buf);
     const md = await img.metadata();
     const [img_width, img_height] = [md.width, md.height] as number[];
     const pixels = await img
@@ -229,7 +229,7 @@ class YoloService {
     return predictions.map((prediction: any) => ({
       class: prediction[4],
       score: prediction[5],
-      box: [
+      bbox: [
         prediction[0],
         prediction[1],
         prediction[2] - prediction[0],

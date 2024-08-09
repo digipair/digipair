@@ -13,12 +13,17 @@ class MicrosoftService {
 
   constructor(context: any, params: any) {
     this.OAUTH_CLIENT_ID =
-      context.privates.MICROSOFT_OAUTH_CLIENT_ID ?? params?.MICROSOFT_OAUTH_CLIENT_ID ?? process.env['MICROSOFT_OAUTH_CLIENT_ID'];
+      context.privates.MICROSOFT_OAUTH_CLIENT_ID ??
+      params?.MICROSOFT_OAUTH_CLIENT_ID ??
+      process.env['MICROSOFT_OAUTH_CLIENT_ID'];
     this.OAUTH_CLIENT_SECRET =
       context.privates.MICROSOFT_OAUTH_CLIENT_SECRET ??
       params?.MICROSOFT_OAUTH_CLIENT_SECRET ??
       process.env['MICROSOFT_OAUTH_CLIENT_SECRET'];
-    this.TENANT_ID = context.privates.MICROSOFT_TENANT_ID ?? params?.MICROSOFT_TENANT_ID ?? process.env['MICROSOFT_TENANT_ID'];
+    this.TENANT_ID =
+      context.privates.MICROSOFT_TENANT_ID ??
+      params?.MICROSOFT_TENANT_ID ??
+      process.env['MICROSOFT_TENANT_ID'];
   }
 
   private async getAccessToken() {
@@ -59,7 +64,9 @@ class MicrosoftService {
       body: data ? JSON.stringify(data) : undefined,
     });
     if (!response.ok) throw new Error('[SKILL-MICROSOFT] REQUEST FAILED: ' + response.status);
-    return await response.json();
+    return (response.headers.get('content-length') as unknown as number) > 0
+      ? await response.json()
+      : {};
   }
 
   async create(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
@@ -81,7 +88,6 @@ class MicrosoftService {
     const { path, body = {}, version = 'v1.0', headers = {} } = params;
     return await this.call(path, 'PATCH', version, body, headers);
   }
-
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { path, version = 'v1.0', headers = {} } = params;

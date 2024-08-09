@@ -142,7 +142,7 @@ class LoggerService {
     };
 
     await promises.appendFile(
-      `${DIGIPAIR_LOGS_PATH}/${current.toISOString().split('T')[0]}.jsonl`,
+      `${DIGIPAIR_LOGS_PATH}/factory/${current.toISOString().split('T')[0]}.jsonl`,
       '\n' + JSON.stringify(line),
       'utf8',
     );
