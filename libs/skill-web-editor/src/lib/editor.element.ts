@@ -118,11 +118,11 @@ export class EditorElement extends LitElement {
             let res;
 
             if (this.language !== 'en') {
-              try {
-                res = await fetch(
-                  `${BASE_URL}/${library}@${libraries[library]}/schema.${this.language}.json`,
-                );
-              } catch (e) {
+              res = await fetch(
+                `${BASE_URL}/${library}@${libraries[library]}/schema.${this.language}.json`,
+              );
+
+              if (!res.ok) {
                 res = await fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`);
               }
             } else {

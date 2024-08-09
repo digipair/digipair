@@ -67,6 +67,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "language",
+            "summary": "Langue",
+            "required": false,
+            "description": "Langue de l'éditeur",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
