@@ -61,10 +61,14 @@ class MicrosoftService {
         'Content-Type': 'application/json',
         ...headers,
       },
-      body: data ? JSON.stringify(data) : undefined,
+      body:
+        method.toUpperCase() === 'GET' || method.toUpperCase() === 'HEAD'
+          ? undefined
+          : JSON.stringify(data),
     });
     if (!response.ok) throw new Error('[SKILL-MICROSOFT] REQUEST FAILED: ' + response.status);
-    return (response.headers.get('content-length') as unknown as number) > 0
+    return !response.headers.has('content-length') ||
+      (response.headers.get('content-length') as unknown as number) > 0
       ? await response.json()
       : {};
   }
