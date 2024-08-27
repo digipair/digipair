@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-web-inputs/src/index.d.ts",
           "libs/skill-web-inputs/src/schema.json",
+          "libs/skill-web-inputs/src/schema.en.json",
           "libs/skill-web-inputs/src/schema.fr.json"
         ],
         "project": "libs/skill-web-inputs/package.json",

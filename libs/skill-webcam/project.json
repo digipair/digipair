@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-webcam/src/index.d.ts",
           "libs/skill-webcam/src/schema.json",
+          "libs/skill-webcam/src/schema.en.json",
           "libs/skill-webcam/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-webcam/rollup.build.cjs"],

@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-keycloak/src/index.d.ts",
           "libs/skill-keycloak/src/schema.json",
+          "libs/skill-keycloak/src/schema.en.json",
           "libs/skill-keycloak/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-keycloak/rollup.build.cjs"],

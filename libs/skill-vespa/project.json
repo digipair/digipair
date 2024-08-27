@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-vespa/src/index.d.ts",
           "libs/skill-vespa/src/schema.json",
+          "libs/skill-vespa/src/schema.en.json",
           "libs/skill-vespa/src/schema.fr.json"
         ],
         "project": "libs/skill-vespa/package.json",

@@ -1,0 +1,453 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-chatbot",
+    "summary": "Communication with the chatbot",
+    "description": "The skill allows managing communication with the chatbot.",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/chatbot": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Return to the chatbot",
+        "parameters": [
+          {
+            "name": "assistant",
+            "required": true,
+            "description": "Response from the assistant",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "command",
+            "required": false,
+            "description": "Command executed on the chatbot",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "sources",
+            "required": false,
+            "description": "List of sources used to respond to the user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "logs",
+            "required": false,
+            "description": "Useful information for debugging reasoning",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "model",
+            "summary": "LLM Model",
+            "required": false,
+            "description": "LLM model to load",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "embeddings",
+            "summary": "Embeddings Model",
+            "required": false,
+            "description": "Embeddings model to load",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "baseUrlVespa",
+            "required": false,
+            "description": "URL of the Vespa server",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "promptSummary",
+            "required": false,
+            "description": "Prompt used for the system summary",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/find": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Retrieve from the conversation",
+        "description": "Retrieve data from the conversation history",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "description": "limit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "orderby",
+            "required": false,
+            "description": "orderby",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "required": true,
+            "description": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "required": false,
+            "description": "URL of the Vespa server",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/search": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Search in the conversation",
+        "description": "Search for data in the conversation history",
+        "parameters": [
+          {
+            "name": "embeddings",
+            "summary": "Embeddings Model",
+            "required": false,
+            "description": "Embeddings model to load",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "description": "limit",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "orderby",
+            "required": false,
+            "description": "orderby",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "targetHits",
+            "required": false,
+            "description": "targetHits",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "query",
+            "required": true,
+            "description": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "required": false,
+            "description": "URL of the Vespa server",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "required": false,
+            "description": "Search language",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "description": "Search filter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/history": {
+      "post": {
+        "tags": ["service"],
+        "summary": "History",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "summary": "URL of the Vespa server",
+            "required": false,
+            "description": "URL of the Vespa server",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxHistory",
+            "summary": "Maximum number of items",
+            "required": false,
+            "description": "orderby",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "system",
+            "summary": "System",
+            "required": false,
+            "description": "targetHits",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "question",
+            "summary": "Assistant's question",
+            "required": false,
+            "description": "Assistant's question",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getRole": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Role retrieval",
+        "parameters": [
+          {
+            "name": "role",
+            "summary": "Name",
+            "required": true,
+            "description": "Role name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "URL of the Vespa server",
+            "required": false,
+            "description": "URL of the Vespa server",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setRole": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Role update",
+        "parameters": [
+          {
+            "name": "role",
+            "summary": "Name",
+            "required": true,
+            "description": "Role name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Value",
+            "required": true,
+            "description": "Role value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "baseUrl",
+            "summary": "URL of the Vespa server",
+            "required": false,
+            "description": "URL of the Vespa server",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/answer": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Chatbot response",
+        "parameters": [
+          {
+            "name": "assistant",
+            "required": true,
+            "description": "Response from the assistant",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "command",
+            "required": false,
+            "description": "Commands executed on the chatbot",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "boosts",
+            "required": false,
+            "description": "List of proposed boosts",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "sources",
+            "required": false,
+            "description": "List of sources used to respond to the user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "logs",
+            "required": false,
+            "description": "Useful information for debugging reasoning",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Boost": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Trigger",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "boolean"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "text": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "x-scene-blocks": {
+    "/boost": {
+      "summary": "Boost",
+      "description": "Boost proposed by Digipair",
+      "tags": ["boost", "service"],
+      "metadata": [
+        {
+          "name": "boosts",
+          "summary": "List of triggers",
+          "required": true,
+          "description": "List of boost triggers",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Boost"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execution of actions",
+          "required": false,
+          "description": "List of actions to execute",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

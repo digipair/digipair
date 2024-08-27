@@ -1,0 +1,228 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-inputs",
+    "summary": "Data entry in boosts",
+    "description": "This skill allows data entry in boosts.",
+    "version": "0.1.0",
+    "x-icon": "📥"
+  },
+  "paths": {
+    "/digipair-input-dom-attribute": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Read a DOM element attribute",
+        "description": "Read an attribute of a DOM element",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "CSS Selector",
+            "required": true,
+            "description": "CSS selector of the DOM element",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribute",
+            "required": true,
+            "description": "Name of the attribute to read",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Required?",
+            "required": false,
+            "description": "Fields required to execute the boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-fetch": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Fetch data from a URL",
+        "description": "Fetch data from a URL",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Web service URL",
+            "required": true,
+            "description": "Address of the web service to call",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Data type",
+            "required": true,
+            "description": "Type of data to fetch (json or text)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Required?",
+            "required": false,
+            "description": "Fields required to execute the boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-file": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Read a binary file",
+        "description": "Read a binary file in base 64 format",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Displayed text",
+            "required": false,
+            "description": "Text displayed to the user to guide them in their input",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "File type",
+            "required": false,
+            "description": "Accepted file types",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Required?",
+            "required": false,
+            "description": "Fields required to execute the boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-hidden": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Return hidden data",
+        "description": "Return hidden data to the boost",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Data",
+            "required": true,
+            "description": "Data to send to the boost",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Required?",
+            "required": false,
+            "description": "Fields required to execute the boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-json": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Read a JSON file",
+        "description": "Read a JSON file",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Displayed text",
+            "required": false,
+            "description": "Text displayed to the user to guide them in their input",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "File type",
+            "required": false,
+            "description": "Accepted file types",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Required?",
+            "required": false,
+            "description": "Fields required to execute the boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-input-text": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Read a text file",
+        "description": "Read a text file",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Displayed text",
+            "required": false,
+            "description": "Text displayed to the user to guide them in their input",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "File type",
+            "required": false,
+            "description": "Accepted file types",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Required?",
+            "required": false,
+            "description": "Fields required to execute the boost",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

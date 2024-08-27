@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-debug",
+    "summary": "Factory Debugging",
+    "description": "This skill allows users to debug actions executed on the factory, providing tools and features to identify and resolve issues.",
+    "version": "0.1.0",
+    "x-icon": "🔧"
+  },
+  "paths": {
+    "/log": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Display in logs",
+        "description": "Element for displaying a message in the logs",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Subject",
+            "required": true,
+            "description": "Log subject",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type",
+            "required": false,
+            "description": "Log type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Value",
+            "required": false,
+            "description": "Additional value to display",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

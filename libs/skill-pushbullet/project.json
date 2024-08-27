@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-pushbullet/src/index.d.ts",
           "libs/skill-pushbullet/src/schema.json",
+          "libs/skill-pushbullet/src/schema.en.json",
           "libs/skill-pushbullet/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-pushbullet/rollup.build.cjs"],

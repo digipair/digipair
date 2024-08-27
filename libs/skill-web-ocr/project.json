@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-web-ocr/src/index.d.ts",
           "libs/skill-web-ocr/src/schema.json",
+          "libs/skill-web-ocr/src/schema.en.json",
           "libs/skill-web-ocr/src/schema.fr.json"
         ],
         "project": "libs/skill-web-ocr/package.json",

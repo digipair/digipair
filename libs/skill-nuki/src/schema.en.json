@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-nuki",
+    "summary": "Management of a Nuki lock",
+    "description": "This skill allows you to manage a Nuki lock",
+    "version": "0.1.0",
+    "x-icon": "🔐"
+  },
+  "paths": {
+    "/unlock": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Unlocks a Nuki lock",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Lock identifier",
+            "required": true,
+            "description": "Identifier of the Nuki lock",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_KEY",
+            "summary": "API key",
+            "required": false,
+            "description": "Nuki API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_ENDPOINT",
+            "summary": "API endpoint",
+            "required": false,
+            "description": "Nuki API endpoint",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/lock": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Locks a Nuki lock",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Lock identifier",
+            "required": true,
+            "description": "Identifier of the Nuki lock",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_KEY",
+            "summary": "API key",
+            "required": false,
+            "description": "Nuki API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_ENDPOINT",
+            "summary": "API endpoint",
+            "required": false,
+            "description": "Nuki API endpoint",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

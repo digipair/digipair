@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-linkedin/src/index.d.ts",
           "libs/skill-linkedin/src/schema.json",
+          "libs/skill-linkedin/src/schema.en.json",
           "libs/skill-linkedin/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-linkedin/rollup.build.cjs"],

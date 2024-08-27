@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-microsoft/src/index.d.ts",
           "libs/skill-microsoft/src/schema.json",
+          "libs/skill-microsoft/src/schema.en.json",
           "libs/skill-microsoft/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-microsoft/rollup.build.cjs"],

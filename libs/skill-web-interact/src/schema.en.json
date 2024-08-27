@@ -1,0 +1,287 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-interact",
+    "summary": "Interaction with a web page",
+    "description": "This skill allows users to communicate with an HTML page on the client side.",
+    "version": "0.1.0",
+    "x-icon": "📲"
+  },
+  "paths": {
+    "/dispatchEvent": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Emit an event",
+        "description": "Emits an event on a DOM element",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Event name",
+            "required": true,
+            "description": "Name of the event",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selector",
+            "summary": "CSS selector of the element",
+            "required": true,
+            "description": "CSS selector of the element that will receive the event",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "detail",
+            "summary": "Event details",
+            "required": false,
+            "description": "Data passed in the event",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setAttribute": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Modify an attribute",
+        "description": "Allows modifying the value of an attribute of a DOM element",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "CSS selector of the element",
+            "required": true,
+            "description": "CSS selector of the element",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribute",
+            "required": true,
+            "description": "Attribute to modify",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Value",
+            "required": true,
+            "description": "New value of the attribute",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getAttribute": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Read an attribute",
+        "description": "Allows reading the value of an attribute of a DOM element",
+        "parameters": [
+          {
+            "name": "selector",
+            "summary": "CSS selector of the element",
+            "required": true,
+            "description": "CSS selector of the element",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attribute",
+            "summary": "Attribute",
+            "required": true,
+            "description": "Attribute to read",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Execute a method",
+        "description": "Executes a method on a DOM element",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Method name",
+            "required": true,
+            "description": "Name of the method",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selector",
+            "summary": "CSS selector of the element",
+            "required": true,
+            "description": "CSS selector of the element that will execute the method",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "args",
+            "summary": "Arguments",
+            "required": false,
+            "description": "List of method arguments",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/goTo": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Go to a web page",
+        "description": "Allows opening a web page in the browser",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Address",
+            "required": true,
+            "description": "Address of the web page",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "Target window",
+            "required": true,
+            "description": "Target window",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/reload": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Reload the current page",
+        "description": "Allows reloading the current page",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Upload a binary file",
+        "description": "Allows uploading a binary file in base64",
+        "parameters": [
+          {
+            "name": "accept",
+            "summary": "File type",
+            "required": false,
+            "description": "Accepted file type",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/uploadText": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Upload a text file",
+        "description": "Allows uploading a text file",
+        "parameters": [
+          {
+            "name": "accept",
+            "summary": "File type",
+            "required": false,
+            "description": "Accepted file type",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/capture": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Capture an image from the webcam",
+        "description": "Allows capturing an image from the webcam",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "summary": "Device ID",
+            "required": false,
+            "description": "ID of the capture device",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "summary": "Image width",
+            "required": false,
+            "description": "Width of the captured image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "summary": "Image height",
+            "required": false,
+            "description": "Height of the captured image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "facingMode",
+            "summary": "Capture mode",
+            "required": false,
+            "description": "Mode of image capture",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getMediaDevices": {
+      "post": {
+        "tags": ["web"],
+        "summary": "List of devices",
+        "description": "Lists available capture devices",
+        "parameters": [],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

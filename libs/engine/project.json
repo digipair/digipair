@@ -14,6 +14,7 @@
         "assets": [
           "libs/engine/src/index.d.ts",
           "libs/engine/src/schema.json",
+          "libs/engine/src/schema.en.json",
           "libs/engine/src/schema.fr.json"
         ],
         "project": "libs/engine/package.json",

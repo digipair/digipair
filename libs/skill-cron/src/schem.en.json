@@ -1,0 +1,160 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-cron",
+    "summary": "Scheduled Task Management",
+    "description": "The skill allows for the management of scheduled task executions.",
+    "version": "0.1.0",
+    "x-icon": "📆"
+  },
+  "paths": {
+    "/crons": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List of Scheduled Tasks",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Access Path",
+            "required": false,
+            "description": "Access path to the digipairs directory",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/addCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Adds a Schedule",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Access Path",
+            "required": false,
+            "description": "Access path to the digipairs directory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "time",
+            "summary": "Schedule",
+            "required": true,
+            "description": "Schedule in cron format",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Name of the digipair executing the reasoning",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Reasoning",
+            "required": true,
+            "description": "Name of the reasoning to be executed",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/deleteCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Deletes a Schedule",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Access Path",
+            "required": false,
+            "description": "Access path to the digipairs directory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifier",
+            "required": true,
+            "description": "Identifier of the schedule",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/enableCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Enables a Schedule",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Access Path",
+            "required": false,
+            "description": "Access path to the digipairs directory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifier",
+            "required": true,
+            "description": "Identifier of the schedule",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/disableCron": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Disables a Schedule",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Access Path",
+            "required": false,
+            "description": "Access path to the digipairs directory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifier",
+            "required": true,
+            "description": "Identifier of the schedule",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

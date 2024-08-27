@@ -15,6 +15,7 @@
           "libs/skill-yolo/src/index.d.ts",
           "libs/skill-yolo/src/yolov8m.onnx",
           "libs/skill-yolo/src/schema.json",
+          "libs/skill-yolo/src/schema.en.json",
           "libs/skill-yolo/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-yolo/rollup.build.cjs"],

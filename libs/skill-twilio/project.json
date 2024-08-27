@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-twilio/src/index.d.ts",
           "libs/skill-twilio/src/schema.json",
+          "libs/skill-twilio/src/schema.en.json",
           "libs/skill-twilio/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-twilio/rollup.build.cjs"],

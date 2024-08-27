@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-tensorflow",
+    "summary": "Deep Learning Analysis",
+    "description": "This skill allows users to analyze data using Deep Learning.",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/cocoSsd": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Detects objects",
+        "description": "Detects objects in an image",
+        "parameters": [
+          {
+            "name": "image",
+            "summary": "Image",
+            "required": true,
+            "description": "Image to analyze",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "base",
+            "summary": "Base",
+            "required": false,
+            "description": "Base model (mobilenet_v1, mobilenet_v2, or lite_mobilenet_v2)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/faceDetection": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Detects faces",
+        "description": "Detects faces in an image",
+        "parameters": [
+          {
+            "name": "image",
+            "summary": "Image",
+            "required": true,
+            "description": "Image to analyze",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "runtime",
+            "summary": "Runtime environment",
+            "required": false,
+            "description": "Runtime environment (mediapipe or tfjs)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

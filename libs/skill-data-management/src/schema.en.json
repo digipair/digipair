@@ -1,0 +1,124 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-data-management",
+    "summary": "Data Management",
+    "description": "This skill allows for the manipulation and transformation of data.",
+    "version": "0.1.0",
+    "x-icon": "📝"
+  },
+  "paths": {
+    "/transform": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Transform the data",
+        "description": "Transforms a value using the standard data transformation mechanics of the engine.",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Value",
+            "required": false,
+            "description": "Value to be transformed",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": false,
+            "description": "Actions to apply to the data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setVariable": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Save the variable",
+        "description": "Saves the variable in the context of the skill.",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Name",
+            "required": true,
+            "description": "Name of the variable",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Value",
+            "required": false,
+            "description": "Value to be saved",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": false,
+            "description": "Actions to apply to the saved data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/struct2array": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Convert a structure to an array",
+        "description": "Converts a data structure into an array.",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Value to convert",
+            "required": true,
+            "description": "Data structure to be converted",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/jsonParse": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Parse a JSON",
+        "description": "Parses a JSON string.",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Value",
+            "required": true,
+            "description": "String in JSON format to be converted into a data structure",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

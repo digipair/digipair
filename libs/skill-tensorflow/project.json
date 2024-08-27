@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-tensorflow/src/index.d.ts",
           "libs/skill-tensorflow/src/schema.json",
+          "libs/skill-tensorflow/src/schema.en.json",
           "libs/skill-tensorflow/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-tensorflow/rollup.build.cjs"],

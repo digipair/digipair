@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-canvas/src/index.d.ts",
           "libs/skill-canvas/src/schema.json",
+          "libs/skill-canvas/src/schema.en.json",
           "libs/skill-canvas/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-canvas/rollup.build.cjs"],

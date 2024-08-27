@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-sendmail",
+    "summary": "Send Mail",
+    "description": "Send Mail",
+    "version": "0.1.0",
+    "x-icon": "📨"
+  },
+  "paths": {
+    "/send": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Send Mail",
+        "description": "Send Mail",
+        "parameters": [
+          {
+            "name": "from",
+            "summary": "Sender",
+            "required": true,
+            "description": "Sender of the email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "summary": "Recipients",
+            "required": true,
+            "description": "Recipients of the email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subject",
+            "summary": "Subject",
+            "required": true,
+            "description": "Subject of the email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "summary": "Text",
+            "required": true,
+            "description": "Text of the email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "html",
+            "summary": "HTML",
+            "required": true,
+            "description": "HTML of the email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Mail server configuration",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

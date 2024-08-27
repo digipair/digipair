@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-pdf",
+    "summary": "Text extraction from a PDF",
+    "description": "This skill allows for the extraction of text from a PDF.",
+    "version": "0.1.0",
+    "x-icon": "📄"
+  },
+  "paths": {
+    "/digipair-input-pdf": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Extract text from a PDF",
+        "description": "Element that allows extracting text from a PDF file provided by the user.",
+        "parameters": [
+          {
+            "name": "label",
+            "summary": "Displayed text",
+            "required": false,
+            "description": "Text displayed to the user to guide them in their input.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accept",
+            "summary": "File type",
+            "required": false,
+            "description": "Accepted file types.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "Required?",
+            "required": false,
+            "description": "Fields required to execute the boost.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

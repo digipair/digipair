@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-cron/src/index.d.ts",
           "libs/skill-cron/src/schema.json",
+          "libs/skill-cron/src/schema.en.json",
           "libs/skill-cron/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-cron/rollup.build.cjs"],

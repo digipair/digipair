@@ -11,7 +11,12 @@
         "outputPath": "dist/libs/skill-logger",
         "main": "libs/skill-logger/src/index.ts",
         "tsConfig": "libs/skill-logger/tsconfig.lib.json",
-        "assets": ["libs/skill-logger/src/index.d.ts", "libs/skill-logger/src/schema.json", "libs/skill-logger/src/schema.fr.json"],
+        "assets": [
+          "libs/skill-logger/src/index.d.ts",
+          "libs/skill-logger/src/schema.json",
+          "libs/skill-logger/src/schema.en.json",
+          "libs/skill-logger/src/schema.fr.json"
+        ],
         "rollupConfig": ["libs/skill-logger/rollup.build.cjs"],
         "project": "libs/skill-logger/package.json",
         "compiler": "swc",

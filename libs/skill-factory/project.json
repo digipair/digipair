@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-factory/src/index.d.ts",
           "libs/skill-factory/src/schema.json",
+          "libs/skill-factory/src/schema.en.json",
           "libs/skill-factory/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-factory/rollup.build.cjs"],

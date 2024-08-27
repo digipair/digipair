@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-smoobu/src/index.d.ts",
           "libs/skill-smoobu/src/schema.json",
+          "libs/skill-smoobu/src/schema.en.json",
           "libs/skill-smoobu/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-smoobu/rollup.build.cjs"],

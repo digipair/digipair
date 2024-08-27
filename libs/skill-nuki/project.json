@@ -14,6 +14,7 @@
         "assets": [
           "libs/skill-nuki/src/index.d.ts",
           "libs/skill-nuki/src/schema.json",
+          "libs/skill-nuki/src/schema.en.json",
           "libs/skill-nuki/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-nuki/rollup.build.cjs"],

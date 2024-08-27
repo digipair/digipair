@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-chatbot",
+    "summary": "Display of chatbots",
+    "description": "Integration of an interactive chatbot on a web page to enhance engagement and communication with users.",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/digipair-chatbot-full": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Full-page chatbot",
+        "description": "Displays a conversation with a chatbot in full-page mode",
+        "parameters": [
+          {
+            "name": "code",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Digipair to display",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiUrl",
+            "summary": "Factory address",
+            "required": false,
+            "description": "URL address of the factory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commonExperience",
+            "summary": "Common Digipair",
+            "required": false,
+            "description": "Digipair that shares common reasoning with all chatbots",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/digipair-chatbot": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Chatbot",
+        "description": "Displays a chatbot on a web page",
+        "parameters": [
+          {
+            "name": "code",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Digipair to display",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiUrl",
+            "summary": "Factory address",
+            "required": false,
+            "description": "URL address of the factory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "commonExperience",
+            "summary": "Common Digipair",
+            "required": false,
+            "description": "Digipair that shares common reasoning with all chatbots",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

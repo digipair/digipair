@@ -1,0 +1,349 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-mongodb",
+    "summary": "Access to a MongoDB database",
+    "description": "This skill allows you to manage a MongoDB database.",
+    "version": "0.1.0",
+    "x-icon": "💻"
+  },
+  "paths": {
+    "/database": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Connect to a MongoDB database",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Server address",
+            "required": true,
+            "description": "MongoDB server address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "database",
+            "summary": "Database",
+            "required": true,
+            "description": "Name of the database",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/find": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Search in a MongoDB database",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Search options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "summary": "Filter",
+            "required": true,
+            "description": "Search filter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/findOne": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Search for an item in a MongoDB database",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Search options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "summary": "Filter",
+            "required": true,
+            "description": "Search filter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/findById": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Search for an item by ID in a MongoDB database",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Search options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifier",
+            "required": true,
+            "description": "Identifier of the item",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/insertOne": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Insert an item into a MongoDB database",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Insert options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "document",
+            "summary": "Document",
+            "required": true,
+            "description": "Document to insert",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/updateOne": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Update an item in a MongoDB database",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Update options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "summary": "Filter",
+            "required": true,
+            "description": "Search filter",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "update",
+            "summary": "Update filter",
+            "required": true,
+            "description": "Update filter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/updateById": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Update an item by ID in a MongoDB database",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Update options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifier",
+            "required": true,
+            "description": "Identifier of the item",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "update",
+            "summary": "Update filter",
+            "required": true,
+            "description": "Update filter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

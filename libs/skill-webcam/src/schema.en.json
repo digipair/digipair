@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-webcam",
+    "summary": "Webcam Management",
+    "description": "This skill allows access to webcam images.",
+    "version": "0.1.0",
+    "x-icon": "📷"
+  },
+  "paths": {
+    "/capture": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Webcam Capture",
+        "description": "Captures an image from the webcam",
+        "parameters": [
+          {
+            "name": "width",
+            "summary": "Width",
+            "required": false,
+            "description": "Width of the image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "summary": "Height",
+            "required": false,
+            "description": "Height of the image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "quality",
+            "summary": "Quality",
+            "required": false,
+            "description": "Quality of the image",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "output",
+            "summary": "Output Type",
+            "required": false,
+            "description": "Output type of the image (jpeg, png)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device",
+            "summary": "Camera",
+            "required": false,
+            "description": "Name of the camera to use",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "verbose",
+            "summary": "Verbose",
+            "required": false,
+            "description": "Displays additional information",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List of Webcams",
+        "description": "Returns the list of webcams present on the system",
+        "parameters": [],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
