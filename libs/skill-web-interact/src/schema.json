@@ -168,7 +168,7 @@
           {
             "name": "target",
             "summary": "Target window",
-            "required": true,
+            "required": false,
             "description": "Target window",
             "schema": {
               "type": "string"
