@@ -37,6 +37,7 @@
       "@digipair/skill-nuki": ["libs/skill-nuki/src/index.ts"],
       "@digipair/skill-ollama": ["libs/skill-ollama/src/index.ts"],
       "@digipair/skill-openai": ["libs/skill-openai/src/index.ts"],
+      "@digipair/skill-pdf": ["libs/skill-pdf/src/index.ts"],
       "@digipair/skill-pushbullet": ["libs/skill-pushbullet/src/index.ts"],
       "@digipair/skill-sendmail": ["libs/skill-sendmail/src/index.ts"],
       "@digipair/skill-service": ["libs/skill-service/src/index.ts"],

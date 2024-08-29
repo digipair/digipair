@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-pdf",
+    "summary": "Manipulation de PDF",
+    "description": "Cette compétence permet aux utilisateurs de manipuler des fichiers PDF pour extraire ou remplir des formulaires.",
+    "version": "0.1.0",
+    "x-icon": "📕"
+  },
+  "paths": {
+    "/fillForm": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Remplir un formulaire de PDF",
+        "description": "Remplit un formulaire de PDF avec les valeurs spécifiées.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Fichier PDF en base64 à remplir",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Données",
+            "required": true,
+            "description": "Données à insérer dans le PDF",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "flatten",
+            "summary": "Aplatir",
+            "required": false,
+            "description": "Aplatir le formulaire après remplissage",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getFields": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Extraire les champs d'un PDF",
+        "description": "Extrait les champs d'un formulaire de PDF.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Fichier PDF en base64 à analyser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

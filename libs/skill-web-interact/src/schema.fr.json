@@ -168,7 +168,7 @@
           {
             "name": "target",
             "summary": "Fenêtre cible",
-            "required": true,
+            "required": false,
             "description": "Fenêtre cible",
             "schema": {
               "type": "string"
