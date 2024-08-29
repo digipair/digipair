@@ -77,7 +77,7 @@ export class AppService implements OnModuleInit {
       content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
       const settings = JSON.parse(content);
 
-      const result = executePinsList([settings], context);
+      const result = await executePinsList([settings], context);
 
       return result;
     } catch (error) {
@@ -87,7 +87,7 @@ export class AppService implements OnModuleInit {
       }
 
       const skillLogger = require('@digipair/skill-logger');
-      skillLogger.addLog(context, 'error', error.message);
+      skillLogger.addLog(context, 'ERROR', error.message);
     }
   }
 }

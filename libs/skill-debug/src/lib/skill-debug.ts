@@ -1,15 +1,16 @@
 import { PinsSettings } from '@digipair/engine';
+import * as logger from '@digipair/skill-logger';
 
 class DebugService {
-  async log(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+  async log(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { type = 'INFOS', label, value } = params;
 
     const message = `[${type}] ${label}`;
 
     if (value) {
-      global.console.log(message, value);
+      (logger as any).addLog(context, type, message + ': ' + JSON.stringify(value));
     } else {
-      global.console.log(message);
+      (logger as any).addLog(context, type, message);
     }
 
     return value;
