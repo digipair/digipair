@@ -8,73 +8,7 @@
     "x-icon": "🔢"
   },
   "paths": {
-    "/consumptions": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Consommations LLM",
-        "description": "Lecture des consommations LLM d'un mois ou d'un jour donné",
-        "parameters": [
-          {
-            "name": "date",
-            "summary": "Date",
-            "required": true,
-            "description": "Date de la consommation LLM (mois ou jour)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "path",
-            "summary": "Chemin d'accès",
-            "required": false,
-            "description": "Chemins d'accès du répertoire Digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/dailyConsumptions": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Liste des jours de consommation LLM",
-        "description": "Liste les jours de consommation LLM",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Chemin d'accès",
-            "required": false,
-            "description": "Chemins d'accès du répertoire Digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/monthlyConsumptions": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Liste des mois de consommation LLM",
-        "description": "Liste les mois de consommation LLM",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Chemin d'accès",
-            "required": false,
-            "description": "Chemins d'accès du répertoire Digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/logs": {
+    "/read": {
       "post": {
         "tags": ["service"],
         "summary": "Logs",
@@ -90,6 +24,15 @@
             }
           },
           {
+            "name": "type",
+            "summary": "Type de logs",
+            "required": false,
+            "description": "Type de logs à lire (factory, consumption-daily, consumption-monthly)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "path",
             "summary": "Chemin d'accès",
             "required": false,
@@ -102,12 +45,21 @@
         "x-events": []
       }
     },
-    "/dailyLogs": {
+    "/list": {
       "post": {
         "tags": ["service"],
         "summary": "Liste des jours de logs",
         "description": "Liste les jours logs",
         "parameters": [
+          {
+            "name": "type",
+            "summary": "Type de logs",
+            "required": false,
+            "description": "Type de logs à lister (factory, consumption-daily, consumption-monthly)",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "path",
             "summary": "Chemin d'accès",
@@ -149,21 +101,12 @@
         "x-events": []
       }
     },
-    "/clearOldLogs": {
+    "/cleaning": {
       "post": {
         "tags": ["service"],
         "summary": "Efface les anciens logs",
         "description": "Efface les anciens fichiers de logs",
         "parameters": [
-          {
-            "name": "type",
-            "summary": "Type de logs",
-            "required": true,
-            "description": "Type de logs à effacer (factory, consumption-daily, consumption-monthly)",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "to",
             "summary": "Jusqu'à",
@@ -171,6 +114,15 @@
             "description": "Date jusqu'à laquelle les logs doivent être conservés",
             "schema": {
               "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type de logs",
+            "required": false,
+            "description": "Type de logs à effacer (factory, consumption-daily, consumption-monthly)",
+            "schema": {
+              "type": "string"
             }
           },
           {

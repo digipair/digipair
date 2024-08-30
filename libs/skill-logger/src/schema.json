@@ -8,73 +8,7 @@
     "x-icon": "🔢"
   },
   "paths": {
-    "/consumptions": {
-      "post": {
-        "tags": ["service"],
-        "summary": "LLM Consumptions",
-        "description": "Read LLM consumptions for a given month or day",
-        "parameters": [
-          {
-            "name": "date",
-            "summary": "Date",
-            "required": true,
-            "description": "Date of LLM consumption (month or day)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access paths of the Digipair directory",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/dailyConsumptions": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List of LLM consumption days",
-        "description": "List the days of LLM consumption",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access paths of the Digipair directory",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/monthlyConsumptions": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List of LLM consumption months",
-        "description": "List the months of LLM consumption",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access paths of the Digipair directory",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/logs": {
+    "/read": {
       "post": {
         "tags": ["service"],
         "summary": "Logs",
@@ -90,6 +24,15 @@
             }
           },
           {
+            "name": "type",
+            "summary": "Log Type",
+            "required": false,
+            "description": "Type of logs to read (factory, consumption-daily, consumption-monthly)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "path",
             "summary": "Access Path",
             "required": false,
@@ -102,12 +45,21 @@
         "x-events": []
       }
     },
-    "/dailyLogs": {
+    "/list": {
       "post": {
         "tags": ["service"],
         "summary": "List of log days",
         "description": "List the log days",
         "parameters": [
+          {
+            "name": "type",
+            "summary": "Log Type",
+            "required": false,
+            "description": "Type of logs to list (factory, consumption-daily, consumption-monthly)",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "path",
             "summary": "Access Path",
@@ -149,21 +101,12 @@
         "x-events": []
       }
     },
-    "/clearOldLogs": {
+    "/cleaning": {
       "post": {
         "tags": ["service"],
         "summary": "Delete old logs",
         "description": "Delete old log files",
         "parameters": [
-          {
-            "name": "type",
-            "summary": "Log Type",
-            "required": true,
-            "description": "Type of logs to delete (factory, consumption-daily, consumption-monthly)",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "to",
             "summary": "Up To",
@@ -171,6 +114,15 @@
             "description": "Date up to which the logs should be kept",
             "schema": {
               "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Log Type",
+            "required": false,
+            "description": "Type of logs to delete (factory, consumption-daily, consumption-monthly)",
+            "schema": {
+              "type": "string"
             }
           },
           {

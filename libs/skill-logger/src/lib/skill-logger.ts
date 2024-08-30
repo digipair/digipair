@@ -13,6 +13,25 @@ class LoggerService {
     await promises.mkdir(`${path}/consumption-monthly`, { recursive: true });
   }
 
+  async addLog(context: any, type: string, message: string) {
+    const DIGIPAIR_LOGS_PATH =
+      context.privates.DIGIPAIR_LOGS_PATH ?? process.env['DIGIPAIR_LOGS_PATH'] ?? './factory/logs';
+    const current = new Date();
+    const line = {
+      date: current.getTime(),
+      digipair: context.request.digipair,
+      reasoning: context.request.reasoning,
+      type,
+      message,
+    };
+
+    await promises.appendFile(
+      `${DIGIPAIR_LOGS_PATH}/factory/${current.toISOString().split('T')[0]}.jsonl`,
+      '\n' + JSON.stringify(line),
+      'utf8',
+    );
+  }
+
   async addConsumption(
     context: any,
     service: string,
@@ -21,9 +40,7 @@ class LoggerService {
     completionTokens: number,
   ) {
     const DIGIPAIR_LOGS_PATH =
-      context.privates.DIGIPAIR_LOGS_PATH ??
-      process.env['DIGIPAIR_LOGS_PATH'] ??
-      './factory/logs';
+      context.privates.DIGIPAIR_LOGS_PATH ?? process.env['DIGIPAIR_LOGS_PATH'] ?? './factory/logs';
     const current = new Date();
     const line = {
       date: current.getTime(),
@@ -64,6 +81,7 @@ class LoggerService {
 
       if (!line) {
         line = {
+          date,
           digipair: curr.digipair,
           reasoning: curr.reasoning,
           service: curr.service,
@@ -76,6 +94,8 @@ class LoggerService {
 
       line.promptTokens += curr.promptTokens;
       line.completionTokens += curr.completionTokens;
+
+      return acc;
     }, []);
 
     await promises.appendFile(
@@ -85,100 +105,39 @@ class LoggerService {
     );
   }
 
-  async consumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+  async read(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       date,
+      type = 'factory', // consumption-daily, consumption-monthly, factory
       path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
         './factory/logs',
     } = params;
-    const text = await promises.readFile(`${path}/consumption-daily/${date}.jsonl`, 'utf8');
+    const text = await promises.readFile(`${path}/${type}/${date}.jsonl`, 'utf8');
     const lines = text.split('\n').filter(line => line !== '');
     const result = lines.map((line: string) => JSON.parse(line));
 
     return result;
   }
 
-  async dailyConsumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+  async list(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
+      type = 'factory', // consumption-daily, consumption-monthly, factory
       path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
         './factory/logs',
     } = params;
 
-    const files = (await promises.readdir(`${path}/consumption-daily`)).map(
-      file => file.split('.')[0],
-    );
-
-    return files;
-  }
-
-  async monthlyConsumptions(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      path = context.privates.DIGIPAIR_LOGS_PATH ??
-        process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/logs',
-    } = params;
-
-    const files = (await promises.readdir(`${path}/consumption-monthly`)).map(
-      file => file.split('.')[0],
-    );
-
-    return files;
-  }
-
-  async addLog(context: any, type: string, message: string) {
-    const DIGIPAIR_LOGS_PATH =
-      context.privates.DIGIPAIR_LOGS_PATH ??
-      process.env['DIGIPAIR_LOGS_PATH'] ??
-      './factory/logs';
-    const current = new Date();
-    const line = {
-      date: current.getTime(),
-      digipair: context.request.digipair,
-      reasoning: context.request.reasoning,
-      type,
-      message,
-    };
-
-    await promises.appendFile(
-      `${DIGIPAIR_LOGS_PATH}/factory/${current.toISOString().split('T')[0]}.jsonl`,
-      '\n' + JSON.stringify(line),
-      'utf8',
-    );
-  }
-
-  async logs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      date,
-      path = context.privates.DIGIPAIR_LOGS_PATH ??
-        process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/logs',
-    } = params;
-    const text = await promises.readFile(`${path}/factory/${date}.jsonl`, 'utf8');
-    const lines = text.split('\n').filter(line => line !== '');
-    const result = lines.map((line: string) => JSON.parse(line));
-
-    return result;
-  }
-
-  async dailyLogs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      path = context.privates.DIGIPAIR_LOGS_PATH ??
-        process.env['DIGIPAIR_LOGS_PATH'] ??
-        './factory/logs',
-    } = params;
-
-    const files = (await promises.readdir(`${path}/factory`))
+    const files = (await promises.readdir(`${path}/${type}`))
       .filter(file => /\.jsonl$/g.test(file))
       .map(file => file.split('.')[0]);
 
     return files;
   }
 
-  async clearOldLogs(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+  async cleaning(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
-      type,
+      type = 'factory', // consumption-daily, consumption-monthly, factory
       to,
       path = context.privates.DIGIPAIR_LOGS_PATH ??
         process.env['DIGIPAIR_LOGS_PATH'] ??
@@ -197,6 +156,9 @@ class LoggerService {
 
 export const initialize = (path?: string) => new LoggerService().initialize(path);
 
+export const addLog = (context: any, type: string, message: string) =>
+  new LoggerService().addLog(context, type, message);
+
 export const addConsumption = (
   context: any,
   service: string,
@@ -205,29 +167,21 @@ export const addConsumption = (
   completionTokens: number,
 ) => new LoggerService().addConsumption(context, service, model, promptTokens, completionTokens);
 
+// ----------------------------
+// Methods for the skill
+// ----------------------------
+
 export const computeDailyConsumption = (
   params: any,
   pinsSettingsList: PinsSettings[],
   context: any,
 ) => new LoggerService().computeDailyConsumption(params, pinsSettingsList, context);
 
-export const consumptions = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new LoggerService().consumptions(params, pinsSettingsList, context);
+export const read = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new LoggerService().read(params, pinsSettingsList, context);
 
-export const dailyConsumptions = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new LoggerService().dailyConsumptions(params, pinsSettingsList, context);
+export const list = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new LoggerService().list(params, pinsSettingsList, context);
 
-export const monthlyConsumptions = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new LoggerService().monthlyConsumptions(params, pinsSettingsList, context);
-
-export const addLog = (context: any, type: string, message: string) =>
-  new LoggerService().addLog(context, type, message);
-
-export const logs = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new LoggerService().logs(params, pinsSettingsList, context);
-
-export const dailyLogs = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new LoggerService().dailyLogs(params, pinsSettingsList, context);
-
-export const clearOldLogs = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new LoggerService().clearOldLogs(params, pinsSettingsList, context);
+export const cleaning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new LoggerService().cleaning(params, pinsSettingsList, context);
