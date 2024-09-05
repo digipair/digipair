@@ -91,7 +91,7 @@
         },
         {
           "name": "factoryInitialize",
-          "summary": "Lors de la l'initialisation coté factory",
+          "summary": "Lors de l'initialisation coté factory",
           "required": false,
           "description": "Action déclenchée lors de l'initialisation coté factory",
           "schema": {
@@ -103,7 +103,7 @@
         },
         {
           "name": "browserInitialize",
-          "summary": "Lors de la l'initialisation coté navigateur",
+          "summary": "Lors de l'initialisation coté navigateur",
           "required": false,
           "description": "Action déclenchée lors de l'initialisation coté navigateur",
           "schema": {

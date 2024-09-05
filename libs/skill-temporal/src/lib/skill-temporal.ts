@@ -56,7 +56,7 @@ class TemporalService {
         initialInterval: '1 second',
         maximumInterval: '1 minute',
         backoffCoefficient: 2,
-        maximumAttempts: 500,
+        maximumAttempts: 50,
         nonRetryableErrorTypes: [],
         ...(options.retry || {}),
       },
