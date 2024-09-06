@@ -1,4 +1,4 @@
-import { All, Body, Controller, Req, Res } from '@nestjs/common';
+import { All, Body, Controller, Query, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { promises } from 'fs';
 import { AppService } from './app.service';
@@ -8,7 +8,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @All('*')
-  async domain(@Res() res: Response, @Req() request: Request, @Body() body: any) {
+  async domain(
+    @Res() res: Response,
+    @Req() request: Request,
+    @Body() body: any,
+    @Query() query: any,
+  ) {
     const assets = process.env.DIGIPAIR_FACTORY_PATH || './factory';
     const host = request.headers.host.split(':')[0];
     const path = request.params['0'];
@@ -47,6 +52,7 @@ export class AppController {
         reasoning,
         body,
         params,
+        query,
         method,
         request.headers,
       ),

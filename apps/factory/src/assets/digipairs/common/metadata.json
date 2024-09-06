@@ -10,7 +10,7 @@
         "library": "@digipair/skill-common",
         "element": "metadata",
         "properties": {
-          "digipair": "{{request.body.digipair}}"
+          "digipair": "{{request.digipair}}"
         }
       }
     ]

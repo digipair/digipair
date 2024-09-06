@@ -11,7 +11,6 @@ import { _config } from './config';
 import { executePinsList } from '@digipair/engine';
 
 let API_URL: string;
-let COMMON_EXPERIENCE: string;
 
 @customElement('digipair-chatbot')
 export class ChatbotElement extends LitElement {
@@ -25,7 +24,7 @@ export class ChatbotElement extends LitElement {
   apiUrl = _config.API_URL;
 
   @property()
-  commonExperience = _config.COMMON_EXPERIENCE;
+  userId: string | null = null;
 
   @state()
   private boosters: any[] = [];
@@ -57,7 +56,6 @@ export class ChatbotElement extends LitElement {
 
   private alreadyOpened = false;
   private isDigipairLoading = false;
-  private userId: string | null = null;
   private newUser!: boolean;
   private metadata!: {
     id: string;
@@ -80,7 +78,6 @@ export class ChatbotElement extends LitElement {
 
   override connectedCallback(): void {
     API_URL = this.apiUrl;
-    COMMON_EXPERIENCE = this.commonExperience;
 
     super.connectedCallback();
 
@@ -101,9 +98,13 @@ export class ChatbotElement extends LitElement {
   }
 
   private loadUser(): void {
-    this.userId = localStorage.getItem('digipair-user');
     this.newUser = false;
 
+    if (this.userId) {
+      return;
+    }
+
+    this.userId = localStorage.getItem('digipair-user');
     if (!this.userId) {
       // set uuid
       this.userId = Math.random().toString(36).substring(2, 15);
@@ -114,11 +115,8 @@ export class ChatbotElement extends LitElement {
   }
 
   private async boostListener() {
-    const digipair = this.code;
     const boosts = (
-      await this.executeScene(COMMON_EXPERIENCE, 'boosts', {
-        digipair,
-      })
+      await this.executeScene('boosts')
     )
       .map(({ name, metadata }: any) =>
         metadata?.boosts.map((boost: any) => ({
@@ -186,9 +184,7 @@ export class ChatbotElement extends LitElement {
 
     const digipair = this.code;
     const reasoning = 'metadata';
-    const metadata = await this.executeScene(COMMON_EXPERIENCE, reasoning, {
-      digipair,
-    });
+    const metadata = await this.executeScene(reasoning);
 
     this.metadata = { ...metadata, id: digipair, config: { VERSIONS: metadata.config.VERSIONS } };
     await this.loadHistory();
@@ -223,9 +219,8 @@ export class ChatbotElement extends LitElement {
 
   private async loadHistory(): Promise<void> {
     const userId = this.userId;
-    const digipair = this.code;
     const reasoning = 'history';
-    const messages = await this.executeScene(digipair, reasoning, {
+    const messages = await this.executeScene(reasoning, {
       userId,
     });
 
@@ -336,10 +331,10 @@ export class ChatbotElement extends LitElement {
   }
 
   private executeScene = async (
-    digipair: string,
     reasoning: string,
     input: any = {},
   ): Promise<any> => {
+    const digipair = this.code;
     const response = await fetch(`${API_URL}/${digipair}/${reasoning}`, {
       method: 'POST',
       headers: {

@@ -33,10 +33,10 @@
             }
           },
           {
-            "name": "commonExperience",
-            "summary": "Digipair commun",
+            "name": "userId",
+            "summary": "Identifiant de l'utilisateur",
             "required": false,
-            "description": "Digipair qui partage les raisonnements communs avec tous les chatbots",
+            "description": "Identifiant unique de l'utilisateur",
             "schema": {
               "type": "string"
             }
@@ -70,10 +70,10 @@
             }
           },
           {
-            "name": "commonExperience",
-            "summary": "Digipair commun",
+            "name": "userId",
+            "summary": "Identifiant de l'utilisateur",
             "required": false,
-            "description": "Digipair qui partage les raisonnements communs avec tous les chatbots",
+            "description": "Identifiant unique de l'utilisateur",
             "schema": {
               "type": "string"
             }

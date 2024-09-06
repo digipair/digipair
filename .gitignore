@@ -42,3 +42,4 @@ Thumbs.db
 tools/vespa/configuration/*.zip
 .env
 ./factory/**/*
+/server.ts

@@ -10,7 +10,6 @@ import { styles } from './digipair-full.data';
 import { _config } from './config';
 
 let API_URL: string;
-let COMMON_EXPERIENCE: string;
 
 @customElement('digipair-chatbot-full')
 export class DigipairFullElement extends LitElement {
@@ -21,7 +20,7 @@ export class DigipairFullElement extends LitElement {
   apiUrl = _config.API_URL;
 
   @property()
-  commonExperience = _config.COMMON_EXPERIENCE;
+  userId: string | null = null;
 
   @state()
   private boosters: any[] = [];
@@ -49,7 +48,6 @@ export class DigipairFullElement extends LitElement {
   });
 
   private cacheBoosters: any[] = [];
-  private userId: string | null = null;
   private isDigipairLoading = false;
   private metadata!: {
     id: string;
@@ -64,7 +62,6 @@ export class DigipairFullElement extends LitElement {
 
   override connectedCallback(): void {
     API_URL = this.apiUrl;
-    COMMON_EXPERIENCE = this.commonExperience;
 
     super.connectedCallback();
 
@@ -73,6 +70,10 @@ export class DigipairFullElement extends LitElement {
   }
 
   private loadUser(): void {
+    if (this.userId) {
+      return;
+    }
+
     this.userId = localStorage.getItem('digipair-user');
 
     if (!this.userId) {
@@ -83,9 +84,7 @@ export class DigipairFullElement extends LitElement {
   }
   private async loadBoosters(): Promise<void> {
     this.cacheBoosters = (
-      await this.executeScene(COMMON_EXPERIENCE, 'boosts', {
-        digipair: this.code,
-      })
+      await this.executeScene('boosts')
     )
       .map(({ name, metadata }: any) =>
         metadata?.boosts.map((boost: any) => ({
@@ -121,9 +120,7 @@ export class DigipairFullElement extends LitElement {
 
     const digipair = this.code;
     const reasoning = 'metadata';
-    const metadata = await this.executeScene(COMMON_EXPERIENCE, reasoning, {
-      digipair,
-    });
+    const metadata = await this.executeScene(reasoning);
 
     this.metadata = { ...metadata, id: digipair, config: { VERSIONS: metadata.config.VERSIONS } };
     await this.loadHistory();
@@ -137,9 +134,8 @@ export class DigipairFullElement extends LitElement {
 
   private async loadHistory(): Promise<void> {
     const userId = this.userId;
-    const digipair = this.code;
     const reasoning = 'history';
-    const messages = await this.executeScene(digipair, reasoning, {
+    const messages = await this.executeScene(reasoning, {
       userId,
     });
 
@@ -248,10 +244,10 @@ export class DigipairFullElement extends LitElement {
   }
 
   private executeScene = async (
-    digipair: string,
     reasoning: string,
     input: any = {},
   ): Promise<any> => {
+    const digipair = this.code;
     const response = await fetch(`${API_URL}/${digipair}/${reasoning}`, {
       method: 'POST',
       headers: {

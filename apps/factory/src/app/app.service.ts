@@ -1,6 +1,6 @@
 import { executePinsList } from '@digipair/engine';
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { promises } from 'fs';
+import { existsSync, promises } from 'fs';
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -16,7 +16,7 @@ export class AppService implements OnModuleInit {
     // initialize factory skill
     const skillFactory = require('@digipair/skill-factory');
     skillFactory.initialize((_context: any, digipair: string, reasoning: string, body: any) =>
-      this.agent(path, digipair, reasoning, body, [], null, {}),
+      this.agent(path, digipair, reasoning, body, [], {}, null, {}),
     );
 
     // start cron manager
@@ -24,7 +24,7 @@ export class AppService implements OnModuleInit {
       const skillCron = require('@digipair/skill-cron');
 
       skillCron.initialize((path: string, digipair: string, reasoning: string) =>
-        this.agent(path, digipair, reasoning, {}, [], null, {}),
+        this.agent(path, digipair, reasoning, {}, [], {}, null, {}),
       );
       skillCron.start(path);
     } catch (error) {
@@ -49,34 +49,68 @@ export class AppService implements OnModuleInit {
     reasoning: string,
     body: any,
     params: string[],
+    query: any,
     method: string,
     headers: any,
   ): Promise<any> {
     let context: any;
 
     try {
-      let content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
-      const config = JSON.parse(content);
+      let content: string;
 
-      context = {
-        config: {
-          VERSIONS: config.libraries,
-        },
-        privates: config.privates,
-        variables: config.variables,
-        request: {
-          digipair,
-          reasoning,
-          method,
-          body,
-          params,
-          headers,
-        },
-      };
+      if (
+        existsSync(`${path}/${digipair}/${reasoning}.json`) === false &&
+        existsSync(`${path}/common/${reasoning}.json`) === true
+      ) {
+        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+        const configCommon = JSON.parse(content);
 
-      content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
+        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+        const config = JSON.parse(content);
+
+        context = {
+          config: {
+            VERSIONS: { ...configCommon.libraries, ...config.libraries },
+          },
+          privates: { ...configCommon.privates, ...config.privates },
+          variables: { ...configCommon.variables, ...config.variables },
+          request: {
+            digipair,
+            reasoning,
+            method,
+            body,
+            params,
+            query,
+            headers,
+          },
+        };
+
+        content = await promises.readFile(`${path}/common/${reasoning}.json`, 'utf8');
+      } else {
+        let content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+        const config = JSON.parse(content);
+
+        context = {
+          config: {
+            VERSIONS: config.libraries,
+          },
+          privates: config.privates,
+          variables: config.variables,
+          request: {
+            digipair,
+            reasoning,
+            method,
+            body,
+            params,
+            query,
+            headers,
+          },
+        };
+
+        content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
+      }
+
       const settings = JSON.parse(content);
-
       const result = await executePinsList([settings], context);
 
       return result;

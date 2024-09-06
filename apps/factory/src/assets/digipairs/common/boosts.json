@@ -10,7 +10,7 @@
         "library": "@digipair/skill-common",
         "element": "boosts",
         "properties": {
-          "digipair": "{{request.body.digipair}}"
+          "digipair": "{{request.digipair}}"
         }
       }
     ]
