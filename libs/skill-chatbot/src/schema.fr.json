@@ -62,6 +62,25 @@
         ],
         "x-events": []
       }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Execute une étape",
+        "description": "Execute une étape d'un boost par étapes",
+        "parameters": [
+          {
+            "name": "step",
+            "required": true,
+            "summary": "Nom",
+            "description": "Nom de l'étape à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
@@ -89,6 +108,9 @@
           "url": {
             "type": "string"
           },
+          "step": {
+            "type": "string"
+          },
           "inputs": {
             "type": "array",
             "items": {
@@ -97,6 +119,25 @@
           }
         },
         "required": []
+      },
+      "Step": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Etape",
+        "properties": {
+          "name": {
+            "summary": "Nom de l'étape",
+            "type": "string"
+          },
+          "execute": {
+            "summary": "Actions à exécuter",
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": ["name", "execute"]
       }
     }
   },
@@ -129,6 +170,26 @@
             "type": "array",
             "items": {
               "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/boostBySteps": {
+      "summary": "Boost par étapes",
+      "description": "Boost avec étapes proposé par le Digipair",
+      "tags": ["boost", "service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "steps",
+          "summary": "Exécute les étapes suivantes",
+          "required": true,
+          "description": "Exécute les étapes définies",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
             }
           }
         }

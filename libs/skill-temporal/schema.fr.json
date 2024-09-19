@@ -230,7 +230,7 @@
           "name": "steps",
           "summary": "Exécute les étapes suivantes",
           "required": true,
-          "description": "Contenu de la page",
+          "description": "Exécute les étapes définies",
           "schema": {
             "type": "array",
             "items": {

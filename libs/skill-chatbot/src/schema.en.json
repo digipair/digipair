@@ -16,7 +16,7 @@
           {
             "name": "assistant",
             "required": true,
-            "description": "Response from the assistant",
+            "description": "Assistant's response",
             "schema": {
               "type": "string"
             }
@@ -62,6 +62,25 @@
         ],
         "x-events": []
       }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "Execute a step",
+        "description": "Execute a step of a step-by-step boost",
+        "parameters": [
+          {
+            "name": "step",
+            "required": true,
+            "summary": "Name",
+            "description": "Name of the step to execute",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
@@ -89,6 +108,9 @@
           "url": {
             "type": "string"
           },
+          "step": {
+            "type": "string"
+          },
           "inputs": {
             "type": "array",
             "items": {
@@ -97,6 +119,25 @@
           }
         },
         "required": []
+      },
+      "Step": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Step",
+        "properties": {
+          "name": {
+            "summary": "Step name",
+            "type": "string"
+          },
+          "execute": {
+            "summary": "Actions to execute",
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": ["name", "execute"]
       }
     }
   },
@@ -129,6 +170,26 @@
             "type": "array",
             "items": {
               "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/boostBySteps": {
+      "summary": "Step-by-step boost",
+      "description": "Step-by-step boost proposed by Digipair",
+      "tags": ["boost", "service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "steps",
+          "summary": "Execute the following steps",
+          "required": true,
+          "description": "Execute the defined steps",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
             }
           }
         }
