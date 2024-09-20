@@ -179,7 +179,20 @@
       "summary": "Boost par étapes",
       "description": "Boost avec étapes proposé par le Digipair",
       "tags": ["boost", "service"],
-      "metadata": [],
+      "metadata": [
+        {
+          "name": "boosts",
+          "summary": "Liste des déclencheurs",
+          "required": true,
+          "description": "Liste des déclencheurs du boost",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Boost"
+            }
+          }
+        }
+      ],
       "parameters": [
         {
           "name": "steps",

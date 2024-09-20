@@ -111,7 +111,7 @@ class LLMService {
         await executePinsList(attribute.value, {
           ...context,
           previous,
-          parent: { previous: context.previous, steps: context.steps, parent: context.parent },
+          parent: { previous: context.previous, parent: context.parent },
         });
     }
 

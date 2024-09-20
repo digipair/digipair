@@ -132,7 +132,6 @@ export const executePinsList = async (
   context: any,
 ): Promise<any> => {
   let previous = {};
-  const steps = [];
 
   // parcourir tous les pins
   for (let i = 0; i < pinsSettingsList.length; i++) {
@@ -142,8 +141,7 @@ export const executePinsList = async (
       previous = await executePins(settings, {
         ...context,
         previous,
-        steps,
-        parent: { previous: context.previous, steps: context.steps, parent: context.parent },
+        parent: { previous: context.previous, parent: context.parent },
       });
     } catch (error) {
       if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
@@ -152,8 +150,6 @@ export const executePinsList = async (
 
       throw error;
     }
-
-    steps[i] = { name: settings.name, result: previous };
   }
 
   return previous;

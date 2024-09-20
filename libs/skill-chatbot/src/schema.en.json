@@ -179,7 +179,20 @@
       "summary": "Step-by-step boost",
       "description": "Step-by-step boost proposed by Digipair",
       "tags": ["boost", "service"],
-      "metadata": [],
+      "metadata": [
+        {
+          "name": "boosts",
+          "summary": "List of triggers",
+          "required": true,
+          "description": "List of boost triggers",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Boost"
+            }
+          }
+        }
+      ],
       "parameters": [
         {
           "name": "steps",
