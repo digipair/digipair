@@ -65,4 +65,4 @@ export const boost = (params: any, pinsSettingsList: PinsSettings[], context: an
   new ChatbotService().boost(params, pinsSettingsList, context);
 
 export const boostBySteps = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new ChatbotService().boost(params, pinsSettingsList, context);
+  new ChatbotService().boostBySteps(params, pinsSettingsList, context);
