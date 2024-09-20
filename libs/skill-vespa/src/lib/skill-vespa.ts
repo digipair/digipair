@@ -242,7 +242,9 @@ class VespaService {
     const modelEmbeddings = await executePinsList(embeddings, context);
     const results = await this.prepareDocuments(documents);
 
-    return await this.pushDocuments(modelEmbeddings, baseUrl, namespace, collection, results);
+    await this.pushDocuments(modelEmbeddings, baseUrl, namespace, collection, results);
+
+    return results.filter(({ is_parent }) => is_parent).map(({ uuid }) => uuid);
   }
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
