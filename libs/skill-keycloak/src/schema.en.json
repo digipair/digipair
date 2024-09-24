@@ -60,22 +60,16 @@
   },
   "components": {
     "schemas": {
-      "SecuredBoost": {
+      "SecuredInput": {
         "type": "object",
         "tags": ["boost"],
-        "summary": "Secure trigger",
+        "summary": "Secure input",
         "properties": {
-          "name": {
-            "type": "string"
-          },
           "prompt": {
             "type": "boolean"
           },
           "required": {
             "type": "boolean"
-          },
-          "text": {
-            "type": "string"
           },
           "selector": {
             "type": "string"
@@ -91,6 +85,42 @@
           }
         },
         "required": []
+      },
+      "SecuredTrigger": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Trigger",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "SecuredStep": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Step",
+        "properties": {
+          "name": {
+            "summary": "Step name",
+            "type": "string"
+          },
+          "execute": {
+            "summary": "Actions to execute",
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": ["name", "execute"]
       }
     }
   },
@@ -303,25 +333,25 @@
           "name": "boosts",
           "summary": "List of triggers",
           "required": true,
-          "description": "List of triggers for the boost",
+          "description": "List of boost triggers",
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SecuredBoost"
+              "$ref": "#/components/schemas/SecuredTrigger"
             }
           }
         }
       ],
       "parameters": [
         {
-          "name": "execute",
-          "summary": "Execution of actions",
-          "required": false,
-          "description": "List of actions to execute",
+          "name": "steps",
+          "summary": "Execute the following steps",
+          "required": true,
+          "description": "Execute the defined steps",
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
+              "$ref": "#/components/schemas/SecuredStep"
             }
           }
         },

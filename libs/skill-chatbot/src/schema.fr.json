@@ -67,7 +67,7 @@
       "post": {
         "tags": ["boost"],
         "summary": "Execute une étape",
-        "description": "Execute une étape d'un boost par étapes",
+        "description": "Execute une étape d'un boost",
         "parameters": [
           {
             "name": "step",

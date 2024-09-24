@@ -360,7 +360,7 @@ class KeycloakService {
     }
 
     const {
-      execute,
+      steps,
       secured = true,
       url = context.privates.KEYCLOAK_URL,
       realm = context.privates.KEYCLOAK_REALM,
@@ -388,7 +388,12 @@ class KeycloakService {
       throw new Error('Unauthorized');
     }
 
-    const result = await executePinsList(execute, context);
+    const step = context.request.body.step
+      ? steps.findIndex(({ name }: any) => name === context.request.body.step)
+      : 0;
+    const execute = steps[step]?.execute || [];
+
+    const result = await executePinsList(execute, { ...context, boost: { steps } });
     return result;
   }
 }
