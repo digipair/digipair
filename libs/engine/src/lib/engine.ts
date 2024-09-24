@@ -108,7 +108,8 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
     throw 'DIGIPAIR_CONDITIONS_IF_FALSE';
   }
 
-  const version = context.config.VERSIONS[settings.library] || 'latest';
+  const config = context.config || {};
+  const version = (config.VERSIONS || {})[settings.library] || 'latest';
   const library =
     _config.LIBRARIES[settings.library] ||
     (typeof window === 'undefined'
@@ -188,7 +189,8 @@ export const generateElementFromPins = async (
 
   const library = pinsSettings.library;
   if (library !== 'web' && !_config.LIBRARIES[library]) {
-    const version = context.config.VERSIONS[library] || 'latest';
+    const config = context.config || {};
+    const version = (config.VERSIONS || {})[library] || 'latest';
     import(
       isRemoteVersion.test(version)
         ? `${version}`

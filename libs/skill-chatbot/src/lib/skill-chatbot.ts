@@ -25,17 +25,7 @@ class ChatbotService {
   }
 
   // SCENES
-  async boost(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    if (context.request.method !== 'POST') {
-      return { error: 'Method not allowed' };
-    }
-
-    const { execute } = params;
-    const result = await executePinsList(execute, context);
-    return result;
-  }
-
-  async boostBySteps(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async boost(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     if (context.request.method !== 'POST') {
       return { error: 'Method not allowed' };
     }
@@ -63,6 +53,3 @@ export const execute = (params: any, pinsSettingsList: PinsSettings[], context: 
 
 export const boost = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ChatbotService().boost(params, pinsSettingsList, context);
-
-export const boostBySteps = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new ChatbotService().boostBySteps(params, pinsSettingsList, context);

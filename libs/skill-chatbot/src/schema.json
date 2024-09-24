@@ -85,22 +85,16 @@
   },
   "components": {
     "schemas": {
-      "Boost": {
+      "Input": {
         "type": "object",
         "tags": ["boost"],
-        "summary": "Trigger",
+        "summary": "Input",
         "properties": {
-          "name": {
-            "type": "string"
-          },
           "prompt": {
             "type": "boolean"
           },
           "required": {
             "type": "boolean"
-          },
-          "text": {
-            "type": "string"
           },
           "selector": {
             "type": "string"
@@ -116,6 +110,23 @@
             "items": {
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
+          }
+        },
+        "required": []
+      },
+      "Trigger": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Trigger",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
           }
         },
         "required": []
@@ -155,40 +166,7 @@
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Boost"
-            }
-          }
-        }
-      ],
-      "parameters": [
-        {
-          "name": "execute",
-          "summary": "Execution of actions",
-          "required": false,
-          "description": "List of actions to execute",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        }
-      ]
-    },
-    "/boostBySteps": {
-      "summary": "Step-by-step boost",
-      "description": "Step-by-step boost proposed by Digipair",
-      "tags": ["boost", "service"],
-      "metadata": [
-        {
-          "name": "boosts",
-          "summary": "List of triggers",
-          "required": true,
-          "description": "List of boost triggers",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Boost"
+              "$ref": "#/components/schemas/Trigger"
             }
           }
         }
