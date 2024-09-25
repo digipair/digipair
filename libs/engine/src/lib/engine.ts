@@ -48,6 +48,7 @@ export const applyTemplate = (value: any, context: any) => {
         btoa: (value: string) => btoa(value),
         encodeURIComponent: (value: string | number | boolean) => encodeURIComponent(value),
         decodeURIComponent: (value: string) => decodeURIComponent(value),
+        JSONparse: (value: string) => JSON.parse(value),
       });
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
@@ -239,10 +240,6 @@ export const preparePinsSettings = async (
     variables: context.variables || {},
     conditions: context.conditions || {},
   };
-
-  for (const [key, value] of Object.entries(settings.variables || {})) {
-    localContext.variables[key] = applyTemplate(value, localContext);
-  }
 
   const conditions = {} as any;
   for (const [key, value] of Object.entries(settings.conditions || {})) {

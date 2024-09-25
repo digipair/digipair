@@ -114,23 +114,6 @@
         },
         "required": []
       },
-      "Trigger": {
-        "type": "object",
-        "tags": ["boost"],
-        "summary": "Trigger",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "selector": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          }
-        },
-        "required": []
-      },
       "Step": {
         "type": "object",
         "tags": ["boost"],
@@ -159,15 +142,21 @@
       "tags": ["boost", "service"],
       "metadata": [
         {
-          "name": "boosts",
-          "summary": "List of triggers",
-          "required": true,
-          "description": "List of boost triggers",
+          "name": "selector",
+          "summary": "Selector",
+          "required": false,
+          "description": "CSS selector",
           "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Trigger"
-            }
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "summary": "RegEx Url",
+          "required": false,
+          "description": "RegEx url",
+          "schema": {
+            "type": "string"
           }
         }
       ],

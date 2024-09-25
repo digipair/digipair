@@ -86,23 +86,6 @@
         },
         "required": []
       },
-      "SecuredTrigger": {
-        "type": "object",
-        "tags": ["boost"],
-        "summary": "Déclencheur",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "selector": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          }
-        },
-        "required": []
-      },
       "SecuredStep": {
         "type": "object",
         "tags": ["boost"],
@@ -330,15 +313,21 @@
       "tags": ["boost", "service"],
       "metadata": [
         {
-          "name": "boosts",
-          "summary": "Liste des déclencheurs",
-          "required": true,
-          "description": "Liste des déclencheurs du boost",
+          "name": "selector",
+          "summary": "Sélecteur CSS du déclencheur",
+          "required": false,
+          "description": "Sélecteur CSS du déclencheur",
           "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SecuredInput"
-            }
+            "type": "string"
+          }
+        },
+        {
+          "name": "url",
+          "summary": "Correspondance URL",
+          "required": false,
+          "description": "Correspondance URL du déclencheur",
+          "schema": {
+            "type": "string"
           }
         }
       ],

@@ -37,12 +37,14 @@ class CommonService {
         .filter(name => name)
         .map(async name => {
           const content = await promises.readFile(`${path}/${digipair}/boost-${name}.json`, 'utf8');
-          const { description, metadata } = JSON.parse(content);
+          const { summary, description, metadata } = JSON.parse(content);
 
           return {
             name: `boost-${name}`,
+            summary,
             description,
-            metadata,
+            selector: metadata.selector,
+            url: metadata.url,
           };
         }),
     );
