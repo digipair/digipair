@@ -40,7 +40,7 @@ class CommonService {
           const { summary, description, metadata } = JSON.parse(content);
 
           return {
-            name: `boost-${name}`,
+            reasoning: `boost-${name}`,
             summary,
             description,
             selector: metadata.selector,
