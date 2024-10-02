@@ -13,7 +13,7 @@ class DebugService {
       (logger as any).addLog(context, type, message);
     }
 
-    return value;
+    return context.previous;
   }
 }
 

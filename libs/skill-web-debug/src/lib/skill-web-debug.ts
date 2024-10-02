@@ -1,7 +1,7 @@
 import { PinsSettings } from '@digipair/engine';
 
 class DebugService {
-  async log(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+  async log(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { type = 'INFOS', label, value } = params;
 
     const message = `[${type}] ${label}`;
@@ -12,7 +12,7 @@ class DebugService {
       window.console.log(message);
     }
 
-    return value;
+    return context.previous;
   }
 }
 
