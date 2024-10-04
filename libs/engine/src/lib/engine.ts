@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Handlebars from 'handlebars/dist/handlebars.min.js';
-import { PinsSettings } from './pins-settings.interface';
 import { evaluate } from 'feelin';
+import { PinsSettings } from './pins-settings.interface';
+import { Alias } from './alias.interface';
 
 Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);
 });
 
-type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES';
+type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES' | 'ALIAS';
 const globalInstance: any = typeof window === 'undefined' ? global : window;
 const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_CONFIG__ ?? {
   LIBRARIES: {} as { [key: string]: any },
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
+  ALIAS: [] as Alias[],
 });
 const isRemoteVersion = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
 
@@ -65,7 +67,12 @@ export const applyTemplate = (value: any, context: any) => {
 };
 
 const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Promise<any> => {
-  const settings = await preparePinsSettings(settingsOrigin, context);
+  let settings = await preparePinsSettings(settingsOrigin, context);
+  const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
+
+  if (alias) {
+    settings = await preparePinsSettings({ ...settings, ...alias }, { settings });
+  }
 
   if (settings.conditions?.each) {
     const results = [] as any[];
@@ -162,7 +169,12 @@ export const generateElementFromPins = async (
   parent: Element,
   context: any,
 ): Promise<Element | void> => {
-  const settings = await preparePinsSettings(pinsSettings, context);
+  let settings = await preparePinsSettings(pinsSettings, context);
+  const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
+
+  if (alias) {
+    settings = await preparePinsSettings({ ...settings, ...alias }, { settings });
+  }
 
   if (settings.conditions?.each) {
     for (let index = 0; index < settings.conditions.each.length; index++) {
