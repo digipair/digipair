@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-web/src/index.d.ts",
           "libs/skill-web/src/schema.json",
-          "libs/skill-web/src/schema.en.json",
           "libs/skill-web/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-web/rollup.build.cjs"],

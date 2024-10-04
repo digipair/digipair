@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-ollama/src/index.d.ts",
           "libs/skill-ollama/src/schema.json",
-          "libs/skill-ollama/src/schema.en.json",
           "libs/skill-ollama/src/schema.fr.json"
         ],
         "project": "libs/skill-ollama/package.json",

@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-dsp/src/index.d.ts",
           "libs/skill-dsp/src/schema.json",
-          "libs/skill-dsp/src/schema.en.json",
           "libs/skill-dsp/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-dsp/rollup.build.cjs"],

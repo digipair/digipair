@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-mongodb/src/index.d.ts",
           "libs/skill-mongodb/src/schema.json",
-          "libs/skill-mongodb/src/schema.en.json",
           "libs/skill-mongodb/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-mongodb/rollup.build.cjs"],

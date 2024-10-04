@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-editor/src/index.d.ts",
           "libs/skill-editor/src/schema.json",
-          "libs/skill-editor/src/schema.en.json",
           "libs/skill-editor/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-editor/rollup.build.cjs"],

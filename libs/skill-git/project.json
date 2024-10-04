@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-git/src/index.d.ts",
           "libs/skill-git/src/schema.json",
-          "libs/skill-git/src/schema.en.json",
           "libs/skill-git/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-git/rollup.build.cjs"],

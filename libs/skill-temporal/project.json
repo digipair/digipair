@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-temporal/index.d.ts",
           "libs/skill-temporal/schema.json",
-          "libs/skill-temporal/schema.en.json",
           "libs/skill-temporal/schema.fr.json"
         ]
       }

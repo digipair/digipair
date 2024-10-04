@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-pdf/src/index.d.ts",
           "libs/skill-pdf/src/schema.json",
-          "libs/skill-pdf/src/schema.en.json",
           "libs/skill-pdf/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-pdf/rollup.build.cjs"],

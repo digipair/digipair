@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-llm/src/index.d.ts",
           "libs/skill-llm/src/schema.json",
-          "libs/skill-llm/src/schema.en.json",
           "libs/skill-llm/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-llm/rollup.build.cjs"],

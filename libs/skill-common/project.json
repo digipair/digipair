@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-common/src/index.d.ts",
           "libs/skill-common/src/schema.json",
-          "libs/skill-common/src/schema.en.json",
           "libs/skill-common/src/schema.fr.json"
         ],
         "project": "libs/skill-common/package.json",

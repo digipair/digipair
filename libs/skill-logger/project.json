@@ -14,7 +14,6 @@
         "assets": [
           "libs/skill-logger/src/index.d.ts",
           "libs/skill-logger/src/schema.json",
-          "libs/skill-logger/src/schema.en.json",
           "libs/skill-logger/src/schema.fr.json"
         ],
         "rollupConfig": ["libs/skill-logger/rollup.build.cjs"],
