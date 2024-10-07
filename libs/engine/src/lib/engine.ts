@@ -71,7 +71,10 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
 
   if (alias) {
-    settings = await preparePinsSettings({ ...settings, ...alias }, { settings });
+    settings = await preparePinsSettings(
+      { ...settings, ...alias },
+      { settings: { ...settings, library: settings.library.substring(alias.name.length + 1) } },
+    );
   }
 
   if (settings.conditions?.each) {

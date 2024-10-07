@@ -174,10 +174,10 @@ class WebService {
   }
 
   async javascript(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { execute } = params;
-    const BASE_URL = 'https://cdn.jsdelivr.net/npm';
+    const { execute, baseUrl = 'https://cdn.jsdelivr.net/npm' } = params;
+    const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
     const js = `
-      import { executePinsList } from '${BASE_URL}/@digipair/engine/index.esm.js';
+      import { executePinsList } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
       const context = {
         variables: ${JSON.stringify(context.variables || {})},

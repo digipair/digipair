@@ -153,8 +153,8 @@ export class EditorElement extends LitElement {
 
     try {
       this.codeInWorkspace = {
-        name: this.reasoning.name,
         description: this.reasoning.description,
+        summary: this.reasoning.summary,
         ...JSON.parse(code),
       };
 
