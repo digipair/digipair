@@ -15,6 +15,7 @@
         "parameters": [
           {
             "name": "assistant",
+            "summary": "Response",
             "required": true,
             "description": "Assistant's response",
             "schema": {
@@ -23,6 +24,7 @@
           },
           {
             "name": "command",
+            "summary": "Commands",
             "required": false,
             "description": "Commands executed on the chatbot",
             "schema": {
@@ -34,6 +36,7 @@
           },
           {
             "name": "boosts",
+            "summary": "Proposed boosts",
             "required": false,
             "description": "List of proposed boosts",
             "schema": {
@@ -42,21 +45,59 @@
           },
           {
             "name": "sources",
+            "summary": "List of sources",
             "required": false,
             "description": "List of sources used to respond to the user",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
+              "type": "object"
             }
           },
           {
             "name": "logs",
+            "summary": "Logs",
             "required": false,
             "description": "Useful information for debugging reasoning",
             "schema": {
               "type": "object"
+            }
+          },
+          {
+            "name": "boost",
+            "summary": "Boost",
+            "required": false,
+            "description": "Boost to execute in response to this message",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "parent_conversation",
+            "summary": "Parent conversation",
+            "required": false,
+            "description": "Parent conversation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "parent_history",
+            "summary": "Parent message",
+            "required": false,
+            "description": "Parent conversation",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uuid",
+            "summary": "Identifier",
+            "required": false,
+            "description": "Message identifier",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -85,10 +126,29 @@
   },
   "components": {
     "schemas": {
-      "Input": {
+      "Step": {
         "type": "object",
         "tags": ["boost"],
-        "summary": "Input",
+        "summary": "Step",
+        "properties": {
+          "name": {
+            "summary": "Step name",
+            "type": "string"
+          },
+          "execute": {
+            "summary": "Actions to execute",
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": ["name", "execute"]
+      },
+      "Boost": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Boost",
         "properties": {
           "prompt": {
             "type": "boolean"
@@ -113,25 +173,6 @@
           }
         },
         "required": []
-      },
-      "Step": {
-        "type": "object",
-        "tags": ["boost"],
-        "summary": "Step",
-        "properties": {
-          "name": {
-            "summary": "Step name",
-            "type": "string"
-          },
-          "execute": {
-            "summary": "Actions to execute",
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        "required": ["name", "execute"]
       }
     }
   },

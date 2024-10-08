@@ -35,7 +35,7 @@
     "/task": {
       "summary": "Tache",
       "description": "Exécution d'une tache.",
-      "tags": ["service"],
+      "tags": ["service", "boost"],
       "metadata": [],
       "parameters": [
         {

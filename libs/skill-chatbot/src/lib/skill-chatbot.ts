@@ -3,7 +3,17 @@ import { PinsSettings, executePinsList, preparePinsSettings } from '@digipair/en
 
 class ChatbotService {
   async answer(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { command = [], boosts = [], assistant, sources, logs } = params;
+    const {
+      command = [],
+      boosts = [],
+      sources = [],
+      assistant,
+      logs,
+      boost,
+      parent_conversation,
+      parent_history,
+      uuid,
+    } = params;
     return {
       assistant,
       command: await Promise.all(
@@ -12,6 +22,10 @@ class ChatbotService {
       boosts,
       sources,
       logs,
+      boost,
+      parent_conversation,
+      parent_history,
+      uuid,
     };
   }
 

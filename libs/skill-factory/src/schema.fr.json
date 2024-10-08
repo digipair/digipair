@@ -44,6 +44,37 @@
         ],
         "x-events": []
       }
+    },
+    "/executeWithContext": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Execute avec un contexte",
+        "description": "Execute des Pin's avec un contexte donné",
+        "parameters": [
+          {
+            "name": "execute",
+            "required": true,
+            "summary": "Actions à exécuter",
+            "description": "Actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "context",
+            "required": true,
+            "summary": "Contexte",
+            "description": "Contexte d'exécution",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
