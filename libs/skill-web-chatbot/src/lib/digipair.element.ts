@@ -233,7 +233,7 @@ export class ChatbotElement extends LitElement {
   async execute(boost: any, message?: string): Promise<void> {
     this.loading = true;
 
-    if (message || boost.command.properties.input.prompt) {
+    if (message || boost?.command?.properties?.input?.prompt) {
       this.messages.push({
         role: 'user',
         content: message || boost.command.properties.input.prompt,
@@ -244,9 +244,10 @@ export class ChatbotElement extends LitElement {
     const command = boost?.command ? boost.command : this.CHAT_COMMAND(this.code, boost?.reasoning);
     try {
       const pins = JSON.parse(JSON.stringify(command));
+      pins.properties = pins.properties || {};
       pins.properties.input = {
         ...(pins.properties.input || {}),
-        prompt: message || pins.properties.input.prompt,
+        prompt: message || pins.properties.input?.prompt,
         inputs: this.chatbot.inputs,
         userId: this.userId,
         step: boost?.step,
