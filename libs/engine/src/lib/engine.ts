@@ -90,7 +90,7 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
         ...context,
         item,
         index,
-        parent: { item: context.item, index: item.index, parent: context.parent },
+        parent: { item: context.item, index: context.index, parent: context.parent },
       };
       const itemSettings = await preparePinsSettings(itemSettingsOrigin, itemContext);
 
@@ -189,7 +189,7 @@ export const generateElementFromPins = async (
           ...context,
           item,
           index,
-          parent: { item: context.item, index: item.index, parent: context.parent },
+          parent: { item: context.item, index: context.index, parent: context.parent },
         },
       );
     }

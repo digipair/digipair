@@ -102,7 +102,7 @@ export class AppService implements OnModuleInit {
 
         content = await promises.readFile(`${path}/common/${reasoning}.json`, 'utf8');
       } else {
-        let content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
         const config = JSON.parse(content);
 
         context = {
@@ -130,8 +130,9 @@ export class AppService implements OnModuleInit {
 
       return result;
     } catch (error) {
+      console.error(error);
+
       if (!context) {
-        console.error(error);
         return;
       }
 

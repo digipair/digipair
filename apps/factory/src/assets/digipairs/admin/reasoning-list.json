@@ -66,27 +66,22 @@
                             "events": {
                               "click": [
                                 {
-                                  "library": "@digipair/skill-data-management",
-                                  "element": "transform",
-                                  "properties": {
-                                    "value": {
-                                      "reasoning": "boost-add-reasoning",
-                                      "context": {
-                                        "digipair": "{{request.params.[0]}}",
-                                        "library": "{{parent.item.library}}",
-                                        "element": "{{parent.item.element}}"
-                                      }
-                                    }
-                                  },
-                                  "conditions": { "each": "EVALUATE:[1]" }
-                                },
-                                {
                                   "library": "@digipair/skill-web-interact",
                                   "element": "execute",
                                   "properties": {
                                     "name": "executeBoost",
                                     "selector": "digipair-chatbot",
-                                    "args": "EVALUATE:previous"
+                                    "args": [
+                                      {
+                                        "reasoning": "boost-add-reasoning",
+                                        "context": {
+                                          "digipair": "{{request.params.[0]}}",
+                                          "library": "{{item.library}}",
+                                          "element": "{{item.element}}",
+                                          "summary": "{{item.summary}}"
+                                        }
+                                      }
+                                    ]
                                   }
                                 }
                               ]
@@ -212,26 +207,20 @@
                                             "events": {
                                               "click": [
                                                 {
-                                                  "library": "@digipair/skill-data-management",
-                                                  "element": "transform",
-                                                  "properties": {
-                                                    "value": {
-                                                      "reasoning": "boost-duplicate-reasoning",
-                                                      "context": {
-                                                        "digipair": "{{request.params.[0]}}",
-                                                        "reasoning": "{{parent.item.id}}"
-                                                      }
-                                                    }
-                                                  },
-                                                  "conditions": { "each": "EVALUATE:[1]" }
-                                                },
-                                                {
                                                   "library": "@digipair/skill-web-interact",
                                                   "element": "execute",
                                                   "properties": {
                                                     "name": "executeBoost",
                                                     "selector": "digipair-chatbot",
-                                                    "args": "EVALUATE:previous"
+                                                    "args": [
+                                                      {
+                                                        "reasoning": "boost-duplicate-reasoning",
+                                                        "context": {
+                                                          "digipair": "{{request.params.[0]}}",
+                                                          "reasoning": "{{item.id}}"
+                                                        }
+                                                      }
+                                                    ]
                                                   }
                                                 }
                                               ]
@@ -244,26 +233,20 @@
                                             "events": {
                                               "click": [
                                                 {
-                                                  "library": "@digipair/skill-data-management",
-                                                  "element": "transform",
-                                                  "properties": {
-                                                    "value": {
-                                                      "reasoning": "boost-plan-reasoning",
-                                                      "context": {
-                                                        "digipair": "{{request.params.[0]}}",
-                                                        "reasoning": "{{parent.item.id}}"
-                                                      }
-                                                    }
-                                                  },
-                                                  "conditions": { "each": "EVALUATE:[1]" }
-                                                },
-                                                {
                                                   "library": "@digipair/skill-web-interact",
                                                   "element": "execute",
                                                   "properties": {
                                                     "name": "executeBoost",
                                                     "selector": "digipair-chatbot",
-                                                    "args": "EVALUATE:previous"
+                                                    "args": [
+                                                      {
+                                                        "reasoning": "boost-plan-reasoning",
+                                                        "context": {
+                                                          "digipair": "{{request.params.[0]}}",
+                                                          "reasoning": "{{item.id}}"
+                                                        }
+                                                      }
+                                                    ]
                                                   }
                                                 }
                                               ]
