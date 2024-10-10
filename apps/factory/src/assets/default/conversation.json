@@ -1,31 +1,34 @@
 {
-  "name": "Conversation",
+  "summary": "Conversation",
   "description": "Generating a response for the user via the chatbot.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": {
-    "boosts": []
-  },
+  "metadata": {},
   "properties": {
-    "execute": [
+    "steps": [
       {
-        "library": "@digipair/skill-dsp",
-        "element": "agent",
-        "properties": {
-          "name": "Assistant",
-          "description": "You are a helpful assistant, capable of explaining concepts in a simple manner. If you're unsure of an answer, you can say \"I don't know\" or \"I'm not sure.\"",
-          "signature": "\"Provide a very short, precise, and concise answer  to the user's question using only your knowledge base.\" userQuestion:string -> answer: string \"Assistant answer\"",
-          "input": {
-            "userQuestion": "{{request.body.prompt}}"
+        "name": "Conversation",
+        "execute": [
+          {
+            "library": "@digipair/skill-dsp",
+            "element": "agent",
+            "properties": {
+              "name": "Assistant",
+              "description": "You are a helpful assistant, capable of explaining concepts in a simple manner. If you're unsure of an answer, you can say \"I don't know\" or \"I'm not sure.\"",
+              "signature": "\"Provide a very short, precise, and concise answer  to the user's question using only your knowledge base.\" userQuestion:string -> answer: string \"Assistant answer\"",
+              "input": {
+                "userQuestion": "{{request.body.prompt}}"
+              }
+            }
+          },
+          {
+            "library": "@digipair/skill-chatbot",
+            "element": "answer",
+            "properties": {
+              "assistant": "{{previous.answer}}"
+            }
           }
-        }
-      },
-      {
-        "library": "@digipair/skill-chatbot",
-        "element": "answer",
-        "properties": {
-          "assistant": "{{previous.answer}}"
-        }
+        ]
       }
     ]
   },

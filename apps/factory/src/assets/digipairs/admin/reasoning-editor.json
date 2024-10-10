@@ -1,5 +1,5 @@
 {
-  "name": "Reasoning editor",
+  "summary": "Reasoning editor",
   "description": "Reasoning editor",
   "library": "@digipair/skill-web",
   "element": "page",

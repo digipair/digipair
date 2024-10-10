@@ -1,5 +1,5 @@
 {
-  "name": "Get boosts",
+  "summary": "Get boosts",
   "description": "Get boosts for a Digipair.",
   "metadata": {},
   "library": "@digipair/skill-service",

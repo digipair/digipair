@@ -1,66 +1,95 @@
 {
-  "name": "Adding a digipair",
+  "summary": "Add a digipair",
   "description": "Adding a new digipair.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": { "boosts": [] },
+  "metadata": {},
   "properties": {
-    "execute": [
+    "steps": [
       {
-        "library": "@digipair/skill-data-management",
-        "element": "setVariable",
-        "properties": {
-          "name": "infos",
-          "execute": [
-            {
-              "library": "@digipair/skill-dsp",
-              "element": "generate",
-              "properties": {
-                "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> id:string \"reasoning identifier in kebab case\", name:string \"Very short name of the reasoning\", description:string \"Short description of the reasoning\", assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
-                "input": { "comment": "{{request.body.prompt}}" }
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "@digipair/skill-factory",
+            "element": "start",
+            "properties": {
+              "reasoning": "answer",
+              "body": {
+                "assistant": "What is the id, the name and the description for the new digipair ?",
+                "userId": "{{request.body.userId}}",
+                "boost": [
+                  {
+                    "step": "Execution",
+                    "prompt": true,
+                    "required": true,
+                    "inputs": []
+                  }
+                ]
               }
             }
-          ]
-        }
-      },
-      {
-        "library": "@digipair/skill-editor",
-        "element": "addDigipair",
-        "properties": {
-          "digipair": "{{variables.infos.id}}"
-        }
-      },
-      {
-        "library": "@digipair/skill-editor",
-        "element": "reasoning",
-        "properties": {
-          "digipair": "{{variables.infos.id}}",
-          "reasoning": "config"
-        }
-      },
-      {
-        "library": "@digipair/skill-editor",
-        "element": "setReasoning",
-        "properties": {
-          "digipair": "{{variables.infos.id}}",
-          "reasoning": "config",
-          "value": {
-            "name": "{{variables.infos.name}}",
-            "description": "{{variables.infos.description}}",
-            "metadata": "EVALUATE:previous.metadata",
-            "libraries": "EVALUATE:previous.libraries",
-            "variables": "EVALUATE:previous.variables",
-            "privates": "EVALUATE:previous.privates"
           }
-        }
+        ]
       },
       {
-        "library": "@digipair/skill-chatbot",
-        "element": "answer",
-        "properties": {
-          "assistant": "{{variables.infos.assistant}}",
-          "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
-        }
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-data-management",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> id:string \"reasoning identifier in kebab case\", name:string \"Very short name of the reasoning\", description:string \"Short description of the reasoning\", assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
+                    "input": { "comment": "{{request.body.prompt}}" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "addDigipair",
+            "properties": {
+              "digipair": "{{variables.infos.id}}"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasoning",
+            "properties": {
+              "digipair": "{{variables.infos.id}}",
+              "reasoning": "config"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "setReasoning",
+            "properties": {
+              "digipair": "{{variables.infos.id}}",
+              "reasoning": "config",
+              "value": {
+                "name": "{{variables.infos.name}}",
+                "description": "{{variables.infos.description}}",
+                "metadata": "EVALUATE:previous.metadata",
+                "libraries": "EVALUATE:previous.libraries",
+                "variables": "EVALUATE:previous.variables",
+                "privates": "EVALUATE:previous.privates"
+              }
+            }
+          },
+          {
+            "library": "@digipair/skill-chatbot",
+            "element": "answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
+            }
+          }
+        ]
       }
     ]
   },

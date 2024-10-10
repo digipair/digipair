@@ -1,6 +1,19 @@
-import { executePinsList } from '@digipair/engine';
+import { executePinsList, config } from '@digipair/engine';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { existsSync, promises } from 'fs';
+
+config.set('ALIAS', [
+  {
+    name: 'digipair',
+    library: '@digipair/skill-factory',
+    element: 'start',
+    properties: {
+      digipair: '{{settings.library}}',
+      reasoning: '{{settings.element}}',
+      body: 'EVALUATE:settings.properties',
+    },
+  },
+]);
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -15,8 +28,8 @@ export class AppService implements OnModuleInit {
 
     // initialize factory skill
     const skillFactory = require('@digipair/skill-factory');
-    skillFactory.initialize((_context: any, digipair: string, reasoning: string, body: any) =>
-      this.agent(path, digipair, reasoning, body, [], {}, null, {}),
+    skillFactory.initialize((context: any, digipair: string, reasoning: string, body: any) =>
+      this.agent(path, digipair, reasoning, body, [], {}, null, {}, context),
     );
 
     // start cron manager
@@ -24,7 +37,7 @@ export class AppService implements OnModuleInit {
       const skillCron = require('@digipair/skill-cron');
 
       skillCron.initialize((path: string, digipair: string, reasoning: string) =>
-        this.agent(path, digipair, reasoning, {}, [], {}, null, {}),
+        this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}),
       );
       skillCron.start(path);
     } catch (error) {
@@ -52,6 +65,7 @@ export class AppService implements OnModuleInit {
     query: any,
     method: string,
     headers: any,
+    requester: any,
   ): Promise<any> {
     let context: any;
 
@@ -83,6 +97,7 @@ export class AppService implements OnModuleInit {
             query,
             headers,
           },
+          requester,
         };
 
         content = await promises.readFile(`${path}/common/${reasoning}.json`, 'utf8');

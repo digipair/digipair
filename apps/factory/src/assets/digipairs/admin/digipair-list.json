@@ -1,5 +1,5 @@
 {
-  "name": "Digipair list",
+  "summary": "Digipair list",
   "description": "Digipair list",
   "library": "@digipair/skill-web",
   "element": "page",
@@ -60,20 +60,7 @@
                                     "selector": "digipair-chatbot",
                                     "args": [
                                       {
-                                        "name": "Add a digipair",
-                                        "prompt": true,
-                                        "required": true,
-                                        "text": "What is the id, the name and the description for the new digipair ?",
-                                        "command": {
-                                          "library": "@digipair/actions-chatbot",
-                                          "element": "executeRemoteReasoning",
-                                          "properties": {
-                                            "digipair": "admin",
-                                            "reasoning": "boost-add-digipair",
-                                            "apiUrl": "",
-                                            "input": {}
-                                          }
-                                        }
+                                        "reasoning": "boost-add-digipair"
                                       }
                                     ]
                                   }

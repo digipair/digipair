@@ -110,7 +110,7 @@ export class ChatElement extends LitElement {
         background-color: var(--digipair-color-secondary, #242e3b);
         color: var(
           --digipair-color-text-secondary,
-          #FFFFFF
+          #ffffff
         ); /* Couleur du texte des messages de l'utilisateur */
         align-self: flex-end;
         margin-left: auto;
@@ -121,7 +121,7 @@ export class ChatElement extends LitElement {
       }
 
       .user a {
-        color: var(--digipair-color-text-secondary, #FFFFFF);
+        color: var(--digipair-color-text-secondary, #ffffff);
       }
 
       .input-container {
@@ -134,7 +134,8 @@ export class ChatElement extends LitElement {
         padding-top: 10px;
         padding-left: 10px;
         padding-bottom: 10px;
-        box-shadow: rgba(0, 0, 0, 0.05) 0 0 25px;
+        border-radius: 20px 5px 0px 20px;
+        border: 1px solid rgba(112, 183, 253, 0.3);
       }
 
       .input-container input {
@@ -211,6 +212,26 @@ export class ChatElement extends LitElement {
         right: 10px;
         top: 40px;
       }
+
+      .container.with-boost {
+        height: 292px;
+      }
+
+      .input .assistant {
+        height: 18px;
+        max-width: 100%;
+        width: 235px;
+      }
+
+      .input .assistant p {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .button.action {
+        float: right;
+      }
     `,
   ];
 
@@ -272,6 +293,20 @@ export class ChatElement extends LitElement {
     );
   }
 
+  private answer(message: any): void {
+    const boost = message.boost;
+
+    this.dispatchEvent(
+      new CustomEvent('boost', {
+        detail: {
+          parent_history: message.uuid,
+          parent_conversation: message.parent_conversation || message.uuid,
+          ...boost,
+        },
+      }),
+    );
+  }
+
   pushMessage(message: any): void {
     this.messages.push(message);
     this.requestUpdate();
@@ -280,10 +315,6 @@ export class ChatElement extends LitElement {
   override render(): TemplateResult {
     if (this.previousMessages !== JSON.stringify(this.messages)) {
       this.previousMessages = JSON.stringify(this.messages);
-      setTimeout(() => this.scrollDown(), 1);
-    }
-    if (this.previousCurrentBoostText !== this.currentBoost?.text) {
-      this.previousCurrentBoostText = this.currentBoost?.text;
       setTimeout(() => this.scrollDown(), 1);
     }
 
@@ -296,31 +327,33 @@ export class ChatElement extends LitElement {
     }, 1);
 
     return html`
-      <section class="container">
+      <section class="container ${this.currentBoost ? 'with-boost' : ''}">
         ${this.messages.map(
-          message => html`<section class="${message.role}">
-            ${unsafeHTML(
-              this.converter.makeHtml(
-                message.role === 'user'
-                  ? message.content.replace(/\n/g, '  \n')
-                  : message.content.replace(
-                      /```markdown([\s\S]*?)```/g,
-                      (_: unknown, group: string) => group,
-                    ),
-              ),
-            )}
-          </section>`,
+          message =>
+            html`<section class="${message.role}">
+              ${message.role === 'assistant' && message.boost
+                ? html`<ui5-icon
+                    name="response"
+                    class="button action"
+                    @click=${() => this.answer(message)}
+                  ></ui5-icon>`
+                : nothing}
+              ${unsafeHTML(
+                this.converter.makeHtml(
+                  message.role === 'user'
+                    ? message.content.replace(/\n/g, '  \n')
+                    : message.content.replace(
+                        /```markdown([\s\S]*?)```/g,
+                        (_: unknown, group: string) => group,
+                      ),
+                ),
+              )}
+            </section>`,
         )}
-        ${this.currentBoost?.name
-          ? html`<section class="user">${this.currentBoost.name}</section>`
-          : nothing}
-        ${this.currentBoost?.text
-          ? html`<section class="assistant">${this.currentBoost.text}</section>`
-          : nothing}
         <digipair-chatbot-inputs
           @change=${() => this.requestUpdate()}
           .inputs=${this.currentBoost?.inputs || []}
-          .context=${{...this.context, ...(this.currentBoost?.context || {})}}
+          .context=${{ ...this.context, ...(this.currentBoost?.context || {}) }}
         ></digipair-chatbot-inputs>
 
         ${!this.loading
@@ -330,6 +363,32 @@ export class ChatElement extends LitElement {
 
       <section class="input-container">
         <section class="input">
+          ${this.currentBoost?.parent_history
+            ? html`
+                <section class="assistant">
+                  ${this.messages
+                    .filter(message => message.uuid === this.currentBoost?.parent_history)
+                    .map(
+                      message => html`
+                        <ui5-icon
+                          name="decline"
+                          class="button action"
+                          @click=${() =>
+                            this.dispatchEvent(new CustomEvent('boost', { detail: null }))}
+                        ></ui5-icon>
+                        ${unsafeHTML(
+                          this.converter.makeHtml(
+                            message.content.replace(
+                              /```markdown([\s\S]*?)```/g,
+                              (_: unknown, group: string) => group,
+                            ),
+                          ),
+                        )}
+                      `,
+                    )}
+                </section>
+              `
+            : nothing}
           <textarea
             id="messageInput"
             value=""

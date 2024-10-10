@@ -3,12 +3,13 @@ import '@ui5/webcomponents/dist/BusyIndicator';
 import '@ui5/webcomponents/dist/Icon';
 import { html, LitElement, TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { executePinsList } from '@digipair/engine';
 import './chat.element';
 import { ChatElement } from './chat.element';
 import { styles } from './digipair.data';
 import getCssSelector from './tools/css-selector';
 import { _config } from './config';
-import { executePinsList } from '@digipair/engine';
+import { Message } from './message.interface';
 
 let API_URL: string;
 
@@ -39,17 +40,16 @@ export class ChatbotElement extends LitElement {
   private currentBoost: any = null;
 
   @state()
-  private messages: { role: string; content: string }[] = [];
+  private messages: Message[] = [];
 
   @query('digipair-chatbot-chat')
   private chatbot!: ChatElement;
-
-  private CHAT_COMMAND = (digipair: string) => ({
+  private CHAT_COMMAND = (digipair: string, reasoning: string) => ({
     library: '@digipair/actions-chatbot',
     element: 'executeRemoteReasoning',
     properties: {
       digipair,
-      reasoning: 'conversation',
+      reasoning: reasoning ?? 'conversation',
       apiUrl: API_URL,
     },
   });
@@ -115,18 +115,12 @@ export class ChatbotElement extends LitElement {
   }
 
   private async boostListener() {
-    const boosts = (
-      await this.executeScene('boosts')
-    )
-      .map(({ name, metadata }: any) =>
-        metadata?.boosts.map((boost: any) => ({
-          ...boost,
-          scene: name,
-          checkUrl: new RegExp(boost.url),
-        })),
-      )
-      .flat()
-      .filter((boost: any) => boost && boost.selector);
+    const boosts = (await this.executeScene('boosts'))
+      .map((boost: any) => ({
+        ...boost,
+        checkUrl: new RegExp(boost.url),
+      }))
+      .filter((boost: any) => boost.selector);
     let lastSelectedBoosts: any[] | null = [];
 
     document.addEventListener(
@@ -237,31 +231,8 @@ export class ChatbotElement extends LitElement {
   }
 
   async execute(boost: any, message?: string): Promise<void> {
-    this.currentBoost = null;
     this.loading = true;
 
-    if (boost) {
-      this.messages.push({
-        role: 'user',
-        content: boost.name,
-      });
-    }
-    if (boost?.text) {
-      this.messages.push({
-        role: 'assistant',
-        content: boost.text,
-      });
-    }
-    this.chatbot.inputs.forEach(({ content }) => {
-      if (!content) {
-        return;
-      }
-
-      this.messages.push({
-        role: 'user',
-        content,
-      });
-    });
     if (message || boost.command.properties.input.prompt) {
       this.messages.push({
         role: 'user',
@@ -270,7 +241,7 @@ export class ChatbotElement extends LitElement {
     }
     this.chatbot.requestUpdate();
 
-    const command = boost ? boost.command : this.CHAT_COMMAND(this.code);
+    const command = boost?.command ? boost.command : this.CHAT_COMMAND(this.code, boost?.reasoning);
     try {
       const pins = JSON.parse(JSON.stringify(command));
       pins.properties.input = {
@@ -278,6 +249,10 @@ export class ChatbotElement extends LitElement {
         prompt: message || pins.properties.input.prompt,
         inputs: this.chatbot.inputs,
         userId: this.userId,
+        step: boost?.step,
+        parent_history: boost?.parent_history,
+        parent_conversation: boost?.parent_conversation,
+        context: boost?.context || {},
         ...(!boost
           ? {}
           : {
@@ -289,31 +264,47 @@ export class ChatbotElement extends LitElement {
       };
 
       const detail = await executePinsList([pins], {
-        config: { VERSIONS: this.metadata.config.VERSIONS },
+        config: {
+          VERSIONS: this.metadata.config.VERSIONS,
+        },
       });
-      this.pushAssistantMessage(detail.assistant);
+      this.currentBoost = detail.boost
+        ? {
+            parent_history: detail.uuid,
+            parent_conversation: detail.parent_conversation || detail.uuid,
+            ...detail.boost,
+          }
+        : null;
+      this.pushMessage({
+        role: 'assistant',
+        content: detail.assistant,
+        uuid: detail.uuid,
+        boost: detail.boost,
+        parent_conversation: detail.parent_conversation,
+        parent_history: detail.parent_history,
+      });
 
       if (detail.command && detail.command.length > 0) {
         executePinsList(detail.command, { config: { VERSIONS: this.metadata.config.VERSIONS } });
       }
     } catch (error) {
-      this.pushAssistantMessage('Oops...');
+      this.pushMessage({
+        role: 'assistant',
+        content: 'Oops...',
+      });
     }
 
     this.loading = false;
   }
 
   private executeBoost(boost: any): void {
-    this.currentBoost = boost;
+    this.execute(boost);
     this.openResult();
   }
 
-  private pushAssistantMessage(message: string): void {
+  private pushMessage(message: Message): void {
     this.openResult();
-    this.messages.push({
-      role: 'assistant',
-      content: message,
-    });
+    this.messages.push(message);
     this.chatbot.requestUpdate();
   }
 
@@ -330,10 +321,12 @@ export class ChatbotElement extends LitElement {
     this.resultState = 'closed';
   }
 
-  private executeScene = async (
-    reasoning: string,
-    input: any = {},
-  ): Promise<any> => {
+  private setBoost(boost: any): void {
+    this.currentBoost = boost;
+    this.boosters = [];
+  }
+
+  private executeScene = async (reasoning: string, input: any = {}): Promise<any> => {
     const digipair = this.code;
     const response = await fetch(`${API_URL}/${digipair}/${reasoning}`, {
       method: 'POST',
@@ -376,32 +369,21 @@ export class ChatbotElement extends LitElement {
             .currentBoost=${this.currentBoost}
             .context=${{ config: this.metadata.config, variables: this.metadata.variables }}
             @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
+            @boost=${(event: any) => this.setBoost(event.detail)}
           ></digipair-chatbot-chat>
         </section>
 
         <section class="actions ${this.loading ? 'loading' : ''}">
-          ${!this.currentBoost
-            ? this.boosters.map(
-                boost => html`
-                  <span
-                    class="action"
-                    style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
-                    @click=${() => this.executeBoost(boost)}
-                    >${boost.name}</span
-                  >
-                `,
-              )
-            : html`
-                <span
-                  class="action"
-                  style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
-                  @click=${() => {
-                    this.currentBoost = null;
-                    this.boosters = [];
-                  }}
-                  >Annuler</span
-                >
-              `}
+          ${this.boosters.map(
+            boost => html`
+              <span
+                class="action"
+                style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
+                @click=${() => this.executeBoost(boost)}
+                >${boost.summary}</span
+              >
+            `,
+          )}
         </section>
 
         <section

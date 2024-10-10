@@ -55,6 +55,7 @@ export class AppController {
         query,
         method,
         request.headers,
+        {},
       ),
     );
   }

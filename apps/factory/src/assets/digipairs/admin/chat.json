@@ -1,5 +1,5 @@
 {
-  "name": "Chatbot",
+  "summary": "Chatbot",
   "description": "Chatbot",
   "library": "@digipair/skill-web",
   "element": "page",

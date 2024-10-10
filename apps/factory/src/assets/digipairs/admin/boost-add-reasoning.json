@@ -1,52 +1,83 @@
 {
-  "name": "Adding a reasoning",
+  "summary": "Adding a reasoning",
   "description": "Adding a new reasoning.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": { "boosts": [] },
+  "metadata": {
+    "standalone": false
+  },
   "properties": {
-    "execute": [
+    "steps": [
       {
-        "library": "@digipair/skill-data-management",
-        "element": "setVariable",
-        "properties": {
-          "name": "infos",
-          "execute": [
-            {
-              "library": "@digipair/skill-dsp",
-              "element": "generate",
-              "properties": {
-                "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> id:string \"reasoning identifier in kebab case\", name:string \"Very short name of the reasoning\", description:string \"Short description of the reasoning\", assistant:string \"Assistant's response to confirm that the reasoning has been successfully added\"",
-                "input": { "comment": "{{request.body.prompt}}" }
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "@digipair/skill-factory",
+            "element": "start",
+            "properties": {
+              "reasoning": "answer",
+              "body": {
+                "assistant": "What is the id, the name and the description for the new {{request.body.context.summary}} ?",
+                "userId": "{{request.body.userId}}",
+                "boost": [
+                  {
+                    "step": "Execution",
+                    "prompt": true,
+                    "required": true,
+                    "inputs": []
+                  }
+                ]
               }
             }
-          ]
-        }
-      },
-      {
-        "library": "@digipair/skill-editor",
-        "element": "setReasoning",
-        "properties": {
-          "digipair": "{{request.body.digipair}}",
-          "reasoning": "EVALUATE:\nif request.body.element = \"boost\" then \n  \"boost-\" + variables.infos.id \nelse \n  variables.infos.id",
-          "value": {
-            "name": "{{variables.infos.name}}",
-            "description": "{{variables.infos.description}}",
-            "library": "{{request.body.library}}",
-            "element": "{{request.body.element}}",
-            "properties": {},
-            "pins": [],
-            "metadata": {}
           }
-        }
+        ]
       },
       {
-        "library": "@digipair/skill-chatbot",
-        "element": "answer",
-        "properties": {
-          "assistant": "{{variables.infos.assistant}}",
-          "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
-        }
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-data-management",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> id:string \"reasoning identifier in kebab case\", name:string \"Very short name of the reasoning\", description:string \"Short description of the reasoning\", assistant:string \"Assistant's response to confirm that the reasoning has been successfully added\"",
+                    "input": { "comment": "{{request.body.prompt}}" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "setReasoning",
+            "properties": {
+              "digipair": "{{request.body.digipair}}",
+              "reasoning": "EVALUATE:\nif request.body.element = \"boost\" then \n  \"boost-\" + variables.infos.id \nelse \n  variables.infos.id",
+              "value": {
+                "name": "{{variables.infos.name}}",
+                "description": "{{variables.infos.description}}",
+                "library": "{{request.body.library}}",
+                "element": "{{request.body.element}}",
+                "properties": {},
+                "pins": [],
+                "metadata": {}
+              }
+            }
+          },
+          {
+            "library": "@digipair/skill-chatbot",
+            "element": "answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
+            }
+          }
+        ]
       }
     ]
   },

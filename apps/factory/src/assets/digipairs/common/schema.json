@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "digipair:common",
+    "summary": "Tous les agents",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {}
+  }
+}

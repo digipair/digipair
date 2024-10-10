@@ -1,5 +1,5 @@
 {
-  "name": "Reasoning list",
+  "summary": "Reasoning list",
   "description": "Reasoning list",
   "library": "@digipair/skill-web",
   "element": "page",
@@ -70,23 +70,11 @@
                                   "element": "transform",
                                   "properties": {
                                     "value": {
-                                      "name": "Add a {{parent.item.summary}}",
-                                      "prompt": true,
-                                      "required": true,
-                                      "text": "What is the id, the name and the description for the new {{parent.item.summary}} ?",
-                                      "command": {
-                                        "library": "@digipair/actions-chatbot",
-                                        "element": "executeRemoteReasoning",
-                                        "properties": {
-                                          "digipair": "admin",
-                                          "reasoning": "boost-add-reasoning",
-                                          "apiUrl": "",
-                                          "input": {
-                                            "digipair": "{{request.params.[0]}}",
-                                            "library": "{{parent.item.library}}",
-                                            "element": "{{parent.item.element}}"
-                                          }
-                                        }
+                                      "reasoning": "boost-add-reasoning",
+                                      "context": {
+                                        "digipair": "{{request.params.[0]}}",
+                                        "library": "{{parent.item.library}}",
+                                        "element": "{{parent.item.element}}"
                                       }
                                     }
                                   },
@@ -228,22 +216,10 @@
                                                   "element": "transform",
                                                   "properties": {
                                                     "value": {
-                                                      "name": "Duplicate the reasonning {{parent.item.name}}",
-                                                      "prompt": true,
-                                                      "required": true,
-                                                      "text": "What is the id, the name and the description for the duplicated reasonning ?",
-                                                      "command": {
-                                                        "library": "@digipair/actions-chatbot",
-                                                        "element": "executeRemoteReasoning",
-                                                        "properties": {
-                                                          "digipair": "admin",
-                                                          "reasoning": "boost-duplicate-reasoning",
-                                                          "apiUrl": "",
-                                                          "input": {
-                                                            "digipair": "{{request.params.[0]}}",
-                                                            "reasoning": "{{parent.item.id}}"
-                                                          }
-                                                        }
+                                                      "reasoning": "boost-duplicate-reasoning",
+                                                      "context": {
+                                                        "digipair": "{{request.params.[0]}}",
+                                                        "reasoning": "{{parent.item.id}}"
                                                       }
                                                     }
                                                   },
@@ -272,22 +248,10 @@
                                                   "element": "transform",
                                                   "properties": {
                                                     "value": {
-                                                      "name": "Plan the reasoning {{parent.item.name}}",
-                                                      "prompt": true,
-                                                      "required": true,
-                                                      "text": "When should it run ?",
-                                                      "command": {
-                                                        "library": "@digipair/actions-chatbot",
-                                                        "element": "executeRemoteReasoning",
-                                                        "properties": {
-                                                          "digipair": "admin",
-                                                          "reasoning": "boost-plan-reasoning",
-                                                          "apiUrl": "",
-                                                          "input": {
-                                                            "digipair": "{{request.params.[0]}}",
-                                                            "reasoning": "{{parent.item.id}}"
-                                                          }
-                                                        }
+                                                      "reasoning": "boost-plan-reasoning",
+                                                      "context": {
+                                                        "digipair": "{{request.params.[0]}}",
+                                                        "reasoning": "{{parent.item.id}}"
                                                       }
                                                     }
                                                   },

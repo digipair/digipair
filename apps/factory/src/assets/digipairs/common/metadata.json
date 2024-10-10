@@ -1,5 +1,5 @@
 {
-  "name": "Get metadata",
+  "summary": "Get metadata",
   "description": "Get metadata for a Digipair.",
   "metadata": {},
   "library": "@digipair/skill-service",

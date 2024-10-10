@@ -1,0 +1,19 @@
+{
+  "summary": "Liste les raisonnements partagés",
+  "description": "Gestion des interfaces des digipairs",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-common",
+        "element": "schema",
+        "properties": {
+          "digipair": "EVALUATE:request.digipair"
+        }
+      }
+    ]
+  },
+  "pins": []
+}

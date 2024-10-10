@@ -8,6 +8,7 @@ import './chat.element';
 import { ChatElement } from './chat.element';
 import { styles } from './digipair-full.data';
 import { _config } from './config';
+import { Message } from './message.interface';
 
 let API_URL: string;
 
@@ -32,17 +33,17 @@ export class DigipairFullElement extends LitElement {
   private currentBoost: any = null;
 
   @state()
-  private messages: { role: string; content: string }[] = [];
+  private messages: Message[] = [];
 
   @query('digipair-chatbot-chat')
   private chatbot!: ChatElement;
 
-  private CHAT_COMMAND = (digipair: string) => ({
+  private CHAT_COMMAND = (digipair: string, reasoning: string) => ({
     library: '@digipair/actions-chatbot',
     element: 'executeRemoteReasoning',
     properties: {
       digipair,
-      reasoning: 'conversation',
+      reasoning: reasoning ?? 'conversation',
       apiUrl: API_URL,
     },
   });
@@ -86,33 +87,11 @@ export class DigipairFullElement extends LitElement {
     this.cacheBoosters = (
       await this.executeScene('boosts')
     )
-      .map(({ name, metadata }: any) =>
-        metadata?.boosts.map((boost: any) => ({
-          ...boost,
-          scene: name,
-          checkUrl: new RegExp(boost.url),
-        })),
-      )
-      .flat()
-      .filter((boost: any) => boost && !boost.selector)
-      .map((boost: any) => ({
-        name: boost.name,
-        prompt: boost.prompt,
-        required: boost.required,
-        text: boost.text,
-        inputs: boost.inputs,
-        context: {},
-        command: {
-          library: '@digipair/actions-chatbot',
-          element: 'executeRemoteReasoning',
-          properties: {
-            digipair: this.code,
-            reasoning: boost.scene,
-            input: {},
-            apiUrl: API_URL,
-          },
-        },
-      }));
+    .map((boost: any) => ({
+      ...boost,
+      checkUrl: new RegExp(boost.url),
+    }))
+    .filter((boost: any) => boost.standalone);
   }
 
   private async loadDigipair(): Promise<void> {
@@ -152,31 +131,8 @@ export class DigipairFullElement extends LitElement {
   }
 
   async execute(boost: any, message?: string): Promise<void> {
-    this.currentBoost = null;
     this.loading = true;
 
-    if (boost) {
-      this.messages.push({
-        role: 'user',
-        content: boost.name,
-      });
-    }
-    if (boost?.text) {
-      this.messages.push({
-        role: 'assistant',
-        content: boost.text,
-      });
-    }
-    this.chatbot.inputs.forEach(({ content }) => {
-      if (!content) {
-        return;
-      }
-
-      this.messages.push({
-        role: 'user',
-        content,
-      });
-    });
     if (message || boost.command.properties.input.prompt) {
       this.messages.push({
         role: 'user',
@@ -185,7 +141,7 @@ export class DigipairFullElement extends LitElement {
     }
     this.chatbot.requestUpdate();
 
-    const command = boost ? boost.command : this.CHAT_COMMAND(this.code);
+    const command = boost?.command ? boost.command : this.CHAT_COMMAND(this.code, boost?.reasoning);
     try {
       const pins = JSON.parse(JSON.stringify(command));
       pins.properties.input = {
@@ -193,6 +149,10 @@ export class DigipairFullElement extends LitElement {
         prompt: message || pins.properties.input.prompt,
         inputs: this.chatbot.inputs,
         userId: this.userId,
+        step: boost?.step,
+        parent_history: boost?.parent_history,
+        parent_conversation: boost?.parent_conversation,
+        context: boost?.context || {},
         ...(!boost
           ? {}
           : {
@@ -206,32 +166,47 @@ export class DigipairFullElement extends LitElement {
       const detail = await executePinsList([pins], {
         config: { VERSIONS: this.metadata.config.VERSIONS },
       });
-      this.pushAssistantMessage(detail.assistant);
+
+      this.currentBoost = detail.boost
+        ? {
+            parent_history: detail.uuid,
+            parent_conversation: detail.parent_conversation || detail.uuid,
+            ...detail.boost,
+          }
+        : null;
+      this.pushMessage({
+        role: 'assistant',
+        content: detail.assistant,
+        uuid: detail.uuid,
+        boost: detail.boost,
+        parent_conversation: detail.parent_conversation,
+        parent_history: detail.parent_history,
+      });
 
       if (detail.command && detail.command.library && detail.command.element) {
         executePinsList([detail.command], { config: { VERSIONS: this.metadata.config.VERSIONS } });
       }
     } catch (error) {
-      this.pushAssistantMessage('Oops...');
+      this.pushMessage({
+        role: 'assistant',
+        content: 'Oops...',
+      });
     }
 
     this.loading = false;
   }
 
   private executeBoost(boost: any): void {
-    this.currentBoost = boost;
-    this.boosters = [];
+    this.execute(boost);
+    this.closeMenu();
 
     setTimeout(() => {
       (this.chatbot?.shadowRoot?.querySelector('#messageInput') as any).focus();
     }, 1);
   }
 
-  private pushAssistantMessage(message: string): void {
-    this.messages.push({
-      role: 'assistant',
-      content: message,
-    });
+  private pushMessage(message: Message): void {
+    this.messages.push(message);
     this.chatbot.requestUpdate();
   }
 
@@ -240,6 +215,11 @@ export class DigipairFullElement extends LitElement {
   }
 
   private closeMenu(): void {
+    this.boosters = [];
+  }
+
+  private setBoost(boost: any): void {
+    this.currentBoost = boost;
     this.boosters = [];
   }
 
@@ -289,6 +269,7 @@ export class DigipairFullElement extends LitElement {
             .currentBoost=${this.currentBoost}
             .context=${{ config: this.metadata.config, variables: this.metadata.variables }}
             @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
+            @boost=${(event: any) => this.setBoost(event.detail)}
           ></digipair-chatbot-chat>
         </section>
 
@@ -300,7 +281,7 @@ export class DigipairFullElement extends LitElement {
                   class="action"
                   style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
                   @click=${() => this.executeBoost(boost)}
-                  >${boost.name}</span
+                  >${boost.summary}</span
                 >
               </div>
             `,

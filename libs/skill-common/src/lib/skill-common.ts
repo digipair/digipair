@@ -51,6 +51,20 @@ class CommonService {
 
     return boosts;
   }
+
+  async schema(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path =
+      context.privates?.EDITOR_PATH ??
+      (process.env['DIGIPAIR_FACTORY_PATH']
+        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+        : './factory/digipairs');
+    const { digipair } = params;
+
+    const text = await promises.readFile(`${path}/${digipair}/schema.json`, 'utf8');
+    const content = JSON.parse(text);
+
+    return content;
+  }
 }
 
 export const metadata = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -58,3 +72,6 @@ export const metadata = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const boosts = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().boosts(params, pinsSettingsList, context);
+
+export const schema = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new CommonService().schema(params, pinsSettingsList, context);

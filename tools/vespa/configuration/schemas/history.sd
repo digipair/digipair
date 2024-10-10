@@ -9,8 +9,14 @@ schema history inherits knowledge {
         field role type string {
             indexing: summary | attribute
         }
+        field parent_history type string {
+            indexing: summary | attribute
+        }
+        field parent_conversation type string {
+            indexing: summary | attribute
+        }
         field boost type string {
-            indexing: attribute
+            indexing: summary | attribute
         }
     }
 }

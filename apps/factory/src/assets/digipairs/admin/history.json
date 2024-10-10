@@ -1,5 +1,5 @@
 {
-  "name": "History",
+  "summary": "History",
   "description": "Return the start conversation history.",
   "metadata": {},
   "library": "@digipair/skill-service",

@@ -1,10 +1,10 @@
 <validation-overrides>
     <allow
-        until='2024-03-31'>schema-removal</allow>
+        until='2024-10-09'>schema-removal</allow>
     <allow
-      until='2024-03-31'>field-type-change</allow>
+      until='2024-10-09'>field-type-change</allow>
     <allow
-      until='2024-03-31'>indexing-change</allow>
+      until='2024-10-09'>indexing-change</allow>
     <allow
-      until='2024-03-31'>content-cluster-removal</allow>
+      until='2024-10-09'>content-cluster-removal</allow>
 </validation-overrides>

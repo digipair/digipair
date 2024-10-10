@@ -1,5 +1,5 @@
 {
-  "name": "JSON editor",
+  "summary": "JSON editor",
   "description": "Reasoning and configuration JSON editor",
   "library": "@digipair/skill-web",
   "element": "page",

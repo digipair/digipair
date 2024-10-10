@@ -1,44 +1,75 @@
 {
-  "name": "Planning a reasonning",
+  "summary": "Planning the reasonning",
   "description": "Planning a reasonning",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": { "boosts": [] },
+  "metadata": {
+    "standalone": false
+  },
   "properties": {
-    "execute": [
+    "steps": [
       {
-        "library": "@digipair/skill-data-management",
-        "element": "setVariable",
-        "properties": {
-          "name": "infos",
-          "execute": [
-            {
-              "library": "@digipair/skill-dsp",
-              "element": "generate",
-              "properties": {
-                "signature": "comment:string -> cron:string \"Task scheduling based on the comment\", assistant:string \"Assistant's response to indicate that the task has been successfully scheduled\"",
-                "input": { "comment": "EVALUATE:request.body.prompt" }
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "@digipair/skill-factory",
+            "element": "start",
+            "properties": {
+              "reasoning": "answer",
+              "body": {
+                "assistant": "When should it run ?",
+                "userId": "{{request.body.userId}}",
+                "boost": [
+                  {
+                    "step": "Execution",
+                    "prompt": true,
+                    "required": true,
+                    "inputs": []
+                  }
+                ]
               }
             }
-          ]
-        }
+          }
+        ]
       },
       {
-        "library": "@digipair/skill-cron",
-        "element": "addCron",
-        "properties": {
-          "time": "{{previous.cron}}",
-          "digipair": "{{request.body.digipair}}",
-          "reasoning": "{{request.body.reasoning}}"
-        }
-      },
-      {
-        "library": "@digipair/skill-chatbot",
-        "element": "answer",
-        "properties": {
-          "assistant": "{{variables.infos.assistant}}",
-          "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
-        }
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-data-management",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "comment:string -> cron:string \"Task scheduling based on the comment\", assistant:string \"Assistant's response to indicate that the task has been successfully scheduled\"",
+                    "input": { "comment": "EVALUATE:request.body.prompt" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-cron",
+            "element": "addCron",
+            "properties": {
+              "time": "{{previous.cron}}",
+              "digipair": "{{request.body.digipair}}",
+              "reasoning": "{{request.body.reasoning}}"
+            }
+          },
+          {
+            "library": "@digipair/skill-chatbot",
+            "element": "answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
+            }
+          }
+        ]
       }
     ]
   },
