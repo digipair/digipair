@@ -176,7 +176,7 @@ export class ChatElement extends LitElement {
 
       #messageInput {
         width: 100%;
-        height: 100%;
+        height: 45px;
         border: none;
         outline: none;
         resize: none;
@@ -214,7 +214,11 @@ export class ChatElement extends LitElement {
       }
 
       .container.with-boost {
-        height: 292px;
+        bottom: 105px;
+      }
+
+      .input-container.with-boost {
+        height: 85px;
       }
 
       .input .assistant {
@@ -361,7 +365,7 @@ export class ChatElement extends LitElement {
           : html`<section class="loading"><img src=${WRITTING_IMAGE} /></section>`}
       </section>
 
-      <section class="input-container">
+      <section class="input-container ${this.currentBoost ? 'with-boost' : ''}">
         <section class="input">
           ${this.currentBoost?.parent_history
             ? html`
