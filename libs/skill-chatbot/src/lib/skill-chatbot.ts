@@ -40,7 +40,7 @@ class ChatbotService {
 
   // SCENES
   async boost(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    if (context.request.method !== 'POST') {
+    if (context.request.method && context.request.method !== 'POST') {
       return { error: 'Method not allowed' };
     }
 

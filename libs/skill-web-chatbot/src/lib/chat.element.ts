@@ -225,6 +225,7 @@ export class ChatElement extends LitElement {
         height: 18px;
         max-width: 100%;
         width: 235px;
+        overflow: hidden;
       }
 
       .input .assistant p {
