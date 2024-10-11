@@ -313,6 +313,15 @@
       "tags": ["boost", "service"],
       "metadata": [
         {
+          "name": "standalone",
+          "summary": "Standalone",
+          "required": true,
+          "description": "Is the boost standalone",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
           "name": "selector",
           "summary": "Selector",
           "required": false,

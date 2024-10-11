@@ -12,22 +12,18 @@
         "name": "Initialisation",
         "execute": [
           {
-            "library": "@digipair/skill-factory",
-            "element": "start",
+            "library": "digipair:admin",
+            "element": "answer",
             "properties": {
-              "reasoning": "answer",
-              "body": {
-                "assistant": "When should it run ?",
-                "userId": "{{request.body.userId}}",
-                "boost": [
-                  {
-                    "step": "Execution",
-                    "prompt": true,
-                    "required": true,
-                    "inputs": []
-                  }
-                ]
-              }
+              "assistant": "When should it run ?",
+              "boost": [
+                {
+                  "step": "Execution",
+                  "prompt": true,
+                  "required": true,
+                  "inputs": []
+                }
+              ]
             }
           }
         ]
@@ -62,7 +58,7 @@
             }
           },
           {
-            "library": "@digipair/skill-chatbot",
+            "library": "digipair:admin",
             "element": "answer",
             "properties": {
               "assistant": "{{variables.infos.assistant}}",

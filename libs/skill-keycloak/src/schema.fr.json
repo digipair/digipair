@@ -313,6 +313,15 @@
       "tags": ["boost", "service"],
       "metadata": [
         {
+          "name": "standalone",
+          "summary": "Autonome",
+          "required": true,
+          "description": "Boost déclenchable depuis une chatbot full ou une discussion",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        {
           "name": "selector",
           "summary": "Sélecteur CSS du déclencheur",
           "required": false,

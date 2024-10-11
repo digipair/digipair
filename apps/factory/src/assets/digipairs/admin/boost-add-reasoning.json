@@ -12,22 +12,18 @@
         "name": "Initialisation",
         "execute": [
           {
-            "library": "@digipair/skill-factory",
-            "element": "start",
+            "library": "digipair:admin",
+            "element": "answer",
             "properties": {
-              "reasoning": "answer",
-              "body": {
-                "assistant": "What is the id, the name and the description for the new {{request.body.context.summary}} ?",
-                "userId": "{{request.body.userId}}",
-                "boost": [
-                  {
-                    "step": "Execution",
-                    "prompt": true,
-                    "required": true,
-                    "inputs": []
-                  }
-                ]
-              }
+              "assistant": "What is the id, the name and the description for the new {{request.body.context.summary}} ?",
+              "boost": [
+                {
+                  "step": "Execution",
+                  "prompt": true,
+                  "required": true,
+                  "inputs": []
+                }
+              ]
             }
           }
         ]
@@ -70,7 +66,7 @@
             }
           },
           {
-            "library": "@digipair/skill-chatbot",
+            "library": "digipair:admin",
             "element": "answer",
             "properties": {
               "assistant": "{{variables.infos.assistant}}",

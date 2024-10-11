@@ -30,7 +30,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
+                "type": "object"
               }
             }
           },
@@ -40,7 +40,10 @@
             "required": false,
             "description": "Liste des boosts proposés",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
             }
           },
           {
@@ -49,7 +52,10 @@
             "required": false,
             "description": "Liste des sources utilisées pour répondre a l'utilisateur",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
             }
           },
           {
@@ -69,7 +75,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
+                "type": "object"
               }
             }
           },
@@ -182,6 +188,15 @@
       "description": "Boost proposé par le Digipair",
       "tags": ["boost", "service"],
       "metadata": [
+        {
+          "name": "standalone",
+          "summary": "Autonome",
+          "required": true,
+          "description": "Boost déclenchable depuis une chatbot full ou une discussion",
+          "schema": {
+            "type": "boolean"
+          }
+        },
         {
           "name": "selector",
           "summary": "Sélecteur CSS du déclencheur",

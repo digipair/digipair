@@ -30,7 +30,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
+                "type": "object"
               }
             }
           },
@@ -40,7 +40,10 @@
             "required": false,
             "description": "List of proposed boosts",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
             }
           },
           {
@@ -49,7 +52,10 @@
             "required": false,
             "description": "List of sources used to respond to the user",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
             }
           },
           {
@@ -69,7 +75,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
+                "type": "object"
               }
             }
           },
@@ -182,6 +188,15 @@
       "description": "Boost proposed by Digipair",
       "tags": ["boost", "service"],
       "metadata": [
+        {
+          "name": "standalone",
+          "summary": "Standalone",
+          "required": true,
+          "description": "Is the boost standalone",
+          "schema": {
+            "type": "boolean"
+          }
+        },
         {
           "name": "selector",
           "summary": "Selector",
