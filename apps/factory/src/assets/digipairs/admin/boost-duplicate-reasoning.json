@@ -54,15 +54,15 @@
             "library": "@digipair/skill-editor",
             "element": "reasoning",
             "properties": {
-              "digipair": "{{request.body.digipair}}",
-              "reasoning": "{{request.body.reasoning}}"
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "{{request.body.context.reasoning}}"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "setReasoning",
             "properties": {
-              "digipair": "{{request.body.digipair}}",
+              "digipair": "{{request.body.context.digipair}}",
               "reasoning": "EVALUATE:if previous.element = \"boost\" then \n \"boost-\" + variables.infos.id\nelse \n  variables.infos.id",
               "value": {
                 "name": "{{variables.infos.name}}",

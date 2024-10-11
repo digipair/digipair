@@ -57,8 +57,8 @@
             "element": "addCron",
             "properties": {
               "time": "{{previous.cron}}",
-              "digipair": "{{request.body.digipair}}",
-              "reasoning": "{{request.body.reasoning}}"
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "{{request.body.context.reasoning}}"
             }
           },
           {

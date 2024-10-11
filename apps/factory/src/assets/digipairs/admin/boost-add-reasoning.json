@@ -56,13 +56,13 @@
             "library": "@digipair/skill-editor",
             "element": "setReasoning",
             "properties": {
-              "digipair": "{{request.body.digipair}}",
-              "reasoning": "EVALUATE:\nif request.body.element = \"boost\" then \n  \"boost-\" + variables.infos.id \nelse \n  variables.infos.id",
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + variables.infos.id \nelse \n  variables.infos.id",
               "value": {
                 "name": "{{variables.infos.name}}",
                 "description": "{{variables.infos.description}}",
-                "library": "{{request.body.library}}",
-                "element": "{{request.body.element}}",
+                "library": "{{request.body.context.library}}",
+                "element": "{{request.body.context.element}}",
                 "properties": {},
                 "pins": [],
                 "metadata": {}
