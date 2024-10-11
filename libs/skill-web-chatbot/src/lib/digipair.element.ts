@@ -142,23 +142,10 @@ export class ChatbotElement extends LitElement {
           this.boosters = selectedBoosts
             .filter(boost => lastSelectedBoosts?.includes(boost))
             .map(boost => ({
-              name: boost.name,
-              prompt: boost.prompt,
-              required: boost.required,
-              text: boost.text,
-              inputs: boost.inputs,
+              ...boost,
               context: {
+                ...(boost.context || {}),
                 element: getCssSelector(event.target.closest(boost.selector)),
-              },
-              command: {
-                library: '@digipair/actions-chatbot',
-                element: 'executeRemoteReasoning',
-                properties: {
-                  digipair: this.code,
-                  reasoning: boost.scene,
-                  input: {},
-                  apiUrl: API_URL,
-                },
               },
             }));
         }, 1000);
@@ -254,14 +241,6 @@ export class ChatbotElement extends LitElement {
         parent_history: boost?.parent_history,
         parent_conversation: boost?.parent_conversation,
         context: boost?.context || {},
-        ...(!boost
-          ? {}
-          : {
-              boost: {
-                name: boost.name,
-                text: boost.text,
-              },
-            }),
       };
 
       const detail = await executePinsList([pins], {

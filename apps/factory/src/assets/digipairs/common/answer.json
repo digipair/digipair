@@ -1,0 +1,48 @@
+{
+  "description": "Génération d'une réponse pour l'utilisateur via le chatbot.",
+  "library": "@digipair/skill-service",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-data-management",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "uuid": "EVALUATE:previous[1]",
+            "assistant": "{{request.body.assistant}}",
+            "command": "EVALUATE:if request.body.command then request.body.command else []",
+            "boost": "EVALUATE:variables.boost",
+            "boosts": "EVALUATE:request.body.boosts",
+            "sources": "EVALUATE:request.body.sources",
+            "logs": "EVALUATE:request.body.logs"
+          }
+        }
+      },
+      {
+        "library": "@digipair/skill-factory",
+        "element": "executeWithContext",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-chatbot",
+              "element": "answer",
+              "properties": {
+                "assistant": "EVALUATE:data.assistant",
+                "boosts": "EVALUATE:data.boosts",
+                "logs": "EVALUATE:data.logs",
+                "sources": "EVALUATE:data.sources",
+                "uuid": "EVALUATE:data.uuid",
+                "boost": "EVALUATE:data.boost",
+                "command": "EVALUATE:data.command"
+              }
+            }
+          ],
+          "context": "EVALUATE:context put(requester, \"data\", previous)"
+        }
+      }
+    ]
+  },
+  "pins": []
+}
