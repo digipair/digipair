@@ -22,7 +22,14 @@ class ChatbotService {
       boosts,
       sources,
       logs,
-      boost,
+      boost: boost
+        ? {
+            ...boost,
+            inputs: await Promise.all(
+              boost.inputs.map((settings: PinsSettings) => preparePinsSettings(settings, context)),
+            ),
+          }
+        : boost,
       parent_conversation,
       parent_history,
       uuid,
