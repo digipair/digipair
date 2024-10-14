@@ -292,6 +292,7 @@ export class ChatbotElement extends LitElement {
     this.resultState = 'open';
     setTimeout(() => {
       (this.chatbot?.shadowRoot?.querySelector('#messageInput') as any).focus();
+      this.chatbot.requestUpdate();
     }, 1);
 
     this.alreadyOpened = true;

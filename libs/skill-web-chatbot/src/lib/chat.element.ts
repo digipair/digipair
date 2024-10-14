@@ -312,6 +312,22 @@ export class ChatElement extends LitElement {
     );
   }
 
+  private canAnswerToMessageBoost(boost: any): boolean {
+    if (!boost) {
+      return false;
+    }
+
+    if (boost.checkUrl && !boost.checkUrl.test(window.location.href)) {
+      return false;
+    }
+
+    if (boost.selector && !document.querySelector(boost.selector)) {
+      return false;
+    }
+
+    return true;
+  }
+
   pushMessage(message: any): void {
     this.messages.push(message);
     this.requestUpdate();
@@ -336,7 +352,7 @@ export class ChatElement extends LitElement {
         ${this.messages.map(
           message =>
             html`<section class="${message.role}">
-              ${message.role === 'assistant' && message.boost
+              ${this.canAnswerToMessageBoost(message.boost)
                 ? html`<ui5-icon
                     name="response"
                     class="button action"
@@ -408,13 +424,15 @@ export class ChatElement extends LitElement {
 
         <ui5-icon
           name="begin"
-          class="button ${this.loading ||
+          class="button ${(this.currentBoost && !this.canAnswerToMessageBoost(this.currentBoost)) ||
+          this.loading ||
           ((!this.messageInput || this.messageInput.value === '') &&
             (!this.currentBoost || this.currentBoost.required)) ||
           !this.hasInputsValues()
             ? 'disabled'
             : ''}"
           @click=${() =>
+            (this.currentBoost && !this.canAnswerToMessageBoost(this.currentBoost)) ||
             this.loading ||
             ((!this.messageInput || this.messageInput.value === '') &&
               (!this.currentBoost || this.currentBoost.required)) ||
