@@ -201,9 +201,19 @@ export class ChatbotElement extends LitElement {
   private async loadHistory(): Promise<void> {
     const userId = this.userId;
     const reasoning = 'history';
-    const messages = await this.executeScene(reasoning, {
-      userId,
-    });
+    const messages = (
+      await this.executeScene(reasoning, {
+        userId,
+      })
+    ).map((message: any) => ({
+      ...message,
+      boost: message.boost
+        ? {
+            ...message.boost,
+            checkUrl: message.boost.url ? new RegExp(message.boost.url) : null,
+          }
+        : null,
+    }));
 
     if (messages.length > 0) {
       this.messages = messages;

@@ -84,14 +84,12 @@ export class DigipairFullElement extends LitElement {
     }
   }
   private async loadBoosters(): Promise<void> {
-    this.cacheBoosters = (
-      await this.executeScene('boosts')
-    )
-    .map((boost: any) => ({
-      ...boost,
-      checkUrl: new RegExp(boost.url),
-    }))
-    .filter((boost: any) => boost.standalone);
+    this.cacheBoosters = (await this.executeScene('boosts'))
+      .map((boost: any) => ({
+        ...boost,
+        checkUrl: new RegExp(boost.url),
+      }))
+      .filter((boost: any) => boost.standalone);
   }
 
   private async loadDigipair(): Promise<void> {
@@ -114,9 +112,19 @@ export class DigipairFullElement extends LitElement {
   private async loadHistory(): Promise<void> {
     const userId = this.userId;
     const reasoning = 'history';
-    const messages = await this.executeScene(reasoning, {
-      userId,
-    });
+    const messages = (
+      await this.executeScene(reasoning, {
+        userId,
+      })
+    ).map((message: any) => ({
+      ...message,
+      boost: message.boost
+        ? {
+            ...message.boost,
+            checkUrl: message.boost.url ? new RegExp(message.boost.url) : null,
+          }
+        : null,
+    }));
 
     if (messages.length > 0) {
       this.messages = messages;
@@ -224,10 +232,7 @@ export class DigipairFullElement extends LitElement {
     this.boosters = [];
   }
 
-  private executeScene = async (
-    reasoning: string,
-    input: any = {},
-  ): Promise<any> => {
+  private executeScene = async (reasoning: string, input: any = {}): Promise<any> => {
     const digipair = this.code;
     const response = await fetch(`${API_URL}/${digipair}/${reasoning}`, {
       method: 'POST',
