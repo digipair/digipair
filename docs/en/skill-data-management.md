@@ -10,8 +10,6 @@
 - [Functions](#functions)
   - [transform](#transform)
   - [setVariable](#setvariable)
-  - [struct2array](#struct2array)
-  - [jsonParse](#jsonparse)
 
 ## Functions
 
@@ -89,62 +87,7 @@ Stores the variable in the context of the skill.
 }
 ```
 
-### struct2array
-
-Convert a structure to an array
-
-#### Description
-
-Converts a data structure into an array.
-
-#### Parameters
-
-| Name   | Type   | Required | Description                      |
-|-------|--------|----------|----------------------------------|
-| value | object | Yes      | Data structure to convert       |
-
-#### Example
-
-```json
-{
-  "library": "@digipair/skill-data-management",
-  "element": "struct2array",
-  "properties": {
-    "value": {
-      "key1": "value1",
-      "key2": "value2"
-    }
-  }
-}
-```
-
-### jsonParse
-
-Parse a JSON
-
-#### Description
-
-Parses a JSON string.
-
-#### Parameters
-
-| Name   | Type   | Required | Description                                      |
-|-------|--------|----------|--------------------------------------------------|
-| value | string | Yes      | JSON formatted string to convert into a data structure |
-
-#### Example
-
-```json
-{
-  "library": "@digipair/skill-data-management",
-  "element": "jsonParse",
-  "properties": {
-    "value": "{\"key\": \"value\"}"
-  }
-}
-```
-
 ## Notes
 
-- The functions `transform`, `setVariable`, `struct2array`, and `jsonParse` are used to manipulate and transform data in various contexts.
+- The functions `transform` and `setVariable` are used to manipulate and transform data in various contexts.
 - Ensure to provide the required parameters for each function to guarantee their proper functioning.

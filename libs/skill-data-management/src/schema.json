@@ -78,44 +78,6 @@
         ],
         "x-events": []
       }
-    },
-    "/struct2array": {
-      "post": {
-        "tags": ["web", "service", "spatial"],
-        "summary": "Convert a structure to an array",
-        "description": "Converts a data structure into an array.",
-        "parameters": [
-          {
-            "name": "value",
-            "summary": "Value to convert",
-            "required": true,
-            "description": "Data structure to be converted",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/jsonParse": {
-      "post": {
-        "tags": ["web", "service", "spatial"],
-        "summary": "Parse a JSON",
-        "description": "Parses a JSON string.",
-        "parameters": [
-          {
-            "name": "value",
-            "summary": "Value",
-            "required": true,
-            "description": "String in JSON format to be converted into a data structure",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
     }
   },
   "components": {

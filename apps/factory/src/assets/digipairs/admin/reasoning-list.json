@@ -624,11 +624,6 @@
           "execute": [
             {
               "library": "@digipair/skill-data-management",
-              "element": "struct2array",
-              "properties": { "value": "EVALUATE:variables.digipair.libraries" }
-            },
-            {
-              "library": "@digipair/skill-data-management",
               "element": "transform",
               "properties": {
                 "execute": [
@@ -641,9 +636,9 @@
                   },
                   {
                     "library": "@digipair/skill-data-management",
-                    "element": "struct2array",
+                    "element": "transform",
                     "properties": {
-                      "value": "EVALUATE:if (previous.x-scene-blocks) then previous.x-scene-blocks else {}"
+                      "value": "EVALUATE:get entries(if (previous.x-scene-blocks) then previous.x-scene-blocks else {})"
                     }
                   },
                   {
@@ -660,7 +655,7 @@
                   }
                 ]
               },
-              "conditions": { "each": "EVALUATE:previous" }
+              "conditions": { "each": "EVALUATE:get entries(variables.digipair.libraries)" }
             },
             {
               "library": "@digipair/skill-data-management",

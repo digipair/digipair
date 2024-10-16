@@ -10,8 +10,6 @@
 - [Fonctions](#fonctions)
   - [transform](#transform)
   - [setVariable](#setvariable)
-  - [struct2array](#struct2array)
-  - [jsonParse](#jsonparse)
 
 ## Fonctions
 
@@ -89,62 +87,7 @@ Enregistre la variable dans le contexte de la compétence.
 }
 ```
 
-### struct2array
-
-Convertir une structure en tableau
-
-#### Description
-
-Convertit une structure de données en tableau.
-
-#### Paramètres
-
-| Nom   | Type   | Requis | Description                      |
-|-------|--------|--------|----------------------------------|
-| value | object | Oui    | Structure de données à convertir |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-data-management",
-  "element": "struct2array",
-  "properties": {
-    "value": {
-      "key1": "value1",
-      "key2": "value2"
-    }
-  }
-}
-```
-
-### jsonParse
-
-Parse un JSON
-
-#### Description
-
-Parse une chaîne de caractère JSON.
-
-#### Paramètres
-
-| Nom   | Type   | Requis | Description                                      |
-|-------|--------|--------|--------------------------------------------------|
-| value | string | Oui    | Chaîne de caractère au format JSON à convertir en structure de données |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-data-management",
-  "element": "jsonParse",
-  "properties": {
-    "value": "{\"key\": \"value\"}"
-  }
-}
-```
-
 ## Notes
 
-- Les fonctions `transform`, `setVariable`, `struct2array`, et `jsonParse` sont utilisées pour manipuler et transformer les données dans différents contextes.
+- Les fonctions `transform` et `setVariable` sont utilisées pour manipuler et transformer les données dans différents contextes.
 - Assurez-vous de fournir les paramètres requis pour chaque fonction afin de garantir leur bon fonctionnement.
