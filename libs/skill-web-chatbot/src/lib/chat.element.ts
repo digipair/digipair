@@ -287,6 +287,17 @@ export class ChatElement extends LitElement {
       return;
     }
 
+    if (
+      (this.currentBoost && !this.canAnswerToMessageBoost(this.currentBoost)) ||
+      this.loading ||
+      ((!this.messageInput || this.messageInput.value === '') &&
+        (!this.currentBoost || this.currentBoost.required)) ||
+      !this.hasInputsValues()
+    ) {
+      this.requestUpdate();
+      return;
+    }
+
     event.preventDefault();
     this.addMessage(this.messageInput.value.trim());
   }
