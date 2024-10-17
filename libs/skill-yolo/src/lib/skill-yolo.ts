@@ -1,7 +1,9 @@
-import { PinsSettings } from '@digipair/engine';
+// import { PinsSettings } from '@digipair/engine';
 import * as ort from 'onnxruntime-node';
 import * as sharp from 'sharp';
 import * as path from 'path';
+
+type PinsSettings = any;
 
 class YoloService {
   private async base64ToImage(base64: string) {
