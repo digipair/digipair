@@ -78,6 +78,65 @@
             }
           },
           {
+            "library": "@digipair/skill-editor",
+            "element": "reasoning",
+            "properties": {
+              "digipair": "{{variables.infos.id}}",
+              "reasoning": "conversation"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "setReasoning",
+            "properties": {
+              "digipair": "{{variables.infos.id}}",
+              "reasoning": "conversation",
+              "value": {
+                "summary": "EVALUATEprevious.summary",
+                "description": "EVALUATEprevious.description",
+                "metadata": "EVALUATE:previous.metadata",
+                "library": "EVALUATE:previous.library",
+                "element": "EVALUATE:previous.element",
+                "pins": "EVALUATE:previous.pins",
+                "properties": {
+                  "steps": [
+                    {
+                      "name": "conversation",
+                      "execute": "EVALUATE:for pins in previous.properties.steps[1].execute return context put(pins, \"library\", replace(pins.library, \"digipair:default\", \"digipair:\" + variables.infos.id))"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasoning",
+            "properties": {
+              "digipair": "{{variables.infos.id}}",
+              "reasoning": "schema"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "setReasoning",
+            "properties": {
+              "digipair": "{{variables.infos.id}}",
+              "reasoning": "schema",
+              "value": {
+                "openapi": "EVALUATE:previous.openapi",
+                "paths": "EVALUATE:previous.paths",
+                "components": "EVALUATE:previous.components",
+                "infos": {
+                  "title": "digipair:{{variables.infos.id}}",
+                  "summary": "{{variables.infos.name}}",
+                  "version": "EVALUATE:previous.infos.version",
+                  "x-icon": "EVALUATE:get value(previous.infos, \"x-icon\")"
+                }
+              }
+            }
+          },
+          {
             "library": "digipair:admin",
             "element": "answer",
             "properties": {
