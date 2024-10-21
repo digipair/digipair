@@ -104,3 +104,5 @@ Vous avez la possibilité de réutiliser vos anciens scénarios comme modèle po
 #### Aperçu
 
 ![Duplication des Scénarios](https://chat.mistral.ai/image_placeholder.jpg)
+
+<digipair-chatbot code="elzeard" apiurl="https://factory.digipair.ai/645bc0e2e8c86bbd32bee42a"></digipair-chatbot>
