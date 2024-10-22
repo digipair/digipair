@@ -72,11 +72,30 @@ export class AppService implements OnModuleInit {
     try {
       let content: string;
 
-      if (
-        existsSync(`${path}/${digipair}/${reasoning}.json`) === false &&
-        existsSync(`${path}/common/${reasoning}.json`) === true
-      ) {
+      if (existsSync(`${path}/${digipair}/${reasoning}.json`)) {
         content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+        const config = JSON.parse(content);
+
+        context = {
+          config: {
+            VERSIONS: config.libraries,
+          },
+          privates: config.privates,
+          variables: config.variables,
+          request: {
+            digipair,
+            reasoning,
+            method,
+            body,
+            params,
+            query,
+            headers,
+          },
+        };
+
+        content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
+      } else if (existsSync(`${path}/common/${reasoning}.json`) === true) {
+        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
         const configCommon = JSON.parse(content);
 
         content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
@@ -101,7 +120,7 @@ export class AppService implements OnModuleInit {
         };
 
         content = await promises.readFile(`${path}/common/${reasoning}.json`, 'utf8');
-      } else {
+      } else if (existsSync(`${path}/${digipair}/fallback.json`)) {
         content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
         const config = JSON.parse(content);
 
@@ -122,7 +141,35 @@ export class AppService implements OnModuleInit {
           },
         };
 
-        content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
+        content = await promises.readFile(`${path}/${digipair}/fallback.json`, 'utf8');
+      } else if (existsSync(`${path}/common/fallback.json`) === true) {
+        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
+        const configCommon = JSON.parse(content);
+
+        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+        const config = JSON.parse(content);
+
+        context = {
+          config: {
+            VERSIONS: { ...configCommon.libraries, ...config.libraries },
+          },
+          privates: { ...configCommon.privates, ...config.privates },
+          variables: { ...configCommon.variables, ...config.variables },
+          request: {
+            digipair,
+            reasoning,
+            method,
+            body,
+            params,
+            query,
+            headers,
+          },
+          requester,
+        };
+
+        content = await promises.readFile(`${path}/common/fallback.json`, 'utf8');
+      } else {
+        throw new Error(`Reasoning ${digipair}/${reasoning} Not Found`);
       }
 
       const settings = JSON.parse(content);

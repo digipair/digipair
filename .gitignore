@@ -43,3 +43,4 @@ tools/vespa/configuration/*.zip
 .env
 ./factory/**/*
 /server.ts
+/test.ts
