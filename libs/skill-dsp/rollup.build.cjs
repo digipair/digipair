@@ -5,7 +5,8 @@ const path = require('path');
 
 function getRollupOptions(options) {
   const extraGlobals = {};
-  const externals = ['@digipair/skill-logger'];
+  const externals =
+    options.output.format === 'cjs' ? ['@digipair/skill-logger', '@digipair/engine'] : [];
 
   const value = {
     ...options,
