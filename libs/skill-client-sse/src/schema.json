@@ -1,16 +1,16 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-web-sse",
+    "title": "@digipair/skill-client-sse",
     "summary": "Displaying Server Sent Events",
-    "description": "This skill enables managing real-time communications on the browser side.",
+    "description": "This skill enables managing real-time communications on the client side.",
     "version": "0.1.0",
     "x-icon": "🔗"
   },
   "paths": {
     "/connect": {
       "post": {
-        "tags": ["service"],
+        "tags": ["web", "service"],
         "summary": "Connect to an SSE",
         "parameters": [
           {

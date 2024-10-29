@@ -1,5 +1,5 @@
 {
-  "name": "@digipair/skill-web-sse",
+  "name": "@digipair/skill-client-sse",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.cjs.js",

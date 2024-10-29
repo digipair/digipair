@@ -1,16 +1,16 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-web-sse",
+    "title": "@digipair/skill-client-sse",
     "summary": "Affichage des Server Sent Events",
-    "description": "Cette compétence permet de gérer les communications en temps réel coté navigateur.",
+    "description": "Cette compétence permet de gérer les communications en temps réel coté client.",
     "version": "0.1.0",
     "x-icon": "🔗"
   },
   "paths": {
     "/connect": {
       "post": {
-        "tags": ["service"],
+        "tags": ["web", "service"],
         "summary": "Connexion à un SSE",
         "parameters": [
           {
