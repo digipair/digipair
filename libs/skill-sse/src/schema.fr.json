@@ -5,9 +5,118 @@
     "summary": "Server Sent Events",
     "description": "Cette compétence permet de gérer les communications en temps réel.",
     "version": "0.1.0",
-    "x-icon": "💻"
+    "x-icon": "🔗"
   },
-  "paths": {},
+  "paths": {
+    "/registerSession": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Initialise une session SSE",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant de session",
+            "required": true,
+            "description": "Identifiant permettant de distinguer les sessions",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/registerChannel": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Initialise un channel SSE",
+        "parameters": [
+          {
+            "name": "session",
+            "summary": "Instance de session",
+            "required": false,
+            "description": "Instance de session à ajouter au channel",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/push": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoie de données SSE",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant de session",
+            "required": true,
+            "description": "Identifiant permettant de distinguer les sessions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "event",
+            "summary": "Evènement",
+            "required": false,
+            "description": "Nom de l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/broadcast": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Broadcast de données SSE",
+        "parameters": [
+          {
+            "name": "event",
+            "summary": "Evènement de channel SSE",
+            "required": false,
+            "description": "Evènement de channel SSE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "event",
+            "summary": "Evènement",
+            "required": false,
+            "description": "Nom de l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
   "components": {
     "schemas": {}
   },

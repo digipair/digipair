@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-sse",
+    "summary": "Affichage des Server Sent Events",
+    "description": "Cette compétence permet de gérer les communications en temps réel coté navigateur.",
+    "version": "0.1.0",
+    "x-icon": "🔗"
+  },
+  "paths": {
+    "/connect": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Connexion à un SSE",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL",
+            "required": false,
+            "description": "URL du serveur SSE",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "connection",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de la connexion",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "message",
+            "summary": "Lors de la réception d'un message",
+            "required": false,
+            "description": "Action déclenchée lors de la réception d'un message",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

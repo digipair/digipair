@@ -16,7 +16,7 @@
           "libs/skill-sse/src/schema.json",
           "libs/skill-sse/src/schema.fr.json"
         ],
-        "rollupConfig": ["libs/skill-service/rollup.build.cjs"],
+        "rollupConfig": ["libs/skill-sse/rollup.build.cjs"],
         "project": "libs/skill-sse/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"]

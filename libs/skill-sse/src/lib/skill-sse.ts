@@ -6,15 +6,19 @@ class SSEService {
   private sessions = new Map();
   private channels = new Map();
 
-  async registerSession(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async registerSession(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    context: any,
+  ): Promise<any> {
     const { id } = params;
     const session = await createSession(context.protected.req, context.protected.res);
 
     if (id) {
       const start = context.privates.SSE_SESION_START || '';
-      const name = `${start}__${context.request.digipair}__${id}`;
-      
-      this.sessions.set(`${context.request.digipair}${end}`, session);
+      const name = `${start}__${context.request.digipair}_${context.request.reasoning}__${id}`;
+
+      this.sessions.set(name, session);
       session.on('disconnected', () => {
         this.sessions.delete(name);
       });
@@ -23,38 +27,42 @@ class SSEService {
     return session;
   }
 
-  async registerChannel(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { sessionId } = params;
+  async registerChannel(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    context: any,
+  ): Promise<any> {
+    const { session } = params;
     const start = context.privates.SSE_SESION_START || '';
-    const name = `${start}__${context.request.digipair}`;
+    const name = `${start}__${context.request.digipair}_${context.request.reasoning}`;
     let channel = this.channels.get(name);
     if (!channel) {
       channel = createChannel(session);
       this.channels.set(name, channel);
     }
 
-    const session = await this.registerSession({ id: sessionId }, [], context);
-    channel.register(session);
+    const channelSession = session ?? (await this.registerSession({}, [], context));
+    channel.register(channelSession);
 
-    return session;
+    return channel;
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, data } = params;
+    const { id, message, event = 'message' } = params;
     const start = context.privates.SSE_SESION_START || '';
-    const name = `${start}__${context.request.digipair}__${id}`;
+    const name = `${start}__${context.request.digipair}_${context.request.reasoning}__${id}`;
     const session = this.sessions.get(name);
 
-    return session?.push(data);
+    return session?.push(JSON.stringify(message));
   }
 
   async broadcast(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { event, data } = params;
+    const { message, event = 'message' } = params;
     const start = context.privates.SSE_SESION_START || '';
-    const name = `${start}__${context.request.digipair}`;
+    const name = `${start}__${context.request.digipair}_${context.request.reasoning}`;
     let channel = this.channels.get(name);
 
-    return channel?.broadcast(data, event);
+    return channel?.broadcast(JSON.stringify(message), event);
   }
 }
 

@@ -1,56 +1,115 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-service",
-    "summary": "HTTP Server",
-    "description": "This skill allows managing responses to HTTP calls.",
+    "title": "@digipair/skill-sse",
+    "summary": "Server Sent Events",
+    "description": "This skill enables real-time communication management.",
     "version": "0.1.0",
-    "x-icon": "💻"
+    "x-icon": "🔗"
   },
-  "paths": {},
+  "paths": {
+    "/registerSession": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Initialize an SSE session",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Session identifier",
+            "required": true,
+            "description": "Identifier for distinguishing sessions",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/registerChannel": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Initialize an SSE channel",
+        "parameters": [
+          {
+            "name": "session",
+            "summary": "Session instance",
+            "required": false,
+            "description": "Session instance to add to the channel",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/push": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Send SSE data",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Session identifier",
+            "required": true,
+            "description": "Identifier for distinguishing sessions",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message to send",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "event",
+            "summary": "Event",
+            "required": false,
+            "description": "Event name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/broadcast": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Broadcast SSE data",
+        "parameters": [
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message to send",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "event",
+            "summary": "event",
+            "required": false,
+            "description": "Event name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
   "components": {
     "schemas": {}
   },
-  "x-scene-blocks": {
-    "/service": {
-      "summary": "Web service",
-      "description": "Response to an HTTP call.",
-      "tags": ["service"],
-      "metadata": [],
-      "parameters": [
-        {
-          "name": "execute",
-          "summary": "Execute",
-          "required": true,
-          "description": "Commands to execute",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        }
-      ]
-    },
-    "/task": {
-      "summary": "Task",
-      "description": "Execution of a task.",
-      "tags": ["service", "boost"],
-      "metadata": [],
-      "parameters": [
-        {
-          "name": "execute",
-          "summary": "Execute",
-          "required": true,
-          "description": "Commands to execute",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        }
-      ]
-    }
-  }
+  "x-scene-blocks": {}
 }
