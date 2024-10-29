@@ -5,11 +5,11 @@ import {
   AxAIOpenAI,
   AxAIAzureOpenAI,
   AxAIOllama,
-  AxGenerate,
+  AxGen,
   AxChainOfThought,
   AxAgent,
   AxFunction,
-  AxGenerateOptions,
+  AxGenOptions,
   AxReAct,
 } from '@ax-llm/ax';
 
@@ -97,10 +97,10 @@ class DspService {
     const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
 
     const modelInstance = await executePinsList(model, context);
-    const gen = new AxGenerate(modelInstance, signature, {
+    const gen = new AxGen(signature, {
       functions: await this.prepareFunctions(functions, context),
-    } as AxGenerateOptions);
-    const result = await gen.forward(input);
+    });
+    const result = await gen.forward(modelInstance, input);
 
     // add comsumption
     const ai = modelInstance.ai ?? modelInstance;
@@ -122,10 +122,10 @@ class DspService {
     const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
 
     const modelInstance = await executePinsList(model, context);
-    const gen = new AxChainOfThought(modelInstance, signature, {
+    const gen = new AxChainOfThought(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
-    const result = await gen.forward(input);
+    const result = await gen.forward(modelInstance, input);
 
     // add comsumption
     const ai = modelInstance.ai ?? modelInstance;
@@ -147,10 +147,10 @@ class DspService {
     const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
 
     const modelInstance = await executePinsList(model, context);
-    const gen = new AxReAct(modelInstance, signature, {
+    const gen = new AxReAct(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
-    const result = await gen.forward(input);
+    const result = await gen.forward(modelInstance, input);
 
     // add comsumption
     const ai = modelInstance.ai ?? modelInstance;
@@ -181,7 +181,7 @@ class DspService {
     } = params;
 
     const modelInstance = await executePinsList(model, context);
-    const agent = new AxAgent(modelInstance, {
+    const agent = new AxAgent({
       name,
       description,
       signature,
@@ -201,7 +201,7 @@ class DspService {
       return agent;
     }
 
-    const result = await agent.forward(input);
+    const result = await agent.forward(modelInstance, input);
 
     // add comsumption
     const ai = modelInstance.ai ?? modelInstance;

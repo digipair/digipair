@@ -29,7 +29,7 @@ export class AppService implements OnModuleInit {
     // initialize factory skill
     const skillFactory = require('@digipair/skill-factory');
     skillFactory.initialize((context: any, digipair: string, reasoning: string, body: any) =>
-      this.agent(path, digipair, reasoning, body, [], {}, null, {}, context),
+      this.agent(path, digipair, reasoning, body, [], {}, null, {}, context, null, null),
     );
 
     // start cron manager
@@ -37,7 +37,7 @@ export class AppService implements OnModuleInit {
       const skillCron = require('@digipair/skill-cron');
 
       skillCron.initialize((path: string, digipair: string, reasoning: string) =>
-        this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}),
+        this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null),
       );
       skillCron.start(path);
     } catch (error) {
@@ -66,6 +66,8 @@ export class AppService implements OnModuleInit {
     method: string,
     headers: any,
     requester: any,
+    req: any,
+    res: any,
   ): Promise<any> {
     let context: any;
 
@@ -91,6 +93,10 @@ export class AppService implements OnModuleInit {
             query,
             headers,
           },
+          protected: {
+            req,
+            res,
+          }
         };
 
         content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
@@ -116,6 +122,10 @@ export class AppService implements OnModuleInit {
             query,
             headers,
           },
+          protected: {
+            req,
+            res,
+          },
           requester,
         };
 
@@ -138,6 +148,10 @@ export class AppService implements OnModuleInit {
             params,
             query,
             headers,
+          },
+          protected: {
+            req,
+            res,
           },
         };
 
@@ -163,6 +177,10 @@ export class AppService implements OnModuleInit {
             params,
             query,
             headers,
+          },
+          protected: {
+            req,
+            res,
           },
           requester,
         };

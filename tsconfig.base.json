@@ -42,6 +42,7 @@
       "@digipair/skill-sendmail": ["libs/skill-sendmail/src/index.ts"],
       "@digipair/skill-service": ["libs/skill-service/src/index.ts"],
       "@digipair/skill-smoobu": ["libs/skill-smoobu/src/index.ts"],
+      "@digipair/skill-sse": ["libs/skill-sse/src/index.ts"],
       "@digipair/skill-temporal": ["libs/skill-temporal/src/index.ts"],
       "@digipair/skill-tensorflow": ["libs/skill-tensorflow/src/index.ts"],
       "@digipair/skill-twilio": ["libs/skill-twilio/src/index.ts"],

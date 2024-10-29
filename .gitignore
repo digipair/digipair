@@ -44,3 +44,4 @@ tools/vespa/configuration/*.zip
 ./factory/**/*
 /server.ts
 /test.ts
+.obsidian

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import { HumanMessage } from '@langchain/core/messages';
+import { HumanMessage } from '@langchain/core/messages'; 
 import { PromptTemplate } from '@langchain/core/prompts';
 import { RunnableSequence } from '@langchain/core/runnables';
 import { loadSummarizationChain } from 'langchain/chains';
@@ -72,15 +72,21 @@ class LLMService {
       {
         callbacks: [
           {
-            handleChatModelStart: async ({ id }, _1, _2, _3, extrasParams) => {
+            handleChatModelStart: async (
+              { id }: any,
+              _1: any,
+              _2: any,
+              _3: any,
+              extrasParams: any,
+            ) => {
               model = (extrasParams?.['invocation_params'] as any).model;
               service = id[2];
             },
-            handleLLMStart: async ({ id }, _1, _2, _3, extrasParams) => {
+            handleLLMStart: async ({ id }: any, _1: any, _2: any, _3: any, extrasParams: any) => {
               model = (extrasParams?.['invocation_params'] as any).model;
               service = id[2];
             },
-            handleLLMEnd: async infos => {
+            handleLLMEnd: async (infos: any) => {
               const { completionTokens, promptTokens } = infos.llmOutput?.['tokenUsage'] || {
                 completionTokens: 0,
                 promptTokens: 0,
@@ -273,7 +279,8 @@ class LLMService {
 
     const chain = RunnableSequence.from([
       {
-        input_documents: async ({ document }) => await textSplitter.createDocuments([document]),
+        input_documents: async ({ document }: any) =>
+          await textSplitter.createDocuments([document]),
       },
       summarizationChain as any,
     ]);

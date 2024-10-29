@@ -26,7 +26,7 @@ class ChatbotService {
         ? {
             ...boost,
             inputs: await Promise.all(
-              boost.inputs.map((settings: PinsSettings) => preparePinsSettings(settings, context)),
+              (boost.inputs || []).map((settings: PinsSettings) => preparePinsSettings(settings, context)),
             ),
           }
         : boost,

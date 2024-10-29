@@ -73,6 +73,7 @@ class KeycloakService {
     for (const key in newContext) {
       if (Object.prototype.hasOwnProperty.call(newContext, key)) {
         if (
+          key !== 'protected' &&
           typeof newContext[key] === 'object' &&
           newContext[key] !== null &&
           !Array.isArray(newContext[key]) &&

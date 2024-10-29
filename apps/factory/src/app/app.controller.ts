@@ -56,6 +56,8 @@ export class AppController {
         method,
         request.headers,
         {},
+        request,
+        res,
       ),
     );
   }
