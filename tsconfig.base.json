@@ -18,6 +18,7 @@
       "@digipair/engine": ["libs/engine/src/index.ts"],
       "@digipair/skill-canvas": ["libs/skill-canvas/src/index.ts"],
       "@digipair/skill-chatbot": ["libs/skill-chatbot/src/index.ts"],
+      "@digipair/skill-client-sse": ["libs/skill-client-sse/src/index.ts"],
       "@digipair/skill-common": ["libs/skill-common/src/index.ts"],
       "@digipair/skill-cron": ["libs/skill-cron/src/index.ts"],
       "@digipair/skill-data-management": ["libs/skill-data-management/src/index.ts"],
@@ -54,6 +55,7 @@
       "@digipair/skill-web-font-awesome": ["libs/skill-web-font-awesome/src/index.ts"],
       "@digipair/skill-web-inputs": ["libs/skill-web-inputs/src/index.ts"],
       "@digipair/skill-web-interact": ["libs/skill-web-interact/src/index.ts"],
+      "@digipair/skill-web-ionic": ["libs/skill-web-ionic/src/index.ts"],
       "@digipair/skill-web-jsoneditor": ["libs/skill-web-jsoneditor/src/index.ts"],
       "@digipair/skill-web-keycloak": ["libs/skill-web-keycloak/src/index.ts"],
       "@digipair/skill-web-material-icons": ["libs/skill-web-material-icons/src/index.ts"],
@@ -61,7 +63,6 @@
       "@digipair/skill-web-ocr": ["libs/skill-web-ocr/src/index.ts"],
       "@digipair/skill-web-pdf": ["libs/skill-web-pdf/src/index.ts"],
       "@digipair/skill-web-spectrum": ["libs/skill-web-spectrum/src/index.ts"],
-      "@digipair/skill-client-sse": ["libs/skill-client-sse/src/index.ts"],
       "@digipair/skill-webcam": ["libs/skill-webcam/src/index.ts"],
       "@digipair/skill-yolo": ["libs/skill-yolo/src/index.ts"]
     }

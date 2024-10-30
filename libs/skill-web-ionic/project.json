@@ -1,0 +1,31 @@
+{
+  "name": "skill-web-ionic",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-web-ionic/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-web-ionic",
+        "main": "libs/skill-web-ionic/src/index.ts",
+        "tsConfig": "libs/skill-web-ionic/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-web-ionic/src/index.d.ts",
+          "libs/skill-web-ionic/src/schema.json",
+          "libs/skill-web-ionic/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-web-ionic/rollup.build.cjs"],
+        "project": "libs/skill-web-ionic/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-web-ionic {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}
