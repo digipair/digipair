@@ -48,18 +48,29 @@ class SSEService {
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, message, event = 'message' } = params;
+    const {
+      id,
+      message,
+      digipair = context.request.digipair,
+      reasoning = context.request.reasoning,
+      event = 'message',
+    } = params;
     const start = context.privates.SSE_SESION_START || '';
-    const name = `${start}__${context.request.digipair}_${context.request.reasoning}__${id}`;
+    const name = `${start}__${digipair}_${reasoning}__${id}`;
     const session = this.sessions.get(name);
 
     return session?.push(JSON.stringify(message));
   }
 
   async broadcast(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { message, event = 'message' } = params;
+    const {
+      message,
+      digipair = context.request.digipair,
+      reasoning = context.request.reasoning,
+      event = 'message',
+    } = params;
     const start = context.privates.SSE_SESION_START || '';
-    const name = `${start}__${context.request.digipair}_${context.request.reasoning}`;
+    const name = `${start}__${digipair}_${reasoning}`;
     let channel = this.channels.get(name);
 
     return channel?.broadcast(JSON.stringify(message), event);
