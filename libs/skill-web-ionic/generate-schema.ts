@@ -171,23 +171,44 @@ class SchemaIonic {
               },
             },
             {
-              name: 'aria-hidden',
-              summary: 'Aria Hidden',
-              description: 'Aria hidden of the element.',
+              name: 'slot',
+              summary: 'Slot',
+              description: 'Slot of the element.',
               required: false,
               schema: {
                 type: 'string',
               },
             },
-            {
-              name: 'aria-label',
-              summary: 'Aria Label',
-              description: 'Aria label of the element.',
-              required: false,
-              schema: {
-                type: 'string',
-              },
-            },
+            ...(item.element === 'ion-icon'
+              ? [
+                  {
+                    name: 'name',
+                    summary: 'Name',
+                    description: 'The icon name to use for the icon.',
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                  {
+                    name: 'color',
+                    summary: 'color​',
+                    description:
+                      'The color to use from your application\'s color palette. Default options are: "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", and "dark". For more information on colors, see theming.',
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                  {
+                    name: 'size',
+                    summary: 'size​',
+                    description:
+                      'Set to "small" for a icon with less height and padding, to "default" for a icon with the default height and padding, or to "large" for an icon with more height and padding.',
+                    schema: {
+                      type: 'string',
+                    },
+                  },
+                ]
+              : []),
           ],
           'x-events': [
             {

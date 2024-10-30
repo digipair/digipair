@@ -2,20 +2,23 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-web-ionic",
-    "summary": "Design System Ionic",
-    "description": "Cette compétence fournit des fonctionnalités pour créer des applications web Ionic.",
+    "summary": "Système de design Ionic",
+    "description": "Cette compétence offre des fonctionnalités pour créer des applications web Ionic.",
     "version": "0.1.0",
     "x-icon": "📱"
   },
   "paths": {
     "/ion-action-sheet": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-action-sheet",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -33,7 +36,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -42,8 +45,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -51,7 +54,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -59,18 +62,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -78,8 +72,8 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
-            "description": "Si vrai, la feuille d'action s'animera.",
+            "summary": "animated​",
+            "description": "Si vrai, la feuille d'action sera animée.",
             "schema": {
               "type": "boolean"
             }
@@ -87,7 +81,7 @@
           {
             "name": "backdrop-dismiss",
             "summary": "backdropDismiss​",
-            "description": "If true, the action sheet will be dismissed when the backdrop is clicked.",
+            "description": "Si vrai, la feuille d'action sera fermée lorsque l'arrière-plan est cliqué.",
             "schema": {
               "type": "boolean"
             }
@@ -103,7 +97,7 @@
           {
             "name": "header",
             "summary": "header​",
-            "description": "Title for the action sheet.",
+            "description": "Titre de la feuille d'action.",
             "schema": {
               "type": "string"
             }
@@ -135,7 +129,7 @@
           {
             "name": "sub-header",
             "summary": "subHeader​",
-            "description": "Subtitle for the action sheet.",
+            "description": "Sous-titre de la feuille d'action.",
             "schema": {
               "type": "string"
             }
@@ -151,7 +145,7 @@
           {
             "name": "trigger",
             "summary": "trigger​",
-            "description": "An ID corresponding to the trigger element that causes the action sheet to open when clicked.",
+            "description": "Un identifiant correspondant à l'élément déclencheur qui ouvre la feuille d'action lorsqu'il est cliqué.",
             "schema": {
               "type": "string"
             }
@@ -161,7 +155,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -271,12 +265,15 @@
     },
     "/ion-accordion": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-accordion",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -294,7 +291,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -303,8 +300,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -312,7 +309,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -320,18 +317,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -390,7 +378,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -404,12 +392,15 @@
     },
     "/ion-accordion-group": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-accordion-group",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -427,7 +418,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -436,8 +427,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -445,7 +436,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -453,18 +444,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -472,7 +454,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, all accordions inside of the accordion group will animate when expanding or collapsing.",
             "schema": {
               "type": "boolean"
@@ -531,7 +513,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -557,12 +539,15 @@
     },
     "/ion-alert": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-alert",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -580,7 +565,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -589,8 +574,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -598,7 +583,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -606,18 +591,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -625,7 +601,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the alert will animate.",
             "schema": {
               "type": "boolean"
@@ -716,7 +692,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -826,12 +802,15 @@
     },
     "/ion-badge": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-badge",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -849,7 +828,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -858,8 +837,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -867,7 +846,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -875,18 +854,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -913,7 +883,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -927,12 +897,15 @@
     },
     "/ion-breadcrumb": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-breadcrumb",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -950,7 +923,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -959,8 +932,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -968,7 +941,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -976,18 +949,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1078,7 +1042,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -1116,12 +1080,15 @@
     },
     "/ion-breadcrumbs": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-breadcrumbs",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -1139,7 +1106,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -1148,8 +1115,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1157,7 +1124,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -1165,18 +1132,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1227,7 +1185,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -1253,12 +1211,15 @@
     },
     "/ion-button": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-button",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -1276,7 +1237,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -1285,8 +1246,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1294,7 +1255,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -1302,18 +1263,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1452,7 +1404,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -1490,12 +1442,15 @@
     },
     "/ion-ripple-effect": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-ripple-effect",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -1513,7 +1468,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -1522,8 +1477,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1531,7 +1486,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -1539,18 +1494,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1569,7 +1515,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -1583,12 +1529,15 @@
     },
     "/ion-card": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-card",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -1606,7 +1555,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -1615,8 +1564,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1624,7 +1573,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -1632,18 +1581,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1734,7 +1674,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -1748,12 +1688,15 @@
     },
     "/ion-card-content": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-card-content",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -1771,7 +1714,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -1780,8 +1723,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1789,7 +1732,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -1797,18 +1740,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1827,7 +1761,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -1841,12 +1775,15 @@
     },
     "/ion-card-header": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-card-header",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -1864,7 +1801,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -1873,8 +1810,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1882,7 +1819,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -1890,18 +1827,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1936,7 +1864,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -1950,12 +1878,15 @@
     },
     "/ion-card-subtitle": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-card-subtitle",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -1973,7 +1904,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -1982,8 +1913,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1991,7 +1922,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -1999,18 +1930,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2037,7 +1959,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -2051,12 +1973,15 @@
     },
     "/ion-card-title": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-card-title",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -2074,7 +1999,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -2083,8 +2008,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2092,7 +2017,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -2100,18 +2025,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2138,7 +2054,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -2152,12 +2068,15 @@
     },
     "/ion-checkbox": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-checkbox",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -2175,7 +2094,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -2184,8 +2103,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2193,7 +2112,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -2201,18 +2120,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2303,7 +2213,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -2353,12 +2263,15 @@
     },
     "/ion-chip": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-chip",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -2376,7 +2289,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -2385,8 +2298,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2394,7 +2307,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -2402,18 +2315,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2456,7 +2360,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -2470,12 +2374,15 @@
     },
     "/ion-app": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-app",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -2493,7 +2400,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -2502,8 +2409,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2511,7 +2418,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -2519,18 +2426,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2541,7 +2439,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -2555,12 +2453,15 @@
     },
     "/ion-content": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-content",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -2578,7 +2479,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -2587,8 +2488,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2596,7 +2497,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -2604,18 +2505,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2682,7 +2574,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -2732,12 +2624,15 @@
     },
     "/ion-datetime": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-datetime",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -2755,7 +2650,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -2764,8 +2659,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -2773,7 +2668,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -2781,18 +2676,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3019,7 +2905,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -3081,12 +2967,15 @@
     },
     "/ion-datetime-button": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-datetime-button",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -3104,7 +2993,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -3113,8 +3002,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3122,7 +3011,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -3130,18 +3019,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3184,7 +3064,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -3198,12 +3078,15 @@
     },
     "/ion-picker": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-picker",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -3221,7 +3104,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -3230,8 +3113,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3239,7 +3122,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -3247,18 +3130,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3277,7 +3151,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -3291,12 +3165,15 @@
     },
     "/ion-picker-column": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-picker-column",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -3314,7 +3191,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -3323,8 +3200,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3332,7 +3209,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -3340,18 +3217,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3394,7 +3262,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -3420,12 +3288,15 @@
     },
     "/ion-picker-column-option": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-picker-column-option",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -3443,7 +3314,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -3452,8 +3323,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3461,7 +3332,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -3469,18 +3340,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3515,7 +3377,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -3529,12 +3391,15 @@
     },
     "/ion-picker-legacy": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-picker-legacy",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -3552,7 +3417,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -3561,8 +3426,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3570,7 +3435,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -3578,18 +3443,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3597,7 +3453,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the picker will animate.",
             "schema": {
               "type": "boolean"
@@ -3672,7 +3528,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -3782,12 +3638,15 @@
     },
     "/ion-fab": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-fab",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -3805,7 +3664,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -3814,8 +3673,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3823,7 +3682,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -3831,18 +3690,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3885,7 +3735,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -3899,12 +3749,15 @@
     },
     "/ion-fab-button": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-fab-button",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -3922,7 +3775,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -3931,8 +3784,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -3940,7 +3793,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -3948,18 +3801,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4082,7 +3926,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4120,12 +3964,15 @@
     },
     "/ion-fab-list": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-fab-list",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -4143,7 +3990,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -4152,8 +3999,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4161,7 +4008,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -4169,18 +4016,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4207,7 +4045,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4221,12 +4059,15 @@
     },
     "/ion-grid": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-grid",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -4244,7 +4085,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -4253,8 +4094,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4262,7 +4103,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -4270,18 +4111,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4300,7 +4132,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4314,12 +4146,15 @@
     },
     "/ion-col": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-col",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -4337,7 +4172,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -4346,8 +4181,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4355,7 +4190,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -4363,18 +4198,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4577,7 +4403,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4591,12 +4417,15 @@
     },
     "/ion-row": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-row",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -4614,7 +4443,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -4623,8 +4452,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4632,7 +4461,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -4640,18 +4469,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4662,7 +4482,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4676,12 +4496,15 @@
     },
     "/ion-infinite-scroll": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-infinite-scroll",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -4699,7 +4522,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -4708,8 +4531,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4717,7 +4540,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -4725,18 +4548,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4771,7 +4585,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4797,12 +4611,15 @@
     },
     "/ion-infinite-scroll-content": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-infinite-scroll-content",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -4820,7 +4637,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -4829,8 +4646,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4838,7 +4655,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -4846,18 +4663,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4884,7 +4692,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4898,12 +4706,15 @@
     },
     "/ion-icon": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-icon",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -4921,7 +4732,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -4930,8 +4741,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -4939,7 +4750,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -4947,19 +4758,18 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
-            "required": false,
+            "name": "name",
+            "summary": "Name",
+            "description": "The icon name to use for the icon.",
             "schema": {
               "type": "string"
             }
@@ -4985,7 +4795,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -4999,12 +4809,15 @@
     },
     "/ion-img": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-img",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -5022,7 +4835,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -5031,8 +4844,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5040,7 +4853,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -5048,18 +4861,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5086,7 +4890,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -5136,12 +4940,15 @@
     },
     "/ion-thumbnail": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-thumbnail",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -5159,7 +4966,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -5168,8 +4975,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5177,7 +4984,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -5185,18 +4992,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5207,7 +5005,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -5221,12 +5019,15 @@
     },
     "/ion-menu": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-menu",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -5244,7 +5045,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -5253,8 +5054,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5262,7 +5063,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -5270,18 +5071,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5348,7 +5140,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -5410,12 +5202,15 @@
     },
     "/ion-menu-button": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-menu-button",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -5433,7 +5228,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -5442,8 +5237,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5451,7 +5246,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -5459,18 +5254,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5529,7 +5315,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -5543,12 +5329,15 @@
     },
     "/ion-menu-toggle": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-menu-toggle",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -5566,7 +5355,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -5575,8 +5364,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5584,7 +5373,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -5592,18 +5381,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5630,7 +5410,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -5644,12 +5424,15 @@
     },
     "/ion-split-pane": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-split-pane",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -5667,7 +5450,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -5676,8 +5459,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5685,7 +5468,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -5693,18 +5476,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5739,7 +5513,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -5765,12 +5539,15 @@
     },
     "/ion-modal": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-modal",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -5788,7 +5565,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -5797,8 +5574,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5806,7 +5583,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -5814,18 +5591,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -5833,7 +5601,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the modal will animate.",
             "schema": {
               "type": "boolean"
@@ -5948,7 +5716,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -6070,12 +5838,15 @@
     },
     "/ion-backdrop": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-backdrop",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -6093,7 +5864,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -6102,8 +5873,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6111,7 +5882,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -6119,18 +5890,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6165,7 +5927,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -6191,12 +5953,15 @@
     },
     "/ion-nav": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-nav",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -6214,7 +5979,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -6223,8 +5988,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6232,7 +5997,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -6240,18 +6005,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6259,7 +6015,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the nav should animate the transition of components.",
             "schema": {
               "type": "boolean"
@@ -6286,7 +6042,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -6324,12 +6080,15 @@
     },
     "/ion-nav-link": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-nav-link",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -6347,7 +6106,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -6356,8 +6115,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6365,7 +6124,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -6373,18 +6132,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6411,7 +6161,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -6425,12 +6175,15 @@
     },
     "/ion-popover": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-popover",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -6448,7 +6201,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -6457,8 +6210,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6466,7 +6219,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -6474,18 +6227,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6501,7 +6245,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the popover will animate.",
             "schema": {
               "type": "boolean"
@@ -6648,7 +6392,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -6758,12 +6502,15 @@
     },
     "/ion-loading": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-loading",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -6781,7 +6528,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -6790,8 +6537,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6799,7 +6546,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -6807,18 +6554,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -6826,7 +6564,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the loading indicator will animate.",
             "schema": {
               "type": "boolean"
@@ -6925,7 +6663,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -7035,12 +6773,15 @@
     },
     "/ion-progress-bar": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-progress-bar",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -7058,7 +6799,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -7067,8 +6808,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7076,7 +6817,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -7084,18 +6825,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7154,7 +6886,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -7168,12 +6900,15 @@
     },
     "/ion-skeleton-text": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-skeleton-text",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -7191,7 +6926,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -7200,8 +6935,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7209,7 +6944,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -7217,18 +6952,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7236,7 +6962,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the skeleton text will animate.",
             "schema": {
               "type": "boolean"
@@ -7247,7 +6973,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -7261,12 +6987,15 @@
     },
     "/ion-spinner": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-spinner",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -7284,7 +7013,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -7293,8 +7022,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7302,7 +7031,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -7310,18 +7039,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7364,7 +7084,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -7378,12 +7098,15 @@
     },
     "/ion-radio": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-radio",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -7401,7 +7124,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -7410,8 +7133,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7419,7 +7142,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -7427,18 +7150,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7513,7 +7227,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -7551,12 +7265,15 @@
     },
     "/ion-radio-group": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-radio-group",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -7574,7 +7291,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -7583,8 +7300,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7592,7 +7309,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -7600,18 +7317,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7654,7 +7362,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -7680,12 +7388,15 @@
     },
     "/ion-range": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-range",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -7703,7 +7414,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -7712,8 +7423,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7721,7 +7432,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -7729,18 +7440,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -7879,7 +7581,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -7965,12 +7667,15 @@
     },
     "/ion-refresher": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-refresher",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -7988,7 +7693,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -7997,8 +7702,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8006,7 +7711,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8014,18 +7719,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8092,7 +7788,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8142,12 +7838,15 @@
     },
     "/ion-refresher-content": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-refresher-content",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8165,7 +7864,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8174,8 +7873,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8183,7 +7882,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8191,18 +7890,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8245,7 +7935,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8259,12 +7949,15 @@
     },
     "/ion-reorder": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-reorder",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8282,7 +7975,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8291,8 +7984,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8300,7 +7993,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8308,18 +8001,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8330,7 +8014,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8344,12 +8028,15 @@
     },
     "/ion-reorder-group": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-reorder-group",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8367,7 +8054,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8376,8 +8063,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8385,7 +8072,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8393,18 +8080,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8423,7 +8101,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8449,12 +8127,15 @@
     },
     "/ion-router": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-router",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8472,7 +8153,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8481,8 +8162,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8490,7 +8171,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8498,18 +8179,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8536,7 +8208,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8574,12 +8246,15 @@
     },
     "/ion-router-link": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-router-link",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8597,7 +8272,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8606,8 +8281,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8615,7 +8290,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8623,18 +8298,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8685,7 +8351,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8699,12 +8365,15 @@
     },
     "/ion-router-outlet": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-router-outlet",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8722,7 +8391,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8731,8 +8400,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8740,7 +8409,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8748,18 +8417,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8767,7 +8427,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the router-outlet should animate the transition of components.",
             "schema": {
               "type": "boolean"
@@ -8786,7 +8446,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8800,12 +8460,15 @@
     },
     "/ion-route": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-route",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8823,7 +8486,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8832,8 +8495,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8841,7 +8504,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8849,18 +8512,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8887,7 +8541,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -8913,12 +8567,15 @@
     },
     "/ion-route-redirect": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-route-redirect",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -8936,7 +8593,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -8945,8 +8602,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -8954,7 +8611,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -8962,18 +8619,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9000,7 +8648,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -9026,12 +8674,15 @@
     },
     "/ion-searchbar": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-searchbar",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -9049,7 +8700,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -9058,8 +8709,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9067,7 +8718,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -9075,18 +8726,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9094,7 +8736,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, enable searchbar animation.",
             "schema": {
               "type": "boolean"
@@ -9281,7 +8923,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -9367,12 +9009,15 @@
     },
     "/ion-segment": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-segment",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -9390,7 +9035,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -9399,8 +9044,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9408,7 +9053,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -9416,18 +9061,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9494,7 +9130,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -9520,12 +9156,15 @@
     },
     "/ion-segment-button": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-segment-button",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -9543,7 +9182,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -9552,8 +9191,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9561,7 +9200,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -9569,18 +9208,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9631,7 +9261,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -9645,12 +9275,15 @@
     },
     "/ion-select": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-select",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -9668,7 +9301,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -9677,8 +9310,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9686,7 +9319,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -9694,18 +9327,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9876,7 +9500,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -9950,12 +9574,15 @@
     },
     "/ion-select-option": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-select-option",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -9973,7 +9600,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -9982,8 +9609,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -9991,7 +9618,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -9999,18 +9626,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10037,7 +9655,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -10051,12 +9669,15 @@
     },
     "/ion-tabs": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-tabs",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -10074,7 +9695,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -10083,8 +9704,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10092,7 +9713,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -10100,18 +9721,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10122,7 +9734,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -10160,12 +9772,15 @@
     },
     "/ion-tab": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-tab",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -10183,7 +9798,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -10192,8 +9807,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10201,7 +9816,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -10209,18 +9824,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10247,7 +9853,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -10261,12 +9867,15 @@
     },
     "/ion-tab-bar": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-tab-bar",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -10284,7 +9893,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -10293,8 +9902,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10302,7 +9911,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -10310,18 +9919,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10364,7 +9964,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -10378,12 +9978,15 @@
     },
     "/ion-tab-button": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-tab-button",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -10401,7 +10004,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -10410,8 +10013,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10419,7 +10022,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -10427,18 +10030,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10521,7 +10115,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -10535,12 +10129,15 @@
     },
     "/ion-toast": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-toast",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -10558,7 +10155,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -10567,8 +10164,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10576,7 +10173,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -10584,18 +10181,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10603,7 +10191,7 @@
           },
           {
             "name": "animated",
-            "summary": "animé",
+            "summary": "animated​",
             "description": "If true, the toast will animate.",
             "schema": {
               "type": "boolean"
@@ -10734,7 +10322,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -10844,12 +10432,15 @@
     },
     "/ion-toggle": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-toggle",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -10867,7 +10458,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -10876,8 +10467,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10885,7 +10476,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -10893,18 +10484,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -10995,7 +10577,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -11045,12 +10627,15 @@
     },
     "/ion-toolbar": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-toolbar",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -11068,7 +10653,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -11077,8 +10662,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11086,7 +10671,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -11094,18 +10679,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11132,7 +10708,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -11146,12 +10722,15 @@
     },
     "/ion-header": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-header",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -11169,7 +10748,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -11178,8 +10757,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11187,7 +10766,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -11195,18 +10774,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11241,7 +10811,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -11255,12 +10825,15 @@
     },
     "/ion-footer": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-footer",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -11278,7 +10851,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -11287,8 +10860,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11296,7 +10869,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -11304,18 +10877,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11350,7 +10914,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -11364,12 +10928,15 @@
     },
     "/ion-title": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-title",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -11387,7 +10954,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -11396,8 +10963,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11405,7 +10972,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -11413,18 +10980,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11451,7 +11009,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -11465,12 +11023,15 @@
     },
     "/ion-buttons": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-buttons",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -11488,7 +11049,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -11497,8 +11058,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11506,7 +11067,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -11514,18 +11075,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11544,7 +11096,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -11558,12 +11110,15 @@
     },
     "/ion-back-button": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-back-button",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -11581,7 +11136,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -11590,8 +11145,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11599,7 +11154,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -11607,18 +11162,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11685,7 +11231,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
@@ -11699,12 +11245,15 @@
     },
     "/ion-text": {
       "post": {
-        "tags": ["web", "needPins"],
+        "tags": [
+          "web",
+          "needPins"
+        ],
         "summary": "ion-text",
         "parameters": [
           {
             "name": "class",
-            "summary": "Classe",
+            "summary": "Class",
             "description": "Classe de l'élément.",
             "required": false,
             "schema": {
@@ -11722,7 +11271,7 @@
           },
           {
             "name": "id",
-            "summary": "Identifiant",
+            "summary": "Id",
             "description": "Identifiant de l'élément.",
             "required": false,
             "schema": {
@@ -11731,8 +11280,8 @@
           },
           {
             "name": "textContent",
-            "summary": "Contenu Texte",
-            "description": "Contenu texte de l'élément.",
+            "summary": "Text Content",
+            "description": "Contenu textuel de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11740,7 +11289,7 @@
           },
           {
             "name": "innerHTML",
-            "summary": "HTML Interne",
+            "summary": "Inner HTML",
             "description": "HTML interne de l'élément.",
             "required": false,
             "schema": {
@@ -11748,18 +11297,9 @@
             }
           },
           {
-            "name": "aria-hidden",
-            "summary": "Aria Caché",
-            "description": "Aria caché de l'élément.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "aria-label",
-            "summary": "Étiquette Aria",
-            "description": "Étiquette Aria de l'élément.",
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Emplacement de l'élément.",
             "required": false,
             "schema": {
               "type": "string"
@@ -11786,7 +11326,7 @@
           {
             "name": "click",
             "summary": "Click",
-            "description": "Click event.",
+            "description": "Événement de clic.",
             "required": false,
             "schema": {
               "type": "array",
