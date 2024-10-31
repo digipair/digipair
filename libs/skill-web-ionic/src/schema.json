@@ -4708,6 +4708,2022 @@
         ]
       }
     },
+    "/ion-input": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-input",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autocapitalize",
+            "summary": "autocapitalize​",
+            "description": "Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user. Available options: \"off\", \"none\", \"on\", \"sentences\", \"words\", \"characters\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autocomplete",
+            "summary": "autocomplete​",
+            "description": "Indicates whether the value of the control can be automatically completed by the browser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autocorrect",
+            "summary": "autocorrect​",
+            "description": "Whether auto correction should be enabled when the user is entering/editing the text value.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autofocus",
+            "summary": "autofocus​",
+            "description": "Sets the autofocus attribute on the native input element.This may not be sufficient for the element to be focused on page load. See managing focus for more information.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "clear-input",
+            "summary": "clearInput​",
+            "description": "If true, a clear icon will appear in the input when there is a value. Clicking it clears the input.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "clear-input-icon",
+            "summary": "clearInputIcon​",
+            "description": "The icon to use for the clear button. Only applies when clearInput is set to true.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clear-on-edit",
+            "summary": "clearOnEdit​",
+            "description": "If true, the value will be cleared after focus upon edit. Defaults to true when type is \"password\", false for all other types.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "counter",
+            "summary": "counter​",
+            "description": "If true, a character counter will display the ratio of characters used and the total character limit. Developers must also set the maxlength property for the counter to be calculated correctly.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "debounce",
+            "summary": "debounce​",
+            "description": "Set the amount of time, in milliseconds, to wait to trigger the ionInput event after each keystroke.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled​",
+            "description": "If true, the user cannot interact with the input.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "enterkeyhint",
+            "summary": "enterkeyhint​",
+            "description": "A hint to the browser for which enter key to display. Possible values: \"enter\", \"done\", \"go\", \"next\", \"previous\", \"search\", and \"send\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "error-text",
+            "summary": "errorText​",
+            "description": "Text that is placed under the input and displayed when an error is detected.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fill",
+            "summary": "fill​",
+            "description": "The fill for the item. If \"solid\" the item will have a background. If \"outline\" the item will be transparent with a border. Only available in md mode.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "helper-text",
+            "summary": "helperText​",
+            "description": "Text that is placed under the input and displayed when no error is detected.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inputmode",
+            "summary": "inputmode​",
+            "description": "A hint to the browser for which keyboard to display. Possible values: \"none\", \"text\", \"tel\", \"url\", \"email\", \"numeric\", \"decimal\", and \"search\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "label​",
+            "description": "The visible label associated with the input.Use this if you need to render a plaintext label.The label property will take priority over the label slot if both are used.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label-placement",
+            "summary": "labelPlacement​",
+            "description": "Where to place the label relative to the input. \"start\": The label will appear to the left of the input in LTR and to the right in RTL. \"end\": The label will appear to the right of the input in LTR and to the left in RTL. \"floating\": The label will appear smaller and above the input when the input is focused or it has a value. Otherwise it will appear on top of the input. \"stacked\": The label will appear smaller and above the input regardless even when the input is blurred or has no value. \"fixed\": The label has the same behavior as \"start\" except it also has a fixed width. Long text will be truncated with ellipses (\"...\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "max",
+            "summary": "max​",
+            "description": "The maximum value, which must not be less than its minimum (min attribute) value.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "maxlength",
+            "summary": "maxlength​",
+            "description": "If the value of the type attribute is text, email, search, password, tel, or url, this attribute specifies the maximum number of characters that the user can enter.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "min",
+            "summary": "min​",
+            "description": "The minimum value, which must not be greater than its maximum (max attribute) value.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minlength",
+            "summary": "minlength​",
+            "description": "If the value of the type attribute is text, email, search, password, tel, or url, this attribute specifies the minimum number of characters that the user can enter.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "multiple",
+            "summary": "multiple​",
+            "description": "If true, the user can enter more than one value. This attribute applies when the type attribute is set to \"email\", otherwise it is ignored.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "name​",
+            "description": "The name of the control, which is submitted with the form data.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pattern",
+            "summary": "pattern​",
+            "description": "A regular expression that the value is checked against. The pattern must match the entire value, not just some subset. Use the title attribute to describe the pattern to help the user. This attribute applies when the value of the type attribute is \"text\", \"search\", \"tel\", \"url\", \"email\", \"date\", or \"password\", otherwise it is ignored. When the type attribute is \"date\", pattern will only be used in browsers that do not support the \"date\" input type natively. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date for more information.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "summary": "placeholder​",
+            "description": "Instructional text that shows before the input has a value. This property applies only when the type property is set to \"email\", \"number\", \"password\", \"search\", \"tel\", \"text\", or \"url\", otherwise it is ignored.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "readonly",
+            "summary": "readonly​",
+            "description": "If true, the user cannot modify the value.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "required​",
+            "description": "If true, the user must fill in a value before submitting a form.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "shape",
+            "summary": "shape​",
+            "description": "The shape of the input. If \"round\" it will have an increased border radius.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spellcheck",
+            "summary": "spellcheck​",
+            "description": "If true, the element will have its spelling and grammar checked.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "step",
+            "summary": "step​",
+            "description": "Works with the min and max attributes to limit the increments at which a value can be set. Possible values are: \"any\" or a positive floating point number.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "type​",
+            "description": "The type of control to display. The default type is text.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "value​",
+            "description": "The value of the input.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionBlur",
+            "summary": "ionBlur",
+            "description": "Emitted when the input loses focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionChange",
+            "summary": "ionChange",
+            "description": "The ionChange event is fired when the user modifies the input's value. Unlike the ionInput event, the ionChange event is only fired when changes are committed, not as the user types.Depending on the way the users interacts with the element, the ionChange event fires at a different moment: - When the user commits the change explicitly (e.g. by selecting a date from a date picker for <ion-input type=\"date\">, pressing the \"Enter\" key, etc.). - When the element loses focus after its value has changed: for elements where the user's interaction is typing.This event will not emit when programmatically setting the value property.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionFocus",
+            "summary": "ionFocus",
+            "description": "Emitted when the input has focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionInput",
+            "summary": "ionInput",
+            "description": "The ionInput event is fired each time the user modifies the input's value. Unlike the ionChange event, the ionInput event is fired for each alteration to the input's value. This typically happens for each keystroke as the user types.For elements that accept text input (type=text, type=tel, etc.), the interface is InputEvent; for others, the interface is Event. If the input is cleared on edit, the type is null.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-password-toggle": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-password-toggle",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hide-icon",
+            "summary": "hideIcon​",
+            "description": "The icon that can be used to represent hiding a password. If not set, the \"eyeOff\" Ionicon will be used.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "show-icon",
+            "summary": "showIcon​",
+            "description": "The icon that can be used to represent showing a password. If not set, the \"eye\" Ionicon will be used.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-textarea": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-textarea",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auto-grow",
+            "summary": "autoGrow​",
+            "description": "If true, the textarea container will grow and shrink based on the contents of the textarea.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "autocapitalize",
+            "summary": "autocapitalize​",
+            "description": "Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user. Available options: \"off\", \"none\", \"on\", \"sentences\", \"words\", \"characters\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autofocus",
+            "summary": "autofocus​",
+            "description": "Sets the autofocus attribute on the native input element.This may not be sufficient for the element to be focused on page load. See managing focus for more information.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "clear-on-edit",
+            "summary": "clearOnEdit​",
+            "description": "If true, the value will be cleared after focus upon edit.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cols",
+            "summary": "cols​",
+            "description": "The visible width of the text control, in average character widths. If it is specified, it must be a positive integer.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "counter",
+            "summary": "counter​",
+            "description": "If true, a character counter will display the ratio of characters used and the total character limit. Developers must also set the maxlength property for the counter to be calculated correctly.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "debounce",
+            "summary": "debounce​",
+            "description": "Set the amount of time, in milliseconds, to wait to trigger the ionInput event after each keystroke.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled​",
+            "description": "If true, the user cannot interact with the textarea.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "enterkeyhint",
+            "summary": "enterkeyhint​",
+            "description": "A hint to the browser for which enter key to display. Possible values: \"enter\", \"done\", \"go\", \"next\", \"previous\", \"search\", and \"send\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "error-text",
+            "summary": "errorText​",
+            "description": "Text that is placed under the textarea and displayed when an error is detected.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fill",
+            "summary": "fill​",
+            "description": "The fill for the item. If \"solid\" the item will have a background. If \"outline\" the item will be transparent with a border. Only available in md mode.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "helper-text",
+            "summary": "helperText​",
+            "description": "Text that is placed under the textarea and displayed when no error is detected.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inputmode",
+            "summary": "inputmode​",
+            "description": "A hint to the browser for which keyboard to display. Possible values: \"none\", \"text\", \"tel\", \"url\", \"email\", \"numeric\", \"decimal\", and \"search\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "label​",
+            "description": "The visible label associated with the textarea.Use this if you need to render a plaintext label.The label property will take priority over the label slot if both are used.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label-placement",
+            "summary": "labelPlacement​",
+            "description": "Where to place the label relative to the textarea. \"start\": The label will appear to the left of the textarea in LTR and to the right in RTL. \"end\": The label will appear to the right of the textarea in LTR and to the left in RTL. \"floating\": The label will appear smaller and above the textarea when the textarea is focused or it has a value. Otherwise it will appear on top of the textarea. \"stacked\": The label will appear smaller and above the textarea regardless even when the textarea is blurred or has no value. \"fixed\": The label has the same behavior as \"start\" except it also has a fixed width. Long text will be truncated with ellipses (\"...\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxlength",
+            "summary": "maxlength​",
+            "description": "This attribute specifies the maximum number of characters that the user can enter.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minlength",
+            "summary": "minlength​",
+            "description": "This attribute specifies the minimum number of characters that the user can enter.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "name​",
+            "description": "The name of the control, which is submitted with the form data.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "summary": "placeholder​",
+            "description": "Instructional text that shows before the input has a value.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "readonly",
+            "summary": "readonly​",
+            "description": "If true, the user cannot modify the value.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "required​",
+            "description": "If true, the user must fill in a value before submitting a form.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "rows",
+            "summary": "rows​",
+            "description": "The number of visible text lines for the control.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "shape",
+            "summary": "shape​",
+            "description": "The shape of the textarea. If \"round\" it will have an increased border radius.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spellcheck",
+            "summary": "spellcheck​",
+            "description": "If true, the element will have its spelling and grammar checked.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "value​",
+            "description": "The value of the textarea.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "wrap",
+            "summary": "wrap​",
+            "description": "Indicates how the control wraps text.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionBlur",
+            "summary": "ionBlur",
+            "description": "Emitted when the input loses focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionChange",
+            "summary": "ionChange",
+            "description": "The ionChange event is fired when the user modifies the textarea's value. Unlike the ionInput event, the ionChange event is fired when the element loses focus after its value has been modified.This event will not emit when programmatically setting the value property.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionFocus",
+            "summary": "ionFocus",
+            "description": "Emitted when the input has focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionInput",
+            "summary": "ionInput",
+            "description": "The ionInput event is fired each time the user modifies the textarea's value. Unlike the ionChange event, the ionInput event is fired for each alteration to the textarea's value. This typically happens for each keystroke as the user types.When clearOnEdit is enabled, the ionInput event will be fired when the user clears the textarea by performing a keydown event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "button",
+            "summary": "button​",
+            "description": "If true, a button tag will be rendered and the item will be tappable.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "detail",
+            "summary": "detail​",
+            "description": "If true, a detail arrow will appear on the item. Defaults to false unless the mode is ios and an href or button property is present.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "detail-icon",
+            "summary": "detailIcon​",
+            "description": "The icon to use when detail is set to true.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled​",
+            "description": "If true, the user cannot interact with the item.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "download",
+            "summary": "download​",
+            "description": "This attribute instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. If the attribute has a value, it is used as the pre-filled file name in the Save prompt (the user can still change the file name if they want).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "href​",
+            "description": "Contains a URL or a URL fragment that the hyperlink points to. If this property is set, an anchor tag will be rendered.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lines",
+            "summary": "lines​",
+            "description": "How the bottom border should be displayed on the item.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rel",
+            "summary": "rel​",
+            "description": "Specifies the relationship of the target object to the link object. The value is a space-separated list of link types.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "router-direction",
+            "summary": "routerDirection​",
+            "description": "When using a router, it specifies the transition direction when navigating to another page using href.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "target​",
+            "description": "Specifies where to display the linked URL. Only applies when an href is provided. Special keywords: \"_blank\", \"_self\", \"_parent\", \"_top\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "type​",
+            "description": "The type of the button. Only used when an onclick or button property is present.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-divider": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-divider",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sticky",
+            "summary": "sticky​",
+            "description": "When it's set to true, the item-divider will stay visible when it reaches the top of the viewport until the next ion-item-divider replaces it.This feature relies in position:sticky: https://caniuse.com/#feat=css-sticky",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-group": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-group",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-sliding": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-sliding",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled​",
+            "description": "If true, the user cannot interact with the sliding item.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionDrag",
+            "summary": "ionDrag",
+            "description": "Emitted when the sliding position changes.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-options": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-options",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "side",
+            "summary": "side​",
+            "description": "The side the option button should be on. Possible values: \"start\" and \"end\". If you have multiple ion-item-options, a side must be provided for each.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionSwipe",
+            "summary": "ionSwipe",
+            "description": "Emitted when the item has been fully swiped.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-option": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-option",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled​",
+            "description": "If true, the user cannot interact with the item option.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "download",
+            "summary": "download​",
+            "description": "This attribute instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. If the attribute has a value, it is used as the pre-filled file name in the Save prompt (the user can still change the file name if they want).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expandable",
+            "summary": "expandable​",
+            "description": "If true, the option will expand to take up the available width and cover any other options.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "href​",
+            "description": "Contains a URL or a URL fragment that the hyperlink points to. If this property is set, an anchor tag will be rendered.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rel",
+            "summary": "rel​",
+            "description": "Specifies the relationship of the target object to the link object. The value is a space-separated list of link types.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "target​",
+            "description": "Specifies where to display the linked URL. Only applies when an href is provided. Special keywords: \"_blank\", \"_self\", \"_parent\", \"_top\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "type​",
+            "description": "The type of the button.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-label": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-label",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "position",
+            "summary": "position​",
+            "description": "The position determines where and how the label behaves inside an item.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-note": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-note",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-list": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-list",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inset",
+            "summary": "inset​",
+            "description": "If true, the list will have margin around it and rounded corners.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "lines",
+            "summary": "lines​",
+            "description": "How the bottom border should be displayed on all items.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-list-header": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-list-header",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color​",
+            "description": "The color to use from your application's color palette. Default options are: \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", and \"dark\". For more information on colors, see theming.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lines",
+            "summary": "lines​",
+            "description": "How the bottom border should be displayed on the list header.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode​",
+            "description": "The mode determines which platform styles to use.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-avatar": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-avatar",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Click event.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
     "/ion-img": {
       "post": {
         "tags": ["web", "needPins"],

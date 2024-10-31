@@ -2,7 +2,7 @@
   "name": "@digipair/skill-mongodb",
   "version": "0.0.1",
   "dependencies": {
-    "mongodb": "^6.8.0"
+    "mongodb": "^6.10.0"
   },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"

@@ -10,10 +10,7 @@
   "paths": {
     "/ion-action-sheet": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-action-sheet",
         "parameters": [
           {
@@ -265,10 +262,7 @@
     },
     "/ion-accordion": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-accordion",
         "parameters": [
           {
@@ -392,10 +386,7 @@
     },
     "/ion-accordion-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-accordion-group",
         "parameters": [
           {
@@ -539,10 +530,7 @@
     },
     "/ion-alert": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-alert",
         "parameters": [
           {
@@ -802,10 +790,7 @@
     },
     "/ion-badge": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-badge",
         "parameters": [
           {
@@ -897,10 +882,7 @@
     },
     "/ion-breadcrumb": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-breadcrumb",
         "parameters": [
           {
@@ -1080,10 +1062,7 @@
     },
     "/ion-breadcrumbs": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-breadcrumbs",
         "parameters": [
           {
@@ -1211,10 +1190,7 @@
     },
     "/ion-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-button",
         "parameters": [
           {
@@ -1442,10 +1418,7 @@
     },
     "/ion-ripple-effect": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-ripple-effect",
         "parameters": [
           {
@@ -1529,10 +1502,7 @@
     },
     "/ion-card": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-card",
         "parameters": [
           {
@@ -1688,10 +1658,7 @@
     },
     "/ion-card-content": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-card-content",
         "parameters": [
           {
@@ -1775,10 +1742,7 @@
     },
     "/ion-card-header": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-card-header",
         "parameters": [
           {
@@ -1878,10 +1842,7 @@
     },
     "/ion-card-subtitle": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-card-subtitle",
         "parameters": [
           {
@@ -1973,10 +1934,7 @@
     },
     "/ion-card-title": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-card-title",
         "parameters": [
           {
@@ -2068,10 +2026,7 @@
     },
     "/ion-checkbox": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-checkbox",
         "parameters": [
           {
@@ -2263,10 +2218,7 @@
     },
     "/ion-chip": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-chip",
         "parameters": [
           {
@@ -2374,10 +2326,7 @@
     },
     "/ion-app": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-app",
         "parameters": [
           {
@@ -2453,10 +2402,7 @@
     },
     "/ion-content": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-content",
         "parameters": [
           {
@@ -2624,10 +2570,7 @@
     },
     "/ion-datetime": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-datetime",
         "parameters": [
           {
@@ -2967,10 +2910,7 @@
     },
     "/ion-datetime-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-datetime-button",
         "parameters": [
           {
@@ -3078,10 +3018,7 @@
     },
     "/ion-picker": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-picker",
         "parameters": [
           {
@@ -3165,10 +3102,7 @@
     },
     "/ion-picker-column": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-picker-column",
         "parameters": [
           {
@@ -3288,10 +3222,7 @@
     },
     "/ion-picker-column-option": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-picker-column-option",
         "parameters": [
           {
@@ -3391,10 +3322,7 @@
     },
     "/ion-picker-legacy": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-picker-legacy",
         "parameters": [
           {
@@ -3638,10 +3566,7 @@
     },
     "/ion-fab": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-fab",
         "parameters": [
           {
@@ -3749,10 +3674,7 @@
     },
     "/ion-fab-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-fab-button",
         "parameters": [
           {
@@ -3964,10 +3886,7 @@
     },
     "/ion-fab-list": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-fab-list",
         "parameters": [
           {
@@ -4059,10 +3978,7 @@
     },
     "/ion-grid": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-grid",
         "parameters": [
           {
@@ -4146,10 +4062,7 @@
     },
     "/ion-col": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-col",
         "parameters": [
           {
@@ -4417,10 +4330,7 @@
     },
     "/ion-row": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-row",
         "parameters": [
           {
@@ -4496,10 +4406,7 @@
     },
     "/ion-infinite-scroll": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-infinite-scroll",
         "parameters": [
           {
@@ -4611,10 +4518,7 @@
     },
     "/ion-infinite-scroll-content": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-infinite-scroll-content",
         "parameters": [
           {
@@ -4706,10 +4610,7 @@
     },
     "/ion-icon": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-icon",
         "parameters": [
           {
@@ -4807,12 +4708,2025 @@
         ]
       }
     },
+    "/ion-input": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-input",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autocapitalize",
+            "summary": "autocapitalize",
+            "description": "Indique si et comment la valeur du texte doit être automatiquement capitalisée lorsqu'elle est entrée/modifiée par l'utilisateur. Options disponibles : \"off\", \"none\", \"on\", \"sentences\", \"words\", \"characters\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autocomplete",
+            "summary": "autocomplete",
+            "description": "Indique si la valeur du contrôle peut être automatiquement complétée par le navigateur.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autocorrect",
+            "summary": "autocorrect",
+            "description": "Indique si la correction automatique doit être activée lorsque l'utilisateur entre/modifie la valeur du texte.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autofocus",
+            "summary": "autofocus",
+            "description": "Définit l'attribut autofocus sur l'élément d'entrée natif. Cela peut ne pas être suffisant pour que l'élément soit focalisé au chargement de la page. Voir la gestion du focus pour plus d'informations.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "clear-input",
+            "summary": "clearInput",
+            "description": "Si vrai, une icône de suppression apparaîtra dans l'entrée lorsqu'il y a une valeur. Cliquer dessus efface l'entrée.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "clear-input-icon",
+            "summary": "clearInputIcon",
+            "description": "L'icône à utiliser pour le bouton de suppression. Ne s'applique que lorsque clearInput est défini sur vrai.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clear-on-edit",
+            "summary": "clearOnEdit",
+            "description": "Si vrai, la valeur sera effacée après la mise au point lors de l'édition. Par défaut, vrai lorsque le type est \"password\", faux pour tous les autres types.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "counter",
+            "summary": "counter",
+            "description": "Si vrai, un compteur de caractères affichera le ratio de caractères utilisés et la limite de caractères totale. Les développeurs doivent également définir la propriété maxlength pour que le compteur soit calculé correctement.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "debounce",
+            "summary": "debounce",
+            "description": "Définit la durée, en millisecondes, à attendre pour déclencher l'événement ionInput après chaque frappe.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled",
+            "description": "Si vrai, l'utilisateur ne peut pas interagir avec l'entrée.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "enterkeyhint",
+            "summary": "enterkeyhint",
+            "description": "Un indice pour le navigateur sur la touche Entrée à afficher. Valeurs possibles : \"enter\", \"done\", \"go\", \"next\", \"previous\", \"search\", et \"send\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "error-text",
+            "summary": "errorText",
+            "description": "Texte qui est placé sous l'entrée et affiché lorsqu'une erreur est détectée.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fill",
+            "summary": "fill",
+            "description": "Le remplissage de l'élément. Si \"solid\", l'élément aura un arrière-plan. Si \"outline\", l'élément sera transparent avec une bordure. Disponible uniquement en mode md.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "helper-text",
+            "summary": "helperText",
+            "description": "Texte qui est placé sous l'entrée et affiché lorsqu'aucune erreur n'est détectée.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inputmode",
+            "summary": "inputmode",
+            "description": "Un indice pour le navigateur sur le clavier à afficher. Valeurs possibles : \"none\", \"text\", \"tel\", \"url\", \"email\", \"numeric\", \"decimal\", et \"search\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "label",
+            "description": "Le libellé visible associé à l'entrée. Utilisez ceci si vous avez besoin de rendre un libellé en texte brut. La propriété label prendra la priorité sur le slot label si les deux sont utilisés.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label-placement",
+            "summary": "labelPlacement",
+            "description": "Où placer le libellé par rapport à l'entrée. \"start\" : Le libellé apparaîtra à gauche de l'entrée en LTR et à droite en RTL. \"end\" : Le libellé apparaîtra à droite de l'entrée en LTR et à gauche en RTL. \"floating\" : Le libellé apparaîtra plus petit et au-dessus de l'entrée lorsque l'entrée est focalisée ou qu'elle a une valeur. Sinon, il apparaîtra au-dessus de l'entrée. \"stacked\" : Le libellé apparaîtra plus petit et au-dessus de l'entrée même lorsque l'entrée est floue ou n'a pas de valeur. \"fixed\" : Le libellé a le même comportement que \"start\" sauf qu'il a également une largeur fixe. Le texte long sera tronqué avec des ellipses (\"...\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "max",
+            "summary": "max",
+            "description": "La valeur maximale, qui ne doit pas être inférieure à sa valeur minimale (attribut min).",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "maxlength",
+            "summary": "maxlength",
+            "description": "Si la valeur de l'attribut type est text, email, search, password, tel, ou url, cet attribut spécifie le nombre maximum de caractères que l'utilisateur peut entrer.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "min",
+            "summary": "min",
+            "description": "La valeur minimale, qui ne doit pas être supérieure à sa valeur maximale (attribut max).",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minlength",
+            "summary": "minlength",
+            "description": "Si la valeur de l'attribut type est text, email, search, password, tel, ou url, cet attribut spécifie le nombre minimum de caractères que l'utilisateur peut entrer.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "multiple",
+            "summary": "multiple",
+            "description": "Si vrai, l'utilisateur peut entrer plus d'une valeur. Cet attribut s'applique lorsque l'attribut type est défini sur \"email\", sinon il est ignoré.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "name",
+            "description": "Le nom du contrôle, qui est soumis avec les données du formulaire.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pattern",
+            "summary": "pattern",
+            "description": "Une expression régulière avec laquelle la valeur est vérifiée. Le modèle doit correspondre à la valeur entière, pas seulement à un sous-ensemble. Utilisez l'attribut title pour décrire le modèle afin d'aider l'utilisateur. Cet attribut s'applique lorsque la valeur de l'attribut type est \"text\", \"search\", \"tel\", \"url\", \"email\", \"date\", ou \"password\", sinon il est ignoré. Lorsque l'attribut type est \"date\", le modèle ne sera utilisé que dans les navigateurs qui ne prennent pas en charge le type d'entrée \"date\" nativement. Voir https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date pour plus d'informations.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "summary": "placeholder",
+            "description": "Texte d'instruction qui apparaît avant que l'entrée ait une valeur. Cette propriété s'applique uniquement lorsque la propriété type est définie sur \"email\", \"number\", \"password\", \"search\", \"tel\", \"text\", ou \"url\", sinon elle est ignorée.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "readonly",
+            "summary": "readonly",
+            "description": "Si vrai, l'utilisateur ne peut pas modifier la valeur.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "required",
+            "description": "Si vrai, l'utilisateur doit remplir une valeur avant de soumettre un formulaire.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "shape",
+            "summary": "shape",
+            "description": "La forme de l'entrée. Si \"round\", elle aura un rayon de bordure accru.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spellcheck",
+            "summary": "spellcheck",
+            "description": "Si vrai, l'élément aura son orthographe et sa grammaire vérifiées.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "step",
+            "summary": "step",
+            "description": "Fonctionne avec les attributs min et max pour limiter les incréments auxquels une valeur peut être définie. Valeurs possibles : \"any\" ou un nombre flottant positif.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "type",
+            "description": "Le type de contrôle à afficher. Le type par défaut est text.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "value",
+            "description": "La valeur de l'entrée.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionBlur",
+            "summary": "ionBlur",
+            "description": "Émis lorsque l'entrée perd le focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionChange",
+            "summary": "ionChange",
+            "description": "L'événement ionChange est déclenché lorsque l'utilisateur modifie la valeur de l'entrée. Contrairement à l'événement ionInput, l'événement ionChange n'est déclenché que lorsque les modifications sont validées, et non à chaque frappe. Selon la manière dont l'utilisateur interagit avec l'élément, l'événement ionChange se déclenche à un moment différent : - Lorsque l'utilisateur valide explicitement le changement (par exemple en sélectionnant une date à partir d'un sélecteur de date pour <ion-input type=\"date\">, en appuyant sur la touche \"Entrée\", etc.). - Lorsque l'élément perd le focus après que sa valeur a changé : pour les éléments où l'interaction de l'utilisateur est la saisie. Cet événement ne sera pas émis lors de la définition programmatique de la propriété value.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionFocus",
+            "summary": "ionFocus",
+            "description": "Émis lorsque l'entrée a le focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionInput",
+            "summary": "ionInput",
+            "description": "L'événement ionInput est déclenché chaque fois que l'utilisateur modifie la valeur de l'entrée. Contrairement à l'événement ionChange, l'événement ionInput est déclenché pour chaque modification de la valeur de l'entrée. Cela se produit généralement à chaque frappe lorsque l'utilisateur tape. Pour les éléments qui acceptent l'entrée de texte (type=text, type=tel, etc.), l'interface est InputEvent ; pour les autres, l'interface est Event. Si l'entrée est effacée lors de l'édition, le type est null.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-password-toggle": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-password-toggle",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hide-icon",
+            "summary": "hideIcon",
+            "description": "L'icône à utiliser pour représenter la dissimulation d'un mot de passe. Si non défini, l'icône \"eyeOff\" Ionicon sera utilisée.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "show-icon",
+            "summary": "showIcon",
+            "description": "L'icône à utiliser pour représenter l'affichage d'un mot de passe. Si non défini, l'icône \"eye\" Ionicon sera utilisée.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-textarea": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-textarea",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auto-grow",
+            "summary": "autoGrow",
+            "description": "Si vrai, le conteneur de la zone de texte grandira et rétrécira en fonction du contenu de la zone de texte.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "autocapitalize",
+            "summary": "autocapitalize",
+            "description": "Indique si et comment la valeur du texte doit être automatiquement capitalisée lorsqu'elle est entrée/modifiée par l'utilisateur. Options disponibles : \"off\", \"none\", \"on\", \"sentences\", \"words\", \"characters\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "autofocus",
+            "summary": "autofocus",
+            "description": "Définit l'attribut autofocus sur l'élément d'entrée natif. Cela peut ne pas être suffisant pour que l'élément soit focalisé au chargement de la page. Voir la gestion du focus pour plus d'informations.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "clear-on-edit",
+            "summary": "clearOnEdit",
+            "description": "Si vrai, la valeur sera effacée après la mise au point lors de l'édition.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cols",
+            "summary": "cols",
+            "description": "La largeur visible du contrôle de texte, en largeurs de caractères moyennes. Si elle est spécifiée, elle doit être un entier positif.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "counter",
+            "summary": "counter",
+            "description": "Si vrai, un compteur de caractères affichera le ratio de caractères utilisés et la limite de caractères totale. Les développeurs doivent également définir la propriété maxlength pour que le compteur soit calculé correctement.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "debounce",
+            "summary": "debounce",
+            "description": "Définit la durée, en millisecondes, à attendre pour déclencher l'événement ionInput après chaque frappe.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled",
+            "description": "Si vrai, l'utilisateur ne peut pas interagir avec la zone de texte.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "enterkeyhint",
+            "summary": "enterkeyhint",
+            "description": "Un indice pour le navigateur sur la touche Entrée à afficher. Valeurs possibles : \"enter\", \"done\", \"go\", \"next\", \"previous\", \"search\", et \"send\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "error-text",
+            "summary": "errorText",
+            "description": "Texte qui est placé sous la zone de texte et affiché lorsqu'une erreur est détectée.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fill",
+            "summary": "fill",
+            "description": "Le remplissage de l'élément. Si \"solid\", l'élément aura un arrière-plan. Si \"outline\", l'élément sera transparent avec une bordure. Disponible uniquement en mode md.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "helper-text",
+            "summary": "helperText",
+            "description": "Texte qui est placé sous la zone de texte et affiché lorsqu'aucune erreur n'est détectée.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inputmode",
+            "summary": "inputmode",
+            "description": "Un indice pour le navigateur sur le clavier à afficher. Valeurs possibles : \"none\", \"text\", \"tel\", \"url\", \"email\", \"numeric\", \"decimal\", et \"search\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label",
+            "summary": "label",
+            "description": "Le libellé visible associé à la zone de texte. Utilisez ceci si vous avez besoin de rendre un libellé en texte brut. La propriété label prendra la priorité sur le slot label si les deux sont utilisés.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "label-placement",
+            "summary": "labelPlacement",
+            "description": "Où placer le libellé par rapport à la zone de texte. \"start\" : Le libellé apparaîtra à gauche de la zone de texte en LTR et à droite en RTL. \"end\" : Le libellé apparaîtra à droite de la zone de texte en LTR et à gauche en RTL. \"floating\" : Le libellé apparaîtra plus petit et au-dessus de la zone de texte lorsque la zone de texte est focalisée ou qu'elle a une valeur. Sinon, il apparaîtra au-dessus de la zone de texte. \"stacked\" : Le libellé apparaîtra plus petit et au-dessus de la zone de texte même lorsque la zone de texte est floue ou n'a pas de valeur. \"fixed\" : Le libellé a le même comportement que \"start\" sauf qu'il a également une largeur fixe. Le texte long sera tronqué avec des ellipses (\"...\").",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxlength",
+            "summary": "maxlength",
+            "description": "Cet attribut spécifie le nombre maximum de caractères que l'utilisateur peut entrer.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minlength",
+            "summary": "minlength",
+            "description": "Cet attribut spécifie le nombre minimum de caractères que l'utilisateur peut entrer.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "name",
+            "description": "Le nom du contrôle, qui est soumis avec les données du formulaire.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "summary": "placeholder",
+            "description": "Texte d'instruction qui apparaît avant que l'entrée ait une valeur.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "readonly",
+            "summary": "readonly",
+            "description": "Si vrai, l'utilisateur ne peut pas modifier la valeur.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "required",
+            "summary": "required",
+            "description": "Si vrai, l'utilisateur doit remplir une valeur avant de soumettre un formulaire.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "rows",
+            "summary": "rows",
+            "description": "Le nombre de lignes de texte visibles pour le contrôle.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "shape",
+            "summary": "shape",
+            "description": "La forme de la zone de texte. Si \"round\", elle aura un rayon de bordure accru.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spellcheck",
+            "summary": "spellcheck",
+            "description": "Si vrai, l'élément aura son orthographe et sa grammaire vérifiées.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "value",
+            "description": "La valeur de la zone de texte.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "wrap",
+            "summary": "wrap",
+            "description": "Indique comment le contrôle enveloppe le texte.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionBlur",
+            "summary": "ionBlur",
+            "description": "Émis lorsque l'entrée perd le focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionChange",
+            "summary": "ionChange",
+            "description": "L'événement ionChange est déclenché lorsque l'utilisateur modifie la valeur de la zone de texte. Contrairement à l'événement ionInput, l'événement ionChange n'est déclenché que lorsque l'élément perd le focus après que sa valeur a été modifiée. Cet événement ne sera pas émis lors de la définition programmatique de la propriété value.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionFocus",
+            "summary": "ionFocus",
+            "description": "Émis lorsque l'entrée a le focus.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionInput",
+            "summary": "ionInput",
+            "description": "L'événement ionInput est déclenché chaque fois que l'utilisateur modifie la valeur de la zone de texte. Contrairement à l'événement ionChange, l'événement ionInput est déclenché pour chaque modification de la valeur de la zone de texte. Cela se produit généralement à chaque frappe lorsque l'utilisateur tape. Lorsque clearOnEdit est activé, l'événement ionInput sera déclenché lorsque l'utilisateur efface la zone de texte en effectuant un événement keydown.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "button",
+            "summary": "button",
+            "description": "Si vrai, une balise de bouton sera rendue et l'élément sera cliquable.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "detail",
+            "summary": "detail",
+            "description": "Si vrai, une flèche de détail apparaîtra sur l'élément. Par défaut, faux sauf si le mode est ios et qu'une propriété href ou button est présente.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "detail-icon",
+            "summary": "detailIcon",
+            "description": "L'icône à utiliser lorsque detail est défini sur vrai.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled",
+            "description": "Si vrai, l'utilisateur ne peut pas interagir avec l'élément.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "download",
+            "summary": "download",
+            "description": "Cet attribut indique aux navigateurs de télécharger une URL au lieu de naviguer vers celle-ci, donc l'utilisateur sera invité à l'enregistrer en tant que fichier local. Si l'attribut a une valeur, elle est utilisée comme nom de fichier pré-rempli dans la boîte de dialogue Enregistrer (l'utilisateur peut toujours changer le nom du fichier s'il le souhaite).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "href",
+            "description": "Contient une URL ou un fragment d'URL vers lequel le lien hypertexte pointe. Si cette propriété est définie, une balise d'ancrage sera rendue.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lines",
+            "summary": "lines",
+            "description": "Comment la bordure inférieure doit être affichée sur l'élément.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rel",
+            "summary": "rel",
+            "description": "Spécifie la relation de l'objet cible par rapport à l'objet du lien. La valeur est une liste de types de liens séparés par des espaces.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "router-direction",
+            "summary": "routerDirection",
+            "description": "Lors de l'utilisation d'un routeur, il spécifie la direction de la transition lors de la navigation vers une autre page en utilisant href.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "target",
+            "description": "Spécifie où afficher l'URL liée. Ne s'applique que lorsqu'un href est fourni. Mots-clés spéciaux : \"_blank\", \"_self\", \"_parent\", \"_top\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "type",
+            "description": "Le type du bouton. Ne s'applique que lorsqu'une propriété onclick ou button est présente.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-divider": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-divider",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sticky",
+            "summary": "sticky",
+            "description": "Lorsqu'il est défini sur vrai, le diviseur d'élément restera visible lorsqu'il atteindra le haut de la fenêtre d'affichage jusqu'à ce que le prochain ion-item-divider le remplace. Cette fonctionnalité repose sur position:sticky: https://caniuse.com/#feat=css-sticky",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-group": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-group",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-sliding": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-sliding",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled",
+            "description": "Si vrai, l'utilisateur ne peut pas interagir avec l'élément glissant.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionDrag",
+            "summary": "ionDrag",
+            "description": "Émis lorsque la position de glissement change.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-options": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-options",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "side",
+            "summary": "side",
+            "description": "Le côté sur lequel le bouton d'option doit être. Valeurs possibles : \"start\" et \"end\". Si vous avez plusieurs ion-item-options, un côté doit être fourni pour chacun.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "ionSwipe",
+            "summary": "ionSwipe",
+            "description": "Émis lorsque l'élément a été complètement glissé.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-item-option": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-item-option",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "disabled",
+            "summary": "disabled",
+            "description": "Si vrai, l'utilisateur ne peut pas interagir avec l'option de l'élément.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "download",
+            "summary": "download",
+            "description": "Cet attribut indique aux navigateurs de télécharger une URL au lieu de naviguer vers celle-ci, donc l'utilisateur sera invité à l'enregistrer en tant que fichier local. Si l'attribut a une valeur, elle est utilisée comme nom de fichier pré-rempli dans la boîte de dialogue Enregistrer (l'utilisateur peut toujours changer le nom du fichier s'il le souhaite).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expandable",
+            "summary": "expandable",
+            "description": "Si vrai, l'option s'étendra pour prendre la largeur disponible et couvrir toutes les autres options.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "href",
+            "description": "Contient une URL ou un fragment d'URL vers lequel le lien hypertexte pointe. Si cette propriété est définie, une balise d'ancrage sera rendue.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rel",
+            "summary": "rel",
+            "description": "Spécifie la relation de l'objet cible par rapport à l'objet du lien. La valeur est une liste de types de liens séparés par des espaces.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "target",
+            "summary": "target",
+            "description": "Spécifie où afficher l'URL liée. Ne s'applique que lorsqu'un href est fourni. Mots-clés spéciaux : \"_blank\", \"_self\", \"_parent\", \"_top\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "type",
+            "description": "Le type du bouton.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-label": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-label",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "position",
+            "summary": "position",
+            "description": "La position détermine où et comment le libellé se comporte à l'intérieur d'un élément.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-note": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-note",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu du texte",
+            "description": "Contenu du texte de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "color",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Click",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-list": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-list",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu Textuel",
+            "description": "Contenu textuel de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML Interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inset",
+            "summary": "inset",
+            "description": "Si vrai, la liste aura une marge autour d'elle et des coins arrondis.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "lines",
+            "summary": "lignes",
+            "description": "Comment la bordure inférieure doit être affichée sur tous les éléments.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Clic",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-list-header": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-list-header",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu Textuel",
+            "description": "Contenu textuel de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML Interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "couleur",
+            "description": "La couleur à utiliser à partir de la palette de couleurs de votre application. Les options par défaut sont : \"primary\", \"secondary\", \"tertiary\", \"success\", \"warning\", \"danger\", \"light\", \"medium\", et \"dark\". Pour plus d'informations sur les couleurs, voir la thématique.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lines",
+            "summary": "lignes",
+            "description": "Comment la bordure inférieure doit être affichée sur l'en-tête de la liste.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mode",
+            "summary": "mode",
+            "description": "Le mode détermine quels styles de plateforme utiliser.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Clic",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/ion-avatar": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "ion-avatar",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Classe",
+            "description": "Classe de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "Style CSS de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Contenu Textuel",
+            "description": "Contenu textuel de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "HTML Interne",
+            "description": "HTML interne de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "Clic",
+            "description": "Événement de clic.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
     "/ion-img": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-img",
         "parameters": [
           {
@@ -4940,10 +6854,7 @@
     },
     "/ion-thumbnail": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-thumbnail",
         "parameters": [
           {
@@ -5019,10 +6930,7 @@
     },
     "/ion-menu": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-menu",
         "parameters": [
           {
@@ -5202,10 +7110,7 @@
     },
     "/ion-menu-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-menu-button",
         "parameters": [
           {
@@ -5329,10 +7234,7 @@
     },
     "/ion-menu-toggle": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-menu-toggle",
         "parameters": [
           {
@@ -5424,10 +7326,7 @@
     },
     "/ion-split-pane": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-split-pane",
         "parameters": [
           {
@@ -5539,10 +7438,7 @@
     },
     "/ion-modal": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-modal",
         "parameters": [
           {
@@ -5838,10 +7734,7 @@
     },
     "/ion-backdrop": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-backdrop",
         "parameters": [
           {
@@ -5953,10 +7846,7 @@
     },
     "/ion-nav": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-nav",
         "parameters": [
           {
@@ -6080,10 +7970,7 @@
     },
     "/ion-nav-link": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-nav-link",
         "parameters": [
           {
@@ -6175,10 +8062,7 @@
     },
     "/ion-popover": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-popover",
         "parameters": [
           {
@@ -6502,10 +8386,7 @@
     },
     "/ion-loading": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-loading",
         "parameters": [
           {
@@ -6773,10 +8654,7 @@
     },
     "/ion-progress-bar": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-progress-bar",
         "parameters": [
           {
@@ -6900,10 +8778,7 @@
     },
     "/ion-skeleton-text": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-skeleton-text",
         "parameters": [
           {
@@ -6987,10 +8862,7 @@
     },
     "/ion-spinner": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-spinner",
         "parameters": [
           {
@@ -7098,10 +8970,7 @@
     },
     "/ion-radio": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-radio",
         "parameters": [
           {
@@ -7265,10 +9134,7 @@
     },
     "/ion-radio-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-radio-group",
         "parameters": [
           {
@@ -7388,10 +9254,7 @@
     },
     "/ion-range": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-range",
         "parameters": [
           {
@@ -7667,10 +9530,7 @@
     },
     "/ion-refresher": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-refresher",
         "parameters": [
           {
@@ -7838,10 +9698,7 @@
     },
     "/ion-refresher-content": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-refresher-content",
         "parameters": [
           {
@@ -7949,10 +9806,7 @@
     },
     "/ion-reorder": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-reorder",
         "parameters": [
           {
@@ -8028,10 +9882,7 @@
     },
     "/ion-reorder-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-reorder-group",
         "parameters": [
           {
@@ -8127,10 +9978,7 @@
     },
     "/ion-router": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-router",
         "parameters": [
           {
@@ -8246,10 +10094,7 @@
     },
     "/ion-router-link": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-router-link",
         "parameters": [
           {
@@ -8365,10 +10210,7 @@
     },
     "/ion-router-outlet": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-router-outlet",
         "parameters": [
           {
@@ -8460,10 +10302,7 @@
     },
     "/ion-route": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-route",
         "parameters": [
           {
@@ -8567,10 +10406,7 @@
     },
     "/ion-route-redirect": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-route-redirect",
         "parameters": [
           {
@@ -8674,10 +10510,7 @@
     },
     "/ion-searchbar": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-searchbar",
         "parameters": [
           {
@@ -9009,10 +10842,7 @@
     },
     "/ion-segment": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-segment",
         "parameters": [
           {
@@ -9156,10 +10986,7 @@
     },
     "/ion-segment-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-segment-button",
         "parameters": [
           {
@@ -9275,10 +11102,7 @@
     },
     "/ion-select": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-select",
         "parameters": [
           {
@@ -9574,10 +11398,7 @@
     },
     "/ion-select-option": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-select-option",
         "parameters": [
           {
@@ -9669,10 +11490,7 @@
     },
     "/ion-tabs": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-tabs",
         "parameters": [
           {
@@ -9772,10 +11590,7 @@
     },
     "/ion-tab": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-tab",
         "parameters": [
           {
@@ -9867,10 +11682,7 @@
     },
     "/ion-tab-bar": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-tab-bar",
         "parameters": [
           {
@@ -9978,10 +11790,7 @@
     },
     "/ion-tab-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-tab-button",
         "parameters": [
           {
@@ -10129,10 +11938,7 @@
     },
     "/ion-toast": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-toast",
         "parameters": [
           {
@@ -10432,10 +12238,7 @@
     },
     "/ion-toggle": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-toggle",
         "parameters": [
           {
@@ -10627,10 +12430,7 @@
     },
     "/ion-toolbar": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-toolbar",
         "parameters": [
           {
@@ -10722,10 +12522,7 @@
     },
     "/ion-header": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-header",
         "parameters": [
           {
@@ -10825,10 +12622,7 @@
     },
     "/ion-footer": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-footer",
         "parameters": [
           {
@@ -10928,10 +12722,7 @@
     },
     "/ion-title": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-title",
         "parameters": [
           {
@@ -11023,10 +12814,7 @@
     },
     "/ion-buttons": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-buttons",
         "parameters": [
           {
@@ -11110,10 +12898,7 @@
     },
     "/ion-back-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-back-button",
         "parameters": [
           {
@@ -11245,10 +13030,7 @@
     },
     "/ion-text": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "ion-text",
         "parameters": [
           {
