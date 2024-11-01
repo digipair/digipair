@@ -44,21 +44,27 @@ export class AppController {
       params = params.slice(2);
     }
 
-    const method = request.method;
-    res.send(
-      await this.appService.agent(
-        `${assets}/digipairs`,
-        digipair,
-        reasoning,
-        body,
-        params,
-        query,
-        method,
-        request.headers,
-        {},
-        request,
-        res,
-      ),
-    );
+    try {
+      const method = request.method;
+      res.send(
+        await this.appService.agent(
+          `${assets}/digipairs`,
+          digipair,
+          reasoning,
+          body,
+          params,
+          query,
+          method,
+          request.headers,
+          {},
+          request,
+          res,
+        ),
+      );
+    } catch (error) {
+      if (error !== 'DIGIPAIR_KEEPALIVE') {
+        throw error;
+      }
+    }
   }
 }

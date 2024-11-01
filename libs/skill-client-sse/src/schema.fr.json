@@ -23,21 +23,66 @@
             }
           },
           {
-            "name": "connection",
-            "summary": "Nom",
+            "name": "event",
+            "summary": "Événement",
             "required": false,
-            "description": "Nom de la connexion",
+            "description": "Nom de l'événement",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options de récupération SSE",
+            "schema": {
+              "type": "object"
             }
           }
         ],
         "x-events": [
           {
             "name": "message",
-            "summary": "Lors de la réception d'un message",
+            "summary": "Lors d'un message",
             "required": false,
             "description": "Action déclenchée lors de la réception d'un message",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "open",
+            "summary": "Lors de l'ouverture",
+            "required": false,
+            "description": "Action déclenchée lors de l'ouverture d'une connexion",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "close",
+            "summary": "Lors de la fermeture",
+            "required": false,
+            "description": "Action déclenchée lors de la fermeture d'une connexion",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "error",
+            "summary": "Lors d'une erreur",
+            "required": false,
+            "description": "Action déclenchée lors d'une erreur",
             "schema": {
               "type": "array",
               "items": {

@@ -1,3 +1,4 @@
+import { fetchEventSource } from '@microsoft/fetch-event-source';
 import '@ui5/webcomponents-icons/dist/AllIcons';
 import '@ui5/webcomponents/dist/BusyIndicator';
 import '@ui5/webcomponents/dist/Icon';
@@ -10,8 +11,6 @@ import { styles } from './digipair.data';
 import getCssSelector from './tools/css-selector';
 import { _config } from './config';
 import { Message } from './message.interface';
-
-let API_URL: string;
 
 @customElement('digipair-chatbot')
 export class ChatbotElement extends LitElement {
@@ -42,18 +41,11 @@ export class ChatbotElement extends LitElement {
   @state()
   private messages: Message[] = [];
 
+  @state()
+  private loadingStep = 'Communication avec la factory';
+
   @query('digipair-chatbot-chat')
   private chatbot!: ChatElement;
-  private CHAT_COMMAND = (digipair: string, reasoning: string) => ({
-    library: '@digipair/actions-chatbot',
-    element: 'executeRemoteReasoning',
-    properties: {
-      digipair,
-      reasoning: reasoning ?? 'conversation',
-      apiUrl: API_URL,
-    },
-  });
-
   private alreadyOpened = false;
   private isDigipairLoading = false;
   private newUser!: boolean;
@@ -68,6 +60,18 @@ export class ChatbotElement extends LitElement {
     textSecondary: string;
   };
 
+  private CHAT_COMMAND(digipair: string, reasoning: string) {
+    return {
+      library: '@digipair/actions-chatbot',
+      element: 'executeRemoteReasoning',
+      properties: {
+        digipair,
+        reasoning: reasoning ?? 'conversation',
+        apiUrl: this.apiUrl,
+      },
+    };
+  }
+
   private blurEvent = (event: Event) => {
     const path = event.composedPath();
     if (!path.includes(this)) {
@@ -77,13 +81,12 @@ export class ChatbotElement extends LitElement {
   };
 
   override connectedCallback(): void {
-    API_URL = this.apiUrl;
-
     super.connectedCallback();
 
     this.loadUser();
     this.boostListener();
     this.externalBoostListener();
+    this.initializeSSE();
     document.addEventListener('click', this.blurEvent);
   }
 
@@ -94,6 +97,45 @@ export class ChatbotElement extends LitElement {
   private externalBoostListener() {
     this.addEventListener('executeBoost', ({ detail }: any) => {
       setTimeout(() => this.executeBoost({ context: {}, ...detail }), 1);
+    });
+  }
+
+  private initializeSSE() {
+    const digipair = this.code;
+    const reasoning = 'notification';
+
+    fetchEventSource(`${this.apiUrl}/${digipair}/${reasoning}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      onmessage: (message: any) => {
+        if (message.event !== 'message') {
+          return;
+        }
+
+        const data = JSON.parse(message.data);
+
+        if (data.type === 'step') {
+          this.loadingStep = message.content.step;
+        }
+
+        if (data.type === 'message') {
+          this.pushMessage(data.content);
+        }
+      },
+      body: JSON.stringify({
+        userId: this.userId,
+      }),
+      async onopen(response: any) {
+        console.log('open', response);
+      },
+      onclose() {
+        console.log('close');
+      },
+      onerror(err) {
+        console.error('Error:', err);
+      },
     });
   }
 
@@ -319,7 +361,7 @@ export class ChatbotElement extends LitElement {
 
   private executeScene = async (reasoning: string, input: any = {}): Promise<any> => {
     const digipair = this.code;
-    const response = await fetch(`${API_URL}/${digipair}/${reasoning}`, {
+    const response = await fetch(`${this.apiUrl}/${digipair}/${reasoning}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -359,6 +401,7 @@ export class ChatbotElement extends LitElement {
             .messages=${this.messages}
             .currentBoost=${this.currentBoost}
             .context=${{ config: this.metadata.config, variables: this.metadata.variables }}
+            currentStep=${this.loadingStep}
             @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
             @boost=${(event: any) => this.setBoost(event.detail)}
           ></digipair-chatbot-chat>

@@ -75,6 +75,43 @@
         ],
         "x-events": []
       }
+    },
+    "/keepAlive": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Keep Alive HTTP",
+        "description": "Keep alive the HTTP connection",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/send": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Send HTTP",
+        "description": "Send an HTTP request",
+        "parameters": [
+          {
+            "name": "code",
+            "required": false,
+            "summary": "Return code",
+            "description": "HTTP return code",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "body",
+            "required": false,
+            "summary": "Body",
+            "description": "Body of the request",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

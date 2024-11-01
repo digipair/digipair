@@ -75,6 +75,43 @@
         ],
         "x-events": []
       }
+    },
+    "/keepAlive": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Keep-alive HTTP",
+        "description": "Garder en vie la connection HTTP",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/send": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoi de données HTTP",
+        "description": "Envoi de données à la connection HTTP",
+        "parameters": [
+          {
+            "name": "code",
+            "required": false,
+            "summary": "Code de retour",
+            "description": "Code de retour",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "body",
+            "required": false,
+            "summary": "Body",
+            "description": "Corps de la réponse",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

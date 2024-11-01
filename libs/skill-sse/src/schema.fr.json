@@ -75,6 +75,15 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": false,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -117,6 +126,15 @@
             "summary": "Identifiant de channel",
             "required": false,
             "description": "Identifiant du channel",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": false,
+            "description": "Nom du raisonnement",
             "schema": {
               "type": "string"
             }

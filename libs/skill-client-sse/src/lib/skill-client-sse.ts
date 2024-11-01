@@ -1,21 +1,46 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createSession, createChannel } from 'better-sse';
 import { PinsSettings, executePinsList } from '@digipair/engine';
+import { fetchEventSource } from '@microsoft/fetch-event-source';
 
 class WebSSEService {
-  private sessions = new Map();
-
   async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { url = '', connection = 'default', message = [] } = params;
-    const session = new EventSource(url);
+    const {
+      url = '',
+      event = 'message',
+      message = [],
+      open = [],
+      close = [],
+      error = [],
+      options = {},
+    } = params;
 
-    this.sessions.set(connection, session);
+    await fetchEventSource(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      onmessage: (notification: any) => {
+        if (notification.event !== event) {
+          return;
+        }
 
-    session.addEventListener('message', ({ data }) => {
-      executePinsList(message, { ...context, message: JSON.parse(data), connection });
+        executePinsList(message, { ...context, message: JSON.parse(notification.data) });
+      },
+      onopen: async () => {
+        await executePinsList(open, { ...context });
+      },
+      onclose: () => {
+        executePinsList(close, { ...context });
+      },
+      onerror(err) {
+        if (error.length === 0) {
+          console.error(err);
+        }
+
+        executePinsList(error, { ...context, error: err });
+      },
+      ...options,
     });
-
-    return session;
   }
 }
 
