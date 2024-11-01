@@ -32,9 +32,9 @@ class SSEService {
     _pinsSettingsList: PinsSettings[],
     context: any,
   ): Promise<any> {
-    const { session } = params;
+    const { session, id = '' } = params;
     const start = context.privates.SSE_SESION_START || '';
-    const name = `${start}__${context.request.digipair}_${context.request.reasoning}`;
+    const name = `${start}__${context.request.digipair}_${context.request.reasoning}__${id}`;
     let channel = this.channels.get(name);
     if (!channel) {
       channel = createChannel(session);
@@ -53,7 +53,6 @@ class SSEService {
       message,
       digipair = context.request.digipair,
       reasoning = context.request.reasoning,
-      event = 'message',
     } = params;
     const start = context.privates.SSE_SESION_START || '';
     const name = `${start}__${digipair}_${reasoning}__${id}`;
@@ -67,10 +66,11 @@ class SSEService {
       message,
       digipair = context.request.digipair,
       reasoning = context.request.reasoning,
+      id = '',
       event = 'message',
     } = params;
     const start = context.privates.SSE_SESION_START || '';
-    const name = `${start}__${digipair}_${reasoning}`;
+    const name = `${start}__${digipair}_${reasoning}__${id}`;
     let channel = this.channels.get(name);
 
     return channel?.broadcast(JSON.stringify(message), event);

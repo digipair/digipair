@@ -39,6 +39,15 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant de channel",
+            "required": false,
+            "description": "Identifiant du channel à ajouter",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -65,15 +74,6 @@
             "description": "Message à envoyer",
             "schema": {
               "type": "object"
-            }
-          },
-          {
-            "name": "event",
-            "summary": "Evènement",
-            "required": false,
-            "description": "Nom de l'évènement",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -108,6 +108,15 @@
             "summary": "Evènement",
             "required": false,
             "description": "Nom de l'évènement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant de channel",
+            "required": false,
+            "description": "Identifiant du channel",
             "schema": {
               "type": "string"
             }

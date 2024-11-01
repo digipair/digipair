@@ -39,6 +39,15 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "id",
+            "summary": "Channel ID",
+            "required": false,
+            "description": "Channel ID",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -66,15 +75,6 @@
             "schema": {
               "type": "object"
             }
-          },
-          {
-            "name": "event",
-            "summary": "Event",
-            "required": false,
-            "description": "Event name",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "x-events": []
@@ -99,6 +99,15 @@
             "summary": "event",
             "required": false,
             "description": "Event name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Channel ID",
+            "required": false,
+            "description": "Channel ID",
             "schema": {
               "type": "string"
             }
