@@ -19,6 +19,7 @@
     "@digipair/skill-llm": "latest",
     "@digipair/skill-openai": "latest",
     "@digipair/skill-service": "latest",
+    "@digipair/skill-sse": "latest",
     "@digipair/skill-temporal": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-logger": "latest",

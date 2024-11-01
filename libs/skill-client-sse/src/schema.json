@@ -23,21 +23,66 @@
             }
           },
           {
-            "name": "connection",
-            "summary": "Name",
+            "name": "event",
+            "summary": "Event",
             "required": false,
-            "description": "Name of the connection",
+            "description": "Event name",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "SSE fetch options",
+            "schema": {
+              "type": "object"
             }
           }
         ],
         "x-events": [
           {
             "name": "message",
-            "summary": "Upon receiving a message",
+            "summary": "Upon a message",
             "required": false,
             "description": "Action triggered upon receiving a message",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "open",
+            "summary": "Upon opening",
+            "required": false,
+            "description": "Action triggered upon opening a connection",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "close",
+            "summary": "Upon closing",
+            "required": false,
+            "description": "Action triggered upon closing a connection",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "error",
+            "summary": "Upon an error",
+            "required": false,
+            "description": "Action triggered upon an error",
             "schema": {
               "type": "array",
               "items": {

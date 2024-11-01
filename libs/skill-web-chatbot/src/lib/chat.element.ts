@@ -1,6 +1,6 @@
 import mermaid from 'mermaid/dist/mermaid.esm.min.mjs';
 import { LitElement, TemplateResult, css, html, nothing } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import * as showdown from 'showdown';
 import { InputsElement } from './inputs.element';
@@ -26,6 +26,9 @@ export class ChatElement extends LitElement {
     return this.inputsElement?.values || [];
   }
 
+  @property()
+  loadingStep!: string;
+
   @query('#messageInput')
   private messageInput!: HTMLInputElement;
 
@@ -33,7 +36,6 @@ export class ChatElement extends LitElement {
   private inputsElement!: InputsElement;
 
   private previousMessages = '';
-  private previousCurrentBoostText: string | undefined = undefined;
   private converter!: showdown.Converter;
 
   static override styles = [
@@ -238,6 +240,21 @@ export class ChatElement extends LitElement {
       .button.action {
         float: right;
       }
+
+      .loading {
+        overflow: visible;
+      }
+
+      .loading .step {
+        color: #bfc1c3;
+        margin-left: 45px;
+        padding-top: 15px;
+        display: block;
+      }
+
+      .loading img {
+        float: left;
+      }
     `,
   ];
 
@@ -391,7 +408,9 @@ export class ChatElement extends LitElement {
 
         ${!this.loading
           ? nothing
-          : html`<section class="loading"><img src=${WRITTING_IMAGE} /></section>`}
+          : html`<section class="loading">
+              <span class="step">${this.loadingStep}</span><img src=${WRITTING_IMAGE} />
+            </section>`}
       </section>
 
       <section class="input-container ${this.currentBoost ? 'with-boost' : ''}">

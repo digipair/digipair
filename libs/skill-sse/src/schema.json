@@ -75,6 +75,15 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Reasoning",
+            "required": false,
+            "description": "Reasoning name",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -108,6 +117,15 @@
             "summary": "Channel ID",
             "required": false,
             "description": "Channel ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Reasoning",
+            "required": false,
+            "description": "Reasoning name",
             "schema": {
               "type": "string"
             }

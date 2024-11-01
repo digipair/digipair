@@ -96,7 +96,7 @@ export class AppService implements OnModuleInit {
           protected: {
             req,
             res,
-          }
+          },
         };
 
         content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
@@ -195,6 +195,10 @@ export class AppService implements OnModuleInit {
 
       return result;
     } catch (error) {
+      if (error.message === 'DIGIPAIR_KEEPALIVE') {
+        throw error;
+      }
+
       console.error(error);
 
       if (!context) {

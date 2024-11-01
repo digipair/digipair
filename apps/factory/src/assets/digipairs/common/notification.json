@@ -1,0 +1,19 @@
+{
+  "description": "Ce raisonnement traite de l'importance des notifications pour la communication en temps réel.",
+  "summary": "Gestion des notifications",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-sse",
+        "element": "registerChannel",
+        "properties": {
+          "id": "{{request.body.userId}}"
+        }
+      }
+    ]
+  },
+  "pins": []
+}

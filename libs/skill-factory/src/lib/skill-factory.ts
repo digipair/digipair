@@ -16,9 +16,18 @@ class FactoryService {
 
   async executeWithContext(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { execute, context } = params;
-    
+
     const result = await executePinsList(execute, context);
     return result;
+  }
+
+  async keepAlive(_params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    throw 'DIGIPAIR_KEEPALIVE';
+  }
+
+  async send(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { code = 200, body } = params;
+    return context.protected.res.send(code, body);
   }
 }
 
@@ -32,3 +41,9 @@ export const start = (params: any, pinsSettingsList: PinsSettings[], context: an
 
 export const executeWithContext = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.executeWithContext(params, pinsSettingsList, context);
+
+export const keepAlive = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.executeWithContext(params, pinsSettingsList, context);
+
+export const send = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.send(params, pinsSettingsList, context);
