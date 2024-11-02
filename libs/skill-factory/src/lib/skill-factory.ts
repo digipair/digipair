@@ -43,7 +43,7 @@ export const executeWithContext = (params: any, pinsSettingsList: PinsSettings[]
   instance.executeWithContext(params, pinsSettingsList, context);
 
 export const keepAlive = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.executeWithContext(params, pinsSettingsList, context);
+  instance.keepAlive(params, pinsSettingsList, context);
 
 export const send = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.send(params, pinsSettingsList, context);

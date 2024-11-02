@@ -99,14 +99,8 @@ export class DigipairFullElement extends LitElement {
       body: JSON.stringify({
         userId: this.userId,
       }),
-      async onopen(response: any) {
-        console.log('open', response);
-      },
-      onclose() {
-        console.log('close');
-      },
       onerror(err) {
-        console.error('Error:', err);
+        console.error('[Digipair] SSE Error:', err);
       },
     });
   }
