@@ -117,7 +117,7 @@ export class ChatbotElement extends LitElement {
         const data = JSON.parse(message.data);
 
         if (data.type === 'step') {
-          this.loadingStep = message.content.step;
+          this.loadingStep = data.content;
         }
 
         if (data.type === 'message') {
@@ -397,7 +397,7 @@ export class ChatbotElement extends LitElement {
             .messages=${this.messages}
             .currentBoost=${this.currentBoost}
             .context=${{ config: this.metadata.config, variables: this.metadata.variables }}
-            currentStep=${this.loadingStep}
+            loadingStep=${this.loadingStep}
             @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
             @boost=${(event: any) => this.setBoost(event.detail)}
           ></digipair-chatbot-chat>

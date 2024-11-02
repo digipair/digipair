@@ -242,7 +242,7 @@ class KeycloakService {
           headers: {
             ...options.headers,
             'Content-Type': 'application/json',
-            'authorization': keycloakService.isLogged ? 'Bearer ' + await keycloakService.token() : undefined,
+            'Authorization': keycloakService.isLogged ? 'Bearer ' + await keycloakService.token() : undefined,
           },
         });
       };
@@ -251,8 +251,8 @@ class KeycloakService {
         executeFactory: async (params, pinsSettingsList, context) => {
           const result = await fetch(window.location, {
             headers: {
-              'content-type': 'application/json',
-              'authorization': keycloakService.isLogged ? 'Bearer ' + await keycloakService.token() : undefined,
+              'Content-Type': 'application/json',
+              'Authorization': keycloakService.isLogged ? 'Bearer ' + await keycloakService.token() : undefined,
             },
             body: JSON.stringify({ type: 'DIGIPAIR_EXECUTE_FACTORY', params, pinsSettingsList, context }),
             method: 'POST',

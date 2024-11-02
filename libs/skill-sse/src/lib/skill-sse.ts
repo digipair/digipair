@@ -58,7 +58,7 @@ class SSEService {
     const name = `${start}__${digipair}_${reasoning}__${id}`;
     const session = this.sessions.get(name);
 
-    return session?.push(JSON.stringify(message));
+    return session?.push(message);
   }
 
   async broadcast(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -73,7 +73,7 @@ class SSEService {
     const name = `${start}__${digipair}_${reasoning}__${id}`;
     let channel = this.channels.get(name);
 
-    return channel?.broadcast(JSON.stringify(message), event);
+    return channel?.broadcast(message, event);
   }
 }
 

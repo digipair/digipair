@@ -242,7 +242,7 @@ export class ChatElement extends LitElement {
       }
 
       .loading {
-        overflow: visible;
+        overflow: visible !important;
       }
 
       .loading .step {
@@ -409,7 +409,7 @@ export class ChatElement extends LitElement {
         ${!this.loading
           ? nothing
           : html`<section class="loading">
-              <span class="step">${this.loadingStep}</span><img src=${WRITTING_IMAGE} />
+              <img src=${WRITTING_IMAGE} /><span class="step">${this.loadingStep}</span>
             </section>`}
       </section>
 

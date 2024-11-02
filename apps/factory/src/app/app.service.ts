@@ -195,7 +195,7 @@ export class AppService implements OnModuleInit {
 
       return result;
     } catch (error) {
-      if (error.message === 'DIGIPAIR_KEEPALIVE') {
+      if (error === 'DIGIPAIR_KEEPALIVE') {
         throw error;
       }
 
