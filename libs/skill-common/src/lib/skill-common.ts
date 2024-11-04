@@ -45,6 +45,7 @@ class CommonService {
             description,
             selector: metadata.selector,
             url: metadata.url,
+            standelone: metadata.standalone,
           };
         }),
     );
