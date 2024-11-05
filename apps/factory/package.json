@@ -10,7 +10,7 @@
     "@digipair/skill-chatbot": "latest",
     "@digipair/skill-common": "latest",
     "@digipair/skill-cron": "latest",
-    "@digipair/skill-data-management": "latest",
+    "@digipair/skill-basic": "latest",
     "@digipair/skill-debug": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-editor": "latest",

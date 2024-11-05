@@ -1,5 +1,5 @@
 {
-  "name": "@digipair/skill-data-management",
+  "name": "@digipair/skill-basic",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.cjs.js",

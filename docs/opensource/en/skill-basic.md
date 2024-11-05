@@ -1,4 +1,4 @@
-# @digipair/skill-data-management
+# @digipair/skill-basic
 
 **Version:** 0.1.0  
 **Summary:** Data Management  
@@ -23,16 +23,16 @@ Transforms a value using the standard data transformation mechanics of the engin
 
 #### Parameters
 
-| Name    | Type   | Required | Description                              |
-|---------|--------|----------|------------------------------------------|
-| value   | object | No       | Value to transform                       |
-| execute | array  | No       | Actions to apply to the data            |
+| Name    | Type   | Required | Description                  |
+| ------- | ------ | -------- | ---------------------------- |
+| value   | object | No       | Value to transform           |
+| execute | array  | No       | Actions to apply to the data |
 
 #### Example
 
 ```json
 {
-  "library": "@digipair/skill-data-management",
+  "library": "@digipair/skill-basic",
   "element": "transform",
   "properties": {
     "value": {
@@ -58,17 +58,17 @@ Stores the variable in the context of the skill.
 
 #### Parameters
 
-| Name    | Type   | Required | Description                              |
-|---------|--------|----------|------------------------------------------|
-| name    | object | Yes      | Name of the variable                     |
-| value   | object | No       | Value to store                           |
-| execute | array  | No       | Actions to apply to the stored data     |
+| Name    | Type   | Required | Description                         |
+| ------- | ------ | -------- | ----------------------------------- |
+| name    | object | Yes      | Name of the variable                |
+| value   | object | No       | Value to store                      |
+| execute | array  | No       | Actions to apply to the stored data |
 
 #### Example
 
 ```json
 {
-  "library": "@digipair/skill-data-management",
+  "library": "@digipair/skill-basic",
   "element": "setVariable",
   "properties": {
     "name": {

@@ -1,6 +1,6 @@
 import { PinsSettings, executePinsList } from '@digipair/engine';
 
-class DataManagementService {
+class BasicService {
   async transform(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { value, execute } = params;
 
@@ -27,7 +27,7 @@ class DataManagementService {
 }
 
 export const transform = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().transform(params, pinsSettingsList, context);
+  new BasicService().transform(params, pinsSettingsList, context);
 
 export const setVariable = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DataManagementService().setVariable(params, pinsSettingsList, context);
+  new BasicService().setVariable(params, pinsSettingsList, context);

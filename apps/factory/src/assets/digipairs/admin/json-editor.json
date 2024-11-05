@@ -167,7 +167,7 @@
     "styleHtml": "color-scheme:dark;",
     "browserInitialize": [
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "digipair",
@@ -191,7 +191,7 @@
         }
       },
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "reasoning",

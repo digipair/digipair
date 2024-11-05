@@ -1,4 +1,4 @@
-# @digipair/skill-data-management
+# @digipair/skill-basic
 
 **Version:** 0.1.0  
 **Summary:** Gestion des données  
@@ -23,16 +23,16 @@ Transforme une valeur grâce aux mécaniques standard de transformation de donn�
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                              |
-|---------|--------|--------|------------------------------------------|
-| value   | object | Non    | Valeur à transformer                     |
-| execute | array  | Non    | Actions à appliquer sur la donnée        |
+| Nom     | Type   | Requis | Description                       |
+| ------- | ------ | ------ | --------------------------------- |
+| value   | object | Non    | Valeur à transformer              |
+| execute | array  | Non    | Actions à appliquer sur la donnée |
 
 #### Exemple
 
 ```json
 {
-  "library": "@digipair/skill-data-management",
+  "library": "@digipair/skill-basic",
   "element": "transform",
   "properties": {
     "value": {
@@ -58,17 +58,17 @@ Enregistre la variable dans le contexte de la compétence.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                              |
-|---------|--------|--------|------------------------------------------|
-| name    | object | Oui    | Nom de la variable                       |
-| value   | object | Non    | Valeur à enregistrer                     |
+| Nom     | Type   | Requis | Description                                   |
+| ------- | ------ | ------ | --------------------------------------------- |
+| name    | object | Oui    | Nom de la variable                            |
+| value   | object | Non    | Valeur à enregistrer                          |
 | execute | array  | Non    | Actions à appliquer sur la donnée enregistrée |
 
 #### Exemple
 
 ```json
 {
-  "library": "@digipair/skill-data-management",
+  "library": "@digipair/skill-basic",
   "element": "setVariable",
   "properties": {
     "name": {

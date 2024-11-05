@@ -11,7 +11,7 @@
 - [skill-chatbot](skill-chatbot)
 - [skill-common](skill-common)
 - [skill-cron](skill-cron)
-- [skill-data-management](skill-data-management)
+- [skill-basic](skill-basic)
 - [skill-debug](skill-debug)
 - [skill-editor](skill-editor)
 - [skill-factory](skill-factory)

@@ -552,7 +552,7 @@
     "styleHtml": "color-scheme:dark;",
     "browserInitialize": [
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "digipair",
@@ -576,7 +576,7 @@
         }
       },
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "reasonings",
@@ -594,7 +594,7 @@
                     }
                   },
                   {
-                    "library": "@digipair/skill-data-management",
+                    "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
                       "execute": [
@@ -617,13 +617,13 @@
         }
       },
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "scenes",
           "execute": [
             {
-              "library": "@digipair/skill-data-management",
+              "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
                 "execute": [
@@ -635,14 +635,14 @@
                     }
                   },
                   {
-                    "library": "@digipair/skill-data-management",
+                    "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
                       "value": "EVALUATE:get entries(if (previous.x-scene-blocks) then previous.x-scene-blocks else {})"
                     }
                   },
                   {
-                    "library": "@digipair/skill-data-management",
+                    "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
                       "value": {
@@ -658,12 +658,12 @@
               "conditions": { "each": "EVALUATE:get entries(variables.digipair.libraries)" }
             },
             {
-              "library": "@digipair/skill-data-management",
+              "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": { "value": "EVALUATE:flatten(previous)" }
             },
             {
-              "library": "@digipair/skill-data-management",
+              "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": { "value": "EVALUATE:previous[item]" }
             }
@@ -671,7 +671,7 @@
         }
       },
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "crons",
@@ -686,7 +686,7 @@
                     "element": "crons"
                   },
                   {
-                    "library": "@digipair/skill-data-management",
+                    "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
                       "value": "EVALUATE:previous[item.digipair = request.params[1] ]"

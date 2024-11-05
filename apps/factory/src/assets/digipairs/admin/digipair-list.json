@@ -453,7 +453,7 @@
     "styleHtml": "color-scheme:dark;",
     "browserInitialize": [
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "digipairs",
@@ -468,7 +468,7 @@
                     "element": "digipairs"
                   },
                   {
-                    "library": "@digipair/skill-data-management",
+                    "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
                       "execute": [
@@ -490,7 +490,7 @@
         }
       },
       {
-        "library": "@digipair/skill-data-management",
+        "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "crons",

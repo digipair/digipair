@@ -32,7 +32,7 @@
         "name": "Execution",
         "execute": [
           {
-            "library": "@digipair/skill-data-management",
+            "library": "@digipair/skill-basic",
             "element": "setVariable",
             "properties": {
               "name": "infos",

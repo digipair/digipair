@@ -14,7 +14,7 @@
     "@digipair/skill-cron": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-web": "latest",
-    "@digipair/skill-data-management": "latest",
+    "@digipair/skill-basic": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-inputs": "latest",
     "@digipair/skill-web-interact": "latest"

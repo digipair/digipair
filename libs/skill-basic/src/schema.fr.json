@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-data-management",
-    "summary": "Data Management",
-    "description": "This skill allows for the manipulation and transformation of data.",
+    "title": "@digipair/skill-basic",
+    "summary": "Gestion des données",
+    "description": "Cette compétence permet manipuler et transformer les données.",
     "version": "0.1.0",
     "x-icon": "📝"
   },
@@ -11,23 +11,23 @@
     "/transform": {
       "post": {
         "tags": ["web", "service", "spatial"],
-        "summary": "Transform the data",
-        "description": "Transforms a value using the standard data transformation mechanics of the engine.",
+        "summary": "Transformer la donnée",
+        "description": "Transforme une valeur grace aus mécaniques standard de transformation de données du moteur",
         "parameters": [
           {
             "name": "value",
-            "summary": "Value",
+            "summary": "Valeur",
             "required": false,
-            "description": "Value to be transformed",
+            "description": "Valeur à transformer",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "execute",
-            "summary": "Execute",
+            "summary": "Exécute",
             "required": false,
-            "description": "Actions to apply to the data",
+            "description": "Actions à appliquer sur la donnée",
             "schema": {
               "type": "array",
               "items": {
@@ -42,32 +42,32 @@
     "/setVariable": {
       "post": {
         "tags": ["web", "service", "spatial"],
-        "summary": "Save the variable",
-        "description": "Saves the variable in the context of the skill.",
+        "summary": "Enregistrer la variable",
+        "description": "Enregistre la variable dans le contexte de la compétence",
         "parameters": [
           {
             "name": "name",
-            "summary": "Name",
+            "summary": "Nom",
             "required": true,
-            "description": "Name of the variable",
+            "description": "Nom de la variable",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "value",
-            "summary": "Value",
+            "summary": "Valeur",
             "required": false,
-            "description": "Value to be saved",
+            "description": "Valeur à enregistrer",
             "schema": {
               "type": "object"
             }
           },
           {
             "name": "execute",
-            "summary": "Execute",
+            "summary": "Exécute",
             "required": false,
-            "description": "Actions to apply to the saved data",
+            "description": "Actions à appliquer sur la donnée enregistrée",
             "schema": {
               "type": "array",
               "items": {
