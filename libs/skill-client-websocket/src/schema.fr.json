@@ -1,0 +1,101 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-client-websocket",
+    "summary": "Gestion des clients Websockets",
+    "description": "Cette compétence permet de gérer les communications en temps réel websocket coté client.",
+    "version": "0.1.0",
+    "x-icon": "🔗"
+  },
+  "paths": {
+    "/connect": {
+      "post": {
+        "tags": ["web", "service"],
+        "summary": "Connexion Websocket",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL",
+            "required": false,
+            "description": "URL du serveur Websocket",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "retryInterval",
+            "summary": "Intervalle de réessai",
+            "required": false,
+            "description": "Intervalle de temps entre chaque réessai de connexion",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "maxRetries",
+            "summary": "Nombre maximum de réessais",
+            "required": false,
+            "description": "Nombre maximum de réessais de connexion",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "message",
+            "summary": "Lors d'un message",
+            "required": false,
+            "description": "Action déclenchée lors de la réception d'un message",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "open",
+            "summary": "Lors de l'ouverture",
+            "required": false,
+            "description": "Action déclenchée lors de l'ouverture d'une connexion",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "close",
+            "summary": "Lors de la fermeture",
+            "required": false,
+            "description": "Action déclenchée lors de la fermeture d'une connexion",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "error",
+            "summary": "Lors d'une erreur",
+            "required": false,
+            "description": "Action déclenchée lors d'une erreur",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

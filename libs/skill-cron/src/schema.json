@@ -66,6 +66,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "utcOffset",
+            "summary": "Timezone Offset",
+            "required": false,
+            "description": "Timezone offset",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []

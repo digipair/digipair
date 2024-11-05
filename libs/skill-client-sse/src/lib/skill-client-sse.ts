@@ -2,7 +2,7 @@
 import { PinsSettings, executePinsList } from '@digipair/engine';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 
-class WebSSEService {
+class ClientSSEService {
   async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       url = '',
@@ -44,7 +44,5 @@ class WebSSEService {
   }
 }
 
-const service = new WebSSEService();
-
 export const connect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  service.connect(params, pinsSettingsList, context);
+  new ClientSSEService().connect(params, pinsSettingsList, context);

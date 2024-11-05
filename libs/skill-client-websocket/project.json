@@ -1,0 +1,31 @@
+{
+  "name": "skill-client-websocket",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-client-websocket/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-client-websocket",
+        "main": "libs/skill-client-websocket/src/index.ts",
+        "tsConfig": "libs/skill-client-websocket/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-client-websocket/src/index.d.ts",
+          "libs/skill-client-sse/src/schema.json",
+          "libs/skill-client-sse/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-client-sse/rollup.build.cjs"],
+        "project": "libs/skill-client-websocket/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-client-websocket {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

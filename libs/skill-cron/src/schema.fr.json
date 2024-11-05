@@ -66,6 +66,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "utcOffset",
+            "summary": "Décalage horaire",
+            "required": false,
+            "description": "Décalage horaire",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []

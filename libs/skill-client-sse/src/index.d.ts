@@ -1,1 +1,1 @@
-export * from './libs/skill-vespa/src/index';
+export * from './libs/skill-client-sse/src/index';
