@@ -18,7 +18,7 @@ class CronService {
     const planning = lines.map((line: string) => JSON.parse(line));
 
     for (const plan of planning) {
-      if (plan.time === '@startup') {
+      if (plan.time === '@startup' && plan.enabled) {
         await this.startTask(path, plan.digipair, plan.reasoning);
         continue;
       }
@@ -49,6 +49,11 @@ class CronService {
     time: string,
     utcOffset: string,
   ) {
+    if (time === '@startup') {
+      this.startTask(path, digipair, reasoning);
+      return;
+    }
+
     const job = new CronJob(
       time,
       async () => {
