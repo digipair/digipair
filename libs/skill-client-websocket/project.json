@@ -13,10 +13,10 @@
         "tsConfig": "libs/skill-client-websocket/tsconfig.lib.json",
         "assets": [
           "libs/skill-client-websocket/src/index.d.ts",
-          "libs/skill-client-sse/src/schema.json",
-          "libs/skill-client-sse/src/schema.fr.json"
+          "libs/skill-client-websocket/src/schema.json",
+          "libs/skill-client-websocket/src/schema.fr.json"
         ],
-        "rollupConfig": ["libs/skill-client-sse/rollup.build.cjs"],
+        "rollupConfig": ["libs/skill-client-websocket/rollup.build.cjs"],
         "project": "libs/skill-client-websocket/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"]
