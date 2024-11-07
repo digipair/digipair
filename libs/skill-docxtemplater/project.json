@@ -1,0 +1,31 @@
+{
+  "name": "skill-docxtemplater",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-docxtemplater/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-docxtemplater",
+        "main": "libs/skill-docxtemplater/src/index.ts",
+        "tsConfig": "libs/skill-docxtemplater/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-docxtemplater/src/index.d.ts",
+          "libs/skill-docxtemplater/src/schema.json",
+          "libs/skill-docxtemplater/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-docxtemplater/rollup.build.cjs"],
+        "project": "libs/skill-docxtemplater/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-docxtemplater {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

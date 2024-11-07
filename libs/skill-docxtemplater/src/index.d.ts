@@ -1,0 +1,1 @@
+export * from './libs/skill-docxtemplater/src/index';

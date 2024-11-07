@@ -1,0 +1,43 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-docxtemplater",
+    "summary": "Génération de documents Word",
+    "description": "Cette compétence permet de générer des documents Word à partir de modèles.",
+    "version": "0.1.0",
+    "x-icon": "🔗"
+  },
+  "paths": {
+    "/generate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Génère un document Word",
+        "parameters": [
+          {
+            "name": "template",
+            "summary": "Template",
+            "required": true,
+            "description": "Modèle de document Word en format .docx base64",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Données",
+            "required": true,
+            "description": "Données à injecter dans le modèle",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

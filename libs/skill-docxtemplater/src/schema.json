@@ -1,0 +1,43 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-docxtemplater",
+    "summary": "Word document generation",
+    "description": "This skill allows generating Word documents from templates.",
+    "version": "0.1.0",
+    "x-icon": "🔗"
+  },
+  "paths": {
+    "/generate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Generate a Word document",
+        "parameters": [
+          {
+            "name": "template",
+            "summary": "Template",
+            "required": true,
+            "description": "Word document template in base64 .docx format",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Data",
+            "required": true,
+            "description": "Data to inject into the template",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
