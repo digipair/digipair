@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-heygen",
+    "summary": "Affichage Heygen",
+    "description": "Cette compétence permet de gérer l'affichage des avatars Heygen.",
+    "version": "0.1.0",
+    "x-icon": "🔗"
+  },
+  "paths": {
+    "/digipair-heygen": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Avatar interactif Heygen",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class de l'élement.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style de l'élement.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élement.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "status",
+            "summary": "Lors d'un changement de statut",
+            "required": false,
+            "description": "Action déclenchée lors d'un changement de statut",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Lors d'un message",
+            "required": false,
+            "description": "Action déclenchée lors de la réception d'un message",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "icecandidate",
+            "summary": "Lors de la réception d'un icecandidate",
+            "required": false,
+            "description": "Action déclenchée lors de la réception d'un icecandidate",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

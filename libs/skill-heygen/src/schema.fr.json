@@ -1,0 +1,241 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-heygen",
+    "summary": "Heygen API",
+    "description": "Cette compétence permet de gérer la communication avec les serveurs Heygen.",
+    "version": "0.1.0",
+    "x-icon": "🔗"
+  },
+  "paths": {
+    "/newSession": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Créer une session Heygen",
+        "parameters": [
+          {
+            "name": "serverUrl",
+            "summary": "URL",
+            "required": false,
+            "description": "URL du serveur Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Clé API Heygen",
+            "required": false,
+            "description": "Clé API Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "summary": "Qualité",
+            "required": false,
+            "description": "Qualité de la voix",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "avatar",
+            "summary": "Avatar",
+            "required": false,
+            "description": "Avatar de la voix",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "voice",
+            "summary": "Voix",
+            "required": false,
+            "description": "Voix de la voix",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/handleICE": {
+      "post": {
+        "tags": ["service"],
+        "summary": "ICE Heygen",
+        "parameters": [
+          {
+            "name": "serverUrl",
+            "summary": "URL",
+            "required": false,
+            "description": "URL du serveur Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Clé API Heygen",
+            "required": false,
+            "description": "Clé API Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "summary": "Session",
+            "required": false,
+            "description": "ID de session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "candidate",
+            "summary": "Candidat ICE",
+            "required": false,
+            "description": "Candidat ICE",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/startSession": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Démarrer la session Heygen",
+        "parameters": [
+          {
+            "name": "serverUrl",
+            "summary": "URL",
+            "required": false,
+            "description": "URL du serveur Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Clé API Heygen",
+            "required": false,
+            "description": "Clé API Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "summary": "Session",
+            "required": false,
+            "description": "ID de session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sdp",
+            "summary": "SDP",
+            "required": false,
+            "description": "SDP",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/talk": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parler avec Heygen",
+        "parameters": [
+          {
+            "name": "serverUrl",
+            "summary": "URL",
+            "required": false,
+            "description": "URL du serveur Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Clé API Heygen",
+            "required": false,
+            "description": "Clé API Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "summary": "Session",
+            "required": false,
+            "description": "ID de session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "summary": "Texte",
+            "required": false,
+            "description": "Texte à dire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/stop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Arrêter la session Heygen",
+        "parameters": [
+          {
+            "name": "serverUrl",
+            "summary": "URL",
+            "required": false,
+            "description": "URL du serveur Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "summary": "Clé API Heygen",
+            "required": false,
+            "description": "Clé API Heygen",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sessionId",
+            "summary": "Session",
+            "required": false,
+            "description": "ID de session",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

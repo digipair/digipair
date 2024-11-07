@@ -41,7 +41,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "comment:string -> cron:string \"Task scheduling based on the comment\", assistant:string \"Assistant's response to indicate that the task has been successfully scheduled\"",
+                    "signature": "comment:string -> cron:string \"Task scheduling based on the comment or @startup to execute it only once\", assistant:string \"Assistant's response to indicate that the task has been successfully scheduled\"",
                     "input": { "comment": "EVALUATE:request.body.prompt" }
                   }
                 }

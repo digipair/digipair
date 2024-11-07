@@ -1,0 +1,31 @@
+{
+  "name": "skill-heygen",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-heygen/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-heygen",
+        "main": "libs/skill-heygen/src/index.ts",
+        "tsConfig": "libs/skill-heygen/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-heygen/src/index.d.ts",
+          "libs/skill-heygen/src/schema.json",
+          "libs/skill-heygen/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-heygen/rollup.build.cjs"],
+        "project": "libs/skill-heygen/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-heygen {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}
