@@ -37,8 +37,12 @@ export const applyTemplate = (value: any, context: any) => {
   let result = value;
 
   if (typeof value === 'string') {
-    const template = Handlebars.compile(value, { noEscape: true });
-    result = template(context);
+    if (result.startsWith('NOEVAL:')) {
+      result = value.substring(7);
+    } else {
+      const template = Handlebars.compile(value, { noEscape: true });
+      result = template(context);
+    }
 
     if (result.startsWith('EVALUATE:')) {
       const path = result.replace(/^EVALUATE:/, '');

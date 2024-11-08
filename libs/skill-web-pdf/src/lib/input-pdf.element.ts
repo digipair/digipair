@@ -25,7 +25,7 @@ export class InputPdfElement extends LitElement {
 
   private _value: string | ArrayBuffer = '';
   get value(): string | ArrayBuffer {
-    return this._value;
+    return 'NOEVAL:' + this._value;
   }
 
   static override styles = css`
@@ -117,9 +117,9 @@ export class InputPdfElement extends LitElement {
           ? html` <ui5-icon name="attachment"></ui5-icon>
               <p>${this.label}<br />${this._content}</p>`
           : this.state === 'loading'
-          ? html`<ui5-busy-indicator size="Small" active></ui5-busy-indicator>`
-          : html` <ui5-icon name="add-document"></ui5-icon>
-              <p>${this.label}</p>`}
+            ? html`<ui5-busy-indicator size="Small" active></ui5-busy-indicator>`
+            : html` <ui5-icon name="add-document"></ui5-icon>
+                <p>${this.label}</p>`}
       </section>
     `;
   }
