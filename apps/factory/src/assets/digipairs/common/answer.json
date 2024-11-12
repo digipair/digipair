@@ -7,10 +7,48 @@
     "execute": [
       {
         "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "userMessageId",
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "EVALUATE:if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then getTime() else null"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "boost",
+          "value": {
+            "reasoning": "EVALUATE:requester.request.reasoning",
+            "step": "EVALUATE:request.body.boost[1].step",
+            "prompt": "EVALUATE:request.body.boost[1].prompt",
+            "required": "EVALUATE:request.body.boost[1].required",
+            "selector": "EVALUATE:request.body.boost[1].selector",
+            "url": "EVALUATE:request.body.boost[1].url",
+            "inputs": "EVALUATE:request.body.boost[1].inputs",
+            "context": "EVALUATE:requester.request.body.context"
+          }
+        },
+        "conditions": {
+          "if": "EVALUATE:request.body.boost[1]"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
         "element": "transform",
         "properties": {
           "value": {
             "uuid": "EVALUATE:previous[1]",
+            "parent_history": "EVALUATE:variables.userMessageId",
+            "parent_conversation": "EVALUATE:requester.request.body.parent_conversation",
             "assistant": "{{request.body.assistant}}",
             "command": "EVALUATE:if request.body.command then request.body.command else []",
             "boost": "EVALUATE:variables.boost",
@@ -32,6 +70,8 @@
                 "assistant": "EVALUATE:data.assistant",
                 "boosts": "EVALUATE:data.boosts",
                 "logs": "EVALUATE:data.logs",
+                "parent_conversation": "EVALUATE:data.parent_conversation",
+                "parent_history": "EVALUATE:data.parent_history",
                 "sources": "EVALUATE:data.sources",
                 "uuid": "EVALUATE:data.uuid",
                 "boost": "EVALUATE:data.boost",

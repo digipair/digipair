@@ -49,6 +49,22 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
+                            "properties": {
+                              "textContent": "Voir les logs",
+                              "href": "/admin/logs"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-menu-item",
+                            "properties": {
+                              "textContent": "Voir la consommation LLM",
+                              "href": "/admin/consumptions"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-menu-item",
                             "properties": { "textContent": "Add a digipair" },
                             "events": {
                               "click": [

@@ -9,7 +9,7 @@
       {
         "library": "@digipair/skill-web-chatbot",
         "element": "digipair-chatbot-full",
-        "properties": { "code": "admin", "apiUrl": "" }
+        "properties": { "code": "admin" }
       }
     ],
     "styleBody": "background-color:#212E3C;"

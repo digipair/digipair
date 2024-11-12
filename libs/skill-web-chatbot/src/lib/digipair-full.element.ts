@@ -228,8 +228,8 @@ export class DigipairFullElement extends LitElement {
         parent_history: detail.parent_history,
       });
 
-      if (detail.command && detail.command.library && detail.command.element) {
-        executePinsList([detail.command], { config: { VERSIONS: this.metadata.config.VERSIONS } });
+      if (detail.command && detail.command.length > 0) {
+        executePinsList(detail.command, { config: { VERSIONS: this.metadata.config.VERSIONS } });
       }
     } catch (error) {
       this.pushMessage({
@@ -330,20 +330,6 @@ export class DigipairFullElement extends LitElement {
               </div>
             `,
           )}
-          ${!this.currentBoost
-            ? nothing
-            : html`
-                <div>
-                  <span
-                    class="action"
-                    style="border: 1px solid var(--digipair-color-primary, #52DFDB)"
-                    @click=${() => {
-                      this.currentBoost = null;
-                    }}
-                    >Annuler</span
-                  >
-                </div>
-              `}
         </section>
 
         <section

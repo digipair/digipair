@@ -655,7 +655,9 @@
                   }
                 ]
               },
-              "conditions": { "each": "EVALUATE:get entries(variables.digipair.libraries)" }
+              "conditions": {
+                "each": "EVALUATE:get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"]"
+              }
             },
             {
               "library": "@digipair/skill-basic",

@@ -153,7 +153,8 @@
               "digipair": "EVALUATE:variables.digipair",
               "reasoning": "EVALUATE:variables.reasoning",
               "menuBackgroundColor": "#121212",
-              "contentStyle": "position: fixed; top: 69px; right: 0; bottom: 0; left: 0;"
+              "contentStyle": "position: fixed; top: 69px; right: 0; bottom: 0; left: 0;",
+              "schemas": "EVALUATE:variables.schemas"
             }
           }
         ],
@@ -215,6 +216,35 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "schemas",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-editor",
+                    "element": "digipairs"
+                  }
+                ]
+              }
+            },
+            {
+              "library": "@digipair/skill-http",
+              "element": "read",
+              "properties": {
+                "path": "/{{item}}/schema.json"
+              },
+              "conditions": { "each": "EVALUATE:previous" }
             }
           ]
         }

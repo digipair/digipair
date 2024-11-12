@@ -46,3 +46,6 @@ tools/vespa/configuration/*.zip
 /test.ts
 /test.html
 .obsidian
+/debug/factory
+/debug/node_modules
+/debug/yarn.lock
