@@ -1,0 +1,31 @@
+{
+  "name": "skill-html",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-html/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-html",
+        "main": "libs/skill-html/src/index.ts",
+        "tsConfig": "libs/skill-html/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-html/src/index.d.ts",
+          "libs/skill-html/src/schema.json",
+          "libs/skill-html/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-html/rollup.build.cjs"],
+        "project": "libs/skill-html/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-html {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

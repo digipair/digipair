@@ -1,0 +1,61 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-html",
+    "summary": "HTML code management",
+    "description": "This skill allows to manage HTML code",
+    "version": "0.1.0",
+    "x-icon": "🌐"
+  },
+  "paths": {
+    "/html2pins": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Convert HTML to Pin's",
+        "parameters": [
+          {
+            "name": "html",
+            "summary": "HTML",
+            "required": true,
+            "description": "HTML code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "library",
+            "summary": "Pin's library",
+            "required": false,
+            "description": "Pin's library",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/pins2html": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Convert Pin's to HTML",
+        "parameters": [
+          {
+            "name": "pins",
+            "summary": "Pin's",
+            "required": true,
+            "description": "List of Pin's",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
