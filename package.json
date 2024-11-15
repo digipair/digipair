@@ -33,7 +33,6 @@
     "axios": "^1.7.2",
     "better-sse": "^0.14.0",
     "blockly": "^11.1.1",
-    "canvas": "^2.11.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "cpx": "^1.5.0",
@@ -64,6 +63,7 @@
     "tslib": "^2.6.3",
     "uuid": "^10.0.0",
     "vanilla-jsoneditor": "^0.23.7",
+    "web-push": "^3.6.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -90,6 +90,7 @@
     "@types/node": "20.14.2",
     "@types/nodemailer": "^6.4.15",
     "@types/showdown": "^2.0.6",
+    "@types/web-push": "^3.6.4",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
     "css-selector-generator": "^3.6.8",
