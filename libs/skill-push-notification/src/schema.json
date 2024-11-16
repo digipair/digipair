@@ -33,18 +33,18 @@
             }
           },
           {
-            "name": "vapidPrivateKey",
-            "summary": "VapidPrivateKey",
-            "required": true,
+            "name": "privateKey",
+            "summary": "VAPID private key",
+            "required": false,
             "description": "VAPID private key used for authentication.",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "vapidPublicKey",
-            "summary": "VapidPublicKey",
-            "required": true,
+            "name": "publicKey",
+            "summary": "VAPID public key",
+            "required": false,
             "description": "VAPID public key used to enable push subscription.",
             "schema": {
               "type": "string"
@@ -53,7 +53,7 @@
           {
             "name": "mailto",
             "summary": "Mailto",
-            "required": true,
+            "required": false,
             "description": "Admin email for VAPID mailto configuration.",
             "schema": {
               "type": "string"

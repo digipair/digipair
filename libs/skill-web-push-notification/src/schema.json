@@ -15,9 +15,9 @@
         "description": "Register the user to receive push notifications for real-time updates.",
         "parameters": [
           {
-            "name": "vapidPublicKey",
-            "summary": "VapidPublicKey",
-            "required": true,
+            "name": "publicKey",
+            "summary": "VAPID public key",
+            "required": false,
             "description": "VAPID public key used to enable push subscription.",
             "schema": {
               "type": "string"

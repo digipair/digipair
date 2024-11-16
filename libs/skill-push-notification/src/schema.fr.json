@@ -33,18 +33,18 @@
             }
           },
           {
-            "name": "vapidPrivateKey",
+            "name": "privateKey",
             "summary": "Clé privée VAPID",
-            "required": true,
+            "required": false,
             "description": "Clé privée VAPID utilisée pour l'authentification du serveur.",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "vapidPublicKey",
+            "name": "publicKey",
             "summary": "Clé publique VAPID",
-            "required": true,
+            "required": false,
             "description": "Clé publique VAPID utilisée pour autoriser les notifications.",
             "schema": {
               "type": "string"
@@ -53,7 +53,7 @@
           {
             "name": "mailto",
             "summary": "Destinataire",
-            "required": true,
+            "required": false,
             "description": "Email de l'admin pour la configuration de VAPID",
             "schema": {
               "type": "string"

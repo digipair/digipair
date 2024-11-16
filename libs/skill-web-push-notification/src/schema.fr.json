@@ -15,9 +15,9 @@
         "description": "Enregistre l'utilisateur pour recevoir des notifications push en temps réel.",
         "parameters": [
           {
-            "name": "vapidPublicKey",
+            "name": "publicKey",
             "summary": "Clé publique VAPID",
-            "required": true,
+            "required": false,
             "description": "Clé publique VAPID utilisée pour autoriser les notifications.",
             "schema": {
               "type": "string"
