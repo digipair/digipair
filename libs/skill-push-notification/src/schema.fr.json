@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-push-notification",
+    "summary": "Manipulation de WebPush",
+    "description": "Cette compétence permet aux utilisateurs d'envoyer des notifications avec WebPush.",
+    "version": "0.1.0",
+    "x-icon": "📕"
+  },
+  "paths": {
+    "/sendPush": {
+      "post": {
+        "tags": ["web", "spatial"],
+        "summary": "Envoie une notification via WebPush.",
+        "description": "Envoie une notification via WebPush avec les données nécessaires.",
+        "parameters": [
+          {
+            "name": "subscription",
+            "summary": "Souscription",
+            "required": true,
+            "description": "Objet de souscription utilisé pour l'envoi de notifications.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "payload",
+            "summary": "Charge utile",
+            "required": true,
+            "description": "Charge utile à inclure dans la notification.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "privateKey",
+            "summary": "Clé privée VAPID",
+            "required": false,
+            "description": "Clé privée VAPID utilisée pour l'authentification du serveur.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicKey",
+            "summary": "Clé publique VAPID",
+            "required": false,
+            "description": "Clé publique VAPID utilisée pour autoriser les notifications.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mailto",
+            "summary": "Destinataire",
+            "required": false,
+            "description": "Email de l'admin pour la configuration de VAPID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

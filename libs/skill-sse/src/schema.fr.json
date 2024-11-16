@@ -113,15 +113,6 @@
             }
           },
           {
-            "name": "event",
-            "summary": "Evènement",
-            "required": false,
-            "description": "Nom de l'évènement",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "summary": "Identifiant de channel",
             "required": false,

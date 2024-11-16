@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-push-notification",
+    "summary": "Web Push Manipulation",
+    "description": "This skill allows users to send WebPush notifications.",
+    "version": "0.1.0",
+    "x-icon": "📕"
+  },
+  "paths": {
+    "/sendPush": {
+      "post": {
+        "tags": ["web", "spatial"],
+        "summary": "Send a web push notification",
+        "description": "Send a web push notification with the specified values.",
+        "parameters": [
+          {
+            "name": "subscription",
+            "summary": "Subscription",
+            "required": true,
+            "description": "Subscription object used to send notifications.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "payload",
+            "summary": "Payload",
+            "required": true,
+            "description": "Payload to insert into the notification",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "privateKey",
+            "summary": "VAPID private key",
+            "required": false,
+            "description": "VAPID private key used for authentication.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicKey",
+            "summary": "VAPID public key",
+            "required": false,
+            "description": "VAPID public key used to enable push subscription.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mailto",
+            "summary": "Mailto",
+            "required": false,
+            "description": "Admin email for VAPID mailto configuration.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

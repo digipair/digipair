@@ -1,11 +1,21 @@
 import { All, Body, Controller, Query, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
+import * as express from 'express';
 import { promises } from 'fs';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  @All('/public/*')
+  async public(@Res() res: Response) {
+    const staticAssets = express.static(`${__dirname}/assets/public`);
+
+    staticAssets(res.req, res, () => {
+      res.status(404).send('File not found');
+    });
+  }
 
   @All('*')
   async domain(
