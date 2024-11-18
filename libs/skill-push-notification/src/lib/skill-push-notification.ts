@@ -7,9 +7,9 @@ class PushNotificationService {
       payload,
       subscription,
       mailto = context.privates.PUSH_NOTIFICATION_MAILTO,
-      privateKey = context.variables.PUSH_NOTIFICATION_PUBLIC_KEY ||
+      publicKey = context.variables.PUSH_NOTIFICATION_PUBLIC_KEY ||
         context.privates.PUSH_NOTIFICATION_PUBLIC_KEY,
-      publicKey = context.privates.PUSH_NOTIFICATION_PRIVATE_KEY,
+      privateKey = context.privates.PUSH_NOTIFICATION_PRIVATE_KEY,
     } = params;
 
     webPush.setVapidDetails(`mailto:${mailto}`, publicKey, privateKey);

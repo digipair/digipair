@@ -113,7 +113,7 @@ class KeycloakService {
           try {
             this.isLogged = await keycloak.init({
               onLoad: 'check-sso',
-              silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
+              silentCheckSsoRedirectUri: window.location.origin + '/public/silent-check-sso.html',
             });
           } catch (error) {
             console.error('keycloak error', error);

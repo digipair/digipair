@@ -32,7 +32,11 @@ class WebKeycloakService {
   }
 
   async initialize(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<void> {
-    const { url = context.variables.KEYCLOAK_URL, realm = context.variables.KEYCLOAK_REALM, clientId = context.variables.KEYCLOAK_CLIENTID } = params;
+    const {
+      url = context.variables.KEYCLOAK_URL,
+      realm = context.variables.KEYCLOAK_REALM,
+      clientId = context.variables.KEYCLOAK_CLIENTID,
+    } = params;
 
     this._keycloakPromise = (async () => {
       const keycloak = new Keycloak({
@@ -45,7 +49,7 @@ class WebKeycloakService {
       try {
         this._isLogged = await keycloak.init({
           onLoad: 'check-sso',
-          silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
+          silentCheckSsoRedirectUri: window.location.origin + '/public/silent-check-sso.html',
         });
       } catch (error) {
         console.error('keycloak error', error);

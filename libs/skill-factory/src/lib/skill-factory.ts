@@ -26,8 +26,13 @@ class FactoryService {
   }
 
   async send(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { code = 200, body } = params;
-    return context.protected.res.send(code, body);
+    const { body } = params;
+    return context.protected.res.send(body);
+  }
+
+  async status(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { code = 200 } = params;
+    return context.protected.res.status(code);
   }
 }
 

@@ -92,21 +92,31 @@
         "description": "Send an HTTP request",
         "parameters": [
           {
-            "name": "code",
-            "required": false,
-            "summary": "Return code",
-            "description": "HTTP return code",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
             "name": "body",
             "required": false,
             "summary": "Body",
             "description": "Body of the request",
             "schema": {
               "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/status": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Send HTTP status",
+        "description": "Send an HTTP status",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "summary": "Return code",
+            "description": "HTTP return code",
+            "schema": {
+              "type": "number"
             }
           }
         ],

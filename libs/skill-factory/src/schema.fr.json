@@ -92,21 +92,31 @@
         "description": "Envoi de données à la connection HTTP",
         "parameters": [
           {
-            "name": "code",
-            "required": false,
-            "summary": "Code de retour",
-            "description": "Code de retour",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
             "name": "body",
             "required": false,
             "summary": "Body",
             "description": "Corps de la réponse",
             "schema": {
               "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/status": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Code de retour HTTP",
+        "description": "Envoi d'un code de retour à la connection HTTP",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "summary": "Code de retour",
+            "description": "Code de retour",
+            "schema": {
+              "type": "number"
             }
           }
         ],
