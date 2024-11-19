@@ -41,6 +41,7 @@
     "docxtemplater": "^3.51.2",
     "esm": "^3.2.25",
     "feelin": "^3.1.0",
+    "form-data": "^4.0.1",
     "http-server": "^14.1.1",
     "isomorphic-ws": "^5.0.0",
     "jsdom": "^25.0.1",

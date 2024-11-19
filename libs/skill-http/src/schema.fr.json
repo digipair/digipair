@@ -268,10 +268,85 @@
         ],
         "x-events": []
       }
+    },
+
+    "/upload": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Upload une ressource HTTP",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Adresse du service",
+            "required": true,
+            "description": "Adresse du service à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "method",
+            "summary": "Méthode HTTP",
+            "required": false,
+            "description": "Méthode HTTP à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "parameters",
+            "summary": "Parametres",
+            "required": true,
+            "description": "Liste des paramètres à envoyer",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/UploadParameters"
+              }
+            }
+          },
+          {
+            "name": "headers",
+            "summary": "En-têtes",
+            "required": false,
+            "description": "En-têtes à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "IS_JSON",
+            "summary": "API JSON",
+            "required": false,
+            "description": "Indique si l'API est en JSON",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "UploadParameters": {
+        "summary": "Parametres d'upload",
+        "tags": ["service", "web", "spatial"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {}
 }

@@ -12348,6 +12348,1226 @@ export const schemas = {
         ],
       },
     },
+    '/h2': {
+      post: {
+        tags: ['web', 'needPins'],
+        summary: 'h1',
+        parameters: [
+          {
+            name: 'class',
+            summary: 'Class',
+            description: 'Class of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'style',
+            summary: 'Style',
+            description: 'CSS style of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'id',
+            summary: 'Id',
+            description: 'Id of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'textContent',
+            summary: 'Text Content',
+            description: 'Text content of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'innerHTML',
+            summary: 'Inner HTML',
+            description: 'Inner HTML of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'slot',
+            summary: 'Slot',
+            description: 'Slot of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        'x-events': [
+          {
+            name: 'click',
+            summary: 'Click',
+            description: 'Click event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keydown',
+            summary: 'Keydown',
+            description: 'Keydown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keyup',
+            summary: 'Keyup',
+            description: 'Keyup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousedown',
+            summary: 'Mousedown',
+            description: 'Mousedown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseup',
+            summary: 'Mouseup',
+            description: 'Mouseup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousemove',
+            summary: 'Mousemove',
+            description: 'Mousemove event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseover',
+            summary: 'Mouseover',
+            description: 'Mouseover event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseout',
+            summary: 'Mouseout',
+            description: 'Mouseout event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'input',
+            summary: 'Input',
+            description: 'Input event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'change',
+            summary: 'Change',
+            description: 'Change event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'focus',
+            summary: 'Focus',
+            description: 'Focus event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'blur',
+            summary: 'Blur',
+            description: 'Blur event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'dblclick',
+            summary: 'Dblclick',
+            description: 'Dblclick event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'wheel',
+            summary: 'Wheel',
+            description: 'Wheel event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'load',
+            summary: 'Load',
+            description: 'Load event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+        ],
+      },
+    },
+    '/h3': {
+      post: {
+        tags: ['web', 'needPins'],
+        summary: 'h1',
+        parameters: [
+          {
+            name: 'class',
+            summary: 'Class',
+            description: 'Class of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'style',
+            summary: 'Style',
+            description: 'CSS style of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'id',
+            summary: 'Id',
+            description: 'Id of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'textContent',
+            summary: 'Text Content',
+            description: 'Text content of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'innerHTML',
+            summary: 'Inner HTML',
+            description: 'Inner HTML of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'slot',
+            summary: 'Slot',
+            description: 'Slot of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        'x-events': [
+          {
+            name: 'click',
+            summary: 'Click',
+            description: 'Click event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keydown',
+            summary: 'Keydown',
+            description: 'Keydown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keyup',
+            summary: 'Keyup',
+            description: 'Keyup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousedown',
+            summary: 'Mousedown',
+            description: 'Mousedown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseup',
+            summary: 'Mouseup',
+            description: 'Mouseup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousemove',
+            summary: 'Mousemove',
+            description: 'Mousemove event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseover',
+            summary: 'Mouseover',
+            description: 'Mouseover event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseout',
+            summary: 'Mouseout',
+            description: 'Mouseout event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'input',
+            summary: 'Input',
+            description: 'Input event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'change',
+            summary: 'Change',
+            description: 'Change event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'focus',
+            summary: 'Focus',
+            description: 'Focus event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'blur',
+            summary: 'Blur',
+            description: 'Blur event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'dblclick',
+            summary: 'Dblclick',
+            description: 'Dblclick event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'wheel',
+            summary: 'Wheel',
+            description: 'Wheel event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'load',
+            summary: 'Load',
+            description: 'Load event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+        ],
+      },
+    },
+    '/h4': {
+      post: {
+        tags: ['web', 'needPins'],
+        summary: 'h1',
+        parameters: [
+          {
+            name: 'class',
+            summary: 'Class',
+            description: 'Class of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'style',
+            summary: 'Style',
+            description: 'CSS style of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'id',
+            summary: 'Id',
+            description: 'Id of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'textContent',
+            summary: 'Text Content',
+            description: 'Text content of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'innerHTML',
+            summary: 'Inner HTML',
+            description: 'Inner HTML of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'slot',
+            summary: 'Slot',
+            description: 'Slot of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        'x-events': [
+          {
+            name: 'click',
+            summary: 'Click',
+            description: 'Click event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keydown',
+            summary: 'Keydown',
+            description: 'Keydown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keyup',
+            summary: 'Keyup',
+            description: 'Keyup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousedown',
+            summary: 'Mousedown',
+            description: 'Mousedown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseup',
+            summary: 'Mouseup',
+            description: 'Mouseup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousemove',
+            summary: 'Mousemove',
+            description: 'Mousemove event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseover',
+            summary: 'Mouseover',
+            description: 'Mouseover event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseout',
+            summary: 'Mouseout',
+            description: 'Mouseout event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'input',
+            summary: 'Input',
+            description: 'Input event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'change',
+            summary: 'Change',
+            description: 'Change event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'focus',
+            summary: 'Focus',
+            description: 'Focus event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'blur',
+            summary: 'Blur',
+            description: 'Blur event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'dblclick',
+            summary: 'Dblclick',
+            description: 'Dblclick event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'wheel',
+            summary: 'Wheel',
+            description: 'Wheel event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'load',
+            summary: 'Load',
+            description: 'Load event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+        ],
+      },
+    },
+    '/h5': {
+      post: {
+        tags: ['web', 'needPins'],
+        summary: 'h1',
+        parameters: [
+          {
+            name: 'class',
+            summary: 'Class',
+            description: 'Class of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'style',
+            summary: 'Style',
+            description: 'CSS style of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'id',
+            summary: 'Id',
+            description: 'Id of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'textContent',
+            summary: 'Text Content',
+            description: 'Text content of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'innerHTML',
+            summary: 'Inner HTML',
+            description: 'Inner HTML of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'slot',
+            summary: 'Slot',
+            description: 'Slot of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        'x-events': [
+          {
+            name: 'click',
+            summary: 'Click',
+            description: 'Click event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keydown',
+            summary: 'Keydown',
+            description: 'Keydown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keyup',
+            summary: 'Keyup',
+            description: 'Keyup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousedown',
+            summary: 'Mousedown',
+            description: 'Mousedown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseup',
+            summary: 'Mouseup',
+            description: 'Mouseup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousemove',
+            summary: 'Mousemove',
+            description: 'Mousemove event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseover',
+            summary: 'Mouseover',
+            description: 'Mouseover event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseout',
+            summary: 'Mouseout',
+            description: 'Mouseout event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'input',
+            summary: 'Input',
+            description: 'Input event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'change',
+            summary: 'Change',
+            description: 'Change event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'focus',
+            summary: 'Focus',
+            description: 'Focus event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'blur',
+            summary: 'Blur',
+            description: 'Blur event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'dblclick',
+            summary: 'Dblclick',
+            description: 'Dblclick event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'wheel',
+            summary: 'Wheel',
+            description: 'Wheel event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'load',
+            summary: 'Load',
+            description: 'Load event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+        ],
+      },
+    },
+    '/h6': {
+      post: {
+        tags: ['web', 'needPins'],
+        summary: 'h1',
+        parameters: [
+          {
+            name: 'class',
+            summary: 'Class',
+            description: 'Class of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'style',
+            summary: 'Style',
+            description: 'CSS style of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'id',
+            summary: 'Id',
+            description: 'Id of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'textContent',
+            summary: 'Text Content',
+            description: 'Text content of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'innerHTML',
+            summary: 'Inner HTML',
+            description: 'Inner HTML of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+          {
+            name: 'slot',
+            summary: 'Slot',
+            description: 'Slot of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
+        ],
+        'x-events': [
+          {
+            name: 'click',
+            summary: 'Click',
+            description: 'Click event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keydown',
+            summary: 'Keydown',
+            description: 'Keydown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'keyup',
+            summary: 'Keyup',
+            description: 'Keyup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousedown',
+            summary: 'Mousedown',
+            description: 'Mousedown event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseup',
+            summary: 'Mouseup',
+            description: 'Mouseup event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mousemove',
+            summary: 'Mousemove',
+            description: 'Mousemove event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseover',
+            summary: 'Mouseover',
+            description: 'Mouseover event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'mouseout',
+            summary: 'Mouseout',
+            description: 'Mouseout event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'input',
+            summary: 'Input',
+            description: 'Input event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'change',
+            summary: 'Change',
+            description: 'Change event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'focus',
+            summary: 'Focus',
+            description: 'Focus event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'blur',
+            summary: 'Blur',
+            description: 'Blur event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'dblclick',
+            summary: 'Dblclick',
+            description: 'Dblclick event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'wheel',
+            summary: 'Wheel',
+            description: 'Wheel event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+          {
+            name: 'load',
+            summary: 'Load',
+            description: 'Load event.',
+            required: false,
+            schema: {
+              type: 'array',
+              items: {
+                $ref: 'https://schemas.digipair.ai/pinsSettings',
+              },
+            },
+          },
+        ],
+      },
+    },
     '/head': {
       post: {
         tags: ['web', 'needPins'],
