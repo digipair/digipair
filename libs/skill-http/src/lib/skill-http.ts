@@ -85,7 +85,7 @@ class HttpService {
   }
 
   private appendParam(formData: any, param: any) {
-    if (param.value.type == 'text') {
+    if (param.type == 'text') {
       formData.append(param.name, param.value);
     } else if (param.type === 'file') {
       // Gestion des fichiers encodés en base64

@@ -32,6 +32,7 @@
       "@digipair/skill-heygen": ["libs/skill-heygen/src/index.ts"],
       "@digipair/skill-html": ["libs/skill-html/src/index.ts"],
       "@digipair/skill-http": ["libs/skill-http/src/index.ts"],
+      "@digipair/skill-qrcode": ["libs/skill-qrcode/src/index.ts"],
       "@digipair/skill-keycloak": ["libs/skill-keycloak/src/index.ts"],
       "@digipair/skill-linkedin": ["libs/skill-linkedin/src/index.ts"],
       "@digipair/skill-llm": ["libs/skill-llm/src/index.ts"],

@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-qrcode",
+    "summary": "QRCode manipulation",
+    "description": "This skill allows reading and generating QR codes",
+    "version": "0.1.0",
+    "x-icon": "🌐"
+  },
+  "paths": {
+    "/encode": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "QRCode encode",
+        "parameters": [
+          {
+            "name": "data",
+            "summary": "Data",
+            "required": true,
+            "description": "Data to encode",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/decode": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "QRCode decode",
+        "parameters": [
+          {
+            "name": "image",
+            "summary": "Image",
+            "required": true,
+            "description": "Base64 image to decode",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
