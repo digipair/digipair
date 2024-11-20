@@ -1,7 +1,9 @@
 {
   "name": "@digipair/skill-qrcode",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "canvas": "^2.11.2"
+  },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
 }

@@ -1,15 +1,25 @@
 import { executePinsList, PinsSettings } from '@digipair/engine';
-import { createCanvas, loadImage as loadImageCanvas } from 'canvas';
 
 class CanvasService {
   private base64ToImage(base64: string) {
     const data = base64.replace(/^data:image\/\w+;base64,/, '');
     const buffer = Buffer.from(data, 'base64');
-    return buffer
+    return buffer;
   }
 
   async canvas(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { width, height, execute } = params;
+    const { createCanvas } =
+      typeof window === 'undefined'
+        ? require('canvas')
+        : {
+            createCanvas: (width: number, height: number) => {
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              return canvas;
+            },
+          };
 
     const instance = createCanvas(width, height);
     const ctx = instance.getContext('2d');
@@ -21,9 +31,20 @@ class CanvasService {
 
   async loadImage(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { image } = params;
-    const buffer = this.base64ToImage(image);
+    const { loadImageCanvas } =
+      typeof window === 'undefined'
+        ? require('canvas')
+        : {
+            loadImageCanvas: (src: string) =>
+              new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = err => reject(err);
+                img.src = src;
+              }),
+          };
 
-    return loadImageCanvas(buffer);
+    return loadImageCanvas(typeof window === 'undefined' ? this.base64ToImage(image) : image);
   }
 
   async drawImage(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -96,5 +117,3 @@ export const lineWidth = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const measureText = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CanvasService().measureText(params, pinsSettingsList, context);
-
-

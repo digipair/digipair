@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import { default as FormData } from 'form-data';
 
 class HttpService {
   private IS_JSON!: boolean;
@@ -58,7 +57,7 @@ class HttpService {
 
   async upload(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { path, parameters, method = 'POST', headers = {} } = params;
-    const formData = new FormData();
+    const formData = typeof window !== 'undefined' ? new FormData() : new (require('form-data').default)();
 
     // Ajout des paramètres au FormData
     parameters.forEach((param: any) => {

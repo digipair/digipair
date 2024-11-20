@@ -1,7 +1,9 @@
 {
   "name": "@digipair/skill-http",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "form-data": "4.0.1"
+  },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
 }
