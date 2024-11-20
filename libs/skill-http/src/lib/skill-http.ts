@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import { default as FormData} from 'form-data';
+import { default as FormData } from 'form-data';
 
 class HttpService {
   private IS_JSON!: boolean;
