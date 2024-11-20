@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import * as FormData from 'form-data';
+import { default as FormData } from 'form-data';
 
 class HttpService {
   private IS_JSON!: boolean;
@@ -97,7 +97,10 @@ class HttpService {
 
       const base64Data = matches[2];
       const buffer = Buffer.from(base64Data, 'base64');
-      formData.append(param.name, buffer);
+      formData.append(param.name, buffer, {
+        filename: param.name + '.' + matches[1].split('/')[1],
+        contentType: matches[1],
+    });
     }
   }
 }
