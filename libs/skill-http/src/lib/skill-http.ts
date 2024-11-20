@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import * as FormData from 'form-data';
+import { default as FormData} from 'form-data';
 
 class HttpService {
   private IS_JSON!: boolean;
@@ -85,7 +85,7 @@ class HttpService {
   }
 
   private appendParam(formData: any, param: any) {
-    if (param.value.type == 'text') {
+    if (param.type == 'text') {
       formData.append(param.name, param.value);
     } else if (param.type === 'file') {
       // Gestion des fichiers encodés en base64
@@ -95,9 +95,11 @@ class HttpService {
         throw new Error(`Bad base64 format for ${param.name}`);
       }
 
-      const base64Data = matches[2];
-      const buffer = Buffer.from(base64Data, 'base64');
-      formData.append(param.name, buffer);
+      const buffer = Buffer.from(matches[2], 'base64');
+      formData.append("file", buffer, {
+          filename: param.name,
+          contentType: matches[1],
+      });
     }
   }
 }
