@@ -57,7 +57,7 @@ class HttpService {
 
   async upload(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { path, parameters, method = 'POST', headers = {} } = params;
-    const formData = typeof window !== 'undefined' ? new FormData() : new (require('form-data').default)();
+    const formData = typeof window !== 'undefined' ? new FormData() : new (require('form-data'))();
 
     // Ajout des paramètres au FormData
     parameters.forEach((param: any) => {
