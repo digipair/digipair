@@ -34,6 +34,11 @@ class FactoryService {
     const { code = 200 } = params;
     return context.protected.res.status(code);
   }
+
+  async headers(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { headers } = params;
+    return context.protected.res.set(headers);
+  }
 }
 
 let instance: FactoryService;
@@ -52,3 +57,9 @@ export const keepAlive = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const send = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.send(params, pinsSettingsList, context);
+
+export const status = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.status(params, pinsSettingsList, context);
+
+export const headers = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.headers(params, pinsSettingsList, context);

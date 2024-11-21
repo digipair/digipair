@@ -24,6 +24,15 @@ class BasicService {
     context.variables[name] = result;
     return result;
   }
+
+  async base64ToBuffer(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { base64 } = params;
+
+    const data = base64.replace(/^data:.*;base64,/, '');
+    const buffer = Buffer.from(data, 'base64');
+
+    return buffer;
+  }
 }
 
 export const transform = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -31,3 +40,6 @@ export const transform = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const setVariable = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new BasicService().setVariable(params, pinsSettingsList, context);
+
+export const base64ToBuffer = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new BasicService().base64ToBuffer(params, pinsSettingsList, context);

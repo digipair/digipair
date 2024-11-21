@@ -78,6 +78,25 @@
         ],
         "x-events": []
       }
+    },
+    "/base64ToBuffer": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Convert base64 to buffer",
+        "description": "Converts a base64 string to a buffer.",
+        "parameters": [
+          {
+            "name": "base64",
+            "summary": "Base64",
+            "required": true,
+            "description": "Base64 file",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

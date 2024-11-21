@@ -122,6 +122,25 @@
         ],
         "x-events": []
       }
+    },
+    "/headers": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Headers HTTP",
+        "description": "Envoi des headers à la connection HTTP",
+        "parameters": [
+          {
+            "name": "headers",
+            "required": true,
+            "summary": "Headers",
+            "description": "Headers",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

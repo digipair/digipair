@@ -10,12 +10,9 @@ export class AppController {
 
   @Get('/public/*')
   async public(@Res() res: Response, @Req() req: Request) {
-    const filePath = `${__dirname}/assets/public${req.url.replace(
-      '/public',
-      ''
-    )}`;
+    const filePath = `${__dirname}/assets/public${req.url.replace('/public', '')}`;
 
-    res.sendFile(filePath, (err) => {
+    res.sendFile(filePath, err => {
       if (err) {
         res.status(404).send('File not found');
       }
