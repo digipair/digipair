@@ -90,8 +90,7 @@ export class InputPdfElement extends LitElement {
 
   private async extractText(file: Uint8Array): Promise<string> {
     const pdfjs = await import(PDFJS_URL);
-    pdfjs.GlobalWorkerOptions.workerSrc = '/assets/pdf.worker.min.mjs';
-
+    pdfjs.GlobalWorkerOptions.workerSrc = './pdf.worker.min.mjs';
     const pdf = await pdfjs.getDocument(file).promise;
     let text = '';
 
