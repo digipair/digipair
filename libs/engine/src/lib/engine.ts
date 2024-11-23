@@ -175,6 +175,8 @@ export const generateElementFromPins = async (
   pinsSettings: PinsSettings,
   parent: Element,
   context: any,
+  document: Document = typeof window !== 'undefined' ? window.document : global.document,
+  options = { import: true },
 ): Promise<Element | void> => {
   let settings = await preparePinsSettings(pinsSettings, context);
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
@@ -195,6 +197,8 @@ export const generateElementFromPins = async (
           index,
           parent: { item: context.item, index: context.index, parent: context.parent },
         },
+        document,
+        options,
       );
     }
     return;
@@ -208,7 +212,7 @@ export const generateElementFromPins = async (
   element.setAttribute('data-digipair-pins', '');
 
   const library = pinsSettings.library;
-  if (library !== 'web' && !_config.LIBRARIES[library]) {
+  if (options.import && library !== 'web' && !_config.LIBRARIES[library]) {
     const config = context.config || {};
     const version = (config.VERSIONS || {})[library] || 'latest';
     import(
@@ -242,7 +246,7 @@ export const generateElementFromPins = async (
   const pinsList = settings.pins || [];
   for (let i = 0; i < pinsList.length; i++) {
     const item = pinsList[i];
-    await generateElementFromPins(item, element, context);
+    await generateElementFromPins(item, element, context, document, options);
   }
 
   parent?.appendChild(element);

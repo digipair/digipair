@@ -127,21 +127,24 @@
           }
         },
         {
-          "name": "title",
-          "summary": "Title",
+          "name": "head",
+          "summary": "Header",
           "required": false,
-          "description": "Title of the page",
+          "description": "Header of the page",
           "schema": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
           }
         },
         {
-          "name": "favicon",
-          "summary": "Page icon",
+          "name": "ssr",
+          "summary": "Server Side Rendering",
           "required": false,
-          "description": "Icon of the page",
+          "description": "Server Side Rendering",
           "schema": {
-            "type": "string"
+            "type": "boolean"
           }
         },
         {

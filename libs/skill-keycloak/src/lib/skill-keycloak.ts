@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings, executePinsList } from '@digipair/engine';
+import { PinsSettings, executePinsList, generateElementFromPins } from '@digipair/engine';
 import * as jwt from 'jsonwebtoken';
+import { JSDOM } from 'jsdom';
 
 class KeycloakService {
   private filteredWebPinsSettings(item: any, path: string): any {
@@ -89,6 +90,38 @@ class KeycloakService {
     return output;
   }
 
+  private async pins2html(pins: PinsSettings[], context: any): Promise<string> {
+    const dom = new JSDOM();
+    const element = dom.window.document.createElement('section');
+
+    await this.generateElementsFromPins(
+      pins,
+      element,
+      {
+        config: {
+          VERSIONS: context.config.VERSIONS || {},
+        },
+        variables: context.variables || {},
+        request: context.request || {},
+      },
+      dom.window.document,
+    );
+
+    return element.innerHTML;
+  }
+
+  private async generateElementsFromPins(
+    pinsList: PinsSettings[],
+    parent: Element,
+    context: any,
+    document: Document,
+  ): Promise<void> {
+    for (let i = 0; i < pinsList.length; i++) {
+      const item = pinsList[i];
+      await generateElementFromPins(item, parent, context, document, { import: false });
+    }
+  }
+
   private skillKeycloak = `(() => {
     class KeycloakService {
       async authentification() {
@@ -147,8 +180,8 @@ class KeycloakService {
   async page(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       body,
-      title = 'Digipair',
-      favicon = 'https://res.cloudinary.com/do87nxq3l/image/upload/fl_preserve_transparency/v1717769492/logo-digipair_oyvvxz.png?_s=public-apps',
+      head,
+      ssr = false,
       styleHtml = '',
       styleBody = '',
       baseUrl = 'https://cdn.jsdelivr.net/npm',
@@ -218,10 +251,16 @@ class KeycloakService {
 <!DOCTYPE html>
 <html style="${styleHtml}">
   <head>
-    <meta charset="UTF-8" />
-    <title>${title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="${favicon}">
+    ${
+      head
+        ? await this.pins2html(head, context)
+        : `
+          <meta charset="UTF-8" />
+          <title>Digipair</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/do87nxq3l/image/upload/fl_preserve_transparency/v1717769492/logo-digipair_oyvvxz.png?_s=public-apps">
+      `
+    }
   </head>
   <body style="${styleBody}">
     <script type="module">
@@ -302,6 +341,7 @@ class KeycloakService {
       )}, context);
       
       const pinsList = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
+      document.querySelectorAll('body > [data-digipair-pins]').forEach((element) => element.remove()); // Remove SSR elements
       for (let i = 0; i < pinsList.length; i++) {
         const item = pinsList[i];
         await generateElementFromPins(item, document.body, { ...context, data: ${JSON.stringify(
@@ -315,6 +355,8 @@ class KeycloakService {
         )}, context);
       }, 1);
     </script>
+
+        ${ssr ? await this.pins2html(body, context) : ''}
   </body>
 </html>
     `;
