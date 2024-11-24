@@ -23,7 +23,7 @@ class ClientWebSocketService {
     this.maxRetries = maxRetries;
 
     // Crée une nouvelle instance WebSocket
-    this.ws = new WS(url);
+    this.ws = new WS(url, { signal: context.protected?.signal });
 
     // Event onopen: Connexion réussie
     this.ws.onopen = async () => {

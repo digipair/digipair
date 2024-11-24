@@ -25,8 +25,9 @@ class TwilioService {
       'https://api.twilio.com/2010-04-01';
   }
 
-  async call(url: string, method: string, data: any, headers: any) {
+  async call(url: string, method: string, data: any, headers: any, signal: AbortSignal) {
     const response = await fetch(`${this.API_ENDPOINT}${url}`, {
+      signal,
       method,
       headers: {
         Authorization: 'Basic ' + btoa(this.TWILIO_SID + ':' + this.TWILIO_TOKEN),
@@ -41,7 +42,7 @@ class TwilioService {
   async sendSms(
     params: any,
     _pinsSettingsList: PinsSettings[],
-    _context: any,
+    context: any,
     whatsapp: boolean = false,
   ): Promise<any> {
     const { message, phoneNumber } = params;
@@ -52,6 +53,7 @@ class TwilioService {
       {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
+      context.protected?.signal,
     );
   }
 }

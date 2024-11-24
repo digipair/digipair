@@ -16,8 +16,9 @@ class SmoobuService {
       'https://login.smoobu.com/api';
   }
 
-  private async call(url: string, method: string, data: any = null, headers: any = {}) {
+  private async call(url: string, method: string, data: any, headers: any, signal: AbortSignal) {
     const response = await fetch(`${this.API_ENDPOINT}${url}`, {
+      signal,
       method,
       headers: {
         'Api-Key': this.SMOOBU_API_KEY,
@@ -32,16 +33,22 @@ class SmoobuService {
   async getReservationWithId(
     params: any,
     _pinsSettingsList: PinsSettings[],
-    _context: any,
+    context: any,
   ): Promise<any> {
     const { reservationId } = params;
-    return await this.call(`/reservations/${reservationId}`, 'GET');
+    return await this.call(
+      `/reservations/${reservationId}`,
+      'GET',
+      null,
+      {},
+      context.protected?.signal,
+    );
   }
 
   async getAllReservations(
     params: any,
     _pinsSettingsList: PinsSettings[],
-    _context: any,
+    context: any,
   ): Promise<any> {
     const {
       created_from,
@@ -82,10 +89,16 @@ class SmoobuService {
     if (includeRelated) queryParams.append('includeRelated', includeRelated);
     if (includePriceElements) queryParams.append('includePriceElements', includePriceElements);
 
-    return await this.call(`/reservations?${queryParams.toString()}`, 'GET');
+    return await this.call(
+      `/reservations?${queryParams.toString()}`,
+      'GET',
+      null,
+      {},
+      context.protected?.signal,
+    );
   }
 
-  async sendMessage(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async sendMessage(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { reservationId, message } = params;
     return await this.call(
       `/reservations/${reservationId}/messages/send-message-to-guest`,
@@ -93,6 +106,8 @@ class SmoobuService {
       JSON.stringify({
         messageBody: message,
       }),
+      {},
+      context.protected?.signal,
     );
   }
 

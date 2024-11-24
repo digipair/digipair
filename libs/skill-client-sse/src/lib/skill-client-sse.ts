@@ -15,6 +15,7 @@ class ClientSSEService {
     } = params;
 
     await fetchEventSource(url, {
+      signal: context.protected?.signal,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

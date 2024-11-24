@@ -1,0 +1,256 @@
+{
+  "summary": "Process list",
+  "description": "This page lists the processes.",
+  "library": "@digipair/skill-keycloak",
+  "element": "page",
+  "metadata": {},
+  "properties": {
+    "body": [
+      {
+        "library": "@digipair/skill-web-spectrum",
+        "element": "sp-theme",
+        "pins": [
+          {
+            "library": "web",
+            "element": "section",
+            "pins": [
+              {
+                "library": "web",
+                "element": "section",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-top-nav",
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "pins": [
+                          {
+                            "library": "web",
+                            "element": "img",
+                            "properties": {
+                              "src": "https://res.cloudinary.com/do87nxq3l/image/upload/fl_preserve_transparency/v1718985104/Fichier_1_lilpuw.jpg?_s=public-apps",
+                              "style": "height: 20px;"
+                            }
+                          }
+                        ],
+                        "properties": {
+                          "href": "https://www.digipair.ai"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "properties": {
+                          "textContent": "Home",
+                          "href": "/digipair-list"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-top-nav-item",
+                        "properties": {
+                          "textContent": "Process List"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-table",
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-table-head",
+                        "pins": [
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-table-head-cell",
+                            "properties": {
+                              "textContent": "Id"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-table-head-cell",
+                            "properties": {
+                              "textContent": "Date"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-table-head-cell",
+                            "properties": {
+                              "textContent": "Digipair"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-table-head-cell",
+                            "properties": {
+                              "textContent": "Reasoning"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-table-head-cell",
+                            "properties": {
+                              "textContent": ""
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-table-body",
+                        "pins": [
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-table-row",
+                            "pins": [
+                              {
+                                "library": "@digipair/skill-web-spectrum",
+                                "element": "sp-table-cell",
+                                "properties": {
+                                  "textContent": "{{item.id}}"
+                                }
+                              },
+                              {
+                                "library": "@digipair/skill-web-spectrum",
+                                "element": "sp-table-cell",
+                                "properties": {
+                                  "textContent": "EVALUATE:fromTime(item.time)"
+                                }
+                              },
+                              {
+                                "library": "@digipair/skill-web-spectrum",
+                                "element": "sp-table-cell",
+                                "properties": {
+                                  "textContent": "{{item.digipair}}"
+                                }
+                              },
+                              {
+                                "library": "@digipair/skill-web-spectrum",
+                                "element": "sp-table-cell",
+                                "properties": {
+                                  "textContent": "{{item.reasoning}}"
+                                }
+                              },
+                              {
+                                "library": "@digipair/skill-web-spectrum",
+                                "element": "sp-table-cell",
+                                "pins": [
+                                  {
+                                    "library": "@digipair/skill-web-spectrum",
+                                    "element": "sp-action-group",
+                                    "pins": [
+                                      {
+                                        "library": "@digipair/skill-web-spectrum",
+                                        "element": "sp-action-button",
+                                        "pins": [
+                                          {
+                                            "library": "@digipair/skill-web-font-awesome",
+                                            "element": "digipair-font-awesome-icon",
+                                            "properties": {
+                                              "name": "trash",
+                                              "category": "solid"
+                                            }
+                                          }
+                                        ],
+                                        "events": {
+                                          "click": [
+                                            {
+                                              "library": "@digipair/skill-process",
+                                              "element": "stop",
+                                              "properties": {
+                                                "id": "{{item.id}}"
+                                              }
+                                            },
+                                            {
+                                              "library": "@digipair/skill-web-interact",
+                                              "element": "reload"
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "properties": {
+                                      "size": "s",
+                                      "dir": "rtl"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            "conditions": {
+                              "each": "EVALUATE:variables.list"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "properties": {
+                  "style": "width: 100%; max-width: 1080px;"
+                }
+              }
+            ],
+            "properties": {
+              "style": "display: flex; justify-content: center;"
+            }
+          }
+        ],
+        "properties": {
+          "color": "dark",
+          "scale": "large"
+        }
+      },
+      {
+        "library": "@digipair/skill-web-chatbot",
+        "element": "digipair-chatbot",
+        "properties": {
+          "code": "{{request.digipair}}",
+          "apiUrl": "https://factory.digipair.ai/645bc0e2e8c86bbd32bee42a"
+        }
+      }
+    ],
+    "styleHtml": "color-scheme:dark;",
+    "factoryUrl": "https://factory.digipair.ai/645bc0e2e8c86bbd32bee42a",
+    "browserInitialize": [
+      {
+        "library": "@digipair/skill-web-interact",
+        "element": "goTo",
+        "properties": {
+          "url": "/unlogged"
+        },
+        "conditions": {
+          "if": "EVALUATE:keycloak.isLogged = false"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "list",
+          "execute": [
+            {
+              "library": "@digipair/skill-keycloak",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-process",
+                    "element": "list"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pins": []
+}

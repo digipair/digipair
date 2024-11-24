@@ -50,7 +50,7 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
                             "properties": {
-                              "textContent": "Voir les logs",
+                              "textContent": "View logs",
                               "href": "/admin/logs"
                             }
                           },
@@ -58,7 +58,15 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
                             "properties": {
-                              "textContent": "Voir la consommation LLM",
+                              "textContent": "View processes",
+                              "href": "/process-list"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-menu-item",
+                            "properties": {
+                              "textContent": "View LLM consumptions",
                               "href": "/admin/consumptions"
                             }
                           },

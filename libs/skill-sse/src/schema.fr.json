@@ -21,6 +21,18 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "disconnected",
+            "summary": "Lors de la déconnexion",
+            "required": false,
+            "description": "Actions à exécuter lors de la déconnexion",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
           }
         ],
         "x-events": []
@@ -47,6 +59,18 @@
             "description": "Identifiant du channel à ajouter",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "disconnected",
+            "summary": "Lors de la déconnexion",
+            "required": false,
+            "description": "Actions à exécuter lors de la déconnexion",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],

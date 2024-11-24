@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSession, createChannel } from 'better-sse';
-import { PinsSettings } from '@digipair/engine';
+import { executePinsList, PinsSettings } from '@digipair/engine';
 
 class SSEService {
   private sessions = new Map();
@@ -11,7 +11,7 @@ class SSEService {
     _pinsSettingsList: PinsSettings[],
     context: any,
   ): Promise<any> {
-    const { id } = params;
+    const { id, disconnected = [] } = params;
     const session = await createSession(context.protected.req, context.protected.res);
 
     if (id) {
@@ -21,6 +21,7 @@ class SSEService {
       this.sessions.set(name, session);
       session.on('disconnected', () => {
         this.sessions.delete(name);
+        executePinsList(disconnected, { ...context });
       });
     }
 
@@ -32,7 +33,7 @@ class SSEService {
     _pinsSettingsList: PinsSettings[],
     context: any,
   ): Promise<any> {
-    const { session, id = '' } = params;
+    const { session, disconnected = [], id = '' } = params;
     const start = context.privates.SSE_SESION_START || '';
     const name = `${start}__${context.request.digipair}_${context.request.reasoning}__${id}`;
     let channel = this.channels.get(name);
@@ -41,18 +42,14 @@ class SSEService {
       this.channels.set(name, channel);
     }
 
-    const channelSession = session ?? (await this.registerSession({}, [], context));
+    const channelSession = session ?? (await this.registerSession({ disconnected }, [], context));
     channel.register(channelSession);
 
     return channel;
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const {
-      id,
-      message,
-      reasoning = context.request.reasoning,
-    } = params;
+    const { id, message, reasoning = context.request.reasoning } = params;
     const digipair = context.request.digipair;
     const start = context.privates.SSE_SESION_START || '';
     const name = `${start}__${digipair}_${reasoning}__${id}`;
@@ -62,12 +59,7 @@ class SSEService {
   }
 
   async broadcast(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const {
-      message,
-      reasoning = context.request.reasoning,
-      id = '',
-      event = 'message',
-    } = params;
+    const { message, reasoning = context.request.reasoning, id = '', event = 'message' } = params;
     const digipair = context.request.digipair;
     const start = context.privates.SSE_SESION_START || '';
     const name = `${start}__${digipair}_${reasoning}__${id}`;

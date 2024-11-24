@@ -21,6 +21,18 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "disconnected",
+            "summary": "On disconnection",
+            "required": false,
+            "description": "Actions to execute on disconnection",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
           }
         ],
         "x-events": []
@@ -47,6 +59,18 @@
             "description": "Channel ID",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "disconnected",
+            "summary": "On disconnection",
+            "required": false,
+            "description": "Actions to execute on disconnection",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],

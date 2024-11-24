@@ -24,8 +24,9 @@ class PushbulletService {
       'https://api.pushbullet.com/v2';
   }
 
-  async call(url: string, method: string, data: any = null, headers: any = {}) {
+  async call(url: string, method: string, data: any, headers: any, signal: AbortSignal) {
     const response = await fetch(`${this.API_ENDPOINT}${url}`, {
+      signal,
       method,
       headers: {
         'Access-Token': this.PUSHBULLET_ACCESS_TOKEN,
@@ -37,7 +38,7 @@ class PushbulletService {
     return await response.json();
   }
 
-  async sendSms(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async sendSms(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { message, phoneNumber } = params;
     return await this.call(
       '/texts',
@@ -52,6 +53,7 @@ class PushbulletService {
       {
         'Content-Type': 'application/json',
       },
+      context.protected?.signal,
     );
   }
 }
