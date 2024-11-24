@@ -54,7 +54,20 @@ export class AppService implements OnModuleInit {
         const { id, signal } = skillProcess.add(digipair, reasoning, null);
 
         try {
-          await this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null, signal);
+          await this.agent(
+            path,
+            digipair,
+            reasoning,
+            {},
+            [],
+            {},
+            null,
+            {},
+            {},
+            null,
+            null,
+            signal,
+          );
           skillProcess.remove(id);
         } catch (error) {
           skillProcess.remove(id);
@@ -213,7 +226,8 @@ export class AppService implements OnModuleInit {
 
         content = await promises.readFile(`${path}/common/fallback.json`, 'utf8');
       } else {
-        throw new Error(`Reasoning ${digipair}/${reasoning} Not Found`);
+        res.status(404);
+        return { status: 'not found' };
       }
 
       const settings = JSON.parse(content);

@@ -1,12 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import * as WS from 'isomorphic-ws';
+
+const WS = typeof WebSocket === 'undefined' ? require('ws') : WebSocket;
 
 class ClientWebSocketService {
-  private ws!: WS;
+  private ws!: WebSocket;
   private retryInterval!: number;
   private maxRetries!: number;
   private retryCount = 0;
+
+  async send(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { websocket, message } = params;
+    return websocket.send(JSON.stringify(message));
+  }
+
+  async close(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { websocket } = params;
+    websocket.cwssForceClose = true;
+    return websocket.close();
+  }
 
   async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
@@ -32,37 +44,48 @@ class ClientWebSocketService {
     };
 
     // Event onmessage: Réception d'un message
-    this.ws.onmessage = notification => {
-      executePinsList(message, { ...context, message: JSON.parse(notification.data as string) });
+    this.ws.onmessage = async (event: any) => {
+      await executePinsList(message, { ...context, message: JSON.parse(event.data) });
     };
 
     // Event onclose: Déconnexion
     this.ws.onclose = async () => {
-      await executePinsList(close, { ...context });
-      this.reconnectWebSocket(params, _pinsSettingsList, context);
+      const reconnect = (this.ws as any).cwssForceClose ? false : this.reconnectWebSocket(params, _pinsSettingsList, context);
+
+      if (!reconnect) {
+        await executePinsList(close, { ...context });
+      }
     };
 
     // Event onerror: Erreur
-    this.ws.onerror = err => {
+    this.ws.onerror = async (err: Event) => {
+      await executePinsList(error, { ...context, error: err });
       this.ws.close(); // Ferme la connexion en cas d'erreur
-      executePinsList(error, { ...context, error: err });
     };
 
     return this.ws;
   }
 
-  private reconnectWebSocket(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+  private reconnectWebSocket(params: any, pinsSettingsList: PinsSettings[], context: any) {
     if (this.retryCount >= this.maxRetries) {
-      return;
+      return false;
     }
 
     setTimeout(() => {
       this.retryCount++;
       this.retryInterval *= 2; // Double l'intervalle entre les tentatives
-      this.connect(params, _pinsSettingsList, context);
+      this.connect(params, pinsSettingsList, context);
     }, this.retryInterval);
+
+    return true;
   }
 }
 
 export const connect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ClientWebSocketService().connect(params, pinsSettingsList, context);
+
+export const send = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ClientWebSocketService().send(params, pinsSettingsList, context);
+
+export const close = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ClientWebSocketService().close(params, pinsSettingsList, context);

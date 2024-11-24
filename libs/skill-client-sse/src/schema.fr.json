@@ -39,9 +39,7 @@
             "schema": {
               "type": "object"
             }
-          }
-        ],
-        "x-events": [
+          },
           {
             "name": "message",
             "summary": "Lors d'un message",
@@ -90,7 +88,8 @@
               }
             }
           }
-        ]
+        ],
+        "x-events": []
       }
     }
   },

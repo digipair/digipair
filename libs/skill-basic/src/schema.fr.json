@@ -79,6 +79,106 @@
         "x-events": []
       }
     },
+    "/defer": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Différer l'exécution",
+        "description": "Diffère l'exécution d'une action",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "Temps",
+            "required": true,
+            "description": "Temps en millisecondes avant l'exécution",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Exécute",
+            "required": true,
+            "description": "Actions à différer",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/interval": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Intervalle",
+        "description": "Exécute une action à intervalle régulier",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "Temps",
+            "required": true,
+            "description": "Temps en millisecondes entre chaque exécution",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Exécute",
+            "required": true,
+            "description": "Actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/stopInterval": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Arrêter l'intervalle",
+        "description": "Arrête l'intervalle d'exécution",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "ID",
+            "required": true,
+            "description": "ID de l'intervalle à arrêter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/stopDefer": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Arrêter le différé",
+        "description": "Arrête le différé d'exécution",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "ID",
+            "required": true,
+            "description": "ID du différé à arrêter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/base64ToBuffer": {
       "post": {
         "tags": ["web", "service", "spatial"],

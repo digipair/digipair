@@ -79,6 +79,106 @@
         "x-events": []
       }
     },
+    "/defer": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Defer",
+        "description": "Executes an action after a delay",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "Time",
+            "required": true,
+            "description": "Time in milliseconds to wait before executing",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Actions to execute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/interval": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Interval",
+        "description": "Executes an action at regular intervals",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "Time",
+            "required": true,
+            "description": "Time in milliseconds between each execution",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Actions to execute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/stopInterval": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Stop the interval",
+        "description": "Stops the interval from executing",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "ID",
+            "required": true,
+            "description": "ID of the interval to stop",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/stopDefer": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Stop the defer",
+        "description": "Stops the deferred action from executing",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "ID",
+            "required": true,
+            "description": "ID of the deferred action to stop",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/base64ToBuffer": {
       "post": {
         "tags": ["web", "service", "spatial"],

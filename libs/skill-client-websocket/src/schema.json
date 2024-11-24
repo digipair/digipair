@@ -10,7 +10,7 @@
   "paths": {
     "/connect": {
       "post": {
-        "tags": ["web", "service"],
+        "tags": ["service", "web", "spacial"],
         "summary": "Websocket server connection",
         "parameters": [
           {
@@ -39,9 +39,7 @@
             "schema": {
               "type": "integer"
             }
-          }
-        ],
-        "x-events": [
+          },
           {
             "name": "message",
             "summary": "Upon a message",
@@ -91,6 +89,51 @@
             }
           }
         ]
+      }
+    },
+    "/send": {
+      "post": {
+        "tags": ["service", "web", "spacial"],
+        "summary": "Send message",
+        "parameters": [
+          {
+            "name": "websocket",
+            "summary": "Websocket",
+            "required": true,
+            "description": "Websocket to use",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message to send",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/close": {
+      "post": {
+        "tags": ["service", "web", "spacial"],
+        "summary": "Close Websocket",
+        "parameters": [
+          {
+            "name": "websocket",
+            "summary": "Websocket",
+            "required": true,
+            "description": "Websocket to close",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
       }
     }
   },
