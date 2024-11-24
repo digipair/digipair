@@ -49,8 +49,8 @@ class KeycloakService {
     return pinsSettings;
   }
 
-  private async decodedToken(url: string, realm: string, token: string) {
-    const response = await fetch(`${url}/realms/${realm}/protocol/openid-connect/certs`);
+  private async decodedToken(url: string, realm: string, token: string, signal: AbortSignal) {
+    const response = await fetch(`${url}/realms/${realm}/protocol/openid-connect/certs`, { signal });
     const infos = await response.json();
     const publicKey = `-----BEGIN CERTIFICATE-----\n${
       infos.keys.find(({ alg }: { alg: string; x5c: string }) => alg === 'RS256').x5c[0]
@@ -221,6 +221,7 @@ class KeycloakService {
             url,
             realm,
             context.request.headers.authorization.replace(/^Bearer /, ''),
+            context.protected?.signal,
           ),
         };
       } else {
@@ -382,6 +383,7 @@ class KeycloakService {
           url,
           realm,
           context.request.headers.authorization.replace(/^Bearer /, ''),
+          context.protected?.signal,
         ),
       };
     } else {
@@ -419,6 +421,7 @@ class KeycloakService {
           url,
           realm,
           context.request.headers.authorization.replace(/^Bearer /, ''),
+          context.protected?.signal,
         ),
       };
     } else {

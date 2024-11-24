@@ -11,8 +11,9 @@ class HttpService {
     this.IS_JSON = IS_JSON;
   }
 
-  async call(url: string, method: string, data: any = null, headers: any = {}) {
+  async call(url: string, method: string, data: any, headers: any, signal: AbortSignal): Promise<any> {
     const response = await fetch(url, {
+      signal,
       method,
       headers: {
         Accept: this.IS_JSON ? 'application/json' : '*/*',
@@ -25,37 +26,37 @@ class HttpService {
     return this.IS_JSON ? response.json() : response.text();
   }
 
-  async create(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async create(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, body = {}, headers = {} } = params;
-    return await this.call(path, 'POST', body, headers);
+    return await this.call(path, 'POST', body, headers, context.protected?.signal);
   }
 
-  async read(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async read(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, headers = {} } = params;
-    return await this.call(path, 'GET', null, headers);
+    return await this.call(path, 'GET', null, headers, context.protected?.signal);
   }
 
-  async update(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async update(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, body = {}, headers = {} } = params;
-    return await this.call(path, 'PUT', body, headers);
+    return await this.call(path, 'PUT', body, headers, context.protected?.signal);
   }
 
-  async partialUpdate(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async partialUpdate(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, body = {}, headers = {} } = params;
-    return await this.call(path, 'PATCH', body, headers);
+    return await this.call(path, 'PATCH', body, headers, context.protected?.signal);
   }
 
-  async remove(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, headers = {} } = params;
-    return await this.call(path, 'DELETE', null, headers);
+    return await this.call(path, 'DELETE', null, headers, context.protected?.signal);
   }
 
-  async request(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async request(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, method = 'GET', body = null, headers = {} } = params;
-    return await this.call(path, method, body, headers);
+    return await this.call(path, method, body, headers, context.protected?.signal);
   }
 
-  async upload(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async upload(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, parameters, method = 'POST', headers = {} } = params;
     const formData = typeof window !== 'undefined' ? new FormData() : new (require('form-data'))();
 
@@ -71,6 +72,7 @@ class HttpService {
     });
 
     const response = await fetch(path, {
+      signal: context.protected?.signal,
       method,
       headers: {
         ...formData.getHeaders(),

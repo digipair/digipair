@@ -16,8 +16,9 @@ class NukiService {
       'https://api.nuki.io/smartlock';
   }
 
-  async call(url: string, method: string, data: any = null, headers: any = {}) {
+  async call(url: string, method: string, data: any, headers: any, signal: AbortSignal) {
     const response = await fetch(`${this.API_ENDPOINT}${url}`, {
+      signal,
       method,
       headers: {
         Authorization: 'Bearer ' + this.NUKI_API_KEY,
@@ -29,14 +30,14 @@ class NukiService {
     return await response.json();
   }
 
-  async unlock(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async unlock(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id } = params;
-    return await this.call(`/${id}/action/unlock`, 'POST');
+    return await this.call(`/${id}/action/unlock`, 'POST', null, {}, context.protected?.signal);
   }
 
-  async lock(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async lock(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id } = params;
-    return await this.call(`/${id}/action/lock`, 'POST');
+    return await this.call(`/${id}/action/lock`, 'POST', null, {}, context.protected?.signal);
   }
 }
 

@@ -29,16 +29,37 @@ export class AppService implements OnModuleInit {
     // initialize factory skill
     const skillFactory = require('@digipair/skill-factory');
     skillFactory.initialize((context: any, digipair: string, reasoning: string, body: any) =>
-      this.agent(path, digipair, reasoning, body, [], {}, null, {}, context, null, null),
+      this.agent(
+        path,
+        digipair,
+        reasoning,
+        body,
+        [],
+        {},
+        null,
+        {},
+        context,
+        null,
+        null,
+        context.protected.signal,
+      ),
     );
 
     // start cron manager
     try {
       const skillCron = require('@digipair/skill-cron');
 
-      skillCron.initialize((path: string, digipair: string, reasoning: string) =>
-        this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null),
-      );
+      skillCron.initialize(async (path: string, digipair: string, reasoning: string) => {
+        const skillProcess = require('@digipair/skill-process');
+        const { id, signal } = skillProcess.add(digipair, reasoning, null);
+
+        try {
+          await this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null, signal);
+          skillProcess.remove(id);
+        } catch (error) {
+          skillProcess.remove(id);
+        }
+      });
       skillCron.start(path);
     } catch (error) {
       console.error(error);
@@ -68,6 +89,7 @@ export class AppService implements OnModuleInit {
     requester: any,
     req: any,
     res: any,
+    signal: AbortSignal,
   ): Promise<any> {
     let context: any;
 
@@ -96,6 +118,7 @@ export class AppService implements OnModuleInit {
           protected: {
             req,
             res,
+            signal,
           },
         };
 
@@ -125,6 +148,7 @@ export class AppService implements OnModuleInit {
           protected: {
             req,
             res,
+            signal,
           },
           requester,
         };
@@ -152,6 +176,7 @@ export class AppService implements OnModuleInit {
           protected: {
             req,
             res,
+            signal,
           },
         };
 
@@ -181,6 +206,7 @@ export class AppService implements OnModuleInit {
           protected: {
             req,
             res,
+            signal,
           },
           requester,
         };

@@ -1,0 +1,43 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-process",
+    "summary": "Process management",
+    "description": "This skill allows you to manage processes.",
+    "version": "0.1.0",
+    "x-icon": "📕"
+  },
+  "paths": {
+    "/stop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Stop a process",
+        "description": "Stop a running process.",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifier",
+            "required": true,
+            "description": "Identifier of the process to stop",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List of processes",
+        "description": "List the running processes.",
+        "parameters": [],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

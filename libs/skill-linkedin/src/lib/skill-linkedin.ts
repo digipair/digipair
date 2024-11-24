@@ -12,8 +12,9 @@ class LinkedInService {
       context.privates.LINKEDIN_TOKEN ?? params?.LINKEDIN_TOKEN ?? process.env['LINKEDIN_TOKEN'];
   }
 
-  async call(url: string, method: string, version: string, data: any = null, headers: any = {}) {
+  async call(url: string, method: string, version: string, data: any, headers: any, signal: AbortSignal): Promise<any> {
     const response = await fetch(`${API_ENDPOINT}/${version}/${url}`, {
+      signal,
       method,
       headers: {
         Authorization: `Bearer ${this.TOKEN}`,
@@ -27,35 +28,35 @@ class LinkedInService {
     return await response.json();
   }
 
-  async create(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async create(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, body = {}, version = 'v2', headers = {} } = params;
-    return await this.call(path, 'POST', version, body, headers);
+    return await this.call(path, 'POST', version, body, headers, context.protected?.signal);
   }
 
-  async read(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async read(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, version = 'v2', headers = {} } = params;
-    return await this.call(path, 'GET', version, null, headers);
+    return await this.call(path, 'GET', version, null, headers, context.protected?.signal);
   }
 
-  async update(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async update(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, body = {}, version = 'v2', headers = {} } = params;
-    return await this.call(path, 'PUT', version, body, headers);
+    return await this.call(path, 'PUT', version, body, headers, context.protected?.signal);
   }
 
-  async partialUpdate(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async partialUpdate(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, body = {}, version = 'v2', headers = {} } = params;
-    return await this.call(path, 'PATCH', version, body, headers);
+    return await this.call(path, 'PATCH', version, body, headers, context.protected?.signal);
   }
 
 
-  async remove(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async remove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, version = 'v2', headers = {} } = params;
-    return await this.call(path, 'DELETE', version, null, headers);
+    return await this.call(path, 'DELETE', version, null, headers, context.protected?.signal);
   }
 
-  async request(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async request(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, method = 'GET', body = null, version = 'v2', headers = {} } = params;
-    return await this.call(path, method, version, body, headers);
+    return await this.call(path, method, version, body, headers, context.protected?.signal);
   }
 }
 

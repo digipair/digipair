@@ -12,6 +12,7 @@ class HeygenService {
     } = params;
 
     const response = await fetch(`${serverUrl}/v1/streaming.new`, {
+      signal: context.protected?.signal,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,6 +43,7 @@ class HeygenService {
     } = params;
 
     const response = await fetch(`${serverUrl}/v1/streaming.ice`, {
+      signal: context.protected?.signal,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,6 +68,7 @@ class HeygenService {
     } = params;
 
     const response = await fetch(`${serverUrl}/v1/streaming.start`, {
+      signal: context.protected?.signal,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,6 +93,7 @@ class HeygenService {
     } = params;
 
     const response = await fetch(`${serverUrl}/v1/streaming.task`, {
+      signal: context.protected?.signal,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -113,6 +117,7 @@ class HeygenService {
     } = params;
 
     const response = await fetch(`${serverUrl}/v1/streaming.stop`, {
+      signal: context.protected?.signal,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

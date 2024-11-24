@@ -1,6 +1,5 @@
 import { All, Body, Controller, Get, Query, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
-import * as express from 'express';
 import { promises } from 'fs';
 import { AppService } from './app.service';
 
@@ -56,8 +55,11 @@ export class AppController {
       params = params.slice(2);
     }
 
+    const skillProcess = require('@digipair/skill-process');
+    const { id, signal } = skillProcess.add(digipair, reasoning, null);
     try {
       const method = request.method;
+
       res.send(
         await this.appService.agent(
           `${assets}/digipairs`,
@@ -71,10 +73,14 @@ export class AppController {
           {},
           request,
           res,
+          signal,
         ),
       );
+
+      skillProcess.remove(id);
     } catch (error) {
       if (error !== 'DIGIPAIR_KEEPALIVE') {
+        skillProcess.remove(id);
         throw error;
       }
     }

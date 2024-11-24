@@ -11,8 +11,10 @@ class VespaService {
     collection: string,
     query: string,
     options: any = {},
+    signal: AbortSignal,
   ): Promise<any[]> {
     const response = await fetch(`${baseUrl}/search/`, {
+      signal,
       method: 'POST',
       body: JSON.stringify({
         yql: `select * from ${collection} where ${query}`,
@@ -40,11 +42,12 @@ class VespaService {
     collection: string,
     query: string,
     options: any = {},
+    signal: AbortSignal,
   ): Promise<any[]> {
     const documents = [];
     const uuids = [];
     const queryUuids = [];
-    const chunks = await this.searchDocuments(baseUrl, collection, query, options);
+    const chunks = await this.searchDocuments(baseUrl, collection, query, options, signal);
 
     documents.push(...chunks.filter(({ is_parent }) => is_parent));
     uuids.push(...chunks.filter(({ is_parent }) => is_parent).map(({ uuid }) => uuid));
@@ -61,6 +64,7 @@ class VespaService {
           collection,
           `uuid in (${queryUuids.map(uuid => `"${uuid}"`).join(',')})`,
           options,
+          signal,
         )),
       );
     }
@@ -122,6 +126,7 @@ class VespaService {
     namespace: string,
     collection: string,
     documents: any[],
+    signal: AbortSignal,
   ) {
     const results = [];
 
@@ -131,6 +136,7 @@ class VespaService {
       const response = await fetch(
         `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
         {
+          signal,
           method: 'POST',
           body: JSON.stringify({ fields: { ...document, content_embedding } }),
           headers: {
@@ -171,6 +177,7 @@ class VespaService {
       {
         query,
       },
+      context.protected?.signal,
     );
 
     return results;
@@ -211,6 +218,7 @@ class VespaService {
         query,
         language,
       },
+      context.protected?.signal,
     );
 
     return results;
@@ -242,7 +250,7 @@ class VespaService {
     const modelEmbeddings = await executePinsList(embeddings, context);
     const results = await this.prepareDocuments(documents);
 
-    await this.pushDocuments(modelEmbeddings, baseUrl, namespace, collection, results);
+    await this.pushDocuments(modelEmbeddings, baseUrl, namespace, collection, results, context.protected?.signal);
 
     return results.filter(({ is_parent }) => is_parent).map(({ uuid }) => uuid);
   }
@@ -261,6 +269,7 @@ class VespaService {
         selection,
       )}&cluster=${namespace}`,
       {
+        signal: context.protected?.signal,
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
