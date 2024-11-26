@@ -197,6 +197,40 @@
         ],
         "x-events": []
       }
+    },
+    "/trycatch": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Attraper les erreurs",
+        "description": "Essaye une action et attrape les erreurs",
+        "parameters": [
+          {
+            "name": "executeTry",
+            "summary": "Executer",
+            "required": true,
+            "description": "Actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "executeCatch",
+            "summary": "Lors d'une erreur",
+            "required": false,
+            "description": "Actions à exécuter en cas d'erreur",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

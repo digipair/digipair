@@ -507,6 +507,25 @@
                                                     "properties": {
                                                       "id": "{{item.id}}"
                                                     }
+                                                  },
+                                                  {
+                                                    "library": "@digipair/skill-basic",
+                                                    "element": "trycatch",
+                                                    "properties": {
+                                                      "executeTry": [
+                                                        {
+                                                          "library": "@digipair/skill-factory",
+                                                          "element": "start",
+                                                          "properties": {
+                                                            "reasoning": "{{item.reasoning}}",
+                                                            "digipair": "{{item.digipair}}"
+                                                          },
+                                                          "conditions": {
+                                                            "if": "EVALUATE:item.time = \"@startup\""
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
                                                   }
                                                 ]
                                               }

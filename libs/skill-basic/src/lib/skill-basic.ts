@@ -71,6 +71,16 @@ class BasicService {
 
     return buffer;
   }
+
+  async trycatch(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { executeTry, executeCatch = [] } = params;
+
+    try {
+      return await executePinsList(executeTry, context);
+    } catch (error) {
+      return await executePinsList(executeCatch, { ...context, error });
+    }
+  }
 }
 
 export const transform = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -93,3 +103,6 @@ export const stopInterval = (params: any, pinsSettingsList: PinsSettings[], cont
 
 export const stopDefer = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new BasicService().stopDefer(params, pinsSettingsList, context);
+
+export const trycatch = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new BasicService().trycatch(params, pinsSettingsList, context);

@@ -79,8 +79,8 @@
     "/keepAlive": {
       "post": {
         "tags": ["service"],
-        "summary": "Keep Alive HTTP",
-        "description": "Keep alive the HTTP connection",
+        "summary": "Keep Alive",
+        "description": "Keep alive the reasoning",
         "parameters": [],
         "x-events": []
       }
