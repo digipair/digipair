@@ -18,8 +18,10 @@ class CronService {
     const planning = lines.map((line: string) => JSON.parse(line));
 
     for (const plan of planning) {
-      if (plan.time === '@startup' && plan.enabled) {
-        await this.startTask(path, plan.digipair, plan.reasoning);
+      if (plan.time === '@startup') {
+        if (plan.enabled) {
+          await this.startTask(path, plan.digipair, plan.reasoning);
+        }
         continue;
       }
 
@@ -177,7 +179,11 @@ class CronService {
     const ndjson = crons.map(line => JSON.stringify(line)).join('\n');
     await promises.writeFile(`${path}/planning.jsonl`, ndjson, 'utf8');
 
-    this.enableJob(id);
+    if (cron.time === '@startup') {
+      this.startTask(path, cron.digipair, cron.reasoning);
+    } else {
+      this.enableJob(id);
+    }
 
     return cron;
   }

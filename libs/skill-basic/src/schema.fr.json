@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-basic",
-    "summary": "Gestion des données",
-    "description": "Cette compétence permet manipuler et transformer les données.",
+    "summary": "Boite à outils",
+    "description": "Cette compétence fournit un ensemble d'outils de base pour manipuler des données et des comportements.",
     "version": "0.1.0",
     "x-icon": "📝"
   },

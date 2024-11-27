@@ -4,20 +4,22 @@ import { PinsSettings, executePinsList } from '@digipair/engine';
 const WS = typeof WebSocket === 'undefined' ? require('ws') : WebSocket;
 
 class ClientWebSocketService {
-  private ws!: WebSocket;
   private retryInterval!: number;
   private maxRetries!: number;
   private retryCount = 0;
 
+  ws: WebSocket | null = null;
+  cwssForceClose = false;
+
   async send(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { websocket, message } = params;
-    return websocket.send(JSON.stringify(message));
+    return websocket.ws?.send(JSON.stringify(message));
   }
 
   async close(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { websocket } = params;
     websocket.cwssForceClose = true;
-    return websocket.close();
+    return websocket.ws?.close();
   }
 
   async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -35,7 +37,7 @@ class ClientWebSocketService {
     this.maxRetries = maxRetries;
 
     // Crée une nouvelle instance WebSocket
-    this.ws = new WS(url, { signal: context.protected?.signal });
+    this.ws = new WS(url, { signal: context.protected?.signal }) as WebSocket;
 
     // Event onopen: Connexion réussie
     this.ws.onopen = async () => {
@@ -50,7 +52,10 @@ class ClientWebSocketService {
 
     // Event onclose: Déconnexion
     this.ws.onclose = async () => {
-      const reconnect = (this.ws as any).cwssForceClose ? false : this.reconnectWebSocket(params, _pinsSettingsList, context);
+      this.ws = null;
+      const reconnect = this.cwssForceClose
+        ? false
+        : this.reconnectWebSocket(params, _pinsSettingsList, context);
 
       if (!reconnect) {
         await executePinsList(close, { ...context });
@@ -60,10 +65,10 @@ class ClientWebSocketService {
     // Event onerror: Erreur
     this.ws.onerror = async (err: Event) => {
       await executePinsList(error, { ...context, error: err });
-      this.ws.close(); // Ferme la connexion en cas d'erreur
+      this.ws?.close(); // Ferme la connexion en cas d'erreur
     };
 
-    return this.ws;
+    return this;
   }
 
   private reconnectWebSocket(params: any, pinsSettingsList: PinsSettings[], context: any) {

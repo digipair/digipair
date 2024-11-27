@@ -13,7 +13,7 @@
             "library": "digipair:admin",
             "element": "answer",
             "properties": {
-              "assistant": "What is the id, the name and the description for the new digipair ?",
+              "assistant": "What is the id for the new digipair ?",
               "boost": [
                 {
                   "step": "Execution",
@@ -39,7 +39,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> id:string \"reasoning identifier in kebab case\", name:string \"Very short name of the reasoning\", description:string \"Short description of the reasoning\", assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
+                    "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> name:string \"Very short name of the reasoning\", description:string \"Short description of the reasoning\", assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
                     "input": { "comment": "{{request.body.prompt}}" }
                   }
                 }
@@ -50,14 +50,14 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "digipair": "{{variables.infos.id}}"
+              "digipair": "{{request.body.prompt}}"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasoning",
             "properties": {
-              "digipair": "{{variables.infos.id}}",
+              "digipair": "{{request.body.prompt}}",
               "reasoning": "config"
             }
           },
@@ -65,7 +65,7 @@
             "library": "@digipair/skill-editor",
             "element": "setReasoning",
             "properties": {
-              "digipair": "{{variables.infos.id}}",
+              "digipair": "{{request.body.prompt}}",
               "reasoning": "config",
               "value": {
                 "name": "{{variables.infos.name}}",
@@ -81,7 +81,7 @@
             "library": "@digipair/skill-editor",
             "element": "reasoning",
             "properties": {
-              "digipair": "{{variables.infos.id}}",
+              "digipair": "{{request.body.prompt}}",
               "reasoning": "conversation"
             }
           },
@@ -89,7 +89,7 @@
             "library": "@digipair/skill-editor",
             "element": "setReasoning",
             "properties": {
-              "digipair": "{{variables.infos.id}}",
+              "digipair": "{{request.body.prompt}}",
               "reasoning": "conversation",
               "value": {
                 "summary": "EVALUATEprevious.summary",
@@ -102,7 +102,7 @@
                   "steps": [
                     {
                       "name": "conversation",
-                      "execute": "EVALUATE:for pins in previous.properties.steps[1].execute return context put(pins, \"library\", replace(pins.library, \"digipair:default\", \"digipair:\" + variables.infos.id))"
+                      "execute": "EVALUATE:for pins in previous.properties.steps[1].execute return context put(pins, \"library\", replace(pins.library, \"digipair:default\", \"digipair:\" + request.body.prompt))"
                     }
                   ]
                 }
@@ -113,7 +113,7 @@
             "library": "@digipair/skill-editor",
             "element": "reasoning",
             "properties": {
-              "digipair": "{{variables.infos.id}}",
+              "digipair": "{{request.body.prompt}}",
               "reasoning": "schema"
             }
           },
@@ -121,14 +121,14 @@
             "library": "@digipair/skill-editor",
             "element": "setReasoning",
             "properties": {
-              "digipair": "{{variables.infos.id}}",
+              "digipair": "{{request.body.prompt}}",
               "reasoning": "schema",
               "value": {
                 "openapi": "EVALUATE:previous.openapi",
                 "paths": "EVALUATE:previous.paths",
                 "components": "EVALUATE:previous.components",
                 "infos": {
-                  "title": "digipair:{{variables.infos.id}}",
+                  "title": "digipair:{{request.body.prompt}}",
                   "summary": "{{variables.infos.name}}",
                   "version": "EVALUATE:previous.infos.version",
                   "x-icon": "EVALUATE:get value(previous.infos, \"x-icon\")"

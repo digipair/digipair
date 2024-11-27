@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-basic",
-    "summary": "Data Management",
-    "description": "This skill allows for the manipulation and transformation of data.",
+    "summary": "Toolbox",
+    "description": "This skill provides a set of basic tools to manipulate data and behaviors.",
     "version": "0.1.0",
     "x-icon": "📝"
   },
