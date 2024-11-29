@@ -80,7 +80,8 @@ class EditorService {
     } = params;
 
     const digipairs = (await promises.readdir(path)).filter(
-      (file: string) => !file.startsWith('.') && !file.endsWith('.json')  && !file.endsWith('.jsonl'),
+      (file: string) =>
+        !file.startsWith('.') && !file.endsWith('.json') && !file.endsWith('.jsonl'),
     );
 
     return digipairs;
@@ -160,6 +161,28 @@ class EditorService {
 
     return {};
   }
+
+  async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
+      digipair,
+    } = params;
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+    const config = JSON.parse(content);
+
+    const buffer = await promises.readFile(`${path}/${digipair}/avatar.png`);
+    const avatar = buffer.toString('base64');
+
+    return {
+      ...config.metadata,
+      avatar: `data:image/png;base64,${avatar}`,
+      config: { VERSIONS: config.libraries },
+      variables: config.variables,
+    };
+  }
 }
 
 export const setReasoning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -188,3 +211,6 @@ export const removeDigipair = (params: any, pinsSettingsList: PinsSettings[], co
 
 export const addDigipair = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().addDigipair(params, pinsSettingsList, context);
+
+export const metadata = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().metadata(params, pinsSettingsList, context);

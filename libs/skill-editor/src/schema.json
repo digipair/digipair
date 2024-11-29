@@ -289,6 +289,33 @@
         ],
         "x-events": []
       }
+    },
+    "/metadata": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Metadata",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Access Path",
+            "required": false,
+            "description": "Access path to the digipair's directory",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Name of the digipair",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
