@@ -1,7 +1,9 @@
 {
   "name": "@digipair/skill-html",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "jsdom": "^25.0.1"
+  },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
 }

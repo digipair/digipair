@@ -25,7 +25,7 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-top-nav-item",
-                        "properties": { "textContent": "Accueil", "href": "/digipair-list" }
+                        "properties": { "textContent": "Accueil", "href": "/admin/digipair-list" }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
@@ -55,7 +55,7 @@
                             {
                               "library": "@digipair/skill-web-interact",
                               "element": "goTo",
-                              "properties": { "url": "/logs/{{item}}" }
+                              "properties": { "url": "/admin/logs/{{item}}" }
                             }
                           ]
                         },
@@ -162,7 +162,7 @@
         "element": "digipair-chatbot",
         "properties": {
           "code": "admin",
-          "apiUrl": "https://factory.digipair.ai/645bc0e2e8c86bbd32bee42a"
+          "apiUrl": ""
         }
       }
     ],
@@ -171,7 +171,7 @@
       {
         "library": "@digipair/skill-web-interact",
         "element": "goTo",
-        "properties": { "url": "EVALUATE:\"/logs/\" + substring(string(now()), 1, 10)" },
+        "properties": { "url": "EVALUATE:\"/admin/logs/\" + substring(string(now()), 1, 10)" },
         "conditions": { "if": "EVALUATE:count(request.params) = 0" }
       },
       {
@@ -216,7 +216,7 @@
           "name": "dates",
           "execute": [
             {
-              "library": "@digipair/skill-&a  a&web",
+              "library": "@digipair/skill-web",
               "element": "executeFactory",
               "properties": {
                 "execute": [

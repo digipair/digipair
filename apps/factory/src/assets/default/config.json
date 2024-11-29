@@ -11,7 +11,6 @@
   "libraries": {
     "@digipair/skill-service": "latest",
     "@digipair/skill-chatbot": "latest",
-    "@digipair/skill-cron": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-basic": "latest",

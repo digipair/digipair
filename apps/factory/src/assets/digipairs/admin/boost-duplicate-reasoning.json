@@ -13,7 +13,7 @@
             "library": "digipair:admin",
             "element": "answer",
             "properties": {
-              "assistant": "What is the id, the name and the description for the duplicated reasonning ?",
+              "assistant": "What is the id for the duplicated reasonning ?",
               "boost": [
                 {
                   "step": "Execution",
@@ -39,7 +39,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extract the information from the duplicated reasoning based on the user's comment.\" comment:string \"User's comment describing the duplicated reasoning\" -> \n  id:string \"reasoning identifier in kebab case\", \n  name:string \"Very short name of the reasoning\", \n  description:string \"Short description of the reasoning \", \n  assistant:string \"Assistant's response to confirm that the reasoning has been successfully duplicated\"",
+                    "signature": "\"Extract the information from the duplicated reasoning based on the user's comment.\" comment:string \"User's comment describing the duplicated reasoning\" -> \n  name:string \"Very short name of the reasoning\", \n  description:string \"Short description of the reasoning \", \n  assistant:string \"Assistant's response to confirm that the reasoning has been successfully duplicated\"",
                     "input": { "comment": "EVALUATE:request.body.prompt" }
                   }
                 }
@@ -59,7 +59,7 @@
             "element": "setReasoning",
             "properties": {
               "digipair": "{{request.body.context.digipair}}",
-              "reasoning": "EVALUATE:if previous.element = \"boost\" then \n \"boost-\" + variables.infos.id\nelse \n  variables.infos.id",
+              "reasoning": "EVALUATE:if previous.element = \"boost\" then \n \"boost-\" + request.body.prompt\nelse \n  request.body.prompt",
               "value": {
                 "name": "{{variables.infos.name}}",
                 "description": "{{variables.infos.description}}",

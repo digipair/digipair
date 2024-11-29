@@ -93,7 +93,7 @@
               "reasoning": "conversation",
               "value": {
                 "summary": "EVALUATEprevious.summary",
-                "description": "EVALUATEprevious.description",
+                "description": "EVALUATE:previous.description",
                 "metadata": "EVALUATE:previous.metadata",
                 "library": "EVALUATE:previous.library",
                 "element": "EVALUATE:previous.element",
@@ -127,11 +127,11 @@
                 "openapi": "EVALUATE:previous.openapi",
                 "paths": "EVALUATE:previous.paths",
                 "components": "EVALUATE:previous.components",
-                "infos": {
+                "info": {
                   "title": "digipair:{{request.body.prompt}}",
                   "summary": "{{variables.infos.name}}",
-                  "version": "EVALUATE:previous.infos.version",
-                  "x-icon": "EVALUATE:get value(previous.infos, \"x-icon\")"
+                  "version": "EVALUATE:previous.info.version",
+                  "x-icon": "EVALUATE:get value(previous.info, \"x-icon\")"
                 }
               }
             }

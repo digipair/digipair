@@ -281,6 +281,37 @@
                                               }
                                             }
                                           ]
+                                        },
+                                        "conditions": {
+                                          "if": "EVALUATE:item.id != \"schema\""
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-web-spectrum",
+                                        "element": "sp-action-button",
+                                        "pins": [
+                                          {
+                                            "library": "@digipair/skill-web-font-awesome",
+                                            "element": "digipair-font-awesome-icon",
+                                            "properties": {
+                                              "name": "pen-to-square",
+                                              "category": "regular"
+                                            }
+                                          }
+                                        ],
+                                        "events": {
+                                          "click": [
+                                            {
+                                              "library": "@digipair/skill-web-interact",
+                                              "element": "goTo",
+                                              "properties": {
+                                                "url": "/admin/json-editor/{{request.params.[0]}}/{{item.id}}"
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "conditions": {
+                                          "if": "EVALUATE:item.id = \"schema\""
                                         }
                                       },
                                       {

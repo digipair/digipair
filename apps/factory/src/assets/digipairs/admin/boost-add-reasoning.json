@@ -15,7 +15,7 @@
             "library": "digipair:admin",
             "element": "answer",
             "properties": {
-              "assistant": "What is the id, the name and the description for the new {{request.body.context.summary}} ?",
+              "assistant": "What is the id for the new {{request.body.context.summary}} ?",
               "boost": [
                 {
                   "step": "Execution",
@@ -41,7 +41,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> id:string \"reasoning identifier in kebab case\", name:string \"Very short name of the reasoning\", description:string \"Short description of the reasoning\", assistant:string \"Assistant's response to confirm that the reasoning has been successfully added\"",
+                    "signature": "\"Extract the information for creating the reasoning from the user's comment\" comment:string \"User's comment describing the reasoning to create\" -> \n  name:string \"Very short name of the reasoning\", \n  description:string \"Short description of the reasoning\", \n  assistant:string \"Assistant's response to confirm that the reasoning has been successfully added\"",
                     "input": { "comment": "{{request.body.prompt}}" }
                   }
                 }
@@ -53,7 +53,7 @@
             "element": "setReasoning",
             "properties": {
               "digipair": "{{request.body.context.digipair}}",
-              "reasoning": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + variables.infos.id \nelse \n  variables.infos.id",
+              "reasoning": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse \n  request.body.prompt",
               "value": {
                 "name": "{{variables.infos.name}}",
                 "description": "{{variables.infos.description}}",
