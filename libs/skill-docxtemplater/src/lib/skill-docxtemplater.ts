@@ -4,17 +4,23 @@ import Docxtemplater from 'docxtemplater';
 import PizZip from 'pizzip';
 
 class DocxTemplaterService {
+  private base64ToBuffer(base64: string) {
+    const data = base64.replace(/^data:.*;base64,/, '');
+    const buffer = Buffer.from(data, 'base64');
+    return buffer;
+  }
+
   async generate(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { template, data } = params;
 
-    const content = Buffer.from(template, 'base64');
+    const content = this.base64ToBuffer(template);
     const zip = new PizZip(content);
     const doc = new Docxtemplater(zip);
     doc.setData(data);
     doc.render();
     const buffer = doc.getZip().generate({ type: 'base64' });
 
-    return buffer;
+    return `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${buffer}`;
   }
 }
 

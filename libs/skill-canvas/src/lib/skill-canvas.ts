@@ -31,11 +31,12 @@ class CanvasService {
 
   async loadImage(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { image } = params;
-    const { loadImageCanvas } =
+
+    const result =
       typeof window === 'undefined'
         ? require('canvas')
         : {
-            loadImageCanvas: (src: string) =>
+            loadImage: (src: string) =>
               new Promise((resolve, reject) => {
                 const img = new Image();
                 img.onload = () => resolve(img);
@@ -44,7 +45,7 @@ class CanvasService {
               }),
           };
 
-    return loadImageCanvas(typeof window === 'undefined' ? this.base64ToImage(image) : image);
+    return result.loadImage(typeof window === 'undefined' ? this.base64ToImage(image) : image);
   }
 
   async drawImage(params: any, _pinsSettingsList: PinsSettings[], context: any) {
