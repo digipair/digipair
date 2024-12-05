@@ -11,16 +11,35 @@ class HttpService {
     this.IS_JSON = IS_JSON;
   }
 
-  async call(url: string, method: string, data: any, headers: any, signal: AbortSignal): Promise<any> {
+  async call(
+    url: string,
+    method: string,
+    data: any,
+    headers: any,
+    signal: AbortSignal,
+  ): Promise<any> {
+    const requestHeaders = {
+      Accept: this.IS_JSON ? 'application/json' : '*/*',
+      ...(data ? { 'Content-Type': 'application/json' } : {}),
+      ...headers,
+    };
+
+    let body = undefined;
+
+    if (requestHeaders['Content-Type'] === 'application/json') {
+      body = JSON.stringify(data);
+    } else if (requestHeaders['Content-Type'] === 'application/x-www-form-urlencoded') {
+      const params = new URLSearchParams(data);
+      body = params.toString();
+    } else {
+      body = data;
+    }
+
     const response = await fetch(url, {
       signal,
       method,
-      headers: {
-        Accept: this.IS_JSON ? 'application/json' : '*/*',
-        ...(data ? { 'Content-Type': 'application/json' } : {}),
-        ...headers,
-      },
-      body: data ? (this.IS_JSON ? JSON.stringify(data) : data) : undefined,
+      headers: requestHeaders,
+      body,
     });
     if (!response.ok) throw new Error('[SKILL-HTTP] REQUEST FAILED: ' + response.status);
     return this.IS_JSON ? response.json() : response.text();
@@ -101,7 +120,7 @@ class HttpService {
       formData.append(param.name, buffer, {
         filename: param.name + '.' + matches[1].split('/')[1],
         contentType: matches[1],
-    });
+      });
     }
   }
 }
