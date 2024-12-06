@@ -40,6 +40,7 @@
       "@digipair/skill-mongodb": ["libs/skill-mongodb/src/index.ts"],
       "@digipair/skill-mybuddy": ["libs/skill-mybuddy/src/index.ts"],
       "@digipair/skill-nuki": ["libs/skill-nuki/src/index.ts"],
+      "@digipair/skill-oauth2": ["libs/skill-oauth2/src/index.ts"],
       "@digipair/skill-ollama": ["libs/skill-ollama/src/index.ts"],
       "@digipair/skill-openai": ["libs/skill-openai/src/index.ts"],
       "@digipair/skill-pdf": ["libs/skill-pdf/src/index.ts"],

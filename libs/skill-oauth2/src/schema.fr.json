@@ -1,0 +1,277 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-oauth2",
+    "summary": "Gestion des autorisations OAuth2",
+    "description": "Cette compétence permet de gérer les autorisations OAuth2",
+    "version": "0.1.0",
+    "x-icon": "🔐"
+  },
+  "paths": {
+    "/authorizationCodeUrl": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère l'URL OAuth2 Authorization Code",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "Configuration OAuth2",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/authorizationCodeAccessToken": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère le token OAuth2 Authorization Code",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "Configuration OAuth2",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "tokenParams",
+            "summary": "Paramètres du token",
+            "required": true,
+            "description": "Paramètres du token",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/authorizationCodeCreateToken": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Crée un token OAuth2 Authorization Code",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "Configuration OAuth2",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "accessToken",
+            "summary": "Token d'accès",
+            "required": true,
+            "description": "Token d'accès",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/resourceOwnerPasswordAccessToken": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère le token OAuth2 Resource Owner Password",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "Configuration OAuth2",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "tokenParams",
+            "summary": "Paramètres du token",
+            "required": true,
+            "description": "Paramètres du token",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/resourceOwnerPasswordCreateToken": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Crée un token OAuth2 Resource Owner Password",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "Configuration OAuth2",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "accessToken",
+            "summary": "Token d'accès",
+            "required": true,
+            "description": "Token d'accès",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/clientCredentialsAccessToken": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère le token OAuth2 Client Credentials",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "Configuration OAuth2",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "tokenParams",
+            "summary": "Paramètres du token",
+            "required": true,
+            "description": "Paramètres du token",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/clientCredentialsCreateToken": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Crée un token OAuth2 Client Credentials",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "Configuration OAuth2",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "accessToken",
+            "summary": "Token d'accès",
+            "required": true,
+            "description": "Token d'accès",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/tokenExpired": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Vérifie si le token est expiré",
+        "parameters": [
+          {
+            "name": "token",
+            "summary": "Token",
+            "required": true,
+            "description": "Token",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/tokenRefresh": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Rafraîchit le token",
+        "parameters": [
+          {
+            "name": "token",
+            "summary": "Token",
+            "required": true,
+            "description": "Token",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/tokenRevoke": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Révoque le token",
+        "parameters": [
+          {
+            "name": "token",
+            "summary": "Token",
+            "required": true,
+            "description": "Token",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type",
+            "required": true,
+            "description": "Type de révocation",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/tokenRevokeAll": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Révoque tous les tokens",
+        "parameters": [
+          {
+            "name": "token",
+            "summary": "Token",
+            "required": true,
+            "description": "Token",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
