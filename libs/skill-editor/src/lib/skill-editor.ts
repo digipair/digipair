@@ -1,4 +1,5 @@
 import { PinsSettings } from '@digipair/engine';
+import * as _ from 'lodash';
 import { promises, existsSync } from 'fs';
 
 class EditorService {
@@ -141,6 +142,12 @@ class EditorService {
         (process.env['DIGIPAIR_FACTORY_PATH']
           ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
           : './factory/digipairs'),
+      templatesPath = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/templates`
+          : './factory/templates'),
+      template,
+      data,
       digipair,
     } = params;
 
@@ -152,11 +159,13 @@ class EditorService {
     // create digipair folder
     await promises.mkdir(`${path}/${digipair}`);
 
-    // copy files from assets/default
-    const defaultPath = `${path}/../default`;
-    const files = await promises.readdir(defaultPath);
+    // copy files
+    const originPath = `${templatesPath}/${template}`;
+    const files = await promises.readdir(originPath);
     for (const file of files) {
-      await promises.copyFile(`${defaultPath}/${file}`, `${path}/${digipair}/${file}`);
+      const content = await promises.readFile(`${originPath}/${file}`, 'utf8');
+      const result = _.template(content)(data);
+      await promises.writeFile(`${path}/${digipair}/${file}`, result);
     }
 
     return {};
@@ -182,6 +191,20 @@ class EditorService {
       config: { VERSIONS: config.libraries },
       variables: config.variables,
     };
+  }
+
+  async templates(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/templates`
+          : './factory/templates'),
+    } = params;
+
+    const entries = await promises.readdir(`${path}/${digipair}`, { withFileTypes: true });
+    const templates = entries.filter(entry => entry.isDirectory()).map(entry => entry.name);
+
+    return templates;
   }
 }
 
@@ -214,3 +237,6 @@ export const addDigipair = (params: any, pinsSettingsList: PinsSettings[], conte
 
 export const metadata = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().metadata(params, pinsSettingsList, context);
+
+export const templates = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().templates(params, pinsSettingsList, context);

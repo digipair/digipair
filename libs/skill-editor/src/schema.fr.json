@@ -278,6 +278,33 @@
             }
           },
           {
+            "name": "templatesPath",
+            "summary": "Chemin d'accès des templates",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "template",
+            "summary": "Template",
+            "required": true,
+            "description": "Template à utiliser pour le nouveau digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Données à remplacer",
+            "required": true,
+            "description": "Données à remplacer dans le template",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
             "name": "digipair",
             "summary": "Digipair",
             "required": true,
@@ -309,6 +336,25 @@
             "summary": "Digipair",
             "required": true,
             "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/templates": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Liste des templates",
+        "descriptions": "Liste des templates de digipair",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire des templates de digipair",
             "schema": {
               "type": "string"
             }

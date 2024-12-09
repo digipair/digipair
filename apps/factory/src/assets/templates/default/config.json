@@ -1,6 +1,6 @@
 {
-  "name": "default",
-  "description": "default configuration",
+  "name": "<%= name %>",
+  "description": "<%= description %>",
   "metadata": {
     "avatar": "avatar.png",
     "primary": "#51E0DC",
@@ -16,7 +16,8 @@
     "@digipair/skill-basic": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-inputs": "latest",
-    "@digipair/skill-web-interact": "latest"
+    "@digipair/skill-web-interact": "latest",
+    "digipair:<%= digipair %>": "latest"
   },
   "variables": {},
   "privates": {

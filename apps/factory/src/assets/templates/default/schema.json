@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "digipair:default",
-    "summary": "Default",
+    "title": "digipair:<%= digipair %>",
+    "summary": "<%= name %>",
     "version": "0.1.0",
     "x-icon": "🤖"
   },
@@ -10,7 +10,7 @@
     "/answer": {
       "post": {
         "tags": ["boost"],
-        "summary": "Default response",
+        "summary": "<%= name %> response",
         "parameters": [
           {
             "name": "prompt",
