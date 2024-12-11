@@ -3,7 +3,7 @@
   "description": "Adding a new digipair.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": {},
+  "metadata": { "standalone": true },
   "properties": {
     "steps": [
       {
@@ -14,14 +14,7 @@
             "element": "answer",
             "properties": {
               "assistant": "What is the id for the new digipair ?",
-              "boost": [
-                {
-                  "step": "Execution",
-                  "prompt": true,
-                  "required": true,
-                  "inputs": []
-                }
-              ]
+              "boost": [{ "prompt": true, "required": true, "step": "Execution" }]
             }
           }
         ]
@@ -39,7 +32,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extract the information for creating the digipair from the user's comment\" comment:string \"User's comment describing the digipair to create\" -> name:string \"Very short name of the digipair\", description:string \"Short description of the digipair\", assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
+                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment\", \n  description:string \"Short description of the agent from the comment\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
                     "input": { "comment": "{{request.body.prompt}}" }
                   }
                 }
@@ -50,28 +43,20 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "digipair": "{{request.body.prompt}}",
-              "template": "default",
+              "template": "openapi-apikey",
               "data": {
-                "digipair": "{{request.body.prompt}}",
-                "name": "{{variables.infos.name}}",
-                "description": "{{variables.infos.description}}"
-              }
-            }
-          },
-          {
-            "library": "@digipair/skill-editor",
-            "element": "reasoning",
-            "properties": {
-              "digipair": "{{request.body.prompt}}",
-              "reasoning": "config"
+                "digipair": "EVALUATE:request.body.prompt",
+                "name": "EVALUATE:variables.infos.name",
+                "description": "EVALUATE:variables.infos.description"
+              },
+              "digipair": "EVALUATE:request.body.prompt"
             }
           },
           {
             "library": "digipair:admin",
             "element": "answer",
             "properties": {
-              "assistant": "{{variables.infos.assistant}}",
+              "assistant": "EVALUATE:variables.infos.assistant",
               "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
             }
           }

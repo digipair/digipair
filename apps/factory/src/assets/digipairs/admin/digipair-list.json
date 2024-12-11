@@ -91,6 +91,28 @@
                                 }
                               ]
                             }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-menu-item",
+                            "properties": { "textContent": "Add a digipair OpenAPI" },
+                            "events": {
+                              "click": [
+                                {
+                                  "library": "@digipair/skill-web-interact",
+                                  "element": "execute",
+                                  "properties": {
+                                    "name": "executeBoost",
+                                    "selector": "digipair-chatbot",
+                                    "args": [
+                                      {
+                                        "reasoning": "boost-add-digipair-api"
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
                           }
                         ],
                         "properties": {

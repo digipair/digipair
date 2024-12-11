@@ -1,0 +1,175 @@
+{
+  "description": "Référence à un fichier de schéma JSON.",
+  "summary": "Schéma JSON",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-factory",
+        "element": "headers",
+        "properties": {
+          "headers": {
+            "Content-Type": "application/json"
+          }
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "openapi",
+          "execute": [
+            {
+              "library": "@digipair/skill-http",
+              "element": "read",
+              "properties": {
+                "path": "EVALUATE:privates.OPENAPI_URL"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "paths",
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "setVariable",
+                    "properties": {
+                      "name": "params",
+                      "value": []
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "execute": [
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "setVariable",
+                          "properties": {
+                            "name": "params",
+                            "value": "EVALUATE:item.value"
+                          }
+                        }
+                      ]
+                    },
+                    "conditions": {
+                      "if": "EVALUATE:item.key = \"parameters\"",
+                      "each": "EVALUATE:get entries(item.value)"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "execute": [
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "setVariable",
+                          "properties": {
+                            "name": "path",
+                            "value": {
+                              "key": "EVALUATE:replace(replace(replace(item.value.operationId, \"/\", \"\"), \"\\{\", \"\"), \"\\}\", \"\")",
+                              "value": "EVALUATE:item.value",
+                              "method": "EVALUATE:item.key"
+                            }
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "setVariable",
+                          "properties": {
+                            "name": "parameters",
+                            "execute": [
+                              {
+                                "library": "@digipair/skill-basic",
+                                "element": "transform",
+                                "properties": {
+                                  "value": {
+                                    "name": "EVALUATE:item.name",
+                                    "summary": "EVALUATE:item.name",
+                                    "description": "EVALUATE:if item.description != null then item.description else item.name",
+                                    "required": "EVALUATE:if item.required = true then true else false",
+                                    "schema": {
+                                      "type": "EVALUATE:if list contains([\"string\", \"number\", \"boolean\"], item.schema.type) then item.schema.type else \"object\""
+                                    }
+                                  }
+                                },
+                                "conditions": {
+                                  "each": "EVALUATE:if variables.path.value.parameters != null then concatenate(variables.path.value.parameters, variables.params) else variables.params"
+                                }
+                              },
+                              {
+                                "library": "@digipair/skill-basic",
+                                "element": "transform",
+                                "properties": {
+                                  "value": "EVALUATE:if variables.path.value.requestBody != null then \n  append(previous, { \n    \"name\": \"body\",\n    \"summary\": \"body\",\n    \"description\": \"body\",\n    \"required\": if variables.path.value.requestBody.required = true then true else false,\n    \"schema\": { \"type\": \"object\" }\n  }) \nelse previous"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": {
+                            "value": {
+                              "key": "EVALUATE:\"/\" + variables.path.key",
+                              "value": {
+                                "post": {
+                                  "tags": ["service"],
+                                  "summary": "EVALUATE:if variables.path.value.summary != null then variables.path.value.summary else variables.path.value.operationId",
+                                  "description": "EVALUATE:if variables.path.value.description != null then variables.path.value.description else variables.path.value.operationId",
+                                  "parameters": "EVALUATE:variables.parameters",
+                                  "x-events": []
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "conditions": {
+                      "if": "EVALUATE:item.key = \"get\" or item.key = \"post\" or item.key = \"put\" or item.key = \"delete\" or item.key = \"patch\" or item.key = \"head\"",
+                      "each": "EVALUATE:get entries(item.value)"
+                    }
+                  }
+                ]
+              },
+              "conditions": {
+                "each": "EVALUATE:get entries(variables.openapi.paths)"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "EVALUATE:flatten(previous)"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": "{\n  \"openapi\": \"3.0.0\",\n  \"info\": {\n    \"title\": \"digipair:<%= digipair %>\",\n    \"summary\": \"<%= name %>\",\n    \"version\": \"0.1.0\",\n    \"x-icon\": \"🤖\"\n  },\n  \"paths\": {\n {{#variables.paths}}\n    {{JSONstringify key}}: {{JSONstringify value}},\n {{/variables.paths}}\n    \"/answer\": {\n      \"post\": {\n        \"tags\": [\n          \"boost\"\n        ],\n        \"summary\": \"Response\",\n        \"parameters\": [\n          {\n            \"name\": \"prompt\",\n            \"required\": false,\n            \"description\": \"User question\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"assistant\",\n            \"required\": true,\n            \"summary\": \"Assistant's response\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"userId\",\n            \"required\": false,\n            \"summary\": \"User Id\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"boost\",\n            \"required\": false,\n            \"summary\": \"Boost used to push the user request\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"$ref\": \"#/components/schemas/Boost\"\n              }\n            }\n          },\n          {\n            \"name\": \"command\",\n            \"required\": false,\n            \"summary\": \"Commands executed on the chatbot\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"$ref\": \"https://schemas.digipair.ai/pinsSettings\"\n              }\n            }\n          },\n          {\n            \"name\": \"boosts\",\n            \"required\": false,\n            \"summary\": \"List of proposed boosts\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          },\n          {\n            \"name\": \"sources\",\n            \"required\": false,\n            \"summary\": \"List of sources used to respond to the user\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"object\"\n              }\n            }\n          },\n          {\n            \"name\": \"logs\",\n            \"required\": false,\n            \"summary\": \"Useful information for debugging reasoning\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          }\n        ],\n        \"x-events\": []\n      }\n    },\n    \"/request\": {\n      \"post\": {\n        \"tags\": [\n          \"service\"\n        ],\n        \"summary\": \"Request\",\n        \"parameters\": [\n          {\n            \"name\": \"path\",\n            \"required\": true,\n            \"summary\": \"Path\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"method\",\n            \"required\": true,\n            \"summary\": \"Method\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"body\",\n            \"required\": false,\n            \"summary\": \"Body\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          },\n          {\n            \"name\": \"headers\",\n            \"required\": false,\n            \"summary\": \"Headers\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          }\n        ],\n        \"x-events\": []\n      }\n    }\n  },\n  \"components\": {\n    \"schemas\": {\n      \"Boost\": {\n        \"type\": \"object\",\n        \"tags\": [\n          \"boost\"\n        ],\n        \"summary\": \"Boost\",\n        \"properties\": {\n          \"prompt\": {\n            \"type\": \"boolean\"\n          },\n          \"required\": {\n            \"type\": \"boolean\"\n          },\n          \"selector\": {\n            \"type\": \"string\"\n          },\n          \"url\": {\n            \"type\": \"string\"\n          },\n          \"step\": {\n            \"type\": \"string\"\n          },\n          \"inputs\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"$ref\": \"https://schemas.digipair.ai/pinsSettings\"\n            }\n          }\n        },\n        \"required\": []\n      }\n    }\n  }\n}"
+        }
+      }
+    ]
+  },
+  "pins": []
+}

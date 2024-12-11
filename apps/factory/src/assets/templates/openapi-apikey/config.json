@@ -14,12 +14,27 @@
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-basic": "latest",
+    "@digipair/skill-http": "latest",
+    "@digipair/skill-factory": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-inputs": "latest",
     "@digipair/skill-web-interact": "latest"
   },
   "variables": {},
   "privates": {
-    "MODEL_DSP": [{ "library": "@digipair/skill-dsp", "element": "modelOpenAI" }]
-  }
+    "OPENAPI_URL": "<%= api %>",
+    "OPENAPI_AUTHORIZATION_KEY": "Authentification",
+    "OPENAPI_AUTHORIZATION_VALUE": "<%= key %>",
+    "MODEL_EMBEDDINGS": [
+      {
+        "library": "@digipair/skill-openai",
+        "element": "embeddings",
+        "property": { "modelName": "text-embedding-3-small" }
+      }
+    ],
+    "MODEL_DSP": [
+      { "library": "@digipair/skill-dsp", "element": "modelOpenAI" }
+    ]
+  },
+  "digipair": "<%= digipair %>"
 }
