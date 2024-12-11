@@ -1,0 +1,83 @@
+{
+  "summary": "Add a digipair",
+  "description": "Adding a new digipair.",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": {},
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:admin",
+            "element": "answer",
+            "properties": {
+              "assistant": "What is the id for the new digipair ?",
+              "boost": [
+                {
+                  "step": "Execution",
+                  "prompt": true,
+                  "required": true,
+                  "inputs": []
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extract the information for creating the digipair from the user's comment\" comment:string \"User's comment describing the digipair to create\" -> name:string \"Very short name of the digipair\", description:string \"Short description of the digipair\", assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
+                    "input": { "comment": "{{request.body.prompt}}" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "addDigipair",
+            "properties": {
+              "digipair": "{{request.body.prompt}}",
+              "template": "default",
+              "data": {
+                "digipair": "{{request.body.prompt}}",
+                "name": "{{variables.infos.name}}",
+                "description": "{{variables.infos.description}}"
+              }
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasoning",
+            "properties": {
+              "digipair": "{{request.body.prompt}}",
+              "reasoning": "config"
+            }
+          },
+          {
+            "library": "digipair:admin",
+            "element": "answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

@@ -105,9 +105,7 @@ export class EditorElement extends LitElement {
   }
 
   private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
-    const privateSchemas = this.schemas.filter(
-      schema => Object.keys(libraries).indexOf(schema.info.title) >= 0,
-    );
+    const privateSchemas = this.schemas;
     const list = [
       this.language === 'fr' ? schemasWebFr : schemasWeb,
       ...privateSchemas,
