@@ -163,9 +163,13 @@ class EditorService {
     const originPath = `${templatesPath}/${template}`;
     const files = await promises.readdir(originPath);
     for (const file of files) {
-      const content = await promises.readFile(`${originPath}/${file}`, 'utf8');
-      const result = _.template(content)(data);
-      await promises.writeFile(`${path}/${digipair}/${file}`, result);
+      if (file.endsWith('.json')) {
+        const content = await promises.readFile(`${originPath}/${file}`, 'utf8');
+        const result = _.template(content)(data);
+        await promises.writeFile(`${path}/${digipair}/${file}`, result);
+      } else {
+        await promises.copyFile(`${originPath}/${file}`, `${path}/${digipair}/${file}`);
+      }
     }
 
     return {};
