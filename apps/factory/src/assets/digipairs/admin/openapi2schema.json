@@ -1,35 +1,15 @@
 {
-  "description": "Référence à un fichier de schéma JSON.",
-  "summary": "Schéma JSON",
+  "description": "Transformation d'une spécification OpenAPI en schéma.",
+  "summary": "OpenAPI to Schema",
   "library": "@digipair/skill-service",
-  "element": "service",
+  "element": "task",
   "metadata": {},
   "properties": {
     "execute": [
       {
-        "library": "@digipair/skill-factory",
-        "element": "headers",
-        "properties": {
-          "headers": {
-            "Content-Type": "application/json"
-          }
-        }
-      },
-      {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
-        "properties": {
-          "name": "openapi",
-          "execute": [
-            {
-              "library": "@digipair/skill-http",
-              "element": "read",
-              "properties": {
-                "path": "EVALUATE:privates.OPENAPI_URL"
-              }
-            }
-          ]
-        }
+        "properties": { "name": "openapi", "value": "EVALUATE:request.body.openapi" }
       },
       {
         "library": "@digipair/skill-basic",
@@ -45,10 +25,7 @@
                   {
                     "library": "@digipair/skill-basic",
                     "element": "setVariable",
-                    "properties": {
-                      "name": "params",
-                      "value": []
-                    }
+                    "properties": { "name": "params", "value": [] }
                   },
                   {
                     "library": "@digipair/skill-basic",
@@ -58,10 +35,7 @@
                         {
                           "library": "@digipair/skill-basic",
                           "element": "setVariable",
-                          "properties": {
-                            "name": "params",
-                            "value": "EVALUATE:item.value"
-                          }
+                          "properties": { "name": "params", "value": "EVALUATE:item.value" }
                         }
                       ]
                     },
@@ -148,16 +122,12 @@
                   }
                 ]
               },
-              "conditions": {
-                "each": "EVALUATE:get entries(variables.openapi.paths)"
-              }
+              "conditions": { "each": "EVALUATE:get entries(variables.openapi.paths)" }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
-              "properties": {
-                "value": "EVALUATE:flatten(previous)"
-              }
+              "properties": { "value": "EVALUATE:flatten(previous)" }
             }
           ]
         }
@@ -166,8 +136,13 @@
         "library": "@digipair/skill-basic",
         "element": "transform",
         "properties": {
-          "value": "{\n  \"openapi\": \"3.0.0\",\n  \"info\": {\n    \"title\": \"digipair:<%= digipair %>\",\n    \"summary\": \"<%= name %>\",\n    \"version\": \"0.1.0\",\n    \"x-icon\": \"🤖\"\n  },\n  \"paths\": {\n {{#variables.paths}}\n    {{JSONstringify key}}: {{JSONstringify value}},\n {{/variables.paths}}\n    \"/answer\": {\n      \"post\": {\n        \"tags\": [\n          \"boost\"\n        ],\n        \"summary\": \"Response\",\n        \"parameters\": [\n          {\n            \"name\": \"prompt\",\n            \"required\": false,\n            \"description\": \"User question\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"assistant\",\n            \"required\": true,\n            \"summary\": \"Assistant's response\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"userId\",\n            \"required\": false,\n            \"summary\": \"User Id\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"boost\",\n            \"required\": false,\n            \"summary\": \"Boost used to push the user request\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"$ref\": \"#/components/schemas/Boost\"\n              }\n            }\n          },\n          {\n            \"name\": \"command\",\n            \"required\": false,\n            \"summary\": \"Commands executed on the chatbot\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"$ref\": \"https://schemas.digipair.ai/pinsSettings\"\n              }\n            }\n          },\n          {\n            \"name\": \"boosts\",\n            \"required\": false,\n            \"summary\": \"List of proposed boosts\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          },\n          {\n            \"name\": \"sources\",\n            \"required\": false,\n            \"summary\": \"List of sources used to respond to the user\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"object\"\n              }\n            }\n          },\n          {\n            \"name\": \"logs\",\n            \"required\": false,\n            \"summary\": \"Useful information for debugging reasoning\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          }\n        ],\n        \"x-events\": []\n      }\n    },\n    \"/request\": {\n      \"post\": {\n        \"tags\": [\n          \"service\"\n        ],\n        \"summary\": \"Request\",\n        \"parameters\": [\n          {\n            \"name\": \"path\",\n            \"required\": true,\n            \"summary\": \"Path\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"method\",\n            \"required\": true,\n            \"summary\": \"Method\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"body\",\n            \"required\": false,\n            \"summary\": \"Body\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          },\n          {\n            \"name\": \"headers\",\n            \"required\": false,\n            \"summary\": \"Headers\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          }\n        ],\n        \"x-events\": []\n      }\n    }\n  },\n  \"components\": {\n    \"schemas\": {\n      \"Boost\": {\n        \"type\": \"object\",\n        \"tags\": [\n          \"boost\"\n        ],\n        \"summary\": \"Boost\",\n        \"properties\": {\n          \"prompt\": {\n            \"type\": \"boolean\"\n          },\n          \"required\": {\n            \"type\": \"boolean\"\n          },\n          \"selector\": {\n            \"type\": \"string\"\n          },\n          \"url\": {\n            \"type\": \"string\"\n          },\n          \"step\": {\n            \"type\": \"string\"\n          },\n          \"inputs\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"$ref\": \"https://schemas.digipair.ai/pinsSettings\"\n            }\n          }\n        },\n        \"required\": []\n      }\n    }\n  }\n}"
+          "value": "{\n  \"openapi\": \"3.0.0\",\n  \"info\": {\n    \"title\": \"digipair:{{request.body.digipair}}\",\n    \"summary\": \"{{request.body.name}}\",\n    \"version\": \"0.1.0\",\n    \"x-icon\": \"🤖\"\n  },\n  \"paths\": {\n {{#variables.paths}}\n    {{JSONstringify key}}: {{JSONstringify value}},\n {{/variables.paths}}\n    \"/answer\": {\n      \"post\": {\n        \"tags\": [\n          \"boost\"\n        ],\n        \"summary\": \"Response\",\n        \"parameters\": [\n          {\n            \"name\": \"prompt\",\n            \"required\": false,\n            \"description\": \"User question\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"assistant\",\n            \"required\": true,\n            \"summary\": \"Assistant's response\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"userId\",\n            \"required\": false,\n            \"summary\": \"User Id\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"boost\",\n            \"required\": false,\n            \"summary\": \"Boost used to push the user request\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"$ref\": \"#/components/schemas/Boost\"\n              }\n            }\n          },\n          {\n            \"name\": \"command\",\n            \"required\": false,\n            \"summary\": \"Commands executed on the chatbot\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"$ref\": \"https://schemas.digipair.ai/pinsSettings\"\n              }\n            }\n          },\n          {\n            \"name\": \"boosts\",\n            \"required\": false,\n            \"summary\": \"List of proposed boosts\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          },\n          {\n            \"name\": \"sources\",\n            \"required\": false,\n            \"summary\": \"List of sources used to respond to the user\",\n            \"schema\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"object\"\n              }\n            }\n          },\n          {\n            \"name\": \"logs\",\n            \"required\": false,\n            \"summary\": \"Useful information for debugging reasoning\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          }\n        ],\n        \"x-events\": []\n      }\n    },\n    \"/request\": {\n      \"post\": {\n        \"tags\": [\n          \"service\"\n        ],\n        \"summary\": \"Request\",\n        \"parameters\": [\n          {\n            \"name\": \"path\",\n            \"required\": true,\n            \"summary\": \"Path\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"method\",\n            \"required\": true,\n            \"summary\": \"Method\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"body\",\n            \"required\": false,\n            \"summary\": \"Body\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          },\n          {\n            \"name\": \"headers\",\n            \"required\": false,\n            \"summary\": \"Headers\",\n            \"schema\": {\n              \"type\": \"object\"\n            }\n          }\n        ],\n        \"x-events\": []\n      }\n    }\n  },\n  \"components\": {\n    \"schemas\": {\n      \"Boost\": {\n        \"type\": \"object\",\n        \"tags\": [\n          \"boost\"\n        ],\n        \"summary\": \"Boost\",\n        \"properties\": {\n          \"prompt\": {\n            \"type\": \"boolean\"\n          },\n          \"required\": {\n            \"type\": \"boolean\"\n          },\n          \"selector\": {\n            \"type\": \"string\"\n          },\n          \"url\": {\n            \"type\": \"string\"\n          },\n          \"step\": {\n            \"type\": \"string\"\n          },\n          \"inputs\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"$ref\": \"https://schemas.digipair.ai/pinsSettings\"\n            }\n          }\n        },\n        \"required\": []\n      }\n    }\n  }\n}"
         }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": { "value": "EVALUATE:JSONparse(previous)" }
       }
     ]
   },

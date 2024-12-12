@@ -13,11 +13,9 @@
           "name": "openapi",
           "execute": [
             {
-              "library": "@digipair/skill-http",
-              "element": "read",
-              "properties": {
-                "path": "EVALUATE:privates.OPENAPI_URL"
-              }
+              "library": "digipair:<%= digipair %>",
+              "element": "openapi",
+              "properties": {}
             }
           ]
         }

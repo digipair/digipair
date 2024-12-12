@@ -73,6 +73,39 @@
         "name": "Execution",
         "execute": [
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "openapi",
+              "execute": [
+                {
+                  "library": "@digipair/skill-http",
+                  "element": "read",
+                  "properties": { "path": "EVALUATE:request.body.prompt" }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "schema",
+              "execute": [
+                {
+                  "library": "digipair:admin",
+                  "element": "openapi2schema",
+                  "properties": {
+                    "openapi": "EVALUATE:variables.openapi",
+                    "digipair": "EVALUATE:request.body.inputs[1].value.digipair",
+                    "name": "EVALUATE:request.body.inputs[1].value.name",
+                    "description": "EVALUATE:request.body.inputs[1].value.description"
+                  }
+                }
+              ]
+            }
+          },
+          {
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
@@ -81,6 +114,8 @@
                 "digipair": "EVALUATE:request.body.inputs[1].value.digipair",
                 "name": "EVALUATE:request.body.inputs[1].value.name",
                 "description": "EVALUATE:request.body.inputs[1].value.description",
+                "openapi": "EVALUATE:variables.openapi",
+                "schema": "EVALUATE:variables.schema",
                 "api": "EVALUATE:request.body.prompt",
                 "key": "API_KEY"
               },
@@ -92,7 +127,12 @@
             "element": "answer",
             "properties": {
               "assistant": "EVALUATE:request.body.inputs[1].value.assistant",
-              "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
+              "command": [
+                {
+                  "library": "@digipair/skill-web-interact",
+                  "element": "reload"
+                }
+              ]
             }
           }
         ]

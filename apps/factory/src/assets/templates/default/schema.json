@@ -30,7 +30,7 @@
           },
           {
             "name": "userId",
-            "required": true,
+            "required": false,
             "summary": "User Id",
             "schema": {
               "type": "string"
