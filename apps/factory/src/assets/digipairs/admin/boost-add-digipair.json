@@ -43,7 +43,7 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "template": "openapi-apikey",
+              "template": "default",
               "data": {
                 "digipair": "EVALUATE:request.body.prompt",
                 "name": "EVALUATE:variables.infos.name",

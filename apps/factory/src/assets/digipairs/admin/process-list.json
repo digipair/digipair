@@ -5,6 +5,7 @@
   "element": "page",
   "metadata": {},
   "properties": {
+    "ssr": false,
     "body": [
       {
         "library": "@digipair/skill-web-spectrum",
