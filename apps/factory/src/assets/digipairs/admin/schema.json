@@ -88,6 +88,39 @@
         ],
         "x-events": []
       }
+    },
+    "/openapi2schema": {
+      "post": {
+        "tags": ["service"],
+        "summary": "OpenAPI to Schema",
+        "parameters": [
+          {
+            "name": "openapi",
+            "required": true,
+            "summary": "OpenAPI",
+            "schema": { "type": "object" }
+          },
+          {
+            "name": "digipair",
+            "required": true,
+            "summary": "Digipair",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "name",
+            "required": true,
+            "summary": "Name",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "description",
+            "required": true,
+            "summary": "Description",
+            "schema": { "type": "string" }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

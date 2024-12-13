@@ -142,7 +142,7 @@ class EditorService {
         (process.env['DIGIPAIR_FACTORY_PATH']
           ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
           : './factory/digipairs'),
-      templatesPath = context.privates?.EDITOR_PATH ??
+      templatesPath = context.privates?.EDITOR_TEMPLATES_PATH ??
         (process.env['DIGIPAIR_FACTORY_PATH']
           ? `${process.env['DIGIPAIR_FACTORY_PATH']}/templates`
           : './factory/templates'),
