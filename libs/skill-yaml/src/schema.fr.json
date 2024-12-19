@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-yaml",
+    "summary": "Gestion des données YAML",
+    "description": "Cette compétence permet de manipuler des données YAML",
+    "version": "0.1.0",
+    "x-icon": "📝"
+  },
+  "paths": {
+    "/load": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Charge du YAML",
+        "parameters": [
+          {
+            "name": "yaml",
+            "summary": "Données",
+            "required": true,
+            "description": "Données YAML à charger",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options de chargement",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/dump": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Convertie en YAML",
+        "parameters": [
+          {
+            "name": "data",
+            "summary": "Données",
+            "required": true,
+            "description": "Données à convertir en YAML",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options de convertion",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

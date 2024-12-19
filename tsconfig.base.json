@@ -74,6 +74,7 @@
       "@digipair/skill-web-push-notification": ["libs/skill-web-push-notification/src/index.ts"],
       "@digipair/skill-web-spectrum": ["libs/skill-web-spectrum/src/index.ts"],
       "@digipair/skill-webcam": ["libs/skill-webcam/src/index.ts"],
+      "@digipair/skill-yaml": ["libs/skill-yaml/src/index.ts"],
       "@digipair/skill-yolo": ["libs/skill-yolo/src/index.ts"]
     }
   },

@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-yaml",
+    "summary": "YAML data management",
+    "description": "This skill allows manipulating YAML data",
+    "version": "0.1.0",
+    "x-icon": "📝"
+  },
+  "paths": {
+    "/load": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Load YAML",
+        "parameters": [
+          {
+            "name": "yaml",
+            "summary": "Data",
+            "required": true,
+            "description": "YAML data to load",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Loading options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/dump": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Convert to YAML",
+        "parameters": [
+          {
+            "name": "data",
+            "summary": "Data",
+            "required": true,
+            "description": "Data to convert to YAML",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Conversion options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

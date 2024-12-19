@@ -51,13 +51,13 @@ class BasicService {
     return result;
   }
 
-  async stopInterval(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+  async stopInterval(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { id } = params;
 
     return clearInterval(id);
   }
 
-  async stopDefer(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+  async stopDefer(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { id } = params;
 
     return clearTimeout(id);
