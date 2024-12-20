@@ -42,12 +42,12 @@ class ClientWebSocketService {
     // Event onopen: Connexion réussie
     this.ws.onopen = async () => {
       this.retryCount = 0; // Réinitialise le compteur de tentatives après une connexion réussie
-      await executePinsList(open, { ...context });
+      await executePinsList(open, { ...context, websocket: this.ws });
     };
 
     // Event onmessage: Réception d'un message
     this.ws.onmessage = async (event: any) => {
-      await executePinsList(message, { ...context, message: JSON.parse(event.data) });
+      await executePinsList(message, { ...context, message: JSON.parse(event.data), websocket: this.ws });
     };
 
     // Event onclose: Déconnexion
@@ -58,13 +58,13 @@ class ClientWebSocketService {
         : this.reconnectWebSocket(params, _pinsSettingsList, context);
 
       if (!reconnect) {
-        await executePinsList(close, { ...context });
+        await executePinsList(close, { ...context, websocket: this.ws });
       }
     };
 
     // Event onerror: Erreur
     this.ws.onerror = async (err: Event) => {
-      await executePinsList(error, { ...context, error: err });
+      await executePinsList(error, { ...context, error: err, websocket: this.ws });
       this.ws?.close(); // Ferme la connexion en cas d'erreur
     };
 

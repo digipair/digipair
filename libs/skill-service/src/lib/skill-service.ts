@@ -13,6 +13,12 @@ class ServiceService {
 
     return await executePinsList(execute, context);
   }
+
+  async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { execute } = params;
+
+    return await executePinsList(execute, context);
+  }
 }
 
 export const service = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -20,3 +26,6 @@ export const service = (params: any, pinsSettingsList: PinsSettings[], context: 
 
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ServiceService().task(params, pinsSettingsList, context);
+
+export const action = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ServiceService().action(params, pinsSettingsList, context);

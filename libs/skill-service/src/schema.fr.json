@@ -9,7 +9,32 @@
   },
   "paths": {},
   "components": {
-    "schemas": {}
+    "schemas": {
+      "Parameter": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Parameter",
+        "properties": {
+          "name": {
+            "summary": "Name",
+            "type": "string"
+          },
+          "type": {
+            "summary": "Type",
+            "type": "string"
+          },
+          "item": {
+            "summary": "Item",
+            "type": "object"
+          },
+          "properties": {
+            "summary": "Properties",
+            "type": "object"
+          }
+        },
+        "required": ["name", "type"]
+      }
+    }
   },
   "x-scene-blocks": {
     "/service": {
@@ -35,7 +60,7 @@
     "/task": {
       "summary": "Tache",
       "description": "Exécution d'une tache.",
-      "tags": ["service", "boost"],
+      "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
@@ -43,6 +68,39 @@
           "summary": "Exécute",
           "required": true,
           "description": "Commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/action": {
+      "summary": "Action",
+      "description": "Execution of an action.",
+      "tags": ["service"],
+      "metadata": [
+        {
+          "name": "schema",
+          "summary": "Input parameters",
+          "required": true,
+          "description": "Input parameters",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commands to execute",
           "schema": {
             "type": "array",
             "items": {

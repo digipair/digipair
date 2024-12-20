@@ -1,0 +1,9 @@
+{
+  "name": "@digipair/skill-imap",
+  "version": "0.0.1",
+  "dependencies": {
+    "imapflow": "^1.0.171"
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}

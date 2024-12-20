@@ -7,50 +7,50 @@ class OAuth2Service {
   async authorizationCodeUrl(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { config } = params;
 
-    const clent = new AuthorizationCode(config);
-    return clent.authorizeURL(config);
+    const client = new AuthorizationCode(config);
+    return client.authorizeURL(config);
   }
 
   async authorizationCodeAccessToken(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { config, tokenParams } = params;
 
-    const clent = new AuthorizationCode(config);
-    return clent.getToken(tokenParams);
+    const client = new AuthorizationCode(config);
+    return client.getToken(tokenParams);
   }
 
   async authorizationCodeCreateToken(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { config, accessToken } = params;
 
-    const clent = new AuthorizationCode(config);
-    return clent.createToken(accessToken);
+    const client = new AuthorizationCode(config);
+    return client.createToken(accessToken);
   }
 
   async resourceOwnerPasswordAccessToken(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { config, tokenParams } = params;
 
-    const clent = new ResourceOwnerPassword(config);
-    return clent.getToken(tokenParams);
+    const client = new ResourceOwnerPassword(config);
+    return client.getToken(tokenParams);
   }
 
   async resourceOwnerPasswordCreateToken(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { config, accessToken } = params;
 
-    const clent = new ResourceOwnerPassword(config);
-    return clent.createToken(accessToken);
+    const client = new ResourceOwnerPassword(config);
+    return client.createToken(accessToken);
   }
 
   async clientCredentialsAccessToken(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { config, tokenParams } = params;
 
-    const clent = new ClientCredentials(config);
-    return clent.getToken(tokenParams);
+    const client = new ClientCredentials(config);
+    return client.getToken(tokenParams);
   }
 
   async clientCredentialsCreateToken(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { config, accessToken } = params;
 
-    const clent = new ClientCredentials(config);
-    return clent.createToken(accessToken);
+    const client = new ClientCredentials(config);
+    return client.createToken(accessToken);
   }
 
   async tokenExpired(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {

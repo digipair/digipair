@@ -1,0 +1,889 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-imap",
+    "summary": "IMAP email management",
+    "description": "This skill allows managing IMAP emails.",
+    "version": "0.1.0",
+    "x-icon": "📨"
+  },
+  "paths": {
+    "/connect": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Connect the client",
+        "parameters": [
+          {
+            "name": "config",
+            "summary": "Configuration",
+            "required": true,
+            "description": "IMAP client configuration",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "load",
+            "summary": "Loading",
+            "required": false,
+            "description": "Loading mailboxes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "close",
+            "summary": "Closing",
+            "required": false,
+            "description": "Closing mailboxes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "error",
+            "summary": "Error",
+            "required": false,
+            "description": "Error handling",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "exists",
+            "summary": "Exists",
+            "required": false,
+            "description": "Check existence of mailboxes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "expunge",
+            "summary": "Expunge",
+            "required": false,
+            "description": "Expunge mailboxes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "flags",
+            "summary": "Flags",
+            "required": false,
+            "description": "Flag management",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "log",
+            "summary": "Log",
+            "required": false,
+            "description": "Log",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "mailboxClose",
+            "summary": "Log",
+            "required": false,
+            "description": "Log",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "mailboxOpen",
+            "summary": "Log",
+            "required": false,
+            "description": "Log",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/search": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Search messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "attachments",
+            "summary": "Attachments",
+            "required": false,
+            "description": "Attachments",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getMailboxLock": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Retrieve locked IMAP mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": false,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/getQuota": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Retrieve mailbox quota",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/idle": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Wait for messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List mailboxes",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/listTree": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List mailboxes in tree",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/logout": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Disconnect the client",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/mailboxClose": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Close the mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/mailboxCreate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Create a mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/mailboxDelete": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Delete a mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/mailboxOpen": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Open a mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/mailboxRename": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Rename a mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newPath",
+            "summary": "New Path",
+            "required": true,
+            "description": "New mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/mailboxSubscribe": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Subscribe to a mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/mailboxUnsubscribe": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Unsubscribe from a mailbox",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/messageCopy": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Copy a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "destination",
+            "summary": "Destination",
+            "required": true,
+            "description": "Destination",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/messageDelete": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Delete a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/messageFlagsAdd": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Add flags to a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "flags",
+            "summary": "Flags",
+            "required": true,
+            "description": "Flags to add",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/messageFlagsRemove": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Remove flags from a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "flags",
+            "summary": "Flags",
+            "required": true,
+            "description": "Flags to remove",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/messageFlagsSet": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Set message flags",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "flags",
+            "summary": "Flags",
+            "required": true,
+            "description": "Flags to set",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/messageMove": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Move a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "destination",
+            "summary": "Destination",
+            "required": true,
+            "description": "Destination",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/noop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "No operation",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/setFlagColor": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Set flag color",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "flag",
+            "summary": "Flag",
+            "required": true,
+            "description": "Flag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "Color",
+            "required": true,
+            "description": "Flag color",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/status": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Retrieve mailbox status",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Query",
+            "required": false,
+            "description": "Query",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
