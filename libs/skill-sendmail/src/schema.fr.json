@@ -60,6 +60,18 @@
             }
           },
           {
+            "name": "attachments",
+            "summary": "Pièces jointes",
+            "required": false,
+            "description": "Pièces jointes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
             "name": "config",
             "summary": "Configuration",
             "required": false,

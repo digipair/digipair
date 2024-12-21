@@ -44,7 +44,7 @@
             "element": "setReasoning",
             "properties": {
               "digipair": "{{request.body.context.digipair}}",
-              "reasoning": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse \n  request.body.prompt",
+              "reasoning": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse \n  (if request.body.context.element = \"action\" then \n  \"action-\" + request.body.prompt \nelse request.body.prompt)",
               "value": {
                 "summary": "{{variables.infos.name}}",
                 "description": "{{variables.infos.description}}",

@@ -64,7 +64,38 @@ class CommonService {
     const text = await promises.readFile(`${path}/${digipair}/schema.json`, 'utf8');
     const content = JSON.parse(text);
 
-    return content;
+    const files = await promises.readdir(`${path}/${digipair}`);
+    const actions = (
+      await Promise.all(
+        files
+          .map(file => /^action-(.*)\.json$/.exec(file)?.[1])
+          .filter(name => name)
+          .map(async name => {
+            const actionContent = await promises.readFile(
+              `${path}/${digipair}/action-${name}.json`,
+              'utf8',
+            );
+            const { summary, metadata } = JSON.parse(actionContent);
+
+            return {
+              key: `/action-${name}`,
+              value: {
+                post: {
+                  tags: metadata.tags ?? [],
+                  summary,
+                  parameters: metadata.parameters ?? [],
+                  'x-events': [],
+                },
+              },
+            };
+          }),
+      )
+    ).reduce((acc: any, item: any) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return { ...content, paths: { ...content.paths, ...actions } };
   }
 }
 

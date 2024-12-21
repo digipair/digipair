@@ -16,23 +16,27 @@
         "summary": "Parameter",
         "properties": {
           "name": {
-            "summary": "Name",
+            "summary": "Nom",
             "type": "string"
           },
-          "type": {
-            "summary": "Type",
+          "summary": {
+            "summary": "Affichage",
             "type": "string"
           },
-          "item": {
-            "summary": "Item",
+          "required": {
+            "summary": "Requis",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
             "type": "object"
           },
-          "properties": {
-            "summary": "Properties",
-            "type": "object"
+          "description": {
+            "summary": "Description",
+            "type": "string"
           }
         },
-        "required": ["name", "type"]
+        "required": ["name", "summary", "required", "schema"]
       }
     }
   },
@@ -79,14 +83,26 @@
     },
     "/action": {
       "summary": "Action",
-      "description": "Execution of an action.",
+      "description": "Action exécutable.",
       "tags": ["service"],
       "metadata": [
         {
-          "name": "schema",
-          "summary": "Input parameters",
+          "name": "tags",
+          "summary": "Tags",
           "required": true,
-          "description": "Input parameters",
+          "description": "Tags de l'action",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Paramètres",
+          "required": true,
+          "description": "Paramètres de l'action",
           "schema": {
             "type": "array",
             "items": {
@@ -100,7 +116,7 @@
           "name": "execute",
           "summary": "Execute",
           "required": true,
-          "description": "Commands to execute",
+          "description": "Commandes à exécuter.",
           "schema": {
             "type": "array",
             "items": {

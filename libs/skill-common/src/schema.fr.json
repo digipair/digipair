@@ -43,6 +43,24 @@
         ],
         "x-events": []
       }
+    },
+    "/schema": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Schema",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Nom du digipair",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "x-scene-blocks": {}

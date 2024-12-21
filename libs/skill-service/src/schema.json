@@ -19,20 +19,24 @@
             "summary": "Name",
             "type": "string"
           },
-          "type": {
-            "summary": "Type",
+          "summary": {
+            "summary": "Summary",
             "type": "string"
           },
-          "item": {
-            "summary": "Item",
+          "required": {
+            "summary": "Required",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
             "type": "object"
           },
-          "properties": {
-            "summary": "Properties",
-            "type": "object"
+          "description": {
+            "summary": "Summary",
+            "type": "string"
           }
         },
-        "required": ["name", "type"]
+        "required": ["name", "summary", "required", "schema"]
       }
     }
   },
@@ -79,12 +83,24 @@
     },
     "/action": {
       "summary": "Action",
-      "description": "Execution of an action.",
+      "description": "Executable action.",
       "tags": ["service"],
       "metadata": [
         {
-          "name": "schema",
-          "summary": "Input parameters",
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Tags de l'action",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Parameters",
           "required": true,
           "description": "Input parameters",
           "schema": {
