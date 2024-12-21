@@ -60,7 +60,7 @@ export class AppController {
       const { id, signal } = skillProcess.add(digipair, reasoning, null);
       const method = request.method;
 
-      res.on('finish', () => {
+      res.on('close', () => {
         skillProcess.remove(id);
       });
 

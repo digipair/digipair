@@ -1,11 +1,10 @@
 {
-  "summary": "JSON editor",
   "description": "Reasoning and configuration JSON editor",
+  "summary": "JSON editor",
   "library": "@digipair/skill-web",
   "element": "page",
   "metadata": {},
   "properties": {
-    "ssr": false,
     "body": [
       {
         "library": "@digipair/skill-web-spectrum",
@@ -23,7 +22,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "https://res.cloudinary.com/do87nxq3l/image/upload/fl_preserve_transparency/v1718985104/Fichier_1_lilpuw.jpg?_s=public-apps",
+                      "src": "https://res.cloudinary.com/do87nxq3l/image/upload/v1718033538/Fichier_1_zunbli.png",
                       "style": "height: 20px;"
                     }
                   }
@@ -46,7 +45,7 @@
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-top-nav-item",
-                "properties": { "textContent": "{{variables.reasoning.name}}" }
+                "properties": { "textContent": "{{variables.reasoning.summary}}" }
               },
               {
                 "library": "@digipair/skill-web-spectrum",
@@ -154,19 +153,16 @@
             }
           }
         ],
-        "properties": { "color": "dark", "scale": "large" }
+        "properties": { "color": "light", "scale": "large" }
       },
       {
         "library": "@digipair/skill-web-chatbot",
         "element": "digipair-chatbot",
-        "properties": {
-          "code": "{{request.digipair}}",
-          "apiUrl": ""
-        }
+        "properties": { "code": "{{request.digipair}}", "apiUrl": "" }
       }
     ],
-    "styleHtml": "color-scheme:dark;",
-    "browserInitialize": [
+    "styleHtml": "color-scheme:light;\nbackground-color: #f4f4f4;",
+    "factoryInitialize": [
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
@@ -174,19 +170,9 @@
           "name": "digipair",
           "execute": [
             {
-              "library": "@digipair/skill-web",
-              "element": "executeFactory",
-              "properties": {
-                "execute": [
-                  {
-                    "library": "@digipair/skill-editor",
-                    "element": "digipair",
-                    "properties": {
-                      "digipair": "{{request.params.[0]}}"
-                    }
-                  }
-                ]
-              }
+              "library": "@digipair/skill-editor",
+              "element": "digipair",
+              "properties": { "digipair": "{{request.params.[0]}}" }
             }
           ]
         }
@@ -198,19 +184,11 @@
           "name": "reasoning",
           "execute": [
             {
-              "library": "@digipair/skill-web",
-              "element": "executeFactory",
+              "library": "@digipair/skill-editor",
+              "element": "reasoning",
               "properties": {
-                "execute": [
-                  {
-                    "library": "@digipair/skill-editor",
-                    "element": "reasoning",
-                    "properties": {
-                      "digipair": "{{request.params.[0]}}",
-                      "reasoning": "{{request.params.[1]}}"
-                    }
-                  }
-                ]
+                "digipair": "{{request.params.[0]}}",
+                "reasoning": "{{request.params.[1]}}"
               }
             }
           ]

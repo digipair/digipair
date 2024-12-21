@@ -1,6 +1,6 @@
 {
-  "summary": "Chatbot",
   "description": "Chatbot",
+  "summary": "Chatbot",
   "library": "@digipair/skill-web",
   "element": "page",
   "metadata": {},
@@ -12,7 +12,7 @@
         "properties": { "code": "admin" }
       }
     ],
-    "styleBody": "background-color:#212E3C;"
+    "styleBody": "background-color:#f4f4f4;"
   },
   "pins": []
 }

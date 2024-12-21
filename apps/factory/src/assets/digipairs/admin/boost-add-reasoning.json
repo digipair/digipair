@@ -1,11 +1,9 @@
 {
-  "summary": "Adding a reasoning",
   "description": "Adding a new reasoning.",
+  "summary": "Adding a reasoning",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": {
-    "standalone": false
-  },
+  "metadata": { "standalone": false },
   "properties": {
     "steps": [
       {
@@ -16,14 +14,7 @@
             "element": "answer",
             "properties": {
               "assistant": "What is the id for the new {{request.body.context.summary}} ?",
-              "boost": [
-                {
-                  "step": "Execution",
-                  "prompt": true,
-                  "required": true,
-                  "inputs": []
-                }
-              ]
+              "boost": [{ "prompt": true, "required": true, "step": "Execution" }]
             }
           }
         ]
@@ -55,7 +46,7 @@
               "digipair": "{{request.body.context.digipair}}",
               "reasoning": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse \n  request.body.prompt",
               "value": {
-                "name": "{{variables.infos.name}}",
+                "summary": "{{variables.infos.name}}",
                 "description": "{{variables.infos.description}}",
                 "library": "{{request.body.context.library}}",
                 "element": "{{request.body.context.element}}",

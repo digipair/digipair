@@ -1,6 +1,6 @@
 {
-  "description": "Liste des logs",
-  "summary": "Logs",
+  "description": "List of monthly LLM consumptions",
+  "summary": "Monthly LLM Consumption",
   "library": "@digipair/skill-web",
   "element": "page",
   "metadata": {},
@@ -26,22 +26,17 @@
                         "library": "web",
                         "element": "img",
                         "properties": {
-                          "style": "height: 20px;",
-                          "src": "https://res.cloudinary.com/do87nxq3l/image/upload/v1718033538/Fichier_1_zunbli.png"
+                          "src": "https://res.cloudinary.com/do87nxq3l/image/upload/v1718033538/Fichier_1_zunbli.png",
+                          "style": "height: 20px;"
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": { "href": "/admin/digipair-list" }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "Home", "href": "/admin/digipair-list" }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
-                    "properties": { "textContent": "Logs" }
+                    "properties": { "textContent": "Monthly LLM Consumptions" }
                   }
                 ]
               }
@@ -71,7 +66,7 @@
                     {
                       "library": "@digipair/skill-web-interact",
                       "element": "goTo",
-                      "properties": { "url": "/admin/logs/{{item}}" }
+                      "properties": { "url": "/admin/consumptions/{{item}}" }
                     }
                   ]
                 },
@@ -82,7 +77,10 @@
           {
             "library": "web",
             "element": "section",
-            "properties": { "style": "margin: 40px 0 20px 0;", "textContent": "Liste des logs" }
+            "properties": {
+              "style": "margin: 40px 0 20px 0;",
+              "textContent": "List of Consumptions"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -95,7 +93,7 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Heure" }
+                    "properties": { "textContent": "Date" }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -105,17 +103,27 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Raisonnement" }
+                    "properties": { "textContent": "Reasoning" }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Type" }
+                    "properties": { "textContent": "Service" }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Message" }
+                    "properties": { "textContent": "Model" }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-table-head-cell",
+                    "properties": { "textContent": "Input" }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-table-head-cell",
+                    "properties": { "textContent": "Output" }
                   }
                 ]
               },
@@ -130,9 +138,7 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": {
-                          "textContent": "EVALUATE:substring(fromTime(item.date), 12, 8)"
-                        }
+                        "properties": { "textContent": "EVALUATE:item.date" }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
@@ -147,15 +153,25 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.type}}" }
+                        "properties": { "textContent": "{{item.service}}" }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.message}}" }
+                        "properties": { "textContent": "{{item.model}}" }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-table-cell",
+                        "properties": { "textContent": "{{item.promptTokens}}" }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-table-cell",
+                        "properties": { "textContent": "{{item.completionTokens}}" }
                       }
                     ],
-                    "conditions": { "each": "EVALUATE:variables.logs" }
+                    "conditions": { "each": "EVALUATE:variables.consumptions" }
                   }
                 ]
               }
@@ -170,14 +186,15 @@
         "properties": { "code": "admin", "apiUrl": "" }
       }
     ],
-    "ssr": false,
     "styleHtml": "color-scheme:light;\nbackground-color: #f4f4f4;\npadding: 60px 40px 80px 40px;",
     "browserInitialize": [
       {
         "library": "@digipair/skill-web-interact",
         "element": "goTo",
-        "properties": { "url": "EVALUATE:\"/admin/logs/\" + substring(string(now()), 1, 10)" },
-        "conditions": { "if": "EVALUATE:count(request.params) = 0" }
+        "properties": {
+          "url": "EVALUATE:\"/admin/consumptions-monthly/\" + substring(string(now()), 1, 7)"
+        },
+        "conditions": { "if": "EVALUATE:request.params[1] = \"\"" }
       },
       {
         "library": "@digipair/skill-basic",
@@ -188,7 +205,7 @@
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
-          "name": "logs",
+          "name": "consumptions",
           "execute": [
             {
               "library": "@digipair/skill-web",
@@ -196,14 +213,32 @@
               "properties": {
                 "execute": [
                   {
-                    "library": "@digipair/skill-logger",
-                    "element": "read",
-                    "properties": { "date": "{{variables.date}}", "type": "factory" }
-                  },
-                  {
                     "library": "@digipair/skill-basic",
-                    "element": "transform",
-                    "properties": { "value": "EVALUATE:reverse(previous)" }
+                    "element": "trycatch",
+                    "properties": {
+                      "executeTry": [
+                        {
+                          "library": "@digipair/skill-logger",
+                          "element": "read",
+                          "properties": {
+                            "date": "{{variables.date}}",
+                            "type": "consumption-monthly"
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": { "value": "EVALUATE:reverse(previous)" }
+                        }
+                      ],
+                      "executeCatch": [
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": { "value": [] }
+                        }
+                      ]
+                    }
                   }
                 ]
               }
@@ -223,9 +258,24 @@
               "properties": {
                 "execute": [
                   {
-                    "library": "@digipair/skill-logger",
-                    "element": "list",
-                    "properties": { "type": "factory" }
+                    "library": "@digipair/skill-basic",
+                    "element": "trycatch",
+                    "properties": {
+                      "executeTry": [
+                        {
+                          "library": "@digipair/skill-logger",
+                          "element": "list",
+                          "properties": { "type": "consumption-monthly" }
+                        }
+                      ],
+                      "executeCatch": [
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": { "value": [] }
+                        }
+                      ]
+                    }
                   }
                 ]
               }
@@ -233,7 +283,8 @@
           ]
         }
       }
-    ]
+    ],
+    "ssr": false
   },
   "pins": []
 }

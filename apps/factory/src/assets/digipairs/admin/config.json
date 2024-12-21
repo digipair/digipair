@@ -19,6 +19,8 @@
     "@digipair/skill-http": "latest",
     "@digipair/skill-basic": "latest",
     "@digipair/skill-logger": "latest",
+    "@digipair/skill-process": "latest",
+    "@digipair/skill-factory": "latest",
     "@digipair/skill-debug": "latest",
     "@digipair/skill-web-debug": "latest",
     "@digipair/skill-web-jsoneditor": "latest",
@@ -31,7 +33,5 @@
     "@digipair/skill-web-font-awesome": "latest"
   },
   "variables": {},
-  "privates": {
-    "MODEL_DSP": [{ "library": "@digipair/skill-dsp", "element": "modelOpenAI" }]
-  }
+  "privates": { "MODEL_DSP": [{ "library": "@digipair/skill-dsp", "element": "modelOpenAI" }] }
 }

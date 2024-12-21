@@ -1,6 +1,6 @@
 {
-  "summary": "Duplication the reasoning",
   "description": "This action allows for duplicating an already existing reasoning.",
+  "summary": "Duplication the reasoning",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": false },
@@ -14,14 +14,7 @@
             "element": "answer",
             "properties": {
               "assistant": "What is the id for the duplicated reasonning ?",
-              "boost": [
-                {
-                  "step": "Execution",
-                  "prompt": true,
-                  "required": true,
-                  "inputs": []
-                }
-              ]
+              "boost": [{ "prompt": true, "required": true, "step": "Execution" }]
             }
           }
         ]
@@ -61,7 +54,7 @@
               "digipair": "{{request.body.context.digipair}}",
               "reasoning": "EVALUATE:if previous.element = \"boost\" then \n \"boost-\" + request.body.prompt\nelse \n  request.body.prompt",
               "value": {
-                "name": "{{variables.infos.name}}",
+                "summary": "{{variables.infos.name}}",
                 "description": "{{variables.infos.description}}",
                 "library": "{{previous.library}}",
                 "element": "{{previous.element}}",
