@@ -1,0 +1,43 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-markitdown",
+    "summary": "Convertion de fichiers Markdown",
+    "description": "Cette compétence permet de convertir des fichiers PDF, DOCX, etc en Markdown.",
+    "version": "0.1.0",
+    "x-icon": "📄"
+  },
+  "paths": {
+    "/convert": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Convertit en markdown",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Fichier à convertir",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin de l'executable",
+            "required": false,
+            "description": "Chemin vers l'executable markitdown",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

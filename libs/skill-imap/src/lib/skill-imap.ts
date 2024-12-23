@@ -108,7 +108,7 @@ class IMapService {
   }
 
   async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client = context.imap, query, attachments = 'FULL' } = params;
+    const { client = context.imap, query, attachments = 'NONE' } = params;
     let messages: any[];
 
     const list = await client.search(query);
@@ -208,7 +208,7 @@ class IMapService {
   }
 
   async mailboxOpen(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client = context.imap, path, options = {} } = params;
+    const { client = context.imap, path = 'INBOX', options = {} } = params;
     return client.mailboxOpen(path, options);
   }
 
@@ -217,12 +217,20 @@ class IMapService {
     return client.mailboxRename(path, newPath);
   }
 
-  async mailboxSubscribe(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async mailboxSubscribe(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    context: any,
+  ): Promise<any> {
     const { client = context.imap, path } = params;
     return client.mailboxSubscribe(path);
   }
 
-  async mailboxUnsubscribe(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async mailboxUnsubscribe(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    context: any,
+  ): Promise<any> {
     const { client = context.imap, path } = params;
     return client.mailboxUnsubscribe(path);
   }
@@ -237,17 +245,29 @@ class IMapService {
     return client.messageDelete(range, options);
   }
 
-  async messageFlagsAdd(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async messageFlagsAdd(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    context: any,
+  ): Promise<any> {
     const { client = context.imap, range, flags, options = {} } = params;
     return client.messageFlagsAdd(range, flags, options);
   }
 
-  async messageFlagsRemove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async messageFlagsRemove(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    context: any,
+  ): Promise<any> {
     const { client = context.imap, range, flags, options = {} } = params;
     return client.messageFlagsRemove(range, flags, options);
   }
 
-  async messageFlagsSet(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async messageFlagsSet(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    context: any,
+  ): Promise<any> {
     const { client = context.imap, range, flags, options = {} } = params;
     return client.messageFlagsSet(range, flags, options);
   }

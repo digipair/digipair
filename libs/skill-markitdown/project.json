@@ -1,0 +1,31 @@
+{
+  "name": "skill-markitdown",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-markitdown/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-markitdown",
+        "main": "libs/skill-markitdown/src/index.ts",
+        "tsConfig": "libs/skill-markitdown/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-markitdown/src/index.d.ts",
+          "libs/skill-markitdown/src/schema.json",
+          "libs/skill-markitdown/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-markitdown/rollup.build.cjs"],
+        "project": "libs/skill-markitdown/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-markitdown {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

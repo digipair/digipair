@@ -412,7 +412,7 @@
           {
             "name": "path",
             "summary": "Chemin",
-            "required": true,
+            "required": false,
             "description": "Chemin de la boîte",
             "schema": {
               "type": "string"
