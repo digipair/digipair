@@ -6,7 +6,7 @@ const path = require('path');
 function getRollupOptions(options) {
   const extraGlobals = {};
   const externals =
-    options.output.format === 'cjs' ? ['@digipair/engine', 'imapflow'] : ['imapflow'];
+    options.output.format === 'cjs' ? ['@digipair/engine', 'imapflow', 'jsdom'] : ['imapflow', 'jsdom'];
 
   const value = {
     ...options,

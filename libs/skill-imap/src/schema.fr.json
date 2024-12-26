@@ -8,6 +8,81 @@
     "x-icon": "📨"
   },
   "paths": {
+    "/parseOne": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parse un message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message à parser",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "attachments",
+            "summary": "Pièces jointes",
+            "required": false,
+            "description": "Pièces jointes",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/parseAll": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parse des messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "messages",
+            "summary": "Messages",
+            "required": true,
+            "description": "Liste des messages à parser",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "attachments",
+            "summary": "Pièces jointes",
+            "required": false,
+            "description": "Pièces jointes",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/connect": {
       "post": {
         "tags": ["service"],
@@ -158,12 +233,12 @@
             }
           },
           {
-            "name": "attachments",
-            "summary": "Pièces jointes",
+            "name": "options",
+            "summary": "Options",
             "required": false,
-            "description": "Pièces jointes",
+            "description": "Options",
             "schema": {
-              "type": "string"
+              "type": "object"
             }
           }
         ],
@@ -873,6 +948,309 @@
             "summary": "Requête",
             "required": false,
             "description": "Requête",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/append": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ajoute un message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin",
+            "required": true,
+            "description": "Chemin de la boîte",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Contenu",
+            "required": true,
+            "description": "Contenu du message",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "flags",
+            "summary": "Flags",
+            "required": false,
+            "description": "Flags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "idate",
+            "summary": "Date",
+            "required": false,
+            "description": "Date du message",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/close": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Ferme le client",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/download": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Télécharge un message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Plage",
+            "required": true,
+            "description": "Plage de messages",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "part",
+            "summary": "Partie",
+            "required": false,
+            "description": "Partie du message",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/downloadMany": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Télécharge plusieurs messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Plage",
+            "required": true,
+            "description": "Plage de messages",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "parts",
+            "summary": "Parties",
+            "required": true,
+            "description": "Parties des messages",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/fetch": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère des messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Plage",
+            "required": true,
+            "description": "Plage de messages",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Requête",
+            "required": true,
+            "description": "Requête de recherche",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/fetchAll": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère tous les messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Plage",
+            "required": true,
+            "description": "Plage de messages",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Requête",
+            "required": true,
+            "description": "Requête de recherche",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/fetchOne": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Récupère un message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "Client IMAP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "seq",
+            "summary": "Séquence",
+            "required": true,
+            "description": "Séquence du message",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Requête",
+            "required": true,
+            "description": "Requête de recherche",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
             "schema": {
               "type": "object"
             }

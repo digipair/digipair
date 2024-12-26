@@ -2,8 +2,57 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { executePinsList, PinsSettings } from '@digipair/engine';
 import { ImapFlow } from 'imapflow';
+import { JSDOM } from 'jsdom';
 
 class IMapService {
+  private async parse(client: ImapFlow, message: any, attachments: string): Promise<any> {
+    const contents = await (client as any).downloadMany(
+      message.seq.toString(),
+      message.bodyStructure.childNodes?.map((node: any) => node.part) || ['1'],
+    );
+
+    const contentTextKey = Object.keys(contents).find(
+      key =>
+        message.bodyStructure.type === 'text/plain' ||
+        (contents[key].meta.contentType === 'text/plain' &&
+          !message.bodyStructure.childNodes?.find((node: any) => node.part === key)?.disposition),
+    );
+    const contentHtmlKey = Object.keys(contents).find(
+      key =>
+        message.bodyStructure.type === 'text/html' ||
+        (contents[key].meta.contentType === 'text/html' &&
+          !message.bodyStructure.childNodes?.find((node: any) => node.part === key)?.disposition),
+    );
+
+    let result = {
+      ...message,
+      contentText:
+        contentTextKey !== undefined ? contents[contentTextKey].content.toString('UTF8') : '',
+      contentHtml:
+        contentHtmlKey !== undefined ? contents[contentHtmlKey].content.toString('UTF8') : '',
+      attachments: Object.keys(contents)
+        .filter(key => key !== contentTextKey && key !== contentHtmlKey)
+        .filter((node: any) =>
+          attachments === 'FULL'
+            ? true
+            : attachments === 'INLINE'
+              ? node.disposition !== 'attachment'
+              : false,
+        )
+        .map(key => ({
+          meta: contents[key].meta,
+          content: contents[key].content.toString('base64'),
+        })),
+    };
+
+    if (result.contentHtml !== '' && result.contentText === '') {
+      const dom = new JSDOM(result.contentHtml);
+      result.contentText = dom.window.document.body.textContent;
+    }
+
+    return result;
+  }
+
   async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       config,
@@ -107,59 +156,24 @@ class IMapService {
     return client;
   }
 
-  async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client = context.imap, query, attachments = 'NONE' } = params;
-    let messages: any[];
+  async parseOne(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, message, attachments = 'NONE' } = params;
+    return this.parse(client, message, attachments);
+  }
 
-    const list = await client.search(query);
-    const results = await client.fetchAll(list, {
-      envelope: true,
-      uid: true,
-      bodyStructure: true,
-    });
+  async parseAll(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, messages, attachments = 'NONE' } = params;
 
-    messages = await Promise.all(
-      results.map(async (message: any) => {
-        const contents = await client.downloadMany(
-          message.seq.toString(),
-          message.bodyStructure.childNodes?.map((node: any) => node.part) || ['1'],
-        );
-
-        const contentTextKey = Object.keys(contents).find(
-          key =>
-            contents[key].meta.contentType === 'text/plain' &&
-            !message.bodyStructure.childNodes?.find((node: any) => node.part === key)?.disposition,
-        );
-        const contentHtmlKey = Object.keys(contents).find(
-          key =>
-            contents[key].meta.contentType === 'text/html' &&
-            !message.bodyStructure.childNodes?.find((node: any) => node.part === key)?.disposition,
-        );
-
-        return {
-          ...message,
-          contentText:
-            contentTextKey !== undefined ? contents[contentTextKey].content.toString('UTF8') : '',
-          contentHtml:
-            contentHtmlKey !== undefined ? contents[contentHtmlKey].content.toString('UTF8') : '',
-          attachments: Object.keys(contents)
-            .filter(key => key !== contentTextKey && key !== contentHtmlKey)
-            .filter((node: any) =>
-              attachments === 'FULL'
-                ? true
-                : attachments === 'INLINE'
-                  ? node.disposition !== 'attachment'
-                  : false,
-            )
-            .map(key => ({
-              meta: contents[key].meta,
-              content: contents[key].content.toString('base64'),
-            })),
-        };
-      }),
+    const results = await Promise.all(
+      messages.map(async (message: any) => await this.parse(client, message, attachments)),
     );
 
-    return messages;
+    return results;
+  }
+
+  async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, query, options = {} } = params;
+    return client.search(query, options);
   }
 
   async getMailboxLock(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -291,6 +305,41 @@ class IMapService {
     const { client = context.imap, path, query } = params;
     return client.status(path, query);
   }
+
+  async append(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, path, content, flags = [], idate = Date.now() } = params;
+    return client.append(path, content, flags, idate);
+  }
+
+  async close(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap } = params;
+    return client.close();
+  }
+
+  async download(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, range, part, options = {} } = params;
+    return client.download(range, part, options);
+  }
+
+  async downloadMany(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, range, parts, options = {} } = params;
+    return client.downloadMany(range, parts, options);
+  }
+
+  async fetch(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, range, query, options = {} } = params;
+    return client.fetch(range, query, options);
+  }
+
+  async fetchAll(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, range, query, options = {} } = params;
+    return client.fetchAll(range, query, options);
+  }
+
+  async fetchOne(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { client = context.imap, seq, query, options = {} } = params;
+    return client.fetchOne(seq, query, options);
+  }
 }
 
 export const connect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -364,3 +413,30 @@ export const setFlagColor = (params: any, pinsSettingsList: PinsSettings[], cont
 
 export const status = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new IMapService().status(params, pinsSettingsList, context);
+
+export const append = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().append(params, pinsSettingsList, context);
+
+export const close = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().close(params, pinsSettingsList, context);
+
+export const download = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().download(params, pinsSettingsList, context);
+
+export const downloadMany = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().downloadMany(params, pinsSettingsList, context);
+
+export const fetch = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().fetch(params, pinsSettingsList, context);
+
+export const fetchAll = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().fetchAll(params, pinsSettingsList, context);
+
+export const fetchOne = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().fetchOne(params, pinsSettingsList, context);
+
+export const parseAll = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().parseAll(params, pinsSettingsList, context);
+
+export const parseOne = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new IMapService().parseOne(params, pinsSettingsList, context);

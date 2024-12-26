@@ -8,6 +8,81 @@
     "x-icon": "📨"
   },
   "paths": {
+    "/parseOne": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parse a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "message",
+            "summary": "Message",
+            "required": true,
+            "description": "Message to parse",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "attachments",
+            "summary": "Attachments",
+            "required": false,
+            "description": "Attachments",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/parseAll": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parse messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "messages",
+            "summary": "Messages",
+            "required": true,
+            "description": "List of messages to parse",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "attachments",
+            "summary": "Attachments",
+            "required": false,
+            "description": "Attachments",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/connect": {
       "post": {
         "tags": ["service"],
@@ -143,7 +218,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -158,12 +233,12 @@
             }
           },
           {
-            "name": "attachments",
-            "summary": "Attachments",
+            "name": "options",
+            "summary": "Options",
             "required": false,
-            "description": "Attachments",
+            "description": "Options",
             "schema": {
-              "type": "string"
+              "type": "object"
             }
           }
         ],
@@ -173,13 +248,13 @@
     "/getMailboxLock": {
       "post": {
         "tags": ["service"],
-        "summary": "Retrieve locked IMAP mailbox",
+        "summary": "Retrieve the locked IMAP mailbox",
         "parameters": [
           {
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -209,13 +284,13 @@
     "/getQuota": {
       "post": {
         "tags": ["service"],
-        "summary": "Retrieve mailbox quota",
+        "summary": "Retrieve the mailbox quota",
         "parameters": [
           {
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -242,7 +317,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -260,7 +335,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -281,13 +356,13 @@
     "/listTree": {
       "post": {
         "tags": ["service"],
-        "summary": "List mailboxes in tree",
+        "summary": "List mailboxes in a tree",
         "parameters": [
           {
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -314,7 +389,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -332,7 +407,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -350,7 +425,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -377,7 +452,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -404,7 +479,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -412,7 +487,7 @@
           {
             "name": "path",
             "summary": "Path",
-            "required": true,
+            "required": false,
             "description": "Mailbox path",
             "schema": {
               "type": "string"
@@ -440,7 +515,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -476,7 +551,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -503,7 +578,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -530,7 +605,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -575,7 +650,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -611,7 +686,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -659,7 +734,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -701,13 +776,13 @@
     "/messageFlagsSet": {
       "post": {
         "tags": ["service"],
-        "summary": "Set message flags",
+        "summary": "Set flags for a message",
         "parameters": [
           {
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -755,7 +830,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -800,7 +875,7 @@
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -812,13 +887,13 @@
     "/setFlagColor": {
       "post": {
         "tags": ["service"],
-        "summary": "Set flag color",
+        "summary": "Set the color of a flag",
         "parameters": [
           {
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -848,13 +923,13 @@
     "/status": {
       "post": {
         "tags": ["service"],
-        "summary": "Retrieve mailbox status",
+        "summary": "Retrieve the mailbox status",
         "parameters": [
           {
             "name": "client",
             "summary": "Client",
             "required": false,
-            "description": "IMAP client",
+            "description": "IMAP Client",
             "schema": {
               "type": "object"
             }
@@ -873,6 +948,309 @@
             "summary": "Query",
             "required": false,
             "description": "Query",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/append": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Add a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "Mailbox path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Content",
+            "required": true,
+            "description": "Message content",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "flags",
+            "summary": "Flags",
+            "required": false,
+            "description": "Flags",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "idate",
+            "summary": "Date",
+            "required": false,
+            "description": "Message date",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/close": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Close the client",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/download": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Download a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "part",
+            "summary": "Part",
+            "required": false,
+            "description": "Message part",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/downloadMany": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Download multiple messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "parts",
+            "summary": "Parts",
+            "required": true,
+            "description": "Message parts",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/fetch": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Retrieve messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/fetchAll": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Retrieve all messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Range",
+            "required": true,
+            "description": "Message range",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/fetchOne": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Retrieve a message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client",
+            "required": false,
+            "description": "IMAP Client",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "seq",
+            "summary": "Sequence",
+            "required": true,
+            "description": "Message sequence",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "query",
+            "summary": "Query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options",
             "schema": {
               "type": "object"
             }
