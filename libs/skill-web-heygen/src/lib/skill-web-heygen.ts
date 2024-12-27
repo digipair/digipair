@@ -68,6 +68,9 @@ export class Heygen extends LitElement {
     });
 
     this.updateStatus('SESSION_STARTED');
+
+    // Return the local SDP to the server
+    return { sessionId: sessionInfo.session_id, sdp: localDescription };
   }
 
   async stop() {
