@@ -100,7 +100,7 @@
           {
             "name": "websocket",
             "summary": "Websocket",
-            "required": true,
+            "required": false,
             "description": "Websocket à utiliser",
             "schema": {
               "type": "object"
@@ -127,7 +127,7 @@
           {
             "name": "websocket",
             "summary": "Websocket",
-            "required": true,
+            "required": false,
             "description": "Websocket à fermer",
             "schema": {
               "type": "object"

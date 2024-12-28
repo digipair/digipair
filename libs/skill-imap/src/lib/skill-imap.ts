@@ -5,8 +5,15 @@ import { ImapFlow } from 'imapflow';
 import { JSDOM } from 'jsdom';
 
 class IMapService {
-  private async parse(client: ImapFlow, message: any, attachments: string): Promise<any> {
-    const contents = await (client as any).downloadMany(
+  private retryInterval!: number;
+  private maxRetries!: number;
+  private retryCount = 0;
+
+  imap: ImapFlow | null = null;
+  forceClose = false;
+
+  private async parse(client: IMapService, message: any, attachments: string): Promise<any> {
+    const contents = await (client.imap as any)?.downloadMany(
       message.seq.toString(),
       message.bodyStructure.childNodes?.map((node: any) => node.part) || ['1'],
     );
@@ -53,7 +60,21 @@ class IMapService {
     return result;
   }
 
-  async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  private reconnect(params: any, pinsSettingsList: PinsSettings[], context: any) {
+    if (this.retryCount >= this.maxRetries) {
+      return false;
+    }
+
+    setTimeout(() => {
+      this.retryCount++;
+      this.retryInterval *= 2; // Double l'intervalle entre les tentatives
+      this.connect(params, pinsSettingsList, context);
+    }, this.retryInterval);
+
+    return true;
+  }
+
+  async connect(params: any, pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       config,
       load = [],
@@ -66,7 +87,7 @@ class IMapService {
       mailboxClose = [],
       mailboxOpen = [],
     } = params;
-    const client = new ImapFlow({ logger: false, ...config });
+    const client = (this.imap = new ImapFlow({ logger: false, ...config }));
 
     await client.connect();
 
@@ -75,17 +96,22 @@ class IMapService {
     });
 
     client.on('close', async () => {
-      try {
-        await executePinsList(close, { ...context, imap: client });
-      } catch (error: any) {
-        const skillLogger = require('@digipair/skill-logger');
-        skillLogger.addLog(context, 'ERROR', error.message);
+      this.imap = null;
+      const reconnect = this.forceClose ? false : this.reconnect(params, pinsSettingsList, context);
+
+      if (!reconnect) {
+        try {
+          await executePinsList(close, { ...context, imap: this });
+        } catch (error: any) {
+          const skillLogger = require('@digipair/skill-logger');
+          skillLogger.addLog(context, 'ERROR', error.message);
+        }
       }
     });
 
     client.on('error', async data => {
       try {
-        await executePinsList(error, { ...context, error: data, imap: client });
+        await executePinsList(error, { ...context, error: data, imap: this });
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -94,7 +120,7 @@ class IMapService {
 
     client.on('exists', async data => {
       try {
-        await executePinsList(exists, { ...context, data, imap: client });
+        await executePinsList(exists, { ...context, data, imap: this });
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -103,7 +129,7 @@ class IMapService {
 
     client.on('expunge', async data => {
       try {
-        await executePinsList(expunge, { ...context, data, imap: client });
+        await executePinsList(expunge, { ...context, data, imap: this });
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -112,7 +138,7 @@ class IMapService {
 
     client.on('flags', async data => {
       try {
-        await executePinsList(flags, { ...context, data, imap: client });
+        await executePinsList(flags, { ...context, data, imap: this });
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -121,7 +147,7 @@ class IMapService {
 
     client.on('log', async data => {
       try {
-        await executePinsList(log, { ...context, data, imap: client });
+        await executePinsList(log, { ...context, data, imap: this });
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -130,7 +156,7 @@ class IMapService {
 
     client.on('mailboxClose', async data => {
       try {
-        await executePinsList(mailboxClose, { ...context, data, imap: client });
+        await executePinsList(mailboxClose, { ...context, data, imap: this });
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -139,7 +165,7 @@ class IMapService {
 
     client.on('mailboxOpen', async data => {
       try {
-        await executePinsList(mailboxOpen, { ...context, data, imap: client });
+        await executePinsList(mailboxOpen, { ...context, data, imap: this });
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -147,13 +173,13 @@ class IMapService {
     });
 
     try {
-      await executePinsList(load, { ...context, imap: client });
+      await executePinsList(load, { ...context, imap: this });
     } catch (error: any) {
       const skillLogger = require('@digipair/skill-logger');
       skillLogger.addLog(context, 'ERROR', error.message);
     }
 
-    return client;
+    return this;
   }
 
   async parseOne(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -173,62 +199,62 @@ class IMapService {
 
   async search(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, query, options = {} } = params;
-    return client.search(query, options);
+    return client.imap.search(query, options);
   }
 
   async getMailboxLock(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path = 'INBOX', options = {} } = params;
-    return client.getMailboxLock(path, options);
+    return client.imap.getMailboxLock(path, options);
   }
 
   async getQuota(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path } = params;
-    return client.getQuota(path);
+    return client.imap.getQuota(path);
   }
 
   async idle(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap } = params;
-    return client.idle();
+    return client.imap.idle();
   }
 
   async list(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, options = {} } = params;
-    return client.list(options);
+    return client.imap.list(options);
   }
 
   async listTree(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, options = {} } = params;
-    return client.listTree(options);
+    return client.imap.listTree(options);
   }
 
   async logout(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap } = params;
-    return client.logout();
+    return client.imap.logout();
   }
 
   async mailboxClose(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap } = params;
-    return client.mailboxClose();
+    return client.imap.mailboxClose();
   }
 
   async mailboxCreate(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path } = params;
-    return client.mailboxCreate(path);
+    return client.imap.mailboxCreate(path);
   }
 
   async mailboxDelete(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path } = params;
-    return client.mailboxDelete(path);
+    return client.imap.mailboxDelete(path);
   }
 
   async mailboxOpen(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path = 'INBOX', options = {} } = params;
-    return client.mailboxOpen(path, options);
+    return client.imap.mailboxOpen(path, options);
   }
 
   async mailboxRename(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path, newPath } = params;
-    return client.mailboxRename(path, newPath);
+    return client.imap.mailboxRename(path, newPath);
   }
 
   async mailboxSubscribe(
@@ -237,7 +263,7 @@ class IMapService {
     context: any,
   ): Promise<any> {
     const { client = context.imap, path } = params;
-    return client.mailboxSubscribe(path);
+    return client.imap.mailboxSubscribe(path);
   }
 
   async mailboxUnsubscribe(
@@ -246,17 +272,17 @@ class IMapService {
     context: any,
   ): Promise<any> {
     const { client = context.imap, path } = params;
-    return client.mailboxUnsubscribe(path);
+    return client.imap.mailboxUnsubscribe(path);
   }
 
   async messageCopy(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, range, destination, options = {} } = params;
-    return client.messageCopy(range, destination, options);
+    return client.imap.messageCopy(range, destination, options);
   }
 
   async messageDelete(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, range, options = {} } = params;
-    return client.messageDelete(range, options);
+    return client.imap.messageDelete(range, options);
   }
 
   async messageFlagsAdd(
@@ -265,7 +291,7 @@ class IMapService {
     context: any,
   ): Promise<any> {
     const { client = context.imap, range, flags, options = {} } = params;
-    return client.messageFlagsAdd(range, flags, options);
+    return client.imap.messageFlagsAdd(range, flags, options);
   }
 
   async messageFlagsRemove(
@@ -274,7 +300,7 @@ class IMapService {
     context: any,
   ): Promise<any> {
     const { client = context.imap, range, flags, options = {} } = params;
-    return client.messageFlagsRemove(range, flags, options);
+    return client.imap.messageFlagsRemove(range, flags, options);
   }
 
   async messageFlagsSet(
@@ -283,62 +309,63 @@ class IMapService {
     context: any,
   ): Promise<any> {
     const { client = context.imap, range, flags, options = {} } = params;
-    return client.messageFlagsSet(range, flags, options);
+    return client.imap.messageFlagsSet(range, flags, options);
   }
 
   async messageMove(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, range, destination, options = {} } = params;
-    return client.messageMove(range, destination, options);
+    return client.imap.messageMove(range, destination, options);
   }
 
   async noop(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap } = params;
-    return client.noop();
+    return client.imap.noop();
   }
 
   async setFlagColor(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, flag, color } = params;
-    return client.setFlagColor(flag, color);
+    return client.imap.setFlagColor(flag, color);
   }
 
   async status(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path, query } = params;
-    return client.status(path, query);
+    return client.imap.status(path, query);
   }
 
   async append(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, path, content, flags = [], idate = Date.now() } = params;
-    return client.append(path, content, flags, idate);
+    return client.imap.append(path, content, flags, idate);
   }
 
   async close(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap } = params;
-    return client.close();
+    client.forceClose = true;
+    return client.imap.close();
   }
 
   async download(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, range, part, options = {} } = params;
-    return client.download(range, part, options);
+    return client.imap.download(range, part, options);
   }
 
   async downloadMany(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, range, parts, options = {} } = params;
-    return client.downloadMany(range, parts, options);
+    return client.imap.downloadMany(range, parts, options);
   }
 
   async fetch(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, range, query, options = {} } = params;
-    return client.fetch(range, query, options);
+    return client.imap.fetch(range, query, options);
   }
 
   async fetchAll(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, range, query, options = {} } = params;
-    return client.fetchAll(range, query, options);
+    return client.imap.fetchAll(range, query, options);
   }
 
   async fetchOne(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap, seq, query, options = {} } = params;
-    return client.fetchOne(seq, query, options);
+    return client.imap.fetchOne(seq, query, options);
   }
 }
 

@@ -11,18 +11,18 @@ class ClientWebSocketService {
   ws: WebSocket | null = null;
   cwssForceClose = false;
 
-  async send(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
-    const { websocket, message } = params;
+  async send(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { websocket = context.websocket, message } = params;
     return websocket.ws?.send(JSON.stringify(message));
   }
 
-  async close(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
-    const { websocket } = params;
+  async close(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { websocket = context.websocket } = params;
     websocket.cwssForceClose = true;
     return websocket.ws?.close();
   }
 
-  async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async connect(params: any, pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       url = '',
       message = [],
@@ -42,12 +42,27 @@ class ClientWebSocketService {
     // Event onopen: Connexion réussie
     this.ws.onopen = async () => {
       this.retryCount = 0; // Réinitialise le compteur de tentatives après une connexion réussie
-      await executePinsList(open, { ...context, websocket: this.ws });
+
+      try {
+        await executePinsList(open, { ...context, websocket: this });
+      } catch (error: any) {
+        const skillLogger = require('@digipair/skill-logger');
+        skillLogger.addLog(context, 'ERROR', error.message);
+      }
     };
 
     // Event onmessage: Réception d'un message
     this.ws.onmessage = async (event: any) => {
-      await executePinsList(message, { ...context, message: JSON.parse(event.data), websocket: this.ws });
+      try {
+        await executePinsList(message, {
+          ...context,
+          message: JSON.parse(event.data),
+          websocket: this,
+        });
+      } catch (error: any) {
+        const skillLogger = require('@digipair/skill-logger');
+        skillLogger.addLog(context, 'ERROR', error.message);
+      }
     };
 
     // Event onclose: Déconnexion
@@ -55,16 +70,27 @@ class ClientWebSocketService {
       this.ws = null;
       const reconnect = this.cwssForceClose
         ? false
-        : this.reconnectWebSocket(params, _pinsSettingsList, context);
+        : this.reconnectWebSocket(params, pinsSettingsList, context);
 
       if (!reconnect) {
-        await executePinsList(close, { ...context, websocket: this.ws });
+        try {
+          await executePinsList(close, { ...context, websocket: this });
+        } catch (error: any) {
+          const skillLogger = require('@digipair/skill-logger');
+          skillLogger.addLog(context, 'ERROR', error.message);
+        }
       }
     };
 
     // Event onerror: Erreur
     this.ws.onerror = async (err: Event) => {
-      await executePinsList(error, { ...context, error: err, websocket: this.ws });
+      try {
+        await executePinsList(error, { ...context, error: err, websocket: this });
+      } catch (error: any) {
+        const skillLogger = require('@digipair/skill-logger');
+        skillLogger.addLog(context, 'ERROR', error.message);
+      }
+
       this.ws?.close(); // Ferme la connexion en cas d'erreur
     };
 
