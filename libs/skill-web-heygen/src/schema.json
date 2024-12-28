@@ -14,6 +14,15 @@
         "summary": "Interactive Heygen Avatar",
         "parameters": [
           {
+            "name": "videoStyle",
+            "summary": "Video tag style",
+            "description": "CSS style of the video tag.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "class",
             "summary": "Class",
             "description": "Class of the element.",

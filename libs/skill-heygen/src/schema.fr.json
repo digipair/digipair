@@ -43,7 +43,7 @@
           {
             "name": "avatar",
             "summary": "Avatar",
-            "required": false,
+            "required": true,
             "description": "Avatar de la voix",
             "schema": {
               "type": "string"
@@ -52,7 +52,7 @@
           {
             "name": "voice",
             "summary": "Voix",
-            "required": false,
+            "required": true,
             "description": "Voix de la voix",
             "schema": {
               "type": "string"
@@ -88,7 +88,7 @@
           {
             "name": "sessionId",
             "summary": "Session",
-            "required": false,
+            "required": true,
             "description": "ID de session",
             "schema": {
               "type": "string"
@@ -97,7 +97,7 @@
           {
             "name": "candidate",
             "summary": "Candidat ICE",
-            "required": false,
+            "required": true,
             "description": "Candidat ICE",
             "schema": {
               "type": "object"
@@ -133,7 +133,7 @@
           {
             "name": "sessionId",
             "summary": "Session",
-            "required": false,
+            "required": true,
             "description": "ID de session",
             "schema": {
               "type": "string"
@@ -142,7 +142,7 @@
           {
             "name": "sdp",
             "summary": "SDP",
-            "required": false,
+            "required": true,
             "description": "SDP",
             "schema": {
               "type": "object"
@@ -178,7 +178,7 @@
           {
             "name": "sessionId",
             "summary": "Session",
-            "required": false,
+            "required": true,
             "description": "ID de session",
             "schema": {
               "type": "string"
@@ -187,7 +187,7 @@
           {
             "name": "text",
             "summary": "Texte",
-            "required": false,
+            "required": true,
             "description": "Texte à dire",
             "schema": {
               "type": "string"
@@ -223,7 +223,7 @@
           {
             "name": "sessionId",
             "summary": "Session",
-            "required": false,
+            "required": true,
             "description": "ID de session",
             "schema": {
               "type": "string"

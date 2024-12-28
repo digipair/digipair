@@ -1,11 +1,14 @@
 import { html, LitElement } from 'lit';
-import { customElement, query } from 'lit/decorators.js';
+import { customElement, query, property } from 'lit/decorators.js';
 
 @customElement('digipair-heygen')
 export class Heygen extends LitElement {
-  private peerConnection!: RTCPeerConnection;
+  @property()
+  videoStyle = '';
 
   @query('video') mediaElement!: HTMLVideoElement;
+
+  private peerConnection!: RTCPeerConnection;
 
   private updateStatus(status: string, data?: any) {
     this.dispatchEvent(new CustomEvent('status', { detail: { status, data } }));
@@ -79,6 +82,6 @@ export class Heygen extends LitElement {
   }
 
   override render() {
-    return html` <video autoplay></video> `;
+    return html` <video style=${this.videoStyle} autoplay></video> `;
   }
 }
