@@ -91,10 +91,22 @@
           {
             "name": "config",
             "summary": "Configuration",
-            "required": true,
+            "required": false,
             "description": "Configuration du client IMAP",
             "schema": {
               "type": "object"
+            }
+          },
+          {
+            "name": "configExecute",
+            "summary": "Execute la configuration",
+            "required": false,
+            "description": "Execute la configuration",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           },
           {

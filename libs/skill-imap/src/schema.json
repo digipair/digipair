@@ -98,6 +98,18 @@
             }
           },
           {
+            "name": "configExecute",
+            "summary": "Configuration execute",
+            "required": false,
+            "description": "Configuration execute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
             "name": "load",
             "summary": "Loading",
             "required": false,

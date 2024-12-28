@@ -77,6 +77,7 @@ class IMapService {
   async connect(params: any, pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const {
       config,
+      configExecute,
       load = [],
       close = [],
       error = [],
@@ -87,7 +88,13 @@ class IMapService {
       mailboxClose = [],
       mailboxOpen = [],
     } = params;
-    const client = (this.imap = new ImapFlow({ logger: false, ...config }));
+    let configuration = config;
+
+    if (configExecute && configExecute.length > 0) {
+      configuration = await executePinsList(configExecute, { ...context });
+    }
+
+    const client = (this.imap = new ImapFlow({ logger: false, ...configuration }));
 
     await client.connect();
 
