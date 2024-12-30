@@ -2,7 +2,7 @@ import { html, LitElement } from 'lit';
 import { customElement, query, property } from 'lit/decorators.js';
 
 @customElement('digipair-heygen')
-export class Heygen extends LitElement {
+export class HeygenElement extends LitElement {
   @property()
   videoStyle = '';
 

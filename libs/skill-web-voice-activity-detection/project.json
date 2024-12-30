@@ -1,0 +1,31 @@
+{
+  "name": "skill-web-voice-activity-detection",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-web-voice-activity-detection/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-web-voice-activity-detection",
+        "main": "libs/skill-web-voice-activity-detection/src/index.ts",
+        "tsConfig": "libs/skill-web-voice-activity-detection/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-web-voice-activity-detection/src/index.d.ts",
+          "libs/skill-web-voice-activity-detection/src/schema.json",
+          "libs/skill-web-voice-activity-detection/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-web-voice-activity-detection/rollup.build.cjs"],
+        "project": "libs/skill-web-voice-activity-detection/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-web-voice-activity-detection {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

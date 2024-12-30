@@ -1,0 +1,226 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-web-voice-activity-detection",
+    "summary": "Détection d'activité vocale Web",
+    "description": "Cette compétence permet de détecter l'activité vocale.",
+    "version": "0.1.0",
+    "x-icon": "🗣"
+  },
+  "paths": {
+    "/start": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Démarre la détection vocale",
+        "parameters": [
+          {
+            "name": "vad",
+            "summary": "Instance",
+            "required": false,
+            "description": "Instance de détection vocale",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/pause": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Met en pause la détection vocale",
+        "parameters": [
+          {
+            "name": "vad",
+            "summary": "Instance",
+            "required": false,
+            "description": "Instance de détection vocale",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/destroy": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Détruit détection vocale",
+        "parameters": [
+          {
+            "name": "vad",
+            "summary": "Instance",
+            "required": false,
+            "description": "Instance de détection vocale",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/listen": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Écoute la détection vocale",
+        "parameters": [
+          {
+            "name": "onFrameProcessed",
+            "summary": "Traitement de trame",
+            "required": false,
+            "description": "Actions executées lors du traitement de trame",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "onVADMisfire",
+            "summary": "Erreur de détection",
+            "required": false,
+            "description": "Actions executées lors d'une erreur de détection",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "onSpeechStart",
+            "summary": "Début de parole",
+            "required": false,
+            "description": "Actions executées lors du début de parole",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "onSpeechEnd",
+            "summary": "Fin de parole",
+            "required": false,
+            "description": "Actions executées lors de la fin de parole",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "model",
+            "summary": "Modèle",
+            "required": false,
+            "description": "Modèle de détection vocale",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "submitUserSpeechOnPause",
+            "summary": "Soumettre la parole de l'utilisateur en pause",
+            "required": false,
+            "description": "Soumettre la parole de l'utilisateur en pause",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "positiveSpeechThreshold",
+            "summary": "Seuil de parole positif",
+            "required": false,
+            "description": "Seuil de détection de parole positif",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "negativeSpeechThreshold",
+            "summary": "Seuil de parole négatif",
+            "required": false,
+            "description": "Seuil de détection de parole négatif",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "minSpeechFrames",
+            "summary": "Nombre de trames de parole minimum",
+            "required": false,
+            "description": "Nombre de trames de parole minimum",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "preSpeechPadFrames",
+            "summary": "Nombre de trames de pré-parole",
+            "required": false,
+            "description": "Nombre de trames de pré-parole",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "additionalAudioConstraints",
+            "summary": "Contraintes audio supplémentaires",
+            "required": false,
+            "description": "Contraintes audio supplémentaires",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "redemptionFrames",
+            "summary": "Nombre de trames de rachat",
+            "required": false,
+            "description": "Nombre de trames de rachat",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "frameSamples",
+            "summary": "Échantillons de trame",
+            "required": false,
+            "description": "Échantillons de trame",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "baseAssetPath",
+            "summary": "Chemin de base des ressources",
+            "required": false,
+            "description": "Chemin de base des ressources",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onnxWASMBasePath",
+            "summary": "Chemin de base ONNX WASM",
+            "required": false,
+            "description": "Chemin de base ONNX WASM",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
