@@ -7,7 +7,7 @@
   },
   "private": true,
   "dependencies": {
-    "@ax-llm/ax": "^10.0.3",
+    "@digipair/ax": "10.0.18-alpha.audio",
     "@azure/msal-node": "^2.10.0",
     "@langchain/community": "^0.3.10",
     "@langchain/core": "^0.3.15",
@@ -18,7 +18,6 @@
     "@nestjs/core": "^10.3.9",
     "@nestjs/platform-express": "^10.3.9",
     "@nestjs/serve-static": "^4.0.2",
-    "@ricky0123/vad-web": "^0.0.22",
     "@spectrum-web-components/bundle": "^0.43.0",
     "@temporalio/client": "^1.10.1",
     "@temporalio/common": "^1.10.1",

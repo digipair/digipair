@@ -9,9 +9,7 @@ import {
   AxChainOfThought,
   AxAgent,
   AxFunction,
-  AxGenOptions,
-  AxReAct,
-} from '@ax-llm/ax';
+} from '@digipair/ax';
 
 class DspService {
   private async prepareFunctions(functions: AxFunction[], context: any): Promise<AxFunction[]> {
@@ -143,31 +141,6 @@ class DspService {
     return result;
   }
 
-  async react(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
-
-    const modelInstance = await executePinsList(model, context);
-    const gen = new AxReAct(signature, {
-      functions: await this.prepareFunctions(functions, context),
-    });
-    const result = await gen.forward(modelInstance, input);
-
-    // add comsumption
-    const ai = modelInstance.ai ?? modelInstance;
-    const consumption = ai.modelUsage;
-    const modelInfo = ai.getModelInfo();
-    const skillLogger = require('@digipair/skill-logger');
-    await skillLogger.addConsumption(
-      context,
-      modelInfo.provider,
-      modelInfo.name,
-      consumption.promptTokens,
-      consumption.completionTokens,
-    );
-
-    return result;
-  }
-
   async agent(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       model = context.privates.MODEL_DSP,
@@ -237,9 +210,6 @@ export const generate = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const chainOfThought = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DspService().chainOfThought(params, pinsSettingsList, context);
-
-export const react = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DspService().react(params, pinsSettingsList, context);
 
 export const agent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DspService().agent(params, pinsSettingsList, context);

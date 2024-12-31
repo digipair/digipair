@@ -1,8 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import 'https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.22/dist/bundle.min.js';
 
-const { MicVAD, utils } = (window as any)['vad'];
+// add a script tag to the document
+async function addScript(src: string) {
+  const script = document.createElement('script');
+  script.src = src;
+  script.async = false;
+  document.body.appendChild(script);
+
+  return new Promise(resolve => {
+    script.onload = resolve;
+  });
+}
 
 class VADService {
   async listen(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -31,6 +40,16 @@ class VADService {
       frameSamples = 1536,
       minSpeechFrames = 3,
     } = params;
+
+    if (!document.querySelector(`script[src="${onnxWASMBasePath}ort.js"]`)) {
+      await addScript(`${onnxWASMBasePath}ort.js`);
+    }
+
+    if (!document.querySelector(`script[src="${baseAssetPath}bundle.min.js"]`)) {
+      await addScript(`${baseAssetPath}bundle.min.js`);
+    }
+
+    const { MicVAD, utils } = (window as any)['vad'];
 
     const vad = await MicVAD.new({
       stream,

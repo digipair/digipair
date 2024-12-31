@@ -299,57 +299,6 @@
         "x-events": []
       }
     },
-    "/react": {
-      "post": {
-        "tags": ["service"],
-        "summary": "ReAct DSP",
-        "parameters": [
-          {
-            "name": "model",
-            "summary": "Modèle",
-            "required": false,
-            "description": "Modèle LLM à utiliser pour la génération",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          },
-          {
-            "name": "signature",
-            "summary": "Signature",
-            "required": true,
-            "description": "Signature des données à extraire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "input",
-            "summary": "Données à traiter",
-            "required": true,
-            "description": "Données d'entrées à traiter",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "functions",
-            "summary": "Fonctions DSP",
-            "required": false,
-            "description": "Fonctions utilisables pour la génération",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Function"
-              }
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
     "/agent": {
       "post": {
         "tags": ["service"],
