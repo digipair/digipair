@@ -91,7 +91,7 @@
           {
             "name": "config",
             "summary": "Configuration",
-            "required": true,
+            "required": false,
             "description": "IMAP client configuration",
             "schema": {
               "type": "object"

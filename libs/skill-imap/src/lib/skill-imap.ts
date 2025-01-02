@@ -99,6 +99,7 @@ class IMapService {
     await client.connect();
 
     context.protected?.signal.addEventListener('abort', () => {
+      this.forceClose = true;
       client.logout();
     });
 
@@ -236,6 +237,7 @@ class IMapService {
 
   async logout(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.imap } = params;
+    client.forceClose = true;
     return client.imap.logout();
   }
 

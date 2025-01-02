@@ -49,3 +49,4 @@ tools/vespa/configuration/*.zip
 /debug/factory
 /debug/node_modules
 /debug/yarn.lock
+/output.json
