@@ -362,6 +362,34 @@
         ],
         "x-events": []
       }
+    },
+    "/schemas": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List Schemas",
+        "descriptions": "Lists the schemas of the libraries",
+        "parameters": [
+          {
+            "name": "libraries",
+            "summary": "Libraries",
+            "required": true,
+            "description": "List of libraries",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "language",
+            "summary": "Language",
+            "required": true,
+            "description": "Language of the schema",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

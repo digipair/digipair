@@ -17,9 +17,6 @@ let jsonGenerator: any,
 @customElement('digipair-editor')
 export class EditorElement extends LitElement {
   @property()
-  digipair!: any;
-
-  @property()
   reasoning!: any;
 
   @property()
@@ -92,7 +89,7 @@ export class EditorElement extends LitElement {
     generateToolboxFromLibraries = pinsToBlockly.generateToolboxFromLibraries;
     initializeMutator = pinsToBlockly.initializeMutator;
 
-    setTimeout(() => this.loadScene(this.digipair, this.reasoning), 1);
+    setTimeout(() => this.loadScene(this.reasoning), 1);
     this.addEventListener('setReasoning' as any, ({ detail }: CustomEvent) =>
       this.loadReasoning(detail),
     );
@@ -104,40 +101,15 @@ export class EditorElement extends LitElement {
     Blockly.Events.enable();
   }
 
-  private async getLibraries(libraries: { [key: string]: string }): Promise<any[]> {
-    const privateSchemas = this.schemas;
-    const list = [
-      this.language === 'fr' ? schemasWebFr : schemasWeb,
-      ...privateSchemas,
-      ...(await Promise.all(
-        Object.keys(libraries)
-          .filter(library => !privateSchemas.find(schema => schema.info.title === library))
-          .map(async (library: any, i: number) => {
-            let res;
-
-            if (this.language !== 'en') {
-              res = await fetch(
-                `${BASE_URL}/${library}@${libraries[library]}/schema.${this.language}.json`,
-              );
-
-              if (!res.ok) {
-                res = await fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`);
-              }
-            } else {
-              res = await fetch(`${BASE_URL}/${library}@${libraries[library]}/schema.json`);
-            }
-
-            return await res.json();
-          }),
-      )),
-    ];
+  private async getLibraries(): Promise<any[]> {
+    const list = [this.language === 'fr' ? schemasWebFr : schemasWeb, ...this.schemas];
 
     return list;
   }
 
-  private async loadScene(digipair: any, reasoning: PinsSettings): Promise<void> {
+  private async loadScene(reasoning: PinsSettings): Promise<void> {
     const scene = reasoning;
-    this.librariesToLoad = await this.getLibraries(digipair.libraries);
+    this.librariesToLoad = await this.getLibraries();
 
     this.loadBlockly(scene);
     if (!scene) {
