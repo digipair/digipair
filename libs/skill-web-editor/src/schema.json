@@ -15,15 +15,6 @@
         "description": "No-code editor for AI reasonings",
         "parameters": [
           {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Information of the digipair owning the reasoning",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
             "name": "reasoning",
             "summary": "Reasoning",
             "required": true,
@@ -36,7 +27,7 @@
             "name": "schemas",
             "summary": "Schemas",
             "required": false,
-            "description": "List of private skill schemas",
+            "description": "List of skill schemas",
             "schema": {
               "type": "object"
             }
