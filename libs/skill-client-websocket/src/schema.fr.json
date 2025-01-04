@@ -10,7 +10,7 @@
   "paths": {
     "/connect": {
       "post": {
-        "tags": ["service", "web", "spacial"],
+        "tags": ["service", "web", "spatial"],
         "summary": "Connexion Websocket",
         "parameters": [
           {
@@ -94,7 +94,7 @@
     },
     "/send": {
       "post": {
-        "tags": ["service", "web", "spacial"],
+        "tags": ["service", "web", "spatial"],
         "summary": "Envoi de message",
         "parameters": [
           {
@@ -121,7 +121,7 @@
     },
     "/close": {
       "post": {
-        "tags": ["service", "web", "spacial"],
+        "tags": ["service", "web", "spatial"],
         "summary": "Fermeture Websocket",
         "parameters": [
           {
