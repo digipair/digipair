@@ -38,7 +38,7 @@
     "/page": {
       "summary": "Page internet",
       "description": "Affichage d'une page d'un site internet.",
-      "tags": ["web", "service"],
+      "tags": ["web", "service", "spatial"],
       "metadata": [],
       "parameters": [
         {

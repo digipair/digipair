@@ -12351,7 +12351,7 @@ export const schemas = {
     '/h2': {
       post: {
         tags: ['web', 'needPins'],
-        summary: 'h1',
+        summary: 'h2',
         parameters: [
           {
             name: 'class',
@@ -12595,7 +12595,7 @@ export const schemas = {
     '/h3': {
       post: {
         tags: ['web', 'needPins'],
-        summary: 'h1',
+        summary: 'h3',
         parameters: [
           {
             name: 'class',
@@ -12839,7 +12839,7 @@ export const schemas = {
     '/h4': {
       post: {
         tags: ['web', 'needPins'],
-        summary: 'h1',
+        summary: 'h4',
         parameters: [
           {
             name: 'class',
@@ -13083,7 +13083,7 @@ export const schemas = {
     '/h5': {
       post: {
         tags: ['web', 'needPins'],
-        summary: 'h1',
+        summary: 'h5',
         parameters: [
           {
             name: 'class',
@@ -13327,7 +13327,7 @@ export const schemas = {
     '/h6': {
       post: {
         tags: ['web', 'needPins'],
-        summary: 'h1',
+        summary: 'h6',
         parameters: [
           {
             name: 'class',

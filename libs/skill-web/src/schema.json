@@ -38,7 +38,7 @@
     "/page": {
       "summary": "Web page",
       "description": "Display of a page from a website.",
-      "tags": ["web", "service"],
+      "tags": ["web", "service", "spatial"],
       "metadata": [],
       "parameters": [
         {
