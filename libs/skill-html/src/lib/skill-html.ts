@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings } from '@digipair/engine';
+// import { PinsSettings, executePinsList } from '@digipair/engine';
+import { PinsSettings, executePinsList } from '../../../engine/src';
 import { JSDOM } from 'jsdom';
 
 class HtmlService {
@@ -88,9 +89,54 @@ class HtmlService {
 
     parent.appendChild(element);
   }
+
+  async parseHtml(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { html, execute = [] } = params;
+    const dom = new JSDOM(html);
+    const result = await executePinsList(execute, {
+      ...context,
+      document: {
+        querySelector: (selector: string) => this.querySelector(selector, dom.window.document),
+        querySelectorAll: (selector: string) =>
+          this.querySelectorAll(selector, dom.window.document),
+      },
+    });
+
+    return result;
+  }
+
+  private querySelector(selector: string, parent: any): any {
+    const element = parent?.querySelector(selector);
+
+    return element
+      ? {
+          textContent: element.textContent,
+          querySelector: (selector: string) => this.querySelector(selector, element),
+          querySelectorAll: (selector: string) => this.querySelectorAll(selector, element),
+          getAttribute: (name: string) => this.getAttribute(name, element),
+        }
+      : undefined;
+  }
+
+  private querySelectorAll(selector: string, parent: any): any {
+    const elements = Array.from(parent?.querySelectorAll(selector) || []);
+
+    return elements.map((element: any) => ({
+      textContent: element.textContent,
+      querySelector: (selector: string) => this.querySelector(selector, element),
+      querySelectorAll: (selector: string) => this.querySelectorAll(selector, element),
+      getAttribute: (name: string) => this.getAttribute(name, element),
+    }));
+  }
+
+  private getAttribute(name: string, element: any): any {
+    return element?.getAttribute(name);
+  }
 }
 
 export const html2pins = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new HtmlService().html2pins(params, pinsSettingsList, context);
 export const pins2html = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new HtmlService().pins2html(params, pinsSettingsList, context);
+export const parseHtml = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new HtmlService().parseHtml(params, pinsSettingsList, context);

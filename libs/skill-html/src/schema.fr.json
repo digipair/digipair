@@ -52,6 +52,36 @@
         ],
         "x-events": []
       }
+    },
+    "/parseHtml": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parse un code HTML",
+        "parameters": [
+          {
+            "name": "html",
+            "summary": "HTML",
+            "required": true,
+            "description": "Code HTML",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Actions",
+            "required": true,
+            "description": "Liste des actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-html",
-    "summary": "HTML code management",
-    "description": "This skill allows to manage HTML code",
+    "summary": "HTML Code Management",
+    "description": "This skill allows managing HTML code",
     "version": "0.1.0",
     "x-icon": "🌐"
   },
@@ -11,22 +11,22 @@
     "/html2pins": {
       "post": {
         "tags": ["service"],
-        "summary": "Convert HTML to Pin's",
+        "summary": "Convert HTML to Pins",
         "parameters": [
           {
             "name": "html",
             "summary": "HTML",
             "required": true,
-            "description": "HTML code",
+            "description": "HTML Code",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "library",
-            "summary": "Pin's library",
+            "summary": "Pins Library",
             "required": false,
-            "description": "Pin's library",
+            "description": "Pins Library",
             "schema": {
               "type": "string"
             }
@@ -38,15 +38,45 @@
     "/pins2html": {
       "post": {
         "tags": ["service"],
-        "summary": "Convert Pin's to HTML",
+        "summary": "Convert Pins to HTML",
         "parameters": [
           {
             "name": "pins",
-            "summary": "Pin's",
+            "summary": "Pins",
             "required": true,
-            "description": "List of Pin's",
+            "description": "List of Pins",
             "schema": {
               "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/parseHtml": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parse HTML Code",
+        "parameters": [
+          {
+            "name": "html",
+            "summary": "HTML",
+            "required": true,
+            "description": "HTML Code",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Actions",
+            "required": true,
+            "description": "List of actions to execute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],
