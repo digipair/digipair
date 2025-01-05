@@ -249,7 +249,11 @@ export const generateElementFromPins = async (
     await generateElementFromPins(item, element, context, document, options);
   }
 
-  parent?.appendChild(element);
+  if (parent?.nodeName === 'TEMPLATE') {
+    (parent as any).content.appendChild(element);
+  } else {
+    parent?.appendChild(element);
+  }
 
   return element;
 };
