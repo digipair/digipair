@@ -1,0 +1,325 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "digipair:<%= digipair %>",
+    "summary": "<%= name %>",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/answer": {
+      "post": {
+        "tags": ["boost"],
+        "summary": "<%= name %> response",
+        "parameters": [
+          {
+            "name": "prompt",
+            "required": false,
+            "description": "User question",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "assistant",
+            "required": true,
+            "summary": "Assistant's response",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": false,
+            "summary": "User Id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "boost",
+            "required": false,
+            "summary": "Boost used to push the user request",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Boost"
+              }
+            }
+          },
+          {
+            "name": "command",
+            "required": false,
+            "summary": "Commands executed on the chatbot",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "boosts",
+            "required": false,
+            "summary": "List of proposed boosts",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "sources",
+            "required": false,
+            "summary": "List of sources used to respond to the user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "logs",
+            "required": false,
+            "summary": "Useful information for debugging reasoning",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/messagecard": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Message Card",
+        "parameters": [
+          {
+            "name": "summary",
+            "required": false,
+            "summary": "Résumé",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "text",
+            "required": false,
+            "summary": "Texte",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sections",
+            "required": false,
+            "summary": "Sections",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Section"
+              }
+            }
+          },
+          {
+            "name": "potentialAction",
+            "required": false,
+            "summary": "Boutons",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Action"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Boost": {
+        "type": "object",
+        "tags": ["boost"],
+        "summary": "Boost",
+        "properties": {
+          "prompt": {
+            "type": "boolean"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "step": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        },
+        "required": []
+      },
+      "Section": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Section",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "activityTitle": {
+            "type": "string"
+          },
+          "activitySubtitle": {
+            "type": "string"
+          },
+          "activityImage": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "facts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Fact"
+            }
+          }
+        },
+        "required": []
+      },
+      "Image": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Image",
+        "properties": {
+          "image": {
+            "type": "string"
+          }
+        },
+        "required": ["image"]
+      },
+      "Fact": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Fact",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "value"]
+      },
+      "Action": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Action",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Input"
+            }
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Action"
+            }
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Target"
+            }
+          }
+        },
+        "required": ["@type", "name"]
+      },
+      "Input": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Input",
+        "properties": {
+          "@type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "isMultiline": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          },
+          "isMultiSelect": {
+            "type": "boolean"
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Choice"
+            }
+          }
+        },
+        "required": ["@type", "id", "title"]
+      },
+      "Choice": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Choix",
+        "properties": {
+          "display": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["display", "value"]
+      },
+      "Target": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Target",
+        "properties": {
+          "os": {
+            "type": "string"
+          },
+          "uri": {
+            "type": "string"
+          }
+        },
+        "required": ["os", "uri"]
+      }
+    }
+  }
+}

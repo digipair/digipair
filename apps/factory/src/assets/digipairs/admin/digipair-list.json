@@ -106,6 +106,60 @@
                             }
                           ]
                         }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": { "textContent": "Add a digipair MS Teams notifications" },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "execute",
+                              "properties": {
+                                "name": "executeBoost",
+                                "selector": "digipair-chatbot",
+                                "args": [{ "reasoning": "boost-add-digipair-teams" }]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": { "textContent": "Add a digipair IMAP listerner" },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "execute",
+                              "properties": {
+                                "name": "executeBoost",
+                                "selector": "digipair-chatbot",
+                                "args": [{ "reasoning": "boost-add-digipair-imap-listener" }]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": { "textContent": "Add a digipair oAuth2 IMAP listener" },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "execute",
+                              "properties": {
+                                "name": "executeBoost",
+                                "selector": "digipair-chatbot",
+                                "args": [{ "reasoning": "boost-add-digipair-imap-istener-oauth2" }]
+                              }
+                            }
+                          ]
+                        }
                       }
                     ],
                     "properties": {

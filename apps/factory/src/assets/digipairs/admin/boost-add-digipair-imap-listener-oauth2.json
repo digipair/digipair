@@ -1,0 +1,68 @@
+{
+  "summary": "Add a digipair for an IMAP listener with OAuth2",
+  "description": "Adding a new digipair for an IMAP listener with OAuth2.",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": { "standalone": true },
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:admin",
+            "element": "answer",
+            "properties": {
+              "assistant": "What is the id for the new digipair ?",
+              "boost": [{ "prompt": true, "required": true, "step": "Execution" }]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment\", \n  description:string \"Short description of the agent from the comment\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added and recall to the user to update his IMPA and SMTP settings from the agent configuration\"",
+                    "input": { "comment": "{{request.body.prompt}}" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "addDigipair",
+            "properties": {
+              "template": "imap-listener-oauth2",
+              "data": {
+                "digipair": "EVALUATE:request.body.prompt",
+                "name": "EVALUATE:variables.infos.name",
+                "description": "EVALUATE:variables.infos.description"
+              },
+              "digipair": "EVALUATE:request.body.prompt"
+            }
+          },
+          {
+            "library": "digipair:admin",
+            "element": "answer",
+            "properties": {
+              "assistant": "EVALUATE:variables.infos.assistant",
+              "command": [{ "library": "@digipair/skill-web-interact", "element": "reload" }]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

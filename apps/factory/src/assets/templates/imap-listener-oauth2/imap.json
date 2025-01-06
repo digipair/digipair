@@ -1,0 +1,102 @@
+{
+  "description": "IMAP est un protocole utilisé pour accéder aux messages électroniques sur un serveur.",
+  "summary": "Protocole de messagerie",
+  "library": "@digipair/skill-service",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-imap",
+        "element": "connect",
+        "properties": {
+          "configExecute": [
+            {
+              "library": "@digipair/skill-oauth2",
+              "element": "clientCredentialsAccessToken",
+              "properties": {
+                "config": "EVALUATE:privates.IMAP_OAUTH2",
+                "tokenParams": {
+                  "scope": "EVALUATE:privates.IMAP_OAUTH2_SCOPE"
+                }
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": {
+                  "host": "EVALUATE:privates.IMAP_CONFIG.host",
+                  "port": "EVALUATE:privates.IMAP_CONFIG.port",
+                  "secure": "EVALUATE:privates.IMAP_CONFIG.secure",
+                  "auth": {
+                    "user": "EVALUATE:privates.IMAP_CONFIG.auth.user",
+                    "accessToken": "EVALUATE:previous.token.access_token"
+                  },
+                  "logger": false
+                }
+              }
+            }
+          ],
+          "load": [
+            {
+              "library": "@digipair/skill-imap",
+              "element": "mailboxOpen",
+              "properties": { "path": "INBOX" }
+            }
+          ],
+          "exists": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "setVariable",
+              "properties": {
+                "name": "message",
+                "execute": [
+                  {
+                    "library": "@digipair/skill-imap",
+                    "element": "fetchOne",
+                    "properties": {
+                      "seq": "EVALUATE:data.count",
+                      "query": {
+                        "envelope": true,
+                        "uid": true,
+                        "bodyStructure": true
+                      }
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-imap",
+                    "element": "parseOne",
+                    "properties": {
+                      "message": "EVALUATE:previous",
+                      "attachments": "NONE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "library": "@digipair/skill-sendmail",
+              "element": "send",
+              "properties": {
+                "from": "no-reply@digipair.ai",
+                "to": "EVALUATE:variables.message.envelope.from[1].address",
+                "subject": "Tr:{{variables.message.envelope.subject}}",
+                "text": "Message received: {{variables.message.contentText}}",
+                "html": "Message received: {{variables.message.contentText}}",
+                "attachments": []
+              }
+            },
+            {
+              "library": "@digipair/skill-imap",
+              "element": "messageDelete",
+              "properties": { "range": "EVALUATE:data.count" }
+            }
+          ]
+        }
+      },
+      { "library": "@digipair/skill-factory", "element": "keepAlive" }
+    ]
+  },
+  "pins": []
+}

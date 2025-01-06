@@ -12,6 +12,13 @@
         "properties": {
           "value": "<%= JSON.stringify(JSON.stringify(openapi)).substring(1, JSON.stringify(JSON.stringify(openapi)).length - 1) %>"
         }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": "EVALUATE:JSONparse(previous)"
+        }
       }
     ]
   },

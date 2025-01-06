@@ -1,0 +1,75 @@
+{
+  "description": "IMAP est un protocole utilisé pour accéder aux messages électroniques sur un serveur.",
+  "summary": "Protocole de messagerie",
+  "library": "@digipair/skill-service",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-imap",
+        "element": "connect",
+        "properties": {
+          "config": "EVALUATE:privates.IMAP_CONFIG",
+          "load": [
+            {
+              "library": "@digipair/skill-imap",
+              "element": "mailboxOpen",
+              "properties": { "path": "INBOX" }
+            }
+          ],
+          "exists": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "setVariable",
+              "properties": {
+                "name": "message",
+                "execute": [
+                  {
+                    "library": "@digipair/skill-imap",
+                    "element": "fetchOne",
+                    "properties": {
+                      "seq": "EVALUATE:data.count",
+                      "query": {
+                        "envelope": true,
+                        "uid": true,
+                        "bodyStructure": true
+                      }
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-imap",
+                    "element": "parseOne",
+                    "properties": {
+                      "message": "EVALUATE:previous",
+                      "attachments": "NONE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "library": "@digipair/skill-sendmail",
+              "element": "send",
+              "properties": {
+                "from": "no-reply@digipair.ai",
+                "to": "EVALUATE:variables.message.envelope.from[1].address",
+                "subject": "Tr:{{variables.message.envelope.subject}}",
+                "text": "Message received: {{variables.message.contentText}}",
+                "html": "Message received: {{variables.message.contentText}}",
+                "attachments": []
+              }
+            },
+            {
+              "library": "@digipair/skill-imap",
+              "element": "messageDelete",
+              "properties": { "range": "EVALUATE:data.count" }
+            }
+          ]
+        }
+      },
+      { "library": "@digipair/skill-factory", "element": "keepAlive" }
+    ]
+  },
+  "pins": []
+}

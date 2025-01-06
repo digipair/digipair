@@ -1,0 +1,66 @@
+{
+  "name": "<%= name %>",
+  "description": "<%= description %>",
+  "metadata": {
+    "avatar": "avatar.png",
+    "primary": "#51E0DC",
+    "textPrimary": "#242E3B",
+    "secondary": "#242E3B",
+    "textSecondary": "#FFFFFF"
+  },
+  "libraries": {
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-chatbot": "latest",
+    "@digipair/skill-dsp": "latest",
+    "@digipair/skill-web": "latest",
+    "@digipair/skill-basic": "latest",
+    "@digipair/skill-oauth2": "latest",
+    "@digipair/skill-imap": "latest",
+    "@digipair/skill-sendmail": "latest",
+    "@digipair/skill-http": "latest",
+    "@digipair/skill-factory": "latest",
+    "@digipair/skill-debug": "latest",
+    "@digipair/skill-web-chatbot": "latest",
+    "@digipair/skill-web-inputs": "latest",
+    "@digipair/skill-web-interact": "latest"
+  },
+  "variables": {},
+  "privates": {
+    "SENDMAIL_CONFIG": {
+      "host": "",
+      "port": 587,
+      "secure": false,
+      "auth": { "user": "", "pass": "" }
+    },
+    "IMAP_CONFIG": {
+      "host": "",
+      "port": 993,
+      "secure": true,
+      "auth": {
+        "user": ""
+      }
+    },
+    "IMAP_OAUTH2": {
+      "client": {
+        "id": "",
+        "secret": ""
+      },
+      "auth": {
+        "tokenHost": "",
+        "tokenPath": ""
+      }
+    },
+    "IMAP_OAUTH2_SCOPE": "",
+    "MODEL_EMBEDDINGS": [
+      {
+        "library": "@digipair/skill-openai",
+        "element": "embeddings",
+        "property": { "modelName": "text-embedding-3-small" }
+      }
+    ],
+    "MODEL_DSP": [
+      { "library": "@digipair/skill-dsp", "element": "modelOpenAI" }
+    ]
+  },
+  "digipair": "<%= digipair %>"
+}
