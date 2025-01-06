@@ -203,7 +203,7 @@
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
-          "name": "schemas",
+          "name": "schemasDigipair",
           "execute": [
             { "library": "@digipair/skill-editor", "element": "digipairs" },
             {
@@ -211,6 +211,49 @@
               "element": "start",
               "properties": { "reasoning": "schema.json", "digipair": "{{item}}" },
               "conditions": { "each": "EVALUATE:previous" }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "schemasRemote",
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-http",
+                    "element": "read",
+                    "properties": {
+                      "path": "EVALUATE:item.value + \"/\" + split(item.key, \"digipair:\")[2] + \"/schema.json\""
+                    }
+                  }
+                ]
+              },
+              "conditions": {
+                "each": "EVALUATE:get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and starts with(value, \"http\")]"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "schemas",
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "EVALUATE:flatten([variables.schemasRemote, variables.schemasDigipair])"
+              }
             }
           ]
         }

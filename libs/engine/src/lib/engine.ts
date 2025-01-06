@@ -73,12 +73,21 @@ export const applyTemplate = (value: any, context: any) => {
 const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Promise<any> => {
   let settings = await preparePinsSettings(settingsOrigin, context);
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
+  const config = context.config || {};
+  let version = (config.VERSIONS || {})[settings.library] || 'latest';
 
   if (alias) {
     settings = await preparePinsSettings(
       { ...settings, ...alias },
-      { settings: { ...settings, library: settings.library.substring(alias.name.length + 1) } },
+      {
+        settings: {
+          ...settings,
+          version,
+          library: settings.library.substring(alias.name.length + 1),
+        },
+      },
     );
+    version = (config.VERSIONS || {})[settings.library] || 'latest';
   }
 
   if (settings.conditions?.each) {
@@ -123,8 +132,6 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
     throw 'DIGIPAIR_CONDITIONS_IF_FALSE';
   }
 
-  const config = context.config || {};
-  const version = (config.VERSIONS || {})[settings.library] || 'latest';
   const library =
     _config.LIBRARIES[settings.library] ||
     (typeof window === 'undefined'

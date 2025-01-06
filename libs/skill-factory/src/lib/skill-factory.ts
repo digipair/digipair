@@ -9,9 +9,17 @@ class FactoryService {
   }
 
   async start(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { reasoning, digipair = context.request.digipair, body = {} } = params;
+    const { reasoning, digipair = context.request.digipair, body = {}, factory = null } = params;
+    let result;
 
-    return await this.startTask(context, digipair, reasoning, body);
+    if (factory) {
+      const response = await fetch(`${factory}/${digipair}/reasoning`, body);
+      result = await response.json();
+    } else {
+      result = await this.startTask(context, digipair, reasoning, body);
+    }
+
+    return result;
   }
 
   async executeWithContext(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
