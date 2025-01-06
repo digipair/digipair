@@ -50,12 +50,12 @@
             }
           },
           {
-            "name": "IS_JSON",
-            "summary": "JSON API",
+            "name": "type",
+            "summary": "Response type",
             "required": false,
-            "description": "Indicates if the API is in JSON",
+            "description": "Expected response type",
             "schema": {
-              "type": "boolean"
+              "type": "string"
             }
           }
         ],
@@ -95,12 +95,12 @@
             }
           },
           {
-            "name": "IS_JSON",
-            "summary": "JSON API",
+            "name": "type",
+            "summary": "Response type",
             "required": false,
-            "description": "Indicates if the API is in JSON",
+            "description": "Expected response type",
             "schema": {
-              "type": "boolean"
+              "type": "string"
             }
           }
         ],
@@ -131,12 +131,12 @@
             }
           },
           {
-            "name": "IS_JSON",
-            "summary": "JSON API",
+            "name": "type",
+            "summary": "Response type",
             "required": false,
-            "description": "Indicates if the API is in JSON",
+            "description": "Expected response type",
             "schema": {
-              "type": "boolean"
+              "type": "string"
             }
           }
         ],
@@ -176,12 +176,12 @@
             }
           },
           {
-            "name": "IS_JSON",
-            "summary": "JSON API",
+            "name": "type",
+            "summary": "Response type",
             "required": false,
-            "description": "Indicates if the API is in JSON",
+            "description": "Expected response type",
             "schema": {
-              "type": "boolean"
+              "type": "string"
             }
           }
         ],
@@ -221,12 +221,12 @@
             }
           },
           {
-            "name": "IS_JSON",
-            "summary": "JSON API",
+            "name": "type",
+            "summary": "Response type",
             "required": false,
-            "description": "Indicates if the API is in JSON",
+            "description": "Expected response type",
             "schema": {
-              "type": "boolean"
+              "type": "string"
             }
           }
         ],
@@ -257,12 +257,12 @@
             }
           },
           {
-            "name": "IS_JSON",
-            "summary": "JSON API",
+            "name": "type",
+            "summary": "Response type",
             "required": false,
-            "description": "Indicates if the API is in JSON",
+            "description": "Expected response type",
             "schema": {
-              "type": "boolean"
+              "type": "string"
             }
           }
         ],
@@ -314,12 +314,12 @@
             }
           },
           {
-            "name": "IS_JSON",
-            "summary": "JSON API",
+            "name": "type",
+            "summary": "Response type",
             "required": false,
-            "description": "Indicates if the API is in JSON",
+            "description": "Expected response type",
             "schema": {
-              "type": "boolean"
+              "type": "string"
             }
           }
         ],

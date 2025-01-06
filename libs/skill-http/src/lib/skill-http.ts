@@ -3,12 +3,12 @@
 import { PinsSettings } from '@digipair/engine';
 
 class HttpService {
-  private IS_JSON!: boolean;
+  private type: string;
 
   constructor(_context: any, params: any) {
-    const { IS_JSON = true } = params;
+    const { type = 'json' } = params;
 
-    this.IS_JSON = IS_JSON;
+    this.type = type;
   }
 
   async call(
@@ -19,11 +19,12 @@ class HttpService {
     signal: AbortSignal,
   ): Promise<any> {
     const requestHeaders = {
-      Accept: this.IS_JSON ? 'application/json' : '*/*',
+      Accept: this.type === 'json' ? 'application/json' : '*/*',
       ...(data ? { 'Content-Type': 'application/json' } : {}),
       ...headers,
     };
 
+    let result: any;
     let body = undefined;
 
     if (requestHeaders['Content-Type'] === 'application/json') {
@@ -42,7 +43,18 @@ class HttpService {
       body,
     });
     if (!response.ok) throw new Error('[SKILL-HTTP] REQUEST FAILED: ' + response.status);
-    return this.IS_JSON ? response.json() : response.text();
+
+    if (this.type === 'json') {
+      result = await response.json();
+    } else if (this.type === 'text') {
+      result = await response.text();
+    } else {
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      result = buffer.toString('base64');
+    }
+
+    return result;
   }
 
   async create(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -79,6 +91,8 @@ class HttpService {
     const { path, parameters, method = 'POST', headers = {} } = params;
     const formData = typeof window !== 'undefined' ? new FormData() : new (require('form-data'))();
 
+    let result: any;
+
     // Ajout des paramètres au FormData
     parameters.forEach((param: any) => {
       if (!Array.isArray(param.value)) {
@@ -95,13 +109,24 @@ class HttpService {
       method,
       headers: {
         ...formData.getHeaders(),
-        Accept: this.IS_JSON ? 'application/json' : '*/*',
+        Accept: this.type === 'json' ? 'application/json' : '*/*',
         ...headers,
       },
       body: formData.getBuffer(),
     });
     if (!response.ok) throw new Error('[SKILL-HTTP] REQUEST FAILED: ' + response.status);
-    return this.IS_JSON ? response.json() : response.text();
+
+    if (this.type === 'json') {
+      result = await response.json();
+    } else if (this.type === 'text') {
+      result = await response.text();
+    } else {
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      result = buffer.toString('base64');
+    }
+
+    return result;
   }
 
   private appendParam(formData: any, param: any) {
