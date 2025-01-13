@@ -13,6 +13,7 @@
     "@digipair/skill-chatbot": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-web": "latest",
+    "@digipair/skill-factory": "latest",
     "@digipair/skill-basic": "latest",
     "@digipair/skill-debug": "latest",
     "@digipair/skill-web-debug": "latest",
@@ -29,9 +30,7 @@
         "property": { "modelName": "text-embedding-3-small" }
       }
     ],
-    "MODEL_DSP": [
-      { "library": "@digipair/skill-dsp", "element": "modelOpenAI" }
-    ]
+    "MODEL_DSP": [{ "library": "@digipair/skill-dsp", "element": "modelOpenAI" }]
   },
   "digipair": "<%= digipair %>"
 }

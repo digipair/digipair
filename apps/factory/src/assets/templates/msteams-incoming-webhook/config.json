@@ -13,6 +13,7 @@
     "@digipair/skill-chatbot": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-web": "latest",
+    "@digipair/skill-factory": "latest",
     "@digipair/skill-basic": "latest",
     "@digipair/skill-http": "latest",
     "@digipair/skill-debug": "latest",

@@ -216,7 +216,7 @@ export const generateElementFromPins = async (
   }
 
   const element = document.createElement(pinsSettings.element);
-  element.setAttribute('data-digipair-pins', '');
+  element.setAttributeNS('', 'data-digipair-pins', '');
 
   const library = pinsSettings.library;
   if (options.import && library !== 'web' && !_config.LIBRARIES[library]) {
@@ -235,7 +235,7 @@ export const generateElementFromPins = async (
     } else if (key === 'innerHTML') {
       element.innerHTML = value;
     } else if (typeof value === 'string') {
-      element.setAttribute(key, value);
+      element.setAttributeNS('', key, value);
     } else {
       (element as any)[key] = value;
     }
