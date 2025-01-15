@@ -31,17 +31,24 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "Home", "href": "/admin/digipair-list" }
+                    "properties": {
+                      "textContent": "Home",
+                      "href": "/admin/digipair-list"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "{{variables.digipair.name}}" }
+                    "properties": {
+                      "textContent": "{{variables.digipair.name}}"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -58,7 +65,9 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-menu-item",
-                        "properties": { "textContent": "Add a {{item.summary}}" },
+                        "properties": {
+                          "textContent": "Add a {{item.summary}}"
+                        },
                         "events": {
                           "click": [
                             {
@@ -82,7 +91,9 @@
                             }
                           ]
                         },
-                        "conditions": { "each": "EVALUATE:variables.scenes" }
+                        "conditions": {
+                          "each": "EVALUATE:variables.scenes"
+                        }
                       }
                     ],
                     "properties": {
@@ -109,22 +120,30 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Raisonnement" }
+                    "properties": {
+                      "textContent": "Raisonnement"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Nom" }
+                    "properties": {
+                      "textContent": "Nom"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Description" }
+                    "properties": {
+                      "textContent": "Description"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "" }
+                    "properties": {
+                      "textContent": ""
+                    }
                   }
                 ]
               },
@@ -139,17 +158,23 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.id}}" }
+                        "properties": {
+                          "textContent": "{{item.id}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.summary}}" }
+                        "properties": {
+                          "textContent": "{{item.summary}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.description}}" }
+                        "properties": {
+                          "textContent": "{{item.description}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
@@ -166,7 +191,9 @@
                                   {
                                     "library": "@digipair/skill-web-spectrum",
                                     "element": "sp-menu-item",
-                                    "properties": { "textContent": "Remove" },
+                                    "properties": {
+                                      "textContent": "Remove"
+                                    },
                                     "events": {
                                       "click": [
                                         {
@@ -204,7 +231,9 @@
                                   {
                                     "library": "@digipair/skill-web-spectrum",
                                     "element": "sp-menu-item",
-                                    "properties": { "textContent": "Duplicate" },
+                                    "properties": {
+                                      "textContent": "Duplicate"
+                                    },
                                     "events": {
                                       "click": [
                                         {
@@ -230,7 +259,9 @@
                                   {
                                     "library": "@digipair/skill-web-spectrum",
                                     "element": "sp-menu-item",
-                                    "properties": { "textContent": "Plan" },
+                                    "properties": {
+                                      "textContent": "Plan"
+                                    },
                                     "events": {
                                       "click": [
                                         {
@@ -257,7 +288,10 @@
                                     }
                                   }
                                 ],
-                                "properties": { "quiet": true, "size": "s" }
+                                "properties": {
+                                  "quiet": true,
+                                  "size": "s"
+                                }
                               },
                               {
                                 "library": "@digipair/skill-web-spectrum",
@@ -266,7 +300,10 @@
                                   {
                                     "library": "@digipair/skill-web-font-awesome",
                                     "element": "digipair-font-awesome-icon",
-                                    "properties": { "name": "pen-to-square", "category": "regular" }
+                                    "properties": {
+                                      "name": "pen-to-square",
+                                      "category": "regular"
+                                    }
                                   }
                                 ],
                                 "events": {
@@ -280,7 +317,9 @@
                                     }
                                   ]
                                 },
-                                "conditions": { "if": "EVALUATE:item.id != \"schema\"" }
+                                "conditions": {
+                                  "if": "EVALUATE:item.id != \"schema\""
+                                }
                               },
                               {
                                 "library": "@digipair/skill-web-spectrum",
@@ -289,7 +328,10 @@
                                   {
                                     "library": "@digipair/skill-web-font-awesome",
                                     "element": "digipair-font-awesome-icon",
-                                    "properties": { "name": "pen-to-square", "category": "regular" }
+                                    "properties": {
+                                      "name": "pen-to-square",
+                                      "category": "regular"
+                                    }
                                   }
                                 ],
                                 "events": {
@@ -303,7 +345,9 @@
                                     }
                                   ]
                                 },
-                                "conditions": { "if": "EVALUATE:item.id = \"schema\"" }
+                                "conditions": {
+                                  "if": "EVALUATE:item.id = \"schema\""
+                                }
                               },
                               {
                                 "library": "@digipair/skill-web-spectrum",
@@ -312,7 +356,10 @@
                                   {
                                     "library": "@digipair/skill-web-font-awesome",
                                     "element": "digipair-font-awesome-icon",
-                                    "properties": { "name": "eye", "category": "regular" }
+                                    "properties": {
+                                      "name": "eye",
+                                      "category": "regular"
+                                    }
                                   }
                                 ],
                                 "events": {
@@ -320,19 +367,28 @@
                                     {
                                       "library": "@digipair/skill-web-interact",
                                       "element": "goTo",
-                                      "properties": { "url": "/{{request.params.[0]}}/{{item.id}}" }
+                                      "properties": {
+                                        "url": "/{{request.params.[0]}}/{{item.id}}"
+                                      }
                                     }
                                   ]
                                 },
-                                "conditions": { "if": "EVALUATE:item.element = \"page\"" }
+                                "conditions": {
+                                  "if": "EVALUATE:item.element = \"page\""
+                                }
                               }
                             ],
-                            "properties": { "size": "s", "dir": "rtl" }
+                            "properties": {
+                              "size": "s",
+                              "dir": "rtl"
+                            }
                           }
                         ]
                       }
                     ],
-                    "conditions": { "each": "EVALUATE:variables.reasonings" }
+                    "conditions": {
+                      "each": "EVALUATE:variables.reasonings"
+                    }
                   }
                 ]
               }
@@ -341,7 +397,10 @@
           {
             "library": "web",
             "element": "section",
-            "properties": { "style": "margin: 40px 0 20px 0;", "textContent": "Planning" }
+            "properties": {
+              "style": "margin: 40px 0 20px 0;",
+              "textContent": "Planning"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -354,27 +413,37 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Digipair" }
+                    "properties": {
+                      "textContent": "Digipair"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Task" }
+                    "properties": {
+                      "textContent": "Task"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Time" }
+                    "properties": {
+                      "textContent": "Time"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "State" }
+                    "properties": {
+                      "textContent": "State"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "" }
+                    "properties": {
+                      "textContent": ""
+                    }
                   }
                 ]
               },
@@ -389,17 +458,23 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.digipair}}" }
+                        "properties": {
+                          "textContent": "{{item.digipair}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.reasoning}}" }
+                        "properties": {
+                          "textContent": "{{item.reasoning}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.time}}" }
+                        "properties": {
+                          "textContent": "{{item.time}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
@@ -430,7 +505,10 @@
                                   {
                                     "library": "@digipair/skill-web-font-awesome",
                                     "element": "digipair-font-awesome-icon",
-                                    "properties": { "name": "trash", "category": "solid" }
+                                    "properties": {
+                                      "name": "trash",
+                                      "category": "solid"
+                                    }
                                   }
                                 ],
                                 "events": {
@@ -449,7 +527,9 @@
                                                 {
                                                   "library": "@digipair/skill-cron",
                                                   "element": "deleteCron",
-                                                  "properties": { "id": "{{item.id}}" }
+                                                  "properties": {
+                                                    "id": "{{item.id}}"
+                                                  }
                                                 }
                                               ]
                                             }
@@ -471,7 +551,10 @@
                                   {
                                     "library": "@digipair/skill-web-font-awesome",
                                     "element": "digipair-font-awesome-icon",
-                                    "properties": { "name": "ban", "category": "solid" }
+                                    "properties": {
+                                      "name": "ban",
+                                      "category": "solid"
+                                    }
                                   }
                                 ],
                                 "events": {
@@ -484,7 +567,9 @@
                                           {
                                             "library": "@digipair/skill-cron",
                                             "element": "disableCron",
-                                            "properties": { "id": "{{item.id}}" }
+                                            "properties": {
+                                              "id": "{{item.id}}"
+                                            }
                                           }
                                         ]
                                       }
@@ -495,7 +580,9 @@
                                     }
                                   ]
                                 },
-                                "conditions": { "if": "EVALUATE:item.enabled = true" }
+                                "conditions": {
+                                  "if": "EVALUATE:item.enabled = true"
+                                }
                               },
                               {
                                 "library": "@digipair/skill-web-spectrum",
@@ -504,7 +591,10 @@
                                   {
                                     "library": "@digipair/skill-web-font-awesome",
                                     "element": "digipair-font-awesome-icon",
-                                    "properties": { "name": "check", "category": "solid" }
+                                    "properties": {
+                                      "name": "check",
+                                      "category": "solid"
+                                    }
                                   }
                                 ],
                                 "events": {
@@ -517,7 +607,9 @@
                                           {
                                             "library": "@digipair/skill-cron",
                                             "element": "enableCron",
-                                            "properties": { "id": "{{item.id}}" }
+                                            "properties": {
+                                              "id": "{{item.id}}"
+                                            }
                                           },
                                           {
                                             "library": "@digipair/skill-basic",
@@ -547,27 +639,40 @@
                                     }
                                   ]
                                 },
-                                "conditions": { "if": "EVALUATE:item.enabled = false" }
+                                "conditions": {
+                                  "if": "EVALUATE:item.enabled = false"
+                                }
                               }
                             ],
-                            "properties": { "size": "s", "dir": "rtl" }
+                            "properties": {
+                              "size": "s",
+                              "dir": "rtl"
+                            }
                           }
                         ]
                       }
                     ],
-                    "conditions": { "each": "EVALUATE:variables.crons" }
+                    "conditions": {
+                      "each": "EVALUATE:variables.crons"
+                    }
                   }
                 ]
               }
             ]
           }
         ],
-        "properties": { "color": "light", "scale": "large" }
+        "properties": {
+          "color": "light",
+          "scale": "large"
+        }
       },
       {
         "library": "@digipair/skill-web-chatbot",
         "element": "digipair-chatbot",
-        "properties": { "code": "{{request.digipair}}", "apiUrl": "" }
+        "properties": {
+          "code": "{{request.digipair}}",
+          "apiUrl": ""
+        }
       }
     ],
     "styleHtml": "color-scheme:light;\nbackground-color: #f4f4f4;\npadding: 60px 40px 80px 40px;",
@@ -581,7 +686,9 @@
             {
               "library": "@digipair/skill-editor",
               "element": "digipair",
-              "properties": { "digipair": "{{request.params.[0]}}" }
+              "properties": {
+                "digipair": "{{request.params.[0]}}"
+              }
             }
           ]
         }
@@ -595,7 +702,9 @@
             {
               "library": "@digipair/skill-editor",
               "element": "reasonings",
-              "properties": { "digipair": "{{request.params.[0]}}" }
+              "properties": {
+                "digipair": "{{request.params.[0]}}"
+              }
             },
             {
               "library": "@digipair/skill-basic",
@@ -612,7 +721,9 @@
                   }
                 ]
               },
-              "conditions": { "each": "EVALUATE:previous" }
+              "conditions": {
+                "each": "EVALUATE:previous"
+              }
             }
           ]
         }
@@ -624,51 +735,51 @@
           "name": "scenes",
           "execute": [
             {
-              "library": "@digipair/skill-basic",
-              "element": "transform",
+              "library": "@digipair/skill-editor",
+              "element": "schemas",
               "properties": {
-                "execute": [
-                  {
-                    "library": "@digipair/skill-http",
-                    "element": "read",
-                    "properties": {
-                      "path": "https://cdn.jsdelivr.net/npm/{{item.key}}@{{item.value}}/schema.json"
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-basic",
-                    "element": "transform",
-                    "properties": {
-                      "value": "EVALUATE:get entries(if (previous.x-scene-blocks) then previous.x-scene-blocks else {})"
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-basic",
-                    "element": "transform",
-                    "properties": {
-                      "value": {
-                        "library": "{{parent.item.key}}",
-                        "element": "EVALUATE:substring(item.key,2)",
-                        "summary": "{{item.value.summary}}"
-                      }
-                    },
-                    "conditions": { "each": "EVALUATE:previous[item]" }
-                  }
-                ]
-              },
-              "conditions": {
-                "each": "EVALUATE:get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"]"
+                "libraries": "EVALUATE:context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"])",
+                "language": "en"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
-              "properties": { "value": "EVALUATE:flatten(previous)" }
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": {
+                        "library": "{{parent.item.info.title}}",
+                        "element": "EVALUATE:substring(item.key,2)",
+                        "summary": "{{item.value.summary}}"
+                      }
+                    },
+                    "conditions": {
+                      "each": "EVALUATE:get entries(if (item.x-scene-blocks) then item.x-scene-blocks else {})"
+                    }
+                  }
+                ]
+              },
+              "conditions": {
+                "each": "EVALUATE:previous"
+              }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
-              "properties": { "value": "EVALUATE:previous[item]" }
+              "properties": {
+                "value": "EVALUATE:flatten(previous)"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "EVALUATE:previous[item]"
+              }
             }
           ]
         }
@@ -679,11 +790,16 @@
         "properties": {
           "name": "crons",
           "execute": [
-            { "library": "@digipair/skill-cron", "element": "crons" },
+            {
+              "library": "@digipair/skill-cron",
+              "element": "crons"
+            },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
-              "properties": { "value": "EVALUATE:previous[item.digipair = request.params[1] ]" }
+              "properties": {
+                "value": "EVALUATE:previous[item.digipair = request.params[1] ]"
+              }
             }
           ]
         }

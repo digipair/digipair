@@ -217,11 +217,13 @@ class EditorService {
 
     const list = Promise.all(
       Object.keys(libraries).map(async (library: any) => {
-        let schemasPath = require.resolve(`${library}/schema.json`);
+        let modulePath = require.resolve(`${library}`);
+        modulePath = modulePath.substring(0, modulePath.lastIndexOf('/'));
+        let schemasPath = modulePath + '/schema.json';
 
         if (language !== 'en') {
           try {
-            schemasPath = require.resolve(`${library}/schema.${language}.json`);
+            schemasPath = modulePath + `/schema.${language}.json`;
           } catch (e) {}
         }
 
@@ -267,4 +269,4 @@ export const templates = (params: any, pinsSettingsList: PinsSettings[], context
   new EditorService().templates(params, pinsSettingsList, context);
 
 export const schemas = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new EditorService().templates(params, pinsSettingsList, context);
+  new EditorService().schemas(params, pinsSettingsList, context);

@@ -27,12 +27,17 @@
                     }
                   }
                 ],
-                "properties": { "href": "https://www.digipair.ai" }
+                "properties": {
+                  "href": "https://www.digipair.ai"
+                }
               },
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-top-nav-item",
-                "properties": { "textContent": "Home", "href": "/admin/digipair-list" }
+                "properties": {
+                  "textContent": "Home",
+                  "href": "/admin/digipair-list"
+                }
               },
               {
                 "library": "@digipair/skill-web-spectrum",
@@ -45,7 +50,9 @@
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-top-nav-item",
-                "properties": { "textContent": "{{variables.reasoning.summary}}" }
+                "properties": {
+                  "textContent": "{{variables.reasoning.summary}}"
+                }
               },
               {
                 "library": "@digipair/skill-web-spectrum",
@@ -58,7 +65,10 @@
                       {
                         "library": "@digipair/skill-web-font-awesome",
                         "element": "digipair-font-awesome-icon",
-                        "properties": { "name": "file-code", "category": "regular" }
+                        "properties": {
+                          "name": "file-code",
+                          "category": "regular"
+                        }
                       }
                     ],
                     "events": {
@@ -80,7 +90,10 @@
                       {
                         "library": "@digipair/skill-web-font-awesome",
                         "element": "digipair-font-awesome-icon",
-                        "properties": { "name": "eye", "category": "regular" }
+                        "properties": {
+                          "name": "eye",
+                          "category": "regular"
+                        }
                       }
                     ],
                     "events": {
@@ -89,12 +102,15 @@
                           "library": "@digipair/skill-web-interact",
                           "element": "goTo",
                           "properties": {
-                            "url": "/{{variables.digipair.id}}/{{variables.reasoning.id}}"
+                            "url": "/{{variables.digipair.id}}/{{variables.reasoning.id}}",
+                            "target": "_blank"
                           }
                         }
                       ]
                     },
-                    "conditions": { "if": "EVALUATE:variables.reasoning.element = \"page\"" }
+                    "conditions": {
+                      "if": "EVALUATE:variables.reasoning.element = \"page\""
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -103,7 +119,10 @@
                       {
                         "library": "@digipair/skill-web-font-awesome",
                         "element": "digipair-font-awesome-icon",
-                        "properties": { "name": "floppy-disk", "category": "regular" }
+                        "properties": {
+                          "name": "floppy-disk",
+                          "category": "regular"
+                        }
                       }
                     ],
                     "events": {
@@ -136,13 +155,18 @@
                         {
                           "library": "@digipair/skill-web-notification",
                           "element": "information",
-                          "properties": { "message": "Enregistrement effectué !" }
+                          "properties": {
+                            "message": "Saved !"
+                          }
                         }
                       ]
                     }
                   }
                 ],
-                "properties": { "size": "s", "style": "margin-inline-start: auto;" }
+                "properties": {
+                  "size": "s",
+                  "style": "margin-inline-start: auto;"
+                }
               }
             ]
           },
@@ -150,20 +174,26 @@
             "library": "@digipair/skill-web-editor",
             "element": "digipair-editor",
             "properties": {
-              "digipair": "EVALUATE:variables.digipair",
               "reasoning": "EVALUATE:variables.reasoning",
               "schemas": "EVALUATE:variables.schemas",
               "menuBackgroundColor": "#212e3c",
-              "contentStyle": "position: fixed; top: 69px; right: 0; bottom: 0; left: 0;"
+              "contentStyle": "position: fixed; top: 69px; right: 0; bottom: 0; left: 0;",
+              "language": "en"
             }
           }
         ],
-        "properties": { "color": "light", "scale": "large" }
+        "properties": {
+          "color": "light",
+          "scale": "large"
+        }
       },
       {
         "library": "@digipair/skill-web-chatbot",
         "element": "digipair-chatbot",
-        "properties": { "code": "{{request.digipair}}", "apiUrl": "" }
+        "properties": {
+          "code": "{{request.digipair}}",
+          "apiUrl": ""
+        }
       }
     ],
     "styleHtml": "color-scheme:light;\nbackground-color: #f4f4f4;",
@@ -177,7 +207,9 @@
             {
               "library": "@digipair/skill-editor",
               "element": "digipair",
-              "properties": { "digipair": "{{request.params.[0]}}" }
+              "properties": {
+                "digipair": "{{request.params.[0]}}"
+              }
             }
           ]
         }
@@ -203,14 +235,39 @@
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
+          "name": "schemasLibraries",
+          "execute": [
+            {
+              "library": "@digipair/skill-editor",
+              "element": "schemas",
+              "properties": {
+                "libraries": "EVALUATE:variables.digipair.libraries",
+                "language": "en"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
           "name": "schemasDigipair",
           "execute": [
-            { "library": "@digipair/skill-editor", "element": "digipairs" },
+            {
+              "library": "@digipair/skill-editor",
+              "element": "digipairs"
+            },
             {
               "library": "@digipair/skill-factory",
               "element": "start",
-              "properties": { "reasoning": "schema.json", "digipair": "{{item}}" },
-              "conditions": { "each": "EVALUATE:previous" }
+              "properties": {
+                "reasoning": "schema.json",
+                "digipair": "{{item}}"
+              },
+              "conditions": {
+                "each": "EVALUATE:previous"
+              }
             }
           ]
         }
@@ -252,7 +309,7 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:flatten([variables.schemasRemote, variables.schemasDigipair])"
+                "value": "EVALUATE:flatten([variables.schemasLibraries, variables.schemasRemote, variables.schemasDigipair])"
               }
             }
           ]

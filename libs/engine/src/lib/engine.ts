@@ -216,7 +216,13 @@ export const generateElementFromPins = async (
   }
 
   const element = document.createElement(pinsSettings.element);
-  element.setAttributeNS('', 'data-digipair-pins', '');
+
+  // add digipair-vision and aframe compatibility
+  const setAttribute = (attribute: string, value: any) =>
+    pinsSettings.element.startsWith('a-') || pinsSettings.element.startsWith('dxr-')
+      ? element.setAttributeNS('', attribute, value)
+      : element.setAttribute(attribute, value);
+  setAttribute('data-digipair-pins', '');
 
   const library = pinsSettings.library;
   if (options.import && library !== 'web' && !_config.LIBRARIES[library]) {
@@ -235,7 +241,7 @@ export const generateElementFromPins = async (
     } else if (key === 'innerHTML') {
       element.innerHTML = value;
     } else if (typeof value === 'string') {
-      element.setAttributeNS('', key, value);
+      setAttribute(key, value);
     } else {
       (element as any)[key] = value;
     }
