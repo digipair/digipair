@@ -1,6 +1,7 @@
 import { PinsSettings } from '@digipair/engine';
 import * as _ from 'lodash';
 import { promises, existsSync } from 'fs';
+import { readFile } from 'fs/promises';
 
 class EditorService {
   async reasonings(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -210,6 +211,28 @@ class EditorService {
 
     return templates;
   }
+
+  async schemas(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { libraries, language } = params;
+
+    const list = Promise.all(
+      Object.keys(libraries).map(async (library: any) => {
+        let modulePath = require.resolve(`${library}`);
+        modulePath = modulePath.substring(0, modulePath.lastIndexOf('/'));
+        let schemasPath = modulePath + '/schema.json';
+
+        if (language !== 'en') {
+          try {
+            schemasPath = modulePath + `/schema.${language}.json`;
+          } catch (e) {}
+        }
+
+        return JSON.parse(await readFile(schemasPath, 'utf8'));
+      }),
+    );
+
+    return list;
+  }
 }
 
 export const setReasoning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -244,3 +267,6 @@ export const metadata = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const templates = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().templates(params, pinsSettingsList, context);
+
+export const schemas = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().schemas(params, pinsSettingsList, context);
