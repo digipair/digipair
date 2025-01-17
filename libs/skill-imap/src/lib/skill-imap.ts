@@ -100,7 +100,10 @@ class IMapService {
 
     context.protected?.signal.addEventListener('abort', () => {
       this.forceClose = true;
-      client.logout();
+
+      if (client.authenticated) {
+        client.logout();
+      }
     });
 
     client.on('close', async () => {
