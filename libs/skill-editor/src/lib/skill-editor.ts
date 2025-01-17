@@ -217,13 +217,11 @@ class EditorService {
 
     const list = Promise.all(
       Object.keys(libraries).map(async (library: any) => {
-        let modulePath = require.resolve(`${library}`);
-        modulePath = modulePath.substring(0, modulePath.lastIndexOf('/'));
-        let schemasPath = modulePath + '/schema.json';
+        let schemasPath = require.resolve(`${library}/schema.json`);
 
         if (language !== 'en') {
           try {
-            schemasPath = modulePath + `/schema.${language}.json`;
+            schemasPath = require.resolve(`${library}/schema.${language}.json`);
           } catch (e) {}
         }
 

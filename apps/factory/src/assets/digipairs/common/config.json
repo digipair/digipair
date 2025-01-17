@@ -3,6 +3,7 @@
   "description": "common actions.",
   "metadata": { "avatar": "avatar.png", "color": "#3b82f6" },
   "libraries": {
+    "@digipair/skill-basic": "latest",
     "@digipair/skill-service": "latest",
     "@digipair/skill-sse": "latest",
     "@digipair/skill-common": "latest",

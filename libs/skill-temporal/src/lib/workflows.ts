@@ -110,6 +110,7 @@ export async function workflow({ steps, context, data, options }: WorkflowArgs):
   let result: any;
 
   context.workflow = { steps: {}, data };
+  context.protected = {};
 
   const { executePinsList } = proxyActivities<typeof activities>(options);
   setHandler(dataSignal, (data: any) => {

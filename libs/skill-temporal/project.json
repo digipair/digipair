@@ -13,8 +13,8 @@
         "tsConfig": "libs/skill-temporal/tsconfig.lib.json",
         "assets": [
           "libs/skill-temporal/index.d.ts",
-          "libs/skill-temporal/src/schema.json",
-          "libs/skill-temporal/src/schema.fr.json"
+          "libs/skill-temporal/schema.json",
+          "libs/skill-temporal/schema.fr.json"
         ]
       }
     },
