@@ -1,6 +1,10 @@
 {
   "name": "@digipair/skill-canvas",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "web"
+  ],
   "dependencies": {
     "canvas": "^2.11.2"
   },

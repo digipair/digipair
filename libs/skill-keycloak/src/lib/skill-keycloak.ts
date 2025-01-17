@@ -2,6 +2,8 @@
 import { PinsSettings, executePinsList, generateElementFromPins } from '@digipair/engine';
 import * as jwt from 'jsonwebtoken';
 import { JSDOM } from 'jsdom';
+import { readFile } from 'fs/promises';
+import { lookup } from 'mime-types';
 
 class KeycloakService {
   private filteredWebPinsSettings(item: any, path: string): any {
@@ -50,7 +52,9 @@ class KeycloakService {
   }
 
   private async decodedToken(url: string, realm: string, token: string, signal: AbortSignal) {
-    const response = await fetch(`${url}/realms/${realm}/protocol/openid-connect/certs`, { signal });
+    const response = await fetch(`${url}/realms/${realm}/protocol/openid-connect/certs`, {
+      signal,
+    });
     const infos = await response.json();
     const publicKey = `-----BEGIN CERTIFICATE-----\n${
       infos.keys.find(({ alg }: { alg: string; x5c: string }) => alg === 'RS256').x5c[0]
@@ -184,7 +188,6 @@ class KeycloakService {
       ssr = false,
       styleHtml = '',
       styleBody = '',
-      baseUrl = 'https://cdn.jsdelivr.net/npm',
       url = context.privates.KEYCLOAK_URL,
       realm = context.privates.KEYCLOAK_REALM,
       clientId = context.privates.KEYCLOAK_CLIENTID,
@@ -199,6 +202,53 @@ class KeycloakService {
     } = params;
     const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
     const preparedData = {} as { [key: string]: PinsSettings };
+
+    if (context.request.params[0] === '__digipair_www__') {
+      let result: any;
+
+      try {
+        const fileUrl = context.protected.req.path.split('__digipair_www__/')[1];
+
+        if (!fileUrl) {
+          context.protected.res.status(404);
+          return { status: 'not found' };
+        }
+
+        const regex = /^(.*?[^@]+)@(.*?[^\/]+)\/(.*?.+)$/;
+        const match = fileUrl.match(regex);
+
+        if (!match) {
+          context.protected.res.status(404);
+          console.log('ici', match, fileUrl);
+          return { status: 'not found' };
+        }
+
+        const library = match[1];
+        if (library !== '@digipair/engine' && !context.config.VERSIONS[library]) {
+          context.protected.res.status(404);
+          return { status: 'not found' };
+        }
+
+        const infos = require(`${library}/package.json`);
+        if (!(infos.keywords?.indexOf('digipair') >= 0 && infos.keywords?.indexOf('web') >= 0)) {
+          context.protected.res.status(404);
+          return { status: 'not found' };
+        }
+
+        const path = match[3];
+        let filePath = require.resolve(`${library}/${path}`);
+
+        const mimeType = lookup(filePath) || 'application/octet-stream';
+        context.protected.res.setHeader('Content-Type', mimeType);
+
+        result = await readFile(filePath, 'utf8');
+      } catch (error) {
+        context.protected.res.status(404);
+        result = { status: 'not found' };
+      }
+
+      return result;
+    }
 
     if (
       context.request.method === 'POST' &&
@@ -245,6 +295,16 @@ class KeycloakService {
         ),
       );
     }
+
+    const path = context.protected.req.path.replace(/\/$/g, '');
+    const baseUrl =
+      context.protected.req.protocol +
+      '://' +
+      context.protected.req.headers.host +
+      (context.request.params.length <= 0 || context.request.params[0] === ''
+        ? path
+        : path.substring(0, path.length - context.request.params.join('/').length - 1)) +
+      '/__digipair_www__';
 
     await executePinsList(factoryInitialize, context);
 
