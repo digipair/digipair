@@ -1,0 +1,84 @@
+{
+  "description": "Management message",
+  "summary": "Manage message",
+  "library": "@digipair/skill-service",
+  "element": "action",
+  "metadata": {
+    "tags": [
+      "service"
+    ],
+    "parameters": [
+      {
+        "name": "message",
+        "summary": "Message",
+        "required": true,
+        "schema": {
+          "type": "object"
+        }
+      }
+    ]
+  },
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "message",
+          "value": "EVALUATE:request.body.message"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "resume",
+          "execute": [
+            {
+              "library": "@digipair/skill-markitdown",
+              "element": "convert",
+              "properties": {
+                "file": "EVALUATE:variables.message.attachments[starts with(meta.contentType, \"application/\")][1].content"
+              }
+            },
+            {
+              "library": "@digipair/skill-http",
+              "element": "request",
+              "properties": {
+                "path": "https://factory.digipair.ai/6c508efa04a94adbb542d70a336958e8/cobercv/action-convert-cv",
+                "method": "POST",
+                "body": {
+                  "resume": "EVALUATE:previous"
+                }
+              }
+            }
+          ]
+        },
+        "conditions": {
+          "if": "EVALUATE:variables.message.attachments[starts with(meta.contentType, \"application/\")][1].content != null"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "cc",
+          "value": "EVALUATE:if variables.message.envelope.cc = null then [] else variables.message.envelope.cc"
+        }
+      },
+      {
+        "library": "@digipair/skill-sendmail",
+        "element": "send",
+        "properties": {
+          "from": "no-reply@digipair.ai",
+          "to": "EVALUATE:variables.message.envelope.from[1].address",
+          "subject": "Tr:{{variables.message.envelope.subject}}",
+          "text": "Message received: {{variables.message.contentText}}",
+          "html": "Message received: {{variables.message.contentText}}",
+          "attachments": []
+        }
+      }
+    ]
+  },
+  "pins": []
+}
