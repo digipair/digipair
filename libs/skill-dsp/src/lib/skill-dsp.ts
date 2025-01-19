@@ -9,7 +9,7 @@ import {
   AxChainOfThought,
   AxAgent,
   AxFunction,
-} from '@digipair/ax';
+} from '@ax-llm/ax';
 
 class DspService {
   private async prepareFunctions(functions: AxFunction[], context: any): Promise<AxFunction[]> {

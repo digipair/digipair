@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "@azure/msal-node": "^2.10.0",
-    "@digipair/ax": "10.0.18-alpha.audio",
+    "@ax-llm/ax": "10.0.32",
     "@langchain/community": "^0.3.10",
     "@langchain/core": "^0.3.15",
     "@langchain/openai": "^0.3.11",

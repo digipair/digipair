@@ -71,6 +71,15 @@
     "@csstools/css-tokenizer" "^3.0.3"
     lru-cache "^10.4.3"
 
+"@ax-llm/ax@10.0.32":
+  version "10.0.32"
+  resolved "https://registry.yarnpkg.com/@ax-llm/ax/-/ax-10.0.32.tgz#3d76f78a587849752814e8196b839fd3212bf6f3"
+  integrity sha512-xWDqnLnWgMzA+EKNvblCIAS4q4c7ueeCFLNoONRcD+/9tHXWl0TGSL93BwgUmV2hfLWlG3FkqwbJ2NrUbksYLQ==
+  dependencies:
+    "@opentelemetry/api" "^1.9.0"
+    json5 "^2.2.3"
+    moment-timezone "^0.5.46"
+
 "@azure/msal-common@14.16.0":
   version "14.16.0"
   resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-14.16.0.tgz#f3470fcaec788dbe50859952cd499340bda23d7a"
@@ -1177,14 +1186,6 @@
     tough-cookie "^5.0.0"
     tunnel-agent "^0.6.0"
     uuid "^8.3.2"
-
-"@digipair/ax@10.0.18-alpha.audio":
-  version "10.0.18-alpha.audio"
-  resolved "https://registry.yarnpkg.com/@digipair/ax/-/ax-10.0.18-alpha.audio.tgz#8cd04370310b0f4fd1ca0ff72ac86fbf299bbfae"
-  integrity sha512-xUgxTUyuytWV4zieBDrtZKOjLReVxFymB3cCYsjO+nwhNGvt6l+6+mdi6BbzaO5p2FF5qP+Jonqz1ts7W7FoYQ==
-  dependencies:
-    json5 "^2.2.3"
-    moment-timezone "^0.5.46"
 
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"
@@ -2540,6 +2541,11 @@
     nx "18.0.8"
     tslib "^2.3.0"
     yargs-parser "21.1.1"
+
+"@opentelemetry/api@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@opentelemetry/api/-/api-1.9.0.tgz#d03eba68273dc0f7509e2a3d5cba21eae10379fe"
+  integrity sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==
 
 "@parcel/watcher-android-arm64@2.5.0":
   version "2.5.0"
