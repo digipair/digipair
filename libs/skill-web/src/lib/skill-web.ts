@@ -147,7 +147,11 @@ class WebService {
         }
 
         const library = match[1];
-        if (library !== '@digipair/engine' && !context.config.VERSIONS[library]) {
+        if (
+          library !== '@digipair/engine' &&
+          !context.config.VERSIONS[library] &&
+          !context.config.WEB_VERSIONS[library]
+        ) {
           context.protected.res.status(404);
           return { status: 'not found' };
         }

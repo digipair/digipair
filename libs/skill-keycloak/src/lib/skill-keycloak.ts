@@ -225,8 +225,9 @@ class KeycloakService {
 
         const library = match[1];
         if (
-          ['@digipair/engine', 'blockly'].indexOf(library) < 0 &&
-          !context.config.VERSIONS[library]
+          library !== '@digipair/engine' &&
+          !context.config.VERSIONS[library] &&
+          !context.config.WEB_VERSION[library]
         ) {
           context.protected.res.status(404);
           return { status: 'not found' };
