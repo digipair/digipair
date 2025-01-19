@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList, generateElementFromPins } from '@digipair/engine';
 import { JSDOM } from 'jsdom';
+import { readFile } from 'fs/promises';
+import { lookup } from 'mime-types';
 
 class WebService {
   private filteredWebPinsSettings(item: any, path: string): any {
@@ -117,13 +119,59 @@ class WebService {
       ssr = true,
       styleHtml = '',
       styleBody = '',
-      baseUrl = 'https://cdn.jsdelivr.net/npm',
       factoryInitialize = [],
       browserInitialize = [],
       browserLoad = [],
     } = params;
     const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
     const preparedData = {} as { [key: string]: PinsSettings };
+
+    if (context.request.params[0] === '__digipair_www__') {
+      let result: any;
+
+      try {
+        const fileUrl = context.protected.req.path.split('__digipair_www__/')[1];
+
+        if (!fileUrl) {
+          context.protected.res.status(404);
+          return { status: 'not found' };
+        }
+
+        const regex = /^(.*?[^@]+)@(.*?[^\/]+)\/(.*?.+)$/;
+        const match = fileUrl.match(regex);
+
+        if (!match) {
+          context.protected.res.status(404);
+          console.log('ici', match, fileUrl);
+          return { status: 'not found' };
+        }
+
+        const library = match[1];
+        if (library !== '@digipair/engine' && !context.config.VERSIONS[library]) {
+          context.protected.res.status(404);
+          return { status: 'not found' };
+        }
+
+        const infos = require(`${library}/package.json`);
+        if (!(infos.keywords?.indexOf('digipair') >= 0 && infos.keywords?.indexOf('web') >= 0)) {
+          context.protected.res.status(404);
+          return { status: 'not found' };
+        }
+
+        const path = match[3];
+        let filePath = require.resolve(`${library}/${path}`);
+
+        const mimeType = lookup(filePath) || 'application/octet-stream';
+        context.protected.res.setHeader('Content-Type', mimeType);
+
+        result = await readFile(filePath, 'utf8');
+      } catch (error) {
+        context.protected.res.status(404);
+        result = { status: 'not found' };
+      }
+
+      return result;
+    }
 
     if (
       context.request.method === 'POST' &&
@@ -141,6 +189,16 @@ class WebService {
         ),
       );
     }
+
+    const path = context.protected.req.path.replace(/\/$/g, '');
+    const baseUrl =
+      context.protected.req.protocol +
+      '://' +
+      context.protected.req.headers.host +
+      (context.request.params.length <= 0 || context.request.params[0] === ''
+        ? path
+        : path.substring(0, path.length - context.request.params.join('/').length - 1)) +
+      '/__digipair_www__';
 
     await executePinsList(factoryInitialize, context);
 

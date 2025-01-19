@@ -1,6 +1,10 @@
 {
   "name": "@digipair/skill-web-chatbot",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "web"
+  ],
   "dependencies": {},
   "typings": "./index.d.ts",
   "main": "./index.cjs.js",

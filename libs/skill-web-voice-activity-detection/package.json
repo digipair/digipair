@@ -1,6 +1,10 @@
 {
   "name": "@digipair/skill-web-voice-activity-detection",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "web"
+  ],
   "dependencies": {},
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
