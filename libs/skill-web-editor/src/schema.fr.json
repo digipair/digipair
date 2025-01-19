@@ -24,6 +24,15 @@
             }
           },
           {
+            "name": "webBaseUrl",
+            "summary": "Base d'URL des dépendances web",
+            "required": true,
+            "description": "Base d'URL des dépendances web",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "schemas",
             "summary": "Schemas",
             "required": false,

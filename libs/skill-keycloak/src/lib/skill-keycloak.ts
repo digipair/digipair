@@ -224,7 +224,10 @@ class KeycloakService {
         }
 
         const library = match[1];
-        if (library !== '@digipair/engine' && !context.config.VERSIONS[library]) {
+        if (
+          ['@digipair/engine', 'blockly'].indexOf(library) < 0 &&
+          !context.config.VERSIONS[library]
+        ) {
           context.protected.res.status(404);
           return { status: 'not found' };
         }
@@ -382,7 +385,7 @@ class KeycloakService {
           VERSIONS: ${JSON.stringify(context.config.VERSIONS || {})},
         },
         variables: ${JSON.stringify(context.variables || {})},
-        request: ${JSON.stringify(context.request || {})},
+        request: ${JSON.stringify({ ...JSDOM(context.request || {}), webBaseUrl: baseUrl })},
         keycloak: { isLogged: keycloakService.isLogged },
       };
 

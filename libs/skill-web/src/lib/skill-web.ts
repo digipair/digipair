@@ -243,7 +243,7 @@ class WebService {
           VERSIONS: ${JSON.stringify(context.config.VERSIONS || {})},
         },
         variables: ${JSON.stringify(context.variables || {})},
-        request: ${JSON.stringify(context.request || {})},
+        request: ${JSON.stringify({ ...JSDOM(context.request || {}), webBaseUrl: baseUrl })},
       };
 
       await executePinsList(${JSON.stringify(

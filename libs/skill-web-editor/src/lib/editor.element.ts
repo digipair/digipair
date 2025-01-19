@@ -6,8 +6,6 @@ import { initializeWorkspaceFromPinsAndLibraries } from './generator/json-to-blo
 import { schemas as schemasWeb } from './schemas/web.schema';
 import { schemas as schemasWebFr } from './schemas/web.fr.schema';
 
-const BASE_URL = 'https://cdn.jsdelivr.net/npm';
-const BLOCKLY_VERSION = '10.4.3';
 declare const Blockly: any;
 let jsonGenerator: any,
   generateBlocklyBlockFromLibraries: any,
@@ -18,6 +16,9 @@ let jsonGenerator: any,
 export class EditorElement extends LitElement {
   @property()
   reasoning!: any;
+
+  @property()
+  webBaseUrl!: any;
 
   @property()
   schemas: any[] = [];
@@ -55,10 +56,12 @@ export class EditorElement extends LitElement {
   }
 
   private async initialize() {
+    const baseUrl = this.webBaseUrl;
+    const blocklyVersion = 'latest';
     let script: any, promise: any;
 
     script = document.createElement('script');
-    script.src = `${BASE_URL}/blockly@${BLOCKLY_VERSION}/blockly_compressed.js`;
+    script.src = `${baseUrl}/blockly@${blocklyVersion}/blockly_compressed.js`;
     promise = new Promise(resolve => {
       script.onload = resolve;
     });
@@ -66,7 +69,7 @@ export class EditorElement extends LitElement {
     await promise;
 
     script = document.createElement('script');
-    script.src = `${BASE_URL}/blockly@${BLOCKLY_VERSION}/blocks_compressed.js`;
+    script.src = `${baseUrl}/blockly@${blocklyVersion}/blocks_compressed.js`;
     promise = new Promise(resolve => {
       script.onload = resolve;
     });
@@ -74,7 +77,7 @@ export class EditorElement extends LitElement {
     await promise;
 
     script = document.createElement('script');
-    script.src = `${BASE_URL}/blockly@${BLOCKLY_VERSION}/msg/en.js`;
+    script.src = `${baseUrl}/blockly@${blocklyVersion}/msg/en.js`;
     promise = new Promise(resolve => {
       script.onload = resolve;
     });

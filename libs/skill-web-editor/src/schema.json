@@ -24,6 +24,15 @@
             }
           },
           {
+            "name": "webBaseUrl",
+            "summary": "Base URL of web dependencies",
+            "required": true,
+            "description": "Base URL of web dependencies",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "schemas",
             "summary": "Schemas",
             "required": false,
