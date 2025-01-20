@@ -219,7 +219,6 @@ class KeycloakService {
 
         if (!match) {
           context.protected.res.status(404);
-          console.log('ici', match, fileUrl);
           return { status: 'not found' };
         }
 
@@ -233,10 +232,12 @@ class KeycloakService {
           return { status: 'not found' };
         }
 
-        const infos = require(`${library}/package.json`);
-        if (!(infos.keywords?.indexOf('digipair') >= 0 && infos.keywords?.indexOf('web') >= 0)) {
-          context.protected.res.status(404);
-          return { status: 'not found' };
+        if (context.config.VERSIONS[library]) {
+          const infos = require(`${library}/package.json`);
+          if (!(infos.keywords?.indexOf('digipair') >= 0 && infos.keywords?.indexOf('web') >= 0)) {
+            context.protected.res.status(404);
+            return { status: 'not found' };
+          }
         }
 
         const path = match[3];
@@ -386,7 +387,7 @@ class KeycloakService {
           VERSIONS: ${JSON.stringify(context.config.VERSIONS || {})},
         },
         variables: ${JSON.stringify(context.variables || {})},
-        request: ${JSON.stringify({ ...JSDOM(context.request || {}), webBaseUrl: baseUrl })},
+        request: ${JSON.stringify(context.request || {})})},
         keycloak: { isLogged: keycloakService.isLogged },
       };
 

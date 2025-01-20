@@ -105,8 +105,8 @@ export class AppService implements OnModuleInit {
 
         context = {
           config: {
-            VERSIONS: config.libraries,
-            WEB_VERSIONS: config.webLibraries,
+            VERSIONS: config.libraries || {},
+            WEB_VERSIONS: config.webLibraries || {},
           },
           privates: config.privates,
           variables: config.variables,

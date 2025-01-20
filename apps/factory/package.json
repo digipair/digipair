@@ -42,6 +42,7 @@
     "@nestjs/platform-express": "^10.3.9",
     "@nestjs/serve-static": "^4.0.2",
     "reflect-metadata": "^0.2.2",
-    "blockly": "10.4.3"
+    "blockly": "10.4.3",
+    "toastify-js": "1.12.0"
   }
 }

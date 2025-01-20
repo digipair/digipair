@@ -18,9 +18,6 @@ export class EditorElement extends LitElement {
   reasoning!: any;
 
   @property()
-  webBaseUrl!: any;
-
-  @property()
   schemas: any[] = [];
 
   @property()
@@ -56,8 +53,10 @@ export class EditorElement extends LitElement {
   }
 
   private async initialize() {
-    const baseUrl = this.webBaseUrl;
-    const blocklyVersion = 'latest';
+    const globalInstance: any = typeof window === 'undefined' ? global : window;
+    const config = globalInstance.__DIGIPAIR_CONFIG__;
+    const baseUrl = config.BASE_URL;
+    const blocklyVersion = '10.4.3';
     let script: any, promise: any;
 
     script = document.createElement('script');
@@ -77,7 +76,7 @@ export class EditorElement extends LitElement {
     await promise;
 
     script = document.createElement('script');
-    script.src = `${baseUrl}/blockly@${blocklyVersion}/msg/en.js`;
+    script.src = `${baseUrl}/blockly@${blocklyVersion}/msg/${this.language}.js`;
     promise = new Promise(resolve => {
       script.onload = resolve;
     });

@@ -175,7 +175,6 @@
             "element": "digipair-editor",
             "properties": {
               "reasoning": "EVALUATE:variables.reasoning",
-              "webBaseUrl": "EVALUATE:request.webBaseUrl",
               "schemas": "EVALUATE:variables.schemas",
               "menuBackgroundColor": "#212e3c",
               "contentStyle": "position: fixed; top: 69px; right: 0; bottom: 0; left: 0;",
