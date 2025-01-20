@@ -55,20 +55,7 @@ export class AppService implements OnModuleInit {
         const { id, signal } = skillProcess.add(digipair, reasoning, null);
 
         try {
-          await this.agent(
-            path,
-            digipair,
-            reasoning,
-            {},
-            [],
-            {},
-            null,
-            {},
-            {},
-            null,
-            null,
-            signal,
-          );
+          await this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null, signal);
           skillProcess.remove(id);
         } catch (error) {
           if (error !== 'DIGIPAIR_KEEPALIVE') {
@@ -118,7 +105,8 @@ export class AppService implements OnModuleInit {
 
         context = {
           config: {
-            VERSIONS: config.libraries,
+            VERSIONS: config.libraries || {},
+            WEB_VERSIONS: config.webLibraries || {},
           },
           privates: config.privates,
           variables: config.variables,

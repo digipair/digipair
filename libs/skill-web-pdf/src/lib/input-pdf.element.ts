@@ -1,8 +1,6 @@
 import { LitElement, TemplateResult, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-const PDFJS_URL = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.269/build/pdf.min.mjs';
-
 @customElement('digipair-input-pdf')
 export class InputPdfElement extends LitElement {
   @property()
@@ -89,8 +87,11 @@ export class InputPdfElement extends LitElement {
   }
 
   private async extractText(file: Uint8Array): Promise<string> {
-    const pdfjs = await import(PDFJS_URL);
-    pdfjs.GlobalWorkerOptions.workerSrc = './pdf.worker.min.mjs';
+    const globalInstance: any = typeof window === 'undefined' ? global : window;
+    const config = globalInstance.__DIGIPAIR_CONFIG__;
+    const version = 'latest';
+    const pdfjs = await import(`${config.BASE_URL}/pdfjs-dist@${version}/build/pdf.min.mjs`);
+    pdfjs.GlobalWorkerOptions.workerSrc = `${config.BASE_URL}/pdfjs-dist@${version}/build/pdf.worker.min.mjs`;
     const pdf = await pdfjs.getDocument(file).promise;
     let text = '';
 

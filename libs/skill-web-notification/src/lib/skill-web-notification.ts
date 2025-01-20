@@ -1,18 +1,20 @@
 import { PinsSettings, executePinsList } from '@digipair/engine';
 import * as ToastifyJs from 'toastify-js';
 
-const BASE_URL = 'https://cdn.jsdelivr.net/npm';
 const Toastify = (ToastifyJs as any).default;
 
 class NotificationService {
   constructor() {
+    const globalInstance: any = typeof window === 'undefined' ? global : window;
+    const config = globalInstance.__DIGIPAIR_CONFIG__;
+    const version = '1.12.0';
     let link = document.querySelector('#digipair-skill-web-notification-css') as any;
 
     if (!link) {
       link = document.createElement('link');
       link.id = 'digipair-skill-web-notification-css';
       link.rel = 'stylesheet';
-      link.href = `${BASE_URL}/toastify-js/src/toastify.min.css`;
+      link.href = `${config.BASE_URL}/toastify-js@${version}/src/toastify.min.css`;
       link.type = 'text/css';
       document.head.appendChild(link);
     }

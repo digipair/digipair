@@ -142,20 +142,25 @@ class WebService {
 
         if (!match) {
           context.protected.res.status(404);
-          console.log('ici', match, fileUrl);
           return { status: 'not found' };
         }
 
         const library = match[1];
-        if (library !== '@digipair/engine' && !context.config.VERSIONS[library]) {
+        if (
+          library !== '@digipair/engine' &&
+          !context.config.VERSIONS[library] &&
+          !context.config.WEB_VERSIONS[library]
+        ) {
           context.protected.res.status(404);
           return { status: 'not found' };
         }
 
-        const infos = require(`${library}/package.json`);
-        if (!(infos.keywords?.indexOf('digipair') >= 0 && infos.keywords?.indexOf('web') >= 0)) {
-          context.protected.res.status(404);
-          return { status: 'not found' };
+        if (context.config.VERSIONS[library]) {
+          const infos = require(`${library}/package.json`);
+          if (!(infos.keywords?.indexOf('digipair') >= 0 && infos.keywords?.indexOf('web') >= 0)) {
+            context.protected.res.status(404);
+            return { status: 'not found' };
+          }
         }
 
         const path = match[3];
@@ -192,9 +197,9 @@ class WebService {
 
     const path = context.protected.req.path.replace(/\/$/g, '');
     const baseUrl =
-      context.protected.req.protocol +
+      (context.request.headers['x-forwarded-proto'] ?? context.protected.req.protocol) +
       '://' +
-      context.protected.req.headers.host +
+      context.request.headers.host +
       (context.request.params.length <= 0 || context.request.params[0] === ''
         ? path
         : path.substring(0, path.length - context.request.params.join('/').length - 1)) +
@@ -273,27 +278,7 @@ class WebService {
 
     return html;
   }
-
-  async javascript(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { execute, baseUrl = 'https://cdn.jsdelivr.net/npm' } = params;
-    const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
-    const js = `
-      import { executePinsList } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
-
-      const context = {
-        variables: ${JSON.stringify(context.variables || {})},
-        request: ${JSON.stringify(context.request || {})},
-      };
-      
-      await executePinsList(${JSON.stringify(execute)}, context);
-    `;
-
-    return js;
-  }
 }
 
 export const page = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WebService().page(params, pinsSettingsList, context);
-
-export const javascript = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new WebService().javascript(params, pinsSettingsList, context);

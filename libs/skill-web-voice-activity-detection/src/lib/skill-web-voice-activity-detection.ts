@@ -15,6 +15,8 @@ async function addScript(src: string) {
 
 class VADService {
   async listen(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const globalInstance: any = typeof window === 'undefined' ? global : window;
+    const config = globalInstance.__DIGIPAIR_CONFIG__;
     const {
       stream = await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -30,8 +32,8 @@ class VADService {
       onSpeechEnd = [],
       model = 'legacy',
       additionalAudioConstraints = {},
-      baseAssetPath = 'https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.22/dist/',
-      onnxWASMBasePath = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/',
+      baseAssetPath = `${config.BASE_URL}/@ricky0123/vad-web@0.0.22/dist/`,
+      onnxWASMBasePath = `${config.BASE_URL}/onnxruntime-web@1.18.0/dist/`,
       submitUserSpeechOnPause = false,
       positiveSpeechThreshold = 0.5,
       negativeSpeechThreshold = 0.35,
