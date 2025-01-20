@@ -105,8 +105,8 @@ export class AppService implements OnModuleInit {
 
         context = {
           config: {
-            VERSIONS: config.libraries || {},
-            WEB_VERSIONS: config.webLibraries || {},
+            VERSIONS: config.libraries ?? {},
+            WEB_VERSIONS: config.webLibraries ?? {},
           },
           privates: config.privates,
           variables: config.variables,
@@ -136,7 +136,8 @@ export class AppService implements OnModuleInit {
 
         context = {
           config: {
-            VERSIONS: { ...configCommon.libraries, ...config.libraries },
+            VERSIONS: { ...(configCommon.libraries ?? {}), ...(config.libraries ?? {}) },
+            WEB_VERSIONS: { ...(configCommon.webLibraries ?? {}), ...(config.webLibraries ?? {}) },
           },
           privates: { ...configCommon.privates, ...config.privates },
           variables: { ...configCommon.variables, ...config.variables },
@@ -164,7 +165,8 @@ export class AppService implements OnModuleInit {
 
         context = {
           config: {
-            VERSIONS: config.libraries,
+            VERSIONS: config.libraries ?? {},
+            WEB_VERSIONS: config.webLibraries ?? {},
           },
           privates: config.privates,
           variables: config.variables,
@@ -194,7 +196,8 @@ export class AppService implements OnModuleInit {
 
         context = {
           config: {
-            VERSIONS: { ...configCommon.libraries, ...config.libraries },
+            VERSIONS: { ...(configCommon.libraries ?? {}), ...(config.libraries ?? {}) },
+            WEB_VERSIONS: { ...(configCommon.webLibraries ?? {}), ...(config.webLibraries ?? {}) },
           },
           privates: { ...configCommon.privates, ...config.privates },
           variables: { ...configCommon.variables, ...config.variables },

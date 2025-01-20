@@ -226,7 +226,7 @@ class KeycloakService {
         if (
           library !== '@digipair/engine' &&
           !context.config.VERSIONS[library] &&
-          !context.config.WEB_VERSION[library]
+          !context.config.WEB_VERSIONS[library]
         ) {
           context.protected.res.status(404);
           return { status: 'not found' };

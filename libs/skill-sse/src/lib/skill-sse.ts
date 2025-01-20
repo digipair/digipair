@@ -15,7 +15,7 @@ class SSEService {
     const session = await createSession(context.protected.req, context.protected.res);
 
     if (id) {
-      const start = context.privates.SSE_SESION_START || '';
+      const start = context.privates.SSE_SESSION_START || '';
       const name = `${start}__${context.request.digipair}_${context.request.reasoning}__${id}`;
 
       this.sessions.set(name, session);
@@ -34,7 +34,7 @@ class SSEService {
     context: any,
   ): Promise<any> {
     const { session, disconnected = [], id = '' } = params;
-    const start = context.privates.SSE_SESION_START || '';
+    const start = context.privates.SSE_SESSION_START || '';
     const name = `${start}__${context.request.digipair}_${context.request.reasoning}__${id}`;
     let channel = this.channels.get(name);
     if (!channel) {
@@ -51,7 +51,7 @@ class SSEService {
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id, message, reasoning = context.request.reasoning } = params;
     const digipair = context.request.digipair;
-    const start = context.privates.SSE_SESION_START || '';
+    const start = context.privates.SSE_SESSION_START || '';
     const name = `${start}__${digipair}_${reasoning}__${id}`;
     const session = this.sessions.get(name);
 
@@ -61,7 +61,7 @@ class SSEService {
   async broadcast(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { message, reasoning = context.request.reasoning, id = '', event = 'message' } = params;
     const digipair = context.request.digipair;
-    const start = context.privates.SSE_SESION_START || '';
+    const start = context.privates.SSE_SESSION_START || '';
     const name = `${start}__${digipair}_${reasoning}__${id}`;
     let channel = this.channels.get(name);
 

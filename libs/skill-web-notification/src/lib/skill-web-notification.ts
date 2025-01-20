@@ -14,7 +14,7 @@ class NotificationService {
       link = document.createElement('link');
       link.id = 'digipair-skill-web-notification-css';
       link.rel = 'stylesheet';
-      link.href = `${config.BASE_URL}/toastify-js@${version}/src/toastify.min.css`;
+      link.href = `${config.BASE_URL}/toastify-js@${version}/src/toastify.css`;
       link.type = 'text/css';
       document.head.appendChild(link);
     }
