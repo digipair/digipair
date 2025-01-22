@@ -40,6 +40,15 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "factory",
+            "summary": "Factory",
+            "required": false,
+            "description": "Nom de la factory",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []

@@ -13,7 +13,7 @@ class FactoryService {
     let result;
 
     if (factory) {
-      const response = await fetch(`${factory}/${digipair}/reasoning`, body);
+      const response = await fetch(`${factory}/${digipair}/${reasoning}`, body);
       result = await response.json();
     } else {
       result = await this.startTask(context, digipair, reasoning, body);
