@@ -225,7 +225,7 @@ class WebService {
   </head>
   <body style="${styleBody}">
     <script type="module">
-      import { config, executePinsList, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
+      import { config, executePinsList, generateElementFromPins, applyTemplate } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
       const skillWeb = {
         executeFactory: async (params, pinsSettingsList, context) => {

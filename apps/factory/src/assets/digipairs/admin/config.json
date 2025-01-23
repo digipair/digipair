@@ -37,5 +37,5 @@
     "toastify-js": "latest"
   },
   "variables": {},
-  "privates": { "MODEL_DSP": [{ "library": "@digipair/skill-dsp", "element": "modelOpenAI" }] }
+  "privates": {}
 }

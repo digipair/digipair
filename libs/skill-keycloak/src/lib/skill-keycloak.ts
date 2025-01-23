@@ -332,7 +332,7 @@ class KeycloakService {
   <body style="${styleBody}">
     <script type="module">
       import '${url}/js/keycloak.js';
-      import { config, executePinsList, generateElementFromPins } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
+      import { config, executePinsList, generateElementFromPins, applyTemplate } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
       const serverUrl = '${factoryUrl}';
       const keycloakService = ${this.skillKeycloak};

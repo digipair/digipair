@@ -100,16 +100,19 @@ export class AppService implements OnModuleInit {
       let content: string;
 
       if (existsSync(`${path}/${digipair}/${reasoning}.json`)) {
+        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
+        const commonConfig = JSON.parse(content);
+
         content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
         const config = JSON.parse(content);
 
         context = {
           config: {
-            VERSIONS: config.libraries ?? {},
-            WEB_VERSIONS: config.webLibraries ?? {},
+            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
+            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
           },
-          privates: config.privates,
-          variables: config.variables,
+          privates: { ...commonConfig.privates, ...config.privates },
+          variables: { ...commonConfig.variables, ...config.variables },
           request: {
             digipair,
             reasoning,
@@ -129,18 +132,18 @@ export class AppService implements OnModuleInit {
         content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
       } else if (existsSync(`${path}/common/${reasoning}.json`) === true) {
         content = await promises.readFile(`${path}/common/config.json`, 'utf8');
-        const configCommon = JSON.parse(content);
+        const commonConfig = JSON.parse(content);
 
         content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
         const config = JSON.parse(content);
 
         context = {
           config: {
-            VERSIONS: { ...(configCommon.libraries ?? {}), ...(config.libraries ?? {}) },
-            WEB_VERSIONS: { ...(configCommon.webLibraries ?? {}), ...(config.webLibraries ?? {}) },
+            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
+            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
           },
-          privates: { ...configCommon.privates, ...config.privates },
-          variables: { ...configCommon.variables, ...config.variables },
+          privates: { ...commonConfig.privates, ...config.privates },
+          variables: { ...commonConfig.variables, ...config.variables },
           request: {
             digipair,
             reasoning,
@@ -160,16 +163,19 @@ export class AppService implements OnModuleInit {
 
         content = await promises.readFile(`${path}/common/${reasoning}.json`, 'utf8');
       } else if (existsSync(`${path}/${digipair}/fallback.json`)) {
+        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
+        const commonConfig = JSON.parse(content);
+
         content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
         const config = JSON.parse(content);
 
         context = {
           config: {
-            VERSIONS: config.libraries ?? {},
-            WEB_VERSIONS: config.webLibraries ?? {},
+            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
+            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
           },
-          privates: config.privates,
-          variables: config.variables,
+          privates: { ...commonConfig.privates, ...config.privates },
+          variables: { ...commonConfig.variables, ...config.variables },
           request: {
             digipair,
             reasoning,
@@ -189,18 +195,18 @@ export class AppService implements OnModuleInit {
         content = await promises.readFile(`${path}/${digipair}/fallback.json`, 'utf8');
       } else if (existsSync(`${path}/common/fallback.json`) === true) {
         content = await promises.readFile(`${path}/common/config.json`, 'utf8');
-        const configCommon = JSON.parse(content);
+        const commonConfig = JSON.parse(content);
 
         content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
         const config = JSON.parse(content);
 
         context = {
           config: {
-            VERSIONS: { ...(configCommon.libraries ?? {}), ...(config.libraries ?? {}) },
-            WEB_VERSIONS: { ...(configCommon.webLibraries ?? {}), ...(config.webLibraries ?? {}) },
+            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
+            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
           },
-          privates: { ...configCommon.privates, ...config.privates },
-          variables: { ...configCommon.variables, ...config.variables },
+          privates: { ...commonConfig.privates, ...config.privates },
+          variables: { ...commonConfig.variables, ...config.variables },
           request: {
             digipair,
             reasoning,

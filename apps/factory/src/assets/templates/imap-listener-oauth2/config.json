@@ -50,17 +50,7 @@
         "tokenPath": ""
       }
     },
-    "IMAP_OAUTH2_SCOPE": "",
-    "MODEL_EMBEDDINGS": [
-      {
-        "library": "@digipair/skill-openai",
-        "element": "embeddings",
-        "property": { "modelName": "text-embedding-3-small" }
-      }
-    ],
-    "MODEL_DSP": [
-      { "library": "@digipair/skill-dsp", "element": "modelOpenAI" }
-    ]
+    "IMAP_OAUTH2_SCOPE": ""
   },
   "digipair": "<%= digipair %>"
 }

@@ -40,17 +40,7 @@
         "user": "",
         "pass": ""
       }
-    },
-    "MODEL_EMBEDDINGS": [
-      {
-        "library": "@digipair/skill-openai",
-        "element": "embeddings",
-        "property": { "modelName": "text-embedding-3-small" }
-      }
-    ],
-    "MODEL_DSP": [
-      { "library": "@digipair/skill-dsp", "element": "modelOpenAI" }
-    ]
+    }
   },
   "digipair": "<%= digipair %>"
 }

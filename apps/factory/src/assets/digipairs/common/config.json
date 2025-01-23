@@ -11,5 +11,7 @@
     "@digipair/skill-debug": "latest"
   },
   "variables": {},
-  "privates": {}
+  "privates": {
+    "MODEL_DSP": [{ "library": "@digipair/skill-dsp", "element": "modelOpenAI" }]
+  }
 }
