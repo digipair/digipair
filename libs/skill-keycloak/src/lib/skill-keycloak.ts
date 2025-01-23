@@ -194,7 +194,7 @@ class KeycloakService {
       factoryInitialize = [],
       browserInitialize = [],
       browserLoad = [],
-      confirmBeforeUnload = [],
+      confirmBeforeUnload = 'false',
       logged = [],
       unlogged = [],
       factoryUrl = context.privates.FACTORY_URL ||
@@ -421,6 +421,15 @@ class KeycloakService {
           this.prepareBrowserPinsSettings('browserLoad', browserLoad),
         )}, context);
       }, 1);
+
+      window.addEventListener('beforeunload', (event) => {
+        const showConfirmationMessage = applyTemplate('EVALUATE:' + ${JSON.stringify(confirmBeforeUnload)}, context);
+
+        if (showConfirmationMessage) {
+          event.preventDefault();
+          event.returnValue = '';
+        }
+      });
     </script>
 
         ${ssr ? await this.pins2html(body, context) : ''}

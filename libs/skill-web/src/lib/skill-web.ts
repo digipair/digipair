@@ -122,7 +122,7 @@ class WebService {
       factoryInitialize = [],
       browserInitialize = [],
       browserLoad = [],
-      confirmBeforeUnload = [],
+      confirmBeforeUnload = 'false',
     } = params;
     const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
     const preparedData = {} as { [key: string]: PinsSettings };
@@ -270,6 +270,15 @@ class WebService {
           this.prepareBrowserPinsSettings('browserLoad', browserLoad),
         )}, context);
       }, 1);
+
+      window.addEventListener('beforeunload', (event) => {
+        const showConfirmationMessage = applyTemplate('EVALUATE:' + ${JSON.stringify(confirmBeforeUnload)}, context);
+
+        if (showConfirmationMessage) {
+          event.preventDefault();
+          event.returnValue = '';
+        }
+      });
     </script>
 
     ${ssr ? await this.pins2html(body, context) : ''}

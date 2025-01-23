@@ -267,10 +267,7 @@
           "required": false,
           "description": "Message de confirmation avant de quitter la page",
           "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
+            "type": "string"
           }
         }
       ]
