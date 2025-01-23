@@ -127,6 +127,18 @@
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
+        },
+        {
+          "name": "confirmBeforeUnload",
+          "summary": "Confirmation avant de quitter",
+          "required": false,
+          "description": "Message de confirmation avant de quitter la page",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
         }
       ]
     }
