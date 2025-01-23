@@ -71,13 +71,13 @@ export const applyTemplate = (value: any, context: any) => {
 };
 
 const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Promise<any> => {
-  let settings = await preparePinsSettings(settingsOrigin, context);
+  let settings = preparePinsSettings(settingsOrigin, context);
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
   const config = context.config || {};
   let version = (config.VERSIONS || {})[settings.library] || 'latest';
 
   if (alias) {
-    settings = await preparePinsSettings(
+    settings = preparePinsSettings(
       { ...settings, ...alias },
       {
         settings: {
@@ -105,7 +105,7 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
         index,
         parent: { item: context.item, index: context.index, parent: context.parent },
       };
-      const itemSettings = await preparePinsSettings(itemSettingsOrigin, itemContext);
+      const itemSettings = preparePinsSettings(itemSettingsOrigin, itemContext);
 
       if (typeof itemSettings.conditions?.if !== 'undefined' && !itemSettings.conditions.if) {
         continue;
@@ -156,7 +156,6 @@ export const executePinsList = async (
 ): Promise<any> => {
   let previous = {};
 
-  // parcourir tous les pins
   for (let i = 0; i < pinsSettingsList.length; i++) {
     const settings = pinsSettingsList[i];
 
@@ -185,11 +184,11 @@ export const generateElementFromPins = async (
   document: Document = typeof window !== 'undefined' ? window.document : global.document,
   options = { import: true },
 ): Promise<Element | void> => {
-  let settings = await preparePinsSettings(pinsSettings, context);
+  let settings = preparePinsSettings(pinsSettings, context);
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
 
   if (alias) {
-    settings = await preparePinsSettings({ ...settings, ...alias }, { settings });
+    settings = preparePinsSettings({ ...settings, ...alias }, { settings });
   }
 
   if (settings.conditions?.each) {
@@ -271,10 +270,10 @@ export const generateElementFromPins = async (
   return element;
 };
 
-export const preparePinsSettings = async (
+export const preparePinsSettings = (
   settings: PinsSettings,
   context: any,
-): Promise<PinsSettings> => {
+): PinsSettings => {
   const localContext = {
     ...context,
     variables: context.variables || {},
@@ -283,7 +282,7 @@ export const preparePinsSettings = async (
 
   const conditions = {} as any;
   for (const [key, value] of Object.entries(settings.conditions || {})) {
-    conditions[key] = await applyTemplate(value, localContext);
+    conditions[key] = applyTemplate(value, localContext);
   }
 
   const properties = {} as any;
