@@ -1,31 +1,60 @@
 {
-  "summary": "Conversation",
   "description": "Generating a response for the user via the chatbot.",
+  "summary": "Conversation",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": {},
+  "metadata": {
+    "standalone": false,
+    "selector": "any",
+    "url": "^$"
+  },
   "properties": {
     "steps": [
       {
         "name": "Conversation",
         "execute": [
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "history",
+              "value": "EVALUATE:if request.body.inputs[1].value = null then []\nelse request.body.inputs[1].value"
+            }
+          },
+          {
             "library": "@digipair/skill-dsp",
             "element": "agent",
             "properties": {
               "name": "Assistant",
               "description": "You are a helpful assistant, capable of explaining concepts in a simple manner. If you're unsure of an answer, you can say \"I don't know\" or \"I'm not sure.\"",
-              "signature": "\"Provide a very short, precise, and concise answer  to the user's question using only your knowledge base.\" userQuestion:string -> answer: string \"Assistant answer\"",
+              "signature": "\"Provide a very short, precise, and concise answer  to the user's question using only your knowledge base.\" \nuserQuestion:string,\nhistory?:string[] ->\n  answer: string \"Assistant answer in french\"",
               "input": {
-                "userQuestion": "{{request.body.prompt}}"
+                "userQuestion": "{{request.body.prompt}}",
+                "history": "EVALUATE:variables.history"
               }
             }
           },
           {
-            "library": "@digipair/skill-chatbot",
+            "library": "digipair:<%= digipair %>",
             "element": "answer",
             "properties": {
-              "assistant": "{{previous.answer}}"
+              "assistant": "{{previous.answer}}",
+              "boost": [
+                {
+                  "prompt": true,
+                  "required": true,
+                  "step": "Conversation",
+                  "inputs": [
+                    {
+                      "library": "@digipair/skill-web-inputs",
+                      "element": "digipair-input-hidden",
+                      "properties": {
+                        "value": "EVALUATE:flatten([variables.history, [\n  \"user: \" + request.body.prompt,\n  \"assistant: \" + parent.previous.answer\n]])"
+                      }
+                    }
+                  ]
+                }
+              ]
             }
           }
         ]

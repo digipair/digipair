@@ -312,7 +312,7 @@ export class ChatbotElement extends LitElement {
       });
 
       if (detail.command && detail.command.length > 0) {
-        executePinsList(detail.command, { config: { VERSIONS: this.metadata.config.VERSIONS } });
+        await executePinsList(detail.command, { config: { VERSIONS: this.metadata.config.VERSIONS } });
       }
     } catch (error) {
       this.pushMessage({

@@ -1,0 +1,10 @@
+{
+  "name": "default",
+  "description": "default actions.",
+  "metadata": { "avatar": "avatar.png", "color": "#3b82f6" },
+  "libraries": {},
+  "variables": {},
+  "privates": {
+    "MODEL_DSP": [{ "library": "@digipair/skill-dsp", "element": "modelOpenAI" }]
+  }
+}

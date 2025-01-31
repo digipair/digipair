@@ -94,136 +94,52 @@ export class AppService implements OnModuleInit {
     res: any,
     signal: AbortSignal,
   ): Promise<any> {
+    const assets = process.env.DIGIPAIR_FACTORY_PATH || './factory';
     let context: any;
 
     try {
       let content: string;
 
+      content = await promises.readFile(`${assets}/default.json`, 'utf8');
+      const defaultConfig = JSON.parse(content);
+
+      content = await promises.readFile(`${path}/common/config.json`, 'utf8');
+      const commonConfig = JSON.parse(content);
+
+      content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+      const config = JSON.parse(content);
+
+      context = {
+        config: {
+          VERSIONS: { ...defaultConfig.libraries, ...commonConfig.libraries, ...config.libraries },
+          WEB_VERSIONS: { ...defaultConfig.webLibraries, ...commonConfig.webLibraries, ...config.webLibraries },
+        },
+        privates: { ...defaultConfig.privates, ...commonConfig.privates, ...config.privates },
+        variables: { ...defaultConfig.variables, ...commonConfig.variables, ...config.variables },
+        request: {
+          digipair,
+          reasoning,
+          method,
+          body,
+          params,
+          query,
+          headers,
+        },
+        protected: {
+          req,
+          res,
+          signal,
+        },
+        requester,
+      };
+
       if (existsSync(`${path}/${digipair}/${reasoning}.json`)) {
-        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
-        const commonConfig = JSON.parse(content);
-
-        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
-        const config = JSON.parse(content);
-
-        context = {
-          config: {
-            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
-            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
-          },
-          privates: { ...commonConfig.privates, ...config.privates },
-          variables: { ...commonConfig.variables, ...config.variables },
-          request: {
-            digipair,
-            reasoning,
-            method,
-            body,
-            params,
-            query,
-            headers,
-          },
-          protected: {
-            req,
-            res,
-            signal,
-          },
-        };
-
         content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
       } else if (existsSync(`${path}/common/${reasoning}.json`) === true) {
-        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
-        const commonConfig = JSON.parse(content);
-
-        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
-        const config = JSON.parse(content);
-
-        context = {
-          config: {
-            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
-            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
-          },
-          privates: { ...commonConfig.privates, ...config.privates },
-          variables: { ...commonConfig.variables, ...config.variables },
-          request: {
-            digipair,
-            reasoning,
-            method,
-            body,
-            params,
-            query,
-            headers,
-          },
-          protected: {
-            req,
-            res,
-            signal,
-          },
-          requester,
-        };
-
         content = await promises.readFile(`${path}/common/${reasoning}.json`, 'utf8');
       } else if (existsSync(`${path}/${digipair}/fallback.json`)) {
-        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
-        const commonConfig = JSON.parse(content);
-
-        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
-        const config = JSON.parse(content);
-
-        context = {
-          config: {
-            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
-            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
-          },
-          privates: { ...commonConfig.privates, ...config.privates },
-          variables: { ...commonConfig.variables, ...config.variables },
-          request: {
-            digipair,
-            reasoning,
-            method,
-            body,
-            params,
-            query,
-            headers,
-          },
-          protected: {
-            req,
-            res,
-            signal,
-          },
-        };
-
         content = await promises.readFile(`${path}/${digipair}/fallback.json`, 'utf8');
       } else if (existsSync(`${path}/common/fallback.json`) === true) {
-        content = await promises.readFile(`${path}/common/config.json`, 'utf8');
-        const commonConfig = JSON.parse(content);
-
-        content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
-        const config = JSON.parse(content);
-
-        context = {
-          config: {
-            VERSIONS: { ...commonConfig.libraries, ...config.libraries },
-            WEB_VERSIONS: { ...commonConfig.webLibraries, ...config.webLibraries },
-          },
-          privates: { ...commonConfig.privates, ...config.privates },
-          variables: { ...commonConfig.variables, ...config.variables },
-          request: {
-            digipair,
-            reasoning,
-            method,
-            body,
-            params,
-            query,
-            headers,
-          },
-          protected: {
-            req,
-            res,
-            signal,
-          },
-          requester,
-        };
-
         content = await promises.readFile(`${path}/common/fallback.json`, 'utf8');
       } else {
         res.status(404);

@@ -3,7 +3,7 @@
   "description": "Adding a new digipair from OpenAPI v3.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": { "standalone": true },
+  "metadata": { "standalone": true, "selector": "any", "url": "^$" },
   "properties": {
     "steps": [
       {

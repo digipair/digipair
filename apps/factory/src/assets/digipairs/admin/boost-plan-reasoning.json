@@ -3,9 +3,7 @@
   "description": "Planning a reasonning",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": {
-    "standalone": false
-  },
+  "metadata": { "standalone": false, "selector": "any", "url": "^$" },
   "properties": {
     "steps": [
       {
