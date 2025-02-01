@@ -66,9 +66,15 @@ class LoggerService {
         process.env['DIGIPAIR_LOGS_PATH'] ??
         './factory/logs',
     } = params;
-    const text = await promises.readFile(`${path}/consumption-daily/${date}.jsonl`, 'utf8');
-    const lines = text.split('\n').filter(line => line !== '');
-    const result = lines.map((line: string) => JSON.parse(line));
+    let result: any;
+
+    try {
+      const text = await promises.readFile(`${path}/consumption-daily/${date}.jsonl`, 'utf8');
+      const lines = text.split('\n').filter(line => line !== '');
+      result = lines.map((line: string) => JSON.parse(line));
+    } catch (error) {
+      result = [];
+    }
 
     const dayLines = result.reduce((acc: any, curr: any) => {
       let line = acc.find(
