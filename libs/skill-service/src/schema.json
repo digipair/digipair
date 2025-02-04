@@ -90,7 +90,52 @@
           "name": "tags",
           "summary": "Tags",
           "required": true,
-          "description": "Tags de l'action",
+          "description": "Action tags",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Parameters",
+          "required": true,
+          "description": "Input parameters",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commands to execute",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/trigger": {
+      "summary": "Trigger",
+      "description": "Executable trigger.",
+      "tags": ["service"],
+      "metadata": [
+        {
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Trigger tags",
           "schema": {
             "type": "array",
             "items": {

@@ -75,7 +75,7 @@ class CommonService {
               `${path}/${digipair}/action-${name}.json`,
               'utf8',
             );
-            const { summary, metadata } = JSON.parse(actionContent);
+            const { summary, description, metadata } = JSON.parse(actionContent);
 
             return {
               key: `/action-${name}`,
@@ -83,6 +83,7 @@ class CommonService {
                 post: {
                   tags: metadata.tags ?? [],
                   summary,
+                  description,
                   parameters: metadata.parameters ?? [],
                   'x-events': [],
                 },
@@ -95,7 +96,42 @@ class CommonService {
       return acc;
     }, {});
 
-    return { ...content, paths: { ...content.paths, ...actions } };
+    const triggers = (
+      await Promise.all(
+        files
+          .map(file => /^trigger-(.*)\.json$/.exec(file)?.[1])
+          .filter(name => name)
+          .map(async name => {
+            const triggerContent = await promises.readFile(
+              `${path}/${digipair}/trigger-${name}.json`,
+              'utf8',
+            );
+            const { summary, description, metadata } = JSON.parse(triggerContent);
+
+            return {
+              key: `/trigger-${name}`,
+              value: {
+                post: {
+                  tags: metadata.tags ?? [],
+                  summary,
+                  description,
+                  parameters: metadata.parameters ?? [],
+                  'x-events': [],
+                },
+              },
+            };
+          }),
+      )
+    ).reduce((acc: any, item: any) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return {
+      ...content,
+      paths: { ...content.paths, ...actions },
+      'x-scene-blocks': { ...content['x-scene-blocks'], ...triggers },
+    };
   }
 }
 

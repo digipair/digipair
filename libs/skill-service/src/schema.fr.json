@@ -125,6 +125,51 @@
           }
         }
       ]
+    },
+    "/trigger": {
+      "summary": "Déclencheur",
+      "description": "Déclenchement d'une exécution d'actions.",
+      "tags": ["service"],
+      "metadata": [
+        {
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Tags du déclencheur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Paramètres",
+          "required": true,
+          "description": "Paramètres du déclencheur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commandes à exécuter.",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
     }
   }
 }
