@@ -1,7 +1,7 @@
 {
   "description": "Push a message card to a Microsoft Teams channel.",
   "summary": "Message Card",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {

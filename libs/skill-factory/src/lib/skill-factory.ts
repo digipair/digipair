@@ -22,8 +22,8 @@ class FactoryService {
     return result;
   }
 
-  async executeWithContext(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { execute, context } = params;
+  async execute(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { execute, context = _context } = params;
 
     const result = await executePinsList(execute, context);
     return result;
@@ -33,19 +33,22 @@ class FactoryService {
     throw 'DIGIPAIR_KEEPALIVE';
   }
 
-  async send(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { body } = params;
-    return context.protected.res.send(body);
+  async task(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { execute } = params;
+
+    return await executePinsList(execute, context);
   }
 
-  async status(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { code = 200 } = params;
-    return context.protected.res.status(code);
+  async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { execute } = params;
+
+    return await executePinsList(execute, context);
   }
 
-  async headers(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { headers } = params;
-    return context.protected.res.set(headers);
+  async trigger(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { execute } = params;
+
+    return await executePinsList(execute, context);
   }
 }
 
@@ -57,17 +60,17 @@ export const initialize = (launcher: Function) =>
 export const start = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.start(params, pinsSettingsList, context);
 
-export const executeWithContext = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.executeWithContext(params, pinsSettingsList, context);
+export const execute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new FactoryService().execute(params, pinsSettingsList, context);
 
 export const keepAlive = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.keepAlive(params, pinsSettingsList, context);
+  new FactoryService().keepAlive(params, pinsSettingsList, context);
 
-export const send = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.send(params, pinsSettingsList, context);
+export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new FactoryService().task(params, pinsSettingsList, context);
 
-export const status = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.status(params, pinsSettingsList, context);
+export const action = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new FactoryService().action(params, pinsSettingsList, context);
 
-export const headers = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.headers(params, pinsSettingsList, context);
+export const trigger = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new FactoryService().trigger(params, pinsSettingsList, context);

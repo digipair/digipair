@@ -1,7 +1,7 @@
 {
   "summary": "Calculation of daily consumption",
   "description": "This reasoning allows to calculate the token consumption on a daily basis.",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {

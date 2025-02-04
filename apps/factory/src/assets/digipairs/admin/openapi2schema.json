@@ -1,7 +1,7 @@
 {
   "description": "Transformation d'une spécification OpenAPI en schéma.",
   "summary": "OpenAPI to Schema",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {

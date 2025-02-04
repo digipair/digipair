@@ -39,32 +39,6 @@ Réponse à un appel HTTP.
 }
 ```
 
-### task
-
-Exécution d'une tâche.
-
-#### Paramètres
-
-| Nom      | Type   | Requis | Description            |
-|----------|--------|--------|------------------------|
-| execute  | array  | Oui    | Commandes à exécuter   |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-service",
-  "element": "task",
-  "properties": {
-    "execute": [
-      {
-        // Exemple de commande à exécuter
-      }
-    ]
-  }
-}
-```
-
 ## Notes
 
 - Les fonctions `service` et `task` sont utilisées respectivement pour répondre à des appels HTTP et exécuter des tâches spécifiques.

@@ -1,7 +1,7 @@
 {
   "summary": "Appel d'une API",
   "description": "Mécanisme d'appel d'une API",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {

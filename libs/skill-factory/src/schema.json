@@ -54,7 +54,7 @@
         "x-events": []
       }
     },
-    "/executeWithContext": {
+    "/execute": {
       "post": {
         "tags": ["service"],
         "summary": "Execute with context",
@@ -74,7 +74,7 @@
           },
           {
             "name": "context",
-            "required": true,
+            "required": false,
             "summary": "Context",
             "description": "Context of the execution",
             "schema": {
@@ -93,66 +93,150 @@
         "parameters": [],
         "x-events": []
       }
-    },
-    "/send": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Send HTTP",
-        "description": "Send an HTTP request",
-        "parameters": [
-          {
-            "name": "body",
-            "required": false,
-            "summary": "Body",
-            "description": "Body of the request",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/status": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Send HTTP status",
-        "description": "Send an HTTP status",
-        "parameters": [
-          {
-            "name": "code",
-            "required": true,
-            "summary": "Return code",
-            "description": "HTTP return code",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/headers": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Send HTTP headers",
-        "description": "Send HTTP headers",
-        "parameters": [
-          {
-            "name": "headers",
-            "required": true,
-            "summary": "Headers",
-            "description": "HTTP headers",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
-      }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "Parameter": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Parameter",
+        "properties": {
+          "name": {
+            "summary": "Name",
+            "type": "string"
+          },
+          "summary": {
+            "summary": "Summary",
+            "type": "string"
+          },
+          "required": {
+            "summary": "Required",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
+            "type": "object"
+          },
+          "description": {
+            "summary": "Summary",
+            "type": "string"
+          }
+        },
+        "required": ["name", "summary", "required", "schema"]
+      }
+    }
+  },
+  "x-scene-blocks": {
+    "/task": {
+      "summary": "Task",
+      "description": "Execution of a task.",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commands to execute",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/action": {
+      "summary": "Action",
+      "description": "Executable action.",
+      "tags": ["service"],
+      "metadata": [
+        {
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Action tags",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Parameters",
+          "required": true,
+          "description": "Input parameters",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commands to execute",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/trigger": {
+      "summary": "Trigger",
+      "description": "Executable trigger.",
+      "tags": ["service"],
+      "metadata": [
+        {
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Trigger tags",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Parameters",
+          "required": true,
+          "description": "Input parameters",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commands to execute",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
   }
 }

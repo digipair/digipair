@@ -1,7 +1,7 @@
 {
   "description": "L'utilisateur a formulé une demande.",
   "summary": "Demande d'information",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {

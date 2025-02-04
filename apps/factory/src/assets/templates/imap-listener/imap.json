@@ -1,7 +1,7 @@
 {
   "description": "IMAP is a protocol for managing email messages",
   "summary": "Manage email messages",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {

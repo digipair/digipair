@@ -1,7 +1,7 @@
 {
   "description": "Ce raisonnement concerne l'utilisation et la définition des API ouvertes.",
   "summary": "OpenAPI",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {

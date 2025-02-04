@@ -1,6 +1,6 @@
 {
   "description": "Génération d'une réponse pour l'utilisateur via le chatbot.",
-  "library": "@digipair/skill-service",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {
@@ -60,7 +60,7 @@
       },
       {
         "library": "@digipair/skill-factory",
-        "element": "executeWithContext",
+        "element": "execute",
         "properties": {
           "execute": [
             {

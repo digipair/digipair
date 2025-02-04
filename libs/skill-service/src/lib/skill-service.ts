@@ -8,33 +8,30 @@ class ServiceService {
     return await executePinsList(execute, context);
   }
 
-  async task(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { execute } = params;
-
-    return await executePinsList(execute, context);
+  async send(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { body } = params;
+    return context.protected.res.send(body);
   }
 
-  async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { execute } = params;
-
-    return await executePinsList(execute, context);
+  async status(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { code = 200 } = params;
+    return context.protected.res.status(code);
   }
 
-  async trigger(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { execute } = params;
-
-    return await executePinsList(execute, context);
+  async headers(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { headers } = params;
+    return context.protected.res.set(headers);
   }
 }
 
 export const service = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ServiceService().service(params, pinsSettingsList, context);
 
-export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new ServiceService().task(params, pinsSettingsList, context);
+export const send = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ServiceService().send(params, pinsSettingsList, context);
 
-export const action = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new ServiceService().action(params, pinsSettingsList, context);
+export const status = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ServiceService().status(params, pinsSettingsList, context);
 
-export const trigger = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new ServiceService().trigger(params, pinsSettingsList, context);
+export const headers = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ServiceService().headers(params, pinsSettingsList, context);

@@ -7,38 +7,67 @@
     "version": "0.1.0",
     "x-icon": "💻"
   },
-  "paths": {},
-  "components": {
-    "schemas": {
-      "Parameter": {
-        "type": "object",
+  "paths": {
+    "/send": {
+      "post": {
         "tags": ["service"],
-        "summary": "Parameter",
-        "properties": {
-          "name": {
-            "summary": "Nom",
-            "type": "string"
-          },
-          "summary": {
-            "summary": "Affichage",
-            "type": "string"
-          },
-          "required": {
-            "summary": "Requis",
-            "type": "boolean"
-          },
-          "schema": {
-            "summary": "Schema",
-            "type": "object"
-          },
-          "description": {
-            "summary": "Description",
-            "type": "string"
+        "summary": "Envoi de données HTTP",
+        "description": "Envoi de données à la connection HTTP",
+        "parameters": [
+          {
+            "name": "body",
+            "required": false,
+            "summary": "Body",
+            "description": "Corps de la réponse",
+            "schema": {
+              "type": "object"
+            }
           }
-        },
-        "required": ["name", "summary", "required", "schema"]
+        ],
+        "x-events": []
+      }
+    },
+    "/status": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Code de retour HTTP",
+        "description": "Envoi d'un code de retour à la connection HTTP",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "summary": "Code de retour",
+            "description": "Code de retour",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/headers": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Headers HTTP",
+        "description": "Envoi des headers à la connection HTTP",
+        "parameters": [
+          {
+            "name": "headers",
+            "required": true,
+            "summary": "Headers",
+            "description": "Headers",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
       }
     }
+  },
+  "components": {
+    "schemas": {}
   },
   "x-scene-blocks": {
     "/service": {
@@ -52,116 +81,6 @@
           "summary": "Exécute",
           "required": true,
           "description": "Commandes à exécuter",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        }
-      ]
-    },
-    "/task": {
-      "summary": "Tache",
-      "description": "Exécution d'une tache.",
-      "tags": ["service"],
-      "metadata": [],
-      "parameters": [
-        {
-          "name": "execute",
-          "summary": "Exécute",
-          "required": true,
-          "description": "Commandes à exécuter",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        }
-      ]
-    },
-    "/action": {
-      "summary": "Action",
-      "description": "Action exécutable.",
-      "tags": ["service"],
-      "metadata": [
-        {
-          "name": "tags",
-          "summary": "Tags",
-          "required": true,
-          "description": "Tags de l'action",
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        {
-          "name": "parameters",
-          "summary": "Paramètres",
-          "required": true,
-          "description": "Paramètres de l'action",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Parameter"
-            }
-          }
-        }
-      ],
-      "parameters": [
-        {
-          "name": "execute",
-          "summary": "Execute",
-          "required": true,
-          "description": "Commandes à exécuter.",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        }
-      ]
-    },
-    "/trigger": {
-      "summary": "Déclencheur",
-      "description": "Déclenchement d'une exécution d'actions.",
-      "tags": ["service"],
-      "metadata": [
-        {
-          "name": "tags",
-          "summary": "Tags",
-          "required": true,
-          "description": "Tags du déclencheur",
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        {
-          "name": "parameters",
-          "summary": "Paramètres",
-          "required": true,
-          "description": "Paramètres du déclencheur",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Parameter"
-            }
-          }
-        }
-      ],
-      "parameters": [
-        {
-          "name": "execute",
-          "summary": "Execute",
-          "required": true,
-          "description": "Commandes à exécuter.",
           "schema": {
             "type": "array",
             "items": {
