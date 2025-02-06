@@ -49,8 +49,7 @@ class SSEService {
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, message, reasoning = context.request.reasoning } = params;
-    const digipair = context.request.digipair;
+    const { id, message, reasoning = context.request.reasoning, digipair = context.request.digipair } = params;
     const start = context.privates.SSE_SESSION_START || '';
     const name = `${start}__${digipair}_${reasoning}__${id}`;
     const session = this.sessions.get(name);
@@ -59,8 +58,7 @@ class SSEService {
   }
 
   async broadcast(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { message, reasoning = context.request.reasoning, id = '', event = 'message' } = params;
-    const digipair = context.request.digipair;
+    const { message, reasoning = context.request.reasoning, id = '', digipair = context.request.digipair, event = 'message' } = params;
     const start = context.privates.SSE_SESSION_START || '';
     const name = `${start}__${digipair}_${reasoning}__${id}`;
     let channel = this.channels.get(name);

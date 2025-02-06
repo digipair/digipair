@@ -108,6 +108,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": false,
+            "description": "Digipair",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -150,6 +159,15 @@
             "summary": "Reasoning",
             "required": false,
             "description": "Reasoning name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": false,
+            "description": "Digipair",
             "schema": {
               "type": "string"
             }

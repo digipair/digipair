@@ -111,13 +111,10 @@ class CommonService {
             return {
               key: `/trigger-${name}`,
               value: {
-                post: {
-                  tags: metadata.tags ?? [],
-                  summary,
-                  description,
-                  parameters: metadata.parameters ?? [],
-                  'x-events': [],
-                },
+                tags: metadata.tags ?? [],
+                summary,
+                description,
+                parameters: metadata.parameters ?? [],
               },
             };
           }),
