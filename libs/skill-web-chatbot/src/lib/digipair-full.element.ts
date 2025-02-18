@@ -224,6 +224,8 @@ export class DigipairFullElement extends LitElement {
         content: detail.assistant,
         uuid: detail.uuid,
         boost: detail.boost,
+        boosts: detail.boosts,
+        sources: detail.sources,
         parent_conversation: detail.parent_conversation,
         parent_history: detail.parent_history,
       });
@@ -314,6 +316,7 @@ export class DigipairFullElement extends LitElement {
             loadingStep=${this.loadingStep}
             @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
             @boost=${(event: any) => this.setBoost(event.detail)}
+            @executeboost=${(event: any) => this.executeBoost(event.detail)}
           ></digipair-chatbot-chat>
         </section>
 

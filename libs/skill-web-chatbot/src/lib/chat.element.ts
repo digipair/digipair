@@ -255,6 +255,76 @@ export class ChatElement extends LitElement {
       .loading img {
         float: left;
       }
+
+      .sources {
+        margin-top: 10px;
+      }
+
+      .sources > .source {
+        background-color: rgba(255, 255, 255, 0.5);
+        font-size: 12px;
+        color: rgb(60, 60, 60);
+        padding: 0px 8px;
+        display: inline-block;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+        transform: scale(0.95);
+        margin-bottom: 4px;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: default;
+      }
+
+      .sources > .source.has-link {
+        background-color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+      }
+
+      .sources > .source.has-link:hover {
+        transform: scale(1);
+      }
+
+      .trust-bar {
+        position: relative;
+        width: 100%;
+        height: 3px;
+        background-color: rgba(82, 223, 219, 0.2);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 5px;
+      }
+
+      .trust-bar-fill {
+        height: 100%;
+        background-color: green;
+        transition: width 0.3s ease;
+        border-radius: 5px;
+      }
+
+      .boosts {
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
+      .boosts.loading {
+        display: none;
+      }
+
+      .boosts > .boost {
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 20px;
+        font-size: 10px;
+        color: rgb(60, 60, 60);
+        padding: 4px 14px;
+        cursor: pointer;
+        display: inline-block;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+        transform: scale(0.95);
+        margin-bottom: 1px;
+      }
+
+      .boosts > .boost:hover {
+        transform: scale(1);
+      }
     `,
   ];
 
@@ -357,6 +427,32 @@ export class ChatElement extends LitElement {
     return true;
   }
 
+  private executeBoost(boost: any): void {
+    this.dispatchEvent(
+      new CustomEvent('executeboost', {
+        detail: boost,
+      }),
+    );
+  }
+
+  private getAvailableBoosts(boosts: any[]): any[] {
+    return boosts
+      .filter(
+        (boost: any) =>
+          boost &&
+          (boost.standalone || boost.selector) &&
+          (boost.standalone || document.querySelectorAll(boost.selector).length === 1),
+      )
+      .map(boost => ({
+        ...boost,
+        context: {
+          element: boost.standalone ? null : boost.selector,
+        },
+        checkUrl: new RegExp(boost.url),
+      }))
+      .filter(boost => boost.checkUrl.test(window.location.href));
+  }
+
   pushMessage(message: any): void {
     this.messages.push(message);
     this.requestUpdate();
@@ -436,6 +532,36 @@ export class ChatElement extends LitElement {
                             ),
                           ),
                         )}
+
+                        <section class="sources">
+                          ${message.sources?.map(
+                            (source: any) => html`
+                              <a
+                                class="source ${source.file_url ? 'has-link' : ''}"
+                                href=${source.file_url ?? 'javascript:'}
+                                target="_blank"
+                              >
+                                ${source.file_name}
+                                <div class="trust-bar">
+                                  <div
+                                    class="trust-bar-fill"
+                                    style="width: ${source.rank * 100}%;"
+                                  ></div>
+                                </div>
+                              </a>
+                            `,
+                          )}
+                        </section>
+
+                        <section class="actions ${this.loading ? 'loading' : ''}">
+                          ${this.getAvailableBoosts(message.boosts || []).map(
+                            boost => html`
+                              <span class="action" @click=${() => this.executeBoost(boost)}
+                                >${boost.summary}</span
+                              >
+                            `,
+                          )}
+                        </section>
                       `,
                     )}
                 </section>
