@@ -307,6 +307,8 @@ export class ChatbotElement extends LitElement {
         content: detail.assistant,
         uuid: detail.uuid,
         boost: detail.boost,
+        boosts: detail.boosts,
+        sources: detail.sources,
         parent_conversation: detail.parent_conversation,
         parent_history: detail.parent_history,
       });
@@ -328,6 +330,10 @@ export class ChatbotElement extends LitElement {
   private executeBoost(boost: any): void {
     this.execute(boost);
     this.openResult();
+
+    setTimeout(() => {
+      (this.chatbot?.shadowRoot?.querySelector('#messageInput') as any).focus();
+    }, 1);
   }
 
   private pushMessage(message: Message): void {
@@ -399,6 +405,7 @@ export class ChatbotElement extends LitElement {
             .context=${{ config: this.metadata.config, variables: this.metadata.variables }}
             loadingStep=${this.loadingStep}
             @prompt=${(event: any) => this.execute(this.currentBoost, event.detail.prompt)}
+            @executeboost=${(event: any) => this.executeBoost(event.detail)}
             @boost=${(event: any) => this.setBoost(event.detail)}
           ></digipair-chatbot-chat>
         </section>
