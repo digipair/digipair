@@ -204,7 +204,7 @@ class VespaService {
     }
 
     const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
-    const modelEmbeddings = await executePinsList(embeddings, context);
+    const modelEmbeddings = await executePinsList(embeddings, context, `${context.__PATH__}.embeddings`);
     const queryEmbedding = await modelEmbeddings.embedQuery(query);
     const results = await this.searchParentDocuments(
       baseUrl,
@@ -247,7 +247,7 @@ class VespaService {
       collection = 'knowledge',
       documents,
     } = params;
-    const modelEmbeddings = await executePinsList(embeddings, context);
+    const modelEmbeddings = await executePinsList(embeddings, context, `${context.__PATH__}.embeddings`);
     const results = await this.prepareDocuments(documents);
 
     await this.pushDocuments(modelEmbeddings, baseUrl, namespace, collection, results, context.protected?.signal);

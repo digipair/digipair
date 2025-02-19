@@ -91,7 +91,7 @@ class IMapService {
     let configuration = config;
 
     if (configExecute && configExecute.length > 0) {
-      configuration = await executePinsList(configExecute, { ...context });
+      configuration = await executePinsList(configExecute, { ...context }, `${context.__PATH__}.configExecute`);
     }
 
     const client = (this.imap = new ImapFlow({ logger: false, ...configuration }));
@@ -109,7 +109,7 @@ class IMapService {
 
       if (!reconnect) {
         try {
-          await executePinsList(close, { ...context, imap: this });
+          await executePinsList(close, { ...context, imap: this }, `${context.__PATH__}.close`);
         } catch (error: any) {
           const skillLogger = require('@digipair/skill-logger');
           skillLogger.addLog(context, 'ERROR', error.message);
@@ -119,7 +119,7 @@ class IMapService {
 
     client.on('error', async data => {
       try {
-        await executePinsList(error, { ...context, error: data, imap: this });
+        await executePinsList(error, { ...context, error: data, imap: this }, `${context.__PATH__}.error`);
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -128,7 +128,7 @@ class IMapService {
 
     client.on('exists', async data => {
       try {
-        await executePinsList(exists, { ...context, data, imap: this });
+        await executePinsList(exists, { ...context, data, imap: this }, `${context.__PATH__}.exists`);
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -137,7 +137,7 @@ class IMapService {
 
     client.on('expunge', async data => {
       try {
-        await executePinsList(expunge, { ...context, data, imap: this });
+        await executePinsList(expunge, { ...context, data, imap: this }, `${context.__PATH__}.expunge`);
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -146,7 +146,7 @@ class IMapService {
 
     client.on('flags', async data => {
       try {
-        await executePinsList(flags, { ...context, data, imap: this });
+        await executePinsList(flags, { ...context, data, imap: this }, `${context.__PATH__}.flags`);
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -155,7 +155,7 @@ class IMapService {
 
     client.on('log', async data => {
       try {
-        await executePinsList(log, { ...context, data, imap: this });
+        await executePinsList(log, { ...context, data, imap: this }, `${context.__PATH__}.log`);
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -164,7 +164,7 @@ class IMapService {
 
     client.on('mailboxClose', async data => {
       try {
-        await executePinsList(mailboxClose, { ...context, data, imap: this });
+        await executePinsList(mailboxClose, { ...context, data, imap: this }, `${context.__PATH__}.mailboxClose`);
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -173,7 +173,7 @@ class IMapService {
 
     client.on('mailboxOpen', async data => {
       try {
-        await executePinsList(mailboxOpen, { ...context, data, imap: this });
+        await executePinsList(mailboxOpen, { ...context, data, imap: this }, `${context.__PATH__}.mailboxOpen`);
       } catch (error: any) {
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
@@ -181,7 +181,7 @@ class IMapService {
     });
 
     try {
-      await executePinsList(load, { ...context, imap: this });
+      await executePinsList(load, { ...context, imap: this }, `${context.__PATH__}.load`);
     } catch (error: any) {
       const skillLogger = require('@digipair/skill-logger');
       skillLogger.addLog(context, 'ERROR', error.message);

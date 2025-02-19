@@ -147,7 +147,7 @@ export class AppService implements OnModuleInit {
       }
 
       const settings = JSON.parse(content);
-      const result = await executePinsList([settings], context);
+      const result = await executePinsList([settings], context, 'reasoning');
 
       return result;
     } catch (error) {

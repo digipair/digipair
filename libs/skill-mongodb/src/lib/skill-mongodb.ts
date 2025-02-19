@@ -19,7 +19,7 @@ class MongoDBService {
 
   async find(params: any, _pins: PinsSettings[], context: any) {
     const { client = context.privates.CLIENT_MONGODB, options = {}, collection, filter } = params;
-    const clientInstance = await executePinsList(client, context);
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
     const instance = clientInstance.database.collection(collection);
     const values = await instance.find(filter, options).toArray();
 
@@ -30,7 +30,7 @@ class MongoDBService {
 
   async findOne(params: any, _pins: PinsSettings[], context: any) {
     const { client = context.privates.CLIENT_MONGODB, options = {}, collection, filter } = params;
-    const clientInstance = await executePinsList(client, context);
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
     const instance = clientInstance.database.collection(collection);
     const value = await instance.findOne(filter, options);
 
@@ -41,7 +41,7 @@ class MongoDBService {
 
   async findById(params: any, _pins: PinsSettings[], context: any) {
     const { client = context.privates.CLIENT_MONGODB, options = {}, collection, id } = params;
-    const clientInstance = await executePinsList(client, context);
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
     const instance = clientInstance.database.collection(collection);
     const value = await instance.findOne({ _id: new ObjectId(id as string) }, options);
 
@@ -52,7 +52,7 @@ class MongoDBService {
 
   async insertOne(params: any, _pins: PinsSettings[], context: any) {
     const { client = context.privates.CLIENT_MONGODB, options = {}, collection, document } = params;
-    const clientInstance = await executePinsList(client, context);
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
     const instance = clientInstance.database.collection(collection);
     const value = await instance.insertOne(document, options);
 
@@ -69,7 +69,7 @@ class MongoDBService {
       filter,
       update,
     } = params;
-    const clientInstance = await executePinsList(client, context);
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
     const instance = clientInstance.database.collection(collection);
     const value = await instance.updateOne(filter, update, options);
 
@@ -86,7 +86,7 @@ class MongoDBService {
       collection,
       update,
     } = params;
-    const clientInstance = await executePinsList(client, context);
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
     const instance = clientInstance.database.collection(collection);
     const value = await instance.updateOne({ _id: new ObjectId(id as string) }, update, options);
 

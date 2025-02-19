@@ -4,6 +4,7 @@ import * as Handlebars from 'handlebars/dist/handlebars.min.js';
 import { evaluate } from 'feelin';
 import { PinsSettings } from './pins-settings.interface';
 import { Alias } from './alias.interface';
+import _ = require('lodash');
 
 Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);
@@ -15,6 +16,7 @@ const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_
   LIBRARIES: {} as { [key: string]: any },
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
   ALIAS: [] as Alias[],
+  LOGGER: (level: string, path: string, label: string, context: any, data: any) => {},
 });
 const isRemoteVersion = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
 
@@ -31,6 +33,8 @@ export const config = {
   set: (key: CONFIG_KEY, value: any) => {
     _config[key] = key === 'LIBRARIES' && _config[key] ? { ..._config[key], ...value } : value;
   },
+  log: (infos: { level: string; path: string; message: string; context: any; data: any }) =>
+    _config.LOGGER(infos),
 };
 
 export const applyTemplate = (value: any, context: any) => {
@@ -71,6 +75,8 @@ export const applyTemplate = (value: any, context: any) => {
 };
 
 const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Promise<any> => {
+  _config.LOGGER({ level: 'INFO', path: context.__PATH__, label: 'execute:start', context });
+
   let settings = preparePinsSettings(settingsOrigin, context);
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
   const config = context.config || {};
@@ -125,6 +131,14 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
       results.push(itemResult);
     }
 
+    _config.LOGGER({
+      level: 'INFO',
+      path: context.__PATH__,
+      label: 'execute:end',
+      context,
+      data: results,
+    });
+
     return results;
   }
 
@@ -153,6 +167,7 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
 export const executePinsList = async (
   pinsSettingsList: PinsSettings[],
   context: any,
+  path = 'root',
 ): Promise<any> => {
   let previous = {};
 
@@ -164,6 +179,7 @@ export const executePinsList = async (
         ...context,
         previous,
         parent: { previous: context.previous, parent: context.parent },
+        __PATH__: `${path}[${i}]`,
       });
     } catch (error) {
       if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
@@ -250,7 +266,11 @@ export const generateElementFromPins = async (
     ([key, pinsList]) => {
       element.addEventListener(key as keyof HTMLElementEventMap, (_event: Event) => {
         const event = _event as CustomEvent;
-        executePinsList(pinsList, { ...context, event: event.detail });
+        executePinsList(
+          pinsList,
+          { ...context, event: event.detail },
+          `${context.__PATH__}.events[${key}]`,
+        );
       });
     },
   );
@@ -270,10 +290,7 @@ export const generateElementFromPins = async (
   return element;
 };
 
-export const preparePinsSettings = (
-  settings: PinsSettings,
-  context: any,
-): PinsSettings => {
+export const preparePinsSettings = (settings: PinsSettings, context: any): PinsSettings => {
   const localContext = {
     ...context,
     variables: context.variables || {},

@@ -21,7 +21,7 @@ class SSEService {
       this.sessions.set(name, session);
       session.on('disconnected', () => {
         this.sessions.delete(name);
-        executePinsList(disconnected, { ...context });
+        executePinsList(disconnected, { ...context }, `${context.__PATH__}.disconnected`);
       });
     }
 

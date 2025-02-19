@@ -1,4 +1,4 @@
-import { PinsSettings } from '@digipair/engine';
+import { PinsSettings, config } from '@digipair/engine';
 import { promises } from 'fs';
 
 class LoggerService {
@@ -13,7 +13,7 @@ class LoggerService {
     await promises.mkdir(`${path}/consumption-monthly`, { recursive: true });
   }
 
-  async addLog(context: any, type: string, message: string) {
+  async addLog(context: any, type: string, message: string, data?: any) {
     const DIGIPAIR_LOGS_PATH =
       context.privates.DIGIPAIR_LOGS_PATH ?? process.env['DIGIPAIR_LOGS_PATH'] ?? './factory/logs';
     const current = new Date();
@@ -24,6 +24,8 @@ class LoggerService {
       type,
       message,
     };
+
+    config.log({ level: type, path: context.__PATH__, message, context, data });
 
     await promises.appendFile(
       `${DIGIPAIR_LOGS_PATH}/factory/${current.toISOString().split('T')[0]}.jsonl`,

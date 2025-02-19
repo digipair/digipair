@@ -192,6 +192,7 @@ class WebService {
         await executePinsList(
           pinsSettingsList,
           this.mergeConttext(context.request.body.context, context),
+          `${context.request.body.params.path}.execute`,
         ),
       );
     }
@@ -206,7 +207,7 @@ class WebService {
         : path.substring(0, path.length - context.request.params.join('/').length - 1)) +
       '/__digipair_www__';
 
-    await executePinsList(factoryInitialize, context);
+    await executePinsList(factoryInitialize, context, `${context.__PATH__}.factoryInitialize`);
 
     const html = `
 <!DOCTYPE html>
@@ -250,11 +251,12 @@ class WebService {
         },
         variables: ${JSON.stringify(context.variables || {})},
         request: ${JSON.stringify(context.request || {})},
+        __PATH__: '${context.__PATH__}',
       };
 
       await executePinsList(${JSON.stringify(
         this.prepareBrowserPinsSettings('browserInitialize', browserInitialize),
-      )}, context);
+      )}, context, context.__PATH__ + '.browserInitialize');
       
       const pinsList = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
       document.querySelectorAll('body > [data-digipair-pins]').forEach((element) => element.remove()); // Remove SSR elements
@@ -268,7 +270,7 @@ class WebService {
       setTimeout(async () => {
         await executePinsList(${JSON.stringify(
           this.prepareBrowserPinsSettings('browserLoad', browserLoad),
-        )}, context);
+        )}, context, context.__PATH__ + '.browserLoad');
       }, 1);
 
       window.addEventListener('beforeunload', (event) => {

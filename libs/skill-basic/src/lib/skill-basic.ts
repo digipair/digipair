@@ -8,7 +8,7 @@ class BasicService {
       return value;
     }
 
-    const result = await executePinsList(execute, context);
+    const result = await executePinsList(execute, context, `${context.__PATH__}.execute`);
     return result;
   }
 
@@ -20,7 +20,7 @@ class BasicService {
       return value;
     }
 
-    const result = await executePinsList(execute, context);
+    const result = await executePinsList(execute, context, `${context.__PATH__}.execute`);
     context.variables[name] = result;
     return result;
   }
@@ -30,7 +30,7 @@ class BasicService {
     const signal = context.protected?.signal;
 
     const result = setInterval(() => {
-      executePinsList(execute, context);
+      executePinsList(execute, context, `${context.__PATH__}.execute`);
     }, time);
 
     signal?.addEventListener('abort', () => clearInterval(result));
@@ -43,7 +43,7 @@ class BasicService {
     const signal = context.protected?.signal;
 
     const result = setTimeout(() => {
-      executePinsList(execute, context);
+      executePinsList(execute, context, `${context.__PATH__}.execute`);
     }, time);
 
     signal?.addEventListener('abort', () => clearTimeout(result));
@@ -76,9 +76,9 @@ class BasicService {
     const { executeTry, executeCatch = [] } = params;
 
     try {
-      return await executePinsList(executeTry, context);
+      return await executePinsList(executeTry, context, `${context.__PATH__}.executeTry`);
     } catch (error) {
-      return await executePinsList(executeCatch, { ...context, error });
+      return await executePinsList(executeCatch, { ...context, error }, `${context.__PATH__}.executeCatch`);
     }
   }
 }
