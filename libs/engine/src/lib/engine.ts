@@ -16,7 +16,7 @@ const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_
   LIBRARIES: {} as { [key: string]: any },
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
   ALIAS: [] as Alias[],
-  LOGGER: (level: string, path: string, label: string, context: any, data: any) => {},
+  LOGGER: (level: string, path: string, message: string, context: any, data?: any) => {},
 });
 const isRemoteVersion = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
 
@@ -33,8 +33,8 @@ export const config = {
   set: (key: CONFIG_KEY, value: any) => {
     _config[key] = key === 'LIBRARIES' && _config[key] ? { ..._config[key], ...value } : value;
   },
-  log: (infos: { level: string; path: string; message: string; context: any; data: any }) =>
-    _config.LOGGER(infos),
+  log: (level: string, path: string, message: string, context: any, data?: any) =>
+    _config.LOGGER(level, path, message, context, data),
 };
 
 export const applyTemplate = (value: any, context: any) => {
@@ -75,7 +75,7 @@ export const applyTemplate = (value: any, context: any) => {
 };
 
 const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Promise<any> => {
-  _config.LOGGER({ level: 'INFO', path: context.__PATH__, label: 'execute:start', context });
+  _config.LOGGER('INFO', context.__PATH__, 'execute:start', context);
 
   let settings = preparePinsSettings(settingsOrigin, context);
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
@@ -131,13 +131,7 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
       results.push(itemResult);
     }
 
-    _config.LOGGER({
-      level: 'INFO',
-      path: context.__PATH__,
-      label: 'execute:end',
-      context,
-      data: results,
-    });
+    _config.LOGGER('INFO', context.__PATH__, 'execute:end', context, results);
 
     return results;
   }

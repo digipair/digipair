@@ -537,11 +537,11 @@ export class ChatElement extends LitElement {
                           ${message.sources?.map(
                             (source: any) => html`
                               <a
-                                class="source ${source.file_url ? 'has-link' : ''}"
-                                href=${source.file_url ?? 'javascript:'}
+                                class="source ${source.document_url ? 'has-link' : ''}"
+                                href=${source.document_url ?? 'javascript:'}
                                 target="_blank"
                               >
-                                ${source.file_name}
+                                ${source.document_name}
                                 <div class="trust-bar">
                                   <div
                                     class="trust-bar-fill"

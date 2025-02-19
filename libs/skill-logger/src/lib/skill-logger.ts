@@ -25,7 +25,7 @@ class LoggerService {
       message,
     };
 
-    config.log({ level: type, path: context.__PATH__, message, context, data });
+    config.log(type, context.__PATH__, message, context, data);
 
     await promises.appendFile(
       `${DIGIPAIR_LOGS_PATH}/factory/${current.toISOString().split('T')[0]}.jsonl`,
