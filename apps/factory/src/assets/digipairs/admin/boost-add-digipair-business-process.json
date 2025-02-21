@@ -1,9 +1,9 @@
 {
-  "summary": "Add a digipair",
-  "description": "Adding a new digipair.",
+  "summary": "Add a digipair business process",
+  "description": "Adding a new digipair business process.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-"metadata": { "standalone": true, "selector": "any", "url": "^$" },
+  "metadata": { "standalone": true, "selector": "any", "url": "^$" },
   "properties": {
     "steps": [
       {
@@ -43,7 +43,7 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "template": "default",
+              "template": "business-process",
               "data": {
                 "digipair": "EVALUATE:request.body.prompt",
                 "name": "EVALUATE:variables.infos.name",

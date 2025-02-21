@@ -1,0 +1,18 @@
+{
+  "summary": "Chatbot",
+  "description": "Chatbot",
+  "library": "@digipair/skill-web",
+  "element": "page",
+  "metadata": {},
+  "properties": {
+    "body": [
+      {
+        "library": "@digipair/skill-web-chatbot",
+        "element": "digipair-chatbot-full",
+        "properties": { "code": "{{request.digipair}}" }
+      }
+    ],
+    "styleBody": "background-color:#212E3C;"
+  },
+  "pins": []
+}
