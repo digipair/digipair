@@ -32,7 +32,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment in english\", \n  description:string \"Short description of the agent from the comment\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added and recall to the user to update his API key from the agent configuration\"",
+                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment\", \n  description:string \"Short description of the agent from the comment\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added and recall to the user to update his API key from the agent configuration\"",
                     "input": { "comment": "{{request.body.prompt}}" }
                   }
                 }
