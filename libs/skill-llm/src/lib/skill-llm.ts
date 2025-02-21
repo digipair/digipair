@@ -62,7 +62,7 @@ class LLMService {
     const { execute, input = {} }: { execute: PinsSettings[]; input: any } = params;
     const chain = RunnableSequence.from([
       this.objectToInput(input),
-      ...(await Promise.all(execute.map(pinsSettings => executePinsList([pinsSettings], context)))),
+      ...(await Promise.all(execute.map((pinsSettings: PinsSettings, i: number) => executePinsList([pinsSettings], context, `${context.__PATH__}.execute[${i}]`))),),
     ] as any);
 
     let model: string;
@@ -111,6 +111,7 @@ class LLMService {
   async reasoningStep(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { attributes } = params;
     const data: { [key: string]: any } = {};
+    let i = 0;
 
     for (const attribute of attributes) {
       data[attribute.name] = async (previous: any) =>
@@ -118,7 +119,8 @@ class LLMService {
           ...context,
           previous,
           parent: { previous: context.previous, parent: context.parent },
-        });
+        }, `${context.__PATH__}.attributes[${i}]`);
+        i++;
     }
 
     return data;
@@ -129,7 +131,7 @@ class LLMService {
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
-      const modelInstance = await executePinsList(model ?? context.privates.MODEL_LLM, context);
+      const modelInstance = await executePinsList(model ?? context.privates.MODEL_LLM, context, `${context.__PATH__}.model`);
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
@@ -139,6 +141,7 @@ class LLMService {
       const modelInstance = await executePinsList(
         model ?? context.privates.MODEL_LLM_JSON ?? context.privates.MODEL_LLM,
         context,
+        `${context.__PATH__}.model`,
       );
       const parser = new StructuredOutputParser(this.jsonSchemaToZod(schema) as any);
 
@@ -169,7 +172,7 @@ class LLMService {
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
-      const modelInstance = await executePinsList(model ?? context.privates.MODEL_VISION, context);
+      const modelInstance = await executePinsList(model ?? context.privates.MODEL_VISION, context, `${context.__PATH__}.model`);
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
@@ -195,6 +198,7 @@ class LLMService {
       const modelInstance = await executePinsList(
         model ?? context.privates.MODEL_VISION_JSON ?? context.privates.MODEL_VISION,
         context,
+        `${context.__PATH__}.model`,
       );
       const parser = new StructuredOutputParser(this.jsonSchemaToZod(schema) as any);
 
@@ -254,7 +258,7 @@ class LLMService {
       questionPrompt,
     } = params;
 
-    const modelInstance = await executePinsList(model, context);
+    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
     const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize });
 
     const summarizationChain = loadSummarizationChain(modelInstance, {

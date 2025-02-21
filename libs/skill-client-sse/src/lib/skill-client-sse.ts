@@ -25,20 +25,20 @@ class ClientSSEService {
           return;
         }
 
-        executePinsList(message, { ...context, message: JSON.parse(notification.data) });
+        executePinsList(message, { ...context, message: JSON.parse(notification.data) }, `${context.__PATH__}.message`);
       },
       onopen: async () => {
-        await executePinsList(open, { ...context });
+        await executePinsList(open, { ...context }, `${context.__PATH__}.open`);
       },
       onclose: () => {
-        executePinsList(close, { ...context });
+        executePinsList(close, { ...context }, `${context.__PATH__}.close`);
       },
       onerror(err) {
         if (error.length === 0) {
           console.error(err);
         }
 
-        executePinsList(error, { ...context, error: err });
+        executePinsList(error, { ...context, error: err }, `${context.__PATH__}.error`);
       },
       ...options,
     });

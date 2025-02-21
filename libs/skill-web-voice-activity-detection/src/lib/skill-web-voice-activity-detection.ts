@@ -56,20 +56,20 @@ class VADService {
     const vad = await MicVAD.new({
       stream,
       onFrameProcessed: (probabilities: any, frame: Float32Array) => {
-        executePinsList(onFrameProcessed, { ...context, probabilities, frame, vad });
+        executePinsList(onFrameProcessed, { ...context, probabilities, frame, vad }, `${context.__PATH__}.onFrameProcessed`);
       },
       onVADMisfire: () => {
-        executePinsList(onVADMisfire, { ...context, vad });
+        executePinsList(onVADMisfire, { ...context, vad }, `${context.__PATH__}.onVADMisfire`);
       },
       onSpeechStart: () => {
-        executePinsList(onSpeechStart, { ...context, vad });
+        executePinsList(onSpeechStart, { ...context, vad }, `${context.__PATH__}.onSpeechStart`);
       },
       onSpeechEnd: (buffer: any) => {
         const wavBuffer = utils.encodeWAV(buffer);
         const base64 = utils.arrayBufferToBase64(wavBuffer);
         const audio = `data:audio/wav;base64,${base64}`;
 
-        executePinsList(onSpeechEnd, { ...context, audio, vad });
+        executePinsList(onSpeechEnd, { ...context, audio, vad }, `${context.__PATH__}.onSpeechEnd`);
       },
       additionalAudioConstraints,
       positiveSpeechThreshold,

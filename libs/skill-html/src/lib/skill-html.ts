@@ -100,7 +100,7 @@ class HtmlService {
         querySelectorAll: (selector: string) =>
           this.querySelectorAll(selector, dom.window.document),
       },
-    });
+    }, `${context.__PATH__}.execute`);
 
     return result;
   }

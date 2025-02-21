@@ -5,7 +5,7 @@ class ServiceService {
   async service(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
-    return await executePinsList(execute, context);
+    return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
   async send(params: any, _pinsSettingsList: PinsSettings[], context: any) {

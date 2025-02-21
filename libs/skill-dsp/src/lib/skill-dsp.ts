@@ -14,10 +14,14 @@ import {
 class DspService {
   private async prepareFunctions(functions: AxFunction[], context: any): Promise<AxFunction[]> {
     return await Promise.all(
-      functions.map(async f => ({
+      functions.map(async (f, i) => ({
         ...f,
         func: async params =>
-          await executePinsList(f.func as any as PinsSettings[], { ...context, params }),
+          await executePinsList(
+            f.func as any as PinsSettings[],
+            { ...context, params },
+            `${context.__PATH__}.functions[${i}]`,
+          ),
       })),
     );
   }
@@ -94,7 +98,7 @@ class DspService {
   async generate(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
 
-    const modelInstance = await executePinsList(model, context);
+    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
     const gen = new AxGen(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
@@ -119,7 +123,7 @@ class DspService {
   async chainOfThought(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
 
-    const modelInstance = await executePinsList(model, context);
+    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
     const gen = new AxChainOfThought(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
@@ -153,7 +157,7 @@ class DspService {
       input,
     } = params;
 
-    const modelInstance = await executePinsList(model, context);
+    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
     const agent = new AxAgent({
       name,
       description,
@@ -161,10 +165,11 @@ class DspService {
       functions: await this.prepareFunctions(functions, context),
       agents: await Promise.all(
         agents.map(
-          async (execute: PinsSettings) =>
+          async (execute: PinsSettings, i: number) =>
             await executePinsList(
               [{ ...execute, properties: { ...execute.properties, forward: false } }],
               context,
+              `${context.__PATH__}.agents[${i}]`,
             ),
         ),
       ),

@@ -129,6 +129,7 @@ class SmoobuService {
           | 'updateReservation'
       ],
       context,
+      `${context.__PATH__}.${context.request.body.action}`,
     );
   }
 }
