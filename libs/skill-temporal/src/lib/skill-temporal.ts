@@ -65,7 +65,7 @@ class TemporalService {
     };
 
     this.client.start(workflowJob, {
-      args: [{ steps, context, data, options: workflowOptions }],
+      args: [{ steps, context: { ...context, protected: undefined, requester: { ...context.requester, protected: undefined } }, data, options: workflowOptions }],
       taskQueue,
       workflowId: `${prefix}${id}`,
     });
