@@ -4,7 +4,6 @@ import * as Handlebars from 'handlebars/dist/handlebars.min.js';
 import { evaluate } from 'feelin';
 import { PinsSettings } from './pins-settings.interface';
 import { Alias } from './alias.interface';
-import _ = require('lodash');
 
 Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);

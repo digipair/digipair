@@ -59,6 +59,7 @@ export class AppService implements OnModuleInit {
           skillProcess.remove(id);
         } catch (error) {
           if (error !== 'DIGIPAIR_KEEPALIVE') {
+            console.error(error);
             skillProcess.remove(id);
           }
         }
