@@ -52,11 +52,11 @@ class NotificationService {
     const { message, ok = [], ko = [] } = params;
 
     if (!window.confirm(message)) {
-      await executePinsList(ko, context);
+      await executePinsList(ko, context, `${context.__PATH__}.ko`);
       return false;
     }
 
-    await executePinsList(ok, context);
+    await executePinsList(ok, context, `${context.__PATH__}.ok`);
     return true;
   }
 

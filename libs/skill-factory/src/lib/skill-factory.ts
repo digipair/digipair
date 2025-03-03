@@ -25,7 +25,7 @@ class FactoryService {
   async execute(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { execute, context = _context } = params;
 
-    const result = await executePinsList(execute, context);
+    const result = await executePinsList(execute, context, `${context.__PATH__}.execute`);
     return result;
   }
 
@@ -36,19 +36,19 @@ class FactoryService {
   async task(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
-    return await executePinsList(execute, context);
+    return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
   async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
-    return await executePinsList(execute, context);
+    return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
   async trigger(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
-    return await executePinsList(execute, context);
+    return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 }
 

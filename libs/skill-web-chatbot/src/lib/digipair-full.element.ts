@@ -208,9 +208,13 @@ export class DigipairFullElement extends LitElement {
             }),
       };
 
-      const detail = await executePinsList([pins], {
-        config: { VERSIONS: this.metadata.config.VERSIONS },
-      });
+      const detail = await executePinsList(
+        [pins],
+        {
+          config: { VERSIONS: this.metadata.config.VERSIONS },
+        },
+        'boost',
+      );
 
       this.currentBoost = detail.boost
         ? {
@@ -231,7 +235,11 @@ export class DigipairFullElement extends LitElement {
       });
 
       if (detail.command && detail.command.length > 0) {
-        executePinsList(detail.command, { config: { VERSIONS: this.metadata.config.VERSIONS } });
+        executePinsList(
+          detail.command,
+          { config: { VERSIONS: this.metadata.config.VERSIONS } },
+          'boost.command',
+        );
       }
     } catch (error) {
       this.pushMessage({

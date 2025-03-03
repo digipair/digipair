@@ -290,11 +290,15 @@ export class ChatbotElement extends LitElement {
         context: boost?.context || {},
       };
 
-      const detail = await executePinsList([pins], {
-        config: {
-          VERSIONS: this.metadata.config.VERSIONS,
+      const detail = await executePinsList(
+        [pins],
+        {
+          config: {
+            VERSIONS: this.metadata.config.VERSIONS,
+          },
         },
-      });
+        'boost',
+      );
       this.currentBoost = detail.boost
         ? {
             parent_history: detail.uuid,
@@ -314,7 +318,11 @@ export class ChatbotElement extends LitElement {
       });
 
       if (detail.command && detail.command.length > 0) {
-        await executePinsList(detail.command, { config: { VERSIONS: this.metadata.config.VERSIONS } });
+        await executePinsList(
+          detail.command,
+          { config: { VERSIONS: this.metadata.config.VERSIONS } },
+          'boost.command',
+        );
       }
     } catch (error) {
       this.pushMessage({

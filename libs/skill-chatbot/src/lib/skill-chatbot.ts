@@ -41,7 +41,7 @@ class ChatbotService {
     const { steps } = context.boost;
     const execute = steps.findIndex(({ name }: any) => name === step);
 
-    const result = await executePinsList(execute, context);
+    const result = await executePinsList(execute, context, `${context.__PATH__}.execute`);
     return result;
   }
 
@@ -57,7 +57,7 @@ class ChatbotService {
       : 0;
     const execute = steps[step]?.execute || [];
 
-    const result = await executePinsList(execute, { ...context, boost: { steps } });
+    const result = await executePinsList(execute, { ...context, boost: { steps } }, `${context.__PATH__}.execute`);
     return result;
   }
 }

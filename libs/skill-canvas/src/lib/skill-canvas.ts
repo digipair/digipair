@@ -24,7 +24,7 @@ class CanvasService {
     const instance = createCanvas(width, height);
     const ctx = instance.getContext('2d');
 
-    await executePinsList(execute, { ...context, canvas: { ctx } });
+    await executePinsList(execute, { ...context, canvas: { ctx } }, `${context.__PATH__}.execute`);
 
     return instance.toDataURL();
   }

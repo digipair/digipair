@@ -298,6 +298,7 @@ class KeycloakService {
         await executePinsList(
           pinsSettingsList,
           this.mergeConttext(context.request.body.context, context),
+          `${context.request.body.params.path}.execute`
         ),
       );
     }
@@ -312,7 +313,7 @@ class KeycloakService {
         : path.substring(0, path.length - context.request.params.join('/').length - 1)) +
       '/__digipair_www__';
 
-    await executePinsList(factoryInitialize, context);
+    await executePinsList(factoryInitialize, context, `${context.__PATH__}.factoryInitialize`);
 
     const html = `
 <!DOCTYPE html>
@@ -390,22 +391,23 @@ class KeycloakService {
         variables: ${JSON.stringify(context.variables || {})},
         request: ${JSON.stringify(context.request || {})},
         keycloak: { isLogged: keycloakService.isLogged },
+        __PATH__: '${context.__PATH__}',
       };
 
       if (keycloakService.isLogged) {
         await executePinsList(${JSON.stringify(
           this.prepareBrowserPinsSettings('logged', logged),
-        )}, context);
+        )}, context, context.__PATH__ + '.logged');
       } else {
         await executePinsList(${JSON.stringify(
           this.prepareBrowserPinsSettings('unlogged', unlogged),
-        )}, context);
+        )}, context, context.__PATH__ + '.unlogged');
       }
 
       // Pins initialization
       await executePinsList(${JSON.stringify(
         this.prepareBrowserPinsSettings('browserInitialize', browserInitialize),
-      )}, context);
+      )}, context, context.__PATH__ + '.browserInitialize');
       
       const pinsList = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
       document.querySelectorAll('body > [data-digipair-pins]').forEach((element) => element.remove()); // Remove SSR elements
@@ -419,7 +421,7 @@ class KeycloakService {
       setTimeout(async () => {
         await executePinsList(${JSON.stringify(
           this.prepareBrowserPinsSettings('browserLoad', browserLoad),
-        )}, context);
+        )}, context, context.__PATH__ + '.browserLoad');
       }, 1);
 
       window.addEventListener('beforeunload', (event) => {
@@ -471,7 +473,7 @@ class KeycloakService {
       throw new Error('Unauthorized');
     }
 
-    return await executePinsList(execute, context);
+    return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
   async boost(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -514,7 +516,7 @@ class KeycloakService {
       : 0;
     const execute = steps[step]?.execute || [];
 
-    const result = await executePinsList(execute, { ...context, boost: { steps } });
+    const result = await executePinsList(execute, { ...context, boost: { steps } }, `${context.__PATH__}.execute`);
     return result;
   }
 }
