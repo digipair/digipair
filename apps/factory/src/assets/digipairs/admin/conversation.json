@@ -27,7 +27,7 @@
             "properties": {
               "name": "Assistant",
               "description": "You are a helpful assistant, capable of explaining concepts in a simple manner. If you're unsure of an answer, you can say \"I don't know\" or \"I'm not sure.\"",
-              "signature": "\"Provide a very short, precise, and concise answer  to the user's question using only your knowledge base.\" \nuserQuestion:string,\nhistory?:string[] ->\n  answer: string \"Assistant answer in french\"",
+              "signature": "\"Provide a very short, precise, and concise answer  to the user's question using only your knowledge base.\" \nuserQuestion:string,\nhistory?:string[] ->\n  answer: string \"Assistant answer\"",
               "input": {
                 "userQuestion": "{{request.body.prompt}}",
                 "history": "EVALUATE:variables.history"
@@ -35,7 +35,7 @@
             }
           },
           {
-            "library": "digipair:<%= digipair %>",
+            "library": "digipair:admin",
             "element": "answer",
             "properties": {
               "assistant": "{{previous.answer}}",
