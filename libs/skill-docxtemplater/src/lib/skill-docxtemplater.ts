@@ -16,8 +16,7 @@ class DocxTemplaterService {
     const content = this.base64ToBuffer(template);
     const zip = new PizZip(content);
     const doc = new Docxtemplater(zip);
-    doc.setData(data);
-    doc.render();
+    doc.render(data);
     const buffer = doc.getZip().generate({ type: 'base64' });
 
     return `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${buffer}`;
