@@ -46,6 +46,8 @@ class ClientWebSocketService {
       try {
         await executePinsList(open, { ...context, websocket: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -60,6 +62,8 @@ class ClientWebSocketService {
           websocket: this,
         });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -76,6 +80,8 @@ class ClientWebSocketService {
         try {
           await executePinsList(close, { ...context, websocket: this });
         } catch (error: any) {
+          console.error(error);
+
           const skillLogger = require('@digipair/skill-logger');
           skillLogger.addLog(context, 'ERROR', error.message);
         }
@@ -87,6 +93,8 @@ class ClientWebSocketService {
       try {
         await executePinsList(error, { ...context, error: err, websocket: this });
       } catch (error: any) {
+        console.error(error);
+        
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }

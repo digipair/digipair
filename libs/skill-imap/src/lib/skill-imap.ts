@@ -111,6 +111,8 @@ class IMapService {
         try {
           await executePinsList(close, { ...context, imap: this });
         } catch (error: any) {
+          console.error(error);
+
           const skillLogger = require('@digipair/skill-logger');
           skillLogger.addLog(context, 'ERROR', error.message);
         }
@@ -121,6 +123,8 @@ class IMapService {
       try {
         await executePinsList(error, { ...context, error: data, imap: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -130,6 +134,8 @@ class IMapService {
       try {
         await executePinsList(exists, { ...context, data, imap: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -139,6 +145,8 @@ class IMapService {
       try {
         await executePinsList(expunge, { ...context, data, imap: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -148,6 +156,8 @@ class IMapService {
       try {
         await executePinsList(flags, { ...context, data, imap: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -157,6 +167,8 @@ class IMapService {
       try {
         await executePinsList(log, { ...context, data, imap: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -166,6 +178,8 @@ class IMapService {
       try {
         await executePinsList(mailboxClose, { ...context, data, imap: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -175,6 +189,8 @@ class IMapService {
       try {
         await executePinsList(mailboxOpen, { ...context, data, imap: this });
       } catch (error: any) {
+        console.error(error);
+
         const skillLogger = require('@digipair/skill-logger');
         skillLogger.addLog(context, 'ERROR', error.message);
       }
@@ -183,6 +199,8 @@ class IMapService {
     try {
       await executePinsList(load, { ...context, imap: this });
     } catch (error: any) {
+      console.error(error);
+      
       const skillLogger = require('@digipair/skill-logger');
       skillLogger.addLog(context, 'ERROR', error.message);
     }
