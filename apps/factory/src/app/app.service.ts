@@ -16,6 +16,25 @@ config.set('ALIAS', [
   },
 ]);
 
+config.set('LOGGER', (level: string, path: string, message: string, context: any, data?: any) => {
+  const time = new Date().toISOString();
+
+  switch (level) {
+    case 'INFO':
+      console.log(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`);
+      break;
+    case 'ERROR':
+      console.error(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`, data);
+      break;
+    case 'DEBUG':
+      console.debug(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`, data);
+      break;
+    default:
+      console.log(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`);
+      break;
+  }
+});
+
 @Injectable()
 export class AppService implements OnModuleInit {
   async onModuleInit() {
@@ -113,7 +132,11 @@ export class AppService implements OnModuleInit {
       context = {
         config: {
           VERSIONS: { ...defaultConfig.libraries, ...commonConfig.libraries, ...config.libraries },
-          WEB_VERSIONS: { ...defaultConfig.webLibraries, ...commonConfig.webLibraries, ...config.webLibraries },
+          WEB_VERSIONS: {
+            ...defaultConfig.webLibraries,
+            ...commonConfig.webLibraries,
+            ...config.webLibraries,
+          },
         },
         privates: { ...defaultConfig.privates, ...commonConfig.privates, ...config.privates },
         variables: { ...defaultConfig.variables, ...commonConfig.variables, ...config.variables },

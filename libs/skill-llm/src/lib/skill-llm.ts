@@ -62,7 +62,7 @@ class LLMService {
     const { execute, input = {} }: { execute: PinsSettings[]; input: any } = params;
     const chain = RunnableSequence.from([
       this.objectToInput(input),
-      ...(await Promise.all(execute.map((pinsSettings: PinsSettings, i: number) => executePinsList([pinsSettings], context, `${context.__PATH__}.execute[${i}]`))),),
+      ...(await Promise.all(execute.map((pinsSettings: PinsSettings, i: number) => executePinsList([pinsSettings], context, `${context.__PATH__}.execute[${i}]`)))),
     ] as any);
 
     let model: string;

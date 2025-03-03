@@ -9,7 +9,7 @@ Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);
 });
 
-type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES' | 'ALIAS';
+type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES' | 'ALIAS' | 'LOGGER';
 const globalInstance: any = typeof window === 'undefined' ? global : window;
 const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_CONFIG__ ?? {
   LIBRARIES: {} as { [key: string]: any },
@@ -130,8 +130,6 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
       results.push(itemResult);
     }
 
-    _config.LOGGER('INFO', context.__PATH__, 'execute:end', context, results);
-
     return results;
   }
 
@@ -154,7 +152,10 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
     throw new Error(`Element ${settings.element} not found in library ${settings.library}`);
   }
 
-  return await pins(settings.properties, settings.pins, context);
+  const result = await pins(settings.properties, settings.pins, context);
+  _config.LOGGER('INFO', context.__PATH__, 'execute:end', context, result);
+
+  return result;
 };
 
 export const executePinsList = async (
