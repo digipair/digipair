@@ -57,7 +57,7 @@ class ChatbotService {
       : 0;
     const execute = steps[step]?.execute || [];
 
-    const result = await executePinsList(execute, { ...context, boost: { steps } }, `${context.__PATH__}.execute`);
+    const result = await executePinsList(execute, { ...context, boost: { steps } }, `${context.__PATH__}.steps[${step}].execute`);
     return result;
   }
 }

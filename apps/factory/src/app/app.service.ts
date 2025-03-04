@@ -21,16 +21,16 @@ config.set('LOGGER', (level: string, path: string, message: string, context: any
 
   switch (level) {
     case 'INFO':
-      console.log(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`);
+      console.log(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`);
       break;
     case 'ERROR':
-      console.error(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`, data);
+      console.error(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`, data);
       break;
     case 'DEBUG':
-      console.debug(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`, data);
+      console.debug(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`, data);
       break;
     default:
-      console.log(`[${time}] [${context.request?.reasoning}] [${path}] ${message}`);
+      console.log(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`);
       break;
   }
 });
