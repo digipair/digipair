@@ -74,7 +74,7 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-menu-item",
-                        "properties": { "textContent": "Add a digipair" },
+                        "properties": { "textContent": "Add a digipair expert" },
                         "events": {
                           "click": [
                             {
@@ -83,7 +83,25 @@
                               "properties": {
                                 "name": "executeBoost",
                                 "selector": "digipair-chatbot",
-                                "args": [{ "reasoning": "boost-add-digipair" }]
+                                "args": [{ "reasoning": "boost-add-digipair-expert" }]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": { "textContent": "Add a digipair business process" },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "execute",
+                              "properties": {
+                                "name": "executeBoost",
+                                "selector": "digipair-chatbot",
+                                "args": [{ "reasoning": "boost-add-digipair-business-process" }]
                               }
                             }
                           ]
