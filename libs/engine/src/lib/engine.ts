@@ -74,9 +74,16 @@ export const applyTemplate = (value: any, context: any) => {
 };
 
 const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Promise<any> => {
-  _config.LOGGER('INFO', context.__PATH__, 'execute:start', context);
-
   let settings = preparePinsSettings(settingsOrigin, context);
+
+  _config.LOGGER(
+    'INFO',
+    context.__PATH__,
+    `execute:${settings.library}:${settings.element}:start`,
+    context,
+    settings,
+  );
+
   const alias = _config.ALIAS.find((alias: Alias) => settings.library.split(':')[0] === alias.name);
   const config = context.config || {};
   let version = (config.VERSIONS || {})[settings.library] || 'latest';
@@ -153,7 +160,13 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
   }
 
   const result = await pins(settings.properties, settings.pins, context);
-  _config.LOGGER('INFO', context.__PATH__, 'execute:end', context, result);
+  _config.LOGGER(
+    'INFO',
+    context.__PATH__,
+    `execute:${settings.library}:${settings.element}:end`,
+    context,
+    result,
+  );
 
   return result;
 };
