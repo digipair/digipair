@@ -15,7 +15,12 @@ class OpenAIService {
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       openAIApiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
     } = params;
-    const model = new ChatOpenAI({ modelName, temperature, openAIApiKey, configuration: { baseURL } });
+    const model = new ChatOpenAI({
+      modelName,
+      temperature,
+      openAIApiKey,
+      configuration: { baseURL },
+    });
 
     return model;
   }
@@ -44,16 +49,17 @@ class OpenAIService {
   async embeddings(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       modelName = 'text-embedding-3-small',
-      dimensions = 1024,
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       openAIApiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
-    } = params;
-    const modelInstance = new OpenAIEmbeddings({
-      modelName,
       dimensions,
+    } = params;
+    const config = {
+      modelName,
       openAIApiKey,
       configuration: { baseURL },
-    });
+    };
+
+    const modelInstance = new OpenAIEmbeddings(!!dimensions ? { ...config, dimensions } : config);
 
     return modelInstance;
   }
@@ -68,13 +74,14 @@ class OpenAIService {
       openAIApiVersion = context.privates.AZURE_OPENAI_API_VERSION ??
         process.env['AZURE_OPENAI_API_VERSION'],
     } = params;
-    const modelInstance = new AzureOpenAIEmbeddings({
+    const config = {
       deploymentName,
       dimensions,
       apiKey: openAIApiKey,
       azureOpenAIApiInstanceName: openAIApiInstanceName,
       openAIApiVersion,
-    });
+    };
+    const modelInstance = new AzureOpenAIEmbeddings(!!dimensions ? { ...config, dimensions } : config);
 
     return modelInstance;
   }
