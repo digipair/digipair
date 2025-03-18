@@ -57,6 +57,20 @@ function generateSceneBlock(pinsSettings: any, workspace: any) {
             if (parameter.schema.type === 'array' && parameter.schema.items.$ref) {
               const parameterType = getParameterType(parameter.schema.items);
 
+              if (typeof metadataValue === 'string') {
+                const metadataBlock = generateParameterBlock(
+                  { type: 'string' },
+                  metadataValue,
+                  workspace,
+                  foundLibrary,
+                );
+                const sceneInputConnection = sceneBlock.getInput(
+                  inputName + '__EVALUATE',
+                ).connection;
+                connectBlock(metadataBlock, sceneInputConnection);
+                continue;
+              }
+
               for (const componentSettings of (metadataValue as any[]).reverse()) {
                 const componentBlock =
                   parameterType === 'component'
@@ -103,6 +117,20 @@ function generateSceneBlock(pinsSettings: any, workspace: any) {
           if (parameter) {
             if (parameter.schema.type === 'array' && parameter.schema.items.$ref) {
               const parameterType = getParameterType(parameter.schema.items);
+
+              if (typeof value === 'string') {
+                const metadataBlock = generateParameterBlock(
+                  { type: 'string' },
+                  value,
+                  workspace,
+                  foundLibrary,
+                );
+                const sceneInputConnection = sceneBlock.getInput(
+                  inputName + '__EVALUATE',
+                ).connection;
+                connectBlock(metadataBlock, sceneInputConnection);
+                continue;
+              }
 
               for (const componentSettings of (value as any[]).reverse()) {
                 const componentBlock =
@@ -233,6 +261,18 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
     if (parameter.schema.type === 'array' && parameter.schema.items.$ref) {
       const parameterType = getParameterType(parameter.schema.items);
 
+      if (typeof valueToLoad === 'string') {
+        const parameterBlock = generateParameterBlock(
+          { type: 'string' },
+          valueToLoad,
+          workspace,
+          library,
+        );
+        const inputConnection = pinsBlock.getInput(parameter.name + '__EVALUATE').connection;
+        connectBlock(parameterBlock, inputConnection);
+        continue;
+      }
+
       for (const propertyValue of (valueToLoad as any[]).reverse()) {
         const parameterBlock =
           parameterType === 'component'
@@ -289,6 +329,20 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
     const valueToLoad = pinsSettings.conditions[parameter.name];
     if (parameter.schema.type === 'array' && parameter.schema.items?.$ref) {
       const parameterType = getParameterType(parameter.schema.items);
+
+      if (typeof valueToLoad === 'string') {
+        const parameterBlock = generateParameterBlock(
+          { type: 'string' },
+          valueToLoad,
+          workspace,
+          library,
+        );
+        const inputConnection = pinsBlock.getInput(
+          '__CONDITION__/' + parameter.name + '__EVALUATE',
+        ).connection;
+        connectBlock(parameterBlock, inputConnection);
+        continue;
+      }
 
       for (const propertyValue of (valueToLoad as any[]).reverse()) {
         const parameterBlock =
@@ -356,18 +410,32 @@ function generateBlockFromComponent(
     if (schema.type === 'array' && schema.items.$ref) {
       const parameterType = getParameterType(schema.items);
 
+      if (typeof valueToLoad === 'string') {
+        const parameterBlock = generateParameterBlock(
+          { type: 'string' },
+          valueToLoad,
+          workspace,
+          library,
+        );
+        const componentInputConnection = componentBlock.getInput(
+          propertyKey + '__EVALUATE',
+        ).connection;
+        connectBlock(parameterBlock, componentInputConnection);
+        continue;
+      }
+
       for (const propertyValue of (valueToLoad as any[]).reverse()) {
         const parameterBlock =
           parameterType === 'component'
             ? generateBlockFromComponent(propertyValue, workspace, library, schema.items.$ref)
             : generateBlockFromPins(propertyValue, workspace);
-        const sceneInputConnection = componentBlock.getInput(propertyKey).connection;
-        connectBlock(parameterBlock, sceneInputConnection);
+        const componentInputConnection = componentBlock.getInput(propertyKey).connection;
+        connectBlock(parameterBlock, componentInputConnection);
       }
     } else {
       const parameterBlock = generateParameterBlock(schema, valueToLoad, workspace, library);
-      const sceneInputConnection = componentBlock.getInput(propertyKey).connection;
-      connectBlock(parameterBlock, sceneInputConnection);
+      const componentInputConnection = componentBlock.getInput(propertyKey).connection;
+      connectBlock(parameterBlock, componentInputConnection);
     }
   }
 
@@ -377,7 +445,7 @@ function generateBlockFromComponent(
 }
 
 function generateParameterBlock(
-  schema: { $ref: any; items?: any },
+  schema: { type: string; $ref?: any; items?: any },
   valueToLoad: any,
   workspace: { newBlock: (arg0: string) => any },
   library: any,
@@ -579,7 +647,18 @@ function itemListFromPinsSettings(
       if (!Object.prototype.hasOwnProperty.call(pinsSettings.properties, parameter.name)) {
         continue;
       }
-      inputArray.push({ id: parameter.name, name: parameter.summary || parameter.name });
+
+      const isEvaluate =
+        parameter.schema?.type === 'array' &&
+        typeof pinsSettings.properties[parameter.name] === 'string' &&
+        (parameter.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+          parameter.schema.items?.$ref?.includes('#/components/schemas/'));
+      const name = isEvaluate ? parameter.name + '__EVALUATE' : parameter.name;
+      const summary = isEvaluate
+        ? (parameter.summary || parameter.name) + ' (evaluate)'
+        : parameter.summary || parameter.name;
+
+      inputArray.push({ id: name, name: summary });
     }
   }
 
@@ -631,7 +710,18 @@ function itemListFromComponentSettings(
     ) {
       continue;
     }
-    inputArray.push({ id: propertyKey, name: propertyValue.summary || propertyKey });
+
+    const isEvaluate =
+      propertyValue.type === 'array' &&
+      typeof componentSettings[propertyKey] === 'string' &&
+      (propertyValue.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+        propertyValue.items?.$ref?.includes('#/components/schemas/'));
+    const name = isEvaluate ? propertyKey + '__EVALUATE' : propertyKey;
+    const summary = isEvaluate
+      ? (propertyValue.summary || propertyKey) + ' (evaluate)'
+      : propertyValue.summary || propertyKey;
+
+    inputArray.push({ id: name, name: summary });
   }
 
   return inputArray;
@@ -648,7 +738,18 @@ function itemListFromSceneSettings(
       if (!Object.prototype.hasOwnProperty.call(sceneSettings.properties, parameter.name)) {
         continue;
       }
-      inputArray.push({ id: parameter.name, name: parameter.summary || parameter.name });
+
+      const isEvaluate =
+        parameter.schema?.type === 'array' &&
+        typeof sceneSettings.properties[parameter.name] === 'string' &&
+        (parameter.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+          parameter.schema.items?.$ref?.includes('#/components/schemas/'));
+      const name = isEvaluate ? parameter.name + '__EVALUATE' : parameter.name;
+      const summary = isEvaluate
+        ? (parameter.summary || parameter.name) + ' (evaluate)'
+        : parameter.summary || parameter.name;
+
+      inputArray.push({ id: name, name: summary });
     }
   }
 

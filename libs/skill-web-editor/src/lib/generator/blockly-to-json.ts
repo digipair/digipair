@@ -142,9 +142,9 @@ jsonGenerator.generatePin = function (block: { type: string; inputList: any[] })
         if (inputName === 'pins') {
           code += `  "${inputName}": [${inputCode}],`;
         } else if (inputName.includes('__CONDITION__/')) {
-          conditionCode += `    "${inputName.split('__CONDITION__/')[1]}": ${inputCode},`;
+          conditionCode += `    "${inputName.split('__CONDITION__/')[1].replace(/__EVALUATE$/g, '')}": ${inputCode},`;
         } else if (codeToAdd !== 'undefined') {
-          propertiesCode += `    "${inputName}": ${codeToAdd},`;
+          propertiesCode += `    "${inputName.replace(/__EVALUATE$/g, '')}": ${codeToAdd},`;
         }
       }
     }
@@ -196,7 +196,7 @@ jsonGenerator.generateComponent = function (block: { inputList: any[] }) {
       }
 
       if (codeToAdd !== 'undefined') {
-        code += `  "${inputName}": ${codeToAdd},`;
+        code += `  "${inputName.replace(/__EVALUATE$/g, '')}": ${codeToAdd},`;
       }
     }
   }
@@ -311,7 +311,7 @@ jsonGenerator.generateSceneBlock = function (block: { inputList: any[]; type: st
       const fieldValue = valueToCode(block, input);
 
       if (fieldValue) {
-        target[name] = safeParse(fieldValue, {});
+        target[name.replace(/__EVALUATE$/g, '')] = safeParse(fieldValue, {});
       }
     }
   });

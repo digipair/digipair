@@ -93,8 +93,8 @@ function getPinsBlockDefinition(
     });
     if (
       requiredParamInputs[i].schema?.type === 'array' &&
-      (requiredParamInputs[i].schema?.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
-        requiredParamInputs[i].schema?.items.$ref?.includes('#/components/schemas/'))
+      (requiredParamInputs[i].schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+        requiredParamInputs[i].schema.items?.$ref?.includes('#/components/schemas/'))
     ) {
       blockDefinition['message1'] +=
         ' %' + (position + 1) + ' %' + (position + 2) + ' %' + (position + 3);
@@ -187,8 +187,8 @@ function getComponentBlockDefinition(
 
       if (
         parameter.schema?.type === 'array' &&
-        (parameter.schema?.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
-          parameter.schema?.items.$ref.includes('#/components/schemas/'))
+        (parameter.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+          parameter.schema.items?.$ref.includes('#/components/schemas/'))
       ) {
         blockDefinition['message1'] +=
           ' %' +
@@ -325,6 +325,135 @@ export function generateToolboxFromLibraries(libraries: any[], tags: string[]) {
   return toolbox;
 }
 
+function convertPinsLibrariesToBlocklyLibraries(pinsLibraries: any[]) {
+  return pinsLibraries.map(schema => ({
+    ...schema,
+    paths: {
+      ...Object.entries(schema.paths ?? {}).reduce(
+        (acc: any, [key, path]: [string, any]) => ({
+          ...acc,
+          [key]: {
+            ...path,
+            post: {
+              ...path.post,
+              parameters: !path.post.parameters
+                ? []
+                : [
+                    ...path.post.parameters,
+                    ...path.post.parameters
+                      .filter(
+                        (item: any) =>
+                          item.schema?.type === 'array' &&
+                          (item.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+                            item.schema.items?.$ref?.includes('#/components/schemas/')),
+                      )
+                      .map((item: any) => ({
+                        ...item,
+                        name: item.name + '__EVALUATE',
+                        summary: (item.summary || item.name) + ' (evaluate)',
+                        required: false,
+                        schema: { type: 'string' },
+                      })),
+                  ],
+            },
+          },
+        }),
+        {},
+      ),
+    },
+    components: !schema.components
+      ? {}
+      : {
+          ...schema.components,
+          schemas: {
+            ...Object.entries(schema.components.schemas).reduce(
+              (acc: any, [key, component]: [string, any]) => ({
+                ...acc,
+                [key]: {
+                  ...component,
+                  properties: !component.properties
+                    ? {}
+                    : {
+                        ...component.properties,
+                        ...Object.entries(component.properties)
+                          .filter(
+                            ([_propertyKey, propertyValue]: any) =>
+                              propertyValue.type === 'array' &&
+                              (propertyValue.items?.$ref ===
+                                'https://schemas.digipair.ai/pinsSettings' ||
+                                propertyValue.items?.$ref?.includes('#/components/schemas/')),
+                          )
+                          .reduce(
+                            (acc: any, [propertyKey, property]: [string, any]) => ({
+                              ...acc,
+                              [propertyKey + '__EVALUATE']: {
+                                ...property,
+                                summary: (property.summary || propertyKey) + ' (evaluate)',
+                                required: false,
+                                schema: { type: 'string' },
+                              },
+                            }),
+                            {},
+                          ),
+                      },
+                },
+              }),
+              {},
+            ),
+          },
+        },
+    'x-scene-blocks': {
+      ...Object.entries(schema['x-scene-blocks'] || {}).reduce(
+        (acc: any, [key, path]: [string, any]) => ({
+          ...acc,
+          [key]: {
+            ...path,
+            metadata: !path.metadata
+              ? []
+              : [
+                  ...path.metadata,
+                  ...path.metadata
+                    .filter(
+                      (item: any) =>
+                        item.schema?.type === 'array' &&
+                        (item.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+                          item.schema.items?.$ref?.includes('#/components/schemas/')),
+                    )
+                    .map((item: any) => ({
+                      ...item,
+                      name: item.name + '__EVALUATE',
+                      summary: (item.summary || item.name) + ' (evaluate)',
+                      required: false,
+                      schema: { type: 'string' },
+                    })),
+                ],
+            parameters: !path.parameters
+              ? []
+              : [
+                  ...path.parameters,
+                  ...path.parameters
+                    .filter(
+                      (item: any) =>
+                        item.schema?.type === 'array' &&
+                        (item.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+                          item.schema.items?.$ref?.includes('#/components/schemas/')),
+                    )
+                    .map((item: any) => ({
+                      ...item,
+                      name: item.name + '__EVALUATE',
+                      summary: (item.summary || item.name) + ' (evaluate)',
+                      required: false,
+                      schema: { type: 'string' },
+                    })),
+                ],
+          },
+        }),
+        {},
+      ),
+    },
+  }));
+}
+
 export function generateBlocklyBlockFromLibraries(
   pinsLibraries: any,
   blocksLegacy: (
@@ -438,8 +567,9 @@ export function generateBlocklyBlockFromLibraries(
   )[],
 ): any[] {
   const blocksLibrary = [...blocksLegacy];
+  const blocklyLibraries = convertPinsLibrariesToBlocklyLibraries(pinsLibraries);
 
-  for (const pinsLibrary of pinsLibraries) {
+  for (const pinsLibrary of blocklyLibraries) {
     //search for pins blocks
     for (const endpoint in pinsLibrary.paths) {
       if (Object.hasOwnProperty.call(pinsLibrary.paths, endpoint)) {
@@ -452,7 +582,7 @@ export function generateBlocklyBlockFromLibraries(
     }
   }
 
-  for (const pinsLibrary of pinsLibraries) {
+  for (const pinsLibrary of blocklyLibraries) {
     //search for components blocks
     if (!pinsLibrary.components || !pinsLibrary.components.schemas) {
       continue;
@@ -476,7 +606,7 @@ export function generateBlocklyBlockFromLibraries(
     }
   }
 
-  for (const pinsLibrary of pinsLibraries) {
+  for (const pinsLibrary of blocklyLibraries) {
     //search for scene blocks
     for (const endpoint in pinsLibrary['x-scene-blocks']) {
       if (Object.hasOwnProperty.call(pinsLibrary['x-scene-blocks'], endpoint)) {
@@ -544,8 +674,8 @@ function generateMutator(
           item.includes('__EVENT__/')
             ? item.replace('__EVENT__/', '@')
             : item.includes('__CONDITION__/')
-            ? item.replace('__CONDITION__/', '#')
-            : item,
+              ? item.replace('__CONDITION__/', '#')
+              : item,
         );
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -640,8 +770,8 @@ function generateMutator(
 
             if (
               parameter.schema?.type === 'array' &&
-              (parameter.schema?.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
-                parameter.schema?.items.$ref?.includes('#/components/schemas/'))
+              (parameter.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+                parameter.schema.items?.$ref?.includes('#/components/schemas/'))
             ) {
               this.appendDummyInput(input.id + '__INPUT').appendField(input.name);
               this.appendStatementInput(input.id);
@@ -720,8 +850,8 @@ function getSceneBlockDefinition(
 
     if (
       parameter.schema?.type === 'array' &&
-      (parameter.schema.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
-        parameter.schema.items.$ref?.includes('#/components/schemas/'))
+      (parameter.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+        parameter.schema.items?.$ref?.includes('#/components/schemas/'))
     ) {
       blockDefinition['message1'] +=
         ' %' + (position + 1) + ' %' + (position + 2) + ' %' + (position + 3);
@@ -762,8 +892,8 @@ function getSceneBlockDefinition(
 
     if (
       parameter.schema?.type === 'array' &&
-      (parameter.schema.items.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
-        parameter.schema.items.$ref?.includes('#/components/schemas/'))
+      (parameter.schema.items?.$ref === 'https://schemas.digipair.ai/pinsSettings' ||
+        parameter.schema.items?.$ref?.includes('#/components/schemas/'))
     ) {
       blockDefinition['message3'] +=
         ' %' + (position + 1) + ' %' + (position + 2) + ' %' + (position + 3);
