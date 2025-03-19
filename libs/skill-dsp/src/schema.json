@@ -243,6 +243,15 @@
                 "$ref": "#/components/schemas/Function"
               }
             }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Generation options",
+            "schema": {
+              "type": "object"
+            }
           }
         ],
         "x-events": []
@@ -293,6 +302,15 @@
               "items": {
                 "$ref": "#/components/schemas/Function"
               }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Generation options",
+            "schema": {
+              "type": "object"
             }
           }
         ],
@@ -374,6 +392,15 @@
               "items": {
                 "$ref": "https://schemas.digipair.ai/pinsSettings"
               }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Generation options",
+            "schema": {
+              "type": "object"
             }
           }
         ],
