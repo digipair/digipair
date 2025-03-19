@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import { HumanMessage } from '@langchain/core/messages'; 
+import { HumanMessage } from '@langchain/core/messages';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { RunnableSequence } from '@langchain/core/runnables';
 import { loadSummarizationChain } from 'langchain/chains';
@@ -62,7 +62,11 @@ class LLMService {
     const { execute, input = {} }: { execute: PinsSettings[]; input: any } = params;
     const chain = RunnableSequence.from([
       this.objectToInput(input),
-      ...(await Promise.all(execute.map((pinsSettings: PinsSettings, i: number) => executePinsList([pinsSettings], context, `${context.__PATH__}.execute[${i}]`)))),
+      ...(await Promise.all(
+        execute.map((pinsSettings: PinsSettings, i: number) =>
+          executePinsList([pinsSettings], context, `${context.__PATH__}.execute[${i}]`),
+        ),
+      )),
     ] as any);
 
     let model: string;
@@ -115,12 +119,16 @@ class LLMService {
 
     for (const attribute of attributes) {
       data[attribute.name] = async (previous: any) =>
-        await executePinsList(attribute.value, {
-          ...context,
-          previous,
-          parent: { previous: context.previous, parent: context.parent },
-        }, `${context.__PATH__}.attributes[${i}]`);
-        i++;
+        await executePinsList(
+          attribute.value,
+          {
+            ...context,
+            previous,
+            parent: { previous: context.previous, parent: context.parent },
+          },
+          `${context.__PATH__}.attributes[${i}]`,
+        );
+      i++;
     }
 
     return data;
@@ -131,7 +139,11 @@ class LLMService {
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
-      const modelInstance = await executePinsList(model ?? context.privates.MODEL_LLM, context, `${context.__PATH__}.model`);
+      const modelInstance = await executePinsList(
+        model ?? context.privates.MODEL_LLM,
+        context,
+        `${context.__PATH__}.model`,
+      );
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
@@ -172,7 +184,11 @@ class LLMService {
     let chain: RunnableSequence<any, any>;
 
     if (!schema) {
-      const modelInstance = await executePinsList(model ?? context.privates.MODEL_VISION, context, `${context.__PATH__}.model`);
+      const modelInstance = await executePinsList(
+        model ?? context.privates.MODEL_VISION ?? context.privates.MODEL_LLM,
+        context,
+        `${context.__PATH__}.model`,
+      );
 
       chain = RunnableSequence.from([
         PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
@@ -196,7 +212,11 @@ class LLMService {
       ]);
     } else {
       const modelInstance = await executePinsList(
-        model ?? context.privates.MODEL_VISION_JSON ?? context.privates.MODEL_VISION,
+        model ??
+          context.privates.MODEL_VISION_JSON ??
+          context.privates.MODEL_VISION ??
+          context.privates.MODEL_LLM_JSON ??
+          context.privates.MODEL_LLM,
         context,
         `${context.__PATH__}.model`,
       );

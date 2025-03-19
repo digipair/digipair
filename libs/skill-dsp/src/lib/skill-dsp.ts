@@ -2,13 +2,14 @@
 import { PinsSettings, executePinsList } from '@digipair/engine';
 import {
   AxAI,
-  AxAIOpenAI,
   AxAIAzureOpenAI,
   AxAIOllama,
   AxGen,
   AxChainOfThought,
   AxAgent,
   AxFunction,
+  AxAIOpenAIBase,
+  axModelInfoOpenAI,
 } from '@ax-llm/ax';
 
 class DspService {
@@ -42,9 +43,10 @@ class DspService {
       options,
     } = params;
 
-    const modelInstance = new AxAIOpenAI({
+    const modelInstance = new AxAIOpenAIBase({
       apiKey,
       apiURL,
+      modelInfo: axModelInfoOpenAI,
       config,
       options,
     });
@@ -96,23 +98,28 @@ class DspService {
   }
 
   async generate(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
+    const {
+      model = context.privates.MODEL_DSP,
+      functions = [],
+      options = {},
+      signature,
+      input,
+    } = params;
 
     const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
     const gen = new AxGen(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
-    const result = await gen.forward(modelInstance, input);
+    const result = await gen.forward(modelInstance, input, options);
 
     // add comsumption
-    const ai = modelInstance.ai ?? modelInstance;
+    const ai: any = (modelInstance as any).ia ?? modelInstance;
     const consumption = ai.modelUsage;
-    const modelInfo = ai.getModelInfo();
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
-      modelInfo.provider,
-      modelInfo.name,
+      ai.name,
+      ai.defaults.model,
       consumption.promptTokens,
       consumption.completionTokens,
     );
@@ -121,23 +128,28 @@ class DspService {
   }
 
   async chainOfThought(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { model = context.privates.MODEL_DSP, functions = [], signature, input } = params;
+    const {
+      model = context.privates.MODEL_DSP,
+      functions = [],
+      options = {},
+      signature,
+      input,
+    } = params;
 
     const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
     const gen = new AxChainOfThought(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
-    const result = await gen.forward(modelInstance, input);
+    const result = await gen.forward(modelInstance, input, options);
 
     // add comsumption
-    const ai = modelInstance.ai ?? modelInstance;
+    const ai: any = (modelInstance as any).ia ?? modelInstance;
     const consumption = ai.modelUsage;
-    const modelInfo = ai.getModelInfo();
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
-      modelInfo.provider,
-      modelInfo.name,
+      ai.name,
+      ai.defaults.model,
       consumption.promptTokens,
       consumption.completionTokens,
     );
@@ -151,6 +163,7 @@ class DspService {
       functions = [],
       agents = [],
       forward = true,
+      options = {},
       name,
       description,
       signature,
@@ -179,17 +192,16 @@ class DspService {
       return agent;
     }
 
-    const result = await agent.forward(modelInstance, input);
+    const result = await agent.forward(modelInstance, input, options);
 
     // add comsumption
-    const ai = modelInstance.ai ?? modelInstance;
+    const ai: any = (modelInstance as any).ia ?? modelInstance;
     const consumption = ai.modelUsage;
-    const modelInfo = ai.getModelInfo();
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
-      modelInfo.provider,
-      modelInfo.name,
+      ai.name,
+      ai.defaults.model,
       consumption.promptTokens,
       consumption.completionTokens,
     );
