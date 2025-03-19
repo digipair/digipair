@@ -20,7 +20,7 @@ schema knowledge {
             indexing: summary | index
             index: enable-bm25
         }
-        field content_embedding type tensor<bfloat16>(x[1024]) {
+        field content_embedding type tensor<bfloat16>(x[1536]) {
             indexing: attribute
             attribute {
                 distance-metric: angular
@@ -32,7 +32,7 @@ schema knowledge {
     }
     rank-profile bm25 {
         inputs {
-            query(q) tensor<bfloat16>(x[1024])
+            query(q) tensor<bfloat16>(x[1536])
         }
         function bm25sum() {
             expression {
@@ -47,7 +47,7 @@ schema knowledge {
     }
     rank-profile semantic {
         inputs {
-            query(q) tensor<bfloat16>(x[1024])
+            query(q) tensor<bfloat16>(x[1536])
 
         }
         function semantic_score(){
@@ -63,7 +63,7 @@ schema knowledge {
     }
     rank-profile fusion inherits bm25, semantic {
         inputs {
-            query(q) tensor<bfloat16>(x[1024])
+            query(q) tensor<bfloat16>(x[1536])
 
         }
         first-phase {
