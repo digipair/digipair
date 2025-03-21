@@ -49,6 +49,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "configuration",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration OpenAI",
+            "schema": {
+              "type": "object"
+            }
           }
         ],
         "x-events": []
@@ -104,6 +113,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "configuration",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration Azure OpenAI",
+            "schema": {
+              "type": "object"
+            }
           }
         ],
         "x-events": []
@@ -149,6 +167,15 @@
             "description": "OpenAI API Key",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "configuration",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration OpenAI",
+            "schema": {
+              "type": "object"
             }
           }
         ],
@@ -204,6 +231,15 @@
             "description": "Version of the Azure OpenAI API",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "configuration",
+            "summary": "Configuration",
+            "required": false,
+            "description": "Configuration Azure OpenAI",
+            "schema": {
+              "type": "object"
             }
           }
         ],

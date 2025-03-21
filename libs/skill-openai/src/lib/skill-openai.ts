@@ -14,8 +14,10 @@ class OpenAIService {
       temperature = 0,
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       openAIApiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
+      configuration = {},
     } = params;
     const model = new ChatOpenAI({
+      ...configuration,
       modelName,
       temperature,
       openAIApiKey,
@@ -34,8 +36,10 @@ class OpenAIService {
       openAIApiKey = context.privates.AZURE_OPENAI_API_KEY ?? process.env['AZURE_OPENAI_API_KEY'],
       openAIApiVersion = context.privates.AZURE_OPENAI_API_VERSION ??
         process.env['AZURE_OPENAI_API_VERSION'],
+      configuration = {},
     } = params;
     const model = new AzureChatOpenAI({
+      ...configuration,
       deploymentName,
       temperature,
       openAIApiKey,
@@ -52,8 +56,10 @@ class OpenAIService {
       baseURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       openAIApiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
       dimensions,
+      configuration = {},
     } = params;
     const config = {
+      ...configuration,
       modelName,
       openAIApiKey,
       configuration: { baseURL },
@@ -73,15 +79,19 @@ class OpenAIService {
         process.env['AZURE_OPENAI_API_INSTANCE_NAME'],
       openAIApiVersion = context.privates.AZURE_OPENAI_API_VERSION ??
         process.env['AZURE_OPENAI_API_VERSION'],
+      configuration = {},
     } = params;
     const config = {
+      ...configuration,
       deploymentName,
       dimensions,
       apiKey: openAIApiKey,
       azureOpenAIApiInstanceName: openAIApiInstanceName,
       openAIApiVersion,
     };
-    const modelInstance = new AzureOpenAIEmbeddings(!!dimensions ? { ...config, dimensions } : config);
+    const modelInstance = new AzureOpenAIEmbeddings(
+      !!dimensions ? { ...config, dimensions } : config,
+    );
 
     return modelInstance;
   }
