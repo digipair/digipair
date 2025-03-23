@@ -17,11 +17,11 @@ class OpenAIService {
       configuration = {},
     } = params;
     const model = new ChatOpenAI({
-      ...configuration,
       modelName,
       temperature,
       openAIApiKey,
       configuration: { baseURL },
+      ...configuration,
     });
 
     return model;
@@ -39,12 +39,12 @@ class OpenAIService {
       configuration = {},
     } = params;
     const model = new AzureChatOpenAI({
-      ...configuration,
       deploymentName,
       temperature,
       openAIApiKey,
       openAIApiVersion,
       azureOpenAIApiInstanceName: openAIApiInstanceName,
+      ...configuration,
     });
 
     return model;
@@ -59,10 +59,10 @@ class OpenAIService {
       configuration = {},
     } = params;
     const config = {
-      ...configuration,
+      configuration: { baseURL },
       modelName,
       openAIApiKey,
-      configuration: { baseURL },
+      ...configuration,
     };
 
     const modelInstance = new OpenAIEmbeddings(!!dimensions ? { ...config, dimensions } : config);
@@ -82,12 +82,12 @@ class OpenAIService {
       configuration = {},
     } = params;
     const config = {
-      ...configuration,
       deploymentName,
       dimensions,
       apiKey: openAIApiKey,
       azureOpenAIApiInstanceName: openAIApiInstanceName,
       openAIApiVersion,
+      ...configuration,
     };
     const modelInstance = new AzureOpenAIEmbeddings(
       !!dimensions ? { ...config, dimensions } : config,

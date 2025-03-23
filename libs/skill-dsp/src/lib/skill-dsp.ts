@@ -10,7 +10,7 @@ import {
   AxFunction,
   AxAIOpenAIBase,
   axModelInfoOpenAI,
-} from '@ax-llm/ax';
+} from '@digipair/ax';
 
 class DspService {
   private async prepareFunctions(functions: AxFunction[], context: any): Promise<AxFunction[]> {
