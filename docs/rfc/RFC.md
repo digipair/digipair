@@ -1,5 +1,25 @@
 # RFC - Protocole Pin's : Transformation de données par Agentic Mesh
 
+## Sommaire
+
+1. Introduction
+2. Le langage Pin's
+3. Formes d'agents
+4. Organisation d'un répertoire d'agents
+5. Rôle de l'agent `common`
+6. Fichier `config.json`
+7. La factory d'agents
+8. Librairies et schémas OpenAPI
+9. Notions fondamentales
+10. Formats low-code supportés
+11. Conditions dans les Pin's
+12. Indépendance vis-à-vis des protocoles de transport
+13. Alias et redirection de librairies
+14. Alias `digipair` et connexion entre agent
+15. Journalisation et traçabilité des décisions
+16. Raisonnements spécifiques : `conversation`, `instant` et `builder`
+17. Conclusion
+
 ## 1. Introduction
 
 Le protocole **Pin's** (Digipair Agentic Mesh Information Protocol) a été conçu dès l'origine pour s'adapter à une grande diversité de cas d'usages, ainsi qu'aux évolutions rapides des besoins fonctionnels, des contraintes techniques et du matériel (hardware). Sa structure modulaire et typée, alliée à une faible dépendance vis-à-vis des technologies ou protocoles de transport, en fait un socle robuste et flexible pour la conception d’agents intelligents.
@@ -89,18 +109,15 @@ Une scène (`scene`) est un **type de Pin's** représentant le **point d’entr�
 ### Convention de nommage
 
 - Les fichiers de type `action-` ou `boost-` doivent respecter ce préfixe réservé
-- Tous les autres fichiers peuvent utiliser un nom libre (sauf `config.json` qui est réservé)
+- Tous les autres fichiers peuvent utiliser un nom libre (sauf `config.json`, `conversation.json`, `action-builder.json`, `action-instant.json`, `chat.json`, `history.json`, `metadata.json`, `notification.json` et `schema.json.json`  qui sont réservés)
 - Le nom doit être concis et refléter le rôle du raisonnement
 
 Cette organisation garantit lisibilité, maintenabilité et automatisation du déploiement des agents dans une factory ou un mesh d’agents intelligents.
 
-- Les fichiers doivent commencer par un préfixe clair (`action-`, `boost-`, `scene-`, etc.)
+- Les fichiers doivent commencer par un préfixe clair (`action-`, `boost-`, etc.)
 - Le nom du fichier doit décrire le rôle ou la finalité du raisonnement de manière concise
 
 Cette organisation garantit lisibilité, maintenabilité et automatisation du déploiement des agents dans une factory ou un mesh d’agents intelligents.
-
-- Structure des fichiers
-- Convention de nommage
 
 ## 5. Rôle de l'agent `common`
 
@@ -248,7 +265,7 @@ Pour permettre une plus grande expressivité dans les transformations de donnée
 
 ### Handlebars
 
-Handlebars est un moteur de template textuel permettant d’insérer dynamiquement des valeurs de variables dans des chaînes. Il est utilisé dans de nombreux éléments pour générer du texte à partir du contexte courant ou d’une entrée structurée.
+Handlebars est un moteur de template textuel permettant d’insérer dynamiquement des valeurs de variables dans des chaînes. Il est utilisé par défaut dans les blocs de type texte pour générer du texte à partir du contexte courant ou d’une entrée structurée.
 
 Exemple :
 
@@ -258,7 +275,7 @@ Bonjour {{user.firstname}}, votre commande {{order.id}} est prête.
 
 ### FEEL (Friendly Enough Expression Language)
 
-FEEL est un langage d'expression lisible par des non-développeurs. Il permet d’écrire des conditions ou des expressions logiques de manière intuitive et typée, sans avoir besoin d’un langage de programmation classique.
+FEEL est un langage d'expression lisible par des non-développeurs. Il permet d’écrire des conditions ou des expressions logiques de manière intuitive et typée, sans avoir besoin d’un langage de programmation classique. Il est activé dans les blocs de type texte lorsque le texte est pre-fixé par "EVALUATE:"
 
 Il est souvent utilisé dans :
 
@@ -268,14 +285,14 @@ Il est souvent utilisé dans :
 Exemple :
 
 ```feel
-user.age > 18 and country = "FR"
+EVALUATE:user.age > 18 and country = "FR"
 ```
 
 Ces deux formats peuvent être combinés dans un même raisonnement pour produire des logiques puissantes tout en restant accessibles aux utilisateurs métier. - Handlebars - FEEL
 
 ## 11. Conditions dans les Pin's
 
-Le protocole Pin’s permet l’usage de blocs de conditions pour rendre les raisonnements dynamiques, adaptables et pilotés par les données. Ces conditions s’expriment en FEEL (Friendly Enough Expression Language) et permettent de contrôler l’exécution des blocs d’action.
+Le protocole Pin’s permet l’usage de blocs de conditions pour rendre les raisonnements dynamiques, adaptables et pilotés par les données. Ces conditions s’expriment généralement en FEEL (Friendly Enough Expression Language) et permettent de contrôler l’exécution des blocs d’action.
 
 ### `if`
 
@@ -285,8 +302,9 @@ Exemple :
 
 ```json
 {
-  "if": "user.age > 18",
-  "pins": [ ... ]
+  "conditions": {
+    "if": "EVALUATE:user.age > 18"
+  }
 }
 ```
 
@@ -298,13 +316,17 @@ Exemple :
 
 ```json
 {
-  "each": "order.items",
-  "item": "product",
-  "pins": [ ... ]
+  "conditions": {
+    "each": "EVALUATE:order.items"
+  }
 }
 ```
 
 Ces blocs permettent de composer des raisonnements complexes avec des logiques conditionnelles et des boucles, tout en restant lisibles et accessibles à des utilisateurs non développeurs. - `if` - `each` 
+
+### Comportements particuliers
+
+Lorsque les conditions `if` - `each` sont toutes les deux présentent dans la section condition, la condition `if` est vérifiée pour chacun des éléments de la liste `each`.
 
 ## 12. Indépendance vis-à-vis des protocoles de transport
 
@@ -335,9 +357,187 @@ La **factory** agit comme couche d’orchestration entre les agents et les canau
 
 Ainsi, la factory permet à un raisonnement Pin’s d’être exposé via différents canaux sans modification de sa logique, assurant portabilité, réutilisabilité et cohérence au sein d’un agentic mesh.
 
+## 13. Alias et redirection de librairies
+
+Le protocole Pin's intègre une mécanique d’**alias** permettant de référencer dynamiquement des librairies ou des agents, et de rediriger certains usages vers d'autres implémentations ou extensions. Cette fonctionnalité offre une couche d’abstraction souple, particulièrement utile dans un environnement distribué ou hybride.
+
+### Syntaxe de l'alias
+
+Un alias suit la nomenclature suivante dans un Pin’s :
+
+```json
+[alias]:[nom]
+```
+
+### Exemple de déclaration d'alias
+
+```js
+config.set('ALIAS', [
+  {
+    name: 'digipair',
+    library: '@digipair/skill-factory',
+    element: 'start',
+    properties: {
+      digipair: '{{settings.library}}',
+      reasoning: 'action-{{settings.element}}',
+      version: '{{settings.version}}',
+      body: 'EVALUATE:settings.properties'
+    }
+  }
+]);
+```
+
+### Exemple d'utilisation d'alias
+
+```json
+{
+  "library": "digipair:extract-text",
+  "element": "fromPdf",
+  "properties": { ... }
+}
+```
+
+### Alias obligatoires
+
+Le protocole définit un alias obligatoire :
+
+- \`\` : point d’accès générique vers des agents locaux ou distants de l'agentic mesh. Il sert de canal standardisé pour invoquer un raisonnement à travers la factory.
+
+Des alias personnalisés peuvent être ajoutés par chaque factory pour introduire des surcouches métier, techniques ou spécifiques à un environnement donné.
+
+## 14. Alias digipair et connexion entre agent
+
+Le protocole Pin's permet d'utiliser un agent — qu'il soit **local ou distant** — comme une librairie, en s'appuyant sur la notion d'**alias**. L'alias `digipair` est **obligatoire** dans toute implémentation conforme. Il agit comme une **passerelle standardisée** vers des agents internes ou externes, permettant leur intégration fluide dans un raisonnement Pin's.
+
+### Utilisation d’un agent comme librairie
+
+Lorsqu’un agent est utilisé comme une librairie via un alias, il expose ses raisonnements de type `action-` comme des **éléments réutilisables**. Cela permet à d’autres agents de l’invoquer exactement comme une skill classique.
+
+L’exécution passe alors par un mécanisme de redirection géré par la **factory**, qui interprète l’alias et relaie l’appel vers l’agent cible (local ou distant).
+
+### Schéma OpenAPI requis
+
+Pour qu’un agent puisse être utilisé comme une librairie via un alias, il doit exposer la **liste de ses actions au format OpenAPI**. Ce schéma permet aux autres agents de :
+
+- découvrir dynamiquement les actions disponibles
+- valider les paramètres attendus
+- automatiser la documentation ou la génération d’interfaces
+
+### Exemple de configuration
+
+```
+"libraries": {
+  "digipair:extract-text": "latest",
+  "digipair:resume2me": "https://factory.digipair.ai/123456"
+}
+```
+
+Ce mécanisme rend le protocole Pin's extrêmement **flexible et extensible** pour bâtir un réseau distribué d'agents coopérants, tout en conservant une interface unifiée et typée pour l’intégration entre composants. Il peut être géré par un raisonnement `schema.json` dans l'agent `common`.
+
+La version de l'agent peut aussi être utilisée pour rediriger vers un agent distant en intégrant le protocole et le chemin distant au format URi.
+
+## 15. Journalisation et traçabilité des décisions
+
+Dans un environnement agentic mesh, la traçabilité des décisions prises par les agents est essentielle pour garantir l’auditabilité, la compréhension métier, le débogage et la **re-jouabilité** des raisonnements.
+
+Le protocole Pin's n'impose pas de moteur de logs spécifique, mais **recommande fortement** l’implémentation d’un système de journalisation centralisé au niveau de la **factory**. Celui-ci permet d’enregistrer les informations de contexte, les décisions prises, et les erreurs rencontrées lors de l’exécution de chaque raisonnement.
+
+### Données obligatoires à transmettre au logger
+
+Le moteur d’interprétation Pin’s doit fournir les données suivantes au système de log :
+
+- `level` *(string)* : le niveau de log (`INFO`, `DEBUG`, `ERROR`, etc.)
+- `path` *(string)* : l'identifiant de l'étape ou de l'élément Pin's concerné (ex. : `pins[2].element`)
+- `message` *(string)* : un message lisible décrivant l'action ou l'événement
+- `context` *(any)* : le contexte d'exécution (informations sur l'agent, la requête, les variables, etc.)
+- `data` *(any, optionnel)* : des données supplémentaires pertinentes (résultats, entrées, erreurs, etc.)
+
+Cette spécification assure l’uniformité de la journalisation et facilite son exploitation dans des outils externes (Dashboards, moteurs de corrélation, replayers, etc.).
+
+### Exemple de configuration de logger
+
+```
+config.set('LOGGER', (level: string, path: string, message: string, context: any, data?: any) => {
+  const time = new Date().toISOString();
+
+  switch (level) {
+    case 'INFO':
+      console.log(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`);
+      break;
+    case 'ERROR':
+      console.error(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`, data);
+      break;
+    case 'DEBUG':
+      console.debug(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`, data);
+      break;
+    default:
+      console.log(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`);
+      break;
+  }
+});
+```
+
+### Objectifs de la journalisation
+
+- **Traçabilité complète** : chaque exécution est identifiée par agent, raisonnement et étape
+- **Re-jouabilité** : possibilité de reproduire un raisonnement dans un autre contexte à partir des données enregistrées
+- **Compréhension métier** : chaque décision est explicite, explicable, et documentée
+- **Débogage assisté** : les développeurs peuvent retracer les erreurs et comportements inattendus
+
+Ce mécanisme de log devient ainsi un **composant clé** pour maintenir la transparence et la fiabilité du réseau agentic mesh.
+
+## 16. Raisonnements spécifiques : `conversation`, `instant` et `builder`
+
+Le protocole Pin's introduit des types spécifiques de raisonnements pour faciliter les interactions en langage naturel avec les agents et permettre une génération dynamique de code Pin's. Ces raisonnements spécialisés couvrent trois cas d’usage majeurs :
+
+### Raisonnement `conversation`
+
+Ce raisonnement constitue un **point d’entrée conversationnel** destiné aux utilisateurs finaux. Il permet à l'utilisateur d’échanger directement avec l’agent en langage naturel via une interface dédiée (chatbot).
+
+Il reçoit en entrée :
+
+- `request.body.prompt` *(optionnel)* : question ou demande formulée par l’utilisateur.
+- `request.body.inputs` *(optionnel)* : tableau structuré fournissant des données complémentaires au format :
+  ```
+  [
+    {
+      "value": "valeur",
+      "content": "nom affiché",
+      "required": true
+    }
+  ]
+  ```
+
+L'agent génère une réponse en utilisant son raisonnement interne, tenant compte éventuellement de l’historique conversationnel.
+
+### Raisonnement `instant`
+
+Ce type de raisonnement constitue un **point d’entrée immédiat** pour qu’un autre agent puisse exécuter une action ou interroger cet agent en langage naturel. Le fonctionnement est similaire au raisonnement `conversation`, mais destiné spécifiquement aux interactions inter-agents.
+
+Il reçoit les mêmes entrées que le raisonnement `conversation` :
+
+- `request.body.prompt` *(optionnel)* : demande en langage naturel.
+- `request.body.inputs` *(optionnel)* : tableau structuré de données contextuelles.
+
+Ce type de raisonnement est particulièrement adapté pour les échanges rapides, ponctuels et précis entre agents.
+
+### Raisonnement `builder`
+
+Le raisonnement `builder` permet à un agent tiers de **demander dynamiquement le code Pin's** correspondant à une action ou à une récupération d'information en langage naturel, afin de l’intégrer automatiquement dans ses propres raisonnements.
+
+Il reçoit notamment en entrée :
+
+- `prompt` *(requis)* : description de l'action demandée.
+- `actionAgentManager` *(requis)* : agent gestionnaire cible.
+- `actionDescription` *(requis)* : description détaillée de l’action.
+
+En retour, ce raisonnement génère un **code Pin's structuré** directement intégrable et exécutable par d'autres agents, assurant ainsi une composabilité maximale.
 
 
-## Conclusion
+
+Ces trois raisonnements spécifiques enrichissent considérablement la capacité d'interaction naturelle et dynamique des agents au sein d'un écosystème agentic mesh, tout en conservant une structure claire, maitrisée et standardisée.
+
+## 17. Conclusion
 
 Le protocole Pin’s constitue une base solide et extensible pour la conception de raisonnements d’agents intelligents dans un contexte distribué. Grâce à sa structure modulaire, sa typisation explicite et son indépendance vis-à-vis des couches de transport, il permet une grande réutilisabilité des composants, tout en garantissant clarté, traçabilité et interopérabilité.
 
