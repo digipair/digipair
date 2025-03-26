@@ -2,7 +2,7 @@
   "name": "@digipair/skill-dsp",
   "version": "0.0.1",
   "dependencies": {
-    "@ax-llm/ax": "^9.0.28"
+    "@digipair/ax": "^11.0.28"
   },  
   "main": "./index.cjs",
   "module": "./index.js"
