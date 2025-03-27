@@ -7,7 +7,7 @@
   },
   "private": true,
   "dependencies": {
-    "@digipair/ax": "^11.0.28",
+    "@ax-llm/ax": "^11.0.29",
     "@azure/msal-node": "^2.10.0",
     "@langchain/community": "^0.3.10",
     "@langchain/core": "^0.3.15",
