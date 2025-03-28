@@ -215,6 +215,18 @@
             }
           },
           {
+            "name": "streaming",
+            "summary": "Streaming",
+            "required": false,
+            "description": "Evènement déclenché lors du streaming",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
             "name": "signature",
             "summary": "Signature",
             "required": true,
@@ -275,6 +287,18 @@
             }
           },
           {
+            "name": "streaming",
+            "summary": "Streaming",
+            "required": false,
+            "description": "Evènement déclenché lors du streaming",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
             "name": "signature",
             "summary": "Signature",
             "required": true,
@@ -327,6 +351,18 @@
             "summary": "Modèle",
             "required": false,
             "description": "Modèle LLM à utiliser pour la génération",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "streaming",
+            "summary": "Streaming",
+            "required": false,
+            "description": "Evènement déclenché lors du streaming",
             "schema": {
               "type": "array",
               "items": {

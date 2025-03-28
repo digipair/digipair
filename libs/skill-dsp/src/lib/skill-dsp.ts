@@ -10,6 +10,7 @@ import {
   AxFunction,
   AxAIOpenAIBase,
   axModelInfoOpenAI,
+  AxGenOut,
 } from '@ax-llm/ax';
 
 class DspService {
@@ -25,6 +26,30 @@ class DspService {
           ),
       })),
     );
+  }
+
+  private mergeDeltas(base: Partial<AxGenOut>, delta: Partial<AxGenOut>) {
+    for (const key of Object.keys(delta)) {
+      const baseValue = base[key];
+      const deltaValue = delta[key];
+
+      if (baseValue === undefined && Array.isArray(deltaValue)) {
+        base[key] = [...deltaValue];
+      } else if (Array.isArray(baseValue) && Array.isArray(deltaValue)) {
+        // Concatenate arrays
+        base[key] = [...(baseValue ?? []), ...deltaValue];
+      } else if (
+        (baseValue === undefined || typeof baseValue === 'string') &&
+        typeof deltaValue === 'string'
+      ) {
+        // Concatenate strings
+        base[key] = (baseValue ?? '') + deltaValue;
+      } else {
+        // For all other types, overwrite with the new value
+        base[key] = deltaValue;
+      }
+    }
+    return base;
   }
 
   async model(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
@@ -102,6 +127,7 @@ class DspService {
       model = context.privates.MODEL_DSP,
       functions = [],
       options = {},
+      streaming,
       signature,
       input,
     } = params;
@@ -110,7 +136,22 @@ class DspService {
     const gen = new AxGen(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
-    const result = await gen.forward(modelInstance, input, options);
+    const generator = gen.streamingForward(modelInstance, input, options);
+    let buffer = {} as any;
+    let currentVersion = 0;
+
+    for await (const item of generator) {
+      if (streaming) {
+        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
+      }
+
+      if (item.version !== currentVersion) {
+        buffer = {};
+      }
+      currentVersion = item.version;
+      buffer = this.mergeDeltas(buffer, item.delta);
+    }
+    const result = buffer;
 
     // add comsumption
     const ai: any = (modelInstance as any).ia ?? modelInstance;
@@ -132,6 +173,7 @@ class DspService {
       model = context.privates.MODEL_DSP,
       functions = [],
       options = {},
+      streaming,
       signature,
       input,
     } = params;
@@ -140,7 +182,22 @@ class DspService {
     const gen = new AxChainOfThought(signature, {
       functions: await this.prepareFunctions(functions, context),
     });
-    const result = await gen.forward(modelInstance, input, options);
+    const generator = gen.streamingForward(modelInstance, input, options);
+    let buffer = {} as any;
+    let currentVersion = 0;
+
+    for await (const item of generator) {
+      if (streaming) {
+        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
+      }
+
+      if (item.version !== currentVersion) {
+        buffer = {};
+      }
+      currentVersion = item.version;
+      buffer = this.mergeDeltas(buffer, item.delta);
+    }
+    const result = buffer;
 
     // add comsumption
     const ai: any = (modelInstance as any).ia ?? modelInstance;
@@ -164,6 +221,7 @@ class DspService {
       agents = [],
       forward = true,
       options = {},
+      streaming,
       name,
       description,
       signature,
@@ -192,7 +250,22 @@ class DspService {
       return agent;
     }
 
-    const result = await agent.forward(modelInstance, input, options);
+    const generator = agent.streamingForward(modelInstance, input, options);
+    let buffer = {} as any;
+    let currentVersion = 0;
+
+    for await (const item of generator) {
+      if (streaming) {
+        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
+      }
+
+      if (item.version !== currentVersion) {
+        buffer = {};
+      }
+      currentVersion = item.version;
+      buffer = this.mergeDeltas(buffer, item.delta);
+    }
+    const result = buffer;
 
     // add comsumption
     const ai: any = (modelInstance as any).ia ?? modelInstance;

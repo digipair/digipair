@@ -6,6 +6,7 @@
     "@digipair/skill-basic": "latest",
     "@digipair/skill-factory": "latest",
     "@digipair/skill-service": "latest",
+    "@digipair/skill-chatbot": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-sse": "latest",
     "@digipair/skill-common": "latest",
