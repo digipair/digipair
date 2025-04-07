@@ -104,7 +104,7 @@
                               "value": {
                                 "post": {
                                   "tags": ["service"],
-                                  "summary": "EVALUATE:if variables.path.value.summary != null then variables.path.value.summary else variables.path.value.operationId",
+                                  "summary": "EVALUATE:if variables.path.value.summary != null and variables.path.value.summary != \"\" then variables.path.value.summary else variables.path.value.operationId",
                                   "description": "EVALUATE:if variables.path.value.description != null then variables.path.value.description else variables.path.value.operationId",
                                   "parameters": "EVALUATE:variables.parameters",
                                   "x-events": []
