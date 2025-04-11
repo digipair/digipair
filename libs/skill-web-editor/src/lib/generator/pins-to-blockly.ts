@@ -366,7 +366,7 @@ function convertPinsLibrariesToBlocklyLibraries(pinsLibraries: any[]) {
       : {
           ...schema.components,
           schemas: {
-            ...Object.entries(schema.components.schemas).reduce(
+            ...Object.entries(schema.components.schemas || {}).reduce(
               (acc: any, [key, component]: [string, any]) => ({
                 ...acc,
                 [key]: {
