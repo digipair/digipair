@@ -10682,6 +10682,435 @@
           }
         ]
       }
+    },
+    "/sp-grid": {
+      "post": {
+        "tags": [
+          "web",
+          "needPins"
+        ],
+        "summary": "sp-grid",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "focusableSelector",
+            "summary": "focusableSelector",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gap",
+            "summary": "gap",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "itemSize",
+            "summary": "itemSize",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "items",
+            "summary": "items",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "padding",
+            "summary": "padding",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "selected",
+            "summary": "selected",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "change",
+            "summary": "change",
+            "description": "Announces that the value of `selected` has changed",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/sp-theme": {
+      "post": {
+        "tags": [
+          "web",
+          "needPins"
+        ],
+        "summary": "sp-theme",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "system",
+            "summary": "System",
+            "required": false,
+            "description": "Name of the theme to apply",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color",
+            "summary": "Color",
+            "required": false,
+            "description": "Theme color",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scale",
+            "summary": "Size",
+            "required": false,
+            "description": "Theme scale",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-truncated": {
+      "post": {
+        "tags": [
+          "web",
+          "needPins"
+        ],
+        "summary": "sp-truncated",
+        "parameters": [
+          {
+            "name": "class",
+            "summary": "Class",
+            "description": "Class of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Style",
+            "description": "CSS style of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "textContent",
+            "summary": "Text Content",
+            "description": "Text content of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "innerHTML",
+            "summary": "Inner HTML",
+            "description": "Inner HTML of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "slot",
+            "summary": "Slot",
+            "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placement",
+            "summary": "Placement",
+            "description": "Tooltip placement.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table-head": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Header",
+        "description": "Table header",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-table-head-cell": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Header cell",
+        "description": "Header cell of a table",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Text",
+            "required": false,
+            "description": "Text of the header cell",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table-body": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Table content",
+        "description": "Content of a table",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/sp-table-row": {
+      "post": {
+        "tags": ["web", "needPins", "requirePins"],
+        "summary": "Row",
+        "description": "Row of a table",
+        "parameters": [
+          {
+            "name": "value",
+            "summary": "Identifier",
+            "required": false,
+            "description": "Identifier of the table row",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-table-cell": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Cell",
+        "description": "Cell of a table",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Text",
+            "required": false,
+            "description": "Text of the cell",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/sp-top-nav-item": {
+      "post": {
+        "tags": ["web", "needPins"],
+        "summary": "Navigation item",
+        "description": "Item of the horizontal navigation bar",
+        "parameters": [
+          {
+            "name": "textContent",
+            "summary": "Text",
+            "required": false,
+            "description": "Text of the navigation item",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "href",
+            "summary": "Address",
+            "required": false,
+            "description": "Redirection address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "summary": "Custom style",
+            "required": false,
+            "description": "Customization of navigation bar styles",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "On click",
+            "required": false,
+            "description": "Action triggered when clicking the button",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "sp-menu-divider": {
+      "post": {
+        "tags": ["web"],
+        "summary": "Menu divider",
+        "description": "Menu divider",
+        "parameters": [],
+        "x-events": []
+      }
     }
   },
   "components": {

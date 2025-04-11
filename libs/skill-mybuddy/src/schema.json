@@ -1277,6 +1277,8 @@
       }
     }
   },
-  "components": {},
+  "components": {
+    "schemas": {}
+  },
   "x-scene-blocks": {}
 }

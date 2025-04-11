@@ -14,23 +14,6 @@ class SchemaSprectrum {
 
     list = list.filter(item => item !== null);
 
-    // let nextLink = '/docs/api/action-sheet';
-    // let infos;
-
-    // while (nextLink !== '/docs/api') {
-    //   console.log('[start] ' + nextLink);
-    //   const result = await this.element(nextLink);
-
-    //   infos = result.infos;
-    //   nextLink = result.nextLink;
-
-    //   if (infos.element === 'ion-icon') {
-    //     nextLink = '/docs/api/img';
-    //   }
-
-    //   list.push(infos);
-    // }
-
     console.log('[end]');
 
     return list;
@@ -42,11 +25,15 @@ class SchemaSprectrum {
     const response = await fetch('https://opensource.adobe.com/spectrum-web-components/');
     const result = await response.text();
     const html = new JSDOM(result);
-    const elements = html.window.document.querySelectorAll('[label="Components"] a');
+    const components = html.window.document.querySelectorAll('[label="Components"] a');
+    const tools = html.window.document.querySelectorAll('[label="Tools"] a');
 
     console.log('[end list elements]');
 
-    return Array.from(elements).map((element: any) => element.getAttribute('href'));
+    return [
+      ...Array.from(components).map((element: any) => element.getAttribute('href')),
+      ...Array.from(tools).map((element: any) => element.getAttribute('href')),
+    ];
   }
 
   async element(link: string) {
@@ -58,10 +45,7 @@ class SchemaSprectrum {
     let infos = {} as any;
 
     try {
-      if (
-        html.window.document.querySelector('#deprecation') ||
-        !html.window.document.querySelector('#component-name')
-      ) {
+      if (!html.window.document.querySelector('#component-name')) {
         return null;
       }
 
@@ -223,12 +207,10 @@ class SchemaSprectrum {
 
 (async () => {
   const schemaSprectrum = new SchemaSprectrum();
-  // const list = await schemaSprectrum.start();
 
-  //console.log(JSON.stringify(list));
+  const list = await schemaSprectrum.start();
+  fs.writeFileSync('spectrum.json', JSON.stringify(list, null, 2));
 
-  // fs.writeFileSync('spectrum.json', JSON.stringify(list, null, 2));
-  const list = JSON.parse(fs.readFileSync('spectrum.json').toString());
-
+  // const list = JSON.parse(fs.readFileSync('spectrum.json').toString());
   schemaSprectrum.convert(list);
 })();
