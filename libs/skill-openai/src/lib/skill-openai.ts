@@ -73,7 +73,7 @@ class OpenAIService {
   async embeddingsAzure(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       deploymentName,
-      dimensions = 1024,
+      dimensions,
       openAIApiKey = context.privates.AZURE_OPENAI_API_KEY ?? process.env['AZURE_OPENAI_API_KEY'],
       openAIApiInstanceName = context.privates.AZURE_OPENAI_API_INSTANCE_NAME ??
         process.env['AZURE_OPENAI_API_INSTANCE_NAME'],
@@ -83,7 +83,6 @@ class OpenAIService {
     } = params;
     const config = {
       deploymentName,
-      dimensions,
       apiKey: openAIApiKey,
       azureOpenAIApiInstanceName: openAIApiInstanceName,
       openAIApiVersion,
