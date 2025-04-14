@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "keywords": [
     "digipair",
-    "web"
+    "web",
+    "service",
+    "util"
   ],
   "dependencies": {},
   "main": "./index.cjs.js",

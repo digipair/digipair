@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "keywords": [
     "digipair",
-    "web"
+    "web",
+    "service",
+    "tool"
   ],
   "dependencies": {
     "ws": "^8.18.0"

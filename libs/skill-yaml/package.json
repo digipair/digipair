@@ -1,6 +1,12 @@
 {
   "name": "@digipair/skill-yaml",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "web",
+    "service",
+    "tool"
+  ],
   "dependencies": {},
   "main": "./index.cjs.js",
   "module": "./index.esm.js"

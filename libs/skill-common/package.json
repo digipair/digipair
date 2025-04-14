@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-common",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "util"
+  ],
   "dependencies": {},
   "typings": "./index.d.ts",
   "main": "./index.cjs.js",

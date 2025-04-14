@@ -231,6 +231,50 @@ class EditorService {
 
     return list;
   }
+
+  async tools(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { language = 'en' } = params;
+    const packageFile = process.cwd() + '/package.json';
+    const infos = require(packageFile);
+    const dependencies = Object.keys(infos.dependencies);
+    const list = [] as any[];
+
+    for (const dependency of dependencies) {
+      try {
+        const toolPath = require.resolve(dependency + '/package.json');
+        const content = require(toolPath);
+
+        if (
+          content.keywords.includes('digipair') &&
+          content.keywords.includes('service') &&
+          content.keywords.includes('tool')
+        ) {
+          let schemasPath = require.resolve(`${dependency}/schema.json`);
+
+          if (language !== 'en') {
+            try {
+              schemasPath = require.resolve(`${dependency}/schema.${language}.json`);
+            } catch (e) {}
+          }
+
+          const schema = JSON.parse(await readFile(schemasPath, 'utf8'));
+
+          list.push({
+            name: dependency,
+            summary: schema.info.summary,
+            description: schema.info.description,
+            version: schema.info.version,
+            icon: schema.info['x-icon'],
+          });
+        }
+      } catch (error) {
+        // console.log(error);
+        continue;
+      }
+    }
+
+    return list;
+  }
 }
 
 export const setReasoning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -268,3 +312,6 @@ export const templates = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const schemas = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().schemas(params, pinsSettingsList, context);
+
+export const tools = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().tools(params, pinsSettingsList, context);

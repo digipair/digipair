@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-imap",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "imapflow": "^1.0.171",
     "jsdom": "^25.0.1"

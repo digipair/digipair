@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-yolo",
   "version": "0.0.1",
+  "keywords": [
+    "digipair", 
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "onnxruntime-node": "^1.18.0",
     "sharp": "^0.33.4"

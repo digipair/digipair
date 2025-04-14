@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-keycloak",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "util"
+  ],
   "dependencies": {
     "jsdom": "^25.0.1"
   },

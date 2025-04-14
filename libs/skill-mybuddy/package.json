@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-mybuddy",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "@marcbuils/mybuddy": "^0.0.9"
   },

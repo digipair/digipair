@@ -1,6 +1,12 @@
 {
   "name": "@digipair/skill-qrcode",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "web",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "canvas": "^2.11.2"
   },

@@ -390,6 +390,15 @@
         ],
         "x-events": []
       }
+    },
+    "/tools": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List tools",
+        "descriptions": "Lists the available tools",
+        "parameters": [],
+        "x-events": []
+      }
     }
   },
   "components": {

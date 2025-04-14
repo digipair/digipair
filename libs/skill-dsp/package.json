@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-dsp",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "util"
+  ],
   "dependencies": {
     "@ax-llm/ax": "^11.0.29"
   },  

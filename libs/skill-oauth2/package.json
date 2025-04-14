@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-oauth2",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "simple-oauth2": "^5.1.0"
   },

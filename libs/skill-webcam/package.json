@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-webcam",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "node-webcam": "^0.8.2"
   },

@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-temporal",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "@temporalio/client": "^1.10.1",
     "@temporalio/common": "^1.10.1",

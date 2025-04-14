@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "keywords": [
     "digipair",
-    "web"
+    "web",
+    "util"
   ],
   "dependencies": {},
   "typings": "./index.d.ts",

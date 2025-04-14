@@ -1,6 +1,12 @@
 {
   "name": "@digipair/skill-http",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "web",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "form-data": "4.0.1"
   },
