@@ -15,6 +15,15 @@
         "description": "JSON Editor",
         "parameters": [
           {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "json",
             "summary": "JSON Content",
             "required": false,

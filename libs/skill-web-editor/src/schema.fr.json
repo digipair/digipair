@@ -15,6 +15,15 @@
         "description": "Editeur no-code de raisonnements IA",
         "parameters": [
           {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "reasoning",
             "summary": "Raisonnement",
             "required": true,

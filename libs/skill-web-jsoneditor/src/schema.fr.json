@@ -15,6 +15,15 @@
         "description": "Editeur JSON",
         "parameters": [
           {
+            "name": "id",
+            "summary": "Id",
+            "description": "Id de l'élément.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "json",
             "summary": "Contenu JSON",
             "required": false,

@@ -15811,6 +15811,15 @@ export const schemas = {
               type: 'string',
             },
           },
+          {
+            name: 'type',
+            summary: 'Type',
+            description: 'Type of the element.',
+            required: false,
+            schema: {
+              type: 'string',
+            },
+          },
         ],
         'x-events': [
           {
