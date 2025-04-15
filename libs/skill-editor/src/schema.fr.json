@@ -344,6 +344,42 @@
         "x-events": []
       }
     },
+    "/setAvatar": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Enregistrer l'avatar",
+        "parameters": [
+          {
+            "name": "path",
+            "summary": "Chemin d'accès",
+            "required": false,
+            "description": "Chemin d'accès vers le répertoire du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": true,
+            "description": "Nom du digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "avatar",
+            "summary": "Avatar",
+            "description": "Avatar du digipair",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/templates": {
       "post": {
         "tags": ["service"],

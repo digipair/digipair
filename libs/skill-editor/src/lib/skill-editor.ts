@@ -198,6 +198,23 @@ class EditorService {
     };
   }
 
+  async setAvatar(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const {
+      path = context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+          ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+          : './factory/digipairs'),
+      digipair,
+      avatar,
+    } = params;
+
+    const data = avatar.replace(/^data:.*;base64,/, '');
+    const buffer = Buffer.from(data, 'base64');
+    await promises.writeFile(`${path}/${digipair}/avatar.png`, buffer);
+
+    return {};
+  }
+
   async templates(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       path = context.privates?.EDITOR_PATH ??

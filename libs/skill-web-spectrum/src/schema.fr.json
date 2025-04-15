@@ -10,10 +10,7 @@
   "paths": {
     "/sp-accordion": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-accordion",
         "parameters": [
           {
@@ -92,10 +89,7 @@
     },
     "/sp-accordion-item": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-accordion-item",
         "parameters": [
           {
@@ -203,10 +197,7 @@
     },
     "/sp-action-bar": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-action-bar",
         "parameters": [
           {
@@ -314,10 +305,7 @@
     },
     "/sp-action-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-action-button",
         "parameters": [
           {
@@ -369,6 +357,15 @@
             "name": "slot",
             "summary": "Slot",
             "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Size",
+            "description": "Size the element.",
             "required": false,
             "schema": {
               "type": "string"
@@ -543,16 +540,25 @@
                 "$ref": "https://schemas.digipair.ai/pinsSettings"
               }
             }
+          },
+          {
+            "name": "click",
+            "summary": "click",
+            "description": "Announces a click event on the action button",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
           }
         ]
       }
     },
     "/sp-action-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-action-group",
         "parameters": [
           {
@@ -604,6 +610,15 @@
             "name": "slot",
             "summary": "Slot",
             "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "summary": "Size",
+            "description": "Size the element.",
             "required": false,
             "schema": {
               "type": "string"
@@ -692,10 +707,7 @@
     },
     "/sp-action-menu": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-action-menu",
         "parameters": [
           {
@@ -915,10 +927,7 @@
     },
     "/sp-alert-banner": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-alert-banner",
         "parameters": [
           {
@@ -1018,10 +1027,7 @@
     },
     "/sp-alert-dialog": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-alert-dialog",
         "parameters": [
           {
@@ -1092,10 +1098,7 @@
     },
     "/sp-asset": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-asset",
         "parameters": [
           {
@@ -1174,10 +1177,7 @@
     },
     "/sp-avatar": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-avatar",
         "parameters": [
           {
@@ -1320,10 +1320,7 @@
     },
     "/sp-badge": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-badge",
         "parameters": [
           {
@@ -1402,10 +1399,7 @@
     },
     "/sp-breadcrumbs": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-breadcrumbs",
         "parameters": [
           {
@@ -1513,10 +1507,7 @@
     },
     "/sp-breadcrumb-item": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-breadcrumb-item",
         "parameters": [
           {
@@ -1651,10 +1642,7 @@
     },
     "/sp-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-button",
         "parameters": [
           {
@@ -1866,10 +1854,7 @@
     },
     "/sp-button-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-button-group",
         "parameters": [
           {
@@ -1940,10 +1925,7 @@
     },
     "/sp-card": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-card",
         "parameters": [
           {
@@ -2143,10 +2125,7 @@
     },
     "/sp-checkbox": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-checkbox",
         "parameters": [
           {
@@ -2286,10 +2265,7 @@
     },
     "/sp-coachmark": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-coachmark",
         "parameters": [
           {
@@ -2449,10 +2425,7 @@
     },
     "/sp-coach-indicator": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-coach-indicator",
         "parameters": [
           {
@@ -2531,10 +2504,7 @@
     },
     "/sp-color-area": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-color-area",
         "parameters": [
           {
@@ -2702,10 +2672,7 @@
     },
     "/sp-color-field": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-color-field",
         "parameters": [
           {
@@ -2945,10 +2912,7 @@
     },
     "/sp-color-handle": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-color-handle",
         "parameters": [
           {
@@ -3043,10 +3007,7 @@
     },
     "/sp-color-loupe": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-color-loupe",
         "parameters": [
           {
@@ -3125,10 +3086,7 @@
     },
     "/sp-color-slider": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-color-slider",
         "parameters": [
           {
@@ -3280,10 +3238,7 @@
     },
     "/sp-color-wheel": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-color-wheel",
         "parameters": [
           {
@@ -3427,10 +3382,7 @@
     },
     "/sp-combobox": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-combobox",
         "parameters": [
           {
@@ -3694,10 +3646,7 @@
     },
     "/sp-contextual-help": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-contextual-help",
         "parameters": [
           {
@@ -3792,10 +3741,7 @@
     },
     "/sp-dialog": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-dialog",
         "parameters": [
           {
@@ -3927,10 +3873,7 @@
     },
     "/sp-dialog-base": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-dialog-base",
         "parameters": [
           {
@@ -4058,10 +4001,7 @@
     },
     "/sp-dialog-wrapper": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-dialog-wrapper",
         "parameters": [
           {
@@ -4321,10 +4261,7 @@
     },
     "/sp-divider": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-divider",
         "parameters": [
           {
@@ -4395,10 +4332,7 @@
     },
     "/sp-dropzone": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-dropzone",
         "parameters": [
           {
@@ -4534,10 +4468,7 @@
     },
     "/sp-field-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-field-group",
         "parameters": [
           {
@@ -4632,10 +4563,7 @@
     },
     "/sp-field-label": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-field-label",
         "parameters": [
           {
@@ -4738,10 +4666,7 @@
     },
     "/sp-help-text": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-help-text",
         "parameters": [
           {
@@ -4820,10 +4745,7 @@
     },
     "/sp-icon": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-icon",
         "parameters": [
           {
@@ -4931,10 +4853,7 @@
     },
     "/sp-illustrated-message": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-illustrated-message",
         "parameters": [
           {
@@ -5013,10 +4932,7 @@
     },
     "/sp-infield-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-infield-button",
         "parameters": [
           {
@@ -5159,10 +5075,7 @@
     },
     "/sp-link": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-link",
         "parameters": [
           {
@@ -5313,10 +5226,7 @@
     },
     "/sp-menu": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-menu",
         "parameters": [
           {
@@ -5444,10 +5354,7 @@
     },
     "/sp-menu-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-menu-group",
         "parameters": [
           {
@@ -5575,10 +5482,7 @@
     },
     "/sp-menu-item": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-menu-item",
         "parameters": [
           {
@@ -5810,10 +5714,7 @@
     },
     "/sp-meter": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-meter",
         "parameters": [
           {
@@ -5916,10 +5817,7 @@
     },
     "/sp-number-field": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-number-field",
         "parameters": [
           {
@@ -6215,10 +6113,7 @@
     },
     "/sp-overlay": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-overlay",
         "parameters": [
           {
@@ -6318,10 +6213,7 @@
     },
     "/overlay-trigger": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "overlay-trigger",
         "parameters": [
           {
@@ -6465,10 +6357,7 @@
     },
     "/sp-picker": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-picker",
         "parameters": [
           {
@@ -6672,10 +6561,7 @@
     },
     "/sp-picker-button": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-picker-button",
         "parameters": [
           {
@@ -6818,10 +6704,7 @@
     },
     "/sp-popover": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-popover",
         "parameters": [
           {
@@ -6908,10 +6791,7 @@
     },
     "/sp-progress-bar": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-progress-bar",
         "parameters": [
           {
@@ -7022,10 +6902,7 @@
     },
     "/sp-progress-circle": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-progress-circle",
         "parameters": [
           {
@@ -7120,10 +6997,7 @@
     },
     "/sp-radio": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-radio",
         "parameters": [
           {
@@ -7247,10 +7121,7 @@
     },
     "/sp-radio-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-radio-group",
         "parameters": [
           {
@@ -7374,10 +7245,7 @@
     },
     "/sp-search": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-search",
         "parameters": [
           {
@@ -7645,10 +7513,7 @@
     },
     "/sp-sidenav": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-sidenav",
         "parameters": [
           {
@@ -7772,10 +7637,7 @@
     },
     "/sp-sidenav-item": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-sidenav-item",
         "parameters": [
           {
@@ -7926,10 +7788,7 @@
     },
     "/sp-slider": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-slider",
         "parameters": [
           {
@@ -8205,10 +8064,7 @@
     },
     "/sp-slider-handle": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-slider-handle",
         "parameters": [
           {
@@ -8404,10 +8260,7 @@
     },
     "/sp-split-view": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-split-view",
         "parameters": [
           {
@@ -8571,10 +8424,7 @@
     },
     "/sp-status-light": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-status-light",
         "parameters": [
           {
@@ -8653,10 +8503,7 @@
     },
     "/sp-swatch": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-swatch",
         "parameters": [
           {
@@ -8820,10 +8667,7 @@
     },
     "/sp-swatch-group": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-swatch-group",
         "parameters": [
           {
@@ -8947,10 +8791,7 @@
     },
     "/sp-switch": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-switch",
         "parameters": [
           {
@@ -9074,10 +8915,7 @@
     },
     "/sp-table": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-table",
         "parameters": [
           {
@@ -9249,10 +9087,7 @@
     },
     "/sp-tabs": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tabs",
         "parameters": [
           {
@@ -9400,10 +9235,7 @@
     },
     "/sp-tab-panel": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tab-panel",
         "parameters": [
           {
@@ -9482,10 +9314,7 @@
     },
     "/sp-tab": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tab",
         "parameters": [
           {
@@ -9588,10 +9417,7 @@
     },
     "/sp-tabs-overflow": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tabs-overflow",
         "parameters": [
           {
@@ -9678,10 +9504,7 @@
     },
     "/sp-tags": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tags",
         "parameters": [
           {
@@ -9744,10 +9567,7 @@
     },
     "/sp-tag": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tag",
         "parameters": [
           {
@@ -9847,10 +9667,7 @@
     },
     "/sp-textfield": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-textfield",
         "parameters": [
           {
@@ -10082,10 +9899,7 @@
     },
     "/sp-thumbnail": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-thumbnail",
         "parameters": [
           {
@@ -10180,10 +9994,7 @@
     },
     "/sp-toast": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-toast",
         "parameters": [
           {
@@ -10291,10 +10102,7 @@
     },
     "/sp-tooltip": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tooltip",
         "parameters": [
           {
@@ -10418,10 +10226,7 @@
     },
     "/sp-top-nav": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-top-nav",
         "parameters": [
           {
@@ -10524,10 +10329,7 @@
     },
     "/sp-tray": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-tray",
         "parameters": [
           {
@@ -10611,10 +10413,7 @@
     },
     "/sp-underlay": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-underlay",
         "parameters": [
           {
@@ -10698,10 +10497,7 @@
     },
     "/sp-grid": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-grid",
         "parameters": [
           {
@@ -10825,10 +10621,7 @@
     },
     "/sp-theme": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-theme",
         "parameters": [
           {
@@ -10918,10 +10711,7 @@
     },
     "/sp-truncated": {
       "post": {
-        "tags": [
-          "web",
-          "needPins"
-        ],
+        "tags": ["web", "needPins"],
         "summary": "sp-truncated",
         "parameters": [
           {
