@@ -396,7 +396,17 @@
         "tags": ["service"],
         "summary": "List tools",
         "descriptions": "Lists the available tools",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "language",
+            "summary": "Language",
+            "required": true,
+            "description": "Language of the tools",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "x-events": []
       }
     }

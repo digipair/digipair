@@ -1848,7 +1848,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [
+          {
+            "name": "click",
+            "summary": "click",
+            "description": "Announces that the button has been clicked",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ]
       }
     },
     "/sp-button-group": {
@@ -5769,8 +5782,8 @@
             }
           },
           {
-            "name": "undefined",
-            "summary": "undefined",
+            "name": "click",
+            "summary": "click",
             "description": "",
             "required": false,
             "schema": {
