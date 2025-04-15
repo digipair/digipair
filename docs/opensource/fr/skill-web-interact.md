@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Intéraction avec une page web  
-**Description:** Cette compétence permet aux utilisateurs de communiquer avec une page HTML côté navigateur.  
+**Description:** communiquer avec une page HTML côté navigateur.  
 **Icon:** 📲
 
 ## Table des matières
@@ -27,11 +27,11 @@
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| name     | string | Oui    | Nom de l'évènement à émettre. |
+| Nom      | Type   | Requis | Description                                             |
+| -------- | ------ | ------ | ------------------------------------------------------- |
+| name     | string | Oui    | Nom de l'évènement à émettre.                           |
 | selector | string | Oui    | Sélecteur CSS de l'élément qui va recevoir l'évènement. |
-| detail   | object | Non    | Données transmises dans l'évènement. |
+| detail   | object | Non    | Données transmises dans l'évènement.                    |
 
 #### Exemple
 
@@ -57,11 +57,11 @@ Permet de modifier la valeur d'un attribut d'un élément du DOM.
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description |
-|------------|--------|--------|-------------|
-| selector   | string | Oui    | Sélecteur CSS de l'élément. |
-| attribute  | string | Oui    | Attribut à modifier. |
-| value      | object | Oui    | Nouvelle valeur de l'attribut. |
+| Nom       | Type   | Requis | Description                    |
+| --------- | ------ | ------ | ------------------------------ |
+| selector  | string | Oui    | Sélecteur CSS de l'élément.    |
+| attribute | string | Oui    | Attribut à modifier.           |
+| value     | object | Oui    | Nouvelle valeur de l'attribut. |
 
 #### Exemple
 
@@ -85,10 +85,10 @@ Permet de lire la valeur d'un attribut d'un élément du DOM.
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description |
-|------------|--------|--------|-------------|
-| selector   | string | Oui    | Sélecteur CSS de l'élément. |
-| attribute  | string | Oui    | Attribut à lire. |
+| Nom       | Type   | Requis | Description                 |
+| --------- | ------ | ------ | --------------------------- |
+| selector  | string | Oui    | Sélecteur CSS de l'élément. |
+| attribute | string | Oui    | Attribut à lire.            |
 
 #### Exemple
 
@@ -111,11 +111,11 @@ Exécute une méthode sur un élément du DOM.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| name     | string | Oui    | Nom de la méthode à exécuter. |
+| Nom      | Type   | Requis | Description                                            |
+| -------- | ------ | ------ | ------------------------------------------------------ |
+| name     | string | Oui    | Nom de la méthode à exécuter.                          |
 | selector | string | Oui    | Sélecteur CSS de l'élément qui va exécuter la méthode. |
-| args     | array  | Non    | Liste des arguments de la méthode. |
+| args     | array  | Non    | Liste des arguments de la méthode.                     |
 
 #### Exemple
 
@@ -139,10 +139,10 @@ Permet d'ouvrir une page web dans le navigateur.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| url      | string | Oui    | Adresse de la page web à ouvrir. |
-| target   | string | Oui    | Fenêtre cible (ex: "_blank", "_self"). |
+| Nom    | Type   | Requis | Description                              |
+| ------ | ------ | ------ | ---------------------------------------- |
+| url    | string | Oui    | Adresse de la page web à ouvrir.         |
+| target | string | Oui    | Fenêtre cible (ex: "\_blank", "\_self"). |
 
 #### Exemple
 
@@ -181,9 +181,9 @@ Permet d'uploader un fichier binaire en base64.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| accept   | string | Non    | Type de fichier accepté. |
+| Nom    | Type   | Requis | Description              |
+| ------ | ------ | ------ | ------------------------ |
+| accept | string | Non    | Type de fichier accepté. |
 
 #### Exemple
 
@@ -205,9 +205,9 @@ Permet d'uploader un fichier en texte.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| accept   | string | Non    | Type de fichier accepté. |
+| Nom    | Type   | Requis | Description              |
+| ------ | ------ | ------ | ------------------------ |
+| accept | string | Non    | Type de fichier accepté. |
 
 #### Exemple
 
@@ -229,12 +229,12 @@ Permet de capturer une image de la webcam.
 
 #### Paramètres
 
-| Nom        | Type    | Requis | Description |
-|------------|---------|--------|-------------|
-| deviceId   | string  | Non    | Identifiant du périphérique de capture. |
-| width      | number  | Non    | Largeur de l'image capturée. |
-| height     | number  | Non    | Hauteur de l'image capturée. |
-| facingMode | string  | Non    | Mode de capture de l'image (ex: "user", "environment"). |
+| Nom        | Type   | Requis | Description                                             |
+| ---------- | ------ | ------ | ------------------------------------------------------- |
+| deviceId   | string | Non    | Identifiant du périphérique de capture.                 |
+| width      | number | Non    | Largeur de l'image capturée.                            |
+| height     | number | Non    | Hauteur de l'image capturée.                            |
+| facingMode | string | Non    | Mode de capture de l'image (ex: "user", "environment"). |
 
 #### Exemple
 

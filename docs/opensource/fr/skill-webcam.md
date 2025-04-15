@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion de la webcam  
-**Description:** Cette compétence permet d'accéder aux images des webcams.  
+**Description:** accéder aux images des webcams.  
 **Icon:** 📷
 
 ## Table des matières
@@ -19,14 +19,14 @@ Capture une image de la webcam.
 
 #### Paramètres
 
-| Nom      | Type     | Requis | Description                                                                 |
-|----------|----------|--------|-----------------------------------------------------------------------------|
-| width    | number   | Non    | Largeur de l'image.                                                        |
-| height   | number   | Non    | Hauteur de l'image.                                                         |
-| quality  | number   | Non    | Qualité de l'image (valeur entre 1 et 100).                                |
-| output   | string   | Non    | Type de sortie de l'image (jpeg, png).                                     |
-| device   | string   | Non    | Nom de la caméra à utiliser.                                               |
-| verbose  | boolean  | Non    | Affiche des informations supplémentaires lors de la capture.               |
+| Nom     | Type    | Requis | Description                                                  |
+| ------- | ------- | ------ | ------------------------------------------------------------ |
+| width   | number  | Non    | Largeur de l'image.                                          |
+| height  | number  | Non    | Hauteur de l'image.                                          |
+| quality | number  | Non    | Qualité de l'image (valeur entre 1 et 100).                  |
+| output  | string  | Non    | Type de sortie de l'image (jpeg, png).                       |
+| device  | string  | Non    | Nom de la caméra à utiliser.                                 |
+| verbose | boolean | Non    | Affiche des informations supplémentaires lors de la capture. |
 
 #### Exemple
 

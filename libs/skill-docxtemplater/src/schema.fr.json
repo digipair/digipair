@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-docxtemplater",
     "summary": "Génération de documents Word",
-    "description": "Cette compétence permet de générer des documents Word à partir de modèles.",
+    "description": "générer des documents Word à partir de modèles.",
     "version": "0.1.0",
     "x-icon": "🔗"
   },

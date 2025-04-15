@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-heygen",
     "summary": "Heygen API",
-    "description": "Cette compétence permet de gérer la communication avec les serveurs Heygen.",
+    "description": "gérer la communication avec les serveurs Heygen.",
     "version": "0.1.0",
     "x-icon": "🔗"
   },

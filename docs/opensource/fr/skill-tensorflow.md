@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Analyse par Deep Learning  
-**Description:** Cette compétence permet aux utilisateurs d'analyser des données par Deep Learning.  
+**Description:** analyser des données par Deep Learning.  
 **Icon:** 🤖
 
 ## Table des matières
@@ -19,9 +19,9 @@ Détecte les objets dans une image.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description                     |
-|--------|--------|--------|---------------------------------|
-| image  | string | Oui    | Image à analyser                |
+| Nom   | Type   | Requis | Description      |
+| ----- | ------ | ------ | ---------------- |
+| image | string | Oui    | Image à analyser |
 
 #### Exemple
 
@@ -41,9 +41,9 @@ Détecte les visages dans une image.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description                     |
-|--------|--------|--------|---------------------------------|
-| image  | string | Oui    | Image à analyser                |
+| Nom   | Type   | Requis | Description      |
+| ----- | ------ | ------ | ---------------- |
+| image | string | Oui    | Image à analyser |
 
 #### Exemple
 

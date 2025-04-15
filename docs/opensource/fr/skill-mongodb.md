@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Accès à une base MongoDB  
-**Description:** Cette compétence permet de gérer une base de données MongoDB.  
+**Description:** gérer une base de données MongoDB.  
 **Icon:** 💻
 
 ## Table des matières
@@ -24,10 +24,10 @@ Connecter à une base MongoDB
 
 #### Paramètres
 
-| Nom       | Type   | Requis | Description               |
-|-----------|--------|--------|---------------------------|
-| url       | string | Oui    | Adresse du serveur MongoDB|
-| database  | string | Oui    | Nom de la base de données |
+| Nom      | Type   | Requis | Description                |
+| -------- | ------ | ------ | -------------------------- |
+| url      | string | Oui    | Adresse du serveur MongoDB |
+| database | string | Oui    | Nom de la base de données  |
 
 #### Exemple
 
@@ -48,12 +48,12 @@ Rechercher dans une base MongoDB
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                          |
-|------------|--------|--------|--------------------------------------|
+| Nom        | Type   | Requis | Description                              |
+| ---------- | ------ | ------ | ---------------------------------------- |
 | client     | array  | Non    | Client de connexion à la base de données |
-| options    | object | Non    | Options de recherche                 |
-| collection | string | Oui    | Nom de la collection                 |
-| filter     | object | Oui    | Filtre de recherche                  |
+| options    | object | Non    | Options de recherche                     |
+| collection | string | Oui    | Nom de la collection                     |
+| filter     | object | Oui    | Filtre de recherche                      |
 
 #### Exemple
 
@@ -74,12 +74,12 @@ Rechercher un élément dans une base MongoDB
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                          |
-|------------|--------|--------|--------------------------------------|
+| Nom        | Type   | Requis | Description                              |
+| ---------- | ------ | ------ | ---------------------------------------- |
 | client     | array  | Non    | Client de connexion à la base de données |
-| options    | object | Non    | Options de recherche                 |
-| collection | string | Oui    | Nom de la collection                 |
-| filter     | object | Oui    | Filtre de recherche                  |
+| options    | object | Non    | Options de recherche                     |
+| collection | string | Oui    | Nom de la collection                     |
+| filter     | object | Oui    | Filtre de recherche                      |
 
 #### Exemple
 
@@ -100,12 +100,12 @@ Rechercher un élément par ID dans une base MongoDB
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                          |
-|------------|--------|--------|--------------------------------------|
+| Nom        | Type   | Requis | Description                              |
+| ---------- | ------ | ------ | ---------------------------------------- |
 | client     | array  | Non    | Client de connexion à la base de données |
-| options    | object | Non    | Options de recherche                 |
-| collection | string | Oui    | Nom de la collection                 |
-| id         | object | Oui    | Identifiant de l'élément             |
+| options    | object | Non    | Options de recherche                     |
+| collection | string | Oui    | Nom de la collection                     |
+| id         | object | Oui    | Identifiant de l'élément                 |
 
 #### Exemple
 
@@ -126,12 +126,12 @@ Insérer un élément dans une base MongoDB
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                          |
-|------------|--------|--------|--------------------------------------|
+| Nom        | Type   | Requis | Description                              |
+| ---------- | ------ | ------ | ---------------------------------------- |
 | client     | array  | Non    | Client de connexion à la base de données |
-| options    | object | Non    | Options de recherche                 |
-| collection | string | Oui    | Nom de la collection                 |
-| document   | object | Oui    | Document à insérer                   |
+| options    | object | Non    | Options de recherche                     |
+| collection | string | Oui    | Nom de la collection                     |
+| document   | object | Oui    | Document à insérer                       |
 
 #### Exemple
 
@@ -152,13 +152,13 @@ Mettre à jour un élément dans une base MongoDB
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                          |
-|------------|--------|--------|--------------------------------------|
+| Nom        | Type   | Requis | Description                              |
+| ---------- | ------ | ------ | ---------------------------------------- |
 | client     | array  | Non    | Client de connexion à la base de données |
-| options    | object | Non    | Options de recherche                 |
-| collection | string | Oui    | Nom de la collection                 |
-| filter     | object | Oui    | Filtre de recherche                  |
-| update     | object | Oui    | Filtre de mise à jour                |
+| options    | object | Non    | Options de recherche                     |
+| collection | string | Oui    | Nom de la collection                     |
+| filter     | object | Oui    | Filtre de recherche                      |
+| update     | object | Oui    | Filtre de mise à jour                    |
 
 #### Exemple
 
@@ -180,13 +180,13 @@ Mettre à jour un élément par ID dans une base MongoDB
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                          |
-|------------|--------|--------|--------------------------------------|
+| Nom        | Type   | Requis | Description                              |
+| ---------- | ------ | ------ | ---------------------------------------- |
 | client     | array  | Non    | Client de connexion à la base de données |
-| options    | object | Non    | Options de recherche                 |
-| id         | string | Oui    | Identifiant de l'élément             |
-| collection | string | Oui    | Nom de la collection                 |
-| update     | object | Oui    | Filtre de mise à jour                |
+| options    | object | Non    | Options de recherche                     |
+| id         | string | Oui    | Identifiant de l'élément                 |
+| collection | string | Oui    | Nom de la collection                     |
+| update     | object | Oui    | Filtre de mise à jour                    |
 
 #### Exemple
 

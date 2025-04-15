@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-web-inputs",
     "summary": "Saisie de données dans les boosts",
-    "description": "Cette compétence permet de saisir des données dans les boosts.",
+    "description": "saisir des données dans les boosts.",
     "version": "0.1.0",
     "x-icon": "📥"
   },

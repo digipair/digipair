@@ -363,6 +363,15 @@
             }
           },
           {
+            "name": "dir",
+            "summary": "Direction",
+            "description": "Direction of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "size",
             "summary": "Size",
             "description": "Size the element.",
@@ -6165,6 +6174,24 @@
             "name": "slot",
             "summary": "Slot",
             "description": "Slot of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trigger",
+            "summary": "Trigger",
+            "description": "Trigger of the element.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "placement",
+            "summary": "Placement",
+            "description": "Placement of the element.",
             "required": false,
             "schema": {
               "type": "string"

@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion d'un robot myBuddy  
-**Description:** Cette compétence permet de gérer un robot elephant robotics myBuddy.  
+**Description:** gérer un robot elephant robotics myBuddy.  
 **Icon:** 🤖
 
 ## Table des matières
@@ -61,11 +61,11 @@ Envoie la liste des angles.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| angles   | array  | Oui    | Liste des angles à envoyer |
-| speed    | number | Non    | Vitesse de déplacement |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| angles | array  | Oui    | Liste des angles à envoyer                                                            |
+| speed  | number | Non    | Vitesse de déplacement                                                                |
 
 #### Exemple
 
@@ -87,9 +87,9 @@ Récupère la liste des angles.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -109,9 +109,9 @@ Allume tous les servos.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -131,9 +131,9 @@ Allume tous les servos.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -153,9 +153,9 @@ Relâche tous les servos.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -175,12 +175,12 @@ Envoie un angle spécifique.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| id       | number | Oui    | Identifiant du servo concerné |
-| degree   | number | Oui    | Angle à envoyer |
-| speed    | number | Non    | Vitesse de déplacement |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| id     | number | Oui    | Identifiant du servo concerné                                                         |
+| degree | number | Oui    | Angle à envoyer                                                                       |
+| speed  | number | Non    | Vitesse de déplacement                                                                |
 
 #### Exemple
 
@@ -203,12 +203,12 @@ Envoie les coordonnées.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| coords   | array  | Oui    | Liste des coordonnées à envoyer |
-| speed    | number | Non    | Vitesse de déplacement |
-| mode     | string | Non    | Mode de déplacement |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| coords | array  | Oui    | Liste des coordonnées à envoyer                                                       |
+| speed  | number | Non    | Vitesse de déplacement                                                                |
+| mode   | string | Non    | Mode de déplacement                                                                   |
 
 #### Exemple
 
@@ -231,9 +231,9 @@ Pause le programme.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -253,9 +253,9 @@ Reprend le programme.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -275,9 +275,9 @@ Arrête le programme.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -297,12 +297,12 @@ Déplace un angle spécifique.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| joint_id | number | Oui    | Identifiant de l'articulation concernée |
-| direction | string | Oui    | Direction de déplacement |
-| speed    | number | Non    | Vitesse de déplacement |
+| Nom       | Type   | Requis | Description                                                                           |
+| --------- | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device    | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| joint_id  | number | Oui    | Identifiant de l'articulation concernée                                               |
+| direction | string | Oui    | Direction de déplacement                                                              |
+| speed     | number | Non    | Vitesse de déplacement                                                                |
 
 #### Exemple
 
@@ -325,12 +325,12 @@ Déplace une coordonnée spécifique.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| coord_id | number | Oui    | Identifiant de la coordonnée concernée |
-| direction | string | Oui    | Direction de déplacement |
-| speed    | number | Non    | Vitesse de déplacement |
+| Nom       | Type   | Requis | Description                                                                           |
+| --------- | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device    | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| coord_id  | number | Oui    | Identifiant de la coordonnée concernée                                                |
+| direction | string | Oui    | Direction de déplacement                                                              |
+| speed     | number | Non    | Vitesse de déplacement                                                                |
 
 #### Exemple
 
@@ -353,9 +353,9 @@ Arrête le déplacement.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -375,11 +375,11 @@ Définit une valeur d'encoder.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| joint_id | number | Oui    | Identifiant de l'articulation concernée |
-| encoder  | number | Oui    | Valeur de l'encoder à définir |
+| joint_id | number | Oui    | Identifiant de l'articulation concernée                                               |
+| encoder  | number | Oui    | Valeur de l'encoder à définir                                                         |
 
 #### Exemple
 
@@ -401,11 +401,11 @@ Définit les valeurs des encoders.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| encoders | array  | Oui    | Liste des valeurs des encoders à définir |
-| speed    | number | Non    | Vitesse de déplacement |
+| encoders | array  | Oui    | Liste des valeurs des encoders à définir                                              |
+| speed    | number | Non    | Vitesse de déplacement                                                                |
 
 #### Exemple
 
@@ -427,10 +427,10 @@ Définit la vitesse.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| speed    | number | Oui    | Vitesse à définir |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| speed  | number | Oui    | Vitesse à définir                                                                     |
 
 #### Exemple
 
@@ -451,12 +451,12 @@ Définit les données d'un servo.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| servo_no | number | Oui    | Numéro du servo concerné |
-| data_id  | number | Oui    | Identifiant des données à définir |
-| value    | number | Oui    | Valeur à définir |
+| servo_no | number | Oui    | Numéro du servo concerné                                                              |
+| data_id  | number | Oui    | Identifiant des données à définir                                                     |
+| value    | number | Oui    | Valeur à définir                                                                      |
 
 #### Exemple
 
@@ -479,10 +479,10 @@ Définit l'étalonnage d'un servo.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| servo_no | number | Oui    | Numéro du servo concerné |
+| servo_no | number | Oui    | Numéro du servo concerné                                                              |
 
 #### Exemple
 
@@ -503,10 +503,10 @@ Relâche un servo spécifique.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| servo_no | number | Oui    | Numéro du servo concerné |
+| servo_no | number | Oui    | Numéro du servo concerné                                                              |
 
 #### Exemple
 
@@ -527,10 +527,10 @@ Active un servo spécifique.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| servo_no | number | Oui    | Numéro du servo concerné |
+| servo_no | number | Oui    | Numéro du servo concerné                                                              |
 
 #### Exemple
 
@@ -551,11 +551,11 @@ Définit le mode d'une broche.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| pin_no   | number | Oui    | Numéro de la broche concernée |
-| pin_mode | string | Oui    | Mode de la broche à définir |
+| pin_no   | number | Oui    | Numéro de la broche concernée                                                         |
+| pin_mode | string | Oui    | Mode de la broche à définir                                                           |
 
 #### Exemple
 
@@ -577,11 +577,11 @@ Définit la sortie numérique d'une broche.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| pin_no   | number | Oui    | Numéro de la broche concernée |
-| pin_signal | number | Oui  | Signal de la broche à définir |
+| Nom        | Type   | Requis | Description                                                                           |
+| ---------- | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device     | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| pin_no     | number | Oui    | Numéro de la broche concernée                                                         |
+| pin_signal | number | Oui    | Signal de la broche à définir                                                         |
 
 #### Exemple
 
@@ -603,11 +603,11 @@ Définit l'état du gripper.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| flag     | boolean| Oui    | État du gripper à définir |
-| speed    | number | Non    | Vitesse de déplacement |
+| Nom    | Type    | Requis | Description                                                                           |
+| ------ | ------- | ------ | ------------------------------------------------------------------------------------- |
+| device | number  | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| flag   | boolean | Oui    | État du gripper à définir                                                             |
+| speed  | number  | Non    | Vitesse de déplacement                                                                |
 
 #### Exemple
 
@@ -629,11 +629,11 @@ Définit la valeur du gripper.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| value    | number | Oui    | Valeur du gripper à définir |
-| speed    | number | Non    | Vitesse de déplacement |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| value  | number | Oui    | Valeur du gripper à définir                                                           |
+| speed  | number | Non    | Vitesse de déplacement                                                                |
 
 #### Exemple
 
@@ -655,9 +655,9 @@ Définit l'initialisation du gripper.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| -        | -      | Non    | -           |
+| Nom | Type | Requis | Description |
+| --- | ---- | ------ | ----------- |
+| -   | -    | Non    | -           |
 
 #### Exemple
 
@@ -675,11 +675,11 @@ Définit la sortie de base d'une broche.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| pin_no   | number | Oui    | Numéro de la broche concernée |
-| pin_signal | number | Oui  | Signal de la broche à définir |
+| Nom        | Type   | Requis | Description                                                                           |
+| ---------- | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device     | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| pin_no     | number | Oui    | Numéro de la broche concernée                                                         |
+| pin_signal | number | Oui    | Signal de la broche à définir                                                         |
 
 #### Exemple
 
@@ -701,12 +701,12 @@ Définit la couleur RGB.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| r        | number | Oui    | Valeur du rouge à définir |
-| g        | number | Oui    | Valeur du vert à définir |
-| b        | number | Oui    | Valeur du bleu à définir |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| r      | number | Oui    | Valeur du rouge à définir                                                             |
+| g      | number | Oui    | Valeur du vert à définir                                                              |
+| b      | number | Oui    | Valeur du bleu à définir                                                              |
 
 #### Exemple
 
@@ -729,9 +729,9 @@ Vérifie si le device est allumé.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -751,9 +751,9 @@ Vérifie si le contrôleur est connecté.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| -        | -      | Non    | -           |
+| Nom | Type | Requis | Description |
+| --- | ---- | ------ | ----------- |
+| -   | -    | Non    | -           |
 
 #### Exemple
 
@@ -771,9 +771,9 @@ Récupère les coordonnées.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -793,11 +793,11 @@ Vérifie si le device est en position.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| data     | object | Oui    | Données de position à vérifier |
-| flag     | boolean| Oui    | Indicateur de position |
+| Nom    | Type    | Requis | Description                                                                           |
+| ------ | ------- | ------ | ------------------------------------------------------------------------------------- |
+| device | number  | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| data   | object  | Oui    | Données de position à vérifier                                                        |
+| flag   | boolean | Oui    | Indicateur de position                                                                |
 
 #### Exemple
 
@@ -807,7 +807,7 @@ Vérifie si le device est en position.
   "element": "isInPosition",
   "properties": {
     "device": 1,
-    "data": {"position": "home"},
+    "data": { "position": "home" },
     "flag": true
   }
 }
@@ -819,10 +819,10 @@ Récupère la valeur d'un encoder.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| joint_id | number | Oui    | Identifiant de l'articulation concernée |
+| joint_id | number | Oui    | Identifiant de l'articulation concernée                                               |
 
 #### Exemple
 
@@ -843,9 +843,9 @@ Récupère les valeurs des encoders.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -865,9 +865,9 @@ Récupère la vitesse.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -887,10 +887,10 @@ Récupère l'angle minimum d'une articulation.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| joint_id | number | Oui    | Identifiant de l'articulation concernée |
+| joint_id | number | Oui    | Identifiant de l'articulation concernée                                               |
 
 #### Exemple
 
@@ -911,10 +911,10 @@ Récupère l'angle maximum d'une articulation.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| joint_id | number | Oui    | Identifiant de l'articulation concernée |
+| joint_id | number | Oui    | Identifiant de l'articulation concernée                                               |
 
 #### Exemple
 
@@ -935,10 +935,10 @@ Vérifie si un servo est activé.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| servo_id | number | Oui    | Identifiant du servo concerné |
+| servo_id | number | Oui    | Identifiant du servo concerné                                                         |
 
 #### Exemple
 
@@ -959,9 +959,9 @@ Vérifie si tous les servos sont activés.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -981,11 +981,11 @@ Récupère les données d'un servo.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
+| Nom      | Type   | Requis | Description                                                                           |
+| -------- | ------ | ------ | ------------------------------------------------------------------------------------- |
 | device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| servo_no | number | Oui    | Numéro du servo concerné |
-| data_id  | number | Oui    | Identifiant des données à récupérer |
+| servo_no | number | Oui    | Numéro du servo concerné                                                              |
+| data_id  | number | Oui    | Identifiant des données à récupérer                                                   |
 
 #### Exemple
 
@@ -1007,10 +1007,10 @@ Récupère l'entrée numérique d'une broche.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| pin_no   | number | Oui    | Numéro de la broche concernée |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| pin_no | number | Oui    | Numéro de la broche concernée                                                         |
 
 #### Exemple
 
@@ -1031,9 +1031,9 @@ Récupère la valeur du gripper.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -1053,10 +1053,10 @@ Récupère la sortie de base d'une broche.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
-| pin_no   | number | Oui    | Numéro de la broche concernée |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| pin_no | number | Oui    | Numéro de la broche concernée                                                         |
 
 #### Exemple
 
@@ -1077,9 +1077,9 @@ Vérifie si le gripper est en mouvement.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| device   | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
+| Nom    | Type   | Requis | Description                                                                           |
+| ------ | ------ | ------ | ------------------------------------------------------------------------------------- |
+| device | number | Oui    | Identifiant du device concerné (0 = Tous, 1 = Bras gauche, 2 = Bras droit, 3 = Corps) |
 
 #### Exemple
 
@@ -1099,9 +1099,9 @@ Attend un certain temps.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| time     | number | Oui    | Temps en secondes à attendre |
+| Nom  | Type   | Requis | Description                  |
+| ---- | ------ | ------ | ---------------------------- |
+| time | number | Oui    | Temps en secondes à attendre |
 
 #### Exemple
 

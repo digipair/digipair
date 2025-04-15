@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-pdf",
     "summary": "Manipulation de PDF",
-    "description": "Cette compétence permet aux utilisateurs de manipuler des fichiers PDF pour extraire ou remplir des formulaires.",
+    "description": "manipuler des fichiers PDF pour extraire ou remplir des formulaires.",
     "version": "0.1.0",
     "x-icon": "📕"
   },

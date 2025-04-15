@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-web-voice-activity-detection",
     "summary": "Détection d'activité vocale Web",
-    "description": "Cette compétence permet de détecter l'activité vocale.",
+    "description": "détecter l'activité vocale.",
     "version": "0.1.0",
     "x-icon": "🗣"
   },

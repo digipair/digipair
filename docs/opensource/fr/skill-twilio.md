@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion des communications via Twilio  
-**Description:** Cette compétence permet d'utiliser le service Twilio.  
+**Description:** utiliser le service Twilio.  
 **Icon:** 🗣
 
 ## Table des matières
@@ -19,14 +19,14 @@ Envoi d'un SMS via Twilio
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                        |
-|--------------------|--------|--------|------------------------------------|
-| message            | string | Oui    | Message à envoyer par SMS          |
-| phoneNumber        | string | Oui    | Numéro de téléphone du destinataire|
-| TWILIO_FROM_NUMBER | string | Non    | Numéro Twilio                      |
-| TWILIO_SID         | string | Non    | Identifiant Twilio                 |
-| TWILIO_TOKEN       | string | Non    | Clé d'API Twilio                   |
-| TWILIO_API_ENDPOINT| string | Non    | Endpoint de l'API Twilio           |
+| Nom                 | Type   | Requis | Description                         |
+| ------------------- | ------ | ------ | ----------------------------------- |
+| message             | string | Oui    | Message à envoyer par SMS           |
+| phoneNumber         | string | Oui    | Numéro de téléphone du destinataire |
+| TWILIO_FROM_NUMBER  | string | Non    | Numéro Twilio                       |
+| TWILIO_SID          | string | Non    | Identifiant Twilio                  |
+| TWILIO_TOKEN        | string | Non    | Clé d'API Twilio                    |
+| TWILIO_API_ENDPOINT | string | Non    | Endpoint de l'API Twilio            |
 
 #### Exemple
 
@@ -51,14 +51,14 @@ Envoi d'un message WhatsApp via Twilio
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                        |
-|--------------------|--------|--------|------------------------------------|
-| message            | string | Oui    | Message à envoyer par WhatsApp     |
-| phoneNumber        | string | Oui    | Numéro de téléphone du destinataire|
-| TWILIO_FROM_NUMBER | string | Non    | Numéro Twilio                      |
-| TWILIO_SID         | string | Non    | Identifiant Twilio                 |
-| TWILIO_TOKEN       | string | Non    | Clé d'API Twilio                   |
-| TWILIO_API_ENDPOINT| string | Non    | Endpoint de l'API Twilio           |
+| Nom                 | Type   | Requis | Description                         |
+| ------------------- | ------ | ------ | ----------------------------------- |
+| message             | string | Oui    | Message à envoyer par WhatsApp      |
+| phoneNumber         | string | Oui    | Numéro de téléphone du destinataire |
+| TWILIO_FROM_NUMBER  | string | Non    | Numéro Twilio                       |
+| TWILIO_SID          | string | Non    | Identifiant Twilio                  |
+| TWILIO_TOKEN        | string | Non    | Clé d'API Twilio                    |
+| TWILIO_API_ENDPOINT | string | Non    | Endpoint de l'API Twilio            |
 
 #### Exemple
 

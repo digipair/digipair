@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-markitdown",
     "summary": "Convertion de fichiers Markdown",
-    "description": "Cette compétence permet de convertir des fichiers PDF, DOCX, etc en Markdown.",
+    "description": "convertir des fichiers PDF, DOCX, etc en Markdown.",
     "version": "0.1.0",
     "x-icon": "📄"
   },

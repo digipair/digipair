@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Authentification web Keycloak  
-**Description:** Cette compétence permet de gérer une authentification Keycloak coté navigateur.  
+**Description:** gérer une authentification Keycloak coté navigateur.  
 **Icon:** 🔑
 
 ## Table des matières
@@ -22,11 +22,11 @@ Initialise l'authentification Keycloak.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| url      | string | Non    | Adresse du serveur Keycloak|
-| realm    | string | Non    | Realm Keycloak             |
-| clientId | string | Non    | ClientId Keycloak          |
+| Nom      | Type   | Requis | Description                 |
+| -------- | ------ | ------ | --------------------------- |
+| url      | string | Non    | Adresse du serveur Keycloak |
+| realm    | string | Non    | Realm Keycloak              |
+| clientId | string | Non    | ClientId Keycloak           |
 
 #### Exemple
 

@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-yolo",
     "summary": "Analyse par de détection d'objet avec Yolo",
-    "description": "Cette compétence permet de détecter des objets dans une image en utilisant le modèle Yolo.",
+    "description": "détecter des objets dans une image en utilisant le modèle Yolo.",
     "version": "0.1.0",
     "x-icon": "🤖"
   },

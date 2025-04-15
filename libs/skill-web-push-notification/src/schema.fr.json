@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-web-push-notification",
     "summary": "Enregistre l'utilisateur aux notifications push",
-    "description": "Cette compétence permet aux utilisateurs de s'enregistrer pour recevoir des notifications push.",
+    "description": "s'enregistrer pour recevoir des notifications push.",
     "version": "0.1.0",
     "x-icon": "📕"
   },

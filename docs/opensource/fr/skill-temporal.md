@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion des workflows temporal  
-**Description:** Cette compétence permet de gérer des workflows temporal.  
+**Description:** gérer des workflows temporal.  
 **Icon:** 👩‍💻
 
 ## Table des matières
@@ -26,9 +26,9 @@ Définit une activité.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                |
-|---------|--------|--------|----------------------------|
-| name    | string | Non    | Nom de l'étape             |
+| Nom     | Type   | Requis | Description                  |
+| ------- | ------ | ------ | ---------------------------- |
+| name    | string | Non    | Nom de l'étape               |
 | execute | array  | Oui    | Liste des actions à exécuter |
 
 #### Exemple
@@ -53,7 +53,7 @@ Définit une période d'attente.
 #### Paramètres
 
 | Nom      | Type   | Requis | Description        |
-|----------|--------|--------|--------------------|
+| -------- | ------ | ------ | ------------------ |
 | name     | string | Non    | Nom de l'étape     |
 | duration | string | Oui    | Durée de l'attente |
 
@@ -76,10 +76,10 @@ Définit une condition d'attente dans un workflow.
 
 #### Paramètres
 
-| Nom       | Type   | Requis | Description                      |
-|-----------|--------|--------|----------------------------------|
+| Nom       | Type   | Requis | Description                        |
+| --------- | ------ | ------ | ---------------------------------- |
 | condition | string | Oui    | Condition d'attente au format Feel |
-| timeout   | number | Non    | Timeout de la condition          |
+| timeout   | number | Non    | Timeout de la condition            |
 
 #### Exemple
 
@@ -100,10 +100,10 @@ Définit une étape de destination dans le workflow.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description                |
-|--------|--------|--------|----------------------------|
+| Nom    | Type   | Requis | Description                   |
+| ------ | ------ | ------ | ----------------------------- |
 | target | string | Oui    | Nom de l'étape de destination |
-| name   | string | Non    | Nom de l'étape             |
+| name   | string | Non    | Nom de l'étape                |
 
 #### Exemple
 
@@ -125,7 +125,7 @@ Arrête le workflow.
 #### Paramètres
 
 | Nom  | Type   | Requis | Description    |
-|------|--------|--------|----------------|
+| ---- | ------ | ------ | -------------- |
 | name | string | Non    | Nom de l'étape |
 
 #### Exemple
@@ -146,10 +146,10 @@ Envoi de nouvelles données dans un workflow.
 
 #### Paramètres
 
-| Nom  | Type   | Requis | Description              |
-|------|--------|--------|--------------------------|
-| id   | string | Oui    | Identifiant du workflow  |
-| data | object | Oui    | Données à envoyer        |
+| Nom  | Type   | Requis | Description             |
+| ---- | ------ | ------ | ----------------------- |
+| id   | string | Oui    | Identifiant du workflow |
+| data | object | Oui    | Données à envoyer       |
 
 #### Exemple
 
@@ -172,9 +172,9 @@ Arrête un workflow.
 
 #### Paramètres
 
-| Nom | Type   | Requis | Description              |
-|-----|--------|--------|--------------------------|
-| id  | string | Oui    | Identifiant du workflow  |
+| Nom | Type   | Requis | Description             |
+| --- | ------ | ------ | ----------------------- |
+| id  | string | Oui    | Identifiant du workflow |
 
 #### Exemple
 
@@ -195,7 +195,7 @@ Liste les workflows.
 #### Paramètres
 
 | Nom   | Type   | Requis | Description          |
-|-------|--------|--------|----------------------|
+| ----- | ------ | ------ | -------------------- |
 | query | string | Non    | Requête de recherche |
 
 #### Exemple
@@ -217,7 +217,7 @@ Exécute un workflow Temporal.
 #### Paramètres
 
 | Nom     | Type   | Requis | Description                  |
-|---------|--------|--------|------------------------------|
+| ------- | ------ | ------ | ---------------------------- |
 | id      | string | Oui    | Identifiant du workflow      |
 | steps   | array  | Oui    | Exécute les étapes suivantes |
 | data    | object | Non    | Données du workflow temporal |

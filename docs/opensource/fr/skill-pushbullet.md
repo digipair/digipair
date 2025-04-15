@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion du service Pushbullet  
-**Description:** Cette compétence permet d'utiliser le service Pushbullet.  
+**Description:** utiliser le service Pushbullet.  
 **Icon:** 💬
 
 ## Table des matières
@@ -18,13 +18,13 @@ Envoi un SMS via Pushbullet
 
 #### Paramètres
 
-| Nom                        | Type   | Requis | Description                          |
-|----------------------------|--------|--------|--------------------------------------|
-| message                    | string | Oui    | Message à envoyer                   |
-| phoneNumber                | string | Oui    | Numéro de téléphone du destinataire  |
-| PUSHBULLET_ACCESS_TOKEN    | string | Non    | Clé d'API Pushbullet                 |
-| PUSHBULLET_TARGET_DEVICE_ID| string | Non    | Identifiant du périphérique Pushbullet|
-| PUSHBULLET_API_ENDPOINT    | string | Non    | Endpoint de l'API Pushbullet         |
+| Nom                         | Type   | Requis | Description                            |
+| --------------------------- | ------ | ------ | -------------------------------------- |
+| message                     | string | Oui    | Message à envoyer                      |
+| phoneNumber                 | string | Oui    | Numéro de téléphone du destinataire    |
+| PUSHBULLET_ACCESS_TOKEN     | string | Non    | Clé d'API Pushbullet                   |
+| PUSHBULLET_TARGET_DEVICE_ID | string | Non    | Identifiant du périphérique Pushbullet |
+| PUSHBULLET_API_ENDPOINT     | string | Non    | Endpoint de l'API Pushbullet           |
 
 #### Exemple
 

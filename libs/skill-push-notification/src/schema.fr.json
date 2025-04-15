@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-push-notification",
     "summary": "Manipulation de WebPush",
-    "description": "Cette compétence permet aux utilisateurs d'envoyer des notifications avec WebPush.",
+    "description": "envoyer des notifications avec WebPush.",
     "version": "0.1.0",
     "x-icon": "📕"
   },

@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Saisie de données dans les boosts  
-**Description:** Cette compétence permet de saisir des données dans les boosts.  
+**Description:** saisir des données dans les boosts.  
 **Icon:** 📥
 
 ## Table des matières
@@ -23,10 +23,10 @@ Lire un attribut d'un élément du DOM
 
 #### Paramètres
 
-| Nom       | Type    | Requis | Description                        |
-|-----------|---------|--------|------------------------------------|
-| selector  | string  | Oui    | Sélecteur CSS de l'élément du DOM  |
-| attribute | string  | Oui    | Nom de l'attribut à lire           |
+| Nom       | Type    | Requis | Description                          |
+| --------- | ------- | ------ | ------------------------------------ |
+| selector  | string  | Oui    | Sélecteur CSS de l'élément du DOM    |
+| attribute | string  | Oui    | Nom de l'attribut à lire             |
 | required  | boolean | Non    | Champs requis pour exécuter le boost |
 
 #### Exemple
@@ -49,11 +49,11 @@ Récupérer les données d'une URL
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                          |
-|----------|---------|--------|--------------------------------------|
-| url      | string  | Oui    | Adresse du service web à appeler     |
+| Nom      | Type    | Requis | Description                                |
+| -------- | ------- | ------ | ------------------------------------------ |
+| url      | string  | Oui    | Adresse du service web à appeler           |
 | type     | string  | Oui    | Type de données à récupérer (json ou text) |
-| required | boolean | Non    | Champs requis pour exécuter le boost |
+| required | boolean | Non    | Champs requis pour exécuter le boost       |
 
 #### Exemple
 
@@ -75,11 +75,11 @@ Lecture d'un fichier binaire
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                          |
-|----------|---------|--------|--------------------------------------|
+| Nom      | Type    | Requis | Description                                                 |
+| -------- | ------- | ------ | ----------------------------------------------------------- |
 | label    | string  | Non    | Texte affiché à l'utilisateur pour le guider dans sa saisie |
-| accept   | string  | Non    | Type de fichiers acceptés            |
-| required | boolean | Non    | Champs requis pour exécuter le boost |
+| accept   | string  | Non    | Type de fichiers acceptés                                   |
+| required | boolean | Non    | Champs requis pour exécuter le boost                        |
 
 #### Exemple
 
@@ -102,7 +102,7 @@ Retourne les données cachées
 #### Paramètres
 
 | Nom      | Type    | Requis | Description                          |
-|----------|---------|--------|--------------------------------------|
+| -------- | ------- | ------ | ------------------------------------ |
 | value    | object  | Oui    | Données à envoyer au boost           |
 | required | boolean | Non    | Champs requis pour exécuter le boost |
 
@@ -125,11 +125,11 @@ Lecture d'un fichier JSON
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                          |
-|----------|---------|--------|--------------------------------------|
+| Nom      | Type    | Requis | Description                                                 |
+| -------- | ------- | ------ | ----------------------------------------------------------- |
 | label    | string  | Non    | Texte affiché à l'utilisateur pour le guider dans sa saisie |
-| accept   | string  | Non    | Type de fichiers acceptés            |
-| required | boolean | Non    | Champs requis pour exécuter le boost |
+| accept   | string  | Non    | Type de fichiers acceptés                                   |
+| required | boolean | Non    | Champs requis pour exécuter le boost                        |
 
 #### Exemple
 
@@ -151,11 +151,11 @@ Lecture d'un fichier texte
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                          |
-|----------|---------|--------|--------------------------------------|
+| Nom      | Type    | Requis | Description                                                 |
+| -------- | ------- | ------ | ----------------------------------------------------------- |
 | label    | string  | Non    | Texte affiché à l'utilisateur pour le guider dans sa saisie |
-| accept   | string  | Non    | Type de fichiers acceptés            |
-| required | boolean | Non    | Champs requis pour exécuter le boost |
+| accept   | string  | Non    | Type de fichiers acceptés                                   |
+| required | boolean | Non    | Champs requis pour exécuter le boost                        |
 
 #### Exemple
 

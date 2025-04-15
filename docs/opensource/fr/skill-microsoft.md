@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Communication avec les services Microsoft  
-**Description:** Cette compétence permet d'utiliser les services Microsoft.  
+**Description:** utiliser les services Microsoft.  
 **Icon:** ❖
 
 ## Table des matières
@@ -23,16 +23,16 @@ Exécute un service Microsoft.
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                    |
-|--------------------|--------|--------|--------------------------------|
-| path               | string | Oui    | Chemin du service à exécuter   |
-| method             | string | Non    | Méthode HTTP à utiliser        |
-| body               | object | Non    | Valeur à envoyer               |
-| version            | string | Non    | Version de l'API à utiliser    |
-| headers            | object | Non    | En-têtes à envoyer             |
-| OAUTH_CLIENT_ID    | string | Non    | Identifiant du client OAuth    |
-| OAUTH_CLIENT_SECRET| string | Non    | Secret du client OAuth         |
-| TENANT_ID          | string | Non    | ID du locataire                |
+| Nom                 | Type   | Requis | Description                  |
+| ------------------- | ------ | ------ | ---------------------------- |
+| path                | string | Oui    | Chemin du service à exécuter |
+| method              | string | Non    | Méthode HTTP à utiliser      |
+| body                | object | Non    | Valeur à envoyer             |
+| version             | string | Non    | Version de l'API à utiliser  |
+| headers             | object | Non    | En-têtes à envoyer           |
+| OAUTH_CLIENT_ID     | string | Non    | Identifiant du client OAuth  |
+| OAUTH_CLIENT_SECRET | string | Non    | Secret du client OAuth       |
+| TENANT_ID           | string | Non    | ID du locataire              |
 
 #### Exemple
 
@@ -56,15 +56,15 @@ Ajoute une ressource Microsoft.
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                    |
-|--------------------|--------|--------|--------------------------------|
-| path               | string | Oui    | Chemin du service à exécuter   |
-| body               | object | Non    | Valeur à envoyer               |
-| version            | string | Non    | Version de l'API à utiliser    |
-| headers            | object | Non    | En-têtes à envoyer             |
-| OAUTH_CLIENT_ID    | string | Non    | Identifiant du client OAuth    |
-| OAUTH_CLIENT_SECRET| string | Non    | Secret du client OAuth         |
-| TENANT_ID          | string | Non    | ID du locataire                |
+| Nom                 | Type   | Requis | Description                  |
+| ------------------- | ------ | ------ | ---------------------------- |
+| path                | string | Oui    | Chemin du service à exécuter |
+| body                | object | Non    | Valeur à envoyer             |
+| version             | string | Non    | Version de l'API à utiliser  |
+| headers             | object | Non    | En-têtes à envoyer           |
+| OAUTH_CLIENT_ID     | string | Non    | Identifiant du client OAuth  |
+| OAUTH_CLIENT_SECRET | string | Non    | Secret du client OAuth       |
+| TENANT_ID           | string | Non    | ID du locataire              |
 
 #### Exemple
 
@@ -91,14 +91,14 @@ Lit une ressource Microsoft.
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                    |
-|--------------------|--------|--------|--------------------------------|
-| path               | string | Oui    | Chemin du service à exécuter   |
-| version            | string | Non    | Version de l'API à utiliser    |
-| headers            | object | Non    | En-têtes à envoyer             |
-| OAUTH_CLIENT_ID    | string | Non    | Identifiant du client OAuth    |
-| OAUTH_CLIENT_SECRET| string | Non    | Secret du client OAuth         |
-| TENANT_ID          | string | Non    | ID du locataire                |
+| Nom                 | Type   | Requis | Description                  |
+| ------------------- | ------ | ------ | ---------------------------- |
+| path                | string | Oui    | Chemin du service à exécuter |
+| version             | string | Non    | Version de l'API à utiliser  |
+| headers             | object | Non    | En-têtes à envoyer           |
+| OAUTH_CLIENT_ID     | string | Non    | Identifiant du client OAuth  |
+| OAUTH_CLIENT_SECRET | string | Non    | Secret du client OAuth       |
+| TENANT_ID           | string | Non    | ID du locataire              |
 
 #### Exemple
 
@@ -121,15 +121,15 @@ Modifie une ressource Microsoft.
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                    |
-|--------------------|--------|--------|--------------------------------|
-| path               | string | Oui    | Chemin du service à exécuter   |
-| body               | object | Non    | Valeur à envoyer               |
-| version            | string | Non    | Version de l'API à utiliser    |
-| headers            | object | Non    | En-têtes à envoyer             |
-| OAUTH_CLIENT_ID    | string | Non    | Identifiant du client OAuth    |
-| OAUTH_CLIENT_SECRET| string | Non    | Secret du client OAuth         |
-| TENANT_ID          | string | Non    | ID du locataire                |
+| Nom                 | Type   | Requis | Description                  |
+| ------------------- | ------ | ------ | ---------------------------- |
+| path                | string | Oui    | Chemin du service à exécuter |
+| body                | object | Non    | Valeur à envoyer             |
+| version             | string | Non    | Version de l'API à utiliser  |
+| headers             | object | Non    | En-têtes à envoyer           |
+| OAUTH_CLIENT_ID     | string | Non    | Identifiant du client OAuth  |
+| OAUTH_CLIENT_SECRET | string | Non    | Secret du client OAuth       |
+| TENANT_ID           | string | Non    | ID du locataire              |
 
 #### Exemple
 
@@ -155,15 +155,15 @@ Modifie une partie d'une ressource Microsoft.
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                    |
-|--------------------|--------|--------|--------------------------------|
-| path               | string | Oui    | Chemin du service à exécuter   |
-| body               | object | Non    | Valeur à envoyer               |
-| version            | string | Non    | Version de l'API à utiliser    |
-| headers            | object | Non    | En-têtes à envoyer             |
-| OAUTH_CLIENT_ID    | string | Non    | Identifiant du client OAuth    |
-| OAUTH_CLIENT_SECRET| string | Non    | Secret du client OAuth         |
-| TENANT_ID          | string | Non    | ID du locataire                |
+| Nom                 | Type   | Requis | Description                  |
+| ------------------- | ------ | ------ | ---------------------------- |
+| path                | string | Oui    | Chemin du service à exécuter |
+| body                | object | Non    | Valeur à envoyer             |
+| version             | string | Non    | Version de l'API à utiliser  |
+| headers             | object | Non    | En-têtes à envoyer           |
+| OAUTH_CLIENT_ID     | string | Non    | Identifiant du client OAuth  |
+| OAUTH_CLIENT_SECRET | string | Non    | Secret du client OAuth       |
+| TENANT_ID           | string | Non    | ID du locataire              |
 
 #### Exemple
 
@@ -189,14 +189,14 @@ Supprime une ressource Microsoft.
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                    |
-|--------------------|--------|--------|--------------------------------|
-| path               | string | Oui    | Chemin du service à exécuter   |
-| version            | string | Non    | Version de l'API à utiliser    |
-| headers            | object | Non    | En-têtes à envoyer             |
-| OAUTH_CLIENT_ID    | string | Non    | Identifiant du client OAuth    |
-| OAUTH_CLIENT_SECRET| string | Non    | Secret du client OAuth         |
-| TENANT_ID          | string | Non    | ID du locataire                |
+| Nom                 | Type   | Requis | Description                  |
+| ------------------- | ------ | ------ | ---------------------------- |
+| path                | string | Oui    | Chemin du service à exécuter |
+| version             | string | Non    | Version de l'API à utiliser  |
+| headers             | object | Non    | En-têtes à envoyer           |
+| OAUTH_CLIENT_ID     | string | Non    | Identifiant du client OAuth  |
+| OAUTH_CLIENT_SECRET | string | Non    | Secret du client OAuth       |
+| TENANT_ID           | string | Non    | ID du locataire              |
 
 #### Exemple
 

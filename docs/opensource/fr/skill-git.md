@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion d'un dépôt git  
-**Description:** Cette compétence permet de gérer un dépôt git.  
+**Description:** gérer un dépôt git.  
 **Icon:** 💾
 
 ## Table des matières
@@ -21,11 +21,11 @@ Effectuer un commit dans le dépôt GIT.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description              |
-|----------|--------|--------|--------------------------|
-| path     | string | Non    | Path du dépôt GIT        |
+| Nom      | Type   | Requis | Description                       |
+| -------- | ------ | ------ | --------------------------------- |
+| path     | string | Non    | Path du dépôt GIT                 |
 | selector | string | Non    | Sélecteur des fichiers à commiter |
-| message  | string | Non    | Message du commit        |
+| message  | string | Non    | Message du commit                 |
 
 #### Exemple
 
@@ -47,10 +47,10 @@ Effectuer un push des commits dans le dépôt GIT.
 
 #### Paramètres
 
-| Nom      | Type     | Requis | Description                    |
-|----------|----------|--------|--------------------------------|
-| path     | string   | Non    | Path du dépôt GIT              |
-| options  | string[] | Non    | Options envoyées lors du push  |
+| Nom     | Type     | Requis | Description                   |
+| ------- | -------- | ------ | ----------------------------- |
+| path    | string   | Non    | Path du dépôt GIT             |
+| options | string[] | Non    | Options envoyées lors du push |
 
 #### Exemple
 
@@ -71,10 +71,10 @@ Afficher les informations d'un commit dans le dépôt GIT.
 
 #### Paramètres
 
-| Nom      | Type     | Requis | Description                    |
-|----------|----------|--------|--------------------------------|
-| path     | string   | Non    | Path du dépôt GIT              |
-| options  | string[] | Non    | Options envoyées lors du git show |
+| Nom     | Type     | Requis | Description                       |
+| ------- | -------- | ------ | --------------------------------- |
+| path    | string   | Non    | Path du dépôt GIT                 |
+| options | string[] | Non    | Options envoyées lors du git show |
 
 #### Exemple
 
@@ -95,19 +95,19 @@ Afficher le journal des commits dans le dépôt GIT.
 
 #### Paramètres
 
-| Nom         | Type    | Requis | Description                                                                 |
-|-------------|---------|--------|-----------------------------------------------------------------------------|
-| path        | string  | Non    | Path du dépôt GIT                                                           |
-| file        | string  | Non    | Fichier concerné par le log                                                 |
-| format      | string  | Non    | Format de sortie décrit au pretty format                                    |
-| from        | string  | Non    | Identifiant du commit de départ                                             |
-| to          | string  | Non    | Identifiant du commit de fin                                                |
-| mailMap     | boolean | Non    | Active l'utilisation du mapping des emails dans les valeurs de retour       |
-| maxCount    | number  | Non    | Limite le nombre de résultats à retourner                                   |
-| multiline   | boolean | Non    | Active les valeurs multilignes dans le format par défaut                    |
-| splitter    | string  | Non    | Séquence de caractères à utiliser comme délimiteur entre les champs dans le journal |
-| strictDate  | boolean | Non    | Bascule la valeur de la date d'auteur à un format ISO 8601 strict           |
-| symmetric   | boolean | Non    | Active le symmetric revision range plutôt que le two-dot range              |
+| Nom        | Type    | Requis | Description                                                                         |
+| ---------- | ------- | ------ | ----------------------------------------------------------------------------------- |
+| path       | string  | Non    | Path du dépôt GIT                                                                   |
+| file       | string  | Non    | Fichier concerné par le log                                                         |
+| format     | string  | Non    | Format de sortie décrit au pretty format                                            |
+| from       | string  | Non    | Identifiant du commit de départ                                                     |
+| to         | string  | Non    | Identifiant du commit de fin                                                        |
+| mailMap    | boolean | Non    | Active l'utilisation du mapping des emails dans les valeurs de retour               |
+| maxCount   | number  | Non    | Limite le nombre de résultats à retourner                                           |
+| multiline  | boolean | Non    | Active les valeurs multilignes dans le format par défaut                            |
+| splitter   | string  | Non    | Séquence de caractères à utiliser comme délimiteur entre les champs dans le journal |
+| strictDate | boolean | Non    | Bascule la valeur de la date d'auteur à un format ISO 8601 strict                   |
+| symmetric  | boolean | Non    | Active le symmetric revision range plutôt que le two-dot range                      |
 
 #### Exemple
 

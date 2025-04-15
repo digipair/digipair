@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Manipulation de dessins  
-**Description:** Cette compétence permet aux utilisateurs de manipuler un canvas pour dessiner des éléments graphiques, charger des images, et effectuer diverses opérations de dessin.  
+**Description:** manipuler un canvas pour dessiner des éléments graphiques, charger des images, et effectuer diverses opérations de dessin.  
 **Icon:** 🎨
 
 ## Table des matières
@@ -27,11 +27,11 @@ Créer un canvas
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| width    | number | Oui    | Largeur du canvas |
-| height   | number | Oui    | Hauteur du canvas |
-| execute  | array  | Oui    | Liste des actions à exécuter sur le canvas |
+| Nom     | Type   | Requis | Description                                |
+| ------- | ------ | ------ | ------------------------------------------ |
+| width   | number | Oui    | Largeur du canvas                          |
+| height  | number | Oui    | Hauteur du canvas                          |
+| execute | array  | Oui    | Liste des actions à exécuter sur le canvas |
 
 #### Exemple
 
@@ -55,9 +55,9 @@ Charger une image
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description |
-|--------|--------|--------|-------------|
-| image  | string | Oui    | Image en base64 |
+| Nom   | Type   | Requis | Description     |
+| ----- | ------ | ------ | --------------- |
+| image | string | Oui    | Image en base64 |
 
 #### Exemple
 
@@ -77,13 +77,13 @@ Dessiner une image
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| image    | string | Oui    | Image à dessiner |
-| x        | number | Oui    | Coordonnée X pour dessiner l'image |
-| y        | number | Oui    | Coordonnée Y pour dessiner l'image |
-| width    | number | Oui    | Largeur de l'image à dessiner |
-| height   | number | Oui    | Hauteur de l'image à dessiner |
+| Nom    | Type   | Requis | Description                        |
+| ------ | ------ | ------ | ---------------------------------- |
+| image  | string | Oui    | Image à dessiner                   |
+| x      | number | Oui    | Coordonnée X pour dessiner l'image |
+| y      | number | Oui    | Coordonnée Y pour dessiner l'image |
+| width  | number | Oui    | Largeur de l'image à dessiner      |
+| height | number | Oui    | Hauteur de l'image à dessiner      |
 
 #### Exemple
 
@@ -107,12 +107,12 @@ Dessiner un rectangle
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| x        | number | Oui    | Coordonnée X du rectangle |
-| y        | number | Oui    | Coordonnée Y du rectangle |
-| width    | number | Oui    | Largeur du rectangle |
-| height   | number | Oui    | Hauteur du rectangle |
+| Nom    | Type   | Requis | Description               |
+| ------ | ------ | ------ | ------------------------- |
+| x      | number | Oui    | Coordonnée X du rectangle |
+| y      | number | Oui    | Coordonnée Y du rectangle |
+| width  | number | Oui    | Largeur du rectangle      |
+| height | number | Oui    | Hauteur du rectangle      |
 
 #### Exemple
 
@@ -135,12 +135,12 @@ Dessiner un rectangle rempli
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| x        | number | Oui    | Coordonnée X du rectangle |
-| y        | number | Oui    | Coordonnée Y du rectangle |
-| width    | number | Oui    | Largeur du rectangle |
-| height   | number | Oui    | Hauteur du rectangle |
+| Nom    | Type   | Requis | Description               |
+| ------ | ------ | ------ | ------------------------- |
+| x      | number | Oui    | Coordonnée X du rectangle |
+| y      | number | Oui    | Coordonnée Y du rectangle |
+| width  | number | Oui    | Largeur du rectangle      |
+| height | number | Oui    | Hauteur du rectangle      |
 
 #### Exemple
 
@@ -163,11 +163,11 @@ Dessiner un rectangle rempli
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| text     | string | Oui    | Texte à dessiner |
-| x        | number | Oui    | Coordonnée X du texte |
-| y        | number | Oui    | Coordonnée Y du texte |
+| Nom  | Type   | Requis | Description           |
+| ---- | ------ | ------ | --------------------- |
+| text | string | Oui    | Texte à dessiner      |
+| x    | number | Oui    | Coordonnée X du texte |
+| y    | number | Oui    | Coordonnée Y du texte |
 
 #### Exemple
 
@@ -189,9 +189,9 @@ Définir le style du contour
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description |
-|--------|--------|--------|-------------|
-| style  | string | Oui    | Style de contour |
+| Nom   | Type   | Requis | Description      |
+| ----- | ------ | ------ | ---------------- |
+| style | string | Oui    | Style de contour |
 
 #### Exemple
 
@@ -211,9 +211,9 @@ Définir le style de remplissage
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description |
-|--------|--------|--------|-------------|
-| style  | string | Oui    | Style de remplissage |
+| Nom   | Type   | Requis | Description          |
+| ----- | ------ | ------ | -------------------- |
+| style | string | Oui    | Style de remplissage |
 
 #### Exemple
 
@@ -233,9 +233,9 @@ Définir la largeur du trait
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description |
-|--------|--------|--------|-------------|
-| style  | number | Oui    | Largeur du trait |
+| Nom   | Type   | Requis | Description      |
+| ----- | ------ | ------ | ---------------- |
+| style | number | Oui    | Largeur du trait |
 
 #### Exemple
 
@@ -255,9 +255,9 @@ Mesurer le texte
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description |
-|--------|--------|--------|-------------|
-| text   | string | Oui    | Texte à mesurer |
+| Nom  | Type   | Requis | Description     |
+| ---- | ------ | ------ | --------------- |
+| text | string | Oui    | Texte à mesurer |
 
 #### Exemple
 

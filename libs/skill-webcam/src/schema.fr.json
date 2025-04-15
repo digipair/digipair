@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-webcam",
     "summary": "Gestion de la webcam",
-    "description": "Cette compétence permet d'accéder aux images des webcams.",
+    "description": "accéder aux images des webcams.",
     "version": "0.1.0",
     "x-icon": "📷"
   },

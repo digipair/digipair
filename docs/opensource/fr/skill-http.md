@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Communication avec les services HTTP  
-**Description:** Cette compétence permet d'utiliser les services HTTP.  
+**Description:** utiliser les services HTTP.  
 **Icon:** 🌐
 
 ## Table des matières
@@ -23,13 +23,13 @@ Exécute un service HTTP.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                |
-|----------|---------|--------|----------------------------|
-| path     | string  | Oui    | Adresse du service à exécuter |
-| method   | string  | Non    | Méthode HTTP à utiliser    |
-| body     | object  | Non    | Valeur à envoyer           |
-| headers  | object  | Non    | En-têtes à envoyer         |
-| IS_JSON  | boolean | Non    | Indique si l'API est en JSON |
+| Nom     | Type    | Requis | Description                   |
+| ------- | ------- | ------ | ----------------------------- |
+| path    | string  | Oui    | Adresse du service à exécuter |
+| method  | string  | Non    | Méthode HTTP à utiliser       |
+| body    | object  | Non    | Valeur à envoyer              |
+| headers | object  | Non    | En-têtes à envoyer            |
+| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
 
 #### Exemple
 
@@ -57,12 +57,12 @@ Ajoute une ressource HTTP.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                |
-|----------|---------|--------|----------------------------|
-| path     | string  | Oui    | Adresse du service à exécuter |
-| body     | object  | Non    | Valeur à envoyer           |
-| headers  | object  | Non    | En-têtes à envoyer         |
-| IS_JSON  | boolean | Non    | Indique si l'API est en JSON |
+| Nom     | Type    | Requis | Description                   |
+| ------- | ------- | ------ | ----------------------------- |
+| path    | string  | Oui    | Adresse du service à exécuter |
+| body    | object  | Non    | Valeur à envoyer              |
+| headers | object  | Non    | En-têtes à envoyer            |
+| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
 
 #### Exemple
 
@@ -89,11 +89,11 @@ Lit une ressource HTTP.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                |
-|----------|---------|--------|----------------------------|
-| path     | string  | Oui    | Adresse du service à exécuter |
-| headers  | object  | Non    | En-têtes à envoyer         |
-| IS_JSON  | boolean | Non    | Indique si l'API est en JSON |
+| Nom     | Type    | Requis | Description                   |
+| ------- | ------- | ------ | ----------------------------- |
+| path    | string  | Oui    | Adresse du service à exécuter |
+| headers | object  | Non    | En-têtes à envoyer            |
+| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
 
 #### Exemple
 
@@ -117,12 +117,12 @@ Modifie une ressource HTTP.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                |
-|----------|---------|--------|----------------------------|
-| path     | string  | Oui    | Adresse du service à exécuter |
-| body     | object  | Non    | Valeur à envoyer           |
-| headers  | object  | Non    | En-têtes à envoyer         |
-| IS_JSON  | boolean | Non    | Indique si l'API est en JSON |
+| Nom     | Type    | Requis | Description                   |
+| ------- | ------- | ------ | ----------------------------- |
+| path    | string  | Oui    | Adresse du service à exécuter |
+| body    | object  | Non    | Valeur à envoyer              |
+| headers | object  | Non    | En-têtes à envoyer            |
+| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
 
 #### Exemple
 
@@ -149,12 +149,12 @@ Modifie une partie d'une ressource HTTP.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                |
-|----------|---------|--------|----------------------------|
-| path     | string  | Oui    | Adresse du service à exécuter |
-| body     | object  | Non    | Valeur à envoyer           |
-| headers  | object  | Non    | En-têtes à envoyer         |
-| IS_JSON  | boolean | Non    | Indique si l'API est en JSON |
+| Nom     | Type    | Requis | Description                   |
+| ------- | ------- | ------ | ----------------------------- |
+| path    | string  | Oui    | Adresse du service à exécuter |
+| body    | object  | Non    | Valeur à envoyer              |
+| headers | object  | Non    | En-têtes à envoyer            |
+| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
 
 #### Exemple
 
@@ -181,11 +181,11 @@ Supprime une ressource HTTP.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                |
-|----------|---------|--------|----------------------------|
-| path     | string  | Oui    | Adresse du service à exécuter |
-| headers  | object  | Non    | En-têtes à envoyer         |
-| IS_JSON  | boolean | Non    | Indique si l'API est en JSON |
+| Nom     | Type    | Requis | Description                   |
+| ------- | ------- | ------ | ----------------------------- |
+| path    | string  | Oui    | Adresse du service à exécuter |
+| headers | object  | Non    | En-têtes à envoyer            |
+| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
 
 #### Exemple
 

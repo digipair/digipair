@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-canvas",
     "summary": "Manipulation de dessins",
-    "description": "Cette compétence permet aux utilisateurs de manipuler un canvas pour dessiner des éléments graphiques, charger des images, et effectuer diverses opérations de dessin.",
+    "description": "manipuler un canvas pour dessiner des éléments graphiques, charger des images, et effectuer diverses opérations de dessin.",
     "version": "0.1.0",
     "x-icon": "🎨"
   },

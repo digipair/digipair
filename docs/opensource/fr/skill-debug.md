@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Debug de la factory  
-**Description:** Cette compétence permet aux utilisateurs de déboguer des actions exécutées sur la factory, offrant des outils et des fonctionnalités pour identifier et résoudre les problèmes.  
+**Description:** déboguer des actions exécutées sur la factory, offrant des outils et des fonctionnalités pour identifier et résoudre les problèmes.  
 **Icon:** 🔧
 
 ## Table des matières
@@ -22,10 +22,10 @@ Element permettant d'afficher un message dans les logs.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description                |
-|-------|--------|--------|----------------------------|
-| label | string | Oui    | Sujet du log               |
-| type  | string | Non    | Type de log                |
+| Nom   | Type   | Requis | Description                      |
+| ----- | ------ | ------ | -------------------------------- |
+| label | string | Oui    | Sujet du log                     |
+| type  | string | Non    | Type de log                      |
 | value | object | Non    | Valeur supplémentaire à afficher |
 
 #### Exemple

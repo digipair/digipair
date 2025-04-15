@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-yaml",
     "summary": "Gestion des données YAML",
-    "description": "Cette compétence permet de manipuler des données YAML",
+    "description": "manipuler des données YAML",
     "version": "0.1.0",
     "x-icon": "📝"
   },

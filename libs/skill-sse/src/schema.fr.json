@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-sse",
     "summary": "Server Sent Events",
-    "description": "Cette compétence permet de gérer les communications en temps réel.",
+    "description": "gérer les communications en temps réel.",
     "version": "0.1.0",
     "x-icon": "🔗"
   },

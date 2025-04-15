@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion des données  
-**Description:** Cette compétence permet manipuler et transformer les données.  
+**Description:** manipuler et transformer les données.  
 **Icon:** 📝
 
 ## Table des matières

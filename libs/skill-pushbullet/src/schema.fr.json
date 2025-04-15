@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-pushbullet",
     "summary": "Gestion du service Pushbullet",
-    "description": "Cette compétence permet d'utiliser le service Pushbullet",
+    "description": "utiliser le service Pushbullet",
     "version": "0.1.0",
     "x-icon": "💬"
   },

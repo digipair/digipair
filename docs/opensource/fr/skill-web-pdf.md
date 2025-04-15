@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Extraction de texte depuis un PDF  
-**Description:** Cette compétence permet d'extraire le texte depuis un PDF.  
+**Description:** extraire le texte depuis un PDF.  
 **Icon:** 📄
 
 ## Table des matières
@@ -22,11 +22,11 @@ Element permettant d'extraire le texte à partir d'un fichier PDF fourni par l'u
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                              |
-|----------|---------|--------|------------------------------------------|
+| Nom      | Type    | Requis | Description                                                 |
+| -------- | ------- | ------ | ----------------------------------------------------------- |
 | label    | string  | Non    | Texte affiché à l'utilisateur pour le guider dans sa saisie |
-| accept   | string  | Non    | Type de fichiers acceptés                |
-| required | boolean | Non    | Champs requis pour exécuter le boost     |
+| accept   | string  | Non    | Type de fichiers acceptés                                   |
+| required | boolean | Non    | Champs requis pour exécuter le boost                        |
 
 #### Exemple
 

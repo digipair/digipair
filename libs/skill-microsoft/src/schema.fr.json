@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-microsoft",
     "summary": "Communication avec les services Microsoft",
-    "description": "Cette compétence permet d'utiliser les services Microsoft",
+    "description": "utiliser les services Microsoft",
     "version": "0.1.0",
     "x-icon": "❖"
   },

@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion d'une serrure Nuki  
-**Description:** Cette compétence permet de gérer une serrure Nuki.  
+**Description:** gérer une serrure Nuki.  
 **Icon:** 🔐
 
 ## Table des matières
@@ -19,11 +19,11 @@ Ouvre une serrure Nuki.
 
 #### Paramètres
 
-| Nom               | Type   | Requis | Description                |
-|-------------------|--------|--------|----------------------------|
-| id                | string | Oui    | Identifiant de la serrure  |
-| NUKI_API_KEY      | string | Non    | Clé d'API Nuki             |
-| NUKI_API_ENDPOINT | string | Non    | Endpoint de l'API Nuki     |
+| Nom               | Type   | Requis | Description               |
+| ----------------- | ------ | ------ | ------------------------- |
+| id                | string | Oui    | Identifiant de la serrure |
+| NUKI_API_KEY      | string | Non    | Clé d'API Nuki            |
+| NUKI_API_ENDPOINT | string | Non    | Endpoint de l'API Nuki    |
 
 #### Exemple
 
@@ -45,11 +45,11 @@ Ferme une serrure Nuki.
 
 #### Paramètres
 
-| Nom               | Type   | Requis | Description                |
-|-------------------|--------|--------|----------------------------|
-| id                | string | Oui    | Identifiant de la serrure  |
-| NUKI_API_KEY      | string | Non    | Clé d'API Nuki             |
-| NUKI_API_ENDPOINT | string | Non    | Endpoint de l'API Nuki     |
+| Nom               | Type   | Requis | Description               |
+| ----------------- | ------ | ------ | ------------------------- |
+| id                | string | Oui    | Identifiant de la serrure |
+| NUKI_API_KEY      | string | Non    | Clé d'API Nuki            |
+| NUKI_API_ENDPOINT | string | Non    | Endpoint de l'API Nuki    |
 
 #### Exemple
 

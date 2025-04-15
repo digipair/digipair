@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Serveur HTTP  
-**Description:** Cette compétence permet de gérer les réponses à des appels HTTP.  
+**Description:** gérer les réponses à des appels HTTP.  
 **Icon:** 💻
 
 ## Table des matières
@@ -19,9 +19,9 @@ Réponse à un appel HTTP.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description            |
-|----------|--------|--------|------------------------|
-| execute  | array  | Oui    | Commandes à exécuter   |
+| Nom     | Type  | Requis | Description          |
+| ------- | ----- | ------ | -------------------- |
+| execute | array | Oui    | Commandes à exécuter |
 
 #### Exemple
 

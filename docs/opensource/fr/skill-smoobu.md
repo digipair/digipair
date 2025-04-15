@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Gestion des locations via Smoobu  
-**Description:** Cette compétence permet d'utiliser le service Smoobu.  
+**Description:** utiliser le service Smoobu.  
 **Icon:** 🏡
 
 ## Table des matières
@@ -20,11 +20,11 @@ Information d'une réservation Smoobu
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                      |
-|--------------------|--------|--------|----------------------------------|
-| reservationId      | string | Oui    | Identifiant de la réservation    |
-| SMOOBU_API_KEY     | string | Non    | Clé d'API Smoobu                 |
-| SMOOBU_API_ENDPOINT| string | Non    | Endpoint de l'API Smoobu         |
+| Nom                 | Type   | Requis | Description                   |
+| ------------------- | ------ | ------ | ----------------------------- |
+| reservationId       | string | Oui    | Identifiant de la réservation |
+| SMOOBU_API_KEY      | string | Non    | Clé d'API Smoobu              |
+| SMOOBU_API_ENDPOINT | string | Non    | Endpoint de l'API Smoobu      |
 
 #### Exemple
 
@@ -46,12 +46,12 @@ Envoi d'un message via Smoobu
 
 #### Paramètres
 
-| Nom                | Type   | Requis | Description                      |
-|--------------------|--------|--------|----------------------------------|
-| reservationId      | string | Oui    | Identifiant de la réservation    |
-| message            | string | Oui    | Message à envoyer                |
-| SMOOBU_API_KEY     | string | Non    | Clé d'API Smoobu                 |
-| SMOOBU_API_ENDPOINT| string | Non    | Endpoint de l'API Smoobu         |
+| Nom                 | Type   | Requis | Description                   |
+| ------------------- | ------ | ------ | ----------------------------- |
+| reservationId       | string | Oui    | Identifiant de la réservation |
+| message             | string | Oui    | Message à envoyer             |
+| SMOOBU_API_KEY      | string | Non    | Clé d'API Smoobu              |
+| SMOOBU_API_ENDPOINT | string | Non    | Endpoint de l'API Smoobu      |
 
 #### Exemple
 
@@ -74,27 +74,27 @@ Liste des réservations Smoobu
 
 #### Paramètres
 
-| Nom                  | Type   | Requis | Description                      |
-|----------------------|--------|--------|----------------------------------|
-| created_from         | string | Non    | Date de création depuis          |
-| created_to           | string | Non    | Date de création jusqu'à         |
-| from                 | string | Non    | Date de début                    |
-| to                   | string | Non    | Date de fin                      |
-| modifiedFrom         | string | Non    | Date de modification depuis      |
-| modifiedTo           | string | Non    | Date de modification jusqu'à     |
-| arrivalFrom          | string | Non    | Date d'arrivée depuis            |
-| arrivalTo            | string | Non    | Date d'arrivée jusqu'à           |
-| departureFrom        | string | Non    | Date de départ depuis            |
-| departureTo          | string | Non    | Date de départ jusqu'à           |
-| showCancellation     | string | Non    | Afficher les annulations         |
-| excludeBlocked       | string | Non    | Exclure les bloqués              |
-| page                 | string | Non    | Page                             |
-| pageSize             | string | Non    | Taille de la page                |
-| apartmentId          | string | Non    | Identifiant de l'appartement     |
-| includeRelated       | string | Non    | Inclure les détails              |
-| includePriceElements | string | Non    | Inclure les éléments de prix     |
-| SMOOBU_API_KEY       | string | Non    | Clé d'API Smoobu                 |
-| SMOOBU_API_ENDPOINT  | string | Non    | Endpoint de l'API Smoobu         |
+| Nom                  | Type   | Requis | Description                  |
+| -------------------- | ------ | ------ | ---------------------------- |
+| created_from         | string | Non    | Date de création depuis      |
+| created_to           | string | Non    | Date de création jusqu'à     |
+| from                 | string | Non    | Date de début                |
+| to                   | string | Non    | Date de fin                  |
+| modifiedFrom         | string | Non    | Date de modification depuis  |
+| modifiedTo           | string | Non    | Date de modification jusqu'à |
+| arrivalFrom          | string | Non    | Date d'arrivée depuis        |
+| arrivalTo            | string | Non    | Date d'arrivée jusqu'à       |
+| departureFrom        | string | Non    | Date de départ depuis        |
+| departureTo          | string | Non    | Date de départ jusqu'à       |
+| showCancellation     | string | Non    | Afficher les annulations     |
+| excludeBlocked       | string | Non    | Exclure les bloqués          |
+| page                 | string | Non    | Page                         |
+| pageSize             | string | Non    | Taille de la page            |
+| apartmentId          | string | Non    | Identifiant de l'appartement |
+| includeRelated       | string | Non    | Inclure les détails          |
+| includePriceElements | string | Non    | Inclure les éléments de prix |
+| SMOOBU_API_KEY       | string | Non    | Clé d'API Smoobu             |
+| SMOOBU_API_ENDPOINT  | string | Non    | Endpoint de l'API Smoobu     |
 
 #### Exemple
 

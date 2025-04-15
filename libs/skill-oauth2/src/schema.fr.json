@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-oauth2",
     "summary": "Gestion des autorisations OAuth2",
-    "description": "Cette compétence permet de gérer les autorisations OAuth2",
+    "description": "gérer les autorisations OAuth2",
     "version": "0.1.0",
     "x-icon": "🔐"
   },

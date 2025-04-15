@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Communication avec les services LinkedIn  
-**Description:** Cette compétence permet d'utiliser les services LinkedIn.  
+**Description:** utiliser les services LinkedIn.  
 **Icon:** 👤
 
 ## Table des matières
@@ -23,14 +23,14 @@ Exécute un service LinkedIn.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| path     | string | Oui    | Chemin du service à exécuter|
-| method   | string | Non    | Méthode HTTP à utiliser    |
-| body     | object | Non    | Valeur à envoyer           |
-| version  | string | Non    | Version de l'API à utiliser|
-| headers  | object | Non    | En-têtes à envoyer         |
-| TOKEN    | string | Non    | Jeton d'accès à utiliser   |
+| Nom     | Type   | Requis | Description                  |
+| ------- | ------ | ------ | ---------------------------- |
+| path    | string | Oui    | Chemin du service à exécuter |
+| method  | string | Non    | Méthode HTTP à utiliser      |
+| body    | object | Non    | Valeur à envoyer             |
+| version | string | Non    | Version de l'API à utiliser  |
+| headers | object | Non    | En-têtes à envoyer           |
+| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
 
 #### Exemple
 
@@ -55,13 +55,13 @@ Ajoute une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| path     | string | Oui    | Chemin du service à exécuter|
-| body     | object | Non    | Valeur à envoyer           |
-| version  | string | Non    | Version de l'API à utiliser|
-| headers  | object | Non    | En-têtes à envoyer         |
-| TOKEN    | string | Non    | Jeton d'accès à utiliser   |
+| Nom     | Type   | Requis | Description                  |
+| ------- | ------ | ------ | ---------------------------- |
+| path    | string | Oui    | Chemin du service à exécuter |
+| body    | object | Non    | Valeur à envoyer             |
+| version | string | Non    | Version de l'API à utiliser  |
+| headers | object | Non    | En-têtes à envoyer           |
+| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
 
 #### Exemple
 
@@ -100,12 +100,12 @@ Lit une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| path     | string | Oui    | Chemin du service à exécuter|
-| version  | string | Non    | Version de l'API à utiliser|
-| headers  | object | Non    | En-têtes à envoyer         |
-| TOKEN    | string | Non    | Jeton d'accès à utiliser   |
+| Nom     | Type   | Requis | Description                  |
+| ------- | ------ | ------ | ---------------------------- |
+| path    | string | Oui    | Chemin du service à exécuter |
+| version | string | Non    | Version de l'API à utiliser  |
+| headers | object | Non    | En-têtes à envoyer           |
+| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
 
 #### Exemple
 
@@ -129,13 +129,13 @@ Modifie une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| path     | string | Oui    | Chemin du service à exécuter|
-| body     | object | Non    | Valeur à envoyer           |
-| version  | string | Non    | Version de l'API à utiliser|
-| headers  | object | Non    | En-têtes à envoyer         |
-| TOKEN    | string | Non    | Jeton d'accès à utiliser   |
+| Nom     | Type   | Requis | Description                  |
+| ------- | ------ | ------ | ---------------------------- |
+| path    | string | Oui    | Chemin du service à exécuter |
+| body    | object | Non    | Valeur à envoyer             |
+| version | string | Non    | Version de l'API à utiliser  |
+| headers | object | Non    | En-têtes à envoyer           |
+| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
 
 #### Exemple
 
@@ -169,13 +169,13 @@ Modifie une partie d'une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| path     | string | Oui    | Chemin du service à exécuter|
-| body     | object | Non    | Valeur à envoyer           |
-| version  | string | Non    | Version de l'API à utiliser|
-| headers  | object | Non    | En-têtes à envoyer         |
-| TOKEN    | string | Non    | Jeton d'accès à utiliser   |
+| Nom     | Type   | Requis | Description                  |
+| ------- | ------ | ------ | ---------------------------- |
+| path    | string | Oui    | Chemin du service à exécuter |
+| body    | object | Non    | Valeur à envoyer             |
+| version | string | Non    | Version de l'API à utiliser  |
+| headers | object | Non    | En-têtes à envoyer           |
+| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
 
 #### Exemple
 
@@ -208,12 +208,12 @@ Supprime une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| path     | string | Oui    | Chemin du service à exécuter|
-| version  | string | Non    | Version de l'API à utiliser|
-| headers  | object | Non    | En-têtes à envoyer         |
-| TOKEN    | string | Non    | Jeton d'accès à utiliser   |
+| Nom     | Type   | Requis | Description                  |
+| ------- | ------ | ------ | ---------------------------- |
+| path    | string | Oui    | Chemin du service à exécuter |
+| version | string | Non    | Version de l'API à utiliser  |
+| headers | object | Non    | En-têtes à envoyer           |
+| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
 
 #### Exemple
 

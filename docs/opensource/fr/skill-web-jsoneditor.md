@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Editeur JSON  
-**Description:** Cette compétence permet d'afficher un éditeur JSON dans une page web. L'utilisateur peut modifier le contenu JSON et récupérer le contenu modifié.  
+**Description:** afficher un éditeur JSON dans une page web. L'utilisateur peut modifier le contenu JSON et récupérer le contenu modifié.  
 **Icon:** 📐
 
 ## Table des matières
@@ -18,16 +18,16 @@ Editeur JSON
 
 #### Paramètres
 
-| Nom           | Type   | Requis | Description                          |
-|---------------|--------|--------|--------------------------------------|
-| json          | object | Non    | Contenu json à afficher dans l'éditeur |
-| contentStyle  | string | Non    | Style personnalisé du conteneur      |
+| Nom          | Type   | Requis | Description                            |
+| ------------ | ------ | ------ | -------------------------------------- |
+| json         | object | Non    | Contenu json à afficher dans l'éditeur |
+| contentStyle | string | Non    | Style personnalisé du conteneur        |
 
 #### Événements
 
-| Nom    | Type   | Requis | Description                                |
-|--------|--------|--------|--------------------------------------------|
-| change | array  | Non    | Action déclenchée lors d'un changement dans l'éditeur |
+| Nom    | Type  | Requis | Description                                           |
+| ------ | ----- | ------ | ----------------------------------------------------- |
+| change | array | Non    | Action déclenchée lors d'un changement dans l'éditeur |
 
 #### Exemple
 

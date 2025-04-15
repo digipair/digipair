@@ -3,7 +3,7 @@
   "info": {
     "title": "@digipair/skill-mybuddy",
     "summary": "Gestion d'un robot myBuddy",
-    "description": "Cette compétence permet de gérer un robot elephant robotics myBuddy.",
+    "description": "gérer un robot elephant robotics myBuddy.",
     "version": "0.1.0",
     "x-icon": "🤖"
   },
