@@ -14,8 +14,12 @@ class WebInteractService {
     } else if (typeof value === 'string') {
       element.setAttribute(attribute, value);
     } else {
-      element['__' + attribute] = value;
-      element.requestUpdate();
+      if (typeof element['__' + attribute] !== 'undefined') {
+        element['__' + attribute] = value;
+        element.requestUpdate();
+      } else {
+        element[attribute] = value;
+      }
     }
   }
 
@@ -104,15 +108,15 @@ class WebInteractService {
         width: { ideal: width },
         height: { ideal: height },
         facingMode,
-        deviceId
-      }
+        deviceId,
+      },
     };
 
     const video = document.createElement('video');
     video.autoplay = true;
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = stream;
-    await new Promise(resolve => video.onloadedmetadata = resolve);
+    await new Promise(resolve => (video.onloadedmetadata = resolve));
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
@@ -124,7 +128,11 @@ class WebInteractService {
     return image;
   }
 
-  async getMediaDevices(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+  async getMediaDevices(
+    _params: any,
+    _pinsSettingsList: PinsSettings[],
+    _context: any,
+  ): Promise<any> {
     return navigator.mediaDevices.enumerateDevices();
   }
 }

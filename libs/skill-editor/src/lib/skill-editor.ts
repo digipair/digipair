@@ -324,6 +324,9 @@ export const addDigipair = (params: any, pinsSettingsList: PinsSettings[], conte
 export const metadata = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().metadata(params, pinsSettingsList, context);
 
+export const setAvatar = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new EditorService().setAvatar(params, pinsSettingsList, context);
+
 export const templates = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new EditorService().templates(params, pinsSettingsList, context);
 
