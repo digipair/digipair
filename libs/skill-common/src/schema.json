@@ -8,6 +8,24 @@
     "x-icon": "🚀"
   },
   "paths": {
+    "/infos": {
+      "post": {
+        "tags": ["service"],
+        "summary": "List the informations",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Digipair's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/metadata": {
       "post": {
         "tags": ["service"],

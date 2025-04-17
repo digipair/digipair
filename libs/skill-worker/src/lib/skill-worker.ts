@@ -26,3 +26,6 @@ export const task = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const action = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WorkerService().action(params, pinsSettingsList, context);
+
+export const stop = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WorkerService().stop(params, pinsSettingsList, context);

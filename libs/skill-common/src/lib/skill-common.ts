@@ -2,6 +2,22 @@ import { PinsSettings } from '@digipair/engine';
 import { existsSync, promises } from 'fs';
 
 class CommonService {
+  async infos(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path =
+      context.privates?.EDITOR_PATH ??
+      (process.env['DIGIPAIR_FACTORY_PATH']
+        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+        : './factory/digipairs');
+    const { digipair } = params;
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+    const config = JSON.parse(content);
+
+    return {
+      name: config.name,
+      description: config.description,
+    };
+  }
+
   async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const path =
       context.privates?.EDITOR_PATH ??
@@ -135,6 +151,9 @@ class CommonService {
     };
   }
 }
+
+export const infos = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new CommonService().infos(params, pinsSettingsList, context);
 
 export const metadata = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().metadata(params, pinsSettingsList, context);

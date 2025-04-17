@@ -72,6 +72,9 @@ export const execute = (params: any, pinsSettingsList: PinsSettings[], context: 
 export const keepAlive = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new FactoryService().keepAlive(params, pinsSettingsList, context);
 
+export const stop = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new FactoryService().stop(params, pinsSettingsList, context);
+
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new FactoryService().task(params, pinsSettingsList, context);
 
