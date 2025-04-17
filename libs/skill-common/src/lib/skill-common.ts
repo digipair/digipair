@@ -1,5 +1,5 @@
 import { PinsSettings } from '@digipair/engine';
-import { promises } from 'fs';
+import { existsSync, promises } from 'fs';
 
 class CommonService {
   async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -60,9 +60,13 @@ class CommonService {
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
+    let content = {} as any;
 
-    const text = await promises.readFile(`${path}/${digipair}/schema.json`, 'utf8');
-    const content = JSON.parse(text);
+    // check if schema.json exists
+    if (existsSync(`${path}/${digipair}/schema.json`)) {
+      const text = await promises.readFile(`${path}/${digipair}/schema.json`, 'utf8');
+      content = JSON.parse(text);
+    }
 
     const files = await promises.readdir(`${path}/${digipair}`);
     const actions = (
