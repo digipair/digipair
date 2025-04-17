@@ -1,0 +1,242 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-factory",
+    "summary": "Actions dans la factory Digipair",
+    "description": "Actions dans la factory Digipair.",
+    "version": "0.1.0",
+    "x-icon": "🛠"
+  },
+  "paths": {
+    "/start": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Démarrage d'un raisonnement",
+        "description": "Démarrage d'un raisonnement depuis la factory Digipair",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "required": false,
+            "description": "Propriétaire du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reasoning",
+            "summary": "Raisonnement",
+            "required": true,
+            "description": "Nom du raisonnement",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "summary": "Données",
+            "required": false,
+            "description": "Données à envoyer",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "factory",
+            "summary": "Factory",
+            "required": false,
+            "description": "Nom de la factory",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Execute avec un contexte",
+        "description": "Execute des Pin's avec un contexte donné",
+        "parameters": [
+          {
+            "name": "execute",
+            "required": true,
+            "summary": "Actions à exécuter",
+            "description": "Actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "context",
+            "required": false,
+            "summary": "Contexte",
+            "description": "Contexte d'exécution",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/keepAlive": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Keep-alive",
+        "description": "Garder en vie le raisonnement",
+        "parameters": [],
+        "x-events": []
+      }
+    }
+  },
+  "x-scene-blocks": {
+    "/task": {
+      "summary": "Tache",
+      "description": "Exécution d'une tache.",
+      "tags": ["service"],
+      "metadata": [],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Exécute",
+          "required": true,
+          "description": "Commandes à exécuter",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/action": {
+      "summary": "Action",
+      "description": "Action exécutable.",
+      "tags": ["service"],
+      "metadata": [
+        {
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Tags de l'action",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Paramètres",
+          "required": true,
+          "description": "Paramètres de l'action",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commandes à exécuter.",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    },
+    "/trigger": {
+      "summary": "Déclencheur",
+      "description": "Déclenchement d'une exécution d'actions.",
+      "tags": ["service"],
+      "metadata": [
+        {
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Tags du déclencheur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Paramètres",
+          "required": true,
+          "description": "Paramètres du déclencheur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commandes à exécuter.",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "Parameter": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Parameter",
+        "properties": {
+          "name": {
+            "summary": "Nom",
+            "type": "string"
+          },
+          "summary": {
+            "summary": "Affichage",
+            "type": "string"
+          },
+          "required": {
+            "summary": "Requis",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
+            "type": "object"
+          },
+          "description": {
+            "summary": "Description",
+            "type": "string"
+          }
+        },
+        "required": ["name", "summary", "required", "schema"]
+      }
+    }
+  }
+}
