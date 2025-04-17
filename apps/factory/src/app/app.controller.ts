@@ -64,24 +64,24 @@ export class AppController {
         skillProcess.remove(id);
       });
 
-      res.send(
-        await this.appService.agent(
-          `${assets}/digipairs`,
-          digipair,
-          reasoning,
-          body,
-          params,
-          query,
-          method,
-          request.headers,
-          {},
-          request,
-          res,
-          signal,
-        ),
+      const result = await this.appService.agent(
+        `${assets}/digipairs`,
+        digipair,
+        reasoning,
+        body,
+        params,
+        query,
+        method,
+        request.headers,
+        {},
+        request,
+        res,
+        signal,
       );
+      
+      res.send(result);
     } catch (error) {
-      if (error !== 'DIGIPAIR_KEEPALIVE') {
+      if (error.type !== 'DIGIPAIR_KEEPALIVE') {
         throw error;
       }
     }

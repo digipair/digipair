@@ -30,7 +30,13 @@ class FactoryService {
   }
 
   async keepAlive(_params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    throw 'DIGIPAIR_KEEPALIVE';
+    throw { type: 'DIGIPAIR_KEEPALIVE' };
+  }
+
+  async stop(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { value = {} } = params;
+
+    throw { type: 'DIGIPAIR_STOP', value };
   }
 
   async task(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {

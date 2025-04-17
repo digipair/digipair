@@ -1,96 +1,29 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-factory",
-    "summary": "Actions dans la factory Digipair",
-    "description": "Actions dans la factory Digipair.",
+    "title": "@digipair/skill-worker",
+    "summary": "Agent métier",
+    "description": "Actions des agents métiers.",
     "version": "0.1.0",
     "x-icon": "🛠"
   },
   "paths": {
-    "/start": {
+    "/stop": {
       "post": {
         "tags": ["service"],
-        "summary": "Démarrage d'un raisonnement",
-        "description": "Démarrage d'un raisonnement depuis la factory Digipair",
+        "summary": "Stop",
+        "description": "Stop le raisonnement",
         "parameters": [
           {
-            "name": "digipair",
-            "summary": "Digipair",
+            "name": "value",
             "required": false,
-            "description": "Propriétaire du raisonnement",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Raisonnement",
-            "required": true,
-            "description": "Nom du raisonnement",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "summary": "Données",
-            "required": false,
-            "description": "Données à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "factory",
-            "summary": "Factory",
-            "required": false,
-            "description": "Nom de la factory",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/execute": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Execute avec un contexte",
-        "description": "Execute des Pin's avec un contexte donné",
-        "parameters": [
-          {
-            "name": "execute",
-            "required": true,
-            "summary": "Actions à exécuter",
-            "description": "Actions à exécuter",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          },
-          {
-            "name": "context",
-            "required": false,
-            "summary": "Contexte",
-            "description": "Contexte d'exécution",
+            "summary": "Valeur",
+            "description": "Valeur à retourner",
             "schema": {
               "type": "object"
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/keepAlive": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Keep-alive",
-        "description": "Garder en vie le raisonnement",
-        "parameters": [],
         "x-events": []
       }
     }
@@ -121,18 +54,6 @@
       "description": "Action exécutable.",
       "tags": ["service"],
       "metadata": [
-        {
-          "name": "tags",
-          "summary": "Tags",
-          "required": true,
-          "description": "Tags de l'action",
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
         {
           "name": "parameters",
           "summary": "Paramètres",

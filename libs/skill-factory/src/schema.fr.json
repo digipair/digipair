@@ -93,6 +93,25 @@
         "parameters": [],
         "x-events": []
       }
+    },
+    "/stop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Stop",
+        "description": "Stop le raisonnement",
+        "parameters": [
+          {
+            "name": "value",
+            "required": false,
+            "summary": "Valeur",
+            "description": "Valeur à retourner",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "x-scene-blocks": {
@@ -121,18 +140,6 @@
       "description": "Action exécutable.",
       "tags": ["service"],
       "metadata": [
-        {
-          "name": "tags",
-          "summary": "Tags",
-          "required": true,
-          "description": "Tags de l'action",
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
         {
           "name": "parameters",
           "summary": "Paramètres",

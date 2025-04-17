@@ -13,6 +13,12 @@ class WorkerService {
 
     return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
+
+  async stop(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { value = {} } = params;
+
+    throw { type: 'DIGIPAIR_STOP', value };
+  }
 }
 
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>

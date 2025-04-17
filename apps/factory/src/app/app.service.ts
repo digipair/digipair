@@ -21,16 +21,26 @@ config.set('LOGGER', (level: string, path: string, message: string, context: any
 
   switch (level) {
     case 'INFO':
-      console.log(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`);
+      console.log(
+        `[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`,
+      );
       break;
     case 'ERROR':
-      console.error(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`, data);
+      console.error(
+        `[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`,
+        data,
+      );
       break;
     case 'DEBUG':
-      console.debug(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`, data);
+      console.debug(
+        `[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`,
+        data,
+      );
       break;
     default:
-      console.log(`[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`);
+      console.log(
+        `[${time}][${context.request.digipair}@${context.request.reasoning}][${path}] ${message}`,
+      );
       break;
   }
 });
@@ -77,7 +87,7 @@ export class AppService implements OnModuleInit {
           await this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null, signal);
           skillProcess.remove(id);
         } catch (error) {
-          if (error !== 'DIGIPAIR_KEEPALIVE') {
+          if (error.type !== 'DIGIPAIR_KEEPALIVE') {
             console.error(error);
             skillProcess.remove(id);
           }
@@ -175,8 +185,12 @@ export class AppService implements OnModuleInit {
 
       return result;
     } catch (error) {
-      if (error === 'DIGIPAIR_KEEPALIVE') {
+      if (error.type === 'DIGIPAIR_KEEPALIVE') {
         throw error;
+      }
+
+      if (error.type === 'DIGIPAIR_STOP') {
+        return error.value;
       }
 
       console.error(error);

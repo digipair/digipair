@@ -85,7 +85,7 @@ class CommonService {
               key: `/action-${name}`,
               value: {
                 post: {
-                  tags: metadata.tags ?? [],
+                  tags: metadata.tags ?? ['service'],
                   summary,
                   description,
                   parameters: metadata.parameters ?? [],

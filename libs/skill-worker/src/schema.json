@@ -2,12 +2,32 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-worker",
-    "summary": "Digiworker skill",
-    "description": "Digiworkers triggers and actions.",
+    "summary": "Worker",
+    "description": "Digiworkers actions.",
     "version": "0.1.0",
     "x-icon": "🛠"
   },
-  "paths": {},
+  "paths": {
+    "/stop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Stop",
+        "description": "Stop the reasoning",
+        "parameters": [
+          {
+            "name": "value",
+            "required": false,
+            "summary": "Value",
+            "description": "Value to return",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
   "components": {
     "schemas": {
       "Parameter": {
@@ -66,18 +86,6 @@
       "description": "Executable action.",
       "tags": ["service"],
       "metadata": [
-        {
-          "name": "tags",
-          "summary": "Tags",
-          "required": true,
-          "description": "Action tags",
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
         {
           "name": "parameters",
           "summary": "Parameters",

@@ -93,6 +93,25 @@
         "parameters": [],
         "x-events": []
       }
+    },
+    "/stop": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Stop",
+        "description": "Stop the reasoning",
+        "parameters": [
+          {
+            "name": "value",
+            "required": false,
+            "summary": "Value",
+            "description": "Value to return",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
@@ -153,18 +172,6 @@
       "description": "Executable action.",
       "tags": ["service"],
       "metadata": [
-        {
-          "name": "tags",
-          "summary": "Tags",
-          "required": true,
-          "description": "Action tags",
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
         {
           "name": "parameters",
           "summary": "Parameters",
