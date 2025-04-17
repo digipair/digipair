@@ -76,12 +76,15 @@ class CommonService {
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
-    let content = {} as any;
+    let schema = {} as any;
+
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+    const config = JSON.parse(content);
 
     // check if schema.json exists
     if (existsSync(`${path}/${digipair}/schema.json`)) {
       const text = await promises.readFile(`${path}/${digipair}/schema.json`, 'utf8');
-      content = JSON.parse(text);
+      schema = JSON.parse(text);
     }
 
     const files = await promises.readdir(`${path}/${digipair}`);
@@ -145,9 +148,17 @@ class CommonService {
     }, {});
 
     return {
-      ...content,
-      paths: { ...content.paths, ...actions },
-      'x-scene-blocks': { ...content['x-scene-blocks'], ...triggers },
+      openapi: '3.0.0',
+      info: {
+        title: 'digipair:' + digipair,
+        summary: config.name,
+        description: config.description,
+        version: '1.0.0',
+        'x-icon': '🤖',
+      },
+      ...schema,
+      paths: { ...schema.paths, ...actions },
+      'x-scene-blocks': { ...schema['x-scene-blocks'], ...triggers },
     };
   }
 }
