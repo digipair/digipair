@@ -264,37 +264,11 @@
               "element": "start",
               "properties": {
                 "reasoning": "schema.json",
-                "digipair": "{{item}}"
+                "digipair": "{{item}}",
+                "factory": "EVALUATE:if starts with(value, \"http\") then value else null"
               },
               "conditions": {
                 "each": "EVALUATE:previous"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "library": "@digipair/skill-basic",
-        "element": "setVariable",
-        "properties": {
-          "name": "schemasRemote",
-          "execute": [
-            {
-              "library": "@digipair/skill-basic",
-              "element": "transform",
-              "properties": {
-                "execute": [
-                  {
-                    "library": "@digipair/skill-http",
-                    "element": "read",
-                    "properties": {
-                      "path": "EVALUATE:item.value + \"/\" + split(item.key, \"digipair:\")[2] + \"/schema.json\""
-                    }
-                  }
-                ]
-              },
-              "conditions": {
-                "each": "EVALUATE:get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and starts with(value, \"http\")]"
               }
             }
           ]
@@ -310,7 +284,7 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:flatten([variables.schemasLibraries, variables.schemasRemote, variables.schemasDigipair])"
+                "value": "EVALUATE:flatten([variables.schemasLibraries, variables.schemasDigipair])"
               }
             }
           ]
