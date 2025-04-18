@@ -75,6 +75,7 @@
       "@digipair/skill-web-pdf": ["libs/skill-web-pdf/src/index.ts"],
       "@digipair/skill-web-push-notification": ["libs/skill-web-push-notification/src/index.ts"],
       "@digipair/skill-web-spectrum": ["libs/skill-web-spectrum/src/index.ts"],
+      "@digipair/skill-tool": ["libs/skill-tool/src/index.ts"],
       "@digipair/skill-web-voice-activity-detection": [
         "libs/skill-web-voice-activity-detection/src/index.ts"
       ],
