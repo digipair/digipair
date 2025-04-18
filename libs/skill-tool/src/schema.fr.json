@@ -26,6 +26,46 @@
         ],
         "x-events": []
       }
+    },
+    "/keepAlive": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Keep-alive",
+        "description": "Garder en vie le raisonnement",
+        "parameters": [],
+        "x-events": []
+      }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Execute avec un contexte",
+        "description": "Execute des Pin's avec un contexte donné",
+        "parameters": [
+          {
+            "name": "execute",
+            "required": true,
+            "summary": "Actions à exécuter",
+            "description": "Actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "context",
+            "required": false,
+            "summary": "Contexte",
+            "description": "Contexte d'exécution",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "x-scene-blocks": {

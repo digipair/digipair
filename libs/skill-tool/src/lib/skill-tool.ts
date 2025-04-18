@@ -29,6 +29,13 @@ class ToolService {
   async keepAlive(_params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     throw { type: 'DIGIPAIR_KEEPALIVE' };
   }
+
+  async execute(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { execute, context = _context } = params;
+
+    const result = await executePinsList(execute, context, `${context.__PATH__}.execute`);
+    return result;
+  }
 }
 
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -45,3 +52,6 @@ export const stop = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const keepAlive = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ToolService().keepAlive(params, pinsSettingsList, context);
+
+export const execute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ToolService().execute(params, pinsSettingsList, context);
