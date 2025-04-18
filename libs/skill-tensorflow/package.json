@@ -4,7 +4,7 @@
   "keywords": [
     "digipair",
     "service",
-    "tool"
+    "util"
   ],
   "dependencies": {
     "@tensorflow-models/coco-ssd": "^2.2.3",
