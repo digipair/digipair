@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-debug",
-    "summary": "Factory Debugging",
+    "summary": "Debugging",
     "description": "This skill allows users to debug actions executed on the factory, providing tools and features to identify and resolve issues.",
     "version": "0.1.0",
     "x-icon": "🔧"

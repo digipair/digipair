@@ -14,6 +14,20 @@ class WorkerService {
     return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
+  async activity(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { name, execute } = params;
+    const result = await executePinsList(execute, context, `${context.__PATH__}.execute`);
+
+    if (!context.workflow) {
+      context.workflow = {
+        steps: [],
+      };
+    }
+    context.workflow.steps[name] = result;
+
+    return result;
+  }
+
   async stop(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { value = {} } = params;
 
@@ -26,6 +40,9 @@ export const task = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const action = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WorkerService().action(params, pinsSettingsList, context);
+
+export const activity = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WorkerService().activity(params, pinsSettingsList, context);
 
 export const stop = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WorkerService().stop(params, pinsSettingsList, context);

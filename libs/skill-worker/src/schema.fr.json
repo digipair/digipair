@@ -8,6 +8,37 @@
     "x-icon": "🛠"
   },
   "paths": {
+    "/activity": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Activité",
+        "description": "Exécute une activité.",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": true,
+            "description": "Nom de l'activité",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Commandes à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
     "/stop": {
       "post": {
         "tags": ["service"],
