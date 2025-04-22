@@ -1,0 +1,12 @@
+{
+  "name": "@digipair/skill-s3",
+  "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
+  "dependencies": {},
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}

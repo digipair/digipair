@@ -1,0 +1,153 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-s3",
+    "summary": "Gestionnaire de fichiers S3",
+    "description": "Manipulez des fichiers sur AWS S3 (envoi, téléchargement, suppression, liste)",
+    "version": "0.1.0",
+    "x-icon": "🗂️"
+  },
+  "paths": {
+    "/upload": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoyer un fichier",
+        "description": "Envoie un fichier dans un bucket S3",
+        "parameters": [
+          {
+            "name": "bucket",
+            "summary": "Nom du bucket",
+            "required": true,
+            "description": "Nom du bucket S3 cible",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "key",
+            "summary": "Clé de l'objet",
+            "required": true,
+            "description": "Clé (chemin) sous laquelle le fichier sera stocké",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "content",
+            "summary": "Contenu en base64",
+            "required": true,
+            "description": "Contenu encodé en base64 du fichier (avec préfixe data URI)",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "contentType",
+            "summary": "Type MIME",
+            "required": false,
+            "description": "Type MIME du fichier",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration AWS",
+            "required": false,
+            "description": "Configuration du client AWS SDK (optionnelle)",
+            "schema": { "type": "object" }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/download": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Télécharger un fichier",
+        "description": "Télécharge un fichier depuis un bucket S3",
+        "parameters": [
+          {
+            "name": "bucket",
+            "summary": "Nom du bucket",
+            "required": true,
+            "description": "Nom du bucket S3",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "key",
+            "summary": "Clé de l'objet",
+            "required": true,
+            "description": "Clé (chemin) du fichier à télécharger",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration AWS",
+            "required": false,
+            "description": "Configuration du client AWS SDK (optionnelle)",
+            "schema": { "type": "object" }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/delete": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Supprimer un fichier",
+        "description": "Supprime un fichier d’un bucket S3",
+        "parameters": [
+          {
+            "name": "bucket",
+            "summary": "Nom du bucket",
+            "required": true,
+            "description": "Nom du bucket S3",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "key",
+            "summary": "Clé de l'objet",
+            "required": true,
+            "description": "Clé (chemin) du fichier à supprimer",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration AWS",
+            "required": false,
+            "description": "Configuration du client AWS SDK (optionnelle)",
+            "schema": { "type": "object" }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Lister les fichiers",
+        "description": "Liste les fichiers d’un bucket S3, avec un préfixe éventuel",
+        "parameters": [
+          {
+            "name": "bucket",
+            "summary": "Nom du bucket",
+            "required": true,
+            "description": "Nom du bucket S3",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "prefix",
+            "summary": "Préfixe",
+            "required": false,
+            "description": "Préfixe (dossier) pour filtrer les objets",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration AWS",
+            "required": false,
+            "description": "Configuration du client AWS SDK (optionnelle)",
+            "schema": { "type": "object" }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "skill-s3",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-s3/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-s3",
+        "main": "libs/skill-s3/src/index.ts",
+        "tsConfig": "libs/skill-s3/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-s3/src/index.d.ts",
+          "libs/skill-s3/src/schema.json",
+          "libs/skill-s3/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-s3/rollup.build.cjs"],
+        "project": "libs/skill-s3/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-s3 {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}
