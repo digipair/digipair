@@ -1401,6 +1401,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "size",
+            "summary": "Size",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
