@@ -15,15 +15,11 @@ class S3Service {
   }
 
   async upload(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      bucket,
-      key,
-      content,
-      contentType = 'application/octet-stream',
-      config = context.privates.S3_CONFIG,
-    } = params;
+    const { bucket, key, content, config = context.privates.S3_CONFIG } = params;
 
     const client = this.getClient(config);
+    const match = content.match(/^data:(.*?);base64,/);
+    const contentType = match[1];
 
     const command = new PutObjectCommand({
       Bucket: bucket,
@@ -32,17 +28,11 @@ class S3Service {
       ContentType: contentType,
     });
 
-    await client.send(command);
-    return { message: 'File uploaded successfully', bucket, key };
+    return await client.send(command);
   }
 
   async download(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      bucket,
-      key,
-      range,
-      config = context.privates.S3_CONFIG,
-    } = params;
+    const { bucket, key, range, config = context.privates.S3_CONFIG } = params;
 
     const client = this.getClient(config);
 
@@ -57,46 +47,26 @@ class S3Service {
     const buffer = Buffer.concat(chunks);
     const base64 = buffer.toString('base64');
 
-    return {
-      filename: key,
-      content: `data:${response.ContentType};base64,${base64}`,
-    };
+    return `data:${response.ContentType};base64,${base64}`;
   }
 
   async delete(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      bucket,
-      key,
-      config = context.privates.S3_CONFIG,
-    } = params;
+    const { bucket, key, config = context.privates.S3_CONFIG } = params;
 
     const client = this.getClient(config);
 
     const command = new DeleteObjectCommand({ Bucket: bucket, Key: key });
     await client.send(command);
 
-    return { message: 'File deleted successfully', bucket, key };
+    return client.send(command);
   }
 
   async list(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      bucket,
-      prefix = '',
-      config = context.privates.S3_CONFIG,
-    } = params;
-
+    const { bucket, prefix = '', config = context.privates.S3_CONFIG } = params;
     const client = this.getClient(config);
-
     const command = new ListObjectsV2Command({ Bucket: bucket, Prefix: prefix });
-    const response = await client.send(command);
 
-    return {
-      files: (response.Contents || []).map(item => ({
-        key: item.Key,
-        size: item.Size,
-        lastModified: item.LastModified,
-      })),
-    };
+    return await client.send(command);
   }
 }
 

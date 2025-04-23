@@ -36,13 +36,6 @@
             "schema": { "type": "string" }
           },
           {
-            "name": "contentType",
-            "summary": "Type MIME",
-            "required": false,
-            "description": "Type MIME du fichier",
-            "schema": { "type": "string" }
-          },
-          {
             "name": "config",
             "summary": "Configuration AWS",
             "required": false,
