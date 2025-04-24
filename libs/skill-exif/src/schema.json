@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-exif",
+    "summary": "EXIF extraction",
+    "description": "This skill allows parsing and extracting EXIF metadata from images.",
+    "version": "0.1.0",
+    "x-icon": "🖼️"
+  },
+  "paths": {
+    "/parse": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Parse",
+        "description": "Parses EXIF data from the provided image content.",
+        "parameters": [
+          {
+            "name": "content",
+            "summary": "Content",
+            "required": true,
+            "description": "Image content as a base64-encoded string or binary string",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

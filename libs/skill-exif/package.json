@@ -1,5 +1,5 @@
 {
-  "name": "@digipair/skill-s3",
+  "name": "@digipair/skill-exif",
   "version": "0.0.1",
   "keywords": [
     "digipair",
@@ -7,7 +7,7 @@
     "tool"
   ],
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.787.0"
+    "exif-parser": "^0.1.12"
   },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"

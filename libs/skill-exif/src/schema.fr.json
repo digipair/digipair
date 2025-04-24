@@ -1,0 +1,34 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-exif",
+    "summary": "Extraction EXIF",
+    "description": "Cette compétence permet d'extraire les métadonnées EXIF des images.",
+    "version": "0.1.0",
+    "x-icon": "🖼️"
+  },
+  "paths": {
+    "/parse": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Extraire",
+        "parameters": [
+          {
+            "name": "content",
+            "summary": "Contenu",
+            "required": true,
+            "description": "Contenu de l'image sous forme de chaîne encodée en base64 ou binaire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

@@ -5,7 +5,8 @@ const path = require('path');
 
 function getRollupOptions(options) {
   const extraGlobals = {};
-  const externals = ['@aws-sdk/client-s3'];
+  const externals =
+    options.output.format === 'cjs' ? ['exif-parser'] : [];
 
   const value = {
     ...options,
