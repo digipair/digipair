@@ -87,7 +87,7 @@ class CommonService {
       schema = JSON.parse(text);
     }
 
-    const files = await promises.readdir(`${path}/${digipair}`);
+    const files = [...await promises.readdir(`${path}/common`), ...await promises.readdir(`${path}/${digipair}`)];
     const actions = (
       await Promise.all(
         files

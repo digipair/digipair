@@ -7,7 +7,7 @@ class YamlService {
   async load(
     params: any,
     _pinsSettingsList: PinsSettings[],
-    context: any
+    _context: any
   ): Promise<any> {
     const { yaml, options = {} } = params;
     return jsYaml.load(yaml, options);
@@ -16,7 +16,7 @@ class YamlService {
   async dump(
     params: any,
     _pinsSettingsList: PinsSettings[],
-    context: any
+    _context: any
   ): Promise<any> {
     const { data, options = {} } = params;
     return jsYaml.dump(data, options);
