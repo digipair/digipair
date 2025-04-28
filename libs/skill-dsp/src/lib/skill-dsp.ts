@@ -154,7 +154,7 @@ class DspService {
     const result = buffer;
 
     // add comsumption
-    const ai: any = (modelInstance as any).ia ?? modelInstance;
+    const ai: any = (modelInstance as any).ai ?? modelInstance;
     const consumption = ai.modelUsage;
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
@@ -200,7 +200,7 @@ class DspService {
     const result = buffer;
 
     // add comsumption
-    const ai: any = (modelInstance as any).ia ?? modelInstance;
+    const ai: any = (modelInstance as any).ai ?? modelInstance;
     const consumption = ai.modelUsage;
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
@@ -268,7 +268,7 @@ class DspService {
     const result = buffer;
 
     // add comsumption
-    const ai: any = (modelInstance as any).ia ?? modelInstance;
+    const ai: any = (modelInstance as any).ai ?? modelInstance;
     const consumption = ai.modelUsage;
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
