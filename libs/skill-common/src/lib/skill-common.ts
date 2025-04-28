@@ -87,7 +87,40 @@ class CommonService {
       schema = JSON.parse(text);
     }
 
-    const files = [...await promises.readdir(`${path}/common`), ...await promises.readdir(`${path}/${digipair}`)];
+    const filesCommon = await promises.readdir(`${path}/common`);
+    const files = await promises.readdir(`${path}/${digipair}`);
+
+    const actionsCommon = (
+      await Promise.all(
+        filesCommon
+          .map(file => /^action-(.*)\.json$/.exec(file)?.[1])
+          .filter(name => name)
+          .map(async name => {
+            const actionContent = await promises.readFile(
+              `${path}/common/action-${name}.json`,
+              'utf8',
+            );
+            const { summary, description, metadata } = JSON.parse(actionContent);
+
+            return {
+              key: `/action-${name}`,
+              value: {
+                post: {
+                  tags: metadata.tags ?? ['service'],
+                  summary,
+                  description,
+                  parameters: metadata.parameters ?? [],
+                  'x-events': [],
+                },
+              },
+            };
+          }),
+      )
+    ).reduce((acc: any, item: any) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
     const actions = (
       await Promise.all(
         files
@@ -119,6 +152,33 @@ class CommonService {
       return acc;
     }, {});
 
+    const triggersCommon = (
+      await Promise.all(
+        filesCommon
+          .map(file => /^trigger-(.*)\.json$/.exec(file)?.[1])
+          .filter(name => name)
+          .map(async name => {
+            const triggerContent = await promises.readFile(
+              `${path}/common/trigger-${name}.json`,
+              'utf8',
+            );
+            const { summary, description, metadata } = JSON.parse(triggerContent);
+
+            return {
+              key: `/trigger-${name}`,
+              value: {
+                tags: metadata.tags ?? [],
+                summary,
+                description,
+                parameters: metadata.parameters ?? [],
+              },
+            };
+          }),
+      )
+    ).reduce((acc: any, item: any) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
     const triggers = (
       await Promise.all(
         files
@@ -157,8 +217,8 @@ class CommonService {
         'x-icon': '🤖',
       },
       ...schema,
-      paths: { ...schema.paths, ...actions },
-      'x-scene-blocks': { ...schema['x-scene-blocks'], ...triggers },
+      paths: { ...schema.paths, ...actionsCommon, ...actions },
+      'x-scene-blocks': { ...schema['x-scene-blocks'], ...triggersCommon, ...triggers },
     };
   }
 }
