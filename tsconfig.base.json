@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "@digipair/engine": ["libs/engine/src/index.ts"],
-      "@digipair/skill-exif": ["libs/skill-exif/src/index.ts"],
       "@digipair/skill-basic": ["libs/skill-basic/src/index.ts"],
       "@digipair/skill-canvas": ["libs/skill-canvas/src/index.ts"],
       "@digipair/skill-chatbot": ["libs/skill-chatbot/src/index.ts"],
@@ -28,6 +27,7 @@
       "@digipair/skill-docxtemplater": ["libs/skill-docxtemplater/src/index.ts"],
       "@digipair/skill-dsp": ["libs/skill-dsp/src/index.ts"],
       "@digipair/skill-editor": ["libs/skill-editor/src/index.ts"],
+      "@digipair/skill-exif": ["libs/skill-exif/src/index.ts"],
       "@digipair/skill-factory": ["libs/skill-factory/src/index.ts"],
       "@digipair/skill-git": ["libs/skill-git/src/index.ts"],
       "@digipair/skill-heygen": ["libs/skill-heygen/src/index.ts"],
@@ -54,6 +54,7 @@
       "@digipair/skill-s3": ["libs/skill-s3/src/index.ts"],
       "@digipair/skill-sendmail": ["libs/skill-sendmail/src/index.ts"],
       "@digipair/skill-service": ["libs/skill-service/src/index.ts"],
+      "@digipair/skill-sharp": ["libs/skill-sharp/src/index.ts"],
       "@digipair/skill-smoobu": ["libs/skill-smoobu/src/index.ts"],
       "@digipair/skill-sse": ["libs/skill-sse/src/index.ts"],
       "@digipair/skill-temporal": ["libs/skill-temporal/src/index.ts"],

@@ -1,0 +1,14 @@
+{
+  "name": "@digipair/skill-sharp",
+  "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
+  "dependencies": {
+    "sharp": "^0.34.1"
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}
