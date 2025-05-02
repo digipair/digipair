@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-sharp",
-    "summary": "Traitement d’image avec Sharp",
+    "summary": "Traitement d’image",
     "description": "Cette skill permet d’effectuer des traitements avancés sur les images grâce à la librairie Sharp.",
     "version": "0.1.0",
     "x-icon": "🖼️"

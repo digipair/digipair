@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-sharp",
-    "summary": "Image processing with Sharp",
+    "summary": "Image processing",
     "description": "This skill provides advanced image processing functions using the Sharp library.",
     "version": "0.1.0",
     "x-icon": "🖼️"

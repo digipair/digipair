@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-dsp",
-    "summary": "LLM via Stanford DSP",
+    "summary": "LLM via DSP",
     "description": "The skill allows managing communication with the LLM following the Stanford DSP.",
     "version": "0.1.0",
     "x-icon": "🚀"
