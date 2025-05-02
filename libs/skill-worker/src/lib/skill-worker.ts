@@ -5,12 +5,20 @@ class WorkerService {
   async task(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
+    context.workflow = {
+      steps: {},
+    };
+
     return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
   async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
+    context.workflow = {
+      steps: {},
+    };
+    
     return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
@@ -18,11 +26,6 @@ class WorkerService {
     const { name, execute } = params;
     const result = await executePinsList(execute, context, `${context.__PATH__}.execute`);
 
-    if (!context.workflow) {
-      context.workflow = {
-        steps: [],
-      };
-    }
     context.workflow.steps[name] = result;
 
     return result;
