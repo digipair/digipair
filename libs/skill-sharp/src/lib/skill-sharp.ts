@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
 import * as sharp from 'sharp';
-import { Sharp } from 'sharp';
+
+type Sharp = any;
 
 class SharpService {
   private async loadImage(content: string): Promise<{ image: Sharp; mimeType: string }> {
