@@ -6,9 +6,7 @@
     "service",
     "tool"
   ],
-  "dependencies": {
-    "sharp": "^0.34.1"
-  },
+  "dependencies": {},
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
 }

@@ -65,7 +65,6 @@
     "reflect-metadata": "^0.2.2",
     "replace-in-file": "^8.1.0",
     "rxjs": "^7.8.1",
-    "sharp": "^0.34.1",
     "simple-git": "^3.25.0",
     "simple-oauth2": "^5.1.0",
     "tesseract.js": "^5.1.0",
