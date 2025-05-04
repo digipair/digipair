@@ -1,86 +1,16 @@
-schema knowledge {
-    document knowledge  {
-        field uuid type string {
-            indexing: summary | attribute
-            attribute: fast-search
-        }
-        field parent_uuid type string {
-            indexing: summary
-        }
-        field is_parent type bool {
-            indexing: summary | attribute
-        }
-        field source type string {
-            indexing: summary | attribute
-        }
+schema knowledge inherits line {
+    document knowledge inherits line {
         field metadata type string {
             indexing: summary | attribute
         }
-        field content type string {
-            indexing: summary | index
-            index: enable-bm25
+        field document_url type string {
+            indexing: summary | attribute
         }
-        field content_embedding type tensor<bfloat16>(x[1536]) {
-            indexing: attribute
-            attribute {
-                distance-metric: angular
-            }
+        field document_type type string {
+            indexing: summary | attribute
         }
-    }
-    fieldset default {
-        fields: content
-    }
-    rank-profile bm25 {
-        inputs {
-            query(q) tensor<bfloat16>(x[1536])
-        }
-        function bm25sum() {
-            expression {
-                bm25(content)
-            }
-        }
-        first-phase {
-            expression {
-                bm25sum
-            }
-        }
-    }
-    rank-profile semantic {
-        inputs {
-            query(q) tensor<bfloat16>(x[1536])
-
-        }
-        function semantic_score(){
-            expression {
-                closeness(field, content_embedding)
-            }
-        }
-        first-phase {
-            expression {
-                semantic_score
-            }
-        }
-    }
-    rank-profile fusion inherits bm25, semantic {
-        inputs {
-            query(q) tensor<bfloat16>(x[1536])
-
-        }
-        first-phase {
-            expression {
-                semantic_score
-            }
-        }
-        global-phase {
-            rerank-count: 1000
-            expression {
-                reciprocal_rank_fusion(bm25sum, semantic_score)
-            }
-        }
-        match-features {
-            bm25sum
-            semantic_score
+        field document_name type string {
+            indexing: summary | attribute
         }
     }
 }
-

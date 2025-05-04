@@ -1,13 +1,19 @@
-schema history inherits knowledge {
-    document history inherits knowledge {
+schema history inherits line {
+    document history inherits line {
         field session type string {
             indexing: summary | attribute
+            attribute: fast-search
+            rank: filter
         }
         field date type long {
             indexing: summary | attribute
+            attribute: fast-search
+            rank: filter
         }
         field role type string {
             indexing: summary | attribute
+            attribute: fast-search
+            rank: filter
         }
         field parent_history type string {
             indexing: summary | attribute
@@ -18,5 +24,12 @@ schema history inherits knowledge {
         field boost type string {
             indexing: summary | attribute
         }
+        field boosts type string {
+            indexing: summary | attribute
+        }
+        field sources type string {
+            indexing: summary | attribute
+        }
     }
 }
+

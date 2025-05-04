@@ -131,21 +131,29 @@ class VespaService {
     const results = [];
 
     for (const document of documents) {
-      const content_embedding = await modelEmbeddings.embedQuery(document.content);
+      // eslint-disable-next-line no-control-regex
+      const content = document.content.replace(/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F]/g, '');
+      const content_embedding = await modelEmbeddings.embedQuery(content);
 
       const response = await fetch(
         `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
         {
           signal,
           method: 'POST',
-          body: JSON.stringify({ fields: { ...document, content_embedding } }),
+          body: JSON.stringify({ fields: { ...document, content, content_embedding } }),
           headers: {
             'Content-Type': 'application/json',
           },
         },
       );
 
-      results.push(await response.json());
+      const json = await response.json();
+      if (!json.id) {
+        throw new Error(
+          `Error - VespaService:pushDocuments - pushing ${collection} - ${json.message}`,
+        );
+      }
+      results.push(json);
     }
 
     return results;
@@ -204,7 +212,11 @@ class VespaService {
     }
 
     const orderbySecured = orderby === '' ? '' : `order by ${orderby}`;
-    const modelEmbeddings = await executePinsList(embeddings, context, `${context.__PATH__}.embeddings`);
+    const modelEmbeddings = await executePinsList(
+      embeddings,
+      context,
+      `${context.__PATH__}.embeddings`,
+    );
     const queryEmbedding = await modelEmbeddings.embedQuery(query);
     const results = await this.searchParentDocuments(
       baseUrl,
@@ -247,10 +259,21 @@ class VespaService {
       collection = 'knowledge',
       documents,
     } = params;
-    const modelEmbeddings = await executePinsList(embeddings, context, `${context.__PATH__}.embeddings`);
+    const modelEmbeddings = await executePinsList(
+      embeddings,
+      context,
+      `${context.__PATH__}.embeddings`,
+    );
     const results = await this.prepareDocuments(documents);
 
-    await this.pushDocuments(modelEmbeddings, baseUrl, namespace, collection, results, context.protected?.signal);
+    await this.pushDocuments(
+      modelEmbeddings,
+      baseUrl,
+      namespace,
+      collection,
+      results,
+      context.protected?.signal,
+    );
 
     return results.filter(({ is_parent }) => is_parent).map(({ uuid }) => uuid);
   }
