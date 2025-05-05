@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import * as sharp from 'sharp';
+import sharp from 'sharp';
 
 type Sharp = any;
 
