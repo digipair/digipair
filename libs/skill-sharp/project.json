@@ -16,7 +16,7 @@
           "libs/skill-sharp/src/schema.json",
           "libs/skill-sharp/src/schema.fr.json"
         ],
-        "rollupConfig": ["libs/skill-exif/rollup.build.cjs"],
+        "rollupConfig": ["libs/skill-sharp/rollup.build.cjs"],
         "project": "libs/skill-sharp/package.json",
         "compiler": "swc",
         "format": ["cjs", "esm"]
