@@ -42,12 +42,7 @@ export const applyTemplate = (value: any, context: any) => {
   if (typeof value === 'string') {
     if (result.startsWith('NOEVAL:')) {
       result = value.substring(7);
-    } else {
-      const template = Handlebars.compile(value, { noEscape: true });
-      result = template(context);
-    }
-
-    if (result.startsWith('EVALUATE:')) {
+    } else if (result.startsWith('EVALUATE:')) {
       const path = result.replace(/^EVALUATE:/, '');
       result = evaluate(path, {
         ...context,
@@ -59,6 +54,9 @@ export const applyTemplate = (value: any, context: any) => {
         decodeURIComponent: (value: string) => decodeURIComponent(value),
         JSONparse: (value: string) => JSON.parse(value),
       });
+    } else {
+      const template = Handlebars.compile(value, { noEscape: true });
+      result = template(context);
     }
   } else if (typeof value === 'object' && Array.isArray(value)) {
     result = value.map(item => (isPinsSettings(item) ? item : applyTemplate(item, context)));

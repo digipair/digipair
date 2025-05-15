@@ -3,7 +3,7 @@ import { PDFDocument } from 'pdf-lib';
 
 class PDFService {
   private base64ToPdf(base64: string) {
-    const data = base64.replace(/^data:application\/pdf;base64,/, '');
+    const data = base64.replace(/^data:.*;base64,/, '');
     const buffer = Buffer.from(data, 'base64');
     return buffer;
   }
