@@ -1,0 +1,1 @@
+export * from './libs/skill-pdf2pic/src/index';

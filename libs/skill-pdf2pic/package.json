@@ -1,0 +1,14 @@
+{
+  "name": "@digipair/skill-pdf2pic",
+  "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
+  "dependencies": {
+    "@diegoooo/pdf2pic": "^3.1.5"
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}
