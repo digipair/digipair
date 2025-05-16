@@ -1,0 +1,61 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-pdf2pic",
+    "summary": "PDF to image conversion",
+    "description": "Convert PDF files to images",
+    "version": "0.1.0",
+    "x-icon": "📕"
+  },
+  "paths": {
+    "/convert": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Convert a PDF page to an image",
+        "description": "Converts a page from a PDF file to a base64-encoded image.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "File",
+            "required": true,
+            "description": "PDF file to convert",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "summary": "Page number",
+            "required": false,
+            "description": "The page number to convert",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Output format",
+            "required": false,
+            "description": "The format of the generated image",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "density",
+            "summary": "Density (DPI)",
+            "required": false,
+            "description": "Image resolution in DPI (dots per inch). Default is 72.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
