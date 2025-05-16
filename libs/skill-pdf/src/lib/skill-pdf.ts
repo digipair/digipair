@@ -87,6 +87,15 @@ class PDFService {
 
     return fields;
   }
+
+async getSize(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { file } = params;
+
+    const buffer = this.base64ToPdf(file);
+    const document = await PDFDocument.load(buffer);
+    
+    return document.getPages().length;
+  }
 }
 
 export const fillForm = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -94,3 +103,6 @@ export const fillForm = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const getFields = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new PDFService().getFields(params, pinsSettingsList, context);
+
+export const getSize = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new PDFService().getSize(params, pinsSettingsList, context);

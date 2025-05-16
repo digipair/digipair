@@ -63,6 +63,25 @@
         ],
         "x-events": []
       }
+    },
+    "/getSize": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Nombre de page d'un PDF",
+        "description": "Retourne le nombre de page PDF.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Fichier PDF à analyser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
