@@ -1,5 +1,5 @@
 import { PinsSettings } from '@digipair/engine';
-import { fromBase64 } from '@diegoooo/pdf2pic';
+import { fromBuffer } from '@diegoooo/pdf2pic';
 import { PDFDocument } from 'pdf-lib';
 
 class PDFService {
@@ -19,7 +19,7 @@ class PDFService {
     const widthPx = (width / 72) * density;
     const heightPx = (height / 72) * density;
 
-    const result = await (fromBase64(file, {
+    const result = await (fromBuffer(buffer, {
       density,
       format,
       preserveAspectRatio: true,
