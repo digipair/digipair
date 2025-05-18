@@ -12,6 +12,7 @@ class ChatbotService {
       boost,
       parent_conversation,
       parent_history,
+      session,
       uuid,
     } = params;
     return {
@@ -32,6 +33,7 @@ class ChatbotService {
         : boost,
       parent_conversation,
       parent_history,
+      session,
       uuid,
     };
   }

@@ -98,6 +98,15 @@
             }
           },
           {
+            "name": "session",
+            "summary": "Session",
+            "required": false,
+            "description": "Session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "uuid",
             "summary": "Identifiant",
             "required": false,
