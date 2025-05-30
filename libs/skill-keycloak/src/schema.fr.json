@@ -104,6 +104,34 @@
           }
         },
         "required": ["name", "execute"]
+      },
+      "ContextParameter": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Parametre de contexte",
+        "properties": {
+          "name": {
+            "summary": "Paramètre",
+            "type": "string"
+          },
+          "summary": {
+            "summary": "Nom",
+            "type": "string"
+          },
+          "required": {
+            "summary": "Requis",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
+            "type": "object"
+          },
+          "description": {
+            "summary": "Description",
+            "type": "string"
+          }
+        },
+        "required": ["name", "summary", "required", "schema"]
       }
     }
   },
@@ -349,6 +377,18 @@
           "description": "Correspondance URL du déclencheur",
           "schema": {
             "type": "string"
+          }
+        },
+        {
+          "name": "context",
+          "summary": "Contexte",
+          "required": true,
+          "description": "Schema du contexte",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextParameter"
+            }
           }
         }
       ],

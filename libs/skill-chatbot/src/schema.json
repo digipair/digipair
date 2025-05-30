@@ -188,6 +188,34 @@
           }
         },
         "required": []
+      },
+      "ContextParameter": {
+        "type": "object",
+        "tags": ["service"],
+        "summary": "Context Parameter",
+        "properties": {
+          "name": {
+            "summary": "Name",
+            "type": "string"
+          },
+          "summary": {
+            "summary": "Summary",
+            "type": "string"
+          },
+          "required": {
+            "summary": "Required",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
+            "type": "object"
+          },
+          "description": {
+            "summary": "Summary",
+            "type": "string"
+          }
+        },
+        "required": ["name", "summary", "required", "schema"]
       }
     }
   },
@@ -222,6 +250,18 @@
           "description": "RegEx url",
           "schema": {
             "type": "string"
+          }
+        },
+        {
+          "name": "context",
+          "summary": "Context",
+          "required": true,
+          "description": "Context schema",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextParameter"
+            }
           }
         }
       ],
