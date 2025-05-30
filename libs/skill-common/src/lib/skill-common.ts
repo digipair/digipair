@@ -233,11 +233,10 @@ class CommonService {
     const { digipair, reasoning } = params;
     let result = {} as any;
 
-    // check if schema.json exists
     if (existsSync(`${path}/${digipair}/${reasoning}.json`)) {
       const text = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
       const parsed = JSON.parse(text);
-      result = parsed.metadata?.context ?? {};
+      result = { summary: parsed.summary, context: parsed.metadata?.context ?? {} };
     } else if (
       reasoning.startsWith('boost-action-') &&
       existsSync(`${path}/${digipair}/${reasoning.substring(6)}.json`)
@@ -247,7 +246,10 @@ class CommonService {
         'utf8',
       );
       const parsed = JSON.parse(text);
-      result = parsed.metadata?.context ?? parsed.metadata?.parameters ?? {};
+      result = {
+        summary: parsed.summary,
+        context: parsed.metadata?.context ?? parsed.metadata?.parameters ?? {},
+      };
     }
 
     return result;
