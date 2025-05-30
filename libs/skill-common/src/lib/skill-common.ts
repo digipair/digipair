@@ -248,6 +248,7 @@ class CommonService {
       const parsed = JSON.parse(text);
       result = {
         summary: parsed.summary,
+        description: parsed.description,
         context: parsed.metadata?.context ?? parsed.metadata?.parameters ?? {},
       };
     }
