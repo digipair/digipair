@@ -111,6 +111,7 @@ class CommonService {
                   description,
                   parameters: metadata.parameters ?? [],
                   'x-events': [],
+                  'x-action': metadata.action ?? 'read',
                 },
               },
             };
@@ -142,6 +143,7 @@ class CommonService {
                   description,
                   parameters: metadata.parameters ?? [],
                   'x-events': [],
+                  'x-action': metadata.action ?? 'read',
                 },
               },
             };
