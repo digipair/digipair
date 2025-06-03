@@ -83,7 +83,7 @@
     "/context": {
       "post": {
         "tags": ["service"],
-        "summary": "Schema",
+        "summary": "Context",
         "parameters": [
           {
             "name": "digipair",

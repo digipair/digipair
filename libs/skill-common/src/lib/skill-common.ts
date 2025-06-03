@@ -111,7 +111,7 @@ class CommonService {
                   description,
                   parameters: metadata.parameters ?? [],
                   'x-events': [],
-                  'x-context': metadata.context ?? false
+                  'x-context': metadata.context ?? false,
                 },
               },
             };
@@ -143,7 +143,7 @@ class CommonService {
                   description,
                   parameters: metadata.parameters ?? [],
                   'x-events': [],
-                  'x-context': metadata.context ?? false
+                  'x-context': metadata.context ?? false,
                 },
               },
             };
@@ -249,7 +249,7 @@ class CommonService {
       result = {
         summary: parsed.summary,
         description: parsed.description,
-        context: parsed.metadata?.context ?? parsed.metadata?.parameters ?? {},
+        context: parsed.metadata?.parameters ?? {},
       };
     }
 
