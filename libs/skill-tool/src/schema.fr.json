@@ -187,6 +187,10 @@
             "summary": "Requis",
             "type": "boolean"
           },
+          "ignoreForAI": {
+            "summary": "Ignorer pour l'IA",
+            "type": "boolean"
+          },
           "schema": {
             "summary": "Schema",
             "type": "object"
