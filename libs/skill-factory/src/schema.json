@@ -133,6 +133,10 @@
             "summary": "Required",
             "type": "boolean"
           },
+          "ignoreForAI": {
+            "summary": "Ignore for AI",
+            "type": "boolean"
+          },
           "schema": {
             "summary": "Schema",
             "type": "object"
