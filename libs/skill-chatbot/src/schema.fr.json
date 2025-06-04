@@ -73,10 +73,7 @@
             "required": false,
             "description": "Boost à executer en réponse à ce message",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
+              "type": "object"
             }
           },
           {
