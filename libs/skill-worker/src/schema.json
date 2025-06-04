@@ -132,6 +132,15 @@
               "$ref": "#/components/schemas/Parameter"
             }
           }
+        },
+        {
+          "name": "context",
+          "summary": "Context",
+          "required": false,
+          "description": "Display execution context",
+          "schema": {
+            "type": "boolean"
+          }
         }
       ],
       "parameters": [

@@ -151,6 +151,15 @@
               "$ref": "#/components/schemas/Parameter"
             }
           }
+        },
+        {
+          "name": "context",
+          "summary": "Contexte",
+          "required": false,
+          "description": "Afficher le contexte d'exécution",
+          "schema": {
+            "type": "boolean"
+          }
         }
       ],
       "parameters": [
