@@ -53,6 +53,7 @@ export const applyTemplate = (value: any, context: any) => {
         encodeURIComponent: (value: string | number | boolean) => encodeURIComponent(value),
         decodeURIComponent: (value: string) => decodeURIComponent(value),
         JSONparse: (value: string) => JSON.parse(value),
+        JSONstringify: (value: string) => JSON.stringify(value),
       });
     } else {
       const template = Handlebars.compile(value, { noEscape: true });
