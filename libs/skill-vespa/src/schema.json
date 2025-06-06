@@ -249,6 +249,15 @@
             }
           },
           {
+            "name": "asynchronous",
+            "summary": "Asynchronous",
+            "required": false,
+            "description": "Add documents asynchronously",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "documents",
             "summary": "Documents",
             "required": true,

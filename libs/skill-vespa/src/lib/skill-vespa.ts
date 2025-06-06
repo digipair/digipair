@@ -127,6 +127,7 @@ class VespaService {
     collection: string,
     documents: any[],
     signal: AbortSignal,
+    asynchronous: boolean,
   ) {
     const results = [];
 
@@ -140,7 +141,15 @@ class VespaService {
         {
           signal,
           method: 'POST',
-          body: JSON.stringify({ fields: { ...document, content, content_embedding } }),
+          body: JSON.stringify(
+            asynchronous
+              ? { ...document, content }
+              : {
+                  ...document,
+                  content,
+                  content_embedding: await modelEmbeddings.embedQuery(content),
+                },
+          ),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -154,6 +163,24 @@ class VespaService {
         );
       }
       results.push(json);
+
+      if (asynchronous) {
+        setImmediate(async () => {
+          const content_embedding = await modelEmbeddings.embedQuery(content);
+          await fetch(
+            `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
+            {
+              method: 'POST',
+              body: JSON.stringify({
+                fields: { ...document, content, content_embedding },
+              }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+        });
+      }
     }
 
     return results;
@@ -257,6 +284,7 @@ class VespaService {
         process.env['VESPA_NAMESPACE'] ??
         'Digipair_default',
       collection = 'knowledge',
+      asynchronous = false,
       documents,
     } = params;
     const modelEmbeddings = await executePinsList(
@@ -273,6 +301,7 @@ class VespaService {
       collection,
       results,
       context.protected?.signal,
+      asynchronous,
     );
 
     return results.filter(({ is_parent }) => is_parent).map(({ uuid }) => uuid);
