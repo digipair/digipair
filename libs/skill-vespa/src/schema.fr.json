@@ -24,6 +24,15 @@
             }
           },
           {
+            "name": "namespace",
+            "summary": "Espace de noms",
+            "required": false,
+            "description": "Espace de noms de la session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "collection",
             "summary": "Nom de la collection",
             "required": false,
@@ -95,6 +104,15 @@
             "summary": "Adresse du serveur",
             "required": false,
             "description": "Adresse du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "namespace",
+            "summary": "Espace de noms",
+            "required": false,
+            "description": "Espace de noms de la session",
             "schema": {
               "type": "string"
             }
@@ -240,6 +258,15 @@
             }
           },
           {
+            "name": "namespace",
+            "summary": "Espace de noms",
+            "required": false,
+            "description": "Espace de noms de la session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "collection",
             "summary": "Nom de la Collection",
             "required": false,
@@ -289,6 +316,15 @@
             }
           },
           {
+            "name": "namespace",
+            "summary": "Espace de noms",
+            "required": false,
+            "description": "Espace de noms de la session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "collection",
             "summary": "Nom de la collection",
             "required": false,
@@ -304,6 +340,61 @@
             "description": "Filtre correspondant au documents à supprimer",
             "schema": {
               "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/update": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Mettre à jour",
+        "description": "Met à jour un document dans la base de données.",
+        "parameters": [
+          {
+            "name": "baseUrl",
+            "summary": "Adresse du serveur",
+            "required": false,
+            "description": "Adresse du serveur Vespa",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "namespace",
+            "summary": "Espace de noms",
+            "required": false,
+            "description": "Espace de noms de la session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant de la session",
+            "required": true,
+            "description": "Identifiant de la session à modifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Nom de la collection",
+            "required": true,
+            "description": "Nom de la collection dans laquelle mettre à jour le document",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fields",
+            "summary": "Champs",
+            "required": true,
+            "description": "Champs à mettre à jour",
+            "schema": {
+              "type": "object"
             }
           }
         ],

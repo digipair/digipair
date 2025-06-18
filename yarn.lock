@@ -1741,10 +1741,10 @@
   dependencies:
     gm "^1.25.1"
 
-"@digipair/ax@11.0.64-3":
-  version "11.0.64-3"
-  resolved "https://registry.yarnpkg.com/@digipair/ax/-/ax-11.0.64-3.tgz#34a739157cb01f3aeeba8f2ddc8cf6ecf04ac3a1"
-  integrity sha512-Vm4SEUgZnpOuL/1BiNExZHaQKH2unFgwkPqa004ifjIog1mp4cABbqIfyoc4zk4KA7KMwWc1i3/R9YLYxht35g==
+"@digipair/ax@11.0.51-2":
+  version "11.0.51-2"
+  resolved "https://registry.yarnpkg.com/@digipair/ax/-/ax-11.0.51-2.tgz#04f388a3f089e38f5448889df3af658c38c397b3"
+  integrity sha512-SaX763LHYaISW4wWg+8dm2S+QHPHJq1bluLd/uUEzyFfvYboNbCSCTCxomLchLLCvfVBtKtURHS9qoB4cvs1/g==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     google-auth-library "^9.15.1"
