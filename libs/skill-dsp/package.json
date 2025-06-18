@@ -6,9 +6,7 @@
     "service",
     "tool"
   ],
-  "dependencies": {
-    "@ax-llm/ax": "^11.0.29"
-  },  
+  "dependencies": {},  
   "main": "./index.cjs",
   "module": "./index.js"
 }

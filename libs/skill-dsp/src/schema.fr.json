@@ -75,6 +75,15 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "supportFor",
+            "summary": "Support pour",
+            "required": false,
+            "description": "Fonctionnalités supportées par le modèle OpenAI",
+            "schema": {
+              "type": "object"
+            }
           }
         ],
         "x-events": []

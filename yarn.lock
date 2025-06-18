@@ -627,15 +627,6 @@
     "@smithy/types" "^4.2.0"
     tslib "^2.6.2"
 
-"@ax-llm/ax@^11.0.29":
-  version "11.0.29"
-  resolved "https://registry.yarnpkg.com/@ax-llm/ax/-/ax-11.0.29.tgz#34717a461b53efc470af50281623f34c13e5ca07"
-  integrity sha512-rd93LnnP7R3ROpTggAtqjA/MbDtaVc9qNgFPOEP2a4rOP3/fcFVMyNqLz6tVEsXNbt55g73JN+AGlKjsaMTecw==
-  dependencies:
-    "@opentelemetry/api" "^1.9.0"
-    google-auth-library "^9.15.1"
-    moment-timezone "^0.5.47"
-
 "@azure/msal-common@14.16.0":
   version "14.16.0"
   resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-14.16.0.tgz#f3470fcaec788dbe50859952cd499340bda23d7a"
@@ -1749,6 +1740,15 @@
   integrity sha512-PYW3+bQmXHMBd3K0mfOQ1wVKblX1c0bv2uvTzGHCaodHXZ2vu88slWH611hnJBDKXJxF0k0xy24PZdNSQhjA6g==
   dependencies:
     gm "^1.25.1"
+
+"@digipair/ax@11.0.64-3":
+  version "11.0.64-3"
+  resolved "https://registry.yarnpkg.com/@digipair/ax/-/ax-11.0.64-3.tgz#34a739157cb01f3aeeba8f2ddc8cf6ecf04ac3a1"
+  integrity sha512-Vm4SEUgZnpOuL/1BiNExZHaQKH2unFgwkPqa004ifjIog1mp4cABbqIfyoc4zk4KA7KMwWc1i3/R9YLYxht35g==
+  dependencies:
+    "@opentelemetry/api" "^1.9.0"
+    google-auth-library "^9.15.1"
+    moment-timezone "^0.5.47"
 
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"

@@ -8,7 +8,7 @@
   "private": true,
   "dependencies": {
     "@aws-sdk/client-s3": "^3.787.0",
-    "@ax-llm/ax": "^11.0.29",
+    "@digipair/ax": "11.0.64-3",
     "@azure/msal-node": "^2.10.0",
     "@diegoooo/pdf2pic": "^3.1.5",
     "@langchain/community": "^0.3.10",
