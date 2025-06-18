@@ -84,6 +84,24 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "type",
+            "summary": "Output type",
+            "required": false,
+            "description": "Type of output expected from the service",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "summary": "Content type",
+            "required": false,
+            "description": "Content type of the request",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -156,6 +174,24 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "type",
+            "summary": "Output type",
+            "required": false,
+            "description": "Type of output expected from the service",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "summary": "Content type",
+            "required": false,
+            "description": "Content type of the request",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -216,6 +252,24 @@
             "summary": "Tenant ID",
             "required": false,
             "description": "Tenant ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Output type",
+            "required": false,
+            "description": "Type of output expected from the service",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "summary": "Content type",
+            "required": false,
+            "description": "Content type of the request",
             "schema": {
               "type": "string"
             }
@@ -291,6 +345,24 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "type",
+            "summary": "Output type",
+            "required": false,
+            "description": "Type of output expected from the service",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "summary": "Content type",
+            "required": false,
+            "description": "Content type of the request",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -363,6 +435,24 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "type",
+            "summary": "Output type",
+            "required": false,
+            "description": "Type of output expected from the service",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "summary": "Content type",
+            "required": false,
+            "description": "Content type of the request",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": []
@@ -423,6 +513,24 @@
             "summary": "Tenant ID",
             "required": false,
             "description": "Tenant ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Output type",
+            "required": false,
+            "description": "Type of output expected from the service",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "summary": "Content type",
+            "required": false,
+            "description": "Content type of the request",
             "schema": {
               "type": "string"
             }

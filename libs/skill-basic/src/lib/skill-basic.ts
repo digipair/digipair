@@ -78,7 +78,11 @@ class BasicService {
     try {
       return await executePinsList(executeTry, context, `${context.__PATH__}.executeTry`);
     } catch (error) {
-      return await executePinsList(executeCatch, { ...context, error }, `${context.__PATH__}.executeCatch`);
+      return await executePinsList(
+        executeCatch,
+        { ...context, error },
+        `${context.__PATH__}.executeCatch`,
+      );
     }
   }
 }
