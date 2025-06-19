@@ -7,16 +7,33 @@
 
 ## Table of Contents
 
-- [Functions](#functions)
-  - [request](#request)
-  - [create](#create)
-  - [read](#read)
-  - [update](#update)
-  - [partialUpdate](#partialupdate)
-  - [remove](#remove)
-  - [upload](#upload)
-- [Schemas](#schemas)
-  - [UploadParameters](#uploadparameters)
+- [@digipair/skill-http](#digipairskill-http)
+  - [Table of Contents](#table-of-contents)
+  - [Functions](#functions)
+    - [request](#request)
+      - [Parameters](#parameters)
+      - [Example](#example)
+    - [create](#create)
+      - [Parameters](#parameters-1)
+      - [Example](#example-1)
+    - [read](#read)
+      - [Parameters](#parameters-2)
+      - [Example](#example-2)
+    - [update](#update)
+      - [Parameters](#parameters-3)
+      - [Example](#example-3)
+    - [partialUpdate](#partialupdate)
+      - [Parameters](#parameters-4)
+      - [Example](#example-4)
+    - [remove](#remove)
+      - [Parameters](#parameters-5)
+      - [Example](#example-5)
+    - [upload](#upload)
+      - [Parameters](#parameters-6)
+      - [Example](#example-6)
+  - [Schemas](#schemas)
+    - [UploadParameters](#uploadparameters)
+  - [Notes](#notes)
 
 ---
 
@@ -227,7 +244,7 @@ Uploads an HTTP resource (file or multipart data).
       {
         "name": "file",
         "type": "image/png",
-        "value": "<BLOB or Buffer>"
+        "value": "<Base64>"
       }
     ],
     "headers": { "Authorization": "Bearer token" },
@@ -248,7 +265,7 @@ Parameters for uploading files or data.
 | ----- | ------ | -------------------------- |
 | name  | string | Name of the parameter/file |
 | type  | string | MIME type of the content   |
-| value | object | Value (file, buffer, etc.) |
+| value | object | Value (Base64) |
 
 ---
 

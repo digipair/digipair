@@ -7,16 +7,33 @@
 
 ## Table des matières
 
-- [Fonctions](#fonctions)
-  - [request](#request)
-  - [create](#create)
-  - [read](#read)
-  - [update](#update)
-  - [partialUpdate](#partialupdate)
-  - [remove](#remove)
-  - [upload](#upload)
-- [Schémas](#schémas)
-  - [UploadParameters](#uploadparameters)
+- [@digipair/skill-http](#digipairskill-http)
+  - [Table des matières](#table-des-matières)
+  - [Fonctions](#fonctions)
+    - [request](#request)
+      - [Paramètres](#paramètres)
+      - [Exemple](#exemple)
+    - [create](#create)
+      - [Paramètres](#paramètres-1)
+      - [Exemple](#exemple-1)
+    - [read](#read)
+      - [Paramètres](#paramètres-2)
+      - [Exemple](#exemple-2)
+    - [update](#update)
+      - [Paramètres](#paramètres-3)
+      - [Exemple](#exemple-3)
+    - [partialUpdate](#partialupdate)
+      - [Paramètres](#paramètres-4)
+      - [Exemple](#exemple-4)
+    - [remove](#remove)
+      - [Paramètres](#paramètres-5)
+      - [Exemple](#exemple-5)
+    - [upload](#upload)
+      - [Paramètres](#paramètres-6)
+      - [Exemple](#exemple-6)
+  - [Schémas](#schémas)
+    - [UploadParameters](#uploadparameters)
+  - [Notes](#notes)
 
 ---
 
@@ -227,7 +244,7 @@ Upload une ressource HTTP (fichier ou données multipart).
       {
         "name": "file",
         "type": "image/png",
-        "value": "<BLOB ou Buffer>"
+        "value": "<Base64>"
       }
     ],
     "headers": { "Authorization": "Bearer token" },
@@ -248,7 +265,7 @@ Paramètres pour l'upload de fichiers ou de données.
 |-------|--------|----------------------------|
 | name  | string | Nom du paramètre/fichier   |
 | type  | string | Type MIME du contenu       |
-| value | object | Valeur (fichier, buffer, etc.) |
+| value | object | Valeur (base64) |
 
 ---
 

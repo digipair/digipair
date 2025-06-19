@@ -60,12 +60,12 @@ const data = {
 };
 
 const result = await generate({ template: templateBase64, data });
-// result : Buffer ou base64 du document Word généré
+// result : Base64 du document Word généré
 ```
 
 #### Résultat
 
-La fonction retourne le document Word généré, généralement sous forme de buffer ou de chaîne base64, prêt à être téléchargé ou stocké.
+La fonction retourne le document Word généré, généralement sous forme de chaîne base64, prêt à être téléchargé ou stocké.
 
 ---
 

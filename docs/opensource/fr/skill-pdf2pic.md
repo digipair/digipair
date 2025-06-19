@@ -26,7 +26,7 @@ La fonction `convert` permet de convertir une page spécifique (ou la première 
 
 | Nom      | Type    | Requis | Description                                                                 |
 |----------|---------|--------|-----------------------------------------------------------------------------|
-| file     | string  | Oui    | Fichier PDF à convertir (sous forme de chemin, buffer, ou base64 selon l’implémentation). |
+| file     | string  | Oui    | Fichier PDF à convertir (base64). |
 | page     | number  | Non    | Numéro de la page à convertir (commence généralement à 1).                  |
 | format   | string  | Non    | Format de l’image générée (ex: `"png"`, `"jpeg"`).                          |
 | density  | number  | Non    | Résolution de l’image en DPI (dots per inch). Par défaut : 72.              |

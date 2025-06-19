@@ -26,7 +26,7 @@ The `convert` function allows you to convert a specific page (or the first page 
 
 | Name    | Type   | Required | Description                                                                                |
 | ------- | ------ | -------- | ------------------------------------------------------------------------------------------ |
-| file    | string | Yes      | PDF file to convert (can be a path, buffer, or base64 string depending on implementation). |
+| file    | string | Yes      | PDF file to convert (base64). |
 | page    | number | No       | Page number to convert (usually starts at 1).                                              |
 | format  | string | No       | Format of the generated image (e.g., `"png"`, `"jpeg"`).                                   |
 | density | number | No       | Image resolution in DPI (dots per inch). Default: 72.                                      |

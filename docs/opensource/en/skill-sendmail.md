@@ -55,7 +55,7 @@ Send an email to one or more recipients.
     "attachments": [
       {
         "filename": "document.pdf",
-        "content": "<base64 or buffer>"
+        "content": "<base64>"
       }
     ],
     "config": {

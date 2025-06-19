@@ -22,7 +22,7 @@ Convertir un fichier (PDF, DOCX, etc.) en Markdown.
 
 | Nom    | Type   | Requis | Description                                 |
 |--------|--------|--------|---------------------------------------------|
-| file   | string | Oui    | Fichier à convertir (chemin ou buffer base64) |
+| file   | string | Oui    | Fichier à convertir (base64) |
 | path   | string | Non    | Chemin vers l'exécutable markitdown         |
 
 #### Exemple
