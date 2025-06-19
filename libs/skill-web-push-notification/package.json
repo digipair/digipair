@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-push-notification",
-  "version": "0.0.1",
+  "version": "0.90.0",
   "type": "module",
   "main": "dist/libs/skill-web-push-notification/index.cjs.js",
   "module": "dist/libs/skill-web-push-notification/index.esm.js",

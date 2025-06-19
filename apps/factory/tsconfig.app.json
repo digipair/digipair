@@ -13,10 +13,22 @@
   "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
   "references": [
     {
+      "path": "../../libs/skill-temporal/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/skill-cron/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/skill-factory/tsconfig.lib.json"
+    },
+    {
       "path": "../../libs/skill-logger/tsconfig.lib.json"
     },
     {
       "path": "../../libs/engine/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/skill-process/tsconfig.lib.json"
     }
   ]
 }

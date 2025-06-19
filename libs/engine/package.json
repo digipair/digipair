@@ -1,6 +1,6 @@
 {
   "name": "@digipair/engine",
-  "version": "0.0.1",
+  "version": "0.90.0",
   "type": "module",
   "main": "dist/libs/engine/index.cjs.js",
   "module": "dist/libs/engine/index.esm.js",

@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-spectrum",
-  "version": "0.0.1",
+  "version": "0.90.0",
   "type": "module",
   "main": "dist/libs/skill-web-spectrum/index.cjs.js",
   "module": "dist/libs/skill-web-spectrum/index.esm.js",

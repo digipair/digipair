@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-voice-activity-detection",
-  "version": "0.0.1",
+  "version": "0.90.0",
   "type": "module",
   "main": "dist/libs/skill-web-voice-activity-detection/index.cjs.js",
   "module": "dist/libs/skill-web-voice-activity-detection/index.esm.js",

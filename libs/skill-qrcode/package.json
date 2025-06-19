@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-qrcode",
-  "version": "0.0.1",
+  "version": "0.90.0",
   "type": "module",
   "main": "dist/libs/skill-qrcode/index.cjs.js",
   "module": "dist/libs/skill-qrcode/index.esm.js",

@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-linkedin",
-  "version": "0.0.1",
+  "version": "0.90.0",
   "type": "module",
   "main": "dist/libs/skill-linkedin/index.cjs.js",
   "module": "dist/libs/skill-linkedin/index.esm.js",

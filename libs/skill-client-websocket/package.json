@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-client-websocket",
-  "version": "0.0.1",
+  "version": "0.90.0",
   "type": "module",
   "main": "dist/libs/skill-client-websocket/index.cjs.js",
   "module": "dist/libs/skill-client-websocket/index.esm.js",
