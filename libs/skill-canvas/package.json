@@ -1,15 +1,24 @@
 {
   "name": "@digipair/skill-canvas",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "service",
-    "tool"
-  ],
-  "dependencies": {
-    "canvas": "^2.11.2"
+  "type": "module",
+  "main": "dist/libs/skill-canvas/index.cjs.js",
+  "module": "dist/libs/skill-canvas/index.esm.js",
+  "types": "dist/libs/skill-canvas/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-canvas/package.json",
+    ".": {
+      "development": "./dist/libs/skill-canvas/src/index.ts",
+      "types": "./dist/libs/skill-canvas/index.esm.d.ts",
+      "import": "./dist/libs/skill-canvas/index.esm.js",
+      "default": "./dist/libs/skill-canvas/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-canvas"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

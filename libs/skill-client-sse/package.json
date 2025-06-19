@@ -1,11 +1,24 @@
 {
   "name": "@digipair/skill-client-sse",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-client-sse/index.cjs.js",
+  "module": "dist/libs/skill-client-sse/index.esm.js",
+  "types": "dist/libs/skill-client-sse/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-client-sse/package.json",
+    ".": {
+      "development": "./dist/libs/skill-client-sse/src/index.ts",
+      "types": "./dist/libs/skill-client-sse/index.esm.d.ts",
+      "import": "./dist/libs/skill-client-sse/index.esm.js",
+      "default": "./dist/libs/skill-client-sse/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-client-sse"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

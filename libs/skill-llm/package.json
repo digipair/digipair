@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-llm",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-llm/index.cjs.js",
+  "module": "dist/libs/skill-llm/index.esm.js",
+  "types": "dist/libs/skill-llm/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-llm/package.json",
+    ".": {
+      "development": "./dist/libs/skill-llm/src/index.ts",
+      "types": "./dist/libs/skill-llm/index.esm.d.ts",
+      "import": "./dist/libs/skill-llm/index.esm.js",
+      "default": "./dist/libs/skill-llm/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-llm"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

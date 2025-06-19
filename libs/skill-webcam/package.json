@@ -1,14 +1,24 @@
 {
   "name": "@digipair/skill-webcam",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {
-    "node-webcam": "^0.8.2"
+  "type": "module",
+  "main": "dist/libs/skill-webcam/index.cjs.js",
+  "module": "dist/libs/skill-webcam/index.esm.js",
+  "types": "dist/libs/skill-webcam/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-webcam/package.json",
+    ".": {
+      "development": "./dist/libs/skill-webcam/src/index.ts",
+      "types": "./dist/libs/skill-webcam/index.esm.d.ts",
+      "import": "./dist/libs/skill-webcam/index.esm.js",
+      "default": "./dist/libs/skill-webcam/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "service", "tool"],
+  "nx": {
+    "name": "skill-webcam"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

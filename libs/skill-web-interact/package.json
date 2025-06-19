@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-web-interact",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-web-interact/index.cjs.js",
+  "module": "dist/libs/skill-web-interact/index.esm.js",
+  "types": "dist/libs/skill-web-interact/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-web-interact/package.json",
+    ".": {
+      "development": "./dist/libs/skill-web-interact/src/index.ts",
+      "types": "./dist/libs/skill-web-interact/index.esm.d.ts",
+      "import": "./dist/libs/skill-web-interact/index.esm.js",
+      "default": "./dist/libs/skill-web-interact/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "util"],
+  "nx": {
+    "name": "skill-web-interact"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

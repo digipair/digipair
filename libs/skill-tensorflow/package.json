@@ -1,17 +1,24 @@
 {
   "name": "@digipair/skill-tensorflow",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "util"
-  ],
-  "dependencies": {
-    "@tensorflow-models/coco-ssd": "^2.2.3",
-    "@tensorflow-models/face-detection": "^1.0.2",
-    "@tensorflow/tfjs-node": "^4.20.0",
-    "@mediapipe/face_detection": "^0.4.1646425229"
+  "type": "module",
+  "main": "dist/libs/skill-tensorflow/index.cjs.js",
+  "module": "dist/libs/skill-tensorflow/index.esm.js",
+  "types": "dist/libs/skill-tensorflow/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-tensorflow/package.json",
+    ".": {
+      "development": "./dist/libs/skill-tensorflow/src/index.ts",
+      "types": "./dist/libs/skill-tensorflow/index.esm.d.ts",
+      "import": "./dist/libs/skill-tensorflow/index.esm.js",
+      "default": "./dist/libs/skill-tensorflow/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "util", "service"],
+  "nx": {
+    "name": "skill-tensorflow"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

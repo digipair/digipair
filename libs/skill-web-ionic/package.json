@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-web-ionic",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-web-ionic/index.cjs.js",
+  "module": "dist/libs/skill-web-ionic/index.esm.js",
+  "types": "dist/libs/skill-web-ionic/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-web-ionic/package.json",
+    ".": {
+      "development": "./dist/libs/skill-web-ionic/src/index.ts",
+      "types": "./dist/libs/skill-web-ionic/index.esm.d.ts",
+      "import": "./dist/libs/skill-web-ionic/index.esm.js",
+      "default": "./dist/libs/skill-web-ionic/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "util"],
+  "nx": {
+    "name": "skill-web-ionic"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

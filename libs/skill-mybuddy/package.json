@@ -1,14 +1,24 @@
 {
   "name": "@digipair/skill-mybuddy",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {
-    "@marcbuils/mybuddy": "^0.0.9"
+  "type": "module",
+  "main": "dist/libs/skill-mybuddy/index.cjs.js",
+  "module": "dist/libs/skill-mybuddy/index.esm.js",
+  "types": "dist/libs/skill-mybuddy/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-mybuddy/package.json",
+    ".": {
+      "development": "./dist/libs/skill-pdmybuddyf/src/index.ts",
+      "types": "./dist/libs/skill-mybuddy/index.esm.d.ts",
+      "import": "./dist/libs/skill-mybuddy/index.esm.js",
+      "default": "./dist/libs/skill-mybuddy/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-mybuddy"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }
