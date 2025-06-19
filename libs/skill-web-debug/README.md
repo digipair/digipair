@@ -1,11 +1,7 @@
-# skill-web-debug
+# mylib
 
 This library was generated with [Nx](https://nx.dev).
 
 ## Building
 
-Run `nx build skill-web-debug` to build the library.
-
-## Running unit tests
-
-Run `nx test skill-web-debug` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx build mylib` to build the library.

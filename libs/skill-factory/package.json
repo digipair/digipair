@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-factory",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-factory/index.cjs.js",
+  "module": "dist/libs/skill-factory/index.esm.js",
+  "types": "dist/libs/skill-factory/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-factory/package.json",
+    ".": {
+      "development": "./dist/libs/skill-factory/src/index.ts",
+      "types": "./dist/libs/skill-factory/index.esm.d.ts",
+      "import": "./dist/libs/skill-factory/index.esm.js",
+      "default": "./dist/libs/skill-factory/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-factory"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

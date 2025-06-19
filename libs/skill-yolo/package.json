@@ -1,15 +1,24 @@
 {
   "name": "@digipair/skill-yolo",
   "version": "0.0.1",
-  "keywords": [
-    "digipair", 
-    "service",
-    "util"
-  ],
-  "dependencies": {
-    "onnxruntime-node": "^1.18.0",
-    "sharp": "^0.33.4"
+  "type": "module",
+  "main": "dist/libs/skill-yolo/index.cjs.js",
+  "module": "dist/libs/skill-yolo/index.esm.js",
+  "types": "dist/libs/skill-yolo/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-yolo/package.json",
+    ".": {
+      "development": "./dist/libs/skill-yolo/src/index.ts",
+      "types": "./dist/libs/skill-yolo/index.esm.d.ts",
+      "import": "./dist/libs/skill-yolo/index.esm.js",
+      "default": "./dist/libs/skill-yolo/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "service", "util"],
+  "nx": {
+    "name": "skill-yolo"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

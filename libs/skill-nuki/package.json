@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-nuki",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-nuki/index.cjs.js",
+  "module": "dist/libs/skill-nuki/index.esm.js",
+  "types": "dist/libs/skill-nuki/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-nuki/package.json",
+    ".": {
+      "development": "./dist/libs/skill-nuki/src/index.ts",
+      "types": "./dist/libs/skill-nuki/index.esm.d.ts",
+      "import": "./dist/libs/skill-nuki/index.esm.js",
+      "default": "./dist/libs/skill-nuki/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-nuki"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

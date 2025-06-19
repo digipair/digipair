@@ -1,13 +1,24 @@
 {
   "name": "@digipair/skill-basic",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "service",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-basic/index.cjs.js",
+  "module": "dist/libs/skill-basic/index.esm.js",
+  "types": "dist/libs/skill-basic/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-basic/package.json",
+    ".": {
+      "development": "./dist/libs/skill-basic/src/index.ts",
+      "types": "./dist/libs/skill-basic/index.esm.d.ts",
+      "import": "./dist/libs/skill-basic/index.esm.js",
+      "default": "./dist/libs/skill-basic/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-basic"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

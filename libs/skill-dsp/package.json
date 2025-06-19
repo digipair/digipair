@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-dsp",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},  
-  "main": "./index.cjs",
-  "module": "./index.js"
+  "type": "module",
+  "main": "dist/libs/skill-dsp/index.cjs.js",
+  "module": "dist/libs/skill-dsp/index.esm.js",
+  "types": "dist/libs/skill-dsp/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-dsp/package.json",
+    ".": {
+      "development": "./dist/libs/skill-dsp/src/index.ts",
+      "types": "./dist/libs/skill-dsp/index.esm.d.ts",
+      "import": "./dist/libs/skill-dsp/index.esm.js",
+      "default": "./dist/libs/skill-dsp/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-dsp"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

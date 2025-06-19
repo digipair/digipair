@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-linkedin",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-linkedin/index.cjs.js",
+  "module": "dist/libs/skill-linkedin/index.esm.js",
+  "types": "dist/libs/skill-linkedin/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-linkedin/package.json",
+    ".": {
+      "development": "./dist/libs/skill-linkedin/src/index.ts",
+      "types": "./dist/libs/skill-linkedin/index.esm.d.ts",
+      "import": "./dist/libs/skill-linkedin/index.esm.js",
+      "default": "./dist/libs/skill-linkedin/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-linkedin"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-smoobu",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-smoobu/index.cjs.js",
+  "module": "dist/libs/skill-smoobu/index.esm.js",
+  "types": "dist/libs/skill-smoobu/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-smoobu/package.json",
+    ".": {
+      "development": "./dist/libs/skill-smoobu/src/index.ts",
+      "types": "./dist/libs/skill-smoobu/index.esm.d.ts",
+      "import": "./dist/libs/skill-smoobu/index.esm.js",
+      "default": "./dist/libs/skill-smoobu/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-smoobu"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

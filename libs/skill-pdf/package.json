@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-pdf",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-pdf/index.cjs.js",
+  "module": "dist/libs/skill-pdf/index.esm.js",
+  "types": "dist/libs/skill-pdf/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-pdf/package.json",
+    ".": {
+      "development": "./dist/libs/skill-pdf/src/index.ts",
+      "types": "./dist/libs/skill-pdf/index.esm.d.ts",
+      "import": "./dist/libs/skill-pdf/index.esm.js",
+      "default": "./dist/libs/skill-pdf/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-pdf"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

@@ -1,15 +1,24 @@
 {
   "name": "@digipair/skill-imap",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {
-    "imapflow": "^1.0.171",
-    "jsdom": "^25.0.1"
+  "type": "module",
+  "main": "dist/libs/skill-imap/index.cjs.js",
+  "module": "dist/libs/skill-imap/index.esm.js",
+  "types": "dist/libs/skill-imap/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-imap/package.json",
+    ".": {
+      "development": "./dist/libs/skill-imap/src/index.ts",
+      "types": "./dist/libs/skill-imap/index.esm.d.ts",
+      "import": "./dist/libs/skill-imap/index.esm.js",
+      "default": "./dist/libs/skill-imap/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-imap"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

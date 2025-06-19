@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-web-ocr",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-web-ocr/index.cjs.js",
+  "module": "dist/libs/skill-web-ocr/index.esm.js",
+  "types": "dist/libs/skill-web-ocr/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-web-ocr/package.json",
+    ".": {
+      "development": "./dist/libs/skill-web-ocr/src/index.ts",
+      "types": "./dist/libs/skill-web-ocr/index.esm.d.ts",
+      "import": "./dist/libs/skill-web-ocr/index.esm.js",
+      "default": "./dist/libs/skill-web-ocr/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "util"],
+  "nx": {
+    "name": "skill-web-ocr"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

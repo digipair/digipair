@@ -39,6 +39,7 @@ testem.log
 Thumbs.db
 
 .nx/cache
+.nx/workspace-data
 tools/vespa/configuration/*.zip
 .env
 ./factory/**/*
@@ -50,3 +51,5 @@ tools/vespa/configuration/*.zip
 /debug/node_modules
 /debug/yarn.lock
 /output.json
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md

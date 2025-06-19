@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-web-jsoneditor",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-web-jsoneditor/index.cjs.js",
+  "module": "dist/libs/skill-web-jsoneditor/index.esm.js",
+  "types": "dist/libs/skill-web-jsoneditor/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-web-jsoneditor/package.json",
+    ".": {
+      "development": "./dist/libs/skill-web-jsoneditor/src/index.ts",
+      "types": "./dist/libs/skill-web-jsoneditor/index.esm.d.ts",
+      "import": "./dist/libs/skill-web-jsoneditor/index.esm.js",
+      "default": "./dist/libs/skill-web-jsoneditor/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "util"],
+  "nx": {
+    "name": "skill-web-jsoneditor"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

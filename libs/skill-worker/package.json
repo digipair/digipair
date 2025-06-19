@@ -1,11 +1,24 @@
 {
   "name": "@digipair/skill-worker",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-worker/index.cjs.js",
+  "module": "dist/libs/skill-worker/index.esm.js",
+  "types": "dist/libs/skill-worker/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-worker/package.json",
+    ".": {
+      "development": "./dist/libs/skill-worker/src/index.ts",
+      "types": "./dist/libs/skill-worker/index.esm.d.ts",
+      "import": "./dist/libs/skill-worker/index.esm.js",
+      "default": "./dist/libs/skill-worker/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "service"],
+  "nx": {
+    "name": "skill-worker"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }
