@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-worker",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-worker/index.cjs.js",
   "module": "dist/libs/skill-worker/index.esm.js",
@@ -14,11 +14,14 @@
       "default": "./dist/libs/skill-worker/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "service"],
+  "keywords": [
+    "digipair",
+    "service"
+  ],
   "nx": {
     "name": "skill-worker"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.90.1-0"
   }
 }

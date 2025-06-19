@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-push-notification",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-push-notification/index.cjs.js",
   "module": "dist/libs/skill-push-notification/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-push-notification/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "tool", "service"],
+  "keywords": [
+    "digipair",
+    "tool",
+    "service"
+  ],
   "nx": {
     "name": "skill-push-notification"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.90.1-0"
   }
 }

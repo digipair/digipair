@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-debug",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-debug/index.cjs.js",
   "module": "dist/libs/skill-debug/index.esm.js",
@@ -14,12 +14,16 @@
       "default": "./dist/libs/skill-debug/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "web", "service"],
+  "keywords": [
+    "digipair",
+    "web",
+    "service"
+  ],
   "nx": {
     "name": "skill-debug"
   },
   "dependencies": {
-    "@digipair/engine": "*",
-    "@digipair/skill-logger": "*"
+    "@digipair/engine": "0.90.1-0",
+    "@digipair/skill-logger": "0.90.1-0"
   }
 }

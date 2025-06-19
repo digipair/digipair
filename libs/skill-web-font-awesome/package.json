@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-font-awesome",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-web-font-awesome/index.cjs.js",
   "module": "dist/libs/skill-web-font-awesome/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-web-font-awesome/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "web", "util"],
+  "keywords": [
+    "digipair",
+    "web",
+    "util"
+  ],
   "nx": {
     "name": "skill-web-font-awesome"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.90.1-0"
   }
 }

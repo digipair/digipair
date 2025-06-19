@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-service",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-service/index.cjs.js",
   "module": "dist/libs/skill-service/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-service/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "tool", "service"],
+  "keywords": [
+    "digipair",
+    "tool",
+    "service"
+  ],
   "nx": {
     "name": "skill-service"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.90.1-0"
   }
 }

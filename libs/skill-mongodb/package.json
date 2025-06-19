@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-mongodb",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-mongodb/index.cjs.js",
   "module": "dist/libs/skill-mongodb/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-mongodb/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "tool", "service"],
+  "keywords": [
+    "digipair",
+    "tool",
+    "service"
+  ],
   "nx": {
     "name": "skill-mongodb"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.90.1-0"
   }
 }

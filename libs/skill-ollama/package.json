@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-ollama",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-ollama/index.cjs.js",
   "module": "dist/libs/skill-ollama/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-ollama/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "util", "service"],
+  "keywords": [
+    "digipair",
+    "util",
+    "service"
+  ],
   "nx": {
     "name": "skill-ollama"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.90.1-0"
   }
 }

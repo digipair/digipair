@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-qrcode",
-  "version": "0.90.0",
+  "version": "0.90.1-0",
   "type": "module",
   "main": "dist/libs/skill-qrcode/index.cjs.js",
   "module": "dist/libs/skill-qrcode/index.esm.js",
@@ -14,11 +14,16 @@
       "default": "./dist/libs/skill-qrcode/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "tool", "service", "web"],
+  "keywords": [
+    "digipair",
+    "tool",
+    "service",
+    "web"
+  ],
   "nx": {
     "name": "skill-qrcode"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.90.1-0"
   }
 }
