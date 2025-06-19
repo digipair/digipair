@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-editor",
-  "version": "0.92.0-0",
+  "version": "0.93.0-0",
   "type": "module",
   "main": "dist/libs/skill-web-editor/index.cjs.js",
   "module": "dist/libs/skill-web-editor/index.esm.js",
@@ -23,6 +23,6 @@
     "name": "skill-web-editor"
   },
   "dependencies": {
-    "@digipair/engine": "0.92.0-0"
+    "@digipair/engine": "0.93.0-0"
   }
 }

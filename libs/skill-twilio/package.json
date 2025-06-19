@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-twilio",
-  "version": "0.92.0-0",
+  "version": "0.93.0-0",
   "type": "module",
   "main": "dist/libs/skill-twilio/index.cjs.js",
   "module": "dist/libs/skill-twilio/index.esm.js",
@@ -23,6 +23,6 @@
     "name": "skill-twilio"
   },
   "dependencies": {
-    "@digipair/engine": "0.92.0-0"
+    "@digipair/engine": "0.93.0-0"
   }
 }

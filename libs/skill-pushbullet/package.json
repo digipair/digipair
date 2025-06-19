@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-pushbullet",
-  "version": "0.92.0-0",
+  "version": "0.93.0-0",
   "type": "module",
   "main": "dist/libs/skill-pushbullet/index.cjs.js",
   "module": "dist/libs/skill-pushbullet/index.esm.js",
@@ -23,6 +23,6 @@
     "name": "skill-pushbullet"
   },
   "dependencies": {
-    "@digipair/engine": "0.92.0-0"
+    "@digipair/engine": "0.93.0-0"
   }
 }

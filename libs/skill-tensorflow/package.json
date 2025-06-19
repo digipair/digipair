@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-tensorflow",
-  "version": "0.92.0-0",
+  "version": "0.93.0-0",
   "type": "module",
   "main": "dist/libs/skill-tensorflow/index.cjs.js",
   "module": "dist/libs/skill-tensorflow/index.esm.js",
@@ -23,6 +23,6 @@
     "name": "skill-tensorflow"
   },
   "dependencies": {
-    "@digipair/engine": "0.92.0-0"
+    "@digipair/engine": "0.93.0-0"
   }
 }
