@@ -1,8 +1,8 @@
 # @digipair/skill-cron
 
 **Version:** 0.1.0  
-**Summary:** Gestion des tâches planifiées  
-**Description:** La compétence permet de gérer l'exécution des tâches planifiées.  
+**Summary:** Scheduled Task Management  
+**Description:** The skill allows for the management of scheduled task executions.  
 **Icon:** 📆
 
 ## Table des matières
@@ -14,17 +14,19 @@
   - [enableCron](#enablecron)
   - [disableCron](#disablecron)
 
+---
+
 ## Fonctions
 
 ### crons
 
-Liste des tâches planifiées.
+Liste les tâches planifiées.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description                           |
-|-------|--------|--------|---------------------------------------|
-| path  | string | Non    | Chemin d'accès vers le répertoire des digipairs |
+| Nom   | Type   | Requis | Description                                 |
+|-------|--------|--------|---------------------------------------------|
+| path  | string | Non    | Chemin d'accès au répertoire des digipairs. |
 
 #### Exemple
 
@@ -33,23 +35,26 @@ Liste des tâches planifiées.
   "library": "@digipair/skill-cron",
   "element": "crons",
   "properties": {
-    "path": "/chemin/vers/repertoire"
+    "path": "/chemin/vers/mon/dossier"
   }
 }
 ```
 
+---
+
 ### addCron
 
-Ajoute une planification.
+Ajoute une nouvelle tâche planifiée.
 
 #### Paramètres
 
-| Nom       | Type   | Requis | Description                                      |
-|-----------|--------|--------|--------------------------------------------------|
-| path      | string | Non    | Chemin d'accès vers le répertoire des digipairs  |
-| time      | string | Oui    | Planification au format cron                     |
-| digipair  | string | Oui    | Nom du digipair qui exécute le raisonnement      |
-| reasoning | string | Oui    | Nom du raisonnement à exécuter                   |
+| Nom        | Type   | Requis | Description                                              |
+|------------|--------|--------|----------------------------------------------------------|
+| path       | string | Non    | Chemin d'accès au répertoire des digipairs.              |
+| time       | string | Oui    | Horaire au format cron (ex: `"0 0 * * *"`).              |
+| digipair   | string | Oui    | Nom du digipair exécutant le raisonnement.               |
+| reasoning  | string | Oui    | Nom du raisonnement à exécuter.                          |
+| utcOffset  | string | Non    | Décalage horaire (ex: `"+02:00"`).                       |
 
 #### Exemple
 
@@ -58,24 +63,27 @@ Ajoute une planification.
   "library": "@digipair/skill-cron",
   "element": "addCron",
   "properties": {
-    "path": "/chemin/vers/repertoire",
+    "path": "/chemin/vers/mon/dossier",
     "time": "0 0 * * *",
-    "digipair": "nom_du_digipair",
-    "reasoning": "nom_du_raisonnement"
+    "digipair": "ma_paire_digitale",
+    "reasoning": "mon_raisonnement",
+    "utcOffset": "+02:00"
   }
 }
 ```
 
+---
+
 ### deleteCron
 
-Supprime une planification.
+Supprime une tâche planifiée existante.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description                                      |
-|-------|--------|--------|--------------------------------------------------|
-| path  | string | Non    | Chemin d'accès vers le répertoire des digipairs  |
-| id    | string | Oui    | Identifiant de la planification                  |
+| Nom   | Type   | Requis | Description                                 |
+|-------|--------|--------|---------------------------------------------|
+| path  | string | Non    | Chemin d'accès au répertoire des digipairs. |
+| id    | string | Oui    | Identifiant de la tâche planifiée.          |
 
 #### Exemple
 
@@ -84,22 +92,24 @@ Supprime une planification.
   "library": "@digipair/skill-cron",
   "element": "deleteCron",
   "properties": {
-    "path": "/chemin/vers/repertoire",
-    "id": "identifiant_de_la_planification"
+    "path": "/chemin/vers/mon/dossier",
+    "id": "identifiant_de_la_tache"
   }
 }
 ```
 
+---
+
 ### enableCron
 
-Active une planification.
+Active une tâche planifiée existante.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description                                      |
-|-------|--------|--------|--------------------------------------------------|
-| path  | string | Non    | Chemin d'accès vers le répertoire des digipairs  |
-| id    | string | Oui    | Identifiant de la planification                  |
+| Nom   | Type   | Requis | Description                                 |
+|-------|--------|--------|---------------------------------------------|
+| path  | string | Non    | Chemin d'accès au répertoire des digipairs. |
+| id    | string | Oui    | Identifiant de la tâche planifiée.          |
 
 #### Exemple
 
@@ -108,22 +118,24 @@ Active une planification.
   "library": "@digipair/skill-cron",
   "element": "enableCron",
   "properties": {
-    "path": "/chemin/vers/repertoire",
-    "id": "identifiant_de_la_planification"
+    "path": "/chemin/vers/mon/dossier",
+    "id": "identifiant_de_la_tache"
   }
 }
 ```
 
+---
+
 ### disableCron
 
-Désactive une planification.
+Désactive une tâche planifiée existante.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description                                      |
-|-------|--------|--------|--------------------------------------------------|
-| path  | string | Non    | Chemin d'accès vers le répertoire des digipairs  |
-| id    | string | Oui    | Identifiant de la planification                  |
+| Nom   | Type   | Requis | Description                                 |
+|-------|--------|--------|---------------------------------------------|
+| path  | string | Non    | Chemin d'accès au répertoire des digipairs. |
+| id    | string | Oui    | Identifiant de la tâche planifiée.          |
 
 #### Exemple
 
@@ -132,13 +144,17 @@ Désactive une planification.
   "library": "@digipair/skill-cron",
   "element": "disableCron",
   "properties": {
-    "path": "/chemin/vers/repertoire",
-    "id": "identifiant_de_la_planification"
+    "path": "/chemin/vers/mon/dossier",
+    "id": "identifiant_de_la_tache"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- Les fonctions `crons`, `addCron`, `deleteCron`, `enableCron`, et `disableCron` sont utilisées pour gérer les tâches planifiées dans le système.
-- Assurez-vous de fournir les paramètres requis pour chaque fonction afin de garantir leur bon fonctionnement.
+- Le paramètre `path` est optionnel pour toutes les fonctions et permet de spécifier le chemin d'accès au répertoire des digipairs si besoin.
+- Le format du paramètre `time` pour `addCron` doit respecter la syntaxe standard des expressions cron.
+- Les identifiants de tâches (`id`) sont requis pour les opérations de suppression, d'activation et de désactivation.
+- Assurez-vous que le digipair et le raisonnement spécifiés existent et sont valides lors de l'ajout d'une tâche planifiée.

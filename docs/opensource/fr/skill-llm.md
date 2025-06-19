@@ -1,31 +1,36 @@
 # @digipair/skill-llm
 
 **Version:** 0.1.0  
-**Summary:** Gestion de modèles LLM  
-**Description:** La compétence @digipair/skill-llm est une compétence qui permet d'utiliser un modèle de langage à grande échelle.  
-**Icon:** 🚀
+**Résumé:** Lanchain  
+**Description:** La compétence `@digipair/skill-llm` permet l’utilisation d’un modèle de langage à grande échelle (LLM) pour la génération de texte, le raisonnement, la vision (analyse d’images et de texte), et la synthèse de texte.  
+**Icône:** 🚀
+
+---
 
 ## Table des matières
 
 - [Fonctions](#fonctions)
   - [invoke](#invoke)
-  - [reasoningStep](#reasoningStep)
+  - [reasoningStep](#reasoningstep)
   - [basic](#basic)
   - [vision](#vision)
   - [summarization](#summarization)
+- [Notes](#notes)
+
+---
 
 ## Fonctions
 
 ### invoke
 
-Raisonnement LLM
+Effectue un raisonnement LLM sur une séquence d’actions et des données d’entrée optionnelles.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description |
-|----------|--------|--------|-------------|
-| execute  | array  | Oui    | Exécuter |
-| input    | object | Non    | Données d'entrée |
+| Nom      | Type    | Requis | Description                                      |
+|----------|---------|--------|--------------------------------------------------|
+| execute  | array   | Oui    | Liste d’actions à exécuter (pinsSettings).       |
+| input    | object  | Non    | Données d’entrée optionnelles pour le raisonnement.|
 
 #### Exemple
 
@@ -35,24 +40,33 @@ Raisonnement LLM
   "element": "invoke",
   "properties": {
     "execute": [
-      // Contenu de https://schemas.digipair.ai/pinsSettings
+      // Liste d’objets pinsSettings
     ],
     "input": {
-      // Données d'entrée
+      // Données d’entrée optionnelles
     }
   }
 }
 ```
 
+---
+
 ### reasoningStep
 
-Etape de raisonnement
+Exécute une étape de raisonnement avec des attributs spécifiques.
 
 #### Paramètres
 
-| Nom        | Type  | Requis | Description |
-|------------|-------|--------|-------------|
-| attributes | array | Oui    | Données |
+| Nom        | Type   | Requis | Description                                 |
+|------------|--------|--------|---------------------------------------------|
+| attributes | array  | Oui    | Liste d’attributs de l’étape de raisonnement (voir ci-dessous). |
+
+**Structure d’un attribut (`reasonningStepAttribute`):**
+
+| Nom   | Type   | Requis | Description                |
+|-------|--------|--------|----------------------------|
+| name  | string | Oui    | Nom de l’attribut          |
+| value | array  | Oui    | Valeur (pinsSettings)      |
 
 #### Exemple
 
@@ -63,9 +77,9 @@ Etape de raisonnement
   "properties": {
     "attributes": [
       {
-        "name": "exampleName",
+        "name": "exemple",
         "value": [
-          // Contenu de https://schemas.digipair.ai/pinsSettings
+          // Liste d’objets pinsSettings
         ]
       }
     ]
@@ -73,19 +87,19 @@ Etape de raisonnement
 }
 ```
 
+---
+
 ### basic
 
-Générer
-
-Génération de texte via un model LLM
+Génère du texte à partir d’un prompt via un modèle LLM.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description |
-|--------|--------|--------|-------------|
-| prompt | string | Oui    | Prompt à exécuter via le model LLM |
-| model  | array  | Non    | Modèle LLM à charger |
-| schema | object | Non    | Schema JSON des données à extraire |
+| Nom     | Type    | Requis | Description                                         |
+|---------|---------|--------|-----------------------------------------------------|
+| prompt  | string  | Oui    | Prompt à exécuter via le modèle LLM                 |
+| model   | array   | Non    | Modèle LLM à charger (pinsSettings)                 |
+| schema  | object  | Non    | Schéma JSON des données à extraire                  |
 
 #### Exemple
 
@@ -94,31 +108,31 @@ Génération de texte via un model LLM
   "library": "@digipair/skill-llm",
   "element": "basic",
   "properties": {
-    "prompt": "Votre prompt ici",
+    "prompt": "Explique la théorie de la relativité.",
     "model": [
-      // Contenu de https://schemas.digipair.ai/pinsSettings
+      // Liste d’objets pinsSettings
     ],
     "schema": {
-      // Schema JSON des données à extraire
+      // Schéma JSON optionnel
     }
   }
 }
 ```
 
+---
+
 ### vision
 
-Voir
-
-Utiliser un model LLM qui sait lire des images et du texte en entrée
+Utilise un modèle LLM capable d’analyser des images et du texte.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description |
-|--------|--------|--------|-------------|
-| model  | array  | Non    | Modèle Vision à charger |
-| prompt | string | Oui    | Prompt à exécuter sur le modèle LLM |
-| image  | string | Oui    | Image en base 64 |
-| schema | object | Non    | Schema JSON des données à extraire |
+| Nom     | Type    | Requis | Description                                         |
+|---------|---------|--------|-----------------------------------------------------|
+| model   | array   | Non    | Modèle de vision à charger (pinsSettings)           |
+| prompt  | string  | Oui    | Prompt à exécuter sur le modèle LLM                 |
+| image   | string  | Oui    | Image encodée en base64                             |
+| schema  | object  | Non    | Schéma JSON des données à extraire                  |
 
 #### Exemple
 
@@ -127,38 +141,38 @@ Utiliser un model LLM qui sait lire des images et du texte en entrée
   "library": "@digipair/skill-llm",
   "element": "vision",
   "properties": {
+    "prompt": "Décris ce que tu vois sur l’image.",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
     "model": [
-      // Contenu de https://schemas.digipair.ai/pinsSettings
+      // Liste d’objets pinsSettings
     ],
-    "prompt": "Votre prompt ici",
-    "image": "base64_encoded_image",
     "schema": {
-      // Schema JSON des données à extraire
+      // Schéma JSON optionnel
     }
   }
 }
 ```
 
+---
+
 ### summarization
 
-Résumer un texte
-
-Résumer un texte via un model LLM
+Résume un texte via un modèle LLM avec diverses options de configuration.
 
 #### Paramètres
 
-| Nom                    | Type    | Requis | Description |
-|------------------------|---------|--------|-------------|
-| model                  | array   | Non    | Modèle LLM à charger |
-| chunkSize              | number  | Non    | Taille des morceaux de texte |
-| type                   | string  | Non    | Algorithme à utiliser pour résumer le texte |
-| prompt                 | string  | Oui    | Texte à résumer |
-| combineMapPrompt       | string  | Non    | combineMapPrompt |
-| combinePrompt          | string  | Non    | combinePrompt |
-| returnIntermediateSteps| boolean | Non    | returnIntermediateSteps |
-| refinePrompt           | string  | Non    | refinePrompt |
-| questionPrompt         | string  | Non    | questionPrompt |
-| verbose                | boolean | Non    | Ajoute des logs de debug |
+| Nom                    | Type     | Requis | Description                                         |
+|------------------------|----------|--------|-----------------------------------------------------|
+| model                  | array    | Non    | Modèle LLM à charger (pinsSettings)                 |
+| chunkSize              | number   | Non    | Taille des segments de texte                        |
+| type                   | string   | Non    | Algorithme de résumé à utiliser                     |
+| prompt                 | string   | Oui    | Texte à résumer                                     |
+| combineMapPrompt       | string   | Non    | Prompt de combinaison (map)                         |
+| combinePrompt          | string   | Non    | Prompt de combinaison                               |
+| returnIntermediateSteps| boolean  | Non    | Retourne les étapes intermédiaires                  |
+| refinePrompt           | string   | Non    | Prompt de raffinement                               |
+| questionPrompt         | string   | Non    | Prompt de question                                  |
+| verbose                | boolean  | Non    | Active les logs de debug                            |
 
 #### Exemple
 
@@ -167,23 +181,32 @@ Résumer un texte via un model LLM
   "library": "@digipair/skill-llm",
   "element": "summarization",
   "properties": {
+    "prompt": "Voici un long texte à résumer...",
     "model": [
-      // Contenu de https://schemas.digipair.ai/pinsSettings
+      // Liste d’objets pinsSettings
     ],
-    "chunkSize": 1000,
-    "type": "algorithme",
-    "prompt": "Texte à résumer",
-    "combineMapPrompt": "Votre combineMapPrompt ici",
-    "combinePrompt": "Votre combinePrompt ici",
-    "returnIntermediateSteps": true,
-    "refinePrompt": "Votre refinePrompt ici",
-    "questionPrompt": "Votre questionPrompt ici",
+    "chunkSize": 500,
+    "type": "map-reduce",
+    "combineMapPrompt": "Résumé intermédiaire :",
+    "combinePrompt": "Résumé final :",
+    "returnIntermediateSteps": false,
+    "refinePrompt": "Peux-tu améliorer ce résumé ?",
+    "questionPrompt": "Quelles sont les idées principales ?",
     "verbose": true
   }
 }
 ```
 
+---
+
 ## Notes
 
-- Les fonctions `invoke`, `reasoningStep`, `basic`, `vision`, et `summarization` sont utilisées pour interagir avec des modèles de langage à grande échelle (LLM) pour diverses tâches telles que le raisonnement, la génération de texte, l'analyse d'images et la summarisation de texte.
-- Assurez-vous de fournir les paramètres requis pour chaque fonction afin de garantir leur bon fonctionnement.
+- Les objets `pinsSettings` référencés dans les paramètres doivent suivre le schéma défini par [https://schemas.digipair.ai/pinsSettings](https://schemas.digipair.ai/pinsSettings).
+- Les fonctions de cette librairie permettent d’exploiter la puissance des LLM pour des tâches variées : génération, raisonnement, vision, et synthèse.
+- Pour chaque fonction, adaptez les paramètres selon vos besoins et le modèle LLM utilisé.
+- Les champs optionnels peuvent être omis si non nécessaires.
+- Pour la fonction `vision`, l’image doit être encodée en base64.
+
+---
+
+**Pour toute contribution ou question, consultez la documentation officielle ou ouvrez une issue sur le dépôt GitHub du projet.**

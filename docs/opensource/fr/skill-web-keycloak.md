@@ -1,9 +1,9 @@
 # @digipair/skill-web-keycloak
 
 **Version:** 0.1.0  
-**Summary:** Authentification web Keycloak  
-**Description:** gérer une authentification Keycloak coté navigateur.  
-**Icon:** 🔑
+**Résumé:** Keycloak Web Authentication  
+**Description:** Cette compétence permet de gérer l’authentification Keycloak côté navigateur.  
+**Icône:** 🔑
 
 ## Table des matières
 
@@ -14,19 +14,21 @@
   - [logout](#logout)
   - [login](#login)
 
+---
+
 ## Fonctions
 
 ### initialize
 
-Initialise l'authentification Keycloak.
+Initialise l’authentification Keycloak.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                 |
-| -------- | ------ | ------ | --------------------------- |
-| url      | string | Non    | Adresse du serveur Keycloak |
-| realm    | string | Non    | Realm Keycloak              |
-| clientId | string | Non    | ClientId Keycloak           |
+| Nom      | Type   | Requis | Description                        |
+|----------|--------|--------|------------------------------------|
+| url      | string | Non    | Adresse du serveur Keycloak        |
+| realm    | string | Non    | Nom du Realm Keycloak              |
+| clientId | string | Non    | Identifiant du client Keycloak     |
 
 #### Exemple
 
@@ -36,15 +38,17 @@ Initialise l'authentification Keycloak.
   "element": "initialize",
   "properties": {
     "url": "https://keycloak.example.com",
-    "realm": "example-realm",
-    "clientId": "example-client-id"
+    "realm": "mon-realm",
+    "clientId": "mon-client"
   }
 }
 ```
 
+---
+
 ### isLogged
 
-Vérifie si l'utilisateur est identifié.
+Vérifie si l’utilisateur est actuellement identifié auprès de Keycloak.
 
 #### Paramètres
 
@@ -60,9 +64,11 @@ Aucun paramètre requis.
 }
 ```
 
+---
+
 ### token
 
-Récupère le token Keycloak.
+Récupère le token d’authentification Keycloak de l’utilisateur courant.
 
 #### Paramètres
 
@@ -78,9 +84,11 @@ Aucun paramètre requis.
 }
 ```
 
+---
+
 ### logout
 
-Déconnecte l'utilisateur de Keycloak.
+Déconnecte l’utilisateur de Keycloak.
 
 #### Paramètres
 
@@ -96,9 +104,11 @@ Aucun paramètre requis.
 }
 ```
 
+---
+
 ### login
 
-Connecte l'utilisateur à Keycloak.
+Connecte l’utilisateur à Keycloak.
 
 #### Paramètres
 
@@ -114,7 +124,13 @@ Aucun paramètre requis.
 }
 ```
 
+---
+
 ## Notes
 
-- Les fonctions `initialize`, `isLogged`, `token`, `logout`, et `login` sont utilisées pour gérer l'authentification Keycloak côté navigateur.
-- Assurez-vous de fournir les paramètres corrects pour la fonction `initialize` afin de configurer correctement l'authentification Keycloak.
+- La fonction `initialize` doit être appelée avant toute opération d’authentification pour configurer la connexion à Keycloak.
+- Les fonctions `login` et `logout` permettent respectivement de connecter et déconnecter l’utilisateur.
+- `isLogged` permet de vérifier l’état d’authentification de l’utilisateur.
+- `token` permet de récupérer le token JWT pour les appels authentifiés.
+- Tous les paramètres sont optionnels pour `initialize`, mais il est recommandé de les renseigner pour une configuration correcte.
+- Cette librairie est conçue pour être utilisée côté navigateur.

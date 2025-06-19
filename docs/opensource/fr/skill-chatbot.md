@@ -1,214 +1,45 @@
 # @digipair/skill-chatbot
 
 **Version:** 0.1.0  
-**Summary:** Communication avec le chatbot  
+**Résumé:** Communication avec le chatbot  
 **Description:** La compétence permet de gérer la communication avec le chatbot.  
-**Icon:** 🤖
+**Icône:** 🤖
+
+---
 
 ## Table des matières
 
 - [Fonctions](#fonctions)
-  - [chatbot](#chatbot)
-  - [find](#find)
-  - [search](#search)
-  - [history](#history)
-  - [getRole](#getRole)
-  - [setRole](#setRole)
   - [answer](#answer)
+  - [execute](#execute)
+- [Schémas de données](#schémas-de-données)
+  - [Step](#step)
+  - [Boost](#boost)
+  - [ContextParameter](#contextparameter)
+- [Notes](#notes)
+
+---
 
 ## Fonctions
 
-### chatbot
-
-Retourner au chatbot
-
-#### Paramètres
-
-| Nom            | Type   | Requis | Description                                    |
-|----------------|--------|--------|------------------------------------------------|
-| assistant      | string | Oui    | Réponse de l'assistant                         |
-| command        | array  | Non    | Commande exécutée sur le chatbot               |
-| sources        | array  | Non    | Liste des sources utilisées pour répondre      |
-| logs           | object | Non    | Informations utiles pour déboguer le raisonnement |
-| model          | array  | Non    | Modèle LLM à charger                           |
-| embeddings     | array  | Non    | Modèle d'embeddings à charger                  |
-| baseUrlVespa   | string | Non    | Url du serveur Vespa                           |
-| promptSummary  | string | Non    | Prompt utilisé pour le résumé système          |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-chatbot",
-  "element": "chatbot",
-  "properties": {
-    "assistant": "réponse de l'assistant",
-    "command": ["commande1", "commande2"],
-    "sources": [{"source1": "value1"}],
-    "logs": {"log1": "value1"},
-    "model": ["model1"],
-    "embeddings": ["embedding1"],
-    "baseUrlVespa": "http://vespa.server",
-    "promptSummary": "Résumé du prompt"
-  }
-}
-```
-
-### find
-
-Récupérer des données dans l'historique de conversation
-
-#### Paramètres
-
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| limit    | number | Non    | Limite                     |
-| orderby  | string | Non    | Ordre                      |
-| query    | string | Oui    | Requête                    |
-| baseUrl  | string | Non    | Url du serveur Vespa       |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-chatbot",
-  "element": "find",
-  "properties": {
-    "limit": 10,
-    "orderby": "date",
-    "query": "historique de conversation",
-    "baseUrl": "http://vespa.server"
-  }
-}
-```
-
-### search
-
-Rechercher des données dans l'historique de conversation
-
-#### Paramètres
-
-| Nom         | Type   | Requis | Description                |
-|-------------|--------|--------|----------------------------|
-| embeddings  | array  | Non    | Modèle d'embeddings à charger |
-| limit       | number | Non    | Limite                     |
-| orderby     | string | Non    | Ordre                      |
-| targetHits  | number | Non    | Cibles de résultats        |
-| query       | string | Oui    | Requête                    |
-| baseUrl     | string | Non    | Url du serveur Vespa       |
-| language    | string | Non    | Langue de recherche        |
-| filter      | string | Non    | Filtre de recherche        |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-chatbot",
-  "element": "search",
-  "properties": {
-    "embeddings": ["embedding1"],
-    "limit": 10,
-    "orderby": "date",
-    "targetHits": 5,
-    "query": "recherche dans l'historique",
-    "baseUrl": "http://vespa.server",
-    "language": "fr",
-    "filter": "type:message"
-  }
-}
-```
-
-### history
-
-Historique
-
-#### Paramètres
-
-| Nom        | Type   | Requis | Description                |
-|------------|--------|--------|----------------------------|
-| baseUrl    | string | Non    | Url du serveur Vespa       |
-| maxHistory | number | Non    | Nombre d'éléments maximum  |
-| system     | string | Non    | Système                    |
-| question   | string | Non    | Question de l'assistant    |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-chatbot",
-  "element": "history",
-  "properties": {
-    "baseUrl": "http://vespa.server",
-    "maxHistory": 50,
-    "system": "système1",
-    "question": "question de l'assistant"
-  }
-}
-```
-
-### getRole
-
-Récupération du rôle
-
-#### Paramètres
-
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| role     | string | Oui    | Nom du rôle                |
-| baseUrl  | string | Non    | Url du serveur Vespa       |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-chatbot",
-  "element": "getRole",
-  "properties": {
-    "role": "nom_du_rôle",
-    "baseUrl": "http://vespa.server"
-  }
-}
-```
-
-### setRole
-
-Mise à jour du rôle
-
-#### Paramètres
-
-| Nom      | Type   | Requis | Description                |
-|----------|--------|--------|----------------------------|
-| role     | string | Oui    | Nom du rôle                |
-| value    | string | Oui    | Valeur du rôle             |
-| baseUrl  | string | Non    | Url du serveur Vespa       |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-chatbot",
-  "element": "setRole",
-  "properties": {
-    "role": "nom_du_rôle",
-    "value": "valeur_du_rôle",
-    "baseUrl": "http://vespa.server"
-  }
-}
-```
-
 ### answer
 
-Réponse du chatbot
+Générer une réponse du chatbot, incluant la réponse de l’assistant, les commandes exécutées, les boosts proposés, les sources utilisées, et d’autres informations contextuelles.
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                                    |
-|------------|--------|--------|------------------------------------------------|
-| assistant  | string | Oui    | Réponse de l'assistant                         |
-| command    | array  | Non    | Commandes exécutées sur le chatbot             |
-| boosts     | object | Non    | Liste des boosts proposés                      |
-| sources    | array  | Non    | Liste des sources utilisées pour répondre      |
-| logs       | object | Non    | Informations utiles pour déboguer le raisonnement |
+| Nom                | Type     | Requis | Description                                              |
+|--------------------|----------|--------|----------------------------------------------------------|
+| assistant          | string   | Oui    | Réponse de l’assistant                                   |
+| command            | object[] | Non    | Commandes exécutées sur le chatbot                       |
+| boosts             | object[] | Non    | Liste des boosts proposés                                |
+| sources            | object[] | Non    | Liste des sources utilisées pour répondre à l’utilisateur|
+| logs               | object   | Non    | Informations utiles pour le débogage                     |
+| boost              | object   | Non    | Boost à exécuter en réponse à ce message                 |
+| parent_conversation| string   | Non    | Conversation parente                                     |
+| parent_history     | string   | Non    | Message parent                                           |
+| session            | string   | Non    | Session                                                  |
+| uuid               | string   | Non    | Identifiant du message                                   |
 
 #### Exemple
 
@@ -217,16 +48,129 @@ Réponse du chatbot
   "library": "@digipair/skill-chatbot",
   "element": "answer",
   "properties": {
-    "assistant": "réponse de l'assistant",
-    "command": ["commande1", "commande2"],
-    "boosts": {"boost1": "value1"},
-    "sources": [{"source1": "value1"}],
-    "logs": {"log1": "value1"}
+    "assistant": "Bonjour, comment puis-je vous aider ?",
+    "command": [{ "type": "search", "query": "informations" }],
+    "boosts": [{ "selector": "#main", "step": "init" }],
+    "sources": [{ "type": "document", "id": "doc-123" }],
+    "logs": { "debug": "Aucune erreur détectée" },
+    "boost": { "selector": "#main", "step": "init" },
+    "parent_conversation": "conv-001",
+    "parent_history": "msg-001",
+    "session": "session-abc",
+    "uuid": "uuid-xyz"
   }
 }
 ```
 
+---
+
+### execute
+
+Exécuter une étape d’un boost.
+
+#### Paramètres
+
+| Nom   | Type   | Requis | Description                        |
+|-------|--------|--------|------------------------------------|
+| step  | string | Oui    | Nom de l’étape à exécuter          |
+
+#### Exemple
+
+```json
+{
+  "library": "@digipair/skill-chatbot",
+  "element": "execute",
+  "properties": {
+    "step": "validation"
+  }
+}
+```
+
+---
+
+## Schémas de données
+
+### Step
+
+Décrit une étape d’un boost.
+
+| Propriété | Type     | Requis | Description                |
+|-----------|----------|--------|----------------------------|
+| name      | string   | Oui    | Nom de l’étape             |
+| execute   | object[] | Oui    | Actions à exécuter         |
+
+#### Exemple
+
+```json
+{
+  "name": "validation",
+  "execute": [
+    { "type": "check", "params": { "field": "email" } }
+  ]
+}
+```
+
+---
+
+### Boost
+
+Décrit un boost proposé ou exécuté.
+
+| Propriété | Type     | Requis | Description                |
+|-----------|----------|--------|----------------------------|
+| prompt    | boolean  | Non    | Affiche un prompt utilisateur |
+| required  | boolean  | Non    | Est requis                  |
+| selector  | string   | Non    | Sélecteur CSS               |
+| url       | string   | Non    | URL ou regex associée       |
+| step      | string   | Non    | Étape associée              |
+| inputs    | object[] | Non    | Entrées pour le boost       |
+
+#### Exemple
+
+```json
+{
+  "prompt": true,
+  "required": false,
+  "selector": "#main",
+  "url": "https://example.com",
+  "step": "init",
+  "inputs": [
+    { "type": "text", "name": "username" }
+  ]
+}
+```
+
+---
+
+### ContextParameter
+
+Paramètre de contexte utilisé dans les boosts.
+
+| Propriété  | Type    | Requis | Description                |
+|------------|---------|--------|----------------------------|
+| name       | string  | Oui    | Nom du paramètre           |
+| summary    | string  | Oui    | Résumé                     |
+| required   | boolean | Oui    | Est requis                 |
+| schema     | object  | Oui    | Schéma du paramètre        |
+| description| string  | Non    | Description                |
+
+#### Exemple
+
+```json
+{
+  "name": "userId",
+  "summary": "Identifiant utilisateur",
+  "required": true,
+  "schema": { "type": "string" },
+  "description": "Identifiant unique de l'utilisateur"
+}
+```
+
+---
+
 ## Notes
 
-- Les fonctions `chatbot`, `find`, `search`, `history`, `getRole`, `setRole`, et `answer` sont utilisées pour interagir avec le chatbot et gérer les données de conversation.
-- Assurez-vous de fournir les paramètres requis pour chaque fonction afin de garantir leur bon fonctionnement.
+- Les fonctions `answer` et `execute` sont utilisées pour gérer la communication et l’exécution d’actions dans le chatbot.
+- Les schémas `Step`, `Boost` et `ContextParameter` permettent de structurer les actions, les propositions et le contexte du chatbot.
+- Assurez-vous de fournir les paramètres requis pour chaque fonction afin de garantir le bon fonctionnement de la librairie.
+- Cette documentation s’applique à l’utilisation des fonctions JavaScript de la librairie, et non à une API HTTP.

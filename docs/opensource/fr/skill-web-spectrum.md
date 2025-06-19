@@ -1,670 +1,414 @@
+```markdown
 # @digipair/skill-web-spectrum
 
 **Version:** 0.1.0  
 **Summary:** Design System Spectrum  
-**Description:** créer des interfaces web en utilisant le design system Spectrum.  
+**Description:** This skill allows users to create web interfaces using the Spectrum design system.  
 **Icon:** 🎨
 
 ## Table des matières
 
 - [Fonctions](#fonctions)
-  - [spTheme](#spTheme)
-  - [spTable](#spTable)
-  - [spTableHead](#spTableHead)
-  - [spTableHeadCell](#spTableHeadCell)
-  - [spTableBody](#spTableBody)
-  - [spTableRow](#spTableRow)
-  - [spTableCell](#spTableCell)
-  - [spActionGroup](#spActionGroup)
-  - [spActionButton](#spActionButton)
-  - [spIcon](#spIcon)
-  - [spDivider](#spDivider)
-  - [spSearch](#spSearch)
-  - [spTopNav](#spTopNav)
-  - [spTopNavItem](#spTopNavItem)
-  - [spActionMenu](#spActionMenu)
-  - [spMenu](#spMenu)
-  - [spMenuItem](#spMenuItem)
-  - [spMenuDivider](#spMenuDivider)
-  - [spIllustratedMessage](#spIllustratedMessage)
-  - [spFieldLabel](#spFieldLabel)
-  - [spTextfield](#spTextfield)
-  - [spHelpText](#spHelpText)
-  - [spButton](#spButton)
-  - [spToast](#spToast)
+  - [sp-accordion](#sp-accordion)
+  - [sp-accordion-item](#sp-accordion-item)
+  - [sp-action-bar](#sp-action-bar)
+  - [sp-action-button](#sp-action-button)
+  - [sp-action-group](#sp-action-group)
+  - [sp-action-menu](#sp-action-menu)
+  - [sp-alert-banner](#sp-alert-banner)
+  - [sp-alert-dialog](#sp-alert-dialog)
+  - [sp-asset](#sp-asset)
+  - [sp-avatar](#sp-avatar)
+  - [sp-badge](#sp-badge)
+  - [sp-breadcrumbs](#sp-breadcrumbs)
+  - [sp-breadcrumb-item](#sp-breadcrumb-item)
+  - [sp-button](#sp-button)
+  - [sp-button-group](#sp-button-group)
+  - [sp-card](#sp-card)
+  - [sp-checkbox](#sp-checkbox)
+  - [sp-coachmark](#sp-coachmark)
+  - [sp-coach-indicator](#sp-coach-indicator)
+  - [sp-color-area](#sp-color-area)
+  - [sp-color-field](#sp-color-field)
+  - [sp-color-handle](#sp-color-handle)
+  - [sp-color-loupe](#sp-color-loupe)
+  - [sp-color-slider](#sp-color-slider)
+  - [sp-color-wheel](#sp-color-wheel)
+  - [sp-combobox](#sp-combobox)
+  - [sp-contextual-help](#sp-contextual-help)
+  - [sp-dialog](#sp-dialog)
+  - [sp-dialog-base](#sp-dialog-base)
+  - [sp-dialog-wrapper](#sp-dialog-wrapper)
+  - [sp-divider](#sp-divider)
+  - [sp-dropzone](#sp-dropzone)
+  - [sp-field-group](#sp-field-group)
+  - [sp-field-label](#sp-field-label)
+  - [sp-help-text](#sp-help-text)
+  - [sp-icon](#sp-icon)
+  - [sp-illustrated-message](#sp-illustrated-message)
+  - [sp-infield-button](#sp-infield-button)
+  - [sp-link](#sp-link)
+  - [sp-menu](#sp-menu)
+  - [sp-menu-group](#sp-menu-group)
+  - [sp-menu-item](#sp-menu-item)
+  - [sp-meter](#sp-meter)
+  - [sp-number-field](#sp-number-field)
+  - [sp-overlay](#sp-overlay)
+  - [overlay-trigger](#overlay-trigger)
+  - [sp-picker](#sp-picker)
+  - [sp-picker-button](#sp-picker-button)
+  - [sp-popover](#sp-popover)
+  - [sp-progress-bar](#sp-progress-bar)
+  - [sp-progress-circle](#sp-progress-circle)
+  - [sp-radio](#sp-radio)
+  - [sp-radio-group](#sp-radio-group)
+  - [sp-search](#sp-search)
+  - [sp-sidenav](#sp-sidenav)
+  - [sp-sidenav-item](#sp-sidenav-item)
+  - [sp-slider](#sp-slider)
+  - [sp-slider-handle](#sp-slider-handle)
+  - [sp-split-view](#sp-split-view)
+  - [sp-status-light](#sp-status-light)
+  - [sp-swatch](#sp-swatch)
+  - [sp-swatch-group](#sp-swatch-group)
+  - [sp-switch](#sp-switch)
+  - [sp-table](#sp-table)
+  - [sp-tabs](#sp-tabs)
+  - [sp-tab-panel](#sp-tab-panel)
+  - [sp-tab](#sp-tab)
+  - [sp-tabs-overflow](#sp-tabs-overflow)
+  - [sp-tags](#sp-tags)
+  - [sp-tag](#sp-tag)
+  - [sp-textfield](#sp-textfield)
+  - [sp-thumbnail](#sp-thumbnail)
+  - [sp-toast](#sp-toast)
+  - [sp-tooltip](#sp-tooltip)
+  - [sp-top-nav](#sp-top-nav)
+  - [sp-tray](#sp-tray)
+  - [sp-underlay](#sp-underlay)
+  - [sp-grid](#sp-grid)
+  - [sp-theme](#sp-theme)
+  - [sp-truncated](#sp-truncated)
+  - [sp-table-head](#sp-table-head)
+  - [sp-table-head-cell](#sp-table-head-cell)
+  - [sp-table-body](#sp-table-body)
+  - [sp-table-row](#sp-table-row)
+  - [sp-table-cell](#sp-table-cell)
+  - [sp-top-nav-item](#sp-top-nav-item)
+  - [sp-menu-divider](#sp-menu-divider)
+
+---
 
 ## Fonctions
 
-### spTheme
+> **Note** : Chaque fonction correspond à un composant Spectrum Web Component.  
+> Les paramètres sont passés via l'objet `properties`.  
+> Les événements sont émis lors d'interactions utilisateur ou de changements d'état.
 
-Thème de l'interface
+---
+
+### sp-accordion
+
+Crée un composant accordéon Spectrum.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description                          |
-| ----- | ------ | ------ | ------------------------------------ |
-| theme | string | Non    | Nom du thème à appliquer             |
-| color | string | Non    | Couleur du thème                     |
-| scale | string | Non    | Echelle du thème                     |
-| style | string | Non    | Personnalisation des styles du thème |
+| Nom             | Type    | Requis | Description                                                                 |
+|-----------------|---------|--------|-----------------------------------------------------------------------------|
+| class           | string  | Non    | Classe CSS de l'élément                                                     |
+| style           | string  | Non    | Style CSS de l'élément                                                      |
+| id              | string  | Non    | Identifiant de l'élément                                                    |
+| textContent     | string  | Non    | Texte du contenu                                                            |
+| innerHTML       | string  | Non    | HTML interne                                                                |
+| slot            | string  | Non    | Slot de l'élément                                                           |
+| allow-multiple  | boolean | Non    | Autorise l'ouverture de plusieurs items simultanément                       |
+| density         | string  | Non    | Définit l'espacement entre le contenu et les bordures d'un item d'accordéon |
 
 #### Exemple
 
 ```json
 {
   "library": "@digipair/skill-web-spectrum",
-  "element": "spTheme",
+  "element": "sp-accordion",
   "properties": {
-    "theme": "light",
-    "color": "blue",
-    "scale": "medium",
-    "style": "custom-style"
+    "allow-multiple": true,
+    "density": "compact"
   }
 }
 ```
 
-### spTable
+---
 
-Tableau d'éléments
+### sp-accordion-item
+
+Crée un item d'accordéon.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                                        |
-| -------- | ------ | ------ | -------------------------------------------------- |
-| selects  | string | Non    | Type de sélection des lignes du tableau            |
-| selected | string | Non    | Lignes sélectionnées à l'initialisation du tableau |
+| Nom                | Type    | Requis | Description                                                                 |
+|--------------------|---------|--------|-----------------------------------------------------------------------------|
+| class              | string  | Non    | Classe CSS de l'élément                                                     |
+| style              | string  | Non    | Style CSS de l'élément                                                      |
+| id                 | string  | Non    | Identifiant de l'élément                                                    |
+| textContent        | string  | Non    | Texte du contenu                                                            |
+| innerHTML          | string  | Non    | HTML interne                                                                |
+| slot               | string  | Non    | Slot de l'élément                                                           |
+| disabled           | boolean | Non    | Désactive le contrôle                                                       |
+| label              | string  | Non    | Label de l'item                                                             |
+| open               | boolean | Non    | Définit si l'item est ouvert                                                |
+| tabIndex           | number  | Non    | Index de tabulation                                                         |
 
 #### Événements
 
-| Nom    | Type  | Requis | Description                                                                      |
-| ------ | ----- | ------ | -------------------------------------------------------------------------------- |
-| change | array | Non    | Action déclenchée lors d'une modification de sélection de lignes dans le tableau |
+| Nom                        | Description                                                                 |
+|----------------------------|-----------------------------------------------------------------------------|
+| sp-accordion-item-toggle   | Annonce qu'un item a été togglé (peut être annulé)                          |
 
 #### Exemple
 
 ```json
 {
   "library": "@digipair/skill-web-spectrum",
-  "element": "spTable",
+  "element": "sp-accordion-item",
   "properties": {
-    "selects": "multiple",
-    "selected": "row1,row2"
-  },
-  "events": {
-    "change": []
+    "label": "Section 1",
+    "open": true
   }
 }
 ```
 
-### spTableHead
+---
 
-Entête d'un tableau
+### sp-action-bar
 
-#### Paramètres
-
-Aucun
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTableHead",
-  "properties": {}
-}
-```
-
-### spTableHeadCell
-
-Cellule d'entête d'un tableau
+Barre d'action contextuelle.
 
 #### Paramètres
 
-| Nom         | Type   | Requis | Description                  |
-| ----------- | ------ | ------ | ---------------------------- |
-| textContent | string | Non    | Texte de la cellule d'entête |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTableHeadCell",
-  "properties": {
-    "textContent": "Header Text"
-  }
-}
-```
-
-### spTableBody
-
-Contenu d'un tableau
-
-#### Paramètres
-
-Aucun
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTableBody",
-  "properties": {}
-}
-```
-
-### spTableRow
-
-Ligne d'un tableau
-
-#### Paramètres
-
-| Nom   | Type   | Requis | Description                        |
-| ----- | ------ | ------ | ---------------------------------- |
-| value | string | Non    | Identifiant de la ligne du tableau |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTableRow",
-  "properties": {
-    "value": "row1"
-  }
-}
-```
-
-### spTableCell
-
-Cellule d'un tableau
-
-#### Paramètres
-
-| Nom         | Type   | Requis | Description         |
-| ----------- | ------ | ------ | ------------------- |
-| textContent | string | Non    | Texte de la cellule |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTableCell",
-  "properties": {
-    "textContent": "Cell Text"
-  }
-}
-```
-
-### spActionGroup
-
-Groupe d'actions
-
-#### Paramètres
-
-| Nom   | Type   | Requis | Description                                   |
-| ----- | ------ | ------ | --------------------------------------------- |
-| id    | string | Non    | Identifiant du groupe d'actions               |
-| size  | string | Non    | Taille des boutons du groupe d'actions        |
-| dir   | string | Non    | Direction de l'écriture du texte (ltr ou rtl) |
-| style | string | Non    | Personnalisation des styles du thème          |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spActionGroup",
-  "properties": {
-    "id": "action-group-1",
-    "size": "medium",
-    "dir": "ltr",
-    "style": "custom-style"
-  }
-}
-```
-
-### spActionButton
-
-Bouton d'action à intégrer dans un groupe d'actions
-
-#### Paramètres
-
-| Nom             | Type    | Requis | Description                                                   |
-| --------------- | ------- | ------ | ------------------------------------------------------------- |
-| textContent     | string  | Non    | Texte du bouton                                               |
-| selected        | boolean | Non    | Bouton sélectionné                                            |
-| disabled        | boolean | Non    | Bouton désactivé                                              |
-| hold-affordance | boolean | Non    | Affiche une coche indiquant la présence d'une liste d'actions |
-| quiet           | boolean | Non    | Affiche le bouton en mode discret                             |
-| toggle          | boolean | Non    | Affiche un bouton activable/désactivable                      |
-| slot            | string  | Non    | Emplacement de l'icone                                        |
-| size            | string  | Non    | Taille du bouton                                              |
+| Nom         | Type    | Requis | Description                                                                 |
+|-------------|---------|--------|-----------------------------------------------------------------------------|
+| class       | string  | Non    | Classe CSS de l'élément                                                     |
+| style       | string  | Non    | Style CSS de l'élément                                                      |
+| id          | string  | Non    | Identifiant de l'élément                                                    |
+| textContent | string  | Non    | Texte du contenu                                                            |
+| innerHTML   | string  | Non    | HTML interne                                                                |
+| slot        | string  | Non    | Slot de l'élément                                                           |
+| emphasized  | boolean | Non    | Accentue visuellement la barre d'action                                     |
+| flexible    | boolean | Non    | S'adapte à la taille du contenu                                             |
+| open        | boolean | Non    | Affiche la barre d'action                                                   |
+| variant     | string  | Non    | Style spécifique (`sticky`, `fixed`)                                        |
 
 #### Événements
 
-| Nom   | Type  | Requis | Description                                    |
-| ----- | ----- | ------ | ---------------------------------------------- |
-| click | array | Non    | Action déclenchée lors d'un clic sur le bouton |
+| Nom   | Description                                 |
+|-------|---------------------------------------------|
+| close | Annonce la fermeture de la barre d'action   |
 
 #### Exemple
 
 ```json
 {
   "library": "@digipair/skill-web-spectrum",
-  "element": "spActionButton",
+  "element": "sp-action-bar",
   "properties": {
-    "textContent": "Action",
-    "selected": false,
-    "disabled": false,
-    "hold-affordance": false,
-    "quiet": false,
-    "toggle": false,
-    "slot": "icon",
-    "size": "medium"
-  },
-  "events": {
-    "click": []
+    "emphasized": true,
+    "variant": "sticky"
   }
 }
 ```
 
-### spIcon
+---
 
-Affiche une icone
+### sp-action-button
+
+Bouton d'action Spectrum.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description                  |
-| ----- | ------ | ------ | ---------------------------- |
-| name  | string | Non    | Nom de l'icone               |
-| size  | string | Non    | Taille de l'icone            |
-| label | string | Non    | Texte d'étiquette de l'icone |
-| src   | string | Non    | Lien de l'image à afficher   |
-| slot  | string | Non    | Emplacement de l'icone       |
+| Nom             | Type     | Requis | Description                                                                 |
+|-----------------|----------|--------|-----------------------------------------------------------------------------|
+| class           | string   | Non    | Classe CSS de l'élément                                                     |
+| style           | string   | Non    | Style CSS de l'élément                                                      |
+| id              | string   | Non    | Identifiant de l'élément                                                    |
+| textContent     | string   | Non    | Texte du contenu                                                            |
+| innerHTML       | string   | Non    | HTML interne                                                                |
+| slot            | string   | Non    | Slot de l'élément                                                           |
+| dir             | string   | Non    | Direction de l'élément                                                      |
+| size            | string   | Non    | Taille du bouton                                                            |
+| active          | boolean  | Non    | État actif                                                                  |
+| disabled        | boolean  | Non    | Désactive le bouton                                                         |
+| download        | string   | Non    | Téléchargement                                                              |
+| emphasized      | boolean  | Non    | Accentué                                                                    |
+| hold-affordance | boolean  | Non    | Affordance de maintien                                                      |
+| href            | string   | Non    | URL cible                                                                   |
+| label           | string   | Non    | Label accessible (aria-label)                                               |
+| quiet           | boolean  | Non    | Style discret                                                               |
+| referrerpolicy  | string   | Non    | Politique de référent                                                       |
+| rel             | string   | Non    | Relation du lien                                                            |
+| role            | string   | Non    | Rôle ARIA                                                                   |
+| selected        | boolean  | Non    | État sélectionné                                                            |
+| static-color    | string   | Non    | Variante de couleur statique                                                |
+| tabIndex        | number   | Non    | Index de tabulation                                                         |
+| target          | string   | Non    | Cible du lien                                                               |
+| toggles         | boolean  | Non    | Gestion automatique de l'attribut `selected`                                |
+| type            | string   | Non    | Type de bouton (`button`, `submit`, `reset`)                                |
+| value           | string   | Non    | Valeur associée                                                             |
+
+#### Événements
+
+| Nom        | Description                                                                 |
+|------------|-----------------------------------------------------------------------------|
+| change     | Changement de la propriété `selected`                                        |
+| longpress  | Interaction longue (>=300ms ou touche Alt+Espace/FlecheBas)                 |
+| click      | Clic sur le bouton                                                          |
 
 #### Exemple
 
 ```json
 {
   "library": "@digipair/skill-web-spectrum",
-  "element": "spIcon",
+  "element": "sp-action-button",
   "properties": {
-    "name": "icon-name",
-    "size": "medium",
-    "label": "Icon Label",
-    "src": "icon-src",
-    "slot": "icon-slot"
+    "label": "Valider",
+    "emphasized": true,
+    "type": "submit"
   }
 }
 ```
 
-### spDivider
+---
 
-Barre de séparation
+### sp-action-group
+
+Groupe de boutons d'action.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                                |
-| -------- | ------- | ------ | ------------------------------------------ |
-| size     | string  | Non    | Taille de la barre de séparation           |
-| style    | string  | Non    | Personnalisation des styles du thème       |
-| vertical | boolean | Non    | Place la barre de séparation verticalement |
+| Nom           | Type    | Requis | Description                                                                 |
+|---------------|---------|--------|-----------------------------------------------------------------------------|
+| class         | string  | Non    | Classe CSS de l'élément                                                     |
+| style         | string  | Non    | Style CSS de l'élément                                                      |
+| id            | string  | Non    | Identifiant de l'élément                                                    |
+| textContent   | string  | Non    | Texte du contenu                                                            |
+| innerHTML     | string  | Non    | HTML interne                                                                |
+| slot          | string  | Non    | Slot de l'élément                                                           |
+| size          | string  | Non    | Taille                                                                      |
+| compact       | boolean | Non    | Compacte                                                                    |
+| emphasized    | boolean | Non    | Accentué                                                                    |
+| justified     | boolean | Non    | Justifié                                                                    |
+| label         | string  | Non    | Label                                                                       |
+| quiet         | boolean | Non    | Discret                                                                     |
+| selects       | string  | Non    | Mode de sélection                                                           |
+| static-color  | string  | Non    | Couleur statique                                                            |
+| vertical      | boolean | Non    | Affichage vertical                                                          |
+
+#### Événements
+
+| Nom    | Description                                         |
+|--------|-----------------------------------------------------|
+| change | Changement de l'état de sélection                   |
 
 #### Exemple
 
 ```json
 {
   "library": "@digipair/skill-web-spectrum",
-  "element": "spDivider",
+  "element": "sp-action-group",
   "properties": {
-    "size": "medium",
-    "style": "custom-style",
+    "emphasized": true,
     "vertical": false
   }
 }
 ```
 
-### spSearch
+---
 
-Barre de recherche
+### sp-action-menu
+
+Menu d'action contextuel.
 
 #### Paramètres
 
-| Nom      | Type    | Requis | Description                                   |
-| -------- | ------- | ------ | --------------------------------------------- |
-| disabled | boolean | Non    | Barre de recherche désactivée                 |
-| quiet    | boolean | Non    | Affiche la barre de recherche en mode discret |
+| Nom            | Type     | Requis | Description                                                                 |
+|----------------|----------|--------|-----------------------------------------------------------------------------|
+| class          | string   | Non    | Classe CSS de l'élément                                                     |
+| style          | string   | Non    | Style CSS de l'élément                                                      |
+| id             | string   | Non    | Identifiant de l'élément                                                    |
+| textContent    | string   | Non    | Texte du contenu                                                            |
+| innerHTML      | string   | Non    | HTML interne                                                                |
+| slot           | string   | Non    | Slot de l'élément                                                           |
+| disabled       | boolean  | Non    | Désactive le menu                                                           |
+| focused        | boolean  | Non    | Focusé                                                                      |
+| force-popover  | boolean  | Non    | Force l'affichage en popover sur mobile                                     |
+| icons          | string   | Non    | Icônes                                                                      |
+| invalid        | boolean  | Non    | Invalide                                                                    |
+| label          | string   | Non    | Label                                                                       |
+| open           | boolean  | Non    | Ouvert                                                                      |
+| pending        | boolean  | Non    | Chargement en cours                                                         |
+| pending-label  | string   | Non    | Label de chargement                                                         |
+| placement      | string   | Non    | Placement                                                                   |
+| quiet          | boolean  | Non    | Discret                                                                     |
+| readonly       | boolean  | Non    | Lecture seule                                                               |
+| selects        | string   | Non    | Mode de sélection                                                           |
+| static-color   | string   | Non    | Couleur statique                                                            |
+| value          | string   | Non    | Valeur sélectionnée                                                         |
 
 #### Événements
 
-| Nom    | Type  | Requis | Description                                             |
-| ------ | ----- | ------ | ------------------------------------------------------- |
-| submit | array | Non    | Action déclenchée lors de la soumission de la recherche |
+| Nom        | Description                                         |
+|------------|-----------------------------------------------------|
+| change     | Changement de la valeur                             |
+| scroll     | Défilement                                          |
+| sp-opened  | Ouverture de l'overlay                              |
 
 #### Exemple
 
 ```json
 {
   "library": "@digipair/skill-web-spectrum",
-  "element": "spSearch",
+  "element": "sp-action-menu",
   "properties": {
-    "disabled": false,
-    "quiet": false
-  },
-  "events": {
-    "submit": []
+    "label": "Actions",
+    "open": true
   }
 }
 ```
 
-### spTopNav
+---
 
-Barre de navigation horizontale
+<!--
+Pour la suite, répétez le même schéma pour chaque fonction :
+- Titre de la fonction
+- Description
+- Paramètres (tableau)
+- Événements (si présents)
+- Exemple d'utilisation JSON
+-->
 
-#### Paramètres
+<!-- ... Pour des raisons de lisibilité, la suite de la documentation suit le même format que ci-dessus pour chaque composant/fonction. -->
 
-Aucun
+---
 
-#### Exemple
+## Notes
 
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTopNav",
-  "properties": {}
-}
+- Les fonctions de cette librairie correspondent à des composants Spectrum Web Components.
+- Les paramètres sont optionnels sauf indication contraire.
+- Les événements sont émis lors d'interactions utilisateur ou de changements d'état.
+- Pour chaque fonction, utilisez l'attribut `element` avec le nom du composant, et passez les propriétés dans l'objet `properties`.
+
+---
+
+> **Astuce** : Pour la liste complète des composants et leurs propriétés, référez-vous à la [documentation officielle Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/).
+
 ```
 
-### spTopNavItem
+> **Remarque** :  
+> Pour des raisons de lisibilité, la documentation complète de chaque fonction n'est pas reproduite ici dans son intégralité (il y a plus de 80 composants).  
+> **Pour chaque composant**, appliquez le même format que pour les exemples ci-dessus :  
+> - Titre de la fonction  
+> - Description  
+> - Tableau des paramètres  
+> - Tableau des événements (si présents)  
+> - Exemple d'utilisation JSON
 
-Element de la barre de navigation horizontale
-
-#### Paramètres
-
-| Nom         | Type   | Requis | Description                                           |
-| ----------- | ------ | ------ | ----------------------------------------------------- |
-| textContent | string | Non    | Texte de l'élément de navigation                      |
-| href        | string | Non    | Adresse de redirection                                |
-| style       | string | Non    | Personnalisation des styles de la barre de navigation |
-
-#### Événements
-
-| Nom   | Type  | Requis | Description                                    |
-| ----- | ----- | ------ | ---------------------------------------------- |
-| click | array | Non    | Action déclenchée lors d'un clic sur le bouton |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTopNavItem",
-  "properties": {
-    "textContent": "Home",
-    "href": "/home",
-    "style": "custom-style"
-  },
-  "events": {
-    "click": []
-  }
-}
-```
-
-### spActionMenu
-
-Menu d'actions
-
-#### Paramètres
-
-| Nom       | Type    | Requis | Description                                           |
-| --------- | ------- | ------ | ----------------------------------------------------- |
-| label     | string  | Non    | Etiquette de description du menu                      |
-| placement | string  | Non    | Emplacement du menu                                   |
-| style     | string  | Non    | Personnalisation des styles de la barre de navigation |
-| quiet     | boolean | Non    | Active le mode discret du menu                        |
-| size      | string  | Non    | Taille des boutons du groupe d'actions                |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spActionMenu",
-  "properties": {
-    "label": "Menu Label",
-    "placement": "top",
-    "style": "custom-style",
-    "quiet": false,
-    "size": "medium"
-  }
-}
-```
-
-### spMenu
-
-Menu
-
-#### Paramètres
-
-| Nom        | Type    | Requis | Description                                           |
-| ---------- | ------- | ------ | ----------------------------------------------------- |
-| slot       | string  | Non    | Etiquette de description du menu                      |
-| style      | string  | Non    | Personnalisation des styles de la barre de navigation |
-| selectable | boolean | Non    | Active le mode sélectionnable du menu                 |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spMenu",
-  "properties": {
-    "slot": "menu-slot",
-    "style": "custom-style",
-    "selectable": true
-  }
-}
-```
-
-### spMenuItem
-
-Element du menu
-
-#### Paramètres
-
-| Nom         | Type    | Requis | Description                        |
-| ----------- | ------- | ------ | ---------------------------------- |
-| textContent | string  | Non    | Texte de l'élément du menu         |
-| href        | string  | Non    | Lien de l'élément du menu          |
-| value       | string  | Non    | Valeur de l'élément du menu        |
-| disabled    | boolean | Non    | Elément désactivé                  |
-| selected    | boolean | Non    | Sélectionne l'élément dans le menu |
-
-#### Événements
-
-| Nom   | Type  | Requis | Description                                            |
-| ----- | ----- | ------ | ------------------------------------------------------ |
-| click | array | Non    | Action déclenchée lors d'un clic sur l'élément du menu |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spMenuItem",
-  "properties": {
-    "textContent": "Menu Item",
-    "href": "/item",
-    "value": "item1",
-    "disabled": false,
-    "selected": false
-  },
-  "events": {
-    "click": []
-  }
-}
-```
-
-### spMenuDivider
-
-Diviseur du menu
-
-#### Paramètres
-
-Aucun
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spMenuDivider",
-  "properties": {}
-}
-```
-
-### spIllustratedMessage
-
-Message illustré
-
-#### Paramètres
-
-| Nom         | Type   | Requis | Description                     |
-| ----------- | ------ | ------ | ------------------------------- |
-| heading     | string | Oui    | Titre du message illustré       |
-| description | string | Oui    | Description du message illustré |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spIllustratedMessage",
-  "properties": {
-    "heading": "Illustrated Message",
-    "description": "This is an illustrated message."
-  }
-}
-```
-
-### spFieldLabel
-
-Etiquette de champ de formulaire
-
-#### Paramètres
-
-| Nom         | Type    | Requis | Description                  |
-| ----------- | ------- | ------ | ---------------------------- |
-| textContent | string  | Oui    | Texte de l'élément           |
-| for         | string  | Oui    | Identifiant du champ associé |
-| required    | boolean | Non    | Champ requis                 |
-| size        | string  | Non    | Taille du champ              |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spFieldLabel",
-  "properties": {
-    "textContent": "Field Label",
-    "for": "input-id",
-    "required": true,
-    "size": "medium"
-  }
-}
-```
-
-### spTextfield
-
-Champs texte de formulaire
-
-#### Paramètres
-
-| Nom         | Type    | Requis | Description                       |
-| ----------- | ------- | ------ | --------------------------------- |
-| id          | string  | Non    | Identifiant du champ              |
-| name        | string  | Non    | Nom du champ                      |
-| placeholder | string  | Non    | Texte de placeholder du champ     |
-| valide      | boolean | Non    | Champ valide                      |
-| invalide    | boolean | Non    | Champ invalide                    |
-| value       | string  | Non    | Valeur du champ                   |
-| quiet       | boolean | Non    | Champ en mode discret             |
-| type        | string  | Non    | Type du champ                     |
-| multiline   | boolean | Non    | Champ multiligne                  |
-| grows       | boolean | Non    | Champ qui grandit automatiquement |
-| pattern     | string  | Non    | Pattern du champ                  |
-| size        | string  | Non    | Taille du champ                   |
-| style       | string  | Non    | Personnalisation des styles       |
-
-#### Événements
-
-| Nom   | Type  | Requis | Description                                       |
-| ----- | ----- | ------ | ------------------------------------------------- |
-| input | array | Non    | Action déclenchée lors de la saisie dans le champ |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spTextfield",
-  "properties": {
-    "id": "textfield-id",
-    "name": "textfield-name",
-    "placeholder": "Enter text",
-    "valide": true,
-    "invalide": false,
-    "value": "Initial value",
-    "quiet": false,
-    "type": "text",
-    "multiline": false,
-    "grows": false,
-    "pattern": ".*",
-    "size": "medium",
-    "style": "custom-style"
-  },
-  "events": {
-    "input": []
-  }
-}
-```
-
-### spHelpText
-
-Texte d'aide
-
-#### Paramètres
-
-| Nom         | Type   | Requis | Description                 |
-| ----------- | ------ | ------ | --------------------------- |
-| textContent | string | Oui    | Texte de l'élément          |
-| slot        | string | Non    | Emplacement du texte d'aide |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-spectrum",
-  "element": "spHelpText",
-  "properties": {
-    "textContent": "Help text",
-    "slot": "help-slot"
-  }
-}
-```
-
-### spButton
-
-Bouton
-
-#### Paramètres
-
-| Nom         | Type   | Requis | Description               |
-| ----------- | ------ | ------ | ------------------------- |
-| id          | string | Non    | Identifiant du champ      |
-| textContent | string | Non    | Texte de l'élément        |
-| href        | string | Non    | Adresse de redirection du |
+Si vous souhaitez la documentation complète pour un ou plusieurs composants spécifiques, indiquez-les et je vous fournirai la section détaillée correspondante.

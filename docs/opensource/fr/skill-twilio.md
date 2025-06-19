@@ -1,8 +1,8 @@
 # @digipair/skill-twilio
 
 **Version:** 0.1.0  
-**Summary:** Gestion des communications via Twilio  
-**Description:** utiliser le service Twilio.  
+**Summary:** Management of communications via Twilio  
+**Description:** This skill allows the use of the Twilio service  
 **Icon:** 🗣
 
 ## Table des matières
@@ -11,22 +11,24 @@
   - [sendSms](#sendsms)
   - [sendWhatsapp](#sendwhatsapp)
 
+---
+
 ## Fonctions
 
 ### sendSms
 
-Envoi d'un SMS via Twilio
+Envoi d'un SMS via Twilio.
 
 #### Paramètres
 
-| Nom                 | Type   | Requis | Description                         |
-| ------------------- | ------ | ------ | ----------------------------------- |
-| message             | string | Oui    | Message à envoyer par SMS           |
-| phoneNumber         | string | Oui    | Numéro de téléphone du destinataire |
-| TWILIO_FROM_NUMBER  | string | Non    | Numéro Twilio                       |
-| TWILIO_SID          | string | Non    | Identifiant Twilio                  |
-| TWILIO_TOKEN        | string | Non    | Clé d'API Twilio                    |
-| TWILIO_API_ENDPOINT | string | Non    | Endpoint de l'API Twilio            |
+| Nom                  | Type   | Requis | Description                        |
+|----------------------|--------|--------|------------------------------------|
+| message              | string | Oui    | Message à envoyer par SMS          |
+| phoneNumber          | string | Oui    | Numéro de téléphone du destinataire|
+| TWILIO_FROM_NUMBER   | string | Non    | Numéro Twilio émetteur             |
+| TWILIO_SID           | string | Non    | Identifiant Twilio                 |
+| TWILIO_TOKEN         | string | Non    | Clé API Twilio                     |
+| TWILIO_API_ENDPOINT  | string | Non    | Endpoint API Twilio                |
 
 #### Exemple
 
@@ -35,30 +37,32 @@ Envoi d'un SMS via Twilio
   "library": "@digipair/skill-twilio",
   "element": "sendSms",
   "properties": {
-    "message": "Bonjour, ceci est un test.",
-    "phoneNumber": "+1234567890",
-    "TWILIO_FROM_NUMBER": "+0987654321",
-    "TWILIO_SID": "your_twilio_sid",
+    "message": "Bonjour, ceci est un SMS envoyé via Twilio.",
+    "phoneNumber": "+33612345678",
+    "TWILIO_FROM_NUMBER": "+33123456789",
+    "TWILIO_SID": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "TWILIO_TOKEN": "your_twilio_token",
     "TWILIO_API_ENDPOINT": "https://api.twilio.com"
   }
 }
 ```
 
+---
+
 ### sendWhatsapp
 
-Envoi d'un message WhatsApp via Twilio
+Envoi d'un message WhatsApp via Twilio.
 
 #### Paramètres
 
-| Nom                 | Type   | Requis | Description                         |
-| ------------------- | ------ | ------ | ----------------------------------- |
-| message             | string | Oui    | Message à envoyer par WhatsApp      |
-| phoneNumber         | string | Oui    | Numéro de téléphone du destinataire |
-| TWILIO_FROM_NUMBER  | string | Non    | Numéro Twilio                       |
-| TWILIO_SID          | string | Non    | Identifiant Twilio                  |
-| TWILIO_TOKEN        | string | Non    | Clé d'API Twilio                    |
-| TWILIO_API_ENDPOINT | string | Non    | Endpoint de l'API Twilio            |
+| Nom                  | Type   | Requis | Description                            |
+|----------------------|--------|--------|----------------------------------------|
+| message              | string | Oui    | Message à envoyer par WhatsApp         |
+| phoneNumber          | string | Oui    | Numéro de téléphone du destinataire    |
+| TWILIO_FROM_NUMBER   | string | Non    | Numéro Twilio émetteur                 |
+| TWILIO_SID           | string | Non    | Identifiant Twilio                     |
+| TWILIO_TOKEN         | string | Non    | Clé API Twilio                         |
+| TWILIO_API_ENDPOINT  | string | Non    | Endpoint API Twilio                    |
 
 #### Exemple
 
@@ -67,17 +71,25 @@ Envoi d'un message WhatsApp via Twilio
   "library": "@digipair/skill-twilio",
   "element": "sendWhatsapp",
   "properties": {
-    "message": "Bonjour, ceci est un test via WhatsApp.",
-    "phoneNumber": "+1234567890",
-    "TWILIO_FROM_NUMBER": "+0987654321",
-    "TWILIO_SID": "your_twilio_sid",
+    "message": "Bonjour, ceci est un message WhatsApp envoyé via Twilio.",
+    "phoneNumber": "+33612345678",
+    "TWILIO_FROM_NUMBER": "whatsapp:+33123456789",
+    "TWILIO_SID": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "TWILIO_TOKEN": "your_twilio_token",
     "TWILIO_API_ENDPOINT": "https://api.twilio.com"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- Les fonctions `sendSms` et `sendWhatsapp` sont utilisées pour envoyer respectivement des messages SMS et WhatsApp via le service Twilio.
-- Assurez-vous de fournir les informations d'identification Twilio correctes (`TWILIO_SID`, `TWILIO_TOKEN`, etc.) si elles ne sont pas déjà configurées dans votre environnement.
+- Les fonctions `sendSms` et `sendWhatsapp` permettent d'envoyer respectivement des SMS et des messages WhatsApp via le service Twilio.
+- Les paramètres `TWILIO_FROM_NUMBER`, `TWILIO_SID`, `TWILIO_TOKEN` et `TWILIO_API_ENDPOINT` peuvent être fournis dans les propriétés ou être définis dans l'environnement d'exécution.
+- Assurez-vous que le numéro de téléphone du destinataire est au format international (ex: `+33612345678`).
+- Pour WhatsApp, le champ `TWILIO_FROM_NUMBER` doit être préfixé par `whatsapp:` (ex: `whatsapp:+33123456789`).
+
+---
+
+**Contactez l'équipe technique pour toute question ou problème d'intégration.**

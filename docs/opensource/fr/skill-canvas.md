@@ -1,9 +1,11 @@
 # @digipair/skill-canvas
 
 **Version:** 0.1.0  
-**Summary:** Manipulation de dessins  
-**Description:** manipuler un canvas pour dessiner des éléments graphiques, charger des images, et effectuer diverses opérations de dessin.  
+**Summary:** Drawing manipulation  
+**Description:** This skill allows users to manipulate a canvas to draw graphic elements, load images, and perform various drawing operations.  
 **Icon:** 🎨
+
+---
 
 ## Table des matières
 
@@ -19,19 +21,21 @@
   - [lineWidth](#linewidth)
   - [measureText](#measuretext)
 
+---
+
 ## Fonctions
 
 ### canvas
 
-Créer un canvas
+Créer un canvas et exécuter des actions de dessin.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                                |
-| ------- | ------ | ------ | ------------------------------------------ |
-| width   | number | Oui    | Largeur du canvas                          |
-| height  | number | Oui    | Hauteur du canvas                          |
-| execute | array  | Oui    | Liste des actions à exécuter sur le canvas |
+| Nom      | Type    | Requis | Description                                      |
+|----------|---------|--------|--------------------------------------------------|
+| width    | number  | Oui    | Largeur du canvas                                |
+| height   | number  | Oui    | Hauteur du canvas                                |
+| execute  | array   | Oui    | Liste d'actions à exécuter sur le canvas         |
 
 #### Exemple
 
@@ -43,21 +47,23 @@ Créer un canvas
     "width": 800,
     "height": 600,
     "execute": [
-      // Liste des actions à exécuter
+      { "element": "fillRect", "properties": { "x": 10, "y": 10, "width": 100, "height": 50 } }
     ]
   }
 }
 ```
 
+---
+
 ### loadImage
 
-Charger une image
+Charger une image à partir d'une chaîne base64.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description     |
-| ----- | ------ | ------ | --------------- |
-| image | string | Oui    | Image en base64 |
+| Nom   | Type   | Requis | Description                |
+|-------|--------|--------|----------------------------|
+| image | string | Oui    | Image au format base64     |
 
 #### Exemple
 
@@ -66,22 +72,24 @@ Charger une image
   "library": "@digipair/skill-canvas",
   "element": "loadImage",
   "properties": {
-    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
   }
 }
 ```
 
+---
+
 ### drawImage
 
-Dessiner une image
+Dessiner une image sur le canvas aux coordonnées spécifiées.
 
 #### Paramètres
 
 | Nom    | Type   | Requis | Description                        |
-| ------ | ------ | ------ | ---------------------------------- |
-| image  | string | Oui    | Image à dessiner                   |
-| x      | number | Oui    | Coordonnée X pour dessiner l'image |
-| y      | number | Oui    | Coordonnée Y pour dessiner l'image |
+|--------|--------|--------|------------------------------------|
+| image  | string | Oui    | Image à dessiner (base64 ou id)    |
+| x      | number | Oui    | Coordonnée X                       |
+| y      | number | Oui    | Coordonnée Y                       |
 | width  | number | Oui    | Largeur de l'image à dessiner      |
 | height | number | Oui    | Hauteur de l'image à dessiner      |
 
@@ -92,27 +100,29 @@ Dessiner une image
   "library": "@digipair/skill-canvas",
   "element": "drawImage",
   "properties": {
-    "image": "[Image chargée avec la fonction loadImage]",
-    "x": 100,
-    "y": 150,
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+    "x": 50,
+    "y": 100,
     "width": 200,
-    "height": 100
+    "height": 150
   }
 }
 ```
 
+---
+
 ### strokeRect
 
-Dessiner un rectangle
+Dessiner le contour d'un rectangle aux coordonnées spécifiées.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description               |
-| ------ | ------ | ------ | ------------------------- |
-| x      | number | Oui    | Coordonnée X du rectangle |
-| y      | number | Oui    | Coordonnée Y du rectangle |
-| width  | number | Oui    | Largeur du rectangle      |
-| height | number | Oui    | Hauteur du rectangle      |
+| Nom    | Type   | Requis | Description                  |
+|--------|--------|--------|------------------------------|
+| x      | number | Oui    | Coordonnée X du rectangle    |
+| y      | number | Oui    | Coordonnée Y du rectangle    |
+| width  | number | Oui    | Largeur du rectangle         |
+| height | number | Oui    | Hauteur du rectangle         |
 
 #### Exemple
 
@@ -121,26 +131,28 @@ Dessiner un rectangle
   "library": "@digipair/skill-canvas",
   "element": "strokeRect",
   "properties": {
-    "x": 50,
-    "y": 50,
-    "width": 200,
-    "height": 100
+    "x": 20,
+    "y": 30,
+    "width": 120,
+    "height": 80
   }
 }
 ```
 
+---
+
 ### fillRect
 
-Dessiner un rectangle rempli
+Dessiner un rectangle rempli aux coordonnées spécifiées.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description               |
-| ------ | ------ | ------ | ------------------------- |
-| x      | number | Oui    | Coordonnée X du rectangle |
-| y      | number | Oui    | Coordonnée Y du rectangle |
-| width  | number | Oui    | Largeur du rectangle      |
-| height | number | Oui    | Hauteur du rectangle      |
+| Nom    | Type   | Requis | Description                  |
+|--------|--------|--------|------------------------------|
+| x      | number | Oui    | Coordonnée X du rectangle    |
+| y      | number | Oui    | Coordonnée Y du rectangle    |
+| width  | number | Oui    | Largeur du rectangle         |
+| height | number | Oui    | Hauteur du rectangle         |
 
 #### Exemple
 
@@ -149,25 +161,27 @@ Dessiner un rectangle rempli
   "library": "@digipair/skill-canvas",
   "element": "fillRect",
   "properties": {
-    "x": 50,
-    "y": 50,
+    "x": 40,
+    "y": 60,
     "width": 200,
     "height": 100
   }
 }
 ```
 
+---
+
 ### fillText
 
-Écrire un texte
+Écrire du texte aux coordonnées spécifiées.
 
 #### Paramètres
 
-| Nom  | Type   | Requis | Description           |
-| ---- | ------ | ------ | --------------------- |
-| text | string | Oui    | Texte à dessiner      |
-| x    | number | Oui    | Coordonnée X du texte |
-| y    | number | Oui    | Coordonnée Y du texte |
+| Nom   | Type   | Requis | Description              |
+|-------|--------|--------|--------------------------|
+| text  | string | Oui    | Texte à dessiner         |
+| x     | number | Oui    | Coordonnée X du texte    |
+| y     | number | Oui    | Coordonnée Y du texte    |
 
 #### Exemple
 
@@ -176,22 +190,24 @@ Dessiner un rectangle rempli
   "library": "@digipair/skill-canvas",
   "element": "fillText",
   "properties": {
-    "text": "Bonjour, monde!",
+    "text": "Hello, Canvas!",
     "x": 100,
-    "y": 150
+    "y": 200
   }
 }
 ```
 
+---
+
 ### strokeStyle
 
-Définir le style du contour
+Définir le style de contour utilisé pour les dessins.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description      |
-| ----- | ------ | ------ | ---------------- |
-| style | string | Oui    | Style de contour |
+| Nom   | Type   | Requis | Description         |
+|-------|--------|--------|---------------------|
+| style | string | Oui    | Style de contour    |
 
 #### Exemple
 
@@ -205,15 +221,17 @@ Définir le style du contour
 }
 ```
 
+---
+
 ### fillStyle
 
-Définir le style de remplissage
+Définir le style de remplissage utilisé pour les dessins.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description          |
-| ----- | ------ | ------ | -------------------- |
-| style | string | Oui    | Style de remplissage |
+| Nom   | Type   | Requis | Description         |
+|-------|--------|--------|---------------------|
+| style | string | Oui    | Style de remplissage|
 
 #### Exemple
 
@@ -222,20 +240,22 @@ Définir le style de remplissage
   "library": "@digipair/skill-canvas",
   "element": "fillStyle",
   "properties": {
-    "style": "#00FF00"
+    "style": "rgba(0,255,0,0.5)"
   }
 }
 ```
 
+---
+
 ### lineWidth
 
-Définir la largeur du trait
+Définir l'épaisseur du trait utilisé pour les dessins.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description      |
-| ----- | ------ | ------ | ---------------- |
-| style | number | Oui    | Largeur du trait |
+| Nom   | Type   | Requis | Description         |
+|-------|--------|--------|---------------------|
+| style | number | Oui    | Largeur du trait    |
 
 #### Exemple
 
@@ -249,15 +269,17 @@ Définir la largeur du trait
 }
 ```
 
+---
+
 ### measureText
 
-Mesurer le texte
+Mesurer le texte spécifié et retourner les métriques.
 
 #### Paramètres
 
-| Nom  | Type   | Requis | Description     |
-| ---- | ------ | ------ | --------------- |
-| text | string | Oui    | Texte à mesurer |
+| Nom   | Type   | Requis | Description         |
+|-------|--------|--------|---------------------|
+| text  | string | Oui    | Texte à mesurer     |
 
 #### Exemple
 
@@ -266,12 +288,17 @@ Mesurer le texte
   "library": "@digipair/skill-canvas",
   "element": "measureText",
   "properties": {
-    "text": "Bonjour, monde!"
+    "text": "Sample text"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- Chaque fonction permet d'interagir avec le canvas pour créer des dessins, charger des images, et manipuler le style de dessin.
-- Assurez-vous de fournir des valeurs valides pour chaque paramètre afin d'obtenir les résultats souhaités.
+- Toutes les fonctions sont conçues pour être utilisées dans un contexte de manipulation de canvas en JavaScript.
+- Les paramètres `x`, `y`, `width`, `height` sont exprimés en pixels.
+- Les styles (`strokeStyle`, `fillStyle`) acceptent les formats CSS standards (hexadécimal, rgb, rgba, etc.).
+- Pour les actions complexes, utilisez la fonction `canvas` avec une liste d'actions dans le paramètre `execute`.
+- L'image peut être une chaîne base64 ou un identifiant d'image préalablement chargé via `loadImage`.

@@ -1,9 +1,9 @@
 # @digipair/skill-http
 
 **Version:** 0.1.0  
-**Summary:** Communication avec les services HTTP  
-**Description:** utiliser les services HTTP.  
-**Icon:** 🌐
+**Résumé:** Communication avec des services HTTP  
+**Description:** Cette compétence permet l'utilisation de services HTTP.  
+**Icône:** 🌐
 
 ## Table des matières
 
@@ -14,22 +14,27 @@
   - [update](#update)
   - [partialUpdate](#partialupdate)
   - [remove](#remove)
+  - [upload](#upload)
+- [Schémas](#schémas)
+  - [UploadParameters](#uploadparameters)
+
+---
 
 ## Fonctions
 
 ### request
 
-Exécute un service HTTP.
+Exécute un service HTTP générique.
 
 #### Paramètres
 
-| Nom     | Type    | Requis | Description                   |
-| ------- | ------- | ------ | ----------------------------- |
-| path    | string  | Oui    | Adresse du service à exécuter |
-| method  | string  | Non    | Méthode HTTP à utiliser       |
-| body    | object  | Non    | Valeur à envoyer              |
-| headers | object  | Non    | En-têtes à envoyer            |
-| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
+| Nom      | Type   | Requis | Description                        |
+|----------|--------|--------|------------------------------------|
+| path     | string | Oui    | Adresse du service à exécuter      |
+| method   | string | Non    | Méthode HTTP à utiliser (GET, POST, etc.) |
+| body     | object | Non    | Valeur à envoyer                   |
+| headers  | object | Non    | En-têtes à envoyer                 |
+| type     | string | Non    | Type de réponse attendu            |
 
 #### Exemple
 
@@ -38,18 +43,16 @@ Exécute un service HTTP.
   "library": "@digipair/skill-http",
   "element": "request",
   "properties": {
-    "path": "https://example.com/api",
+    "path": "https://api.example.com/data",
     "method": "POST",
-    "body": {
-      "key": "value"
-    },
-    "headers": {
-      "Authorization": "Bearer token"
-    },
-    "IS_JSON": true
+    "body": { "key": "value" },
+    "headers": { "Authorization": "Bearer token" },
+    "type": "json"
   }
 }
 ```
+
+---
 
 ### create
 
@@ -57,12 +60,12 @@ Ajoute une ressource HTTP.
 
 #### Paramètres
 
-| Nom     | Type    | Requis | Description                   |
-| ------- | ------- | ------ | ----------------------------- |
-| path    | string  | Oui    | Adresse du service à exécuter |
-| body    | object  | Non    | Valeur à envoyer              |
-| headers | object  | Non    | En-têtes à envoyer            |
-| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
+| Nom      | Type   | Requis | Description                        |
+|----------|--------|--------|------------------------------------|
+| path     | string | Oui    | Adresse du service à exécuter      |
+| body     | object | Non    | Valeur à envoyer                   |
+| headers  | object | Non    | En-têtes à envoyer                 |
+| type     | string | Non    | Type de réponse attendu            |
 
 #### Exemple
 
@@ -71,17 +74,15 @@ Ajoute une ressource HTTP.
   "library": "@digipair/skill-http",
   "element": "create",
   "properties": {
-    "path": "https://example.com/api/resource",
-    "body": {
-      "name": "New Resource"
-    },
-    "headers": {
-      "Authorization": "Bearer token"
-    },
-    "IS_JSON": true
+    "path": "https://api.example.com/resource",
+    "body": { "name": "Nouvelle ressource" },
+    "headers": { "Content-Type": "application/json" },
+    "type": "json"
   }
 }
 ```
+
+---
 
 ### read
 
@@ -89,11 +90,11 @@ Lit une ressource HTTP.
 
 #### Paramètres
 
-| Nom     | Type    | Requis | Description                   |
-| ------- | ------- | ------ | ----------------------------- |
-| path    | string  | Oui    | Adresse du service à exécuter |
-| headers | object  | Non    | En-têtes à envoyer            |
-| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
+| Nom      | Type   | Requis | Description                        |
+|----------|--------|--------|------------------------------------|
+| path     | string | Oui    | Adresse du service à exécuter      |
+| headers  | object | Non    | En-têtes à envoyer                 |
+| type     | string | Non    | Type de réponse attendu            |
 
 #### Exemple
 
@@ -102,14 +103,14 @@ Lit une ressource HTTP.
   "library": "@digipair/skill-http",
   "element": "read",
   "properties": {
-    "path": "https://example.com/api/resource",
-    "headers": {
-      "Authorization": "Bearer token"
-    },
-    "IS_JSON": true
+    "path": "https://api.example.com/resource/123",
+    "headers": { "Authorization": "Bearer token" },
+    "type": "json"
   }
 }
 ```
+
+---
 
 ### update
 
@@ -117,12 +118,12 @@ Modifie une ressource HTTP.
 
 #### Paramètres
 
-| Nom     | Type    | Requis | Description                   |
-| ------- | ------- | ------ | ----------------------------- |
-| path    | string  | Oui    | Adresse du service à exécuter |
-| body    | object  | Non    | Valeur à envoyer              |
-| headers | object  | Non    | En-têtes à envoyer            |
-| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
+| Nom      | Type   | Requis | Description                        |
+|----------|--------|--------|------------------------------------|
+| path     | string | Oui    | Adresse du service à exécuter      |
+| body     | object | Non    | Valeur à envoyer                   |
+| headers  | object | Non    | En-têtes à envoyer                 |
+| type     | string | Non    | Type de réponse attendu            |
 
 #### Exemple
 
@@ -131,30 +132,28 @@ Modifie une ressource HTTP.
   "library": "@digipair/skill-http",
   "element": "update",
   "properties": {
-    "path": "https://example.com/api/resource",
-    "body": {
-      "name": "Updated Resource"
-    },
-    "headers": {
-      "Authorization": "Bearer token"
-    },
-    "IS_JSON": true
+    "path": "https://api.example.com/resource/123",
+    "body": { "name": "Ressource modifiée" },
+    "headers": { "Content-Type": "application/json" },
+    "type": "json"
   }
 }
 ```
 
+---
+
 ### partialUpdate
 
-Modifie une partie d'une ressource HTTP.
+Modifie partiellement une ressource HTTP.
 
 #### Paramètres
 
-| Nom     | Type    | Requis | Description                   |
-| ------- | ------- | ------ | ----------------------------- |
-| path    | string  | Oui    | Adresse du service à exécuter |
-| body    | object  | Non    | Valeur à envoyer              |
-| headers | object  | Non    | En-têtes à envoyer            |
-| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
+| Nom      | Type   | Requis | Description                        |
+|----------|--------|--------|------------------------------------|
+| path     | string | Oui    | Adresse du service à exécuter      |
+| body     | object | Non    | Valeur à envoyer                   |
+| headers  | object | Non    | En-têtes à envoyer                 |
+| type     | string | Non    | Type de réponse attendu            |
 
 #### Exemple
 
@@ -163,17 +162,15 @@ Modifie une partie d'une ressource HTTP.
   "library": "@digipair/skill-http",
   "element": "partialUpdate",
   "properties": {
-    "path": "https://example.com/api/resource",
-    "body": {
-      "name": "Partially Updated Resource"
-    },
-    "headers": {
-      "Authorization": "Bearer token"
-    },
-    "IS_JSON": true
+    "path": "https://api.example.com/resource/123",
+    "body": { "status": "archived" },
+    "headers": { "Content-Type": "application/json" },
+    "type": "json"
   }
 }
 ```
+
+---
 
 ### remove
 
@@ -181,11 +178,11 @@ Supprime une ressource HTTP.
 
 #### Paramètres
 
-| Nom     | Type    | Requis | Description                   |
-| ------- | ------- | ------ | ----------------------------- |
-| path    | string  | Oui    | Adresse du service à exécuter |
-| headers | object  | Non    | En-têtes à envoyer            |
-| IS_JSON | boolean | Non    | Indique si l'API est en JSON  |
+| Nom      | Type   | Requis | Description                        |
+|----------|--------|--------|------------------------------------|
+| path     | string | Oui    | Adresse du service à exécuter      |
+| headers  | object | Non    | En-têtes à envoyer                 |
+| type     | string | Non    | Type de réponse attendu            |
 
 #### Exemple
 
@@ -194,18 +191,75 @@ Supprime une ressource HTTP.
   "library": "@digipair/skill-http",
   "element": "remove",
   "properties": {
-    "path": "https://example.com/api/resource",
-    "headers": {
-      "Authorization": "Bearer token"
-    },
-    "IS_JSON": true
+    "path": "https://api.example.com/resource/123",
+    "headers": { "Authorization": "Bearer token" },
+    "type": "json"
   }
 }
 ```
 
+---
+
+### upload
+
+Upload une ressource HTTP (fichier ou données multipart).
+
+#### Paramètres
+
+| Nom        | Type                | Requis | Description                        |
+|------------|---------------------|--------|------------------------------------|
+| path       | string              | Oui    | Adresse du service à exécuter      |
+| method     | string              | Non    | Méthode HTTP à utiliser            |
+| parameters | UploadParameters[]  | Oui    | Paramètres à envoyer (voir [UploadParameters](#uploadparameters)) |
+| headers    | object              | Non    | En-têtes à envoyer                 |
+| type       | string              | Non    | Type de réponse attendu            |
+
+#### Exemple
+
+```json
+{
+  "library": "@digipair/skill-http",
+  "element": "upload",
+  "properties": {
+    "path": "https://api.example.com/upload",
+    "method": "POST",
+    "parameters": [
+      {
+        "name": "file",
+        "type": "image/png",
+        "value": "<BLOB ou Buffer>"
+      }
+    ],
+    "headers": { "Authorization": "Bearer token" },
+    "type": "json"
+  }
+}
+```
+
+---
+
+## Schémas
+
+### UploadParameters
+
+Paramètres pour l'upload de fichiers ou de données.
+
+| Nom   | Type   | Description                |
+|-------|--------|----------------------------|
+| name  | string | Nom du paramètre/fichier   |
+| type  | string | Type MIME du contenu       |
+| value | object | Valeur (fichier, buffer, etc.) |
+
+---
+
 ## Notes
 
-- Les fonctions `request`, `create`, `read`, `update`, `partialUpdate`, et `remove` sont utilisées pour interagir avec des services HTTP.
-- Assurez-vous de fournir une adresse de service valide pour le paramètre `path`.
-- Les en-têtes et le corps des requêtes peuvent être personnalisés selon les besoins de l'API cible.
-- Le paramètre `IS_JSON` doit être défini sur `true` si l'API attend des données au format JSON.
+- Toutes les fonctions attendent un objet `properties` contenant les paramètres décrits ci-dessus.
+- Le paramètre `type` permet de spécifier le format de la réponse attendue (`json`, `text`, `blob`, etc.).
+- Pour l'upload, le paramètre `parameters` doit être un tableau d'objets respectant le schéma [UploadParameters](#uploadparameters).
+- Les en-têtes (`headers`) sont optionnels mais recommandés pour l'authentification ou la gestion du contenu.
+- Les fonctions sont pensées pour être utilisées dans un contexte d'orchestration d'agents ou de scripts automatisés.
+
+---
+
+**Pour toute question ou contribution, consultez le dépôt GitHub associé à la librairie.**

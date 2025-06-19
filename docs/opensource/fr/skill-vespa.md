@@ -1,35 +1,39 @@
 # @digipair/skill-vespa
 
 **Version:** 0.1.0  
-**Summary:** Communication avec une base Vespa  
-**Description:** Cette compétence offre des fonctionnalités pour interagir avec les données d'une base vectorielle Vespa.  
-**Icon:** 📘
+**Résumé:** Communication avec une base de données Vespa  
+**Description:** Cette compétence fournit des fonctionnalités pour interagir avec les données d'une base de données vectorielle Vespa.  
+**Icône:** 📘
 
 ## Table des matières
 
 - [Fonctions](#fonctions)
   - [find](#find)
   - [search](#search)
-  - [textSplitter](#textSplitter)
+  - [textSplitter](#textsplitter)
   - [push](#push)
   - [remove](#remove)
+  - [update](#update)
+
+---
 
 ## Fonctions
 
 ### find
 
-Récupérer des valeurs dans la base de données
+Récupérer des valeurs depuis la base de données.
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                                |
-|------------|--------|--------|--------------------------------------------|
-| baseUrl    | string | Non    | Adresse du serveur Vespa                   |
-| collection | string | Non    | Nom de la collection dans laquelle effectuer la recherche |
-| limit      | number | Non    | Nombre maximum de réponses                 |
-| orderby    | string | Non    | Organisation des réponses                  |
-| query      | string | Oui    | Requête de recherche                       |
-| grouping   | string | Non    | Filtre de regroupement des réponses        |
+| Nom         | Type    | Requis | Description                                      |
+|-------------|---------|--------|--------------------------------------------------|
+| baseUrl     | string  | Non    | Adresse du serveur Vespa                         |
+| namespace   | string  | Non    | Namespace du document à mettre à jour            |
+| collection  | string  | Non    | Nom de la collection à interroger                |
+| limit       | number  | Non    | Nombre maximum de réponses                       |
+| orderby     | string  | Non    | Ordre de tri des réponses                        |
+| query       | string  | Oui    | Requête de recherche                             |
+| grouping    | string  | Non    | Filtre de regroupement pour les réponses         |
 
 #### Exemple
 
@@ -38,33 +42,37 @@ Récupérer des valeurs dans la base de données
   "library": "@digipair/skill-vespa",
   "element": "find",
   "properties": {
-    "baseUrl": "http://vespa-server.com",
-    "collection": "myCollection",
+    "baseUrl": "https://vespa.example.com",
+    "namespace": "default",
+    "collection": "documents",
     "limit": 10,
-    "orderby": "date",
-    "query": "search term",
+    "orderby": "date DESC",
+    "query": "machine learning",
     "grouping": "category"
   }
 }
 ```
 
+---
+
 ### search
 
-Recherche sémantique dans une collection
+Recherche sémantique dans une collection.
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                                |
-|------------|--------|--------|--------------------------------------------|
-| embeddings | array  | Non    | Modèle d'embeddings                        |
-| baseUrl    | string | Non    | Adresse du serveur Vespa                   |
-| collection | string | Non    | Nom de la collection                       |
-| limit      | number | Non    | Nombre de résultats maximum                |
-| orderby    | string | Non    | Organisation des résultats                 |
-| targetHits | number | Non    | targetHits                                 |
-| filter     | string | Non    | Filtres de recherche                       |
-| language   | string | Oui    | Langue de recherche                        |
-| query      | string | Oui    | Requête de recherche sémantique            |
+| Nom         | Type    | Requis | Description                                      |
+|-------------|---------|--------|--------------------------------------------------|
+| embeddings  | array   | Non    | Modèle(s) d'embeddings à utiliser                |
+| baseUrl     | string  | Non    | Adresse du serveur Vespa                         |
+| namespace   | string  | Non    | Namespace du document à mettre à jour            |
+| collection  | string  | Non    | Nom de la collection                             |
+| limit       | number  | Non    | Nombre maximum de résultats                      |
+| orderby     | string  | Non    | Ordre de tri des résultats                       |
+| targetHits  | number  | Non    | Nombre cible de résultats                        |
+| filter      | string  | Non    | Filtres de recherche                             |
+| language    | string  | Oui    | Langue de la recherche                           |
+| query       | string  | Oui    | Requête de recherche sémantique                  |
 
 #### Exemple
 
@@ -73,31 +81,34 @@ Recherche sémantique dans une collection
   "library": "@digipair/skill-vespa",
   "element": "search",
   "properties": {
-    "embeddings": ["model1", "model2"],
-    "baseUrl": "http://vespa-server.com",
-    "collection": "myCollection",
-    "limit": 10,
-    "orderby": "relevance",
-    "targetHits": 5,
-    "filter": "type:article",
+    "embeddings": ["openai-ada"],
+    "baseUrl": "https://vespa.example.com",
+    "namespace": "default",
+    "collection": "articles",
+    "limit": 5,
+    "orderby": "score DESC",
+    "targetHits": 3,
+    "filter": "category:AI",
     "language": "fr",
-    "query": "recherche sémantique"
+    "query": "apprentissage profond"
   }
 }
 ```
 
+---
+
 ### textSplitter
 
-Découpe le texte en morceaux de texte
+Découpe un texte en morceaux.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                                        |
-|----------|--------|--------|----------------------------------------------------|
-| size     | number | Non    | Taille des morceaux de texte                       |
-| overlap  | number | Non    | Tolérance de différence de taille pour s'adapter au texte |
-| source   | string | Oui    | Metadata indiquant la source de la donnée          |
-| text     | string | Oui    | Texte à découper                                   |
+| Nom      | Type    | Requis | Description                                      |
+|----------|---------|--------|--------------------------------------------------|
+| size     | number  | Non    | Taille des morceaux de texte                      |
+| overlap  | number  | Non    | Tolérance de chevauchement pour ajuster le texte  |
+| source   | string  | Oui    | Métadonnée indiquant la source des données        |
+| text     | string  | Oui    | Texte à découper                                 |
 
 #### Exemple
 
@@ -106,26 +117,30 @@ Découpe le texte en morceaux de texte
   "library": "@digipair/skill-vespa",
   "element": "textSplitter",
   "properties": {
-    "size": 200,
-    "overlap": 50,
-    "source": "document1",
-    "text": "Ceci est un texte à découper en morceaux."
+    "size": 512,
+    "overlap": 32,
+    "source": "rapport_annuel.pdf",
+    "text": "Le machine learning est un sous-domaine de l'intelligence artificielle..."
   }
 }
 ```
 
+---
+
 ### push
 
-Ajouter des documents
+Ajouter des documents à la base de données.
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                                |
-|------------|--------|--------|--------------------------------------------|
-| embeddings | array  | Non    | Modèle d'embeddings                        |
-| baseUrl    | string | Non    | Adresse du serveur Vespa                   |
-| collection | string | Non    | Nom de la collection dans laquelle ajouter les documents |
-| documents  | array  | Oui    | Liste des documents à ajouter              |
+| Nom          | Type    | Requis | Description                                      |
+|--------------|---------|--------|--------------------------------------------------|
+| embeddings   | array   | Non    | Modèle(s) d'embeddings à utiliser                |
+| baseUrl      | string  | Non    | Adresse du serveur Vespa                         |
+| namespace    | string  | Non    | Namespace du document à mettre à jour            |
+| collection   | string  | Non    | Nom de la collection à laquelle ajouter          |
+| asynchronous | boolean | Non    | Ajout asynchrone des documents                   |
+| documents    | array   | Oui    | Liste des documents à ajouter (objet JSON)       |
 
 #### Exemple
 
@@ -134,28 +149,33 @@ Ajouter des documents
   "library": "@digipair/skill-vespa",
   "element": "push",
   "properties": {
-    "embeddings": ["model1", "model2"],
-    "baseUrl": "http://vespa-server.com",
-    "collection": "myCollection",
+    "embeddings": ["openai-ada"],
+    "baseUrl": "https://vespa.example.com",
+    "namespace": "default",
+    "collection": "articles",
+    "asynchronous": true,
     "documents": [
-      {"id": 1, "content": "Document 1"},
-      {"id": 2, "content": "Document 2"}
+      { "id": "doc1", "title": "Introduction à Vespa", "content": "..." },
+      { "id": "doc2", "title": "Recherche vectorielle", "content": "..." }
     ]
   }
 }
 ```
 
+---
+
 ### remove
 
-Supprimer des documents dans la base de données
+Supprimer des documents de la base de données.
 
 #### Paramètres
 
-| Nom        | Type   | Requis | Description                                |
-|------------|--------|--------|--------------------------------------------|
-| baseUrl    | string | Non    | Adresse du serveur Vespa                   |
-| collection | string | Non    | Nom de la collection dans laquelle supprimer les documents |
-| selection  | string | Oui    | Filtre correspondant aux documents à supprimer |
+| Nom         | Type    | Requis | Description                                      |
+|-------------|---------|--------|--------------------------------------------------|
+| baseUrl     | string  | Non    | Adresse du serveur Vespa                         |
+| namespace   | string  | Non    | Namespace du document à mettre à jour            |
+| collection  | string  | Non    | Nom de la collection à supprimer                 |
+| selection   | string  | Oui    | Filtre correspondant aux documents à supprimer   |
 
 #### Exemple
 
@@ -164,14 +184,54 @@ Supprimer des documents dans la base de données
   "library": "@digipair/skill-vespa",
   "element": "remove",
   "properties": {
-    "baseUrl": "http://vespa-server.com",
-    "collection": "myCollection",
-    "selection": "id:1"
+    "baseUrl": "https://vespa.example.com",
+    "namespace": "default",
+    "collection": "articles",
+    "selection": "id:doc1"
   }
 }
 ```
 
+---
+
+### update
+
+Mettre à jour un document dans la base de données.
+
+#### Paramètres
+
+| Nom         | Type    | Requis | Description                                      |
+|-------------|---------|--------|--------------------------------------------------|
+| baseUrl     | string  | Non    | Adresse du serveur Vespa                         |
+| namespace   | string  | Non    | Namespace du document à mettre à jour            |
+| id          | string  | Oui    | ID du document à mettre à jour                   |
+| collection  | string  | Non    | Nom de la collection dans laquelle mettre à jour |
+| fields      | object  | Oui    | Champs à mettre à jour (objet JSON)              |
+
+#### Exemple
+
+```json
+{
+  "library": "@digipair/skill-vespa",
+  "element": "update",
+  "properties": {
+    "baseUrl": "https://vespa.example.com",
+    "namespace": "default",
+    "id": "doc1",
+    "collection": "articles",
+    "fields": {
+      "title": "Nouveau titre",
+      "content": "Contenu mis à jour"
+    }
+  }
+}
+```
+
+---
+
 ## Notes
 
-- Les fonctions `find`, `search`, `textSplitter`, `push`, et `remove` sont utilisées pour interagir avec une base de données Vespa.
-- Assurez-vous de fournir les paramètres requis pour chaque fonction afin de garantir leur bon fonctionnement.
+- Les fonctions de cette librairie permettent d'interagir avec une base de données vectorielle Vespa pour la recherche, l'ajout, la suppression, la mise à jour et la découpe de texte.
+- Les paramètres `baseUrl`, `namespace` et `collection` sont optionnels mais recommandés pour cibler précisément les opérations.
+- Pour les opérations de recherche sémantique (`search`), il est conseillé de spécifier le modèle d'embeddings utilisé pour de meilleurs résultats.
+- Les exemples fournis sont à adapter selon votre contexte d'utilisation et la structure de vos documents.

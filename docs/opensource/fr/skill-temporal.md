@@ -1,9 +1,11 @@
 # @digipair/skill-temporal
 
-**Version:** 0.1.0  
-**Summary:** Gestion des workflows temporal  
-**Description:** gérer des workflows temporal.  
-**Icon:** 👩‍💻
+**Version :** 0.1.0  
+**Résumé :** Temporal workflow management  
+**Description :** Cette compétence permet de gérer des workflows temporalisés.  
+**Icône :** 👩‍💻
+
+---
 
 ## Table des matières
 
@@ -18,18 +20,20 @@
   - [list](#list)
   - [workflow](#workflow)
 
+---
+
 ## Fonctions
 
 ### activity
 
-Définit une activité.
+Définit une activité dans un workflow temporal.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| name    | string | Non    | Nom de l'étape               |
-| execute | array  | Oui    | Liste des actions à exécuter |
+| Nom      | Type    | Requis | Description                |
+|----------|---------|--------|----------------------------|
+| name     | string  | Non    | Nom de l'étape             |
+| execute  | array   | Oui    | Liste d'actions à exécuter |
 
 #### Exemple
 
@@ -38,24 +42,26 @@ Définit une activité.
   "library": "@digipair/skill-temporal",
   "element": "activity",
   "properties": {
-    "name": "étape1",
+    "name": "validation",
     "execute": [
-      // Liste des actions à exécuter
+      // Liste d'actions à exécuter (format pinsSettings)
     ]
   }
 }
 ```
 
+---
+
 ### sleep
 
-Définit une période d'attente.
+Attend une durée spécifiée avant de poursuivre le workflow.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description        |
-| -------- | ------ | ------ | ------------------ |
-| name     | string | Non    | Nom de l'étape     |
-| duration | string | Oui    | Durée de l'attente |
+| Nom      | Type   | Requis | Description            |
+|----------|--------|--------|------------------------|
+| name     | string | Non    | Nom de l'étape         |
+| duration | string | Oui    | Durée de l'attente (ex: "5s", "1m") |
 
 #### Exemple
 
@@ -64,22 +70,24 @@ Définit une période d'attente.
   "library": "@digipair/skill-temporal",
   "element": "sleep",
   "properties": {
-    "name": "étape2",
-    "duration": "5m"
+    "name": "pause",
+    "duration": "10s"
   }
 }
 ```
 
+---
+
 ### condition
 
-Définit une condition d'attente dans un workflow.
+Attend qu'une condition soit remplie dans le workflow.
 
 #### Paramètres
 
-| Nom       | Type   | Requis | Description                        |
-| --------- | ------ | ------ | ---------------------------------- |
-| condition | string | Oui    | Condition d'attente au format Feel |
-| timeout   | number | Non    | Timeout de la condition            |
+| Nom        | Type    | Requis | Description                                 |
+|------------|---------|--------|---------------------------------------------|
+| condition  | string  | Oui    | Condition d'attente au format FEEL          |
+| timeout    | number  | Non    | Durée maximale d'attente (en secondes)      |
 
 #### Exemple
 
@@ -88,22 +96,24 @@ Définit une condition d'attente dans un workflow.
   "library": "@digipair/skill-temporal",
   "element": "condition",
   "properties": {
-    "condition": "x > 5",
-    "timeout": 300
+    "condition": "data.status == 'approved'",
+    "timeout": 60
   }
 }
 ```
 
+---
+
 ### goto
 
-Définit une étape de destination dans le workflow.
+Permet de passer à une étape spécifique du workflow.
 
 #### Paramètres
 
-| Nom    | Type   | Requis | Description                   |
-| ------ | ------ | ------ | ----------------------------- |
-| target | string | Oui    | Nom de l'étape de destination |
-| name   | string | Non    | Nom de l'étape                |
+| Nom     | Type   | Requis | Description                |
+|---------|--------|--------|----------------------------|
+| target  | string | Oui    | Nom de l'étape de destination |
+| name    | string | Non    | Nom de l'étape courante    |
 
 #### Exemple
 
@@ -112,21 +122,23 @@ Définit une étape de destination dans le workflow.
   "library": "@digipair/skill-temporal",
   "element": "goto",
   "properties": {
-    "target": "étape3",
-    "name": "étape4"
+    "target": "finalisation",
+    "name": "redirection"
   }
 }
 ```
 
+---
+
 ### stop
 
-Arrête le workflow.
+Arrête le workflow en cours.
 
 #### Paramètres
 
-| Nom  | Type   | Requis | Description    |
-| ---- | ------ | ------ | -------------- |
-| name | string | Non    | Nom de l'étape |
+| Nom   | Type   | Requis | Description        |
+|-------|--------|--------|--------------------|
+| name  | string | Non    | Nom de l'étape     |
 
 #### Exemple
 
@@ -135,21 +147,23 @@ Arrête le workflow.
   "library": "@digipair/skill-temporal",
   "element": "stop",
   "properties": {
-    "name": "étape5"
+    "name": "fin"
   }
 }
 ```
 
+---
+
 ### push
 
-Envoi de nouvelles données dans un workflow.
+Envoie de nouvelles données à un workflow existant.
 
 #### Paramètres
 
-| Nom  | Type   | Requis | Description             |
-| ---- | ------ | ------ | ----------------------- |
-| id   | string | Oui    | Identifiant du workflow |
-| data | object | Oui    | Données à envoyer       |
+| Nom   | Type   | Requis | Description        |
+|-------|--------|--------|--------------------|
+| id    | string | Oui    | Identifiant du workflow |
+| data  | object | Oui    | Données à envoyer  |
 
 #### Exemple
 
@@ -158,23 +172,25 @@ Envoi de nouvelles données dans un workflow.
   "library": "@digipair/skill-temporal",
   "element": "push",
   "properties": {
-    "id": "workflow123",
+    "id": "workflow_123",
     "data": {
-      "key": "value"
+      "status": "in_progress"
     }
   }
 }
 ```
 
+---
+
 ### terminate
 
-Arrête un workflow.
+Arrête définitivement un workflow.
 
 #### Paramètres
 
-| Nom | Type   | Requis | Description             |
-| --- | ------ | ------ | ----------------------- |
-| id  | string | Oui    | Identifiant du workflow |
+| Nom   | Type   | Requis | Description        |
+|-------|--------|--------|--------------------|
+| id    | string | Oui    | Identifiant du workflow |
 
 #### Exemple
 
@@ -183,20 +199,22 @@ Arrête un workflow.
   "library": "@digipair/skill-temporal",
   "element": "terminate",
   "properties": {
-    "id": "workflow123"
+    "id": "workflow_123"
   }
 }
 ```
 
+---
+
 ### list
 
-Liste les workflows.
+Liste les workflows existants selon une requête optionnelle.
 
 #### Paramètres
 
-| Nom   | Type   | Requis | Description          |
-| ----- | ------ | ------ | -------------------- |
-| query | string | Non    | Requête de recherche |
+| Nom    | Type   | Requis | Description         |
+|--------|--------|--------|---------------------|
+| query  | string | Non    | Requête de recherche |
 
 #### Exemple
 
@@ -210,18 +228,20 @@ Liste les workflows.
 }
 ```
 
+---
+
 ### workflow
 
-Exécute un workflow Temporal.
+Exécute un workflow temporal complet.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| id      | string | Oui    | Identifiant du workflow      |
-| steps   | array  | Oui    | Exécute les étapes suivantes |
-| data    | object | Non    | Données du workflow temporal |
-| options | object | Non    | Options du workflow temporal |
+| Nom      | Type    | Requis | Description                        |
+|----------|---------|--------|------------------------------------|
+| id       | string  | Oui    | Identifiant du workflow            |
+| steps    | array   | Oui    | Liste des étapes à exécuter (format pinsSettings) |
+| data     | object  | Non    | Données initiales du workflow      |
+| options  | object  | Non    | Options du workflow temporal       |
 
 #### Exemple
 
@@ -230,21 +250,30 @@ Exécute un workflow Temporal.
   "library": "@digipair/skill-temporal",
   "element": "workflow",
   "properties": {
-    "id": "workflow123",
+    "id": "workflow_123",
     "steps": [
-      // Liste des étapes
+      // Liste des étapes (format pinsSettings)
     ],
     "data": {
-      "key": "value"
+      "userId": "abc123"
     },
     "options": {
-      // Options du workflow
+      "retry": 3
     }
   }
 }
 ```
 
+---
+
 ## Notes
 
-- Les fonctions décrites permettent de gérer les différentes étapes et actions d'un workflow Temporal.
-- Assurez-vous de fournir les paramètres requis pour chaque fonction afin de garantir leur bon fonctionnement.
+- Les fonctions de cette librairie permettent de modéliser, exécuter et contrôler des workflows temporalisés de façon flexible.
+- Le format `pinsSettings` est utilisé pour décrire les actions ou étapes à exécuter dans les paramètres `execute` et `steps`.
+- Les durées doivent être exprimées sous forme de chaînes (ex : `"5s"`, `"1m"`).
+- La condition dans la fonction `condition` doit être au format FEEL (Friendly Enough Expression Language).
+- L'identifiant de workflow (`id`) doit être unique pour chaque instance de workflow.
+
+---
+
+**Pour toute contribution ou question, merci de consulter le dépôt officiel de la librairie.**

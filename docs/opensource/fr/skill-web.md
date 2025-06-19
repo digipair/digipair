@@ -1,9 +1,9 @@
 # @digipair/skill-web
 
 **Version:** 0.1.0  
-**Summary:** Affichage de pages web  
-**Description:** Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites internet.  
-**Icon:** 🌐
+**Résumé:** Web page display  
+**Description:** Cette compétence englobe la connaissance et l'utilisation des technologies web nécessaires pour développer et maintenir des sites web.  
+**Icône:** 🌐
 
 ## Table des matières
 
@@ -11,21 +11,23 @@
   - [executeFactory](#executefactory)
   - [page](#page)
 
+---
+
 ## Fonctions
 
 ### executeFactory
 
-Dans la factory
+Exécution d'une liste de capacités dans la factory.
 
 #### Description
 
-Exécution d'une liste de capacité dans la factory.
+Permet d'exécuter une liste de capacités (capabilities) dans le contexte de la factory. Chaque capacité est définie selon le schéma `pinsSettings`.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                |
-|---------|--------|--------|----------------------------|
-| execute | array  | Oui    | Liste de capacité à exécuter |
+| Nom      | Type    | Requis | Description                        |
+|----------|---------|--------|------------------------------------|
+| execute  | array   | Oui    | Liste des capacités à exécuter. Chaque élément doit suivre le schéma `pinsSettings`. |
 
 #### Exemple
 
@@ -35,32 +37,40 @@ Exécution d'une liste de capacité dans la factory.
   "element": "executeFactory",
   "properties": {
     "execute": [
-      // Liste des capacités à exécuter
+      {
+        // Objet pinsSettings
+      },
+      {
+        // Objet pinsSettings
+      }
     ]
   }
 }
 ```
 
+---
+
 ### page
 
-Page internet
+Affichage d'une page d'un site web.
 
 #### Description
 
-Affichage d'une page d'un site internet.
+Permet d'afficher une page web en définissant son contenu, son en-tête, ses styles, et des actions à différents moments du cycle de vie de la page (initialisation, chargement, etc.).
 
 #### Paramètres
 
-| Nom               | Type   | Requis | Description                                      |
-|-------------------|--------|--------|--------------------------------------------------|
-| body              | array  | Oui    | Contenu de la page                               |
-| title             | string | Non    | Titre de la page                                 |
-| favicon           | string | Non    | Icone de la page                                 |
-| styleHtml         | string | Non    | Style CSS de l'élément HTML                      |
-| styleBody         | string | Non    | Style CSS de l'élément BODY                      |
-| factoryInitialize | array  | Non    | Action déclenchée lors de l'initialisation coté factory |
-| browserInitialize | array  | Non    | Action déclenchée lors de l'initialisation coté navigateur |
-| browserLoad       | array  | Non    | Action déclenchée lorsque la page est chargée coté navigateur |
+| Nom                | Type    | Requis | Description                                                                 |
+|--------------------|---------|--------|-----------------------------------------------------------------------------|
+| body               | array   | Oui    | Contenu de la page. Chaque élément doit suivre le schéma `pinsSettings`.    |
+| head               | array   | Non    | En-tête de la page. Chaque élément doit suivre le schéma `pinsSettings`.    |
+| ssr                | boolean | Non    | Active le rendu côté serveur (Server Side Rendering).                       |
+| styleHtml          | string  | Non    | Style CSS appliqué à l'élément HTML racine.                                 |
+| styleBody          | string  | Non    | Style CSS appliqué à l'élément BODY.                                        |
+| factoryInitialize  | array   | Non    | Actions déclenchées lors de l'initialisation de la factory (`pinsSettings`).|
+| browserInitialize  | array   | Non    | Actions déclenchées lors de l'initialisation du navigateur (`pinsSettings`).|
+| browserLoad        | array   | Non    | Actions déclenchées lors du chargement de la page dans le navigateur (`pinsSettings`).|
+| confirmBeforeUnload| string  | Non    | Message de confirmation affiché avant de quitter la page.                   |
 
 #### Exemple
 
@@ -70,27 +80,47 @@ Affichage d'une page d'un site internet.
   "element": "page",
   "properties": {
     "body": [
-      // Contenu de la page
+      {
+        // Objet pinsSettings pour le contenu principal
+      }
     ],
-    "title": "Titre de la page",
-    "favicon": "url_de_l_icone",
-    "styleHtml": "css_pour_html",
-    "styleBody": "css_pour_body",
+    "head": [
+      {
+        // Objet pinsSettings pour l'en-tête
+      }
+    ],
+    "ssr": true,
+    "styleHtml": "background: #fff;",
+    "styleBody": "margin: 0; padding: 0;",
     "factoryInitialize": [
-      // Actions lors de l'initialisation coté factory
+      {
+        // Action à l'init de la factory
+      }
     ],
     "browserInitialize": [
-      // Actions lors de l'initialisation coté navigateur
+      {
+        // Action à l'init du navigateur
+      }
     ],
     "browserLoad": [
-      // Actions lorsque la page est chargée coté navigateur
-    ]
+      {
+        // Action au chargement de la page
+      }
+    ],
+    "confirmBeforeUnload": "Êtes-vous sûr de vouloir quitter cette page ?"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- La fonction `executeFactory` est utilisée pour exécuter une liste de capacités dans la factory.
-- La fonction `page` permet d'afficher une page web avec des options de personnalisation telles que le titre, l'icône, et les styles CSS pour les éléments HTML et BODY.
-- Les actions `factoryInitialize`, `browserInitialize`, et `browserLoad` permettent de définir des comportements spécifiques lors de différentes phases de l'affichage de la page.
+- Le schéma `pinsSettings` doit être respecté pour tous les objets attendus dans les tableaux de paramètres.
+- La fonction `executeFactory` est principalement utilisée pour orchestrer des capacités dans un contexte de factory, tandis que la fonction `page` permet de définir l'affichage et le comportement d'une page web complète.
+- Les paramètres optionnels permettent de personnaliser le rendu, le style et les actions de la page à différents moments de son cycle de vie.
+- Utilisez `confirmBeforeUnload` pour protéger l'utilisateur contre la perte de données lors de la fermeture ou du rechargement de la page.
+
+---
+
+**Pour toute contribution ou question, veuillez consulter la documentation officielle ou ouvrir une issue sur le dépôt GitHub du projet.**

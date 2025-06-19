@@ -1,9 +1,11 @@
 # @digipair/skill-linkedin
 
-**Version:** 0.1.0  
-**Summary:** Communication avec les services LinkedIn  
-**Description:** utiliser les services LinkedIn.  
-**Icon:** 👤
+**Version :** 0.1.0  
+**Résumé :** Communication avec les services LinkedIn  
+**Description :** Cette compétence permet d'utiliser les services LinkedIn.  
+**Icône :** 👤
+
+---
 
 ## Table des matières
 
@@ -14,23 +16,26 @@
   - [update](#update)
   - [partialUpdate](#partialupdate)
   - [remove](#remove)
+- [Notes](#notes)
+
+---
 
 ## Fonctions
 
 ### request
 
-Exécute un service LinkedIn.
+Exécute un service LinkedIn générique.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| path    | string | Oui    | Chemin du service à exécuter |
-| method  | string | Non    | Méthode HTTP à utiliser      |
-| body    | object | Non    | Valeur à envoyer             |
-| version | string | Non    | Version de l'API à utiliser  |
-| headers | object | Non    | En-têtes à envoyer           |
-| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
+| Nom      | Type    | Requis | Description                                 |
+|----------|---------|--------|---------------------------------------------|
+| path     | string  | Oui    | Chemin du service à exécuter                |
+| method   | string  | Non    | Méthode HTTP à utiliser (GET, POST, etc.)   |
+| body     | object  | Non    | Valeur à envoyer                            |
+| version  | string  | Non    | Version de l'API à utiliser                 |
+| headers  | object  | Non    | En-têtes à envoyer                          |
+| TOKEN    | string  | Non    | Jeton d'accès à utiliser                    |
 
 #### Exemple
 
@@ -41,13 +46,15 @@ Exécute un service LinkedIn.
   "properties": {
     "path": "/v2/me",
     "method": "GET",
-    "version": "2.0",
     "headers": {
       "Authorization": "Bearer <TOKEN>"
-    }
+    },
+    "TOKEN": "<votre_token>"
   }
 }
 ```
+
+---
 
 ### create
 
@@ -55,13 +62,13 @@ Ajoute une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| path    | string | Oui    | Chemin du service à exécuter |
-| body    | object | Non    | Valeur à envoyer             |
-| version | string | Non    | Version de l'API à utiliser  |
-| headers | object | Non    | En-têtes à envoyer           |
-| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
+| Nom      | Type    | Requis | Description                                 |
+|----------|---------|--------|---------------------------------------------|
+| path     | string  | Oui    | Chemin du service à exécuter                |
+| body     | object  | Non    | Valeur à envoyer                            |
+| version  | string  | Non    | Version de l'API à utiliser                 |
+| headers  | object  | Non    | En-têtes à envoyer                          |
+| TOKEN    | string  | Non    | Jeton d'accès à utiliser                    |
 
 #### Exemple
 
@@ -70,29 +77,16 @@ Ajoute une ressource LinkedIn.
   "library": "@digipair/skill-linkedin",
   "element": "create",
   "properties": {
-    "path": "/v2/ugcPosts",
+    "path": "/v2/posts",
     "body": {
-      "author": "urn:li:person:<personId>",
-      "lifecycleState": "PUBLISHED",
-      "specificContent": {
-        "com.linkedin.ugc.ShareContent": {
-          "shareCommentary": {
-            "text": "Hello World!"
-          },
-          "shareMediaCategory": "NONE"
-        }
-      },
-      "visibility": {
-        "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
-      }
+      "content": "Nouveau post LinkedIn"
     },
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<votre_token>"
   }
 }
 ```
+
+---
 
 ### read
 
@@ -100,12 +94,12 @@ Lit une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| path    | string | Oui    | Chemin du service à exécuter |
-| version | string | Non    | Version de l'API à utiliser  |
-| headers | object | Non    | En-têtes à envoyer           |
-| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
+| Nom      | Type    | Requis | Description                                 |
+|----------|---------|--------|---------------------------------------------|
+| path     | string  | Oui    | Chemin du service à exécuter                |
+| version  | string  | Non    | Version de l'API à utiliser                 |
+| headers  | object  | Non    | En-têtes à envoyer                          |
+| TOKEN    | string  | Non    | Jeton d'accès à utiliser                    |
 
 #### Exemple
 
@@ -115,13 +109,12 @@ Lit une ressource LinkedIn.
   "element": "read",
   "properties": {
     "path": "/v2/me",
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<votre_token>"
   }
 }
 ```
+
+---
 
 ### update
 
@@ -129,13 +122,13 @@ Modifie une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| path    | string | Oui    | Chemin du service à exécuter |
-| body    | object | Non    | Valeur à envoyer             |
-| version | string | Non    | Version de l'API à utiliser  |
-| headers | object | Non    | En-têtes à envoyer           |
-| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
+| Nom      | Type    | Requis | Description                                 |
+|----------|---------|--------|---------------------------------------------|
+| path     | string  | Oui    | Chemin du service à exécuter                |
+| body     | object  | Non    | Valeur à envoyer                            |
+| version  | string  | Non    | Version de l'API à utiliser                 |
+| headers  | object  | Non    | En-têtes à envoyer                          |
+| TOKEN    | string  | Non    | Jeton d'accès à utiliser                    |
 
 #### Exemple
 
@@ -144,38 +137,30 @@ Modifie une ressource LinkedIn.
   "library": "@digipair/skill-linkedin",
   "element": "update",
   "properties": {
-    "path": "/v2/ugcPosts/<postId>",
+    "path": "/v2/posts/12345",
     "body": {
-      "specificContent": {
-        "com.linkedin.ugc.ShareContent": {
-          "shareCommentary": {
-            "text": "Updated text"
-          },
-          "shareMediaCategory": "NONE"
-        }
-      }
+      "content": "Mise à jour du post"
     },
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<votre_token>"
   }
 }
 ```
 
+---
+
 ### partialUpdate
 
-Modifie une partie d'une ressource LinkedIn.
+Modifie partiellement une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| path    | string | Oui    | Chemin du service à exécuter |
-| body    | object | Non    | Valeur à envoyer             |
-| version | string | Non    | Version de l'API à utiliser  |
-| headers | object | Non    | En-têtes à envoyer           |
-| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
+| Nom      | Type    | Requis | Description                                 |
+|----------|---------|--------|---------------------------------------------|
+| path     | string  | Oui    | Chemin du service à exécuter                |
+| body     | object  | Non    | Valeur à envoyer                            |
+| version  | string  | Non    | Version de l'API à utiliser                 |
+| headers  | object  | Non    | En-têtes à envoyer                          |
+| TOKEN    | string  | Non    | Jeton d'accès à utiliser                    |
 
 #### Exemple
 
@@ -184,23 +169,16 @@ Modifie une partie d'une ressource LinkedIn.
   "library": "@digipair/skill-linkedin",
   "element": "partialUpdate",
   "properties": {
-    "path": "/v2/ugcPosts/<postId>",
+    "path": "/v2/posts/12345",
     "body": {
-      "specificContent": {
-        "com.linkedin.ugc.ShareContent": {
-          "shareCommentary": {
-            "text": "Partially updated text"
-          }
-        }
-      }
+      "content": "Mise à jour partielle"
     },
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<votre_token>"
   }
 }
 ```
+
+---
 
 ### remove
 
@@ -208,12 +186,12 @@ Supprime une ressource LinkedIn.
 
 #### Paramètres
 
-| Nom     | Type   | Requis | Description                  |
-| ------- | ------ | ------ | ---------------------------- |
-| path    | string | Oui    | Chemin du service à exécuter |
-| version | string | Non    | Version de l'API à utiliser  |
-| headers | object | Non    | En-têtes à envoyer           |
-| TOKEN   | string | Non    | Jeton d'accès à utiliser     |
+| Nom      | Type    | Requis | Description                                 |
+|----------|---------|--------|---------------------------------------------|
+| path     | string  | Oui    | Chemin du service à exécuter                |
+| version  | string  | Non    | Version de l'API à utiliser                 |
+| headers  | object  | Non    | En-têtes à envoyer                          |
+| TOKEN    | string  | Non    | Jeton d'accès à utiliser                    |
 
 #### Exemple
 
@@ -222,16 +200,19 @@ Supprime une ressource LinkedIn.
   "library": "@digipair/skill-linkedin",
   "element": "remove",
   "properties": {
-    "path": "/v2/ugcPosts/<postId>",
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "path": "/v2/posts/12345",
+    "TOKEN": "<votre_token>"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- Les fonctions `request`, `create`, `read`, `update`, `partialUpdate`, et `remove` permettent d'interagir avec les services LinkedIn en exécutant des requêtes spécifiques.
-- Assurez-vous de fournir un jeton d'accès valide pour le paramètre `TOKEN` afin d'autoriser les requêtes.
+- Toutes les fonctions nécessitent le paramètre `path` pour spécifier la ressource ou le service LinkedIn ciblé.
+- Le paramètre `TOKEN` est requis pour l'authentification auprès de l'API LinkedIn.
+- Les paramètres `headers` et `version` sont optionnels et permettent de personnaliser la requête.
+- Utilisez la fonction `request` pour des appels génériques ou personnalisés à l'API LinkedIn.
+- Les fonctions `create`, `read`, `update`, `partialUpdate` et `remove` correspondent respectivement aux opérations CRUD classiques sur les ressources LinkedIn.
+- Assurez-vous de respecter les droits d'accès et les quotas imposés par l'API LinkedIn lors de l'utilisation de ces fonctions.
