@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-pushbullet",
-  "version": "0.90.0",
+  "version": "0.91.0-0",
   "type": "module",
   "main": "dist/libs/skill-pushbullet/index.cjs.js",
   "module": "dist/libs/skill-pushbullet/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-pushbullet/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "tool", "service"],
+  "keywords": [
+    "digipair",
+    "tool",
+    "service"
+  ],
   "nx": {
     "name": "skill-pushbullet"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.91.0-0"
   }
 }

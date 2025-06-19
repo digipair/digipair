@@ -1,6 +1,6 @@
 {
   "name": "@digipair/engine-use",
-  "version": "0.90.0",
+  "version": "0.91.0-0",
   "type": "module",
   "main": "dist/libs/engine-use/index.cjs.js",
   "module": "dist/libs/engine-use/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/engine-use/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "web", "service"],
+  "keywords": [
+    "digipair",
+    "web",
+    "service"
+  ],
   "nx": {
     "name": "engine-use"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.91.0-0"
   }
 }

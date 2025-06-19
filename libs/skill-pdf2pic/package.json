@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-pdf2pic",
-  "version": "0.90.0",
+  "version": "0.91.0-0",
   "type": "module",
   "main": "dist/libs/skill-pdf2pic/index.cjs.js",
   "module": "dist/libs/skill-pdf2pic/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-pdf2pic/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "tool", "service"],
+  "keywords": [
+    "digipair",
+    "tool",
+    "service"
+  ],
   "nx": {
     "name": "skill-pdf2pic"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.91.0-0"
   }
 }

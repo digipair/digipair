@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-tensorflow",
-  "version": "0.90.0",
+  "version": "0.91.0-0",
   "type": "module",
   "main": "dist/libs/skill-tensorflow/index.cjs.js",
   "module": "dist/libs/skill-tensorflow/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-tensorflow/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "util", "service"],
+  "keywords": [
+    "digipair",
+    "util",
+    "service"
+  ],
   "nx": {
     "name": "skill-tensorflow"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.91.0-0"
   }
 }

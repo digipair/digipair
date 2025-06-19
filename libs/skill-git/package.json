@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-git",
-  "version": "0.90.0",
+  "version": "0.91.0-0",
   "type": "module",
   "main": "dist/libs/skill-git/index.cjs.js",
   "module": "dist/libs/skill-git/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-git/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "web", "service"],
+  "keywords": [
+    "digipair",
+    "web",
+    "service"
+  ],
   "nx": {
     "name": "skill-git"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.91.0-0"
   }
 }
