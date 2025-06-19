@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-openai",
-  "version": "0.90.0",
+  "version": "0.92.0-0",
   "type": "module",
   "main": "dist/libs/skill-openai/index.cjs.js",
   "module": "dist/libs/skill-openai/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-openai/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "util", "service"],
+  "keywords": [
+    "digipair",
+    "util",
+    "service"
+  ],
   "nx": {
     "name": "skill-openai"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.92.0-0"
   }
 }

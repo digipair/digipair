@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-heygen",
-  "version": "0.90.0",
+  "version": "0.92.0-0",
   "type": "module",
   "main": "dist/libs/skill-web-heygen/index.cjs.js",
   "module": "dist/libs/skill-web-heygen/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-web-heygen/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "web", "util"],
+  "keywords": [
+    "digipair",
+    "web",
+    "util"
+  ],
   "nx": {
     "name": "skill-web-heygen"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.92.0-0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-vespa",
-  "version": "0.90.0",
+  "version": "0.92.0-0",
   "type": "module",
   "main": "dist/libs/skill-vespa/index.cjs.js",
   "module": "dist/libs/skill-vespa/index.esm.js",
@@ -14,11 +14,15 @@
       "default": "./dist/libs/skill-vespa/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "service", "tool"],
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
   "nx": {
     "name": "skill-vespa"
   },
   "dependencies": {
-    "@digipair/engine": "*"
+    "@digipair/engine": "0.92.0-0"
   }
 }
