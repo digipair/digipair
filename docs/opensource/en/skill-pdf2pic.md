@@ -44,7 +44,7 @@ const result = await convert({
   density: 150,
 });
 
-// result: { image: 'data:image/jpeg;base64,...' }
+// result: 'data:image/jpeg;base64,...'
 ```
 
 #### Example JSON Payload
@@ -64,12 +64,10 @@ const result = await convert({
 
 #### Return Value
 
-An object containing the base64-encoded image, typically in the following format:
+base64-encoded image, typically in the following format:
 
 ```js
-{
-  image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...';
-}
+'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...'
 ```
 
 #### Notes
