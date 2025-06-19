@@ -1,13 +1,24 @@
 {
   "name": "@digipair/skill-web-chatbot",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "util"
-  ],
-  "dependencies": {},
-  "typings": "./index.d.ts",
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-web-chatbot/index.cjs.js",
+  "module": "dist/libs/skill-web-chatbot/index.esm.js",
+  "types": "dist/libs/skill-web-chatbot/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-web-chatbot/package.json",
+    ".": {
+      "development": "./dist/libs/skill-web-chatbot/src/index.ts",
+      "types": "./dist/libs/skill-web-chatbot/index.esm.d.ts",
+      "import": "./dist/libs/skill-web-chatbot/index.esm.js",
+      "default": "./dist/libs/skill-web-chatbot/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "service", "util"],
+  "nx": {
+    "name": "skill-web-chatbot"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

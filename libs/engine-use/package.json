@@ -1,0 +1,24 @@
+{
+  "name": "@digipair/engine-use",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/libs/engine-use/index.cjs.js",
+  "module": "dist/libs/engine-use/index.esm.js",
+  "types": "dist/libs/engine-use/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/engine-use/package.json",
+    ".": {
+      "development": "./dist/libs/engine-use/src/index.ts",
+      "types": "./dist/libs/engine-use/index.esm.d.ts",
+      "import": "./dist/libs/engine-use/index.esm.js",
+      "default": "./dist/libs/engine-use/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "engine-use"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
+}

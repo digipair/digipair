@@ -1,13 +1,24 @@
 {
   "name": "@digipair/skill-yaml",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-yaml/index.cjs.js",
+  "module": "dist/libs/skill-yaml/index.esm.js",
+  "types": "dist/libs/skill-yaml/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-yaml/package.json",
+    ".": {
+      "development": "./dist/libs/skill-yaml/src/index.ts",
+      "types": "./dist/libs/skill-yaml/index.esm.d.ts",
+      "import": "./dist/libs/skill-yaml/index.esm.js",
+      "default": "./dist/libs/skill-yaml/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "service", "web", "tool"],
+  "nx": {
+    "name": "skill-yaml"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

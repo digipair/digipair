@@ -1,14 +1,24 @@
 {
   "name": "@digipair/skill-pdf2pic",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {
-    "pdf2pic": "^3.2.0"
+  "type": "module",
+  "main": "dist/libs/skill-pdf2pic/index.cjs.js",
+  "module": "dist/libs/skill-pdf2pic/index.esm.js",
+  "types": "dist/libs/skill-pdf2pic/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-pdf2pic/package.json",
+    ".": {
+      "development": "./dist/libs/skill-pdf2pic/src/index.ts",
+      "types": "./dist/libs/skill-pdf2pic/index.esm.d.ts",
+      "import": "./dist/libs/skill-pdf2pic/index.esm.js",
+      "default": "./dist/libs/skill-pdf2pic/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-pdf2pic"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

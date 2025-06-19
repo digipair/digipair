@@ -1,14 +1,24 @@
 {
   "name": "@digipair/skill-keycloak",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "util"
-  ],
-  "dependencies": {
-    "jsdom": "^25.0.1"
+  "type": "module",
+  "main": "dist/libs/skill-keycloak/index.cjs.js",
+  "module": "dist/libs/skill-keycloak/index.esm.js",
+  "types": "dist/libs/skill-keycloak/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-keycloak/package.json",
+    ".": {
+      "development": "./dist/libs/skill-keycloak/src/index.ts",
+      "types": "./dist/libs/skill-keycloak/index.esm.d.ts",
+      "import": "./dist/libs/skill-keycloak/index.esm.js",
+      "default": "./dist/libs/skill-keycloak/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "util", "service"],
+  "nx": {
+    "name": "skill-keycloak"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

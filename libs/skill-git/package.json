@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-git",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-git/index.cjs.js",
+  "module": "dist/libs/skill-git/index.esm.js",
+  "types": "dist/libs/skill-git/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-git/package.json",
+    ".": {
+      "development": "./dist/libs/skill-git/src/index.ts",
+      "types": "./dist/libs/skill-git/index.esm.d.ts",
+      "import": "./dist/libs/skill-git/index.esm.js",
+      "default": "./dist/libs/skill-git/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-git"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

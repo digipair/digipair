@@ -1,12 +1,24 @@
 {
   "name": "@digipair/skill-openai",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-openai/index.cjs.js",
+  "module": "dist/libs/skill-openai/index.esm.js",
+  "types": "dist/libs/skill-openai/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-openai/package.json",
+    ".": {
+      "development": "./dist/libs/skill-openai/src/index.ts",
+      "types": "./dist/libs/skill-openai/index.esm.d.ts",
+      "import": "./dist/libs/skill-openai/index.esm.js",
+      "default": "./dist/libs/skill-openai/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "util", "service"],
+  "nx": {
+    "name": "skill-openai"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

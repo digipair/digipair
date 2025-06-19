@@ -1,14 +1,24 @@
 {
   "name": "@digipair/skill-oauth2",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "tool"
-  ],
-  "dependencies": {
-    "simple-oauth2": "^5.1.0"
+  "type": "module",
+  "main": "dist/libs/skill-oauth2/index.cjs.js",
+  "module": "dist/libs/skill-oauth2/index.esm.js",
+  "types": "dist/libs/skill-oauth2/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-oauth2/package.json",
+    ".": {
+      "development": "./dist/libs/skill-oauth2/src/index.ts",
+      "types": "./dist/libs/skill-oauth2/index.esm.d.ts",
+      "import": "./dist/libs/skill-oauth2/index.esm.js",
+      "default": "./dist/libs/skill-oauth2/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "tool", "service"],
+  "nx": {
+    "name": "skill-oauth2"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

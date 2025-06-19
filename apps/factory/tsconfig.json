@@ -4,13 +4,13 @@
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "../../libs/skill-logger"
     },
     {
-      "path": "./tsconfig.spec.json"
+      "path": "../../libs/engine"
+    },
+    {
+      "path": "./tsconfig.app.json"
     }
-  ],
-  "compilerOptions": {
-    "esModuleInterop": true
-  }
+  ]
 }

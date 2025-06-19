@@ -1,15 +1,24 @@
 {
   "name": "@digipair/skill-qrcode",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "web",
-    "service",
-    "tool"
-  ],
-  "dependencies": {
-    "canvas": "^2.11.2"
+  "type": "module",
+  "main": "dist/libs/skill-qrcode/index.cjs.js",
+  "module": "dist/libs/skill-qrcode/index.esm.js",
+  "types": "dist/libs/skill-qrcode/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-qrcode/package.json",
+    ".": {
+      "development": "./dist/libs/skill-qrcode/src/index.ts",
+      "types": "./dist/libs/skill-qrcode/index.esm.d.ts",
+      "import": "./dist/libs/skill-qrcode/index.esm.js",
+      "default": "./dist/libs/skill-qrcode/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "keywords": ["digipair", "tool", "service", "web"],
+  "nx": {
+    "name": "skill-qrcode"
+  },
+  "dependencies": {
+    "@digipair/engine": "*"
+  }
 }

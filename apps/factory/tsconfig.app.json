@@ -1,12 +1,22 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "module": "commonjs",
+    "outDir": "dist",
     "types": ["node"],
+    "rootDir": "src",
+    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "target": "es2021"
   },
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
+  "references": [
+    {
+      "path": "../../libs/skill-logger/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/engine/tsconfig.lib.json"
+    }
+  ]
 }

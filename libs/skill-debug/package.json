@@ -1,12 +1,25 @@
 {
   "name": "@digipair/skill-debug",
   "version": "0.0.1",
-  "keywords": [
-    "digipair",
-    "service",
-    "util"
-  ],
-  "dependencies": {},
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "type": "module",
+  "main": "dist/libs/skill-debug/index.cjs.js",
+  "module": "dist/libs/skill-debug/index.esm.js",
+  "types": "dist/libs/skill-debug/index.esm.d.ts",
+  "exports": {
+    "./package.json": "./libs/skill-debug/package.json",
+    ".": {
+      "development": "./dist/libs/skill-debug/src/index.ts",
+      "types": "./dist/libs/skill-debug/index.esm.d.ts",
+      "import": "./dist/libs/skill-debug/index.esm.js",
+      "default": "./dist/libs/skill-debug/index.cjs.js"
+    }
+  },
+  "keywords": ["digipair", "web", "service"],
+  "nx": {
+    "name": "skill-debug"
+  },
+  "dependencies": {
+    "@digipair/engine": "*",
+    "@digipair/skill-logger": "*"
+  }
 }
