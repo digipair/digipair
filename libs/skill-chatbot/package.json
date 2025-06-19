@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-chatbot",
-  "version": "0.90.1-0",
+  "version": "0.90.1-1",
   "type": "module",
   "main": "dist/libs/skill-chatbot/index.cjs.js",
   "module": "dist/libs/skill-chatbot/index.esm.js",
@@ -23,6 +23,6 @@
     "name": "skill-chatbot"
   },
   "dependencies": {
-    "@digipair/engine": "0.90.1-0"
+    "@digipair/engine": "0.90.1-1"
   }
 }

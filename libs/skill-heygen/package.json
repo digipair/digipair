@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-heygen",
-  "version": "0.90.1-0",
+  "version": "0.90.1-1",
   "type": "module",
   "main": "dist/libs/skill-heygen/index.cjs.js",
   "module": "dist/libs/skill-heygen/index.esm.js",
@@ -23,6 +23,6 @@
     "name": "skill-heygen"
   },
   "dependencies": {
-    "@digipair/engine": "0.90.1-0"
+    "@digipair/engine": "0.90.1-1"
   }
 }

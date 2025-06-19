@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-yaml",
-  "version": "0.90.1-0",
+  "version": "0.90.1-1",
   "type": "module",
   "main": "dist/libs/skill-yaml/index.cjs.js",
   "module": "dist/libs/skill-yaml/index.esm.js",
@@ -24,6 +24,6 @@
     "name": "skill-yaml"
   },
   "dependencies": {
-    "@digipair/engine": "0.90.1-0"
+    "@digipair/engine": "0.90.1-1"
   }
 }
