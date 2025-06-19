@@ -10,24 +10,26 @@
 - [Functions](#functions)
   - [database](#database)
   - [find](#find)
-  - [findOne](#findOne)
-  - [findById](#findById)
-  - [insertOne](#insertOne)
-  - [updateOne](#updateOne)
-  - [updateById](#updateById)
+  - [findOne](#findone)
+  - [findById](#findbyid)
+  - [insertOne](#insertone)
+  - [updateOne](#updateone)
+  - [updateById](#updatebyid)
+
+---
 
 ## Functions
 
 ### database
 
-Connect to a MongoDB database
+Connects to a MongoDB database.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                     |
-|-----------|--------|----------|---------------------------------|
-| url       | string | Yes      | MongoDB server address          |
-| database  | string | Yes      | Name of the database            |
+| Name     | Type   | Required | Description            |
+| -------- | ------ | -------- | ---------------------- |
+| url      | string | Yes      | MongoDB server address |
+| database | string | Yes      | Name of the database   |
 
 #### Example
 
@@ -42,18 +44,20 @@ Connect to a MongoDB database
 }
 ```
 
+---
+
 ### find
 
-Search in a MongoDB database
+Searches for documents in a MongoDB collection.
 
 #### Parameters
 
-| Name        | Type   | Required | Description                          |
-|-------------|--------|----------|--------------------------------------|
-| client      | array  | No       | Database connection client            |
-| options     | object | No       | Search options                        |
-| collection  | string | Yes      | Name of the collection               |
-| filter      | object | Yes      | Search filter                        |
+| Name       | Type   | Required | Description                |
+| ---------- | ------ | -------- | -------------------------- |
+| client     | array  | No       | Database connection client |
+| options    | object | No       | Search options             |
+| collection | string | Yes      | Name of the collection     |
+| filter     | object | Yes      | Search filter              |
 
 #### Example
 
@@ -62,24 +66,26 @@ Search in a MongoDB database
   "library": "@digipair/skill-mongodb",
   "element": "find",
   "properties": {
-    "collection": "my_collection",
-    "filter": { "name": "example" }
+    "collection": "users",
+    "filter": { "age": { "$gt": 18 } }
   }
 }
 ```
 
+---
+
 ### findOne
 
-Search for a single item in a MongoDB database
+Searches for a single document in a MongoDB collection.
 
 #### Parameters
 
-| Name        | Type   | Required | Description                          |
-|-------------|--------|----------|--------------------------------------|
-| client      | array  | No       | Database connection client            |
-| options     | object | No       | Search options                        |
-| collection  | string | Yes      | Name of the collection               |
-| filter      | object | Yes      | Search filter                        |
+| Name       | Type   | Required | Description                |
+| ---------- | ------ | -------- | -------------------------- |
+| client     | array  | No       | Database connection client |
+| options    | object | No       | Search options             |
+| collection | string | Yes      | Name of the collection     |
+| filter     | object | Yes      | Search filter              |
 
 #### Example
 
@@ -88,24 +94,26 @@ Search for a single item in a MongoDB database
   "library": "@digipair/skill-mongodb",
   "element": "findOne",
   "properties": {
-    "collection": "my_collection",
-    "filter": { "name": "example" }
+    "collection": "users",
+    "filter": { "email": "example@domain.com" }
   }
 }
 ```
 
+---
+
 ### findById
 
-Search for an item by ID in a MongoDB database
+Searches for a document by its identifier in a MongoDB collection.
 
 #### Parameters
 
-| Name        | Type   | Required | Description                          |
-|-------------|--------|----------|--------------------------------------|
-| client      | array  | No       | Database connection client            |
-| options     | object | No       | Search options                        |
-| collection  | string | Yes      | Name of the collection               |
-| id          | object | Yes      | Identifier of the item               |
+| Name       | Type   | Required | Description                |
+| ---------- | ------ | -------- | -------------------------- |
+| client     | array  | No       | Database connection client |
+| options    | object | No       | Search options             |
+| collection | string | Yes      | Name of the collection     |
+| id         | object | Yes      | Document identifier        |
 
 #### Example
 
@@ -114,24 +122,26 @@ Search for an item by ID in a MongoDB database
   "library": "@digipair/skill-mongodb",
   "element": "findById",
   "properties": {
-    "collection": "my_collection",
-    "id": { "_id": "60c72b2f9b1d4c3d88f1e8b5" }
+    "collection": "users",
+    "id": { "$oid": "60c72b2f9b1e8a5f8c8e4d3a" }
   }
 }
 ```
 
+---
+
 ### insertOne
 
-Insert an item into a MongoDB database
+Inserts a document into a MongoDB collection.
 
 #### Parameters
 
-| Name        | Type   | Required | Description                          |
-|-------------|--------|----------|--------------------------------------|
-| client      | array  | No       | Database connection client            |
-| options     | object | No       | Insert options                        |
-| collection  | string | Yes      | Name of the collection               |
-| document    | object | Yes      | Document to insert                   |
+| Name       | Type   | Required | Description                |
+| ---------- | ------ | -------- | -------------------------- |
+| client     | array  | No       | Database connection client |
+| options    | object | No       | Insert options             |
+| collection | string | Yes      | Name of the collection     |
+| document   | object | Yes      | Document to insert         |
 
 #### Example
 
@@ -140,25 +150,27 @@ Insert an item into a MongoDB database
   "library": "@digipair/skill-mongodb",
   "element": "insertOne",
   "properties": {
-    "collection": "my_collection",
-    "document": { "name": "example", "value": 123 }
+    "collection": "users",
+    "document": { "name": "Dupont", "age": 30 }
   }
 }
 ```
 
+---
+
 ### updateOne
 
-Update an item in a MongoDB database
+Updates a document in a MongoDB collection.
 
 #### Parameters
 
-| Name        | Type   | Required | Description                          |
-|-------------|--------|----------|--------------------------------------|
-| client      | array  | No       | Database connection client            |
-| options     | object | No       | Update options                        |
-| collection  | string | Yes      | Name of the collection               |
-| filter      | object | Yes      | Search filter                        |
-| update      | object | Yes      | Update filter                        |
+| Name       | Type   | Required | Description                |
+| ---------- | ------ | -------- | -------------------------- |
+| client     | array  | No       | Database connection client |
+| options    | object | No       | Update options             |
+| collection | string | Yes      | Name of the collection     |
+| filter     | object | Yes      | Search filter              |
+| update     | object | Yes      | Update operations          |
 
 #### Example
 
@@ -167,26 +179,28 @@ Update an item in a MongoDB database
   "library": "@digipair/skill-mongodb",
   "element": "updateOne",
   "properties": {
-    "collection": "my_collection",
-    "filter": { "name": "example" },
-    "update": { "$set": { "value": 456 } }
+    "collection": "users",
+    "filter": { "email": "example@domain.com" },
+    "update": { "$set": { "age": 31 } }
   }
 }
 ```
 
+---
+
 ### updateById
 
-Update an item by ID in a MongoDB database
+Updates a document by its identifier in a MongoDB collection.
 
 #### Parameters
 
-| Name        | Type   | Required | Description                          |
-|-------------|--------|----------|--------------------------------------|
-| client      | array  | No       | Database connection client            |
-| options     | object | No       | Update options                        |
-| id          | string | Yes      | Identifier of the item               |
-| collection  | string | Yes      | Name of the collection               |
-| update      | object | Yes      | Update filter                        |
+| Name       | Type   | Required | Description                |
+| ---------- | ------ | -------- | -------------------------- |
+| client     | array  | No       | Database connection client |
+| options    | object | No       | Update options             |
+| id         | string | Yes      | Document identifier        |
+| collection | string | Yes      | Name of the collection     |
+| update     | object | Yes      | Update operations          |
 
 #### Example
 
@@ -195,14 +209,23 @@ Update an item by ID in a MongoDB database
   "library": "@digipair/skill-mongodb",
   "element": "updateById",
   "properties": {
-    "collection": "my_collection",
-    "id": "60c72b2f9b1d4c3d88f1e8b5",
-    "update": { "$set": { "value": 789 } }
+    "collection": "users",
+    "id": "60c72b2f9b1e8a5f8c8e4d3a",
+    "update": { "$set": { "name": "Durand" } }
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The functions in this library allow you to manage common operations on a MongoDB database, such as connecting, searching, inserting, and updating documents.
-- Make sure to provide the required parameters for each function to ensure their proper functioning.
+- Functions generally require a prior connection to the database using the `database` function.
+- The `client` parameter can be omitted if the connection is managed internally or via the execution context.
+- Filters and updates must follow MongoDB syntax.
+- For identifiers (`id`), use the appropriate format (e.g., ObjectId for MongoDB).
+
+---
+
+**Author:** [@digipair](https://github.com/digipair)  
+**License:** MIT

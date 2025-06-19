@@ -1,28 +1,30 @@
 # @digipair/skill-web-material-icons
 
 **Version:** 0.1.0  
-**Summary:** Displaying material icons  
-**Description:** Displaying material icons.  
+**Summary:** Display of Material icons  
+**Description:** Display of Material icons.  
 **Icon:** 🎨
 
 ## Table of Contents
 
 - [Functions](#functions)
-  - [digipairMaterialIconsIcon](#digipairMaterialIconsIcon)
+  - [digipairMaterialIconsIcon](#digipairmaterialiconsicon)
+
+---
 
 ## Functions
 
 ### digipairMaterialIconsIcon
 
-Display a Google Material icon
+Displays a Google Material icon.
 
 #### Parameters
 
-| Name       | Type   | Required | Description                   |
-|------------|--------|----------|-------------------------------|
-| name       | string | Yes      | Name of the icon              |
-| iconStyle  | object | No       | Custom style for the icon     |
-| slot       | string | No       | Position of the icon          |
+| Name      | Type   | Required | Description                          |
+| --------- | ------ | -------- | ------------------------------------ |
+| name      | string | Yes      | Name of the Material icon to display |
+| iconStyle | object | No       | Custom style for the icon            |
+| slot      | string | No       | Placement of the icon                |
 
 #### Example
 
@@ -33,17 +35,26 @@ Display a Google Material icon
   "properties": {
     "name": "home",
     "iconStyle": {
-      "color": "blue",
-      "fontSize": "24px"
+      "color": "red",
+      "fontSize": "32px"
     },
     "slot": "start"
   }
 }
 ```
 
+#### Detailed Description
+
+The `digipairMaterialIconsIcon` function allows you to display an icon from the Google Material Icons library.
+
+- The `name` parameter is required and corresponds to the name of the icon to display (for example: `"home"`, `"search"`, `"settings"`).
+- The optional `iconStyle` parameter allows you to customize the CSS style of the icon (for example: color, size, etc.).
+- The optional `slot` parameter allows you to define the placement of the icon within a layout structure (for example: `"start"`, `"end"`).
+
+---
+
 ## Notes
 
-- The `digipairMaterialIconsIcon` function is used to display a Google Material icon.
-- The `name` parameter is mandatory and must correspond to the desired icon name.
-- The `iconStyle` parameter is optional and allows customization of the icon's style using a CSS style object.
-- The `slot` parameter is optional and allows specifying the position of the icon.
+- Make sure that the icon name (`name`) matches an existing icon in the Google Material Icons library.
+- The `iconStyle` parameter must be an object that conforms to the CSS properties applicable to an icon.
+- This function is designed to be used in web environments where displaying Material icons is required.

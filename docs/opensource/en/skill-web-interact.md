@@ -2,57 +2,38 @@
 
 **Version:** 0.1.0  
 **Summary:** Interaction with a web page  
-**Description:** This skill allows users to communicate with an HTML page on the client side.  
+**Description:** This skill allows users to communicate with a client-side HTML page.  
 **Icon:** 📲
 
 ## Table of Contents
 
-- [@digipair/skill-web-interact](#digipairskill-web-interact)
-  - [Table of Contents](#table-of-contents)
-  - [Functions](#functions)
-    - [dispatchEvent](#dispatchevent)
-      - [Parameters](#parameters)
-      - [Example](#example)
-    - [setAttribute](#setattribute)
-      - [Parameters](#parameters-1)
-      - [Example](#example-1)
-    - [getAttribute](#getattribute)
-      - [Parameters](#parameters-2)
-      - [Example](#example-2)
-    - [execute](#execute)
-      - [Parameters](#parameters-3)
-      - [Example](#example-3)
-    - [goTo](#goto)
-      - [Parameters](#parameters-4)
-      - [Example](#example-4)
-    - [reload](#reload)
-      - [Example](#example-5)
-    - [upload](#upload)
-      - [Parameters](#parameters-5)
-      - [Example](#example-6)
-    - [uploadText](#uploadtext)
-      - [Parameters](#parameters-6)
-      - [Example](#example-7)
-    - [capture](#capture)
-      - [Parameters](#parameters-7)
-      - [Example](#example-8)
-    - [getMediaDevices](#getmediadevices)
-      - [Example](#example-9)
-  - [Notes](#notes)
+- [Functions](#functions)
+  - [dispatchEvent](#dispatchevent)
+  - [setAttribute](#setattribute)
+  - [getAttribute](#getattribute)
+  - [execute](#execute)
+  - [goTo](#goto)
+  - [reload](#reload)
+  - [upload](#upload)
+  - [uploadText](#uploadtext)
+  - [capture](#capture)
+  - [getMediaDevices](#getmediadevices)
+
+---
 
 ## Functions
 
 ### dispatchEvent
 
-Triggers an event on a DOM element.
+Emits an event on a DOM element.
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| name      | string | Yes      | Name of the event to trigger. |
-| selector  | string | Yes      | CSS selector of the element that will receive the event. |
-| detail    | object | No       | Data passed with the event. |
+| Name     | Type   | Required | Description                            |
+| -------- | ------ | -------- | -------------------------------------- |
+| name     | string | Yes      | Name of the event to emit              |
+| selector | string | Yes      | CSS selector of the target element     |
+| detail   | object | No       | Data to pass with the event (optional) |
 
 #### Example
 
@@ -61,11 +42,9 @@ Triggers an event on a DOM element.
   "library": "@digipair/skill-web-interact",
   "element": "dispatchEvent",
   "properties": {
-    "name": "click",
-    "selector": "#myButton",
-    "detail": {
-      "key": "value"
-    }
+    "name": "customEvent",
+    "selector": "#my-element",
+    "detail": { "foo": "bar" }
   }
 }
 ```
@@ -74,15 +53,15 @@ Triggers an event on a DOM element.
 
 ### setAttribute
 
-Allows modifying the value of an attribute of a DOM element.
+Sets the value of an attribute on a DOM element.
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| selector  | string | Yes      | CSS selector of the element. |
-| attribute | string | Yes      | Attribute to modify. |
-| value     | object | Yes      | New value for the attribute. |
+| Name      | Type   | Required | Description                  |
+| --------- | ------ | -------- | ---------------------------- |
+| selector  | string | Yes      | CSS selector of the element  |
+| attribute | string | Yes      | Name of the attribute to set |
+| value     | object | Yes      | New value for the attribute  |
 
 #### Example
 
@@ -91,9 +70,9 @@ Allows modifying the value of an attribute of a DOM element.
   "library": "@digipair/skill-web-interact",
   "element": "setAttribute",
   "properties": {
-    "selector": "#myElement",
-    "attribute": "data-custom",
-    "value": "newValue"
+    "selector": "#my-element",
+    "attribute": "data-status",
+    "value": "active"
   }
 }
 ```
@@ -102,14 +81,14 @@ Allows modifying the value of an attribute of a DOM element.
 
 ### getAttribute
 
-Allows reading the value of an attribute of a DOM element.
+Reads the value of an attribute from a DOM element.
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| selector  | string | Yes      | CSS selector of the element. |
-| attribute | string | Yes      | Attribute to read. |
+| Name      | Type   | Required | Description                   |
+| --------- | ------ | -------- | ----------------------------- |
+| selector  | string | Yes      | CSS selector of the element   |
+| attribute | string | Yes      | Name of the attribute to read |
 
 #### Example
 
@@ -118,8 +97,8 @@ Allows reading the value of an attribute of a DOM element.
   "library": "@digipair/skill-web-interact",
   "element": "getAttribute",
   "properties": {
-    "selector": "#myElement",
-    "attribute": "data-custom"
+    "selector": "#my-element",
+    "attribute": "data-status"
   }
 }
 ```
@@ -132,11 +111,11 @@ Executes a method on a DOM element.
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| name      | string | Yes      | Name of the method to execute. |
-| selector  | string | Yes      | CSS selector of the element that will execute the method. |
-| args      | array  | No       | List of arguments for the method. |
+| Name     | Type   | Required | Description                                        |
+| -------- | ------ | -------- | -------------------------------------------------- |
+| name     | string | Yes      | Name of the method to execute                      |
+| selector | string | Yes      | CSS selector of the target element                 |
+| args     | array  | No       | List of arguments to pass to the method (optional) |
 
 #### Example
 
@@ -146,7 +125,7 @@ Executes a method on a DOM element.
   "element": "execute",
   "properties": {
     "name": "focus",
-    "selector": "#myInput",
+    "selector": "#input-field",
     "args": []
   }
 }
@@ -156,14 +135,14 @@ Executes a method on a DOM element.
 
 ### goTo
 
-Allows opening a web page in the browser.
+Opens a web page in the browser.
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| url       | string | Yes      | URL of the web page to open. |
-| target    | string | Yes      | Target window (e.g., "_blank", "_self"). |
+| Name   | Type   | Required | Description                     |
+| ------ | ------ | -------- | ------------------------------- |
+| url    | string | Yes      | URL of the web page to open     |
+| target | string | No       | Target window (e.g., "\_blank") |
 
 #### Example
 
@@ -182,7 +161,11 @@ Allows opening a web page in the browser.
 
 ### reload
 
-Allows reloading the current page.
+Reloads the current page.
+
+#### Parameters
+
+None.
 
 #### Example
 
@@ -198,13 +181,13 @@ Allows reloading the current page.
 
 ### upload
 
-Allows uploading a binary file in base64.
+Allows uploading a binary file (base64).
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| accept    | string | No       | Accepted file type. |
+| Name   | Type   | Required | Description                    |
+| ------ | ------ | -------- | ------------------------------ |
+| accept | string | No       | Accepted file type (MIME type) |
 
 #### Example
 
@@ -226,9 +209,9 @@ Allows uploading a text file.
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| accept    | string | No       | Accepted file type. |
+| Name   | Type   | Required | Description                    |
+| ------ | ------ | -------- | ------------------------------ |
+| accept | string | No       | Accepted file type (MIME type) |
 
 #### Example
 
@@ -246,16 +229,16 @@ Allows uploading a text file.
 
 ### capture
 
-Allows capturing an image from the webcam.
+Captures an image from the webcam.
 
 #### Parameters
 
-| Name        | Type    | Required | Description |
-|-------------|---------|----------|-------------|
-| deviceId    | string  | No       | Identifier of the capture device. |
-| width       | number  | No       | Width of the captured image. |
-| height      | number  | No       | Height of the captured image. |
-| facingMode  | string  | No       | Capture mode of the image (e.g., "user", "environment"). |
+| Name       | Type   | Required | Description                                |
+| ---------- | ------ | -------- | ------------------------------------------ |
+| deviceId   | string | No       | ID of the capture device                   |
+| width      | number | No       | Width of the captured image                |
+| height     | number | No       | Height of the captured image               |
+| facingMode | string | No       | Capture mode (e.g., "user", "environment") |
 
 #### Example
 
@@ -264,7 +247,7 @@ Allows capturing an image from the webcam.
   "library": "@digipair/skill-web-interact",
   "element": "capture",
   "properties": {
-    "deviceId": "myDeviceId",
+    "deviceId": "abcd1234",
     "width": 640,
     "height": 480,
     "facingMode": "user"
@@ -276,7 +259,11 @@ Allows capturing an image from the webcam.
 
 ### getMediaDevices
 
-Lists the available capture devices.
+Lists available capture devices.
+
+#### Parameters
+
+None.
 
 #### Example
 
@@ -288,7 +275,12 @@ Lists the available capture devices.
 }
 ```
 
+---
+
 ## Notes
 
-- The functions in this library allow interaction with the DOM and perform various actions on the elements of the web page.
-- Ensure to provide valid CSS selectors for the `selector` parameters and adhere to the expected data types for each parameter.
+- CSS selectors must target existing elements in the DOM.
+- Capture and upload functions require user permission.
+- Methods executed via `execute` must be accessible on the targeted element.
+- For `goTo`, using `target: "_blank"` will open the page in a new tab.
+- Optional parameters can be omitted if not needed.

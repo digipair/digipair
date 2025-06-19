@@ -1,3 +1,7 @@
+Here is the English translation of your technical documentation for Digipair:
+
+---
+
 # Technical Documentation for Digipair
 
 ## 1. Creating a Digipair
@@ -6,22 +10,22 @@ To create a Digipair, follow the steps below:
 
 1. **Access the Factory**
 
-   - Once in the Factory, click on the three small dots at the top of the homepage.
+   - Once in the Factory, click on the three dots at the top of the homepage.
 
    ![Preview](./assets/screenshots/creation_digipair.png)
 
 2. **Name and Specify the Purpose**
    - The chatbot will appear and ask you to name the Digipair and specify its purpose.
-   - Respond to the chatbot by naming the Digipair `example` and specifying that it will be used to automatically fill out a form from an image.
+   - Reply to the chatbot by naming the Digipair `example` and specifying that it will be used to automatically fill out a form from an image.
 
-## 2. Program for the Boost
+## 2. Writing the Boost Program
 
 Follow these steps to write the Boost program:
 
 1. **Add Execution Properties**
-   - In the "trigger list" reasoning, add an `execution` property using the reasoning settings button.
+   - In the "list of triggers" reasoning, add an `execution` property using the reasoning's settings button.
 
-   ![execution](./assets/screenshots/execution.png)
+![execution](./assets/screenshots/execution.png)
 
 2. **Add a Trigger Component**
 
@@ -45,7 +49,7 @@ Follow these steps to write the Boost program:
 
 3. **Add the "Read a Binary File" Data**
 
-   - In the "data input in boosts" section, add the "read a binary file" data.
+   - In the "data entry in boosts" section, add the "read a binary file" data.
    - Add the following properties:
      - `accept`
      - `required`
@@ -61,42 +65,42 @@ Follow these steps to write the Boost program:
    - In the "LLM via Stanford DSP" section, add a DSP agent.
    - Add the `input` property.
 
-   ![dsp agent](./assets/screenshots/agentdsp.png)
+   ![dspagent](./assets/screenshots/agentdsp.png)
 
-   - Name the DSP agent `Digiform` and add the description: "Useful assistant that extracts information from an image to fill out a form and its response for the user."
-   - Set the following signature:
+   - Name the DSP agent `Digiform` and add the description: "Useful assistant that extracts information from an image to fill out a form and provides its response to the user."
+   - Use the following signature:
      ```
      document:image ->
-     name:string,
-     firstName:string,
+     nom:string,
+     prenom:string,
      age:number,
-     comment:string,
+     commentaire:string,
      assistant:string
      ```
 
-   ![dsp agent](./assets/screenshots/agent_dsp_texte.png)
+   ![dspagent](./assets/screenshots/agent_dsp_texte.png)
 
-   - In "data to process," add the following items:
-     - `{}` 
+   - In "data to process", add the following elements:
+     - `{}`
      - `document:`
      - `{}` with `mimeType:` (text: `image/jpeg`) and `data:` (text: `EVALUATE:replace(request.body.inputs[1].value, "data:image/jpeg;base64,", "")`).
 
-   ![data](./assets/screenshots/donnees.png)
+   ![trigger](./assets/screenshots/donnees.png)
 
 5. **Add the Chatbot Response**
 
    - In the "communication with the chatbot" section, add the "chatbot response" component.
-   - Add the `command` property and place a `text` component in `assistant` with the value `{{previous.assistant}}`.
+   - Add the `command` property and put a `text` component in `assistant` with the value `{{previous.assistant}}`.
 
    ![response](./assets/screenshots/reponse.png)
 
 6. **Modify Attributes**
 
-   - Add the "modify an attribute" pins from the "interact with a web page" section four times.
+   - Add the "modify an attribute" pin from the "interaction with a web page" section four times.
    - Fill in as follows:
-     - `CSS Selector of the element*`: `#name`, `#firstName`, `#age`, `#comment`
+     - `CSS selector of the element*`: `#nom`, `#prenom`, `#age`, `#commentaire`
      - `Attribute*`: `value`
-     - `Value*`: `{{previous.name}}`, `{{previous.firstName}}`, `{{previous.age}}`, `{{previous.comment}}`
+     - `Value*`: `{{previous.nom}}`, `{{previous.prenom}}`, `{{previous.age}}`, `{{previous.commentaire}}`
 
    ![attribute](./assets/screenshots/attribute.png)
 
@@ -114,7 +118,7 @@ Create an HTML page containing the form with the following code:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form</title>
+    <title>Registration Form</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -125,22 +129,22 @@ Create an HTML page containing the form with the following code:
       <h1 class="mt-5">Registration Form</h1>
       <form>
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Enter your name" />
+          <label for="nom">Last Name</label>
+          <input type="text" class="form-control" id="nom" placeholder="Enter your last name" />
         </div>
         <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" />
+          <label for="prenom">First Name</label>
+          <input type="text" class="form-control" id="prenom" placeholder="Enter your first name" />
         </div>
         <div class="form-group">
           <label for="age">Age</label>
           <input type="number" class="form-control" id="age" placeholder="Enter your age" />
         </div>
         <div class="form-group">
-          <label for="comment">Comment</label>
+          <label for="commentaire">Comment</label>
           <textarea
             class="form-control"
-            id="comment"
+            id="commentaire"
             rows="3"
             placeholder="Enter your comment"
           ></textarea>
@@ -152,26 +156,26 @@ Create an HTML page containing the form with the following code:
 </html>
 ```
 
-## 4. Integrating the Chatbot on the Web Page
+## 4. Integrating the Chatbot into the Web Page
 
-To integrate the chatbot on the form web page, add the following code just after `</script>` in the page program:
+To integrate the chatbot into the form web page, add the following code just after `</script>` in the page's program:
 
 ```html
 <script
   type="module"
   src="https://cdn.jsdelivr.net/npm/@digipair/skill-web-chatbot@latest/index.esm.js"
 ></script>
-<digipair-chatbot apiurl="http://localhost:8080" code="example-digipair"></digipair-chatbot>
+<digipair-chatbot apiurl="http://localhost:8080" code="example-digipaire"></digipair-chatbot>
 ```
 
 ## 5. Testing the Digipair
 
-With the created Digipair, you can fill out the form using an image.
+With the Digipair created, you can fill out the form using an image.
 
-1. **Test the Form**
+1. **Test the form**
    - Go to the form page.
-   - Click on the "fill the form from an image" button next to the chatbot.
-   - The chatbot will ask you to choose an image.
+   - Click the "fill the form from an image" button next to the chatbot.
+   - The chatbot will prompt you to choose an image.
    - Once the image is selected and after a short wait, the form will be filled with the information extracted from the image.
 
 ## 6. Conclusion

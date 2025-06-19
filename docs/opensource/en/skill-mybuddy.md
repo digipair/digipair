@@ -1,9 +1,14 @@
+Here is the English translation of your technical documentation, adapted for clarity and technical accuracy:
+
+```markdown
 # @digipair/skill-mybuddy
 
 **Version:** 0.1.0  
 **Summary:** Management of a myBuddy robot  
-**Description:** This skill allows you to manage an elephant robotics myBuddy robot.  
+**Description:** This skill allows you to manage an Elephant Robotics myBuddy robot.  
 **Icon:** 🤖
+
+---
 
 ## Table of Contents
 
@@ -14,6 +19,7 @@
   - [powerOff](#poweroff)
   - [releaseAllServos](#releaseallservos)
   - [sendAngle](#sendangle)
+  - [sendCoord](#sendcoord)
   - [sendCoords](#sendcoords)
   - [programPause](#programpause)
   - [programResume](#programresume)
@@ -53,19 +59,21 @@
   - [isGripperMoving](#isgrippermoving)
   - [sleep](#sleep)
 
+---
+
 ## Functions
 
 ### sendAngles
 
-Sends a list of angles.
+Sends a list of angles to the servomotors.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| angles   | array  | Yes      | List of angles to send |
-| speed    | number | No       | Movement speed |
+| Name    | Type     | Required | Description                                                        |
+|---------|----------|----------|--------------------------------------------------------------------|
+| device  | number   | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| angles  | number[] | Yes      | List of angles to send                                             |
+| speed   | number   | No       | Movement speed                                                     |
 
 #### Example
 
@@ -74,22 +82,24 @@ Sends a list of angles.
   "library": "@digipair/skill-mybuddy",
   "element": "sendAngles",
   "properties": {
-    "device": 1,
-    "angles": [30, 45, 60],
-    "speed": 10
+    "device": 0,
+    "angles": [0, 45, 90, 135],
+    "speed": 50
   }
 }
 ```
 
+---
+
 ### getAngles
 
-Retrieves the list of angles.
+Retrieves the current list of angles.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -103,15 +113,17 @@ Retrieves the list of angles.
 }
 ```
 
+---
+
 ### powerOn
 
-Turns on all servos.
+Activates all servomotors.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -125,15 +137,17 @@ Turns on all servos.
 }
 ```
 
+---
+
 ### powerOff
 
-Turns off all servos.
+Deactivates all servomotors.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -147,15 +161,17 @@ Turns off all servos.
 }
 ```
 
+---
+
 ### releaseAllServos
 
-Releases all servos.
+Releases all servomotors.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -169,18 +185,20 @@ Releases all servos.
 }
 ```
 
+---
+
 ### sendAngle
 
-Sends a specific angle.
+Sends a specific angle to a servomotor.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| id       | number | Yes      | Identifier of the concerned servo |
-| degree   | number | Yes      | Angle to send |
-| speed    | number | No       | Movement speed |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| id      | number | Yes      | Target servomotor identifier                                       |
+| degree  | number | Yes      | Angle to send                                                      |
+| speed   | number | No       | Movement speed                                                     |
 
 #### Example
 
@@ -191,24 +209,56 @@ Sends a specific angle.
   "properties": {
     "device": 1,
     "id": 2,
-    "degree": 45,
-    "speed": 10
+    "degree": 90,
+    "speed": 30
   }
 }
 ```
 
-### sendCoords
+---
 
-Sends coordinates.
+### sendCoord
+
+Sends a specific coordinate.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| coords   | array  | Yes      | List of coordinates to send |
-| speed    | number | No       | Movement speed |
-| mode     | string | No       | Movement mode |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| id      | number | Yes      | Identifier of the coordinate to modify                             |
+| coord   | number | Yes      | Value of the coordinate to send                                    |
+| speed   | number | No       | Movement speed                                                     |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-mybuddy",
+  "element": "sendCoord",
+  "properties": {
+    "device": 2,
+    "id": 1,
+    "coord": 100,
+    "speed": 20
+  }
+}
+```
+
+---
+
+### sendCoords
+
+Sends a list of coordinates.
+
+#### Parameters
+
+| Name    | Type      | Required | Description                                                        |
+|---------|-----------|----------|--------------------------------------------------------------------|
+| device  | number    | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| coords  | number[]  | Yes      | List of coordinates to send                                        |
+| speed   | number    | No       | Movement speed                                                     |
+| mode    | string    | No       | Movement mode                                                      |
 
 #### Example
 
@@ -218,22 +268,24 @@ Sends coordinates.
   "element": "sendCoords",
   "properties": {
     "device": 1,
-    "coords": [100, 200],
-    "speed": 10,
+    "coords": [100, 200, 300],
+    "speed": 40,
     "mode": "linear"
   }
 }
 ```
 
+---
+
 ### programPause
 
-Pauses the program.
+Pauses the current program.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -242,20 +294,22 @@ Pauses the program.
   "library": "@digipair/skill-mybuddy",
   "element": "programPause",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
 
+---
+
 ### programResume
 
-Resumes the program.
+Resumes the paused program.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -264,20 +318,22 @@ Resumes the program.
   "library": "@digipair/skill-mybuddy",
   "element": "programResume",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
 
+---
+
 ### stop
 
-Stops the program.
+Stops the current program.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -286,23 +342,25 @@ Stops the program.
   "library": "@digipair/skill-mybuddy",
   "element": "stop",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
 
+---
+
 ### jogAngle
 
-Moves a specific angle.
+Moves a specific joint angle in jog mode.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| joint_id | number | Yes      | Identifier of the concerned joint |
-| direction | string | Yes      | Direction of movement |
-| speed    | number | No       | Movement speed |
+| Name       | Type   | Required | Description                                                        |
+|------------|--------|----------|--------------------------------------------------------------------|
+| device     | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| joint_id   | number | Yes      | Target joint identifier                                            |
+| direction  | string | Yes      | Movement direction                                                 |
+| speed      | number | No       | Movement speed                                                     |
 
 #### Example
 
@@ -313,24 +371,26 @@ Moves a specific angle.
   "properties": {
     "device": 1,
     "joint_id": 2,
-    "direction": "up",
+    "direction": "positive",
     "speed": 10
   }
 }
 ```
 
+---
+
 ### jogCoord
 
-Moves a specific coordinate.
+Moves a specific coordinate in jog mode.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| coord_id | number | Yes      | Identifier of the concerned coordinate |
-| direction | string | Yes      | Direction of movement |
-| speed    | number | No       | Movement speed |
+| Name       | Type   | Required | Description                                                        |
+|------------|--------|----------|--------------------------------------------------------------------|
+| device     | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| coord_id   | number | Yes      | Target coordinate identifier                                       |
+| direction  | string | Yes      | Movement direction                                                 |
+| speed      | number | No       | Movement speed                                                     |
 
 #### Example
 
@@ -339,23 +399,25 @@ Moves a specific coordinate.
   "library": "@digipair/skill-mybuddy",
   "element": "jogCoord",
   "properties": {
-    "device": 1,
-    "coord_id": 2,
-    "direction": "forward",
-    "speed": 10
+    "device": 2,
+    "coord_id": 1,
+    "direction": "negative",
+    "speed": 15
   }
 }
 ```
 
+---
+
 ### jogStop
 
-Stops the movement.
+Stops the current jog movement.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -364,22 +426,24 @@ Stops the movement.
   "library": "@digipair/skill-mybuddy",
   "element": "jogStop",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
 
+---
+
 ### setEncoder
 
-Sets an encoder value.
+Sets the value of an encoder.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| joint_id | number | Yes      | Identifier of the concerned joint |
-| encoder  | number | Yes      | Value of the encoder to set |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| joint_id  | number | Yes      | Target joint identifier                                            |
+| encoder   | number | Yes      | Encoder value to set                                               |
 
 #### Example
 
@@ -390,22 +454,24 @@ Sets an encoder value.
   "properties": {
     "device": 1,
     "joint_id": 2,
-    "encoder": 100
+    "encoder": 1234
   }
 }
 ```
 
+---
+
 ### setEncoders
 
-Sets the encoder values.
+Sets the values of multiple encoders.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| encoders | array  | Yes      | List of encoder values to set |
-| speed    | number | No       | Movement speed |
+| Name      | Type      | Required | Description                                                        |
+|-----------|-----------|----------|--------------------------------------------------------------------|
+| device    | number    | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| encoders  | number[]  | Yes      | List of encoder values to set                                      |
+| speed     | number    | No       | Movement speed                                                     |
 
 #### Example
 
@@ -414,23 +480,25 @@ Sets the encoder values.
   "library": "@digipair/skill-mybuddy",
   "element": "setEncoders",
   "properties": {
-    "device": 1,
+    "device": 0,
     "encoders": [100, 200, 300],
-    "speed": 10
+    "speed": 20
   }
 }
 ```
 
+---
+
 ### setSpeed
 
-Sets the speed.
+Sets the movement speed.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| speed    | number | Yes      | Speed to set |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| speed   | number | Yes      | Speed to set                                                       |
 
 #### Example
 
@@ -439,24 +507,26 @@ Sets the speed.
   "library": "@digipair/skill-mybuddy",
   "element": "setSpeed",
   "properties": {
-    "device": 1,
-    "speed": 10
+    "device": 0,
+    "speed": 50
   }
 }
 ```
 
+---
+
 ### setServoData
 
-Sets the data of a servo.
+Sets a specific data value for a servomotor.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| servo_no | number | Yes      | Number of the concerned servo |
-| data_id  | number | Yes      | Identifier of the data to set |
-| value    | number | Yes      | Value to set |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| servo_no  | number | Yes      | Target servomotor number                                           |
+| data_id   | number | Yes      | Data identifier to set                                             |
+| value     | number | Yes      | Value to set                                                       |
 
 #### Example
 
@@ -467,22 +537,24 @@ Sets the data of a servo.
   "properties": {
     "device": 1,
     "servo_no": 2,
-    "data_id": 1,
-    "value": 50
+    "data_id": 3,
+    "value": 100
   }
 }
 ```
 
+---
+
 ### setServoCalibration
 
-Sets the calibration of a servo.
+Sets the calibration for a servomotor.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| servo_no | number | Yes      | Number of the concerned servo |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| servo_no  | number | Yes      | Target servomotor number                                           |
 
 #### Example
 
@@ -497,16 +569,18 @@ Sets the calibration of a servo.
 }
 ```
 
+---
+
 ### releaseServo
 
-Releases a specific servo.
+Releases a specific servomotor.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| servo_no | number | Yes      | Number of the concerned servo |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| servo_no  | number | Yes      | Target servomotor number                                           |
 
 #### Example
 
@@ -521,16 +595,18 @@ Releases a specific servo.
 }
 ```
 
+---
+
 ### focusServo
 
-Activates a specific servo.
+Enables a specific servomotor.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| servo_no | number | Yes      | Number of the concerned servo |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| servo_no  | number | Yes      | Target servomotor number                                           |
 
 #### Example
 
@@ -545,17 +621,19 @@ Activates a specific servo.
 }
 ```
 
+---
+
 ### setPinMode
 
 Sets the mode of a pin.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| pin_no   | number | Yes      | Number of the concerned pin |
-| pin_mode | string | Yes      | Mode of the pin to set |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| pin_no    | number | Yes      | Target pin number                                                  |
+| pin_mode  | string | Yes      | Pin mode to set                                                    |
 
 #### Example
 
@@ -564,12 +642,14 @@ Sets the mode of a pin.
   "library": "@digipair/skill-mybuddy",
   "element": "setPinMode",
   "properties": {
-    "device": 1,
-    "pin_no": 3,
-    "pin_mode": "OUTPUT"
+    "device": 0,
+    "pin_no": 5,
+    "pin_mode": "output"
   }
 }
 ```
+
+---
 
 ### setDigitalOutput
 
@@ -577,11 +657,11 @@ Sets the digital output of a pin.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| pin_no   | number | Yes      | Number of the concerned pin |
-| pin_signal | number | Yes    | Signal of the pin to set |
+| Name        | Type   | Required | Description                                                        |
+|-------------|--------|----------|--------------------------------------------------------------------|
+| device      | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| pin_no      | number | Yes      | Target pin number                                                  |
+| pin_signal  | number | Yes      | Pin signal to set                                                  |
 
 #### Example
 
@@ -590,24 +670,26 @@ Sets the digital output of a pin.
   "library": "@digipair/skill-mybuddy",
   "element": "setDigitalOutput",
   "properties": {
-    "device": 1,
-    "pin_no": 3,
+    "device": 0,
+    "pin_no": 5,
     "pin_signal": 1
   }
 }
 ```
 
+---
+
 ### setGripperState
 
-Sets the state of the gripper.
+Sets the gripper state.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| flag     | boolean| Yes      | State of the gripper to set |
-| speed    | number | No       | Movement speed |
+| Name    | Type    | Required | Description                                                        |
+|---------|---------|----------|--------------------------------------------------------------------|
+| device  | number  | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| flag    | boolean | Yes      | Gripper state to set                                               |
+| speed   | number  | No       | Movement speed                                                     |
 
 #### Example
 
@@ -623,17 +705,19 @@ Sets the state of the gripper.
 }
 ```
 
+---
+
 ### setGripperValue
 
-Sets the value of the gripper.
+Sets the gripper value.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| value    | number | Yes      | Value of the gripper to set |
-| speed    | number | No       | Movement speed |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| value   | number | Yes      | Gripper value to set                                               |
+| speed   | number | No       | Movement speed                                                     |
 
 #### Example
 
@@ -649,15 +733,15 @@ Sets the value of the gripper.
 }
 ```
 
+---
+
 ### setGripperIni
 
-Sets the initialization of the gripper.
+Initializes the gripper.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| -        | -      | No       | -           |
+_No parameters required._
 
 #### Example
 
@@ -669,17 +753,19 @@ Sets the initialization of the gripper.
 }
 ```
 
+---
+
 ### setBasicOutput
 
 Sets the basic output of a pin.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| pin_no   | number | Yes      | Number of the concerned pin |
-| pin_signal | number | Yes    | Signal of the pin to set |
+| Name        | Type   | Required | Description                                                        |
+|-------------|--------|----------|--------------------------------------------------------------------|
+| device      | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| pin_no      | number | Yes      | Target pin number                                                  |
+| pin_signal  | number | Yes      | Pin signal to set                                                  |
 
 #### Example
 
@@ -688,12 +774,14 @@ Sets the basic output of a pin.
   "library": "@digipair/skill-mybuddy",
   "element": "setBasicOutput",
   "properties": {
-    "device": 1,
-    "pin_no": 3,
+    "device": 0,
+    "pin_no": 5,
     "pin_signal": 1
   }
 }
 ```
+
+---
 
 ### setColor
 
@@ -701,12 +789,12 @@ Sets the RGB color.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| r        | number | Yes      | Value of red to set |
-| g        | number | Yes      | Value of green to set |
-| b        | number | Yes      | Value of blue to set |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| r       | number | Yes      | Red value to set                                                   |
+| g       | number | Yes      | Green value to set                                                 |
+| b       | number | Yes      | Blue value to set                                                  |
 
 #### Example
 
@@ -715,13 +803,15 @@ Sets the RGB color.
   "library": "@digipair/skill-mybuddy",
   "element": "setColor",
   "properties": {
-    "device": 1,
+    "device": 0,
     "r": 255,
-    "g": 0,
-    "b": 0
+    "g": 100,
+    "b": 50
   }
 }
 ```
+
+---
 
 ### isPowerOn
 
@@ -729,9 +819,9 @@ Checks if the device is powered on.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -740,10 +830,12 @@ Checks if the device is powered on.
   "library": "@digipair/skill-mybuddy",
   "element": "isPowerOn",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
+
+---
 
 ### isControllerConnect
 
@@ -751,9 +843,9 @@ Checks if the controller is connected.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| -        | -      | No       | -           |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -761,19 +853,23 @@ Checks if the controller is connected.
 {
   "library": "@digipair/skill-mybuddy",
   "element": "isControllerConnect",
-  "properties": {}
+  "properties": {
+    "device": 0
+  }
 }
 ```
 
+---
+
 ### getCoords
 
-Retrieves the coordinates.
+Retrieves the current coordinates.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -782,10 +878,12 @@ Retrieves the coordinates.
   "library": "@digipair/skill-mybuddy",
   "element": "getCoords",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
+
+---
 
 ### isInPosition
 
@@ -793,11 +891,11 @@ Checks if the device is in position.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| data     | object | Yes      | Position data to check |
-| flag     | boolean| Yes      | Position indicator |
+| Name    | Type    | Required | Description                                                        |
+|---------|---------|----------|--------------------------------------------------------------------|
+| device  | number  | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| data    | object  | Yes      | Position data to check                                             |
+| flag    | boolean | Yes      | Position indicator                                                 |
 
 #### Example
 
@@ -806,12 +904,14 @@ Checks if the device is in position.
   "library": "@digipair/skill-mybuddy",
   "element": "isInPosition",
   "properties": {
-    "device": 1,
-    "data": {"position": "home"},
+    "device": 0,
+    "data": { "x": 100, "y": 200, "z": 300 },
     "flag": true
   }
 }
 ```
+
+---
 
 ### getEncoder
 
@@ -819,10 +919,10 @@ Retrieves the value of an encoder.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| joint_id | number | Yes      | Identifier of the concerned joint |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| joint_id  | number | Yes      | Target joint identifier                                            |
 
 #### Example
 
@@ -837,15 +937,17 @@ Retrieves the value of an encoder.
 }
 ```
 
+---
+
 ### getEncoders
 
-Retrieves the values of the encoders.
+Retrieves the values of all encoders.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -854,20 +956,22 @@ Retrieves the values of the encoders.
   "library": "@digipair/skill-mybuddy",
   "element": "getEncoders",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
 
+---
+
 ### getSpeed
 
-Retrieves the speed.
+Retrieves the current speed.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -876,10 +980,12 @@ Retrieves the speed.
   "library": "@digipair/skill-mybuddy",
   "element": "getSpeed",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
+
+---
 
 ### getJointMin
 
@@ -887,10 +993,10 @@ Retrieves the minimum angle of a joint.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| joint_id | number | Yes      | Identifier of the concerned joint |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| joint_id  | number | Yes      | Target joint identifier                                            |
 
 #### Example
 
@@ -905,16 +1011,18 @@ Retrieves the minimum angle of a joint.
 }
 ```
 
+---
+
 ### getJointMax
 
 Retrieves the maximum angle of a joint.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| joint_id | number | Yes      | Identifier of the concerned joint |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| joint_id  | number | Yes      | Target joint identifier                                            |
 
 #### Example
 
@@ -929,16 +1037,18 @@ Retrieves the maximum angle of a joint.
 }
 ```
 
+---
+
 ### isServoEnable
 
-Checks if a servo is enabled.
+Checks if a servomotor is enabled.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| servo_id | number | Yes      | Identifier of the concerned servo |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| servo_id  | number | Yes      | Target servomotor identifier                                       |
 
 #### Example
 
@@ -953,15 +1063,17 @@ Checks if a servo is enabled.
 }
 ```
 
+---
+
 ### isAllServoEnable
 
-Checks if all servos are enabled.
+Checks if all servomotors are enabled.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -970,22 +1082,24 @@ Checks if all servos are enabled.
   "library": "@digipair/skill-mybuddy",
   "element": "isAllServoEnable",
   "properties": {
-    "device": 1
+    "device": 0
   }
 }
 ```
 
+---
+
 ### getServodata
 
-Retrieves the data of a servo.
+Retrieves a specific data value from a servomotor.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| servo_no | number | Yes      | Number of the concerned servo |
-| data_id  | number | Yes      | Identifier of the data to retrieve |
+| Name      | Type   | Required | Description                                                        |
+|-----------|--------|----------|--------------------------------------------------------------------|
+| device    | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| servo_no  | number | Yes      | Target servomotor number                                           |
+| data_id   | number | Yes      | Data identifier to retrieve                                        |
 
 #### Example
 
@@ -996,10 +1110,12 @@ Retrieves the data of a servo.
   "properties": {
     "device": 1,
     "servo_no": 2,
-    "data_id": 1
+    "data_id": 3
   }
 }
 ```
+
+---
 
 ### getDigitalInput
 
@@ -1007,10 +1123,10 @@ Retrieves the digital input of a pin.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| pin_no   | number | Yes      | Number of the concerned pin |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| pin_no  | number | Yes      | Target pin number                                                  |
 
 #### Example
 
@@ -1019,21 +1135,23 @@ Retrieves the digital input of a pin.
   "library": "@digipair/skill-mybuddy",
   "element": "getDigitalInput",
   "properties": {
-    "device": 1,
-    "pin_no": 3
+    "device": 0,
+    "pin_no": 5
   }
 }
 ```
 
+---
+
 ### getGripperValue
 
-Retrieves the value of the gripper.
+Retrieves the gripper value.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -1047,16 +1165,18 @@ Retrieves the value of the gripper.
 }
 ```
 
+---
+
 ### getBasicOutput
 
 Retrieves the basic output of a pin.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
-| pin_no   | number | Yes      | Number of the concerned pin |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
+| pin_no  | number | Yes      | Target pin number                                                  |
 
 #### Example
 
@@ -1065,11 +1185,13 @@ Retrieves the basic output of a pin.
   "library": "@digipair/skill-mybuddy",
   "element": "getBasicOutput",
   "properties": {
-    "device": 1,
-    "pin_no": 3
+    "device": 0,
+    "pin_no": 5
   }
 }
 ```
+
+---
 
 ### isGripperMoving
 
@@ -1077,9 +1199,9 @@ Checks if the gripper is moving.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| device   | number | Yes      | Identifier of the concerned device (0 = All, 1 = Left Arm, 2 = Right Arm, 3 = Body) |
+| Name    | Type   | Required | Description                                                        |
+|---------|--------|----------|--------------------------------------------------------------------|
+| device  | number | Yes      | Device identifier (0 = All, 1 = Left arm, 2 = Right arm, 3 = Body) |
 
 #### Example
 
@@ -1093,15 +1215,17 @@ Checks if the gripper is moving.
 }
 ```
 
+---
+
 ### sleep
 
-Waits for a certain time.
+Waits for a specified time (in seconds).
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| time     | number | Yes      | Time in seconds to wait |
+| Name  | Type   | Required | Description                |
+|-------|--------|----------|----------------------------|
+| time  | number | Yes      | Time to wait in seconds    |
 
 #### Example
 
@@ -1110,12 +1234,19 @@ Waits for a certain time.
   "library": "@digipair/skill-mybuddy",
   "element": "sleep",
   "properties": {
-    "time": 5
+    "time": 2
   }
 }
 ```
 
+---
+
 ## Notes
 
-- Each function is designed to interact with the myBuddy robot and requires a valid device identifier.
-- Ensure to respect the specified data types for each parameter when calling the functions.
+- All `device` parameters use the following convention:  
+  `0 = All`, `1 = Left arm`, `2 = Right arm`, `3 = Body`.
+- Functions may be synchronous or asynchronous depending on the library implementation.
+- Examples are provided in JSON call format for integration with an orchestrator or scenario engine.
+- For any hardware manipulation, ensure the robot is supervised and in a safe environment.
+```
+If you need further adaptation (for example, for a specific documentation generator or API style), let me know!

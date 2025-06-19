@@ -1,9 +1,11 @@
+Here is the English translation of your technical documentation:
+
 - [**Home**](/)
 - **Overview**
 - [Getting Started](get-started)
 - [Creating Your First Digipair](creation)
 - [The Mission](mission)
-- [The Concepts](concept)
+- [Key Concepts](concept)
 - [How It Works](how-it-works)
 - **Skills**
 - [skill-dsp](skill-dsp)

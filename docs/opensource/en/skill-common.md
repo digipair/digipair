@@ -1,27 +1,59 @@
 # @digipair/skill-common
 
 **Version:** 0.1.0  
-**Summary:** Default behaviors of agents  
-**Description:** This skill allows managing the default behaviors of agents.  
+**Summary:** Default agent behaviors  
+**Description:** This skill manages the default behaviors of agents.  
 **Icon:** 🚀
+
+---
 
 ## Table of Contents
 
 - [Functions](#functions)
+  - [infos](#infos)
   - [metadata](#metadata)
   - [boosts](#boosts)
+  - [schema](#schema)
+  - [context](#context)
+- [Notes](#notes)
+
+---
 
 ## Functions
 
-### metadata
+### infos
 
-List the metadata
+List information
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| digipair  | string | Yes      | Identifier of the digipair |
+| Name     | Type   | Required | Description                        |
+| -------- | ------ | -------- | ---------------------------------- |
+| digipair | string | Yes      | Name or identifier of the digipair |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-common",
+  "element": "infos",
+  "properties": {
+    "digipair": "digital_pair_identifier"
+  }
+}
+```
+
+---
+
+### metadata
+
+List metadata
+
+#### Parameters
+
+| Name     | Type   | Required | Description                        |
+| -------- | ------ | -------- | ---------------------------------- |
+| digipair | string | Yes      | Name or identifier of the digipair |
 
 #### Example
 
@@ -35,15 +67,17 @@ List the metadata
 }
 ```
 
+---
+
 ### boosts
 
-List the boosts
+List boosts
 
 #### Parameters
 
-| Name      | Type   | Required | Description |
-|-----------|--------|----------|-------------|
-| digipair  | string | Yes      | Identifier of the digipair |
+| Name     | Type   | Required | Description                        |
+| -------- | ------ | -------- | ---------------------------------- |
+| digipair | string | Yes      | Name or identifier of the digipair |
 
 #### Example
 
@@ -57,7 +91,77 @@ List the boosts
 }
 ```
 
+---
+
+### schema
+
+Get the schema associated with a digipair
+
+#### Parameters
+
+| Name     | Type   | Required | Description                        |
+| -------- | ------ | -------- | ---------------------------------- |
+| digipair | string | Yes      | Name or identifier of the digipair |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-common",
+  "element": "schema",
+  "properties": {
+    "digipair": "digital_pair_identifier"
+  }
+}
+```
+
+---
+
+### context
+
+Get the context for a digipair and a reasoning
+
+#### Parameters
+
+| Name      | Type   | Required | Description                         |
+| --------- | ------ | -------- | ----------------------------------- |
+| digipair  | string | Yes      | Name or identifier of the digipair  |
+| reasoning | string | Yes      | Name or identifier of the reasoning |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-common",
+  "element": "context",
+  "properties": {
+    "digipair": "digital_pair_identifier",
+    "reasoning": "reasoning_name"
+  }
+}
+```
+
+---
+
 ## Notes
 
-- The `metadata` and `boosts` functions are used to list the metadata and boosts associated with a digital pair, respectively.
-- Make sure to provide a valid digipair identifier for the `digipair` parameter.
+- All functions require at least the `digipair` parameter (the digital pair identifier).
+- The `context` function also requires the `reasoning` parameter.
+- Make sure to provide valid identifiers for each required parameter.
+- These functions are intended to be used in a JavaScript environment, not via an HTTP API.
+- The function names correspond to the elements to invoke in the `@digipair/skill-common` library.
+
+---
+
+**Generic usage example:**
+
+```js
+const result = await skillCommon.<function>({
+  digipair: "digital_pair_identifier",
+  // reasoning: "reasoning_name" // if required
+});
+```
+
+---
+
+**For any contributions or questions, please refer to the official documentation or open an issue on the project repository.**

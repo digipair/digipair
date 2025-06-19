@@ -2,58 +2,93 @@
 
 **Version:** 0.1.0  
 **Summary:** JSON Editor  
-**Description:** This skill allows displaying a JSON editor on a web page. The user can modify the JSON content and retrieve the modified content.  
+**Description:** This skill displays a JSON editor on a web page. The user can modify the JSON content and retrieve the updated content.  
 **Icon:** 📐
 
 ## Table of Contents
 
 - [Functions](#functions)
   - [digipair-jsoneditor](#digipair-jsoneditor)
+- [Events](#events)
+  - [change](#change)
+- [Notes](#notes)
+
+---
 
 ## Functions
 
 ### digipair-jsoneditor
 
-JSON Editor
+Displays an interactive JSON editor on the web page. Allows the user to view, edit, and retrieve a JSON object.
 
 #### Parameters
 
-| Name          | Type   | Required | Description                             |
-|---------------|--------|----------|-----------------------------------------|
-| json          | object | No       | JSON content to display in the editor   |
-| contentStyle  | string | No       | Custom style for the container          |
+| Name         | Type   | Required | Description                            |
+| ------------ | ------ | -------- | -------------------------------------- |
+| id           | string | No       | Identifier for the container element.  |
+| json         | object | No       | JSON content to display in the editor. |
+| contentStyle | string | No       | Custom CSS style for the container.    |
 
-#### Events
-
-| Name    | Type   | Required | Description                                   |
-|---------|--------|----------|-----------------------------------------------|
-| change  | array  | No       | Action triggered when a change occurs in the editor |
-
-#### Example
+#### Usage Example
 
 ```json
 {
   "library": "@digipair/skill-web-jsoneditor",
   "element": "digipair-jsoneditor",
   "properties": {
+    "id": "json-editor-container",
     "json": {
-      "key": "value"
+      "name": "John Doe",
+      "age": 30
     },
-    "contentStyle": "width: 100%; height: 400px;"
+    "contentStyle": "width: 100%; height: 400px; border: 1px solid #ccc;"
+  }
+}
+```
+
+---
+
+## Events
+
+### change
+
+Triggered when a modification is made in the JSON editor.
+
+| Name   | Type  | Description                                              |
+| ------ | ----- | -------------------------------------------------------- |
+| change | array | Action(s) to execute when a change occurs in the editor. |
+
+**Items schema:** [pinsSettings](https://schemas.digipair.ai/pinsSettings)
+
+#### Example of Event Listener
+
+```json
+{
+  "library": "@digipair/skill-web-jsoneditor",
+  "element": "digipair-jsoneditor",
+  "properties": {
+    "json": { "foo": "bar" }
   },
   "events": {
     "change": [
       {
-        "type": "update",
-        "timestamp": "2023-10-01T12:00:00Z"
+        "type": "log",
+        "message": "The JSON content has been modified."
       }
     ]
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The `digipair-jsoneditor` function allows integrating a JSON editor into a web page.
-- The `json` and `contentStyle` parameters are optional but can be used to customize the editor.
-- The `change` event can be used to capture modifications made in the JSON editor.
+- The JSON editor can be styled via the `contentStyle` property to fit your interface.
+- The `change` event allows you to dynamically react to user modifications (saving, validation, etc.).
+- If no parameters are provided, the editor will appear empty and use default styles.
+- This library is ideal for quickly integrating a JSON editor into a web application or back office.
+
+---
+
+**For any contributions or questions, please refer to the official library repository.**

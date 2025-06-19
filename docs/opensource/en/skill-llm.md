@@ -1,31 +1,36 @@
 # @digipair/skill-llm
 
 **Version:** 0.1.0  
-**Summary:** LLM Model Management  
-**Description:** The @digipair/skill-llm skill allows the use of a large language model.  
+**Summary:** Lanchain  
+**Description:** The `@digipair/skill-llm` skill enables the use of a large language model (LLM) for text generation, reasoning, vision (image and text analysis), and text summarization.  
 **Icon:** 🚀
+
+---
 
 ## Table of Contents
 
 - [Functions](#functions)
   - [invoke](#invoke)
-  - [reasoningStep](#reasoningStep)
+  - [reasoningStep](#reasoningstep)
   - [basic](#basic)
   - [vision](#vision)
   - [summarization](#summarization)
+- [Notes](#notes)
+
+---
 
 ## Functions
 
 ### invoke
 
-LLM Reasoning
+Performs LLM-based reasoning on a sequence of actions and optional input data.
 
 #### Parameters
 
-| Name     | Type   | Required | Description |
-|----------|--------|----------|-------------|
-| execute  | array  | Yes      | Execute |
-| input    | object | No       | Input data |
+| Name    | Type   | Required | Description                                |
+| ------- | ------ | -------- | ------------------------------------------ |
+| execute | array  | Yes      | List of actions to execute (pinsSettings). |
+| input   | object | No       | Optional input data for reasoning.         |
 
 #### Example
 
@@ -35,24 +40,33 @@ LLM Reasoning
   "element": "invoke",
   "properties": {
     "execute": [
-      // Content from https://schemas.digipair.ai/pinsSettings
+      // List of pinsSettings objects
     ],
     "input": {
-      // Input data
+      // Optional input data
     }
   }
 }
 ```
 
+---
+
 ### reasoningStep
 
-Reasoning Step
+Executes a reasoning step with specific attributes.
 
 #### Parameters
 
-| Name        | Type  | Required | Description |
-|-------------|-------|----------|-------------|
-| attributes  | array | Yes      | Data |
+| Name       | Type  | Required | Description                                    |
+| ---------- | ----- | -------- | ---------------------------------------------- |
+| attributes | array | Yes      | List of reasoning step attributes (see below). |
+
+**Structure of an attribute (`reasonningStepAttribute`):**
+
+| Name  | Type   | Required | Description           |
+| ----- | ------ | -------- | --------------------- |
+| name  | string | Yes      | Name of the attribute |
+| value | array  | Yes      | Value (pinsSettings)  |
 
 #### Example
 
@@ -63,9 +77,9 @@ Reasoning Step
   "properties": {
     "attributes": [
       {
-        "name": "exampleName",
+        "name": "example",
         "value": [
-          // Content from https://schemas.digipair.ai/pinsSettings
+          // List of pinsSettings objects
         ]
       }
     ]
@@ -73,19 +87,19 @@ Reasoning Step
 }
 ```
 
+---
+
 ### basic
 
-Generate
-
-Text generation via an LLM model
+Generates text from a prompt using an LLM.
 
 #### Parameters
 
-| Name    | Type   | Required | Description |
-|---------|--------|----------|-------------|
-| prompt  | string | Yes      | Prompt to execute via the LLM model |
-| model   | array  | No       | LLM model to load |
-| schema  | object | No       | JSON schema of the data to extract |
+| Name   | Type   | Required | Description                        |
+| ------ | ------ | -------- | ---------------------------------- |
+| prompt | string | Yes      | Prompt to execute via the LLM      |
+| model  | array  | No       | LLM model to load (pinsSettings)   |
+| schema | object | No       | JSON schema of the data to extract |
 
 #### Example
 
@@ -94,31 +108,31 @@ Text generation via an LLM model
   "library": "@digipair/skill-llm",
   "element": "basic",
   "properties": {
-    "prompt": "Your prompt here",
+    "prompt": "Explain the theory of relativity.",
     "model": [
-      // Content from https://schemas.digipair.ai/pinsSettings
+      // List of pinsSettings objects
     ],
     "schema": {
-      // JSON schema of the data to extract
+      // Optional JSON schema
     }
   }
 }
 ```
 
+---
+
 ### vision
 
-See
-
-Use an LLM model that can read images and text as input
+Uses an LLM model capable of analyzing images and text.
 
 #### Parameters
 
-| Name    | Type   | Required | Description |
-|---------|--------|----------|-------------|
-| model   | array  | No       | Vision model to load |
-| prompt  | string | Yes      | Prompt to execute on the LLM model |
-| image   | string | Yes      | Base64 encoded image |
-| schema  | object | No       | JSON schema of the data to extract |
+| Name   | Type   | Required | Description                         |
+| ------ | ------ | -------- | ----------------------------------- |
+| model  | array  | No       | Vision model to load (pinsSettings) |
+| prompt | string | Yes      | Prompt to execute on the LLM        |
+| image  | string | Yes      | Base64-encoded image                |
+| schema | object | No       | JSON schema of the data to extract  |
 
 #### Example
 
@@ -127,38 +141,38 @@ Use an LLM model that can read images and text as input
   "library": "@digipair/skill-llm",
   "element": "vision",
   "properties": {
+    "prompt": "Describe what you see in the image.",
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
     "model": [
-      // Content from https://schemas.digipair.ai/pinsSettings
+      // List of pinsSettings objects
     ],
-    "prompt": "Your prompt here",
-    "image": "base64_encoded_image",
     "schema": {
-      // JSON schema of the data to extract
+      // Optional JSON schema
     }
   }
 }
 ```
 
+---
+
 ### summarization
 
-Summarize Text
-
-Summarize text via an LLM model
+Summarizes text using an LLM model with various configuration options.
 
 #### Parameters
 
-| Name                    | Type    | Required | Description |
-|-------------------------|---------|----------|-------------|
-| model                   | array   | No       | LLM model to load |
-| chunkSize               | number  | No       | Size of text chunks |
-| type                    | string  | No       | Algorithm to use for summarizing the text |
-| prompt                  | string  | Yes      | Text to summarize |
-| combineMapPrompt        | string  | No       | combineMapPrompt |
-| combinePrompt           | string  | No       | combinePrompt |
-| returnIntermediateSteps  | boolean | No       | returnIntermediateSteps |
-| refinePrompt            | string  | No       | refinePrompt |
-| questionPrompt          | string  | No       | questionPrompt |
-| verbose                 | boolean | No       | Adds debug logs |
+| Name                    | Type    | Required | Description                      |
+| ----------------------- | ------- | -------- | -------------------------------- |
+| model                   | array   | No       | LLM model to load (pinsSettings) |
+| chunkSize               | number  | No       | Size of text segments            |
+| type                    | string  | No       | Summarization algorithm to use   |
+| prompt                  | string  | Yes      | Text to summarize                |
+| combineMapPrompt        | string  | No       | Map combination prompt           |
+| combinePrompt           | string  | No       | Combination prompt               |
+| returnIntermediateSteps | boolean | No       | Return intermediate steps        |
+| refinePrompt            | string  | No       | Refinement prompt                |
+| questionPrompt          | string  | No       | Question prompt                  |
+| verbose                 | boolean | No       | Enable debug logs                |
 
 #### Example
 
@@ -167,23 +181,32 @@ Summarize text via an LLM model
   "library": "@digipair/skill-llm",
   "element": "summarization",
   "properties": {
+    "prompt": "Here is a long text to summarize...",
     "model": [
-      // Content from https://schemas.digipair.ai/pinsSettings
+      // List of pinsSettings objects
     ],
-    "chunkSize": 1000,
-    "type": "algorithm",
-    "prompt": "Text to summarize",
-    "combineMapPrompt": "Your combineMapPrompt here",
-    "combinePrompt": "Your combinePrompt here",
-    "returnIntermediateSteps": true,
-    "refinePrompt": "Your refinePrompt here",
-    "questionPrompt": "Your questionPrompt here",
+    "chunkSize": 500,
+    "type": "map-reduce",
+    "combineMapPrompt": "Intermediate summary:",
+    "combinePrompt": "Final summary:",
+    "returnIntermediateSteps": false,
+    "refinePrompt": "Can you improve this summary?",
+    "questionPrompt": "What are the main ideas?",
     "verbose": true
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The functions `invoke`, `reasoningStep`, `basic`, `vision`, and `summarization` are used to interact with large language models (LLMs) for various tasks such as reasoning, text generation, image analysis, and text summarization.
-- Ensure to provide the required parameters for each function to guarantee their proper functioning.
+- The `pinsSettings` objects referenced in the parameters must follow the schema defined at [https://schemas.digipair.ai/pinsSettings](https://schemas.digipair.ai/pinsSettings).
+- The functions in this library allow you to leverage the power of LLMs for various tasks: generation, reasoning, vision, and summarization.
+- For each function, adapt the parameters according to your needs and the LLM model used.
+- Optional fields can be omitted if not needed.
+- For the `vision` function, the image must be base64-encoded.
+
+---
+
+**For any contributions or questions, please refer to the official documentation or open an issue on the project's GitHub repository.**

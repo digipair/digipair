@@ -5,11 +5,15 @@
 **Description:** This skill allows you to manage a Nuki lock.  
 **Icon:** 🔐
 
+---
+
 ## Table of Contents
 
 - [Functions](#functions)
   - [unlock](#unlock)
   - [lock](#lock)
+
+---
 
 ## Functions
 
@@ -19,11 +23,11 @@ Unlocks a Nuki lock.
 
 #### Parameters
 
-| Name               | Type   | Required | Description                |
-|--------------------|--------|----------|----------------------------|
-| id                 | string | Yes      | Identifier of the lock     |
-| NUKI_API_KEY       | string | No       | Nuki API key               |
-| NUKI_API_ENDPOINT  | string | No       | Nuki API endpoint          |
+| Name              | Type   | Required | Description                 |
+| ----------------- | ------ | -------- | --------------------------- |
+| id                | string | Yes      | Identifier of the Nuki lock |
+| NUKI_API_KEY      | string | No       | Nuki API key                |
+| NUKI_API_ENDPOINT | string | No       | Nuki API endpoint           |
 
 #### Example
 
@@ -32,12 +36,14 @@ Unlocks a Nuki lock.
   "library": "@digipair/skill-nuki",
   "element": "unlock",
   "properties": {
-    "id": "lock_identifier",
-    "NUKI_API_KEY": "your_api_key",
+    "id": "nuki-lock-1234",
+    "NUKI_API_KEY": "your_nuki_api_key",
     "NUKI_API_ENDPOINT": "https://api.nuki.io"
   }
 }
 ```
+
+---
 
 ### lock
 
@@ -45,11 +51,11 @@ Locks a Nuki lock.
 
 #### Parameters
 
-| Name               | Type   | Required | Description                |
-|--------------------|--------|----------|----------------------------|
-| id                 | string | Yes      | Identifier of the lock     |
-| NUKI_API_KEY       | string | No       | Nuki API key               |
-| NUKI_API_ENDPOINT  | string | No       | Nuki API endpoint          |
+| Name              | Type   | Required | Description                 |
+| ----------------- | ------ | -------- | --------------------------- |
+| id                | string | Yes      | Identifier of the Nuki lock |
+| NUKI_API_KEY      | string | No       | Nuki API key                |
+| NUKI_API_ENDPOINT | string | No       | Nuki API endpoint           |
 
 #### Example
 
@@ -58,15 +64,23 @@ Locks a Nuki lock.
   "library": "@digipair/skill-nuki",
   "element": "lock",
   "properties": {
-    "id": "lock_identifier",
-    "NUKI_API_KEY": "your_api_key",
+    "id": "nuki-lock-1234",
+    "NUKI_API_KEY": "your_nuki_api_key",
     "NUKI_API_ENDPOINT": "https://api.nuki.io"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The `unlock` and `lock` functions are used respectively to open and close a Nuki lock.
-- Make sure to provide a valid lock identifier for the `id` parameter.
-- The `NUKI_API_KEY` and `NUKI_API_ENDPOINT` parameters are optional and can be used to specify a custom API key and endpoint for the Nuki API.
+- The `unlock` and `lock` functions respectively unlock and lock a Nuki lock using its identifier.
+- The `id` parameter is mandatory and must correspond to the unique identifier of the Nuki lock to be controlled.
+- The `NUKI_API_KEY` and `NUKI_API_ENDPOINT` parameters are optional. If not provided, the default environment configuration will be used.
+- Make sure that the provided API key has the necessary permissions to perform the requested action on the specified lock.
+
+---
+
+**Author:** [@digipair](https://github.com/digipair)  
+**License:** MIT

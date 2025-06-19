@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Web page display  
-**Description:** This skill encompasses the knowledge and use of web technologies necessary for developing and maintaining websites.  
+**Description:** This skill encompasses the knowledge and use of web technologies required to develop and maintain websites.  
 **Icon:** 🌐
 
 ## Table of Contents
@@ -11,21 +11,23 @@
   - [executeFactory](#executefactory)
   - [page](#page)
 
+---
+
 ## Functions
 
 ### executeFactory
 
-In the factory
+Executes a list of capabilities within the factory.
 
 #### Description
 
-Executes a list of capabilities in the factory.
+Allows you to execute a list of capabilities in the context of the factory. Each capability must follow the `pinsSettings` schema.
 
 #### Parameters
 
-| Name    | Type   | Required | Description                       |
-|---------|--------|----------|-----------------------------------|
-| execute | array  | Yes      | List of capabilities to execute   |
+| Name    | Type  | Required | Description                                                                       |
+| ------- | ----- | -------- | --------------------------------------------------------------------------------- |
+| execute | array | Yes      | List of capabilities to execute. Each item must follow the `pinsSettings` schema. |
 
 #### Example
 
@@ -35,32 +37,40 @@ Executes a list of capabilities in the factory.
   "element": "executeFactory",
   "properties": {
     "execute": [
-      // List of capabilities to execute
+      {
+        // pinsSettings object
+      },
+      {
+        // pinsSettings object
+      }
     ]
   }
 }
 ```
 
+---
+
 ### page
 
-Web page
+Displays a web page.
 
 #### Description
 
-Displays a page of a website.
+Allows you to display a web page by defining its content, header, styles, and actions at different points in the page lifecycle (initialization, loading, etc.).
 
 #### Parameters
 
-| Name               | Type   | Required | Description                                      |
-|-------------------|--------|----------|--------------------------------------------------|
-| body              | array  | Yes      | Content of the page                              |
-| title             | string | No       | Title of the page                                |
-| favicon           | string | No       | Icon of the page                                 |
-| styleHtml         | string | No       | CSS style for the HTML element                   |
-| styleBody         | string | No       | CSS style for the BODY element                   |
-| factoryInitialize | array  | No       | Action triggered during factory initialization    |
-| browserInitialize | array  | No       | Action triggered during browser initialization    |
-| browserLoad       | array  | No       | Action triggered when the page is loaded in the browser |
+| Name                | Type    | Required | Description                                                            |
+| ------------------- | ------- | -------- | ---------------------------------------------------------------------- |
+| body                | array   | Yes      | Page content. Each item must follow the `pinsSettings` schema.         |
+| head                | array   | No       | Page header. Each item must follow the `pinsSettings` schema.          |
+| ssr                 | boolean | No       | Enables server-side rendering (SSR).                                   |
+| styleHtml           | string  | No       | CSS style applied to the root HTML element.                            |
+| styleBody           | string  | No       | CSS style applied to the BODY element.                                 |
+| factoryInitialize   | array   | No       | Actions triggered during factory initialization (`pinsSettings`).      |
+| browserInitialize   | array   | No       | Actions triggered during browser initialization (`pinsSettings`).      |
+| browserLoad         | array   | No       | Actions triggered when the page loads in the browser (`pinsSettings`). |
+| confirmBeforeUnload | string  | No       | Confirmation message displayed before leaving the page.                |
 
 #### Example
 
@@ -70,27 +80,47 @@ Displays a page of a website.
   "element": "page",
   "properties": {
     "body": [
-      // Content of the page
+      {
+        // pinsSettings object for main content
+      }
     ],
-    "title": "Page Title",
-    "favicon": "icon_url",
-    "styleHtml": "css_for_html",
-    "styleBody": "css_for_body",
+    "head": [
+      {
+        // pinsSettings object for the header
+      }
+    ],
+    "ssr": true,
+    "styleHtml": "background: #fff;",
+    "styleBody": "margin: 0; padding: 0;",
     "factoryInitialize": [
-      // Actions during factory initialization
+      {
+        // Action on factory initialization
+      }
     ],
     "browserInitialize": [
-      // Actions during browser initialization
+      {
+        // Action on browser initialization
+      }
     ],
     "browserLoad": [
-      // Actions when the page is loaded in the browser
-    ]
+      {
+        // Action on page load
+      }
+    ],
+    "confirmBeforeUnload": "Are you sure you want to leave this page?"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The `executeFactory` function is used to execute a list of capabilities in the factory.
-- The `page` function allows displaying a web page with customization options such as title, icon, and CSS styles for HTML and BODY elements.
-- The `factoryInitialize`, `browserInitialize`, and `browserLoad` actions allow defining specific behaviors during different phases of the page display.
+- The `pinsSettings` schema must be followed for all objects expected in parameter arrays.
+- The `executeFactory` function is mainly used to orchestrate capabilities within a factory context, while the `page` function allows you to define the display and behavior of a complete web page.
+- Optional parameters allow you to customize the rendering, style, and actions of the page at different points in its lifecycle.
+- Use `confirmBeforeUnload` to protect users from data loss when closing or reloading the page.
+
+---
+
+**For any contributions or questions, please refer to the official documentation or open an issue on the project's GitHub repository.**

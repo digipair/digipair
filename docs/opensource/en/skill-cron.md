@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0  
 **Summary:** Scheduled Task Management  
-**Description:** This skill allows for the management of scheduled task execution.  
+**Description:** This skill enables the management of scheduled task executions.  
 **Icon:** 📆
 
 ## Table of Contents
@@ -14,17 +14,19 @@
   - [enableCron](#enablecron)
   - [disableCron](#disablecron)
 
+---
+
 ## Functions
 
 ### crons
 
-List of scheduled tasks.
+Lists scheduled tasks.
 
 #### Parameters
 
-| Name  | Type   | Required | Description                           |
-|-------|--------|----------|---------------------------------------|
-| path  | string | No       | Path to the digipairs directory      |
+| Name | Type   | Required | Description                      |
+| ---- | ------ | -------- | -------------------------------- |
+| path | string | No       | Path to the digipairs directory. |
 
 #### Example
 
@@ -33,23 +35,26 @@ List of scheduled tasks.
   "library": "@digipair/skill-cron",
   "element": "crons",
   "properties": {
-    "path": "/path/to/directory"
+    "path": "/path/to/my/folder"
   }
 }
 ```
 
+---
+
 ### addCron
 
-Adds a scheduling.
+Adds a new scheduled task.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                                      |
-|-----------|--------|----------|--------------------------------------------------|
-| path      | string | No       | Path to the digipairs directory                  |
-| time      | string | Yes      | Scheduling in cron format                         |
-| digipair  | string | Yes      | Name of the digipair executing the reasoning     |
-| reasoning | string | Yes      | Name of the reasoning to execute                  |
+| Name      | Type   | Required | Description                                    |
+| --------- | ------ | -------- | ---------------------------------------------- |
+| path      | string | No       | Path to the digipairs directory.               |
+| time      | string | Yes      | Schedule in cron format (e.g., `"0 0 * * *"`). |
+| digipair  | string | Yes      | Name of the digipair executing the reasoning.  |
+| reasoning | string | Yes      | Name of the reasoning to execute.              |
+| utcOffset | string | No       | Time zone offset (e.g., `"+02:00"`).           |
 
 #### Example
 
@@ -58,24 +63,27 @@ Adds a scheduling.
   "library": "@digipair/skill-cron",
   "element": "addCron",
   "properties": {
-    "path": "/path/to/directory",
+    "path": "/path/to/my/folder",
     "time": "0 0 * * *",
-    "digipair": "digipair_name",
-    "reasoning": "reasoning_name"
+    "digipair": "my_digital_pair",
+    "reasoning": "my_reasoning",
+    "utcOffset": "+02:00"
   }
 }
 ```
 
+---
+
 ### deleteCron
 
-Deletes a scheduling.
+Deletes an existing scheduled task.
 
 #### Parameters
 
-| Name  | Type   | Required | Description                                      |
-|-------|--------|----------|--------------------------------------------------|
-| path  | string | No       | Path to the digipairs directory                  |
-| id    | string | Yes      | Identifier of the scheduling                     |
+| Name | Type   | Required | Description                       |
+| ---- | ------ | -------- | --------------------------------- |
+| path | string | No       | Path to the digipairs directory.  |
+| id   | string | Yes      | Identifier of the scheduled task. |
 
 #### Example
 
@@ -84,22 +92,24 @@ Deletes a scheduling.
   "library": "@digipair/skill-cron",
   "element": "deleteCron",
   "properties": {
-    "path": "/path/to/directory",
-    "id": "scheduling_identifier"
+    "path": "/path/to/my/folder",
+    "id": "task_identifier"
   }
 }
 ```
 
+---
+
 ### enableCron
 
-Enables a scheduling.
+Enables an existing scheduled task.
 
 #### Parameters
 
-| Name  | Type   | Required | Description                                      |
-|-------|--------|----------|--------------------------------------------------|
-| path  | string | No       | Path to the digipairs directory                  |
-| id    | string | Yes      | Identifier of the scheduling                     |
+| Name | Type   | Required | Description                       |
+| ---- | ------ | -------- | --------------------------------- |
+| path | string | No       | Path to the digipairs directory.  |
+| id   | string | Yes      | Identifier of the scheduled task. |
 
 #### Example
 
@@ -108,22 +118,24 @@ Enables a scheduling.
   "library": "@digipair/skill-cron",
   "element": "enableCron",
   "properties": {
-    "path": "/path/to/directory",
-    "id": "scheduling_identifier"
+    "path": "/path/to/my/folder",
+    "id": "task_identifier"
   }
 }
 ```
 
+---
+
 ### disableCron
 
-Disables a scheduling.
+Disables an existing scheduled task.
 
 #### Parameters
 
-| Name  | Type   | Required | Description                                      |
-|-------|--------|----------|--------------------------------------------------|
-| path  | string | No       | Path to the digipairs directory                  |
-| id    | string | Yes      | Identifier of the scheduling                     |
+| Name | Type   | Required | Description                       |
+| ---- | ------ | -------- | --------------------------------- |
+| path | string | No       | Path to the digipairs directory.  |
+| id   | string | Yes      | Identifier of the scheduled task. |
 
 #### Example
 
@@ -132,13 +144,17 @@ Disables a scheduling.
   "library": "@digipair/skill-cron",
   "element": "disableCron",
   "properties": {
-    "path": "/path/to/directory",
-    "id": "scheduling_identifier"
+    "path": "/path/to/my/folder",
+    "id": "task_identifier"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The functions `crons`, `addCron`, `deleteCron`, `enableCron`, and `disableCron` are used to manage scheduled tasks within the system.
-- Ensure to provide the required parameters for each function to guarantee their proper functioning.
+- The `path` parameter is optional for all functions and allows you to specify the path to the digipairs directory if needed.
+- The `time` parameter for `addCron` must follow the standard cron expression syntax.
+- Task identifiers (`id`) are required for delete, enable, and disable operations.
+- Ensure that the specified digipair and reasoning exist and are valid when adding a scheduled task.

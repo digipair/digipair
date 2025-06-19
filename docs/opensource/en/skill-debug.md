@@ -1,8 +1,8 @@
 # @digipair/skill-debug
 
 **Version:** 0.1.0  
-**Summary:** Factory Debugging  
-**Description:** This skill allows users to debug actions performed on the factory, providing tools and features to identify and resolve issues.  
+**Summary:** Debugging  
+**Description:** This skill enables users to debug actions executed on the factory by providing tools and features to identify and resolve issues.  
 **Icon:** 🔧
 
 ## Table of Contents
@@ -10,23 +10,25 @@
 - [Functions](#functions)
   - [log](#log)
 
+---
+
 ## Functions
 
 ### log
 
-Display in logs
+Display a message in the logs.
 
 #### Description
 
-Element for displaying a message in the logs.
+The `log` function allows you to display a message in the logs, making it easier to track and debug executed actions. It accepts a subject, an optional log type, as well as an additional value to display.
 
 #### Parameters
 
-| Name   | Type   | Required | Description                |
-|--------|--------|----------|----------------------------|
-| label  | string | Yes      | Subject of the log         |
-| type   | string | No       | Type of log                |
-| value  | object | No       | Additional value to display |
+| Name  | Type   | Required | Description                        |
+| ----- | ------ | -------- | ---------------------------------- |
+| label | string | Yes      | Subject of the log                 |
+| type  | string | No       | Log type (e.g., info, error, etc.) |
+| value | object | No       | Additional value to display        |
 
 #### Example
 
@@ -35,18 +37,33 @@ Element for displaying a message in the logs.
   "library": "@digipair/skill-debug",
   "element": "log",
   "properties": {
-    "label": "Critical Error",
-    "type": "error",
+    "label": "Factory initialization",
+    "type": "info",
     "value": {
-      "code": 500,
-      "message": "Internal Server Error"
+      "factoryId": "abc123",
+      "status": "started"
     }
   }
 }
 ```
 
+#### Minimal example
+
+```json
+{
+  "library": "@digipair/skill-debug",
+  "element": "log",
+  "properties": {
+    "label": "Error during connection"
+  }
+}
+```
+
+---
+
 ## Notes
 
-- The `log` function is used to display messages in the logs, which is useful for debugging and tracking actions performed on the factory.
-- The `label` parameter is mandatory and must contain the subject of the log.
-- The `type` and `value` parameters are optional. The `type` can be used to specify the type of log (e.g., "info", "warning", "error"), and `value` can contain additional information to be displayed in the log.
+- The `log` function is mainly used for tracking and debugging the factory's internal processes.
+- The `type` parameter can be used to categorize logs (for example: `info`, `warning`, `error`).
+- The `value` parameter allows you to add additional contextual information to the log.
+- Make sure to provide an explicit `label` to facilitate message identification in the logs.

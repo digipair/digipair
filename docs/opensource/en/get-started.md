@@ -1,6 +1,6 @@
-# Installation of the Digipair Application
+# Digipair Application Installation
 
-This section describes the steps necessary to install and configure the Digipair application.
+This section describes the steps required to install and configure the Digipair application.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ To install Digipair globally on your system, run the following command:
 npm install -g digipair
 ```
 
-### Using with `npx`
+### Using `npx`
 
 If you prefer to use Digipair without installing it globally, you can use `npx`:
 
@@ -29,22 +29,22 @@ npx digipair
 
 ## Starting the Server
 
-Once Digipair is installed, you can start the web server by executing the following command:
+Once Digipair is installed, you can start the web server by running the following command:
 
 ```sh
 digipair
 ```
 
-By default, the web server will run on port `8080`.
+By default, the web server will start on port `8080`.
 
 ## Initial Configuration
 
-Upon the first launch of the server, Digipair will create a directory called `factory` in the server's execution directory if it does not already exist. This `factory` directory will contain:
+On the first server launch, Digipair will create a directory called `factory` in the server's execution directory if it does not already exist. This `factory` directory will contain:
 
 - The Digipair team
 - The server configuration
 
-The server itself is also referred to as `factory`.
+The server itself is also referred to as the `factory`.
 
 Make sure you have the necessary permissions to create directories and files in the server's execution directory.
 
@@ -58,4 +58,4 @@ http://localhost:8080
 
 ## Conclusion
 
-You have now installed and configured Digipair. If you encounter any issues or have questions, please refer to the complete documentation or contact Digipair technical support.
+You have now installed and configured Digipair. If you encounter any issues or have questions, please refer to the full documentation or contact Digipair technical support.

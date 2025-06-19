@@ -1,9 +1,15 @@
+Here is the English technical documentation for **@digipair/skill-editor**, translated with attention to technical accuracy and clarity:
+
+---
+
 # @digipair/skill-editor
 
 **Version:** 0.1.0  
 **Summary:** Editing Reasonings  
-**Description:** This skill allows for the management of editing reasonings for digipairs.  
+**Description:** This skill allows you to manage the editing of digipair reasonings.  
 **Icon:** 🏗
+
+---
 
 ## Table of Contents
 
@@ -17,19 +23,26 @@
   - [setDigipair](#setdigipair)
   - [removeDigipair](#removedigipair)
   - [addDigipair](#adddigipair)
+  - [metadata](#metadata)
+  - [setAvatar](#setavatar)
+  - [templates](#templates)
+  - [schemas](#schemas)
+  - [tools](#tools)
+
+---
 
 ## Functions
 
 ### reasonings
 
-Lists the reasonings of a digipair.
+List the reasonings of a digipair.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                          |
-|-----------|--------|----------|--------------------------------------|
-| path      | string | No       | Path to the digipair's directory    |
-| digipair  | string | Yes      | Name of the digipair                 |
+| Name     | Type   | Required | Description                                 |
+|----------|--------|----------|---------------------------------------------|
+| path     | string | No       | Path to the digipair directory              |
+| digipair | string | Yes      | Name of the digipair                        |
 
 #### Example
 
@@ -38,23 +51,24 @@ Lists the reasonings of a digipair.
   "library": "@digipair/skill-editor",
   "element": "reasonings",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name"
+    "digipair": "digital_pair_name"
   }
 }
 ```
 
+---
+
 ### reasoning
 
-Information of a reasoning.
+Get information about a specific reasoning of a digipair.
 
 #### Parameters
 
-| Name       | Type   | Required | Description                          |
-|------------|--------|----------|--------------------------------------|
-| path       | string | No       | Path to the digipair's directory    |
-| digipair   | string | Yes      | Name of the digipair                 |
-| reasoning  | string | Yes      | Name of the reasoning                 |
+| Name      | Type   | Required | Description                                 |
+|-----------|--------|----------|---------------------------------------------|
+| path      | string | No       | Path to the digipair directory              |
+| digipair  | string | Yes      | Name of the digipair                        |
+| reasoning | string | Yes      | Name of the reasoning                       |
 
 #### Example
 
@@ -63,25 +77,26 @@ Information of a reasoning.
   "library": "@digipair/skill-editor",
   "element": "reasoning",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name",
+    "digipair": "digital_pair_name",
     "reasoning": "reasoning_name"
   }
 }
 ```
 
+---
+
 ### setReasoning
 
-Saving a reasoning.
+Save or update a reasoning for a digipair.
 
 #### Parameters
 
-| Name       | Type   | Required | Description                          |
-|------------|--------|----------|--------------------------------------|
-| path       | string | No       | Path to the digipair's directory    |
-| digipair   | string | Yes      | Name of the digipair                 |
-| reasoning  | string | Yes      | Name of the reasoning                 |
-| value      | object | Yes      | Content of the reasoning to save      |
+| Name      | Type   | Required | Description                                 |
+|-----------|--------|----------|---------------------------------------------|
+| path      | string | No       | Path to the digipair directory              |
+| digipair  | string | Yes      | Name of the digipair                        |
+| reasoning | string | Yes      | Name of the reasoning                       |
+| value     | object | Yes      | Content of the reasoning to save            |
 
 #### Example
 
@@ -90,27 +105,26 @@ Saving a reasoning.
   "library": "@digipair/skill-editor",
   "element": "setReasoning",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name",
+    "digipair": "digital_pair_name",
     "reasoning": "reasoning_name",
-    "value": {
-      "key": "value"
-    }
+    "value": { "content": "..." }
   }
 }
 ```
 
+---
+
 ### removeReasoning
 
-Deleting a reasoning.
+Delete a reasoning from a digipair.
 
 #### Parameters
 
-| Name       | Type   | Required | Description                          |
-|------------|--------|----------|--------------------------------------|
-| path       | string | No       | Path to the digipair's directory    |
-| digipair   | string | Yes      | Name of the digipair                 |
-| reasoning  | string | Yes      | Name of the reasoning                 |
+| Name      | Type   | Required | Description                                 |
+|-----------|--------|----------|---------------------------------------------|
+| path      | string | No       | Path to the digipair directory              |
+| digipair  | string | Yes      | Name of the digipair                        |
+| reasoning | string | Yes      | Name of the reasoning                       |
 
 #### Example
 
@@ -119,22 +133,23 @@ Deleting a reasoning.
   "library": "@digipair/skill-editor",
   "element": "removeReasoning",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name",
+    "digipair": "digital_pair_name",
     "reasoning": "reasoning_name"
   }
 }
 ```
 
+---
+
 ### digipairs
 
-Lists the available digipairs.
+List available digipairs.
 
 #### Parameters
 
-| Name  | Type   | Required | Description                          |
-|-------|--------|----------|--------------------------------------|
-| path  | string | No       | Path to the digipair's directory    |
+| Name | Type   | Required | Description                                 |
+|------|--------|----------|---------------------------------------------|
+| path | string | No       | Path to the digipairs directory             |
 
 #### Example
 
@@ -142,22 +157,22 @@ Lists the available digipairs.
 {
   "library": "@digipair/skill-editor",
   "element": "digipairs",
-  "properties": {
-    "path": "/path/to/directory"
-  }
+  "properties": {}
 }
 ```
 
+---
+
 ### digipair
 
-Information of a digipair.
+Get information about a digipair.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                          |
-|-----------|--------|----------|--------------------------------------|
-| path      | string | No       | Path to the digipair's directory    |
-| digipair  | string | Yes      | Name of the digipair                 |
+| Name     | Type   | Required | Description                                 |
+|----------|--------|----------|---------------------------------------------|
+| path     | string | No       | Path to the digipair directory              |
+| digipair | string | Yes      | Name of the digipair                        |
 
 #### Example
 
@@ -166,23 +181,24 @@ Information of a digipair.
   "library": "@digipair/skill-editor",
   "element": "digipair",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name"
+    "digipair": "digital_pair_name"
   }
 }
 ```
 
+---
+
 ### setDigipair
 
-Saving a digipair.
+Save or update a digipair.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                          |
-|-----------|--------|----------|--------------------------------------|
-| path      | string | No       | Path to the digipair's directory    |
-| digipair  | string | Yes      | Name of the digipair                 |
-| value     | object | Yes      | Content of the digipair to save      |
+| Name     | Type   | Required | Description                                 |
+|----------|--------|----------|---------------------------------------------|
+| path     | string | No       | Path to the digipair directory              |
+| digipair | string | Yes      | Name of the digipair                        |
+| value    | object | Yes      | Content of the digipair to save             |
 
 #### Example
 
@@ -191,25 +207,24 @@ Saving a digipair.
   "library": "@digipair/skill-editor",
   "element": "setDigipair",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name",
-    "value": {
-      "key": "value"
-    }
+    "digipair": "digital_pair_name",
+    "value": { "content": "..." }
   }
 }
 ```
 
+---
+
 ### removeDigipair
 
-Deleting a digipair.
+Delete a digipair.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                          |
-|-----------|--------|----------|--------------------------------------|
-| path      | string | No       | Path to the digipair's directory    |
-| digipair  | string | Yes      | Name of the digipair                 |
+| Name     | Type   | Required | Description                                 |
+|----------|--------|----------|---------------------------------------------|
+| path     | string | No       | Path to the digipair directory              |
+| digipair | string | Yes      | Name of the digipair                        |
 
 #### Example
 
@@ -218,22 +233,26 @@ Deleting a digipair.
   "library": "@digipair/skill-editor",
   "element": "removeDigipair",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name"
+    "digipair": "digital_pair_name"
   }
 }
 ```
 
+---
+
 ### addDigipair
 
-Adds a digipair.
+Add a new digipair from a template.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                          |
-|-----------|--------|----------|--------------------------------------|
-| path      | string | No       | Path to the digipair's directory    |
-| digipair  | string | Yes      | Name of the digipair                 |
+| Name          | Type   | Required | Description                                 |
+|---------------|--------|----------|---------------------------------------------|
+| path          | string | No       | Path to the digipair directory              |
+| templatesPath | string | No       | Path to the templates directory             |
+| template      | string | Yes      | Template to use                             |
+| data          | object | Yes      | Replacement data for the template           |
+| digipair      | string | Yes      | Name of the digipair                        |
 
 #### Example
 
@@ -242,13 +261,147 @@ Adds a digipair.
   "library": "@digipair/skill-editor",
   "element": "addDigipair",
   "properties": {
-    "path": "/path/to/directory",
-    "digipair": "digipair_name"
+    "template": "template_name",
+    "data": { "key": "value" },
+    "digipair": "digital_pair_name"
   }
 }
 ```
 
+---
+
+### metadata
+
+Get the metadata of a digipair.
+
+#### Parameters
+
+| Name     | Type   | Required | Description                                 |
+|----------|--------|----------|---------------------------------------------|
+| path     | string | No       | Path to the digipair directory              |
+| digipair | string | Yes      | Name of the digipair                        |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-editor",
+  "element": "metadata",
+  "properties": {
+    "digipair": "digital_pair_name"
+  }
+}
+```
+
+---
+
+### setAvatar
+
+Set the avatar of a digipair.
+
+#### Parameters
+
+| Name     | Type   | Required | Description                                 |
+|----------|--------|----------|---------------------------------------------|
+| path     | string | No       | Path to the digipair directory              |
+| digipair | string | Yes      | Name of the digipair                        |
+| avatar   | string | Yes      | Avatar of the digipair (URL or base64)      |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-editor",
+  "element": "setAvatar",
+  "properties": {
+    "digipair": "digital_pair_name",
+    "avatar": "avatar_url_or_base64"
+  }
+}
+```
+
+---
+
+### templates
+
+List available templates.
+
+#### Parameters
+
+| Name | Type   | Required | Description                                 |
+|------|--------|----------|---------------------------------------------|
+| path | string | No       | Path to the templates directory             |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-editor",
+  "element": "templates",
+  "properties": {}
+}
+```
+
+---
+
+### schemas
+
+List the schemas of the libraries.
+
+#### Parameters
+
+| Name      | Type   | Required | Description                                 |
+|-----------|--------|----------|---------------------------------------------|
+| libraries | object | Yes      | List of libraries                           |
+| language  | string | Yes      | Schema language                             |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-editor",
+  "element": "schemas",
+  "properties": {
+    "libraries": { "lib1": true, "lib2": true },
+    "language": "en"
+  }
+}
+```
+
+---
+
+### tools
+
+List available tools.
+
+#### Parameters
+
+| Name     | Type   | Required | Description                                 |
+|----------|--------|----------|---------------------------------------------|
+| language | string | Yes      | Language of the tools                       |
+
+#### Example
+
+```json
+{
+  "library": "@digipair/skill-editor",
+  "element": "tools",
+  "properties": {
+    "language": "en"
+  }
+}
+```
+
+---
+
 ## Notes
 
-- The functions in this library allow for the management of reasonings and digipairs.
-- Ensure to provide the required parameters for each function to guarantee their proper functioning.
+- All functions are accessible via JavaScript function calls, not via an HTTP API.
+- The `path` parameter is optional and allows you to specify a custom path for resource access.
+- All required parameters must be provided to ensure proper function operation.
+- Objects passed as parameters (`value`, `data`, `libraries`) must conform to the structure expected by the target function.
+- The provided examples illustrate typical usage of each function in an integration context.
+
+---
+
+**For any contributions or questions, please refer to the GitHub repository associated with this library.**

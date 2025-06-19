@@ -1,9 +1,11 @@
 # @digipair/skill-web-notification
 
 **Version:** 0.1.0  
-**Summary:** Displaying notifications  
-**Description:** Displaying notifications on a web page  
+**Summary:** Display of notifications  
+**Description:** Display notifications on a web page  
 **Icon:** 🔔
+
+---
 
 ## Table of Contents
 
@@ -13,17 +15,19 @@
   - [confirm](#confirm)
   - [alert](#alert)
 
+---
+
 ## Functions
 
 ### information
 
-Displays an informational notification.
+Displays an information notification.
 
 #### Parameters
 
-| Name     | Type   | Required | Description         |
-|----------|--------|----------|---------------------|
-| message  | string | Yes      | Message to display   |
+| Name    | Type   | Required | Description        |
+| ------- | ------ | -------- | ------------------ |
+| message | string | Yes      | Message to display |
 
 #### Example
 
@@ -32,10 +36,12 @@ Displays an informational notification.
   "library": "@digipair/skill-web-notification",
   "element": "information",
   "properties": {
-    "message": "This is an informational notification"
+    "message": "Your operation has been successfully processed."
   }
 }
 ```
+
+---
 
 ### error
 
@@ -43,9 +49,9 @@ Displays an error notification.
 
 #### Parameters
 
-| Name     | Type   | Required | Description         |
-|----------|--------|----------|---------------------|
-| message  | string | Yes      | Message to display   |
+| Name    | Type   | Required | Description        |
+| ------- | ------ | -------- | ------------------ |
+| message | string | Yes      | Message to display |
 
 #### Example
 
@@ -54,22 +60,26 @@ Displays an error notification.
   "library": "@digipair/skill-web-notification",
   "element": "error",
   "properties": {
-    "message": "This is an error notification"
+    "message": "An error occurred during processing."
   }
 }
 ```
 
+---
+
 ### confirm
 
-Displays a confirmation notification.
+Displays a confirmation notification, with action handling based on the user's response.
 
 #### Parameters
 
-| Name     | Type   | Required | Description                                      |
-|----------|--------|----------|--------------------------------------------------|
-| message  | string | Yes      | Message to display                               |
-| ok       | array  | No       | Actions to perform if confirmed                  |
-| ko       | array  | No       | Actions to perform if not confirmed              |
+| Name    | Type   | Required | Description                                    |
+| ------- | ------ | -------- | ---------------------------------------------- |
+| message | string | Yes      | Message to display                             |
+| ok      | array  | No       | Actions to execute if the user confirms        |
+| ko      | array  | No       | Actions to execute if the user cancels/refuses |
+
+> **Note:** The action objects (`ok` and `ko`) must follow the [pinsSettings](https://schemas.digipair.ai/pinsSettings) schema.
 
 #### Example
 
@@ -78,12 +88,14 @@ Displays a confirmation notification.
   "library": "@digipair/skill-web-notification",
   "element": "confirm",
   "properties": {
-    "message": "This is a confirmation notification",
-    "ok": ["action1", "action2"],
-    "ko": ["action3"]
+    "message": "Do you really want to delete this item?",
+    "ok": [{ "type": "navigate", "target": "/home" }],
+    "ko": [{ "type": "log", "message": "Deletion cancelled" }]
   }
 }
 ```
+
+---
 
 ### alert
 
@@ -91,9 +103,9 @@ Displays an alert notification.
 
 #### Parameters
 
-| Name     | Type   | Required | Description         |
-|----------|--------|----------|---------------------|
-| message  | string | Yes      | Message to display   |
+| Name    | Type   | Required | Description        |
+| ------- | ------ | -------- | ------------------ |
+| message | string | Yes      | Message to display |
 
 #### Example
 
@@ -102,13 +114,24 @@ Displays an alert notification.
   "library": "@digipair/skill-web-notification",
   "element": "alert",
   "properties": {
-    "message": "This is an alert notification"
+    "message": "Warning, your session is about to expire."
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The functions `information`, `error`, `confirm`, and `alert` are used to display informational, error, confirmation, and alert notifications on a web page, respectively.
-- Ensure to provide a valid message for the `message` parameter.
-- The `ok` and `ko` parameters of the `confirm` function are optional and allow you to define actions to be performed based on the user's confirmation or denial.
+- All functions in this library are intended to display notifications on a web page.
+- The `message` parameter is mandatory and must be a string.
+- For the `confirm` function, the `ok` and `ko` parameters are optional and allow you to define actions to execute based on the user's response.
+- Actions must comply with the [pinsSettings](https://schemas.digipair.ai/pinsSettings) schema.
+- This library does not provide an HTTP API, but exposes JavaScript functions to use in your projects.
+
+---
+
+**Author:** [@digipair](https://github.com/digipair)  
+**License:** MIT
+
+---

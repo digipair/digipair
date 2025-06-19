@@ -2,80 +2,87 @@
 
 **Version:** 0.1.0  
 **Summary:** OCR Text Extraction  
-**Description:** This skill utilizes OCR technology to analyze images and extract text, enabling automatic data entry.  
+**Description:** This skill uses OCR technology to analyze images and extract text, enabling automatic data entry.  
 **Icon:** 📄
 
 ## Table of Contents
 
 - [Functions](#functions)
-  - [digipairInputOcrSelector](#digipairinputocrselector)
-  - [digipairInputOcr](#digipairinputocr)
+  - [digipair-input-ocr-selector](#digipair-input-ocr-selector)
+  - [digipair-input-ocr](#digipair-input-ocr)
+
+---
 
 ## Functions
 
-### digipairInputOcrSelector
+### digipair-input-ocr-selector
 
-Extract text from an image in the DOM
-
-#### Description
-
-Element for retrieving text from an image present in the DOM.
+**Summary:** Extract text from an image present in the DOM  
+**Description:** Element that retrieves text from an image present in the DOM using a CSS selector.
 
 #### Parameters
 
-| Name      | Type    | Required | Description                                                                 |
-|-----------|---------|----------|-----------------------------------------------------------------------------|
-| selector  | string  | Yes      | CSS selector for the image present in the DOM                               |
-| language  | string  | Yes      | Language of the text to be extracted                                         |
-| required  | boolean | No       | When the field is required, the boost cannot be executed until a value is entered |
+| Name     | Type    | Required | Description                                                                      |
+| -------- | ------- | -------- | -------------------------------------------------------------------------------- |
+| selector | string  | Yes      | CSS selector of the image present in the DOM                                     |
+| language | string  | Yes      | Language of the text to extract                                                  |
+| required | boolean | No       | If the field is required, the boost cannot be executed until a value is provided |
 
-#### Example
+#### Usage Example
 
 ```json
 {
   "library": "@digipair/skill-web-ocr",
-  "element": "digipairInputOcrSelector",
+  "element": "digipair-input-ocr-selector",
   "properties": {
-    "selector": "#image-id",
+    "selector": "#image-to-analyze",
     "language": "fr",
     "required": true
   }
 }
 ```
 
-### digipairInputOcr
+---
 
-Extract text from an image
+### digipair-input-ocr
 
-#### Description
-
-Element for extracting text from an image provided by the user.
+**Summary:** Extract text from an image provided by the user  
+**Description:** Element that extracts text from an image uploaded by the user.
 
 #### Parameters
 
-| Name      | Type    | Required | Description                                                                 |
-|-----------|---------|----------|-----------------------------------------------------------------------------|
-| language  | string  | Yes      | Language of the text to be extracted                                         |
-| label     | string  | No       | Text displayed to the user to guide them in their input                     |
-| accept    | string  | No       | Accepted file types                                                          |
-| required  | boolean | No       | Required field to execute the boost                                         |
+| Name     | Type    | Required | Description                                         |
+| -------- | ------- | -------- | --------------------------------------------------- |
+| language | string  | Yes      | Language of the text to extract                     |
+| label    | string  | No       | Text displayed to the user to assist with input     |
+| accept   | string  | No       | Accepted file types (e.g., "image/png, image/jpeg") |
+| required | boolean | No       | Whether the field is required to execute the boost  |
 
-#### Example
+#### Usage Example
 
 ```json
 {
   "library": "@digipair/skill-web-ocr",
-  "element": "digipairInputOcr",
+  "element": "digipair-input-ocr",
   "properties": {
     "language": "en",
-    "label": "Please upload an image",
-    "accept": "image/*",
+    "label": "Please upload an image to analyze",
+    "accept": "image/png, image/jpeg",
     "required": false
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The functions `digipairInputOcrSelector` and `digipairInputOcr` are used to extract text from images present in the DOM or provided by the user.
-- Ensure to provide valid CSS selectors and accepted file types for optimal functionality.
+- The `digipair-input-ocr-selector` and `digipair-input-ocr` functions allow easy integration of OCR text extraction capabilities into web applications, either from images already present in the DOM or via user-uploaded images.
+- The `language` parameter must be set with the appropriate language code (e.g., `"fr"` for French, `"en"` for English).
+- The `required` parameter controls field validation before executing the boost.
+- For `digipair-input-ocr-selector`, ensure that the CSS selector targets a valid and accessible image in the DOM.
+- For `digipair-input-ocr`, the `accept` parameter restricts the types of files the user can upload.
+
+---
+
+**For any contributions or questions, please refer to the project's GitHub repository.**

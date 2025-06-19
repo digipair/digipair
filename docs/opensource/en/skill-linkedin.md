@@ -2,8 +2,10 @@
 
 **Version:** 0.1.0  
 **Summary:** Communication with LinkedIn services  
-**Description:** This skill allows the use of LinkedIn services.  
+**Description:** This skill enables the use of LinkedIn services.  
 **Icon:** 👤
+
+---
 
 ## Table of Contents
 
@@ -14,23 +16,26 @@
   - [update](#update)
   - [partialUpdate](#partialupdate)
   - [remove](#remove)
+- [Notes](#notes)
+
+---
 
 ## Functions
 
 ### request
 
-Executes a LinkedIn service.
+Executes a generic LinkedIn service.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                |
-|-----------|--------|----------|----------------------------|
-| path      | string | Yes      | Path of the service to execute |
-| method    | string | No       | HTTP method to use         |
-| body      | object | No       | Value to send              |
-| version   | string | No       | API version to use         |
-| headers   | object | No       | Headers to send            |
-| TOKEN     | string | No       | Access token to use        |
+| Name    | Type   | Required | Description                          |
+| ------- | ------ | -------- | ------------------------------------ |
+| path    | string | Yes      | Path of the service to execute       |
+| method  | string | No       | HTTP method to use (GET, POST, etc.) |
+| body    | object | No       | Value to send                        |
+| version | string | No       | API version to use                   |
+| headers | object | No       | Headers to send                      |
+| TOKEN   | string | No       | Access token to use                  |
 
 #### Example
 
@@ -41,13 +46,15 @@ Executes a LinkedIn service.
   "properties": {
     "path": "/v2/me",
     "method": "GET",
-    "version": "2.0",
     "headers": {
       "Authorization": "Bearer <TOKEN>"
-    }
+    },
+    "TOKEN": "<your_token>"
   }
 }
 ```
+
+---
 
 ### create
 
@@ -55,13 +62,13 @@ Adds a LinkedIn resource.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                |
-|-----------|--------|----------|----------------------------|
-| path      | string | Yes      | Path of the service to execute |
-| body      | object | No       | Value to send              |
-| version   | string | No       | API version to use         |
-| headers   | object | No       | Headers to send            |
-| TOKEN     | string | No       | Access token to use        |
+| Name    | Type   | Required | Description                    |
+| ------- | ------ | -------- | ------------------------------ |
+| path    | string | Yes      | Path of the service to execute |
+| body    | object | No       | Value to send                  |
+| version | string | No       | API version to use             |
+| headers | object | No       | Headers to send                |
+| TOKEN   | string | No       | Access token to use            |
 
 #### Example
 
@@ -70,29 +77,16 @@ Adds a LinkedIn resource.
   "library": "@digipair/skill-linkedin",
   "element": "create",
   "properties": {
-    "path": "/v2/ugcPosts",
+    "path": "/v2/posts",
     "body": {
-      "author": "urn:li:person:<personId>",
-      "lifecycleState": "PUBLISHED",
-      "specificContent": {
-        "com.linkedin.ugc.ShareContent": {
-          "shareCommentary": {
-            "text": "Hello World!"
-          },
-          "shareMediaCategory": "NONE"
-        }
-      },
-      "visibility": {
-        "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
-      }
+      "content": "New LinkedIn post"
     },
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<your_token>"
   }
 }
 ```
+
+---
 
 ### read
 
@@ -100,12 +94,12 @@ Reads a LinkedIn resource.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                |
-|-----------|--------|----------|----------------------------|
-| path      | string | Yes      | Path of the service to execute |
-| version   | string | No       | API version to use         |
-| headers   | object | No       | Headers to send            |
-| TOKEN     | string | No       | Access token to use        |
+| Name    | Type   | Required | Description                    |
+| ------- | ------ | -------- | ------------------------------ |
+| path    | string | Yes      | Path of the service to execute |
+| version | string | No       | API version to use             |
+| headers | object | No       | Headers to send                |
+| TOKEN   | string | No       | Access token to use            |
 
 #### Example
 
@@ -115,27 +109,26 @@ Reads a LinkedIn resource.
   "element": "read",
   "properties": {
     "path": "/v2/me",
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<your_token>"
   }
 }
 ```
 
+---
+
 ### update
 
-Modifies a LinkedIn resource.
+Updates a LinkedIn resource.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                |
-|-----------|--------|----------|----------------------------|
-| path      | string | Yes      | Path of the service to execute |
-| body      | object | No       | Value to send              |
-| version   | string | No       | API version to use         |
-| headers   | object | No       | Headers to send            |
-| TOKEN     | string | No       | Access token to use        |
+| Name    | Type   | Required | Description                    |
+| ------- | ------ | -------- | ------------------------------ |
+| path    | string | Yes      | Path of the service to execute |
+| body    | object | No       | Value to send                  |
+| version | string | No       | API version to use             |
+| headers | object | No       | Headers to send                |
+| TOKEN   | string | No       | Access token to use            |
 
 #### Example
 
@@ -144,38 +137,30 @@ Modifies a LinkedIn resource.
   "library": "@digipair/skill-linkedin",
   "element": "update",
   "properties": {
-    "path": "/v2/ugcPosts/<postId>",
+    "path": "/v2/posts/12345",
     "body": {
-      "specificContent": {
-        "com.linkedin.ugc.ShareContent": {
-          "shareCommentary": {
-            "text": "Updated text"
-          },
-          "shareMediaCategory": "NONE"
-        }
-      }
+      "content": "Post update"
     },
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<your_token>"
   }
 }
 ```
 
+---
+
 ### partialUpdate
 
-Modifies part of a LinkedIn resource.
+Partially updates a LinkedIn resource.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                |
-|-----------|--------|----------|----------------------------|
-| path      | string | Yes      | Path of the service to execute |
-| body      | object | No       | Value to send              |
-| version   | string | No       | API version to use         |
-| headers   | object | No       | Headers to send            |
-| TOKEN     | string | No       | Access token to use        |
+| Name    | Type   | Required | Description                    |
+| ------- | ------ | -------- | ------------------------------ |
+| path    | string | Yes      | Path of the service to execute |
+| body    | object | No       | Value to send                  |
+| version | string | No       | API version to use             |
+| headers | object | No       | Headers to send                |
+| TOKEN   | string | No       | Access token to use            |
 
 #### Example
 
@@ -184,23 +169,16 @@ Modifies part of a LinkedIn resource.
   "library": "@digipair/skill-linkedin",
   "element": "partialUpdate",
   "properties": {
-    "path": "/v2/ugcPosts/<postId>",
+    "path": "/v2/posts/12345",
     "body": {
-      "specificContent": {
-        "com.linkedin.ugc.ShareContent": {
-          "shareCommentary": {
-            "text": "Partially updated text"
-          }
-        }
-      }
+      "content": "Partial update"
     },
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "TOKEN": "<your_token>"
   }
 }
 ```
+
+---
 
 ### remove
 
@@ -208,12 +186,12 @@ Deletes a LinkedIn resource.
 
 #### Parameters
 
-| Name      | Type   | Required | Description                |
-|-----------|--------|----------|----------------------------|
-| path      | string | Yes      | Path of the service to execute |
-| version   | string | No       | API version to use         |
-| headers   | object | No       | Headers to send            |
-| TOKEN     | string | No       | Access token to use        |
+| Name    | Type   | Required | Description                    |
+| ------- | ------ | -------- | ------------------------------ |
+| path    | string | Yes      | Path of the service to execute |
+| version | string | No       | API version to use             |
+| headers | object | No       | Headers to send                |
+| TOKEN   | string | No       | Access token to use            |
 
 #### Example
 
@@ -222,16 +200,19 @@ Deletes a LinkedIn resource.
   "library": "@digipair/skill-linkedin",
   "element": "remove",
   "properties": {
-    "path": "/v2/ugcPosts/<postId>",
-    "version": "2.0",
-    "headers": {
-      "Authorization": "Bearer <TOKEN>"
-    }
+    "path": "/v2/posts/12345",
+    "TOKEN": "<your_token>"
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The functions `request`, `create`, `read`, `update`, `partialUpdate`, and `remove` allow interaction with LinkedIn services by executing specific requests.
-- Ensure to provide a valid access token for the `TOKEN` parameter to authorize the requests.
+- All functions require the `path` parameter to specify the targeted LinkedIn resource or service.
+- The `TOKEN` parameter is required for authentication with the LinkedIn API.
+- The `headers` and `version` parameters are optional and allow you to customize the request.
+- Use the `request` function for generic or custom calls to the LinkedIn API.
+- The `create`, `read`, `update`, `partialUpdate`, and `remove` functions correspond to standard CRUD operations on LinkedIn resources.
+- Make sure to comply with the access rights and quotas imposed by the LinkedIn API when using these functions.

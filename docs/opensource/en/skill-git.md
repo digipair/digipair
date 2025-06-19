@@ -1,8 +1,8 @@
 # @digipair/skill-git
 
 **Version:** 0.1.0  
-**Summary:** Git repository management  
-**Description:** This skill allows you to manage a Git repository.  
+**Summary:** Management of a git repository  
+**Description:** This skill allows you to manage a git repository.  
 **Icon:** 💾
 
 ## Table of Contents
@@ -13,19 +13,21 @@
   - [show](#show)
   - [log](#log)
 
+---
+
 ## Functions
 
 ### commit
 
-Perform a commit in the GIT repository.
+Performs a commit in a GIT repository.
 
 #### Parameters
 
-| Name     | Type   | Required | Description                          |
-|----------|--------|----------|--------------------------------------|
-| path     | string | No       | Path of the GIT repository           |
-| selector | string | No       | Selector for the files to commit     |
-| message  | string | No       | Commit message                       |
+| Name     | Type   | Required | Description                       |
+| -------- | ------ | -------- | --------------------------------- |
+| path     | string | No       | Path to the GIT repository        |
+| selector | string | No       | File selector for files to commit |
+| message  | string | No       | Commit message                    |
 
 #### Example
 
@@ -34,23 +36,25 @@ Perform a commit in the GIT repository.
   "library": "@digipair/skill-git",
   "element": "commit",
   "properties": {
-    "path": "/path/to/repo",
+    "path": "/path/to/my/repo",
     "selector": "*.js",
-    "message": "Initial commit"
+    "message": "feat: add a new feature"
   }
 }
 ```
 
+---
+
 ### push
 
-Push commits to the GIT repository.
+Pushes local commits to the remote repository.
 
 #### Parameters
 
-| Name     | Type     | Required | Description                          |
-|----------|----------|----------|--------------------------------------|
-| path     | string   | No       | Path of the GIT repository           |
-| options  | string[] | No       | Options sent during the push         |
+| Name    | Type     | Required | Description                                  |
+| ------- | -------- | -------- | -------------------------------------------- |
+| path    | string   | No       | Path to the GIT repository                   |
+| options | string[] | No       | Options passed during push (e.g., `--force`) |
 
 #### Example
 
@@ -59,22 +63,24 @@ Push commits to the GIT repository.
   "library": "@digipair/skill-git",
   "element": "push",
   "properties": {
-    "path": "/path/to/repo",
+    "path": "/path/to/my/repo",
     "options": ["--force"]
   }
 }
 ```
 
+---
+
 ### show
 
-Display information about a commit in the GIT repository.
+Displays the details of a commit or a GIT object.
 
 #### Parameters
 
-| Name     | Type     | Required | Description                          |
-|----------|----------|----------|--------------------------------------|
-| path     | string   | No       | Path of the GIT repository           |
-| options  | string[] | No       | Options sent during the git show     |
+| Name    | Type     | Required | Description                |
+| ------- | -------- | -------- | -------------------------- |
+| path    | string   | No       | Path to the GIT repository |
+| options | string[] | No       | Options passed to git show |
 
 #### Example
 
@@ -83,31 +89,33 @@ Display information about a commit in the GIT repository.
   "library": "@digipair/skill-git",
   "element": "show",
   "properties": {
-    "path": "/path/to/repo",
+    "path": "/path/to/my/repo",
     "options": ["--stat"]
   }
 }
 ```
 
+---
+
 ### log
 
-Display the commit log in the GIT repository.
+Retrieves the commit history of a GIT repository.
 
 #### Parameters
 
-| Name        | Type    | Required | Description                                                                 |
-|-------------|---------|----------|-----------------------------------------------------------------------------|
-| path        | string  | No       | Path of the GIT repository                                                   |
-| file        | string  | No       | File related to the log                                                      |
-| format      | string  | No       | Output format described in pretty format                                     |
-| from        | string  | No       | Starting commit identifier                                                   |
-| to          | string  | No       | Ending commit identifier                                                     |
-| mailMap     | boolean | No       | Enables the use of email mapping in return values                           |
-| maxCount    | number  | No       | Limits the number of results to return                                       |
-| multiline   | boolean | No       | Enables multiline values in the default format                               |
-| splitter    | string  | No       | Character sequence to use as a delimiter between fields in the log          |
-| strictDate  | boolean | No       | Switches the author date value to a strict ISO 8601 format                 |
-| symmetric   | boolean | No       | Enables the symmetric revision range instead of the two-dot range           |
+| Name       | Type    | Required | Description                                                   |
+| ---------- | ------- | -------- | ------------------------------------------------------------- |
+| path       | string  | No       | Path to the GIT repository                                    |
+| file       | string  | No       | File concerned by the log                                     |
+| format     | string  | No       | Output format (pretty format)                                 |
+| from       | string  | No       | Starting commit identifier                                    |
+| to         | string  | No       | Ending commit identifier                                      |
+| mailMap    | boolean | No       | Enables email mapping in the output (name/email)              |
+| maxCount   | number  | No       | Limits the number of results                                  |
+| multiline  | boolean | No       | Enables multiline values in the default format                |
+| splitter   | string  | No       | Character sequence used as a field separator (default: `ò`)   |
+| strictDate | boolean | No       | Uses strict ISO 8601 date format                              |
+| symmetric  | boolean | No       | Enables symmetric revision range instead of the two-dot range |
 
 #### Example
 
@@ -116,22 +124,30 @@ Display the commit log in the GIT repository.
   "library": "@digipair/skill-git",
   "element": "log",
   "properties": {
-    "path": "/path/to/repo",
-    "file": "index.js",
-    "format": "pretty",
-    "from": "commit1",
-    "to": "commit2",
+    "path": "/path/to/my/repo",
+    "file": "src/index.js",
+    "format": "oneline",
+    "from": "a1b2c3d",
+    "to": "d4e5f6g",
     "mailMap": true,
     "maxCount": 10,
     "multiline": false,
-    "splitter": "ò",
+    "splitter": "|||",
     "strictDate": true,
     "symmetric": false
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The functions `commit`, `push`, `show`, and `log` are used to manage basic operations on a GIT repository.
-- Ensure to provide the appropriate parameters for each function to guarantee their proper functioning.
+- All functions are accessible via JavaScript function calls, not via an HTTP API.
+- All parameters are optional, but it is recommended to specify at least the repository path (`path`) to ensure proper operation.
+- The advanced options of the `log` function allow you to tailor the output for specific analysis or integration needs.
+- Make sure the execution context has the necessary permissions on the targeted GIT repository.
+
+---
+
+**@digipair/skill-git** facilitates programmatic management of GIT repositories in your JavaScript projects.

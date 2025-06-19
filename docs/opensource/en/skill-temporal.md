@@ -1,9 +1,11 @@
 # @digipair/skill-temporal
 
 **Version:** 0.1.0  
-**Summary:** Management of temporal workflows  
-**Description:** This skill allows for the management of temporal workflows.  
+**Summary:** Temporal workflow management  
+**Description:** This skill enables the management of time-based workflows.  
 **Icon:** 👩‍💻
+
+---
 
 ## Table of Contents
 
@@ -18,18 +20,20 @@
   - [list](#list)
   - [workflow](#workflow)
 
+---
+
 ## Functions
 
 ### activity
 
-Defines an activity.
+Defines an activity within a temporal workflow.
 
 #### Parameters
 
-| Name     | Type   | Required | Description                |
-|----------|--------|----------|----------------------------|
-| name     | string | No       | Name of the step           |
-| execute  | array  | Yes      | List of actions to execute  |
+| Name    | Type   | Required | Description                |
+| ------- | ------ | -------- | -------------------------- |
+| name    | string | No       | Name of the step           |
+| execute | array  | Yes      | List of actions to execute |
 
 #### Example
 
@@ -38,24 +42,26 @@ Defines an activity.
   "library": "@digipair/skill-temporal",
   "element": "activity",
   "properties": {
-    "name": "step1",
+    "name": "validation",
     "execute": [
-      // List of actions to execute
+      // List of actions to execute (pinsSettings format)
     ]
   }
 }
 ```
 
+---
+
 ### sleep
 
-Defines a waiting period.
+Waits for a specified duration before continuing the workflow.
 
 #### Parameters
 
-| Name     | Type   | Required | Description        |
-|----------|--------|----------|--------------------|
-| name     | string | No       | Name of the step   |
-| duration | string | Yes      | Duration of the wait |
+| Name     | Type   | Required | Description                      |
+| -------- | ------ | -------- | -------------------------------- |
+| name     | string | No       | Name of the step                 |
+| duration | string | Yes      | Wait duration (e.g., "5s", "1m") |
 
 #### Example
 
@@ -64,22 +70,24 @@ Defines a waiting period.
   "library": "@digipair/skill-temporal",
   "element": "sleep",
   "properties": {
-    "name": "step2",
-    "duration": "5m"
+    "name": "pause",
+    "duration": "10s"
   }
 }
 ```
 
+---
+
 ### condition
 
-Defines a waiting condition in a workflow.
+Waits until a specified condition is met within the workflow.
 
 #### Parameters
 
-| Name       | Type   | Required | Description                      |
-|------------|--------|----------|----------------------------------|
-| condition  | string | Yes      | Waiting condition in Feel format |
-| timeout    | number | No       | Timeout for the condition        |
+| Name      | Type   | Required | Description                           |
+| --------- | ------ | -------- | ------------------------------------- |
+| condition | string | Yes      | Condition to wait for, in FEEL format |
+| timeout   | number | No       | Maximum wait time (in seconds)        |
 
 #### Example
 
@@ -88,22 +96,24 @@ Defines a waiting condition in a workflow.
   "library": "@digipair/skill-temporal",
   "element": "condition",
   "properties": {
-    "condition": "x > 5",
-    "timeout": 300
+    "condition": "data.status == 'approved'",
+    "timeout": 60
   }
 }
 ```
 
+---
+
 ### goto
 
-Defines a target step in the workflow.
+Allows jumping to a specific step in the workflow.
 
 #### Parameters
 
-| Name    | Type   | Required | Description                |
-|---------|--------|----------|----------------------------|
-| target  | string | Yes      | Name of the target step    |
-| name    | string | No       | Name of the step           |
+| Name   | Type   | Required | Description                  |
+| ------ | ------ | -------- | ---------------------------- |
+| target | string | Yes      | Name of the destination step |
+| name   | string | No       | Name of the current step     |
 
 #### Example
 
@@ -112,20 +122,22 @@ Defines a target step in the workflow.
   "library": "@digipair/skill-temporal",
   "element": "goto",
   "properties": {
-    "target": "step3",
-    "name": "step4"
+    "target": "finalisation",
+    "name": "redirection"
   }
 }
 ```
 
+---
+
 ### stop
 
-Stops the workflow.
+Stops the current workflow.
 
 #### Parameters
 
-| Name | Type   | Required | Description    |
-|------|--------|----------|----------------|
+| Name | Type   | Required | Description      |
+| ---- | ------ | -------- | ---------------- |
 | name | string | No       | Name of the step |
 
 #### Example
@@ -135,21 +147,23 @@ Stops the workflow.
   "library": "@digipair/skill-temporal",
   "element": "stop",
   "properties": {
-    "name": "step5"
+    "name": "end"
   }
 }
 ```
 
+---
+
 ### push
 
-Sends new data into a workflow.
+Sends new data to an existing workflow.
 
 #### Parameters
 
-| Name | Type   | Required | Description              |
-|------|--------|----------|--------------------------|
-| id   | string | Yes      | Identifier of the workflow |
-| data | object | Yes      | Data to send            |
+| Name | Type   | Required | Description         |
+| ---- | ------ | -------- | ------------------- |
+| id   | string | Yes      | Workflow identifier |
+| data | object | Yes      | Data to send        |
 
 #### Example
 
@@ -158,23 +172,25 @@ Sends new data into a workflow.
   "library": "@digipair/skill-temporal",
   "element": "push",
   "properties": {
-    "id": "workflow123",
+    "id": "workflow_123",
     "data": {
-      "key": "value"
+      "status": "in_progress"
     }
   }
 }
 ```
 
+---
+
 ### terminate
 
-Stops a workflow.
+Permanently stops a workflow.
 
 #### Parameters
 
-| Name | Type   | Required | Description              |
-|------|--------|----------|--------------------------|
-| id   | string | Yes      | Identifier of the workflow |
+| Name | Type   | Required | Description         |
+| ---- | ------ | -------- | ------------------- |
+| id   | string | Yes      | Workflow identifier |
 
 #### Example
 
@@ -183,20 +199,22 @@ Stops a workflow.
   "library": "@digipair/skill-temporal",
   "element": "terminate",
   "properties": {
-    "id": "workflow123"
+    "id": "workflow_123"
   }
 }
 ```
 
+---
+
 ### list
 
-Lists the workflows.
+Lists existing workflows according to an optional query.
 
 #### Parameters
 
-| Name   | Type   | Required | Description          |
-|--------|--------|----------|----------------------|
-| query  | string | No       | Search query         |
+| Name  | Type   | Required | Description  |
+| ----- | ------ | -------- | ------------ |
+| query | string | No       | Search query |
 
 #### Example
 
@@ -210,18 +228,20 @@ Lists the workflows.
 }
 ```
 
+---
+
 ### workflow
 
-Executes a Temporal workflow.
+Executes a complete temporal workflow.
 
 #### Parameters
 
-| Name     | Type   | Required | Description                  |
-|----------|--------|----------|------------------------------|
-| id       | string | Yes      | Identifier of the workflow   |
-| steps    | array  | Yes      | Executes the following steps  |
-| data     | object | No       | Data for the temporal workflow |
-| options  | object | No       | Options for the temporal workflow |
+| Name    | Type   | Required | Description                                    |
+| ------- | ------ | -------- | ---------------------------------------------- |
+| id      | string | Yes      | Workflow identifier                            |
+| steps   | array  | Yes      | List of steps to execute (pinsSettings format) |
+| data    | object | No       | Initial workflow data                          |
+| options | object | No       | Temporal workflow options                      |
 
 #### Example
 
@@ -230,21 +250,30 @@ Executes a Temporal workflow.
   "library": "@digipair/skill-temporal",
   "element": "workflow",
   "properties": {
-    "id": "workflow123",
+    "id": "workflow_123",
     "steps": [
-      // List of steps
+      // List of steps (pinsSettings format)
     ],
     "data": {
-      "key": "value"
+      "userId": "abc123"
     },
     "options": {
-      // Workflow options
+      "retry": 3
     }
   }
 }
 ```
 
+---
+
 ## Notes
 
-- The described functions allow for the management of the various steps and actions of a Temporal workflow.
-- Ensure to provide the required parameters for each function to guarantee their proper functioning.
+- The functions in this library allow you to model, execute, and control time-based workflows flexibly.
+- The `pinsSettings` format is used to describe actions or steps to execute in the `execute` and `steps` parameters.
+- Durations must be expressed as strings (e.g., `"5s"`, `"1m"`).
+- The condition in the `condition` function must be in FEEL (Friendly Enough Expression Language) format.
+- The workflow identifier (`id`) must be unique for each workflow instance.
+
+---
+
+**For any contributions or questions, please refer to the official library repository.**
