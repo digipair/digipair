@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-describe('POST /common/boosts', () => {
+describe('GET /api', () => {
   it('should return a message', async () => {
-    const res = await axios.post(`/common/boosts`);
+    const res = await axios.get(`/api`);
 
     expect(res.status).toBe(200);
     expect(res.data).toEqual({ message: 'Hello API' });
