@@ -7,7 +7,7 @@
     "tool"
   ],
   "dependencies": {
-    "@diegoooo/pdf2pic": "^3.1.5"
+    "pdf2pic": "^3.2.0"
   },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"

@@ -5,7 +5,7 @@ const path = require('path');
 
 function getRollupOptions(options) {
   const extraGlobals = {};
-  const externals = options.output.format === 'cjs' ? ['@diegoooo/pdf2pic'] : ['@diegoooo/pdf2pic'];
+  const externals = options.output.format === 'cjs' ? ['pdf2pic'] : ['pdf2pic'];
 
   const value = {
     ...options,

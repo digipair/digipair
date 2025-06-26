@@ -1,5 +1,5 @@
 import { PinsSettings } from '@digipair/engine';
-import { fromBuffer } from '@diegoooo/pdf2pic';
+import { fromBuffer } from 'pdf2pic';
 import { PDFDocument } from 'pdf-lib';
 
 class PDFService {
