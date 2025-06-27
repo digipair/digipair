@@ -51,7 +51,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/nx-rollup-test-e2e/**/*"]
+      "exclude": ["apps/digipair-e2e/**/*"]
     },
     {
       "plugin": "@nx/rollup/plugin",

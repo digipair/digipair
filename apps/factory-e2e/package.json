@@ -1,5 +1,5 @@
 {
-  "name": "@nx-rollup-test/factory-e2e",
+  "name": "@digipair/factory-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
