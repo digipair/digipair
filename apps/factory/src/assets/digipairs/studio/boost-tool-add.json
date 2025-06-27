@@ -1,6 +1,6 @@
 {
-  "description": "Proposition d'ajouter un agent outil.",
-  "summary": "ajout de digitool",
+  "description": "Add a tool agent.",
+  "summary": "Add a tool agent",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": true },
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quel est l'identifiant de ce nouveau digitool ?",
+              "assistant": "What is the identifier of this new tool agent?",
               "boost": [{ "prompt": true, "required": true, "step": "Create" }]
             }
           }

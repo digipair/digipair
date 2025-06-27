@@ -1,6 +1,6 @@
 {
-  "description": "Cette action permet de dupliquer un raisonnement déjà existant.",
-  "summary": "Duplication d'un raisonnement",
+  "description": "Replication of reasoning.",
+  "summary": "Replication of reasoning",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": false },
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quel est l'id du raisonnement dupliqué ?",
+              "assistant": "What is the ID of the duplicated reasoning?",
               "boost": [
                 { "prompt": true, "required": true, "step": "Execution" }
               ]
@@ -34,7 +34,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extraire les informations du raisonnement à partir du commentaire de l'utilisateur\" comment:string \"Commentaire de l'utilisateur décrivant le raisonnement\" -> \n  reasoning:string \"Nom du raisonnement très court et en français\", \n  description:string \"Description du raisonnement courte et en français\", \n  assistant:string \"Réponse de l'assistant en français pour informer l'utilisateur que le raisonnement a bien été dupliqué\"",
+                    "signature": "\"Extraire les informations du raisonnement à partir du commentaire de l'utilisateur\" comment:string \"Commentaire de l'utilisateur décrivant le raisonnement\" -> \n  reasoning:string \"Nom du raisonnement très court et en anglais\", \n  description:string \"Description du raisonnement courte et en anglais\", \n  assistant:string \"Réponse de l'assistant en anglais pour informer l'utilisateur que le raisonnement a bien été dupliqué\"",
                     "input": { "comment": "EVALUATE:request.body.prompt" }
                   }
                 }

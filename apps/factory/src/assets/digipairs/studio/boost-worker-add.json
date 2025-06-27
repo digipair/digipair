@@ -1,6 +1,6 @@
 {
-  "description": "Proposition d'ajouter un agent métier.",
-  "summary": "ajout de digiworker",
+  "description": "Add a worker agent.",
+  "summary": "Add a worker agent",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": true },
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quel est l'identifiant de ce nouveau digiworker ?",
+              "assistant": "What is the identifier of this new worker agent ?",
               "boost": [{ "prompt": true, "required": true, "step": "Create" }]
             }
           }
@@ -32,7 +32,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment in french\", \n  description:string \"Short description of the agent from the comment in french\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
+                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment in french\", \n  description:string \"Short description of the agent from the comment in English\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
                     "input": { "comment": "{{request.body.prompt}}" }
                   }
                 }

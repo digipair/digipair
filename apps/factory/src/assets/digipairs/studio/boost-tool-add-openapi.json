@@ -1,6 +1,6 @@
 {
-  "description": "Ajout d'un digipair depuis un fichier OpenAPI v3.",
-  "summary": "Ajout d'un digipair depuis OpenAPI",
+  "description": "Adding a digipair from an OpenAPI v3 file.",
+  "summary": "Adding a digipair from an OpenAPI file.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": true },
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quel est l'identifiant de ce nouveau digitool ?",
+              "assistant": "What is the identifier of this new tool agent?",
               "boost": [{ "prompt": true, "required": true, "step": "Api" }]
             }
           }
@@ -43,7 +43,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quel est l'adresse du json OpenAPI v3 ?",
+              "assistant": "What is the URL of the OpenAPI v3 JSON or YAML?",
               "boost": [
                 {
                   "prompt": true,

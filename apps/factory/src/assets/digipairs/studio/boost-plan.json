@@ -1,6 +1,6 @@
 {
-  "description": "Raisonnement pour organiser et structurer un plan",
-  "summary": "Planification d'un raisonnement",
+  "description": "Schedule a reasoning process.",
+  "summary": "Schedule a reasoning",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": {},
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quand voulez-vous le planifier ?",
+              "assistant": "When do you want to schedule it?",
               "boost": [
                 {
                   "step": "Execution",

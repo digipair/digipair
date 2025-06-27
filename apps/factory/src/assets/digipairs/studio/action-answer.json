@@ -5,34 +5,17 @@
   "metadata": {},
   "properties": {
     "execute": [
-      {
+            {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "userMessageId",
           "execute": [
             {
-              "library": "@digipair/skill-factory",
-              "element": "start",
-              "properties": {
-                "reasoning": "history-add-conversation-message",
-                "body": {
-                  "role": "user",
-                  "content": "{{requester.request.body.prompt}}",
-                  "userId": "EVALUATE:if request.body.userId then request.body.userId else requester.request.body.userId",
-                  "parent_history": "EVALUATE:requester.request.body.parent_history",
-                  "parent_conversation": "EVALUATE:requester.request.body.parent_conversation"
-                }
-              },
-              "conditions": {
-                "if": "EVALUATE:requester.request.body.prompt != null and requester.request.body.prompt != \"\""
-              }
-            },
-            {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then previous[1] else null"
+                "value": "EVALUATE:if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then getTime() else null"
               }
             }
           ]
@@ -56,21 +39,6 @@
         },
         "conditions": {
           "if": "EVALUATE:request.body.boost[1]"
-        }
-      },
-      {
-        "library": "@digipair/skill-factory",
-        "element": "start",
-        "properties": {
-          "reasoning": "history-add-conversation-message",
-          "body": {
-            "role": "assistant",
-            "content": "{{request.body.assistant}}",
-            "userId": "EVALUATE:if request.body.userId then request.body.userId else requester.request.body.userId",
-            "parent_history": "EVALUATE:variables.userMessageId",
-            "parent_conversation": "EVALUATE:requester.request.body.parent_conversation",
-            "boost": "EVALUATE:variables.boost"
-          }
         }
       },
       {

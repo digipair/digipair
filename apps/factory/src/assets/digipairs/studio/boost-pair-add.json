@@ -1,6 +1,6 @@
 {
-  "description": "Proposition d'ajouter un coéquipier numérique.",
-  "summary": "ajout de digipair",
+  "description": "Add a digipair.",
+  "summary": "Add a digipair.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": true },
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quel est l'identifiant de ce nouveau digipair ?",
+              "assistant": "What is the identifier of this new digipair?",
               "boost": [{ "prompt": true, "required": true, "step": "Create" }]
             }
           }

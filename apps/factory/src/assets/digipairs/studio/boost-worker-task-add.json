@@ -1,6 +1,6 @@
 {
-  "description": "Ajout d'une nouvelle tache.",
-  "summary": "Ajout d'une tache",
+  "description": "Add a new task.",
+  "summary": "Add a task",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": false },
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "Quel est l'identifiant de ce(tte) {{request.body.context.summary}} ?",
+              "assistant": "What is the identifier of this {{request.body.context.summary}} ?",
               "boost": [
                 { "prompt": true, "required": true, "step": "Execution" }
               ]
@@ -34,7 +34,7 @@
                   "library": "@digipair/skill-dsp",
                   "element": "generate",
                   "properties": {
-                    "signature": "\"Extraire les informations du raisonnement à créer à partir du commentaire de l'utilisateur\" \ncomment:string \"Commentaire de l'utilisateur décrivant le raisonnement à créer\" -> \n  reasoning:string \"Nom du raisonnement très court et en français\", \n  description:string \"Description du raisonnement courte et en français\", \n  assistant:string \"Réponse de l'assistant en français pour informer que le raisonnement a bien été ajouté\"",
+                    "signature": "\"Extraire les informations du raisonnement à créer à partir du commentaire de l'utilisateur\" \ncomment:string \"Commentaire de l'utilisateur décrivant le raisonnement à créer\" -> \n  reasoning:string \"Nom du raisonnement très court et en anglais\", \n  description:string \"Description du raisonnement courte et en anglais\", \n  assistant:string \"Réponse de l'assistant en anglais pour informer que le raisonnement a bien été ajouté\"",
                     "input": { "comment": "{{request.body.prompt}}" }
                   }
                 }
