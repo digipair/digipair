@@ -1,0 +1,90 @@
+{
+  "description": "Ajout d'une nouvelle tache.",
+  "summary": "Ajout d'une tache",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": { "standalone": false },
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "Quel est l'identifiant de ce(tte) {{request.body.context.summary}} ?",
+              "boost": [
+                { "prompt": true, "required": true, "step": "Execution" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extraire les informations du raisonnement à créer à partir du commentaire de l'utilisateur\" \ncomment:string \"Commentaire de l'utilisateur décrivant le raisonnement à créer\" -> \n  reasoning:string \"Nom du raisonnement très court et en français\", \n  description:string \"Description du raisonnement courte et en français\", \n  assistant:string \"Réponse de l'assistant en français pour informer que le raisonnement a bien été ajouté\"",
+                    "input": { "comment": "{{request.body.prompt}}" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "reasoning",
+              "value": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse if request.body.context.element = \"action\" then \n  \"action-\" + request.body.prompt  \nelse if request.body.context.element = \"trigger\" then \n  \"trigger-\" + request.body.prompt \nelse\n  request.body.prompt"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "setReasoning",
+            "properties": {
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "{{variables.reasoning}}",
+              "value": {
+                "summary": "{{variables.infos.reasoning}}",
+                "description": "{{variables.infos.description}}",
+                "library": "{{request.body.context.library}}",
+                "element": "{{request.body.context.element}}",
+                "properties": {},
+                "pins": [],
+                "metadata": {}
+              }
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [
+                {
+                  "library": "@digipair/skill-web-interact",
+                  "element": "goTo",
+                  "properties": {
+                    "url": "/studio/worker-task-edit/{{request.body.context.digipair}}/{{variables.reasoning}}"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

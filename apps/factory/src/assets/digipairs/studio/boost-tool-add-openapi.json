@@ -1,0 +1,178 @@
+{
+  "description": "Ajout d'un digipair depuis un fichier OpenAPI v3.",
+  "summary": "Ajout d'un digipair depuis OpenAPI",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": { "standalone": true },
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "Quel est l'identifiant de ce nouveau digitool ?",
+              "boost": [{ "prompt": true, "required": true, "step": "Api" }]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Api",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment in french\", \n  description:string \"Short description of the agent from the comment in french\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added and recall to the user to update his API key from the agent configuration in french\"",
+                    "input": { "comment": "{{request.body.prompt}}" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "Quel est l'adresse du json OpenAPI v3 ?",
+              "boost": [
+                {
+                  "prompt": true,
+                  "required": true,
+                  "step": "Execution",
+                  "inputs": [
+                    {
+                      "library": "@digipair/skill-web-inputs",
+                      "element": "digipair-input-hidden",
+                      "properties": {
+                        "value": {
+                          "digipair": "EVALUATE:\"tool-\" + request.body.prompt",
+                          "name": "EVALUATE:variables.infos.name",
+                          "description": "EVALUATE:variables.infos.description",
+                          "assistant": "EVALUATE:variables.infos.assistant"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "openapi",
+              "execute": [
+                {
+                  "library": "@digipair/skill-http",
+                  "element": "read",
+                  "properties": { "path": "EVALUATE:request.body.prompt" }
+                }
+              ]
+            },
+            "conditions": { "if": "EVALUATE:ends with(request.body.prompt, \".yaml\") = false" }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "openapi",
+              "execute": [
+                {
+                  "library": "@digipair/skill-http",
+                  "element": "read",
+                  "properties": { 
+                    "type": "text",
+                    "path": "EVALUATE:request.body.prompt"
+                  }
+                },
+                {
+                  "library": "@digipair/skill-yaml",
+                  "element": "load",
+                  "properties": { "yaml": "EVALUATE:previous" }
+                }
+              ]
+            },
+            "conditions": { "if": "EVALUATE:ends with(request.body.prompt, \".yaml\") = true" }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "schema",
+              "execute": [
+                {
+                  "library": "digipair:studio",
+                  "element": "action-openapi2schema",
+                  "properties": {
+                    "openapi": "EVALUATE:variables.openapi",
+                    "digipair": "EVALUATE:request.body.inputs[1].value.digipair",
+                    "name": "EVALUATE:request.body.inputs[1].value.name",
+                    "description": "EVALUATE:request.body.inputs[1].value.description"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "addDigipair",
+            "properties": {
+              "template": "openapi-apikey",
+              "data": {
+                "digipair": "EVALUATE:request.body.inputs[1].value.digipair",
+                "name": "EVALUATE:request.body.inputs[1].value.name",
+                "description": "EVALUATE:request.body.inputs[1].value.description",
+                "openapi": "EVALUATE:variables.openapi",
+                "schema": "EVALUATE:variables.schema",
+                "api": "EVALUATE:request.body.prompt",
+                "key": "API_KEY"
+              },
+              "digipair": "EVALUATE:request.body.inputs[1].value.digipair",
+              "templatesPath": "{{privates.GIT_PATH}}/templates"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasonings",
+            "properties": {
+              "digipair": "EVALUATE:request.body.inputs[1].value.digipair"
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "EVALUATE:request.body.inputs[1].value.assistant",
+              "command": [
+                {
+                  "library": "@digipair/skill-web-interact",
+                  "element": "goTo",
+                  "properties": {
+                    "url": "/studio/tool-edit/{{request.body.inputs.[0].value.digipair}}"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

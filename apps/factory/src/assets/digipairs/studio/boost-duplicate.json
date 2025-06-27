@@ -1,0 +1,87 @@
+{
+  "description": "Cette action permet de dupliquer un raisonnement déjà existant.",
+  "summary": "Duplication d'un raisonnement",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": { "standalone": false },
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "Quel est l'id du raisonnement dupliqué ?",
+              "boost": [
+                { "prompt": true, "required": true, "step": "Execution" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extraire les informations du raisonnement à partir du commentaire de l'utilisateur\" comment:string \"Commentaire de l'utilisateur décrivant le raisonnement\" -> \n  reasoning:string \"Nom du raisonnement très court et en français\", \n  description:string \"Description du raisonnement courte et en français\", \n  assistant:string \"Réponse de l'assistant en français pour informer l'utilisateur que le raisonnement a bien été dupliqué\"",
+                    "input": { "comment": "EVALUATE:request.body.prompt" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasoning",
+            "properties": {
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "{{request.body.context.reasoning}}"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "setReasoning",
+            "properties": {
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse if request.body.context.element = \"action\" then \n  \"action-\" + request.body.prompt \nelse if request.body.context.element = \"trigger\" then \n  \"trigger-\" + request.body.prompt \nelse\n request.body.prompt",
+              "value": {
+                "summary": "{{variables.infos.reasoning}}",
+                "description": "{{variables.infos.description}}",
+                "library": "{{previous.library}}",
+                "element": "{{previous.element}}",
+                "properties": "EVALUATE:previous.properties",
+                "pins": "EVALUATE:previous.pins",
+                "metadata": "EVALUATE:previous.metadata"
+              }
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [
+                {
+                  "library": "@digipair/skill-web-interact",
+                  "element": "reload"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

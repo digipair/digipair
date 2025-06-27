@@ -1,0 +1,84 @@
+{
+  "description": "Proposition d'ajouter un coéquipier numérique.",
+  "summary": "ajout de digipair",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": { "standalone": true },
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "Quel est l'identifiant de ce nouveau digipair ?",
+              "boost": [{ "prompt": true, "required": true, "step": "Create" }]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Create",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment in french\", \n  description:string \"Short description of the agent from the comment in french\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
+                    "input": { "comment": "{{request.body.prompt}}" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "addDigipair",
+            "properties": {
+              "template": "pair",
+              "data": {
+                "digipair": "EVALUATE:\"pair-\" + request.body.prompt",
+                "name": "EVALUATE:variables.infos.name",
+                "description": "EVALUATE:variables.infos.description"
+              },
+              "digipair": "EVALUATE:\"pair-\" + request.body.prompt",
+              "templatesPath": "{{privates.GIT_PATH}}/templates"
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "reasonings",
+            "properties": {
+              "digipair": "EVALUATE:\"pair-\" + request.body.prompt"
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "EVALUATE:variables.infos.assistant",
+              "command": [
+                {
+                  "library": "@digipair/skill-web-interact",
+                  "element": "goTo",
+                  "properties": {
+                    "url": "/studio/pair-edit/pair-{{request.body.prompt}}"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

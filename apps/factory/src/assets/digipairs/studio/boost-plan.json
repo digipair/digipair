@@ -1,0 +1,76 @@
+{
+  "description": "Raisonnement pour organiser et structurer un plan",
+  "summary": "Planification d'un raisonnement",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": {},
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "Quand voulez-vous le planifier ?",
+              "boost": [
+                {
+                  "step": "Execution",
+                  "prompt": true,
+                  "required": true,
+                  "inputs": []
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "comment:string -> cron:string \"planification de la tache par rapport au commentaire ou @startup pour l'exécuter qu'une seule fois\", assistant:string \"réponse de l'assistant pour inquer que la tache à bien été planifiée\"",
+                    "input": { "comment": "EVALUATE:request.body.prompt" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-cron",
+            "element": "addCron",
+            "properties": {
+              "time": "{{previous.cron}}",
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "{{request.body.context.reasoning}}"
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [
+                {
+                  "library": "@digipair/skill-web-interact",
+                  "element": "reload"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

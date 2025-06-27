@@ -1,0 +1,120 @@
+{
+  "description": "Génération d'une réponse pour l'utilisateur via le chatbot.",
+  "library": "@digipair/skill-factory",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "userMessageId",
+          "execute": [
+            {
+              "library": "@digipair/skill-factory",
+              "element": "start",
+              "properties": {
+                "reasoning": "history-add-conversation-message",
+                "body": {
+                  "role": "user",
+                  "content": "{{requester.request.body.prompt}}",
+                  "userId": "EVALUATE:if request.body.userId then request.body.userId else requester.request.body.userId",
+                  "parent_history": "EVALUATE:requester.request.body.parent_history",
+                  "parent_conversation": "EVALUATE:requester.request.body.parent_conversation"
+                }
+              },
+              "conditions": {
+                "if": "EVALUATE:requester.request.body.prompt != null and requester.request.body.prompt != \"\""
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "EVALUATE:if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then previous[1] else null"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "boost",
+          "value": {
+            "reasoning": "EVALUATE:requester.request.reasoning",
+            "step": "EVALUATE:request.body.boost[1].step",
+            "prompt": "EVALUATE:request.body.boost[1].prompt",
+            "required": "EVALUATE:request.body.boost[1].required",
+            "selector": "EVALUATE:request.body.boost[1].selector",
+            "url": "EVALUATE:request.body.boost[1].url",
+            "inputs": "EVALUATE:request.body.boost[1].inputs",
+            "context": "EVALUATE:requester.request.body.context"
+          }
+        },
+        "conditions": {
+          "if": "EVALUATE:request.body.boost[1]"
+        }
+      },
+      {
+        "library": "@digipair/skill-factory",
+        "element": "start",
+        "properties": {
+          "reasoning": "history-add-conversation-message",
+          "body": {
+            "role": "assistant",
+            "content": "{{request.body.assistant}}",
+            "userId": "EVALUATE:if request.body.userId then request.body.userId else requester.request.body.userId",
+            "parent_history": "EVALUATE:variables.userMessageId",
+            "parent_conversation": "EVALUATE:requester.request.body.parent_conversation",
+            "boost": "EVALUATE:variables.boost"
+          }
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "uuid": "EVALUATE:previous[1]",
+            "parent_history": "EVALUATE:variables.userMessageId",
+            "parent_conversation": "EVALUATE:requester.request.body.parent_conversation",
+            "assistant": "{{request.body.assistant}}",
+            "command": "EVALUATE:if request.body.command then request.body.command else []",
+            "boost": "EVALUATE:variables.boost",
+            "boosts": "EVALUATE:request.body.boosts",
+            "sources": "EVALUATE:request.body.sources",
+            "logs": "EVALUATE:request.body.logs"
+          }
+        }
+      },
+      {
+        "library": "@digipair/skill-factory",
+        "element": "execute",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-chatbot",
+              "element": "answer",
+              "properties": {
+                "assistant": "EVALUATE:data.assistant",
+                "boosts": "EVALUATE:data.boosts",
+                "logs": "EVALUATE:data.logs",
+                "parent_conversation": "EVALUATE:data.parent_conversation",
+                "parent_history": "EVALUATE:data.parent_history",
+                "sources": "EVALUATE:data.sources",
+                "uuid": "EVALUATE:data.uuid",
+                "boost": "EVALUATE:data.boost",
+                "command": "EVALUATE:data.command"
+              }
+            }
+          ],
+          "context": "EVALUATE:context put(requester, \"data\", previous)"
+        }
+      }
+    ]
+  },
+  "pins": []
+}
