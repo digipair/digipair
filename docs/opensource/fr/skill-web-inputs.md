@@ -7,13 +7,25 @@
 
 ## Table des matières
 
-- [Fonctions](#fonctions)
-  - [digipairInputDomAttribute](#digipairinputdomattribute)
-  - [digipairInputFetch](#digipairinputfetch)
-  - [digipairInputFile](#digipairinputfile)
-  - [digipairInputHidden](#digipairinputhidden)
-  - [digipairInputJson](#digipairinputjson)
-  - [digipairInputText](#digipairinputtext)
+- [@digipair/skill-web-inputs](#digipairskill-web-inputs)
+  - [Table des matières](#table-des-matières)
+  - [Fonctions](#fonctions)
+    - [digipairInputDomAttribute](#digipairinputdomattribute)
+      - [Paramètres](#paramètres)
+      - [Exemple](#exemple)
+    - [digipairInputFile](#digipairinputfile)
+      - [Paramètres](#paramètres-1)
+      - [Exemple](#exemple-1)
+    - [digipairInputHidden](#digipairinputhidden)
+      - [Paramètres](#paramètres-2)
+      - [Exemple](#exemple-2)
+    - [digipairInputJson](#digipairinputjson)
+      - [Paramètres](#paramètres-3)
+      - [Exemple](#exemple-3)
+    - [digipairInputText](#digipairinputtext)
+      - [Paramètres](#paramètres-4)
+      - [Exemple](#exemple-4)
+  - [Notes](#notes)
 
 ---
 
@@ -41,34 +53,6 @@ Lire un attribut d’un élément du DOM.
     "selector": "#mon-element",
     "attribute": "data-id",
     "required": true
-  }
-}
-```
-
----
-
-### digipairInputFetch
-
-Récupérer des données depuis une URL.
-
-#### Paramètres
-
-| Nom      | Type    | Requis | Description                                         |
-|----------|---------|--------|-----------------------------------------------------|
-| url      | string  | Oui    | Adresse du service web à appeler                    |
-| type     | string  | Oui    | Type de données à récupérer (`json` ou `text`)      |
-| required | boolean | Non    | Champs requis pour exécuter le boost                |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-web-inputs",
-  "element": "digipairInputFetch",
-  "properties": {
-    "url": "https://api.exemple.com/data",
-    "type": "json",
-    "required": false
   }
 }
 ```

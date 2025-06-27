@@ -1,0 +1,31 @@
+{
+  "name": "skill-agent",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-agent/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/skill-agent",
+        "main": "libs/skill-agent/src/index.ts",
+        "tsConfig": "libs/skill-agent/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-agent/src/index.d.ts",
+          "libs/skill-agent/src/schema.json",
+          "libs/skill-agent/src/schema.fr.json"
+        ],
+        "rollupConfig": ["libs/skill-agent/rollup.build.cjs"],
+        "project": "libs/skill-agent/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-agent {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

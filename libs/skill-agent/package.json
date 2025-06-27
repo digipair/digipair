@@ -1,0 +1,11 @@
+{
+  "name": "@digipair/skill-agent",
+  "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service"
+  ],
+  "dependencies": {},
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}

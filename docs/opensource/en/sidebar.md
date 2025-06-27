@@ -51,8 +51,6 @@ Here is the English translation of your technical documentation:
 - [skill-smoobu](skill-smoobu)
 - [skill-sse](skill-sse)
 - [skill-temporal](skill-temporal)
-- [skill-tensorflow](skill-tensorflow)
-- [skill-tool](skill-tool)
 - [skill-twilio](skill-twilio)
 - [skill-vespa](skill-vespa)
 - [skill-web](skill-web)
@@ -74,7 +72,6 @@ Here is the English translation of your technical documentation:
 - [skill-web-spectrum](skill-web-spectrum)
 - [skill-web-voice-activity-detection](skill-web-voice-activity-detection)
 - [skill-webcam](skill-webcam)
-- [skill-worker](skill-worker)
 - [skill-yaml](skill-yaml)
 - [skill-yolo](skill-yolo)
 - **Links**
