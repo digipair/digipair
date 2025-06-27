@@ -114,6 +114,7 @@
     "@types/web-push": "^3.6.4",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-selector-generator": "^3.6.8",
     "docsify-cli": "^4.4.4",
     "eslint": "^9.8.0",
@@ -134,12 +135,25 @@
     "typescript": "5.8.3",
     "typescript-eslint": "^8.19.0",
     "vanilla-jsoneditor": "^0.23.7",
-    "verdaccio": "^5.31.1",
+    "verdaccio": "^6.0.5",
     "webpack-cli": "^5.1.4"
   },
   "workspaces": [
     "apps/*",
     "libs/*"
   ],
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "nx": {
+    "includedScripts": [],
+    "targets": {
+      "local-registry": {
+        "executor": "@nx/js:verdaccio",
+        "options": {
+          "port": 4873,
+          "config": ".verdaccio/config.yml",
+          "storage": "tmp/local-registry/storage"
+        }
+      }
+    }
+  }
 }

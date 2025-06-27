@@ -167,15 +167,18 @@ class VespaService {
       if (asynchronous) {
         setImmediate(async () => {
           const content_embedding = await modelEmbeddings.embedQuery(content);
-          await fetch(`${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`, {
-            method: 'POST',
-            body: JSON.stringify({
-              fields: { ...document, content, content_embedding },
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
+          await fetch(
+            `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
+            {
+              method: 'POST',
+              body: JSON.stringify({
+                fields: { ...document, content, content_embedding },
+              }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
         });
       }
     }
@@ -334,40 +337,6 @@ class VespaService {
 
     return await response.json();
   }
-
-  async update(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const {
-      baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
-      namespace = context.privates.VESPA_NAMESPACE ??
-        process.env['VESPA_NAMESPACE'] ??
-        'Digipair_default',
-      collection,
-      id,
-      fields,
-    } = params;
-
-    let response = await fetch(`${baseUrl}/document/v1/${namespace}/${collection}/docid/${id}`, {
-      signal: context.protected.signal,
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const document = (await response.json()).fields;
-
-    response = await fetch(`${baseUrl}/document/v1/${namespace}/${collection}/docid/${id}`, {
-      signal: context.protected.signal,
-      method: 'POST',
-      body: JSON.stringify({
-        fields: { ...document, ...fields },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    return await response.json();
-  }
 }
 
 export const find = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -384,6 +353,3 @@ export const push = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const remove = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new VespaService().remove(params, pinsSettingsList, context);
-
-export const update = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new VespaService().update(params, pinsSettingsList, context);

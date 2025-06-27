@@ -4,9 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./libs/engine-use"
-    },
-    {
       "path": "./libs/engine"
     },
     {
@@ -214,13 +211,16 @@
       "path": "./libs/skill-yolo"
     },
     {
+      "path": "./libs/skill-temporal"
+    },
+    {
       "path": "./apps/factory-e2e"
     },
     {
       "path": "./apps/factory"
     },
     {
-      "path": "./libs/skill-temporal"
+      "path": "./libs/skill-agent"
     }
   ]
 }

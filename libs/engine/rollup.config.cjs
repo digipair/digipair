@@ -2,17 +2,12 @@ const { withNx } = require('@nx/rollup/with-nx');
 
 module.exports = withNx(
   {
-    main: 'libs/engine/src/index.ts',
-    outputPath: 'dist/libs/engine',
-    tsConfig: 'libs/engine/tsconfig.lib.json',
+    main: './src/index.ts',
+    outputPath: './dist',
+    tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
     format: ['esm', "cjs"],
     assets: [
-      {
-        input: 'libs/engine/',
-        glob: 'package.json',
-        output: '.'
-      },
       {
         input: 'libs/engine/src/',
         glob: '*.json',

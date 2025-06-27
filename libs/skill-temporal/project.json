@@ -8,7 +8,7 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/skill-temporal",
+        "outputPath": "libs/skill-temporal/dist/",
         "main": "libs/skill-temporal/src/index.ts",
         "tsConfig": "libs/skill-temporal/tsconfig.lib.json",
         "assets": [
