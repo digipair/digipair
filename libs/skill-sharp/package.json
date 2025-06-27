@@ -1,24 +1,24 @@
 {
   "name": "@digipair/skill-sharp",
-  "version": "0.0.1",
-  "type": "module",
-  "main": "dist/libs/skill-sharp/index.cjs.js",
-  "module": "dist/libs/skill-sharp/index.esm.js",
-  "types": "dist/libs/skill-sharp/index.esm.d.ts",
+  "version": "0.91.0",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "keywords": ["digipair", "service", "tool"],
   "exports": {
-    "./package.json": "./libs/skill-sharp/package.json",
+    "./package.json": "./package.json",
     ".": {
-      "development": "./dist/libs/skill-sharp/src/index.ts",
-      "types": "./dist/libs/skill-sharp/index.esm.d.ts",
-      "import": "./dist/libs/skill-sharp/index.esm.js",
-      "default": "./dist/libs/skill-sharp/index.cjs.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "tool", "service"],
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
   "nx": {
     "name": "skill-sharp"
   },
-  "dependencies": {
-    "@digipair/engine": "*"
-  }
+  "dependencies": {}
 }

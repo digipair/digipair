@@ -1,5 +1,6 @@
 const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
 const { join } = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   output: {
@@ -16,5 +17,13 @@ module.exports = {
       outputHashing: 'none',
       generatePackageJson: true,
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'bin',
+          to: 'bin'
+        }
+      ]
+    })
   ],
 };

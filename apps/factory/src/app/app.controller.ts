@@ -1,7 +1,9 @@
 import { All, Body, Controller, Get, Query, Req, Res } from '@nestjs/common';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { promises } from 'fs';
 import { AppService } from './app.service';
+
+const requireDynamic = (module: string) => require(module);
 
 @Controller()
 export class AppController {
@@ -26,7 +28,7 @@ export class AppController {
     @Query() query: any,
   ) {
     const assets = process.env.DIGIPAIR_FACTORY_PATH || './factory';
-    const host = request.headers.host.split(':')[0];
+    const host = request.headers.host?.split(':')[0] as string;
     const path = request.params['0'];
     let params: string[], digipair: string, reasoning: string;
 
@@ -56,7 +58,7 @@ export class AppController {
     }
 
     try {
-      const skillProcess = require('@digipair/skill-process');
+      const skillProcess = requireDynamic('@digipair/skill-process');
       const { id, signal } = skillProcess.add(digipair, reasoning, null);
       const method = request.method;
 
@@ -80,7 +82,7 @@ export class AppController {
       );
       
       res.send(result);
-    } catch (error) {
+    } catch (error: any) {
       if (error.type !== 'DIGIPAIR_KEEPALIVE') {
         throw error;
       }

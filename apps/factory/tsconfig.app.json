@@ -13,9 +13,6 @@
   "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
   "references": [
     {
-      "path": "../../libs/skill-logger/tsconfig.lib.json"
-    },
-    {
       "path": "../../libs/engine/tsconfig.lib.json"
     }
   ]

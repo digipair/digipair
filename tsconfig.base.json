@@ -19,7 +19,11 @@
     "baseUrl": ".",
     "paths": {
       "@digipair/engine": ["libs/engine/src/index.ts"],
-      "@digipair/skill-logger": ["libs/skill-logger/src/index.ts"]
+      "@digipair/skill-cron": ["libs/skill-cron/src/index.ts"],
+      "@digipair/skill-factory": ["libs/skill-factory/src/index.ts"],
+      "@digipair/skill-logger": ["libs/skill-logger/src/index.ts"],
+      "@digipair/skill-process": ["libs/skill-process/src/index.ts"],
+      "@digipair/skill-temporal": ["libs/skill-temporal/src/index.ts"]
     }
   }
 }

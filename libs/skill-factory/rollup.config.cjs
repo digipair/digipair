@@ -2,9 +2,9 @@ const { withNx } = require('@nx/rollup/with-nx');
 
 module.exports = withNx(
   {
-    main: 'libs/skill-factory/src/index.ts',
-    outputPath: 'dist/libs/skill-factory',
-    tsConfig: 'libs/skill-factory/tsconfig.lib.json',
+    main: './src/index.ts',
+    outputPath: './dist',
+    tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
     format: ['esm', "cjs"],
     assets: [

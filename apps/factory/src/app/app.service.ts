@@ -2,6 +2,8 @@ import { executePinsList, config } from '@digipair/engine';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { existsSync, promises } from 'fs';
 
+const requireDynamic = (module: string) => require(module);
+
 config.set('ALIAS', [
   {
     name: 'digipair',
@@ -53,11 +55,11 @@ export class AppService implements OnModuleInit {
       : './factory/digipairs';
 
     // initialize logs management
-    const skillLogger = require('@digipair/skill-logger');
+    const skillLogger = requireDynamic('@digipair/skill-logger');
     await skillLogger.initialize();
 
     // initialize factory skill
-    const skillFactory = require('@digipair/skill-factory');
+    const skillFactory = requireDynamic('@digipair/skill-factory');
     skillFactory.initialize((context: any, digipair: string, reasoning: string, body: any) =>
       this.agent(
         path,
@@ -77,16 +79,16 @@ export class AppService implements OnModuleInit {
 
     // start cron manager
     try {
-      const skillCron = require('@digipair/skill-cron');
+      const skillCron = requireDynamic('@digipair/skill-cron');
 
       skillCron.initialize(async (path: string, digipair: string, reasoning: string) => {
-        const skillProcess = require('@digipair/skill-process');
+        const skillProcess = requireDynamic('@digipair/skill-process');
         const { id, signal } = skillProcess.add(digipair, reasoning, null);
 
         try {
           await this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null, signal);
           skillProcess.remove(id);
-        } catch (error) {
+        } catch (error: any) {
           if (error.type !== 'DIGIPAIR_KEEPALIVE') {
             console.error(error);
             skillProcess.remove(id);
@@ -100,7 +102,7 @@ export class AppService implements OnModuleInit {
 
     // start workflow manager
     try {
-      const skillTemporal = require('@digipair/skill-temporal');
+      const skillTemporal = requireDynamic('@digipair/skill-temporal');
 
       if (process.env.TEMPORAL_CLUSTER_HOST) {
         skillTemporal.initialize();
@@ -117,7 +119,7 @@ export class AppService implements OnModuleInit {
     body: any,
     params: string[],
     query: any,
-    method: string,
+    method: string | null,
     headers: any,
     requester: any,
     req: any,
@@ -184,7 +186,7 @@ export class AppService implements OnModuleInit {
       const result = await executePinsList([settings], context, 'reasoning');
 
       return result;
-    } catch (error) {
+    } catch (error: any) {
       if (error.type === 'DIGIPAIR_KEEPALIVE') {
         throw error;
       }
@@ -199,7 +201,7 @@ export class AppService implements OnModuleInit {
         return;
       }
 
-      const skillLogger = require('@digipair/skill-logger');
+      const skillLogger = requireDynamic('@digipair/skill-logger');
       skillLogger.addLog(context, 'ERROR', error.message);
     }
   }

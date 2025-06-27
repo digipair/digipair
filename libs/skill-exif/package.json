@@ -1,24 +1,24 @@
 {
   "name": "@digipair/skill-exif",
-  "version": "0.0.1",
-  "type": "module",
-  "main": "dist/libs/skill-exif/index.cjs.js",
-  "module": "dist/libs/skill-exif/index.esm.js",
-  "types": "dist/libs/skill-exif/index.esm.d.ts",
+  "version": "0.91.0",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "keywords": ["digipair", "service", "tool"],
   "exports": {
-    "./package.json": "./libs/skill-exif/package.json",
+    "./package.json": "./package.json",
     ".": {
-      "development": "./dist/libs/skill-exif/src/index.ts",
-      "types": "./dist/libs/skill-exif/index.esm.d.ts",
-      "import": "./dist/libs/skill-exif/index.esm.js",
-      "default": "./dist/libs/skill-exif/index.cjs.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
     }
   },
-  "keywords": ["digipair", "web", "service"],
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
   "nx": {
     "name": "skill-exif"
   },
-  "dependencies": {
-    "@digipair/engine": "*"
-  }
+  "dependencies": {}
 }
