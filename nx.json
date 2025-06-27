@@ -68,7 +68,6 @@
     }
   },
   "release": {
-    "projectsRelationship": "independent",
     "version": {
       "preVersionCommand": "yarn nx run-many -t build"
     }
