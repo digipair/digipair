@@ -1,6 +1,6 @@
 {
-  "description": "Raisonnement concernant l'ajout d'une tache.",
-  "summary": "Ajout d'une tache",
+  "description": "Reasoning about adding a task.",
+  "summary": "Add a task",
   "library": "@digipair/skill-web",
   "element": "page",
   "metadata": {},
@@ -45,14 +45,6 @@
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
-                    "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
                     "element": "sp-action-menu",
                     "pins": [
                       {
@@ -86,6 +78,14 @@
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
                         }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
+                        }
                       }
                     ],
                     "properties": {
@@ -103,13 +103,13 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Ajout d'une tache" }
+            "properties": { "textContent": "Add a task" }
           },
           {
             "library": "web",
             "element": "div",
             "properties": {
-              "textContent": "Liste des types de taches disponibles :"
+              "textContent": "List of available task types:"
             }
           },
           {
@@ -175,7 +175,7 @@
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-button",
                 "properties": {
-                  "textContent": "Annuler",
+                  "textContent": "Cancel",
                   "href": "/studio/worker-tasks/{{request.params.[0]}}"
                 }
               }

@@ -45,14 +45,6 @@
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
-                    "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
                     "element": "sp-action-group",
                     "pins": [
                       {
@@ -109,8 +101,7 @@
                               }
                             }
                           ]
-                        },
-                        "conditions": { "if": "EVALUATE:false" }
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",

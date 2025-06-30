@@ -45,14 +45,6 @@
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
-                    "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
                     "element": "sp-action-menu",
                     "pins": [
                       {
@@ -86,6 +78,14 @@
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
                         }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
+                        }
                       }
                     ],
                     "properties": {
@@ -103,12 +103,12 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Ajout d'un agent outils" }
+            "properties": { "textContent": "Add a tool agent" }
           },
           {
             "library": "web",
             "element": "div",
-            "properties": { "textContent": "Liste des agents disponibles :" }
+            "properties": { "textContent": "List of available agents:" }
           },
           {
             "library": "web",
@@ -191,7 +191,7 @@
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-button",
                 "properties": {
-                  "textContent": "Annuler",
+                  "textContent": "Cancel",
                   "href": "/studio/worker-tasks/{{request.params.[0]}}"
                 }
               }

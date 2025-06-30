@@ -48,14 +48,6 @@
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
-                    "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
                     "element": "sp-action-menu",
                     "pins": [
                       {
@@ -88,6 +80,14 @@
                         "properties": {
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
                         }
                       }
                     ],
@@ -323,6 +323,25 @@
           {
             "library": "@digipair/skill-web-spectrum",
             "element": "sp-field-label",
+            "properties": {
+              "style": "width: 100px;",
+              "textContent": "Shared with AI agents",
+              "for": "shared"
+            }
+          },
+          {
+            "library": "@digipair/skill-web-spectrum",
+            "element": "sp-checkbox",
+            "properties": {
+              "id": "shared",
+              "checked": "EVALUATE:variables.digipair.metadata.shared"
+            }
+          },
+          { "library": "web", "element": "br" },
+          { "library": "web", "element": "br" },
+          {
+            "library": "@digipair/skill-web-spectrum",
+            "element": "sp-field-label",
             "properties": { "textContent": "Configuration" }
           },
           {
@@ -383,6 +402,23 @@
                       "library": "@digipair/skill-basic",
                       "element": "setVariable",
                       "properties": {
+                        "name": "shared",
+                        "execute": [
+                          {
+                            "library": "@digipair/skill-web-interact",
+                            "element": "getAttribute",
+                            "properties": {
+                              "selector": "#shared",
+                              "attribute": "checked"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "library": "@digipair/skill-basic",
+                      "element": "setVariable",
+                      "properties": {
                         "name": "privates",
                         "execute": [
                           {
@@ -413,7 +449,7 @@
                             "element": "setDigipair",
                             "properties": {
                               "digipair": "EVALUATE:request.params[1]",
-                              "value": "EVALUATE:context merge(\n  previous,\n  { \n    name: variables.name,\n    description: variables.description,\n    privates: variables.privates\n  }\n)"
+                              "value": "EVALUATE:context merge(\n  previous,\n  { \n    name: variables.name,\n    description: variables.description,\n    metadata: context merge(\n      previous.metadata,\n      {\n        shared: variables.shared\n      }\n    ),\n    privates: variables.privates\n  }\n)"
                             }
                           },
                           {

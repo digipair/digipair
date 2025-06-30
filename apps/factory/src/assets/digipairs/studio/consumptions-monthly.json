@@ -89,6 +89,14 @@
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
                         }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
+                        }
                       }
                     ],
                     "properties": {

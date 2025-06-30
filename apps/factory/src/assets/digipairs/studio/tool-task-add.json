@@ -48,14 +48,6 @@
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
-                    "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
                     "element": "sp-action-menu",
                     "pins": [
                       {
@@ -88,6 +80,14 @@
                         "properties": {
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
                         }
                       }
                     ],

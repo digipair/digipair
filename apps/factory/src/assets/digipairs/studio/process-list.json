@@ -93,6 +93,14 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
                         "properties": { "textContent": "Déconnexion" }
                       }
                     ],
