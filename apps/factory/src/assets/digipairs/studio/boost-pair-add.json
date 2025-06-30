@@ -49,8 +49,7 @@
                 "name": "EVALUATE:variables.infos.name",
                 "description": "EVALUATE:variables.infos.description"
               },
-              "digipair": "EVALUATE:\"pair-\" + request.body.prompt",
-              "templatesPath": "{{privates.GIT_PATH}}/templates"
+              "digipair": "EVALUATE:\"pair-\" + request.body.prompt"
             }
           },
           {

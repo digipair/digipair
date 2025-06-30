@@ -1,6 +1,6 @@
 {
-  "description": "Replication of reasoning.",
-  "summary": "Replication of reasoning",
+  "description": "Duplication of reasoning.",
+  "summary": "Duplication of reasoning",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": false },

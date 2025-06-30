@@ -42,7 +42,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Worker agents",
+                      "textContent": "AI agents",
                       "href": "/studio/workers"
                     }
                   },
@@ -50,7 +50,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "DIGIPAIRs",
+                      "textContent": "Conversationnal agents",
                       "href": "/studio/pairs"
                     }
                   },

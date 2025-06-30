@@ -41,13 +41,13 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "Worker agents" }
+                    "properties": { "textContent": "AI agents" }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "DIGIPAIRs",
+                      "textContent": "Conversationnal agents",
                       "href": "/studio/pairs"
                     }
                   },
@@ -226,7 +226,7 @@
                             "element": "sp-menu-item",
                             "properties": {
                               "textContent": "Parler",
-                              "href": "https://factory.digipair.ai/5e514a90123543afa6f6979e7ac08703/{{item.infos.id}}/chat",
+                              "href": "/{{item.infos.id}}/chat",
                               "target": "_blank"
                             }
                           }
@@ -371,7 +371,7 @@
                             "element": "sp-menu-item",
                             "properties": {
                               "textContent": "Parler",
-                              "href": "https://factory.digipair.ai/5e514a90123543afa6f6979e7ac08703/{{item.infos.id}}/chat",
+                              "href": "/{{item.infos.id}}/chat",
                               "target": "_blank"
                             }
                           }

@@ -42,7 +42,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Worker agents",
+                      "textContent": "AI agents",
                       "href": "/studio/workers"
                     }
                   },
@@ -50,7 +50,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "DIGIPAIRs",
+                      "textContent": "Conversationnal agents",
                       "href": "/studio/pairs"
                     }
                   },
@@ -284,7 +284,7 @@
             "element": "sp-field-label",
             "properties": {
               "style": "width: 100px;",
-              "textContent": "Nom",
+              "textContent": "Name",
               "for": "name",
               "required": true
             }
@@ -323,25 +323,6 @@
           {
             "library": "@digipair/skill-web-spectrum",
             "element": "sp-field-label",
-            "properties": {
-              "style": "width: 100px;",
-              "textContent": "Agent métier",
-              "for": "shared"
-            }
-          },
-          {
-            "library": "@digipair/skill-web-spectrum",
-            "element": "sp-checkbox",
-            "properties": {
-              "id": "shared",
-              "checked": "EVALUATE:variables.digipair.metadata.shared"
-            }
-          },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
-          {
-            "library": "@digipair/skill-web-spectrum",
-            "element": "sp-field-label",
             "properties": { "textContent": "Configuration" }
           },
           {
@@ -361,7 +342,7 @@
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-button",
-                "properties": { "textContent": "Enregistrer" },
+                "properties": { "textContent": "Save" },
                 "events": {
                   "click": [
                     {
@@ -402,23 +383,6 @@
                       "library": "@digipair/skill-basic",
                       "element": "setVariable",
                       "properties": {
-                        "name": "shared",
-                        "execute": [
-                          {
-                            "library": "@digipair/skill-web-interact",
-                            "element": "getAttribute",
-                            "properties": {
-                              "selector": "#shared",
-                              "attribute": "checked"
-                            }
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "library": "@digipair/skill-basic",
-                      "element": "setVariable",
-                      "properties": {
                         "name": "privates",
                         "execute": [
                           {
@@ -449,7 +413,7 @@
                             "element": "setDigipair",
                             "properties": {
                               "digipair": "EVALUATE:request.params[1]",
-                              "value": "EVALUATE:context merge(\n  previous,\n  { \n    name: variables.name,\n    description: variables.description,\n    metadata: context merge(\n      previous.metadata,\n      {\n        shared: variables.shared\n      }\n    ),\n    privates: variables.privates\n  }\n)"
+                              "value": "EVALUATE:context merge(\n  previous,\n  { \n    name: variables.name,\n    description: variables.description,\n    privates: variables.privates\n  }\n)"
                             }
                           },
                           {

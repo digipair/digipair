@@ -1,6 +1,6 @@
 {
-  "description": "Add a worker agent.",
-  "summary": "Add a worker agent",
+  "description": "Add a AI agent.",
+  "summary": "Add a AI agent",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": { "standalone": true },
@@ -13,7 +13,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the identifier of this new worker agent ?",
+              "assistant": "What is the identifier of this new AI agent ?",
               "boost": [{ "prompt": true, "required": true, "step": "Create" }]
             }
           }
@@ -49,8 +49,7 @@
                 "name": "EVALUATE:variables.infos.name",
                 "description": "EVALUATE:variables.infos.description"
               },
-              "digipair": "EVALUATE:\"worker-\" + request.body.prompt",
-              "templatesPath": "{{privates.GIT_PATH}}/templates"
+              "digipair": "EVALUATE:\"worker-\" + request.body.prompt"
             }
           },
           {

@@ -143,8 +143,7 @@
                 "api": "EVALUATE:request.body.prompt",
                 "key": "API_KEY"
               },
-              "digipair": "EVALUATE:request.body.inputs[1].value.digipair",
-              "templatesPath": "{{privates.GIT_PATH}}/templates"
+              "digipair": "EVALUATE:request.body.inputs[1].value.digipair"
             }
           },
           {

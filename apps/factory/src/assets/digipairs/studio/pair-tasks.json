@@ -42,14 +42,14 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Worker agents",
+                      "textContent": "AI agents",
                       "href": "/studio/workers"
                     }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "DIGIPAIRs" }
+                    "properties": { "textContent": "Conversationnal agents" }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
