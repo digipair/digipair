@@ -4,6 +4,105 @@
   "include": [],
   "references": [
     {
+      "path": "../../libs/skill-yaml"
+    },
+    {
+      "path": "../../libs/skill-web-font-awesome"
+    },
+    {
+      "path": "../../libs/skill-web-interact"
+    },
+    {
+      "path": "../../libs/skill-web-spectrum"
+    },
+    {
+      "path": "../../libs/skill-web-inputs"
+    },
+    {
+      "path": "../../libs/skill-web-editor"
+    },
+    {
+      "path": "../../libs/skill-web-chatbot"
+    },
+    {
+      "path": "../../libs/skill-web-notification"
+    },
+    {
+      "path": "../../libs/skill-web-jsoneditor"
+    },
+    {
+      "path": "../../libs/skill-web-debug"
+    },
+    {
+      "path": "../../libs/skill-sendmail"
+    },
+    {
+      "path": "../../libs/skill-imap"
+    },
+    {
+      "path": "../../libs/skill-oauth2"
+    },
+    {
+      "path": "../../libs/skill-process"
+    },
+    {
+      "path": "../../libs/skill-logger"
+    },
+    {
+      "path": "../../libs/skill-worker"
+    },
+    {
+      "path": "../../libs/skill-web"
+    },
+    {
+      "path": "../../libs/skill-tool"
+    },
+    {
+      "path": "../../libs/skill-temporal"
+    },
+    {
+      "path": "../../libs/skill-sse"
+    },
+    {
+      "path": "../../libs/skill-service"
+    },
+    {
+      "path": "../../libs/skill-openai"
+    },
+    {
+      "path": "../../libs/skill-llm"
+    },
+    {
+      "path": "../../libs/skill-http"
+    },
+    {
+      "path": "../../libs/skill-factory"
+    },
+    {
+      "path": "../../libs/skill-editor"
+    },
+    {
+      "path": "../../libs/skill-dsp"
+    },
+    {
+      "path": "../../libs/skill-debug"
+    },
+    {
+      "path": "../../libs/skill-canvas"
+    },
+    {
+      "path": "../../libs/skill-basic"
+    },
+    {
+      "path": "../../libs/skill-cron"
+    },
+    {
+      "path": "../../libs/skill-common"
+    },
+    {
+      "path": "../../libs/skill-chatbot"
+    },
+    {
       "path": "../../libs/engine"
     },
     {
