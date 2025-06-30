@@ -218,9 +218,6 @@
     },
     {
       "path": "./apps/factory"
-    },
-    {
-      "path": "./libs/skill-agent"
     }
   ]
 }
