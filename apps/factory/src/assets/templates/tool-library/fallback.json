@@ -1,0 +1,19 @@
+{
+  "description": "Mécanisme d'appel d'une méthode de librairie",
+  "summary": "Appel d'une méthode de librairie",
+  "library": "@digipair/skill-tool",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-tool",
+        "element": "execute",
+        "properties": {
+          "execute": "EVALUATE:[{\n  \"library\": \"<%= library %>\",\n  \"element\": request.reasoning,\n  \"properties\": request.body\n}]"
+        }
+      }
+    ]
+  },
+  "pins": []
+}

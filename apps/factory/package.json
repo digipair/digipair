@@ -22,6 +22,7 @@
     "@digipair/skill-service": "latest",
     "@digipair/skill-sse": "latest",
     "@digipair/skill-temporal": "latest",
+    "@digipair/skill-tool": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-logger": "latest",
     "@digipair/skill-process": "latest",
