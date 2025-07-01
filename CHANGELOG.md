@@ -1,3 +1,14 @@
+## 0.94.0-4 (2025-07-01)
+
+### 🚀 Features
+
+- add dependancies ([6040360](https://github.com/digipair/digipair/commit/6040360))
+- minor update ([38fbb3b](https://github.com/digipair/digipair/commit/38fbb3b))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.94.0-1 (2025-06-30)
 
 This was a version bump only, there were no code changes.

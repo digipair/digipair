@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-debug",
-  "version": "0.94.0-1",
+  "version": "0.94.0-4",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -25,7 +25,7 @@
     "name": "skill-debug"
   },
   "dependencies": {
-    "@digipair/engine": "0.94.0-1",
-    "@digipair/skill-logger": "0.94.0-1"
+    "@digipair/engine": "0.94.0-4",
+    "@digipair/skill-logger": "0.94.0-4"
   }
 }
