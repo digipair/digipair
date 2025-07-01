@@ -1,6 +1,6 @@
 {
   "name": "digipair",
-  "version": "0.94.0-2",
+  "version": "0.94.0-5",
   "private": false,
   "bin": {
     "digipair": "./bin/digipair.js"

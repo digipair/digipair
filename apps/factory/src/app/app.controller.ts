@@ -3,8 +3,6 @@ import type { Request, Response } from 'express';
 import { promises } from 'fs';
 import { AppService } from './app.service';
 
-const requireDynamic = (module: string) => require(module);
-
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -58,7 +56,7 @@ export class AppController {
     }
 
     try {
-      const skillProcess = requireDynamic('@digipair/skill-process');
+      const skillProcess = require('@digipair/skill-process');
       const { id, signal } = skillProcess.add(digipair, reasoning, null);
       const method = request.method;
 

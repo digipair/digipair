@@ -2,8 +2,6 @@ import { executePinsList, config } from '@digipair/engine';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { existsSync, promises } from 'fs';
 
-const requireDynamic = (module: string) => require(module);
-
 config.set('ALIAS', [
   {
     name: 'digipair',
@@ -55,11 +53,11 @@ export class AppService implements OnModuleInit {
       : './factory/digipairs';
 
     // initialize logs management
-    const skillLogger = requireDynamic('@digipair/skill-logger');
+    const skillLogger = require('@digipair/skill-logger');
     await skillLogger.initialize();
 
     // initialize factory skill
-    const skillFactory = requireDynamic('@digipair/skill-factory');
+    const skillFactory = require('@digipair/skill-factory');
     skillFactory.initialize((context: any, digipair: string, reasoning: string, body: any) =>
       this.agent(
         path,
@@ -79,10 +77,10 @@ export class AppService implements OnModuleInit {
 
     // start cron manager
     try {
-      const skillCron = requireDynamic('@digipair/skill-cron');
+      const skillCron = require('@digipair/skill-cron');
 
       skillCron.initialize(async (path: string, digipair: string, reasoning: string) => {
-        const skillProcess = requireDynamic('@digipair/skill-process');
+        const skillProcess = require('@digipair/skill-process');
         const { id, signal } = skillProcess.add(digipair, reasoning, null);
 
         try {
@@ -102,7 +100,7 @@ export class AppService implements OnModuleInit {
 
     // start workflow manager
     try {
-      const skillTemporal = requireDynamic('@digipair/skill-temporal');
+      const skillTemporal = require('@digipair/skill-temporal');
 
       if (process.env.TEMPORAL_CLUSTER_HOST) {
         skillTemporal.initialize();
@@ -201,7 +199,7 @@ export class AppService implements OnModuleInit {
         return;
       }
 
-      const skillLogger = requireDynamic('@digipair/skill-logger');
+      const skillLogger = require('@digipair/skill-logger');
       skillLogger.addLog(context, 'ERROR', error.message);
     }
   }
