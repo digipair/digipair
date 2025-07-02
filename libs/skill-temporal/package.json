@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-temporal",
-  "version": "0.0.1",
+  "version": "0.94.0-8",
   "keywords": [
     "digipair",
     "service",
@@ -13,6 +13,10 @@
     "@temporalio/workflow": "^1.10.1",
     "feelin": "^3.1.0"
   },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
 }
