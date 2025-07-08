@@ -134,22 +134,20 @@ class VespaService {
     for (const document of documents) {
       // eslint-disable-next-line no-control-regex
       const content = document.content.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
-      const content_embedding = await modelEmbeddings.embedQuery(content);
-
       const response = await fetch(
         `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
         {
           signal,
           method: 'POST',
-          body: JSON.stringify(
-            asynchronous
+          body: JSON.stringify({
+            fields: asynchronous
               ? { ...document, content }
               : {
                   ...document,
                   content,
                   content_embedding: await modelEmbeddings.embedQuery(content),
                 },
-          ),
+          }),
           headers: {
             'Content-Type': 'application/json',
           },

@@ -183,30 +183,7 @@
       }
     ],
     "styleHtml": "color-scheme:light;\npadding: 60px 40px 80px 40px;",
-    "browserInitialize": [
-      {
-        "library": "@digipair/skill-basic",
-        "element": "setVariable",
-        "properties": {
-          "name": "tools",
-          "execute": [
-            {
-              "library": "@digipair/skill-web",
-              "element": "executeFactory",
-              "properties": {
-                "execute": [
-                  {
-                    "library": "@digipair/skill-editor",
-                    "element": "tools",
-                    "properties": { "language": "en" }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      }
-    ]
+    "browserInitialize": []
   },
   "pins": []
 }
