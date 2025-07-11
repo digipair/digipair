@@ -6,17 +6,54 @@
     "service",
     "tool"
   ],
-  "dependencies": {
-    "@temporalio/client": "^1.10.1",
-    "@temporalio/common": "^1.10.1",
-    "@temporalio/worker": "^1.10.1",
-    "@temporalio/workflow": "^1.10.1",
-    "feelin": "^3.1.0"
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
+    }
   },
   "files": [
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "nx": {
+    "name": "skill-temporal",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "options": {
+          "outputPath": "libs/skill-temporal/dist/",
+          "main": "libs/skill-temporal/src/index.ts",
+          "tsConfig": "libs/skill-temporal/tsconfig.lib.json",
+          "assets": [
+            {
+              "input": "libs/skill-temporal/src",
+              "glob": "schema*.json",
+              "output": "."
+            },
+            {
+              "input": "libs/skill-temporal",
+              "glob": "index.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@temporalio/client": "^1.10.1",
+    "@temporalio/common": "^1.10.1",
+    "@temporalio/worker": "^1.10.1",
+    "@temporalio/workflow": "^1.10.1",
+    "feelin": "^3.1.0"
+  }
 }

@@ -9,7 +9,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["es2022", "DOM"],
   },
   "include": ["src/**/*.ts"],
   "references": []

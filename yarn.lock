@@ -1734,7 +1734,7 @@
     google-auth-library "^9.15.1"
     moment-timezone "^0.5.47"
 
-"@digipair/engine@latest":
+"@digipair/engine@0.94.0-0", "@digipair/engine@latest":
   version "0.94.0-0"
   resolved "https://registry.yarnpkg.com/@digipair/engine/-/engine-0.94.0-0.tgz#09528d02a8da4ba033013d47e0590d87aefad856"
   integrity sha512-L8CAPw4MuDvMboL+9Vr+uPanmuiLgO1t8N11M1sY2RZ9KozMbCwOZMYVZUqQriW+T/mjC/QwUdKm/y/7Sr42Sw==
@@ -1802,7 +1802,7 @@
   resolved "https://registry.yarnpkg.com/@digipair/skill-llm/-/skill-llm-0.94.0-0.tgz#20419bf2005b6d00f90c12f6b8caee3af8d27482"
   integrity sha512-6ISMpF49oGePuZrbrAoaCn/uJTCVirRWgvco0XQgJct8ieoVx8WYynOX0e+C/f6s5R/Xq2lsjXM3woGzvMHTiA==
 
-"@digipair/skill-logger@latest":
+"@digipair/skill-logger@0.94.0-0", "@digipair/skill-logger@latest":
   version "0.94.0-0"
   resolved "https://registry.yarnpkg.com/@digipair/skill-logger/-/skill-logger-0.94.0-0.tgz#d631c2334b1079a5751fc82f5d8a81215ce03925"
   integrity sha512-BuIQ/Kh4bzgxdsDi0L8N+LdbZnYg67ZnSUce0PuLRu5EMuoTOmt6XCxz78hyu6V3ZZ2JBSoYkC2d+4HrBARfKg==

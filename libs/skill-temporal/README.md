@@ -1,7 +1,11 @@
-# mylib
+# skill-temporal
 
 This library was generated with [Nx](https://nx.dev).
 
 ## Building
 
-Run `nx build mylib` to build the library.
+Run `nx build skill-temporal` to build the library.
+
+## Running unit tests
+
+Run `nx test skill-temporal` to execute the unit tests via [Jest](https://jestjs.io).

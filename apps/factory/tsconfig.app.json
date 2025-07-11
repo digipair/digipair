@@ -67,9 +67,6 @@
       "path": "../../libs/skill-tool/tsconfig.lib.json"
     },
     {
-      "path": "../../libs/skill-temporal/tsconfig.lib.json"
-    },
-    {
       "path": "../../libs/skill-sse/tsconfig.lib.json"
     },
     {
