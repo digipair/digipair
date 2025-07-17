@@ -10,7 +10,7 @@
   "paths": {
     "/sendPush": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": ["service"],
         "summary": "Send a web push notification",
         "description": "Send a web push notification with the specified values.",
         "parameters": [

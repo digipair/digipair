@@ -15,6 +15,15 @@
         "description": "Enregistre l'utilisateur pour recevoir des notifications push en temps réel.",
         "parameters": [
           {
+            "name": "SERVICE_WORKER_PATH",
+            "summary": "Chemin du service worker",
+            "required": false,
+            "description": "Chemin du service worker pour les notifications push.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "publicKey",
             "summary": "Clé publique VAPID",
             "required": false,

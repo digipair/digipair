@@ -15,6 +15,15 @@
         "description": "Register the user to receive push notifications for real-time updates.",
         "parameters": [
           {
+            "name": "SERVICE_WORKER_PATH",
+            "summary": "Service worker path",
+            "required": false,
+            "description": "Path to the service worker for push notifications.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "publicKey",
             "summary": "VAPID public key",
             "required": false,

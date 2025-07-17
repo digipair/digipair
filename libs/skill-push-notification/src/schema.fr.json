@@ -10,7 +10,7 @@
   "paths": {
     "/sendPush": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": ["service"],
         "summary": "Envoie une notification via WebPush.",
         "description": "Envoie une notification via WebPush avec les données nécessaires.",
         "parameters": [
