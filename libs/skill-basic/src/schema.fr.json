@@ -231,6 +231,15 @@
         ],
         "x-events": []
       }
+    },
+    "/uuid": {
+      "post": {
+        "tags": ["web", "service", "spatial"],
+        "summary": "Générer un UUID",
+        "description": "Génère un UUID",
+        "parameters": [],
+        "x-events": []
+      }
     }
   },
   "components": {
