@@ -9,6 +9,8 @@
     "textSecondary": "#FFFFFF"
   },
   "libraries": {
+    "@digipair/skill-basic": "latest",
+    "@digipair/skill-debug": "latest",
     "@digipair/skill-worker": "latest"
   },
   "variables": {},

@@ -5,6 +5,7 @@
   "element": "page",
   "metadata": {},
   "properties": {
+    "ssr": false,
     "body": [
       {
         "library": "@digipair/skill-web-spectrum",
@@ -36,7 +37,7 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { 
+                    "properties": {
                       "textContent": "Tool agents",
                       "href": "/studio/tools"
                     }
@@ -52,7 +53,10 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "Conversationnal agents", "href": "/studio/pairs" }
+                    "properties": {
+                      "textContent": "Conversationnal agents",
+                      "href": "/studio/pairs"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",

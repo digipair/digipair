@@ -140,6 +140,7 @@ export class AppService implements OnModuleInit {
       const config = JSON.parse(content);
 
       context = {
+        ...requester,
         config: {
           VERSIONS: { ...defaultConfig.libraries, ...commonConfig.libraries, ...config.libraries },
           WEB_VERSIONS: {
@@ -148,8 +149,18 @@ export class AppService implements OnModuleInit {
             ...config.webLibraries,
           },
         },
-        privates: { ...defaultConfig.privates, ...commonConfig.privates, ...config.privates },
-        variables: { ...defaultConfig.variables, ...commonConfig.variables, ...config.variables },
+        privates: {
+          ...requester.privates,
+          ...defaultConfig.privates,
+          ...commonConfig.privates,
+          ...config.privates,
+        },
+        variables: {
+          ...requester.variables,
+          ...defaultConfig.variables,
+          ...commonConfig.variables,
+          ...config.variables,
+        },
         request: {
           digipair,
           reasoning,

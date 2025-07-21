@@ -503,7 +503,6 @@ class KeycloakService {
       };
     } else {
       context.keycloak = {
-        ...context.keycloak,
         isLogged: false,
       };
     }
