@@ -59,7 +59,8 @@
         "parameters": [
           { "name": "content", "required": true, "schema": { "type": "string" } },
           { "name": "width", "required": true, "schema": { "type": "integer" } },
-          { "name": "height", "required": true, "schema": { "type": "integer" } }
+          { "name": "height", "required": true, "schema": { "type": "integer" } },
+          { "name": "options", "required": false, "schema": { "type": "object" } }
         ]
       }
     },
@@ -93,9 +94,7 @@
         "tags": ["service"],
         "summary": "Miroir vertical",
         "description": "Retourne l’image verticalement.",
-        "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
-        ]
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
       }
     },
     "/flop": {
@@ -103,9 +102,7 @@
         "tags": ["service"],
         "summary": "Miroir horizontal",
         "description": "Retourne l’image horizontalement.",
-        "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
-        ]
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
       }
     },
     "/grayscale": {
@@ -113,18 +110,34 @@
         "tags": ["service"],
         "summary": "Niveaux de gris",
         "description": "Convertit l’image en niveaux de gris.",
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+      }
+    },
+    "/linear": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Linéaire",
+        "description": "Applique une transformation linéaire à l’image.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
+          { "name": "content", "required": true, "schema": { "type": "string" } },
+          { "name": "multiplier", "required": true, "schema": { "type": "number" } },
+          { "name": "offset", "required": true, "schema": { "type": "number" } }
         ]
       }
     },
-    "/negate": {
+    "/threshold": {
       "post": {
         "tags": ["service"],
-        "summary": "Inverser les couleurs",
-        "description": "Inverse les couleurs de l’image.",
+        "summary": "Seuil",
+        "description": "Applique un seuil à l’image pour la convertir en noir et blanc.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
+          { "name": "content", "required": true, "schema": { "type": "string" } },
+          { "name": "level", "required": false, "schema": { "type": "integer", "default": 128 } },
+          {
+            "name": "option",
+            "required": false,
+            "schema": { "type": "object" }
+          }
         ]
       }
     },
@@ -170,9 +183,7 @@
         "tags": ["service"],
         "summary": "Netteté",
         "description": "Accentue les contours de l’image.",
-        "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
-        ]
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
       }
     },
     "/toFormat": {
@@ -209,7 +220,11 @@
         "description": "Convertit l’image en format PNG avec niveau de compression personnalisé.",
         "parameters": [
           { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "compressionLevel", "required": false, "schema": { "type": "integer", "default": 6 } }
+          {
+            "name": "compressionLevel",
+            "required": false,
+            "schema": { "type": "integer", "default": 6 }
+          }
         ]
       }
     },

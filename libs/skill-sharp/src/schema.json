@@ -59,7 +59,12 @@
         "parameters": [
           { "name": "content", "required": true, "schema": { "type": "string" } },
           { "name": "width", "required": true, "schema": { "type": "integer" } },
-          { "name": "height", "required": true, "schema": { "type": "integer" } }
+          { "name": "height", "required": true, "schema": { "type": "integer" } },
+          {
+            "name": "options",
+            "required": false,
+            "schema": { "type": "object" }
+          }
         ]
       }
     },
@@ -93,9 +98,7 @@
         "tags": ["service"],
         "summary": "Flip",
         "description": "Flips the image vertically",
-        "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
-        ]
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
       }
     },
     "/flop": {
@@ -103,9 +106,7 @@
         "tags": ["service"],
         "summary": "Flop",
         "description": "Flips the image horizontally",
-        "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
-        ]
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
       }
     },
     "/grayscale": {
@@ -113,8 +114,34 @@
         "tags": ["service"],
         "summary": "Grayscale",
         "description": "Converts the image to grayscale",
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+      }
+    },
+    "/linear": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Linear",
+        "description": "Applies a linear transformation to the image",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
+          { "name": "content", "required": true, "schema": { "type": "string" } },
+          { "name": "multiplier", "required": true, "schema": { "type": "number" } },
+          { "name": "offset", "required": true, "schema": { "type": "number" } }
+        ]
+      }
+    },
+    "/threshold": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Threshold",
+        "description": "Applies a threshold to the image to convert it to black and white.",
+        "parameters": [
+          { "name": "content", "required": true, "schema": { "type": "string" } },
+          { "name": "level", "required": false, "schema": { "type": "integer", "default": 128 } },
+          {
+            "name": "option",
+            "required": false,
+            "schema": { "type": "object" }
+          }
         ]
       }
     },
@@ -123,9 +150,7 @@
         "tags": ["service"],
         "summary": "Negate",
         "description": "Inverts the image colors",
-        "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
-        ]
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
       }
     },
     "/tint": {
@@ -170,9 +195,7 @@
         "tags": ["service"],
         "summary": "Sharpen",
         "description": "Sharpens the image",
-        "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } }
-        ]
+        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
       }
     },
     "/toFormat": {
@@ -209,7 +232,11 @@
         "description": "Exports the image as PNG",
         "parameters": [
           { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "compressionLevel", "required": false, "schema": { "type": "integer", "default": 6 } }
+          {
+            "name": "compressionLevel",
+            "required": false,
+            "schema": { "type": "integer", "default": 6 }
+          }
         ]
       }
     },

@@ -38,9 +38,9 @@ class SharpService {
   }
 
   async resize(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
-    const { content, width, height } = params;
+    const { content, width, height, options = {} } = params;
     const { image, mimeType } = await this.loadImage(content);
-    image.resize(width, height);
+    image.resize(width, height, options);
     return this.toBase64(image, mimeType);
   }
 
@@ -80,6 +80,20 @@ class SharpService {
     const { content } = params;
     const { image, mimeType } = await this.loadImage(content);
     image.grayscale();
+    return this.toBase64(image, mimeType);
+  }
+
+  async linear(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { content, multiplier, offset } = params;
+    const { image, mimeType } = await this.loadImage(content);
+    image.linear(multiplier, offset);
+    return this.toBase64(image, mimeType);
+  }
+
+  async threshold(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { content, level = 128, option = {} } = params;
+    const { image, mimeType } = await this.loadImage(content);
+    image.threshold(level, option);
     return this.toBase64(image, mimeType);
   }
 
@@ -195,6 +209,12 @@ export const flop = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const grayscale = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new SharpService().grayscale(params, pinsSettingsList, context);
+
+export const linear = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new SharpService().linear(params, pinsSettingsList, context);
+
+export const threshold = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new SharpService().threshold(params, pinsSettingsList, context);
 
 export const negate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new SharpService().negate(params, pinsSettingsList, context);
