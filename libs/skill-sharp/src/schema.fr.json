@@ -10,7 +10,9 @@
   "paths": {
     "/metadata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Métadonnées",
         "description": "Retourne les métadonnées de l’image (dimensions, format, EXIF, etc.).",
         "parameters": [
@@ -18,245 +20,550 @@
             "name": "content",
             "required": true,
             "description": "Image encodée en base64",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       }
     },
     "/stats": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Statistiques",
         "description": "Retourne des statistiques sur l’image comme la moyenne ou l’écart-type.",
         "parameters": [
           {
             "name": "content",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       }
     },
     "/raw": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Brut (RAW)",
         "description": "Retourne le buffer brut de l’image en base64.",
         "parameters": [
           {
             "name": "content",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       }
     },
     "/resize": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Redimensionner",
         "description": "Redimensionne l’image selon la largeur et la hauteur spécifiées.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "width", "required": true, "schema": { "type": "integer" } },
-          { "name": "height", "required": true, "schema": { "type": "integer" } },
-          { "name": "options", "required": false, "schema": { "type": "object" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "options",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          }
         ]
       }
     },
     "/rotate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Rotation",
         "description": "Fait pivoter l’image (angle optionnel, utilise EXIF si absent).",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "angle", "required": false, "schema": { "type": "integer" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "angle",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/extract": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Rogner",
         "description": "Extrait une portion de l’image.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "left", "required": true, "schema": { "type": "integer" } },
-          { "name": "top", "required": true, "schema": { "type": "integer" } },
-          { "name": "width", "required": true, "schema": { "type": "integer" } },
-          { "name": "height", "required": true, "schema": { "type": "integer" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "left",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "top",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "width",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/flip": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Miroir vertical",
         "description": "Retourne l’image verticalement.",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/flop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Miroir horizontal",
         "description": "Retourne l’image horizontalement.",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/grayscale": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Niveaux de gris",
         "description": "Convertit l’image en niveaux de gris.",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/linear": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Linéaire",
         "description": "Applique une transformation linéaire à l’image.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "multiplier", "required": true, "schema": { "type": "number" } },
-          { "name": "offset", "required": true, "schema": { "type": "number" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "multiplier",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/threshold": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Seuil",
         "description": "Applique un seuil à l’image pour la convertir en noir et blanc.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "level", "required": false, "schema": { "type": "integer", "default": 128 } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "level",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 128
+            }
+          },
           {
             "name": "option",
             "required": false,
-            "schema": { "type": "object" }
+            "schema": {
+              "type": "object"
+            }
           }
         ]
       }
     },
     "/tint": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Teinte",
         "description": "Applique une teinte colorée à l’image.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "r", "required": true, "schema": { "type": "integer" } },
-          { "name": "g", "required": true, "schema": { "type": "integer" } },
-          { "name": "b", "required": true, "schema": { "type": "integer" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "r",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "g",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "b",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/modulate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modulation",
         "description": "Ajuste la luminosité, la saturation et la teinte.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "brightness", "required": false, "schema": { "type": "number" } },
-          { "name": "saturation", "required": false, "schema": { "type": "number" } },
-          { "name": "hue", "required": false, "schema": { "type": "number" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brightness",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "saturation",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "hue",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/blur": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Flou",
         "description": "Applique un flou à l’image.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "radius", "required": false, "schema": { "type": "number" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/sharpen": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Netteté",
         "description": "Accentue les contours de l’image.",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/toFormat": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Conversion de format",
         "description": "Convertit l’image vers un autre format.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "format",
             "required": true,
             "description": "jpeg, png, webp, avif",
-            "schema": { "type": "string", "enum": ["jpeg", "png", "webp", "avif"] }
+            "schema": {
+              "type": "string",
+              "enum": [
+                "jpeg",
+                "png",
+                "webp",
+                "avif"
+              ]
+            }
           }
         ]
       }
     },
     "/jpeg": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Exporter en JPEG",
         "description": "Convertit l’image en format JPEG avec qualité personnalisable.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "quality", "required": false, "schema": { "type": "integer", "default": 80 } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 80
+            }
+          }
         ]
       }
     },
     "/png": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Exporter en PNG",
         "description": "Convertit l’image en format PNG avec niveau de compression personnalisé.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "compressionLevel",
             "required": false,
-            "schema": { "type": "integer", "default": 6 }
+            "schema": {
+              "type": "number",
+              "default": 6
+            }
           }
         ]
       }
     },
     "/webp": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Exporter en WebP",
         "description": "Convertit l’image en format WebP avec qualité personnalisable.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "quality", "required": false, "schema": { "type": "integer", "default": 80 } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 80
+            }
+          }
         ]
       }
     },
     "/avif": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Exporter en AVIF",
         "description": "Convertit l’image en format AVIF avec qualité personnalisable.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "quality", "required": false, "schema": { "type": "integer", "default": 50 } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 50
+            }
+          }
         ]
       }
     },
     "/composite": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Superposition",
         "description": "Superpose une ou plusieurs images (ex. : watermark).",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "overlays",
             "required": true,
@@ -266,11 +573,21 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "input": { "type": "string" },
-                  "top": { "type": "integer" },
-                  "left": { "type": "integer" }
+                  "input": {
+                    "type": "string"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  }
                 },
-                "required": ["input", "top", "left"]
+                "required": [
+                  "input",
+                  "top",
+                  "left"
+                ]
               }
             }
           }

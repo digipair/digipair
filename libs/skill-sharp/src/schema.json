@@ -10,7 +10,9 @@
   "paths": {
     "/metadata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Metadata",
         "description": "Returns image metadata (dimensions, format, EXIF, etc.)",
         "parameters": [
@@ -18,257 +20,568 @@
             "name": "content",
             "required": true,
             "description": "Image content as a base64-encoded string",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       }
     },
     "/stats": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stats",
         "description": "Returns image statistics like mean and standard deviation",
         "parameters": [
           {
             "name": "content",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       }
     },
     "/raw": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Raw",
         "description": "Returns raw image buffer as base64",
         "parameters": [
           {
             "name": "content",
             "required": true,
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ]
       }
     },
     "/resize": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Resize",
         "description": "Resizes the image",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "width", "required": true, "schema": { "type": "integer" } },
-          { "name": "height", "required": true, "schema": { "type": "integer" } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "name": "options",
             "required": false,
-            "schema": { "type": "object" }
+            "schema": {
+              "type": "object"
+            }
           }
         ]
       }
     },
     "/rotate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Rotate",
         "description": "Rotates the image (angle optional)",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "angle", "required": false, "schema": { "type": "integer" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "angle",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/extract": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Extract",
         "description": "Extracts a region from the image",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "left", "required": true, "schema": { "type": "integer" } },
-          { "name": "top", "required": true, "schema": { "type": "integer" } },
-          { "name": "width", "required": true, "schema": { "type": "integer" } },
-          { "name": "height", "required": true, "schema": { "type": "integer" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "left",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "top",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "width",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/flip": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Flip",
         "description": "Flips the image vertically",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/flop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Flop",
         "description": "Flips the image horizontally",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/grayscale": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Grayscale",
         "description": "Converts the image to grayscale",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/linear": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Linear",
         "description": "Applies a linear transformation to the image",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "multiplier", "required": true, "schema": { "type": "number" } },
-          { "name": "offset", "required": true, "schema": { "type": "number" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "multiplier",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/threshold": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Threshold",
         "description": "Applies a threshold to the image to convert it to black and white.",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "level", "required": false, "schema": { "type": "integer", "default": 128 } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "level",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 128
+            }
+          },
           {
             "name": "option",
             "required": false,
-            "schema": { "type": "object" }
+            "schema": {
+              "type": "object"
+            }
           }
         ]
       }
     },
     "/negate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Negate",
         "description": "Inverts the image colors",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/tint": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Tint",
         "description": "Applies a color tint",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "r", "required": true, "schema": { "type": "integer" } },
-          { "name": "g", "required": true, "schema": { "type": "integer" } },
-          { "name": "b", "required": true, "schema": { "type": "integer" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "r",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "g",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "b",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/modulate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modulate",
         "description": "Adjusts brightness, saturation and hue",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "brightness", "required": false, "schema": { "type": "number" } },
-          { "name": "saturation", "required": false, "schema": { "type": "number" } },
-          { "name": "hue", "required": false, "schema": { "type": "number" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brightness",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "saturation",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "hue",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/blur": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Blur",
         "description": "Applies a blur effect",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "radius", "required": false, "schema": { "type": "number" } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
         ]
       }
     },
     "/sharpen": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sharpen",
         "description": "Sharpens the image",
-        "parameters": [{ "name": "content", "required": true, "schema": { "type": "string" } }]
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/toFormat": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "To Format",
         "description": "Converts the image to a different format",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "format",
             "required": true,
             "description": "jpeg, png, webp, avif",
-            "schema": { "type": "string", "enum": ["jpeg", "png", "webp", "avif"] }
+            "schema": {
+              "type": "string",
+              "enum": [
+                "jpeg",
+                "png",
+                "webp",
+                "avif"
+              ]
+            }
           }
         ]
       }
     },
     "/jpeg": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "JPEG",
         "description": "Exports the image as JPEG",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "quality", "required": false, "schema": { "type": "integer", "default": 80 } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 80
+            }
+          }
         ]
       }
     },
     "/png": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "PNG",
         "description": "Exports the image as PNG",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "compressionLevel",
             "required": false,
-            "schema": { "type": "integer", "default": 6 }
+            "schema": {
+              "type": "number",
+              "default": 6
+            }
           }
         ]
       }
     },
     "/webp": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "WebP",
         "description": "Exports the image as WebP",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "quality", "required": false, "schema": { "type": "integer", "default": 80 } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 80
+            }
+          }
         ]
       }
     },
     "/avif": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "AVIF",
         "description": "Exports the image as AVIF",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
-          { "name": "quality", "required": false, "schema": { "type": "integer", "default": 50 } }
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 50
+            }
+          }
         ]
       }
     },
     "/composite": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Composite",
         "description": "Overlays other images (e.g. watermark)",
         "parameters": [
-          { "name": "content", "required": true, "schema": { "type": "string" } },
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "overlays",
             "required": true,
@@ -278,11 +591,21 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "input": { "type": "string" },
-                  "top": { "type": "integer" },
-                  "left": { "type": "integer" }
+                  "input": {
+                    "type": "string"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  }
                 },
-                "required": ["input", "top", "left"]
+                "required": [
+                  "input",
+                  "top",
+                  "left"
+                ]
               }
             }
           }

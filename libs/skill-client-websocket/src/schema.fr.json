@@ -10,7 +10,11 @@
   "paths": {
     "/connect": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Connexion Websocket",
         "parameters": [
           {
@@ -28,7 +32,7 @@
             "required": false,
             "description": "Intervalle de temps entre chaque réessai de connexion",
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
@@ -37,7 +41,7 @@
             "required": false,
             "description": "Nombre maximum de réessais de connexion",
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
@@ -94,7 +98,11 @@
     },
     "/send": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Envoi de message",
         "parameters": [
           {
@@ -121,7 +129,11 @@
     },
     "/close": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Fermeture Websocket",
         "parameters": [
           {

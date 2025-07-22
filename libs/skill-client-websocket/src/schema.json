@@ -10,7 +10,11 @@
   "paths": {
     "/connect": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Websocket server connection",
         "parameters": [
           {
@@ -28,7 +32,7 @@
             "required": false,
             "description": "Time interval between each connection retry",
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
@@ -37,7 +41,7 @@
             "required": false,
             "description": "Maximum number of connection retries",
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
@@ -93,7 +97,11 @@
     },
     "/send": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Send message",
         "parameters": [
           {
@@ -120,7 +128,11 @@
     },
     "/close": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Close Websocket",
         "parameters": [
           {
