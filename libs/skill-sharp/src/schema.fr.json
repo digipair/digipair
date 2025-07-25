@@ -209,6 +209,24 @@
         ]
       }
     },
+    "/autoOrient": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Orientation automatique",
+        "description": "Corrige l’orientation de l’image en fonction des métadonnées EXIF.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/grayscale": {
       "post": {
         "tags": [

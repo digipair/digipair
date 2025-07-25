@@ -76,6 +76,13 @@ class SharpService {
     return this.toBase64(image, mimeType);
   }
 
+  async autoOrient(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { content } = params;
+    const { image, mimeType } = await this.loadImage(content);
+    image.autoOrient();
+    return this.toBase64(image, mimeType);
+  }
+
   async grayscale(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { content } = params;
     const { image, mimeType } = await this.loadImage(content);
@@ -206,6 +213,9 @@ export const flip = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const flop = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new SharpService().flop(params, pinsSettingsList, context);
+
+export const autoOrient = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new SharpService().autoOrient(params, pinsSettingsList, context);
 
 export const grayscale = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new SharpService().grayscale(params, pinsSettingsList, context);

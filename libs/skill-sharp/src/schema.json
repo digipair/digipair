@@ -209,6 +209,24 @@
         ]
       }
     },
+    "/autoOrient": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Auto Orient",
+        "description": "Automatically orients the image based on EXIF data",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/grayscale": {
       "post": {
         "tags": [
