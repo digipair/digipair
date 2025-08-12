@@ -43,6 +43,37 @@
             "schema": { "type": "object" }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse AWS S3 PutObjectCommand",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ETag": {
+                      "type": "string",
+                      "description": "Étiquette d'entité pour l'objet téléchargé"
+                    },
+                    "ServerSideEncryption": {
+                      "type": "string",
+                      "description": "Chiffrement côté serveur utilisé"
+                    },
+                    "VersionId": {
+                      "type": "string",
+                      "description": "ID de version de l'objet (si le versioning est activé)"
+                    }
+                  },
+                  "example": {
+                    "ETag": "\"1234567890abcdef1234567890abcdef\"",
+                    "ServerSideEncryption": "AES256",
+                    "VersionId": "abc123def456"
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -74,6 +105,20 @@
             "schema": { "type": "object" }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Fichier téléchargé en data URL base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Contenu du fichier en data URL base64 avec type MIME",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..."
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -105,6 +150,32 @@
             "schema": { "type": "object" }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse AWS S3 DeleteObjectCommand",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteMarker": {
+                      "type": "boolean",
+                      "description": "Si un marqueur de suppression a été créé"
+                    },
+                    "VersionId": {
+                      "type": "string",
+                      "description": "ID de version du marqueur de suppression"
+                    }
+                  },
+                  "example": {
+                    "DeleteMarker": false,
+                    "VersionId": "abc123def456"
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -136,6 +207,71 @@
             "schema": { "type": "object" }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse AWS S3 ListObjectsV2Command",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "IsTruncated": {
+                      "type": "boolean",
+                      "description": "Si la réponse est tronquée"
+                    },
+                    "Contents": {
+                      "type": "array",
+                      "description": "Liste des objets dans le bucket",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Key": {
+                            "type": "string",
+                            "description": "Clé de l'objet (chemin)"
+                          },
+                          "LastModified": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date de dernière modification"
+                          },
+                          "ETag": {
+                            "type": "string",
+                            "description": "Étiquette d'entité"
+                          },
+                          "Size": {
+                            "type": "number",
+                            "description": "Taille de l'objet en octets"
+                          },
+                          "StorageClass": {
+                            "type": "string",
+                            "description": "Classe de stockage"
+                          }
+                        }
+                      }
+                    },
+                    "KeyCount": {
+                      "type": "number",
+                      "description": "Nombre de clés retournées"
+                    }
+                  },
+                  "example": {
+                    "IsTruncated": false,
+                    "Contents": [
+                      {
+                        "Key": "dossier/image.jpg",
+                        "LastModified": "2023-01-15T10:30:00Z",
+                        "ETag": "\"abc123def456\"",
+                        "Size": 2048,
+                        "StorageClass": "STANDARD"
+                      }
+                    ],
+                    "KeyCount": 1
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

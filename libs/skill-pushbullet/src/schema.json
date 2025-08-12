@@ -59,7 +59,48 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SMS sending result from Pushbullet API",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "iden": {
+                      "type": "string",
+                      "description": "Unique identifier for the sent text"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of the response (always 'text')"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Direction of the message (outgoing/incoming)"
+                    },
+                    "timestamp": {
+                      "type": "number",
+                      "description": "Unix timestamp when the message was sent"
+                    },
+                    "addresses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of recipient phone numbers"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The sent message content"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

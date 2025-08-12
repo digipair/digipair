@@ -59,7 +59,43 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Session HeyGen créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Données de session HeyGen avec ID de session et détails de connexion",
+                  "properties": {
+                    "session_id": {
+                      "type": "string",
+                      "description": "Identifiant unique de session"
+                    },
+                    "sdp": {
+                      "type": "object",
+                      "description": "Données Session Description Protocol"
+                    },
+                    "ice_servers": {
+                      "type": "array",
+                      "description": "Configuration des serveurs ICE"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Paramètres d'avatar ou de voix invalides"
+          },
+          "401": {
+            "description": "Non autorisé - Clé API invalide ou manquante"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API HeyGen"
+          }
+        }
       }
     },
     "/handleICE": {
@@ -104,7 +140,32 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Candidat ICE traité avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Confirmation de traitement ICE depuis l'API HeyGen"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - ID de session ou données de candidat invalides"
+          },
+          "401": {
+            "description": "Non autorisé - Clé API invalide ou manquante"
+          },
+          "404": {
+            "description": "Non trouvé - Session non trouvée"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API HeyGen"
+          }
+        }
       }
     },
     "/startSession": {
@@ -149,7 +210,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Session HeyGen démarrée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Confirmation de démarrage de session avec détails de streaming",
+                  "properties": {
+                    "session_id": {
+                      "type": "string",
+                      "description": "Identifiant de session active"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Statut de la session"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - ID de session ou données SDP invalides"
+          },
+          "401": {
+            "description": "Non autorisé - Clé API invalide ou manquante"
+          },
+          "404": {
+            "description": "Non trouvé - Session non trouvée"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API HeyGen"
+          }
+        }
       }
     },
     "/talk": {
@@ -194,7 +290,46 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Parole de l'avatar générée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Confirmation de génération de parole avec détails de tâche",
+                  "properties": {
+                    "task_id": {
+                      "type": "string",
+                      "description": "Identifiant de tâche de parole"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Statut de la tâche"
+                    },
+                    "duration": {
+                      "type": "number",
+                      "description": "Durée estimée de la parole"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - ID de session ou contenu textuel invalide"
+          },
+          "401": {
+            "description": "Non autorisé - Clé API invalide ou manquante"
+          },
+          "404": {
+            "description": "Non trouvé - Session non trouvée ou inactive"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API HeyGen"
+          }
+        }
       }
     },
     "/stop": {
@@ -230,7 +365,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Session HeyGen arrêtée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Confirmation d'arrêt de session",
+                  "properties": {
+                    "session_id": {
+                      "type": "string",
+                      "description": "Identifiant de session arrêtée"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Statut final de la session"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - ID de session invalide"
+          },
+          "401": {
+            "description": "Non autorisé - Clé API invalide ou manquante"
+          },
+          "404": {
+            "description": "Non trouvé - Session non trouvée"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API HeyGen"
+          }
+        }
       }
     }
   },

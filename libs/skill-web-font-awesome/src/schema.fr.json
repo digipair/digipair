@@ -42,7 +42,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Élément d'icône Font Awesome rendu avec succès",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "Élément HTML contenant l'icône Font Awesome",
+                  "example": "<digipair-font-awesome-icon name=\"heart\" category=\"solid\"><i class=\"fa-solid fa-heart\"></i></digipair-font-awesome-icon>"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

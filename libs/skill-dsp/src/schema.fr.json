@@ -32,7 +32,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIModelInstance"
+                },
+                "example": {
+                  "name": "gpt-4o-mini",
+                  "config": {},
+                  "options": {}
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelOpenAI": {
@@ -86,7 +103,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIOpenAIModelInstance"
+                },
+                "example": {
+                  "apiKey": "sk-...",
+                  "apiURL": "https://api.openai.com/v1",
+                  "modelInfo": {},
+                  "config": {
+                    "model": "gpt-4o-mini"
+                  },
+                  "supportFor": {
+                    "functions": true,
+                    "streaming": true,
+                    "hasThinkingBudget": false,
+                    "hasShowThoughts": false
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelAzureOpenAi": {
@@ -149,7 +192,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIAzureOpenAIModelInstance"
+                },
+                "example": {
+                  "apiKey": "votre-clé-api-azure",
+                  "resourceName": "votre-ressource-azure",
+                  "deploymentName": "votre-déploiement",
+                  "version": "2023-05-15",
+                  "config": {},
+                  "options": {}
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelOllama": {
@@ -203,7 +266,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIOllamaModelInstance"
+                },
+                "example": {
+                  "model": "llama2",
+                  "url": "http://localhost:11434/v1",
+                  "apiKey": null,
+                  "config": {},
+                  "options": {}
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/generate": {
@@ -275,7 +357,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationResult"
+                },
+                "example": {
+                  "text": "Texte de réponse généré",
+                  "data": {
+                    "champ1": "valeur extraite 1",
+                    "champ2": "valeur extraite 2"
+                  },
+                  "functions": [],
+                  "reasoning": "Processus de raisonnement étape par étape"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/chainOfThought": {
@@ -347,7 +450,32 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChainOfThoughtResult"
+                },
+                "example": {
+                  "text": "Réponse de chaîne de pensée",
+                  "data": {
+                    "raisonnement": "Étapes de raisonnement détaillées",
+                    "conclusion": "Conclusion finale"
+                  },
+                  "thoughts": [
+                    "Première pensée",
+                    "Deuxième pensée",
+                    "Pensée finale"
+                  ],
+                  "functions": []
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/agent": {
@@ -449,7 +577,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/AgentResult"
+                    },
+                    {
+                      "$ref": "#/components/schemas/AxAgentInstance"
+                    }
+                  ]
+                },
+                "example": {
+                  "text": "Réponse de l'agent",
+                  "data": {
+                    "resultat_tache": "Tâche terminée avec succès",
+                    "actions_effectuees": ["action1", "action2"]
+                  },
+                  "agents_used": ["agent_aide_1"],
+                  "functions": []
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -477,6 +633,219 @@
           }
         },
         "required": ["name", "description", "parameters", "func"]
+      },
+      "AxAIModelInstance": {
+        "type": "object",
+        "description": "Instance de modèle AxAI générique",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du modèle"
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration du modèle"
+          },
+          "options": {
+            "type": "object",
+            "description": "Options du modèle"
+          }
+        }
+      },
+      "AxAIOpenAIModelInstance": {
+        "type": "object",
+        "description": "Instance de modèle OpenAI",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "Clé API OpenAI"
+          },
+          "apiURL": {
+            "type": "string",
+            "description": "URL de l'API OpenAI"
+          },
+          "modelInfo": {
+            "type": "object",
+            "description": "Informations du modèle"
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration du modèle"
+          },
+          "supportFor": {
+            "type": "object",
+            "description": "Fonctionnalités supportées"
+          }
+        }
+      },
+      "AxAIAzureOpenAIModelInstance": {
+        "type": "object",
+        "description": "Instance de modèle Azure OpenAI",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "Clé API Azure OpenAI"
+          },
+          "resourceName": {
+            "type": "string",
+            "description": "Nom de la ressource Azure"
+          },
+          "deploymentName": {
+            "type": "string",
+            "description": "Nom du déploiement"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version de l'API"
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration du modèle"
+          },
+          "options": {
+            "type": "object",
+            "description": "Options du modèle"
+          }
+        }
+      },
+      "AxAIOllamaModelInstance": {
+        "type": "object",
+        "description": "Instance de modèle Ollama",
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Nom du modèle"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL du serveur Ollama"
+          },
+          "apiKey": {
+            "type": ["string", "null"],
+            "description": "Clé API (si requise)"
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration du modèle"
+          },
+          "options": {
+            "type": "object",
+            "description": "Options du modèle"
+          }
+        }
+      },
+      "GenerationResult": {
+        "type": "object",
+        "description": "Résultat de génération DSP",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Texte généré"
+          },
+          "data": {
+            "type": "object",
+            "description": "Données structurées extraites"
+          },
+          "functions": {
+            "type": "array",
+            "description": "Appels de fonction effectués pendant la génération",
+            "items": {
+              "type": "object"
+            }
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Processus de raisonnement"
+          }
+        }
+      },
+      "ChainOfThoughtResult": {
+        "type": "object",
+        "description": "Résultat de chaîne de pensée DSP",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Texte généré avec raisonnement"
+          },
+          "data": {
+            "type": "object",
+            "description": "Données structurées extraites"
+          },
+          "thoughts": {
+            "type": "array",
+            "description": "Étapes de la chaîne de pensée",
+            "items": {
+              "type": "string"
+            }
+          },
+          "functions": {
+            "type": "array",
+            "description": "Appels de fonction effectués pendant la génération",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "AgentResult": {
+        "type": "object",
+        "description": "Résultat d'exécution d'agent",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Texte de réponse de l'agent"
+          },
+          "data": {
+            "type": "object",
+            "description": "Données de résultat de tâche"
+          },
+          "agents_used": {
+            "type": "array",
+            "description": "Autres agents utilisés dans l'exécution",
+            "items": {
+              "type": "string"
+            }
+          },
+          "functions": {
+            "type": "array",
+            "description": "Appels de fonction effectués pendant l'exécution",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "AxAgentInstance": {
+        "type": "object",
+        "description": "Instance d'agent (quand forward=false)",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de l'agent"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description de l'agent"
+          },
+          "signature": {
+            "type": "string",
+            "description": "Signature de l'agent"
+          },
+          "functions": {
+            "type": "array",
+            "description": "Fonctions disponibles",
+            "items": {
+              "$ref": "#/components/schemas/Function"
+            }
+          },
+          "agents": {
+            "type": "array",
+            "description": "Sous-agents",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
       }
     }
   },

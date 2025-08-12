@@ -104,7 +104,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "12345",
+                  "displayName": "Sample Resource",
+                  "createdDateTime": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/create": {
@@ -194,7 +220,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "created-resource-id",
+                  "displayName": "Created Resource",
+                  "status": "active"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/read": {
@@ -275,7 +327,36 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "resource-id",
+                  "displayName": "Retrieved Resource",
+                  "properties": {
+                    "value1": "data1",
+                    "value2": "data2"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/update": {
@@ -365,7 +446,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "updated-resource-id",
+                  "displayName": "Updated Resource",
+                  "modifiedDateTime": "2023-01-02T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/partialUpdate": {
@@ -455,7 +562,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "partially-updated-resource-id",
+                  "displayName": "Partially Updated Resource",
+                  "updatedProperties": ["displayName", "description"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/remove": {
@@ -536,7 +669,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                },
+                "example": {}
+              }
+            }
+          }
+        }
       }
     }
   },

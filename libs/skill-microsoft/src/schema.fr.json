@@ -104,7 +104,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "12345",
+                  "displayName": "Ressource exemple",
+                  "createdDateTime": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/create": {
@@ -194,7 +220,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "12345",
+                  "displayName": "Ressource exemple",
+                  "createdDateTime": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/read": {
@@ -275,7 +327,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "12345",
+                  "displayName": "Ressource exemple",
+                  "createdDateTime": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/update": {
@@ -365,7 +443,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "12345",
+                  "displayName": "Ressource exemple",
+                  "createdDateTime": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/partialUpdate": {
@@ -455,7 +559,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "12345",
+                  "displayName": "Ressource exemple",
+                  "createdDateTime": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/remove": {
@@ -536,7 +666,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                },
+                "example": {
+                  "id": "12345",
+                  "displayName": "Ressource exemple",
+                  "createdDateTime": "2023-01-01T00:00:00Z"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

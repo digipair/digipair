@@ -113,7 +113,81 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse du chatbot préparée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assistant": {
+                      "type": "string",
+                      "description": "Réponse de l'assistant",
+                      "example": "Bonjour ! Comment puis-je vous aider aujourd'hui ?"
+                    },
+                    "command": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Commandes préparées",
+                      "example": []
+                    },
+                    "boosts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Boosts disponibles",
+                      "example": []
+                    },
+                    "sources": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Références des sources",
+                      "example": []
+                    },
+                    "logs": {
+                      "type": "object",
+                      "description": "Journaux de débogage",
+                      "example": {}
+                    },
+                    "boost": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Configuration du boost",
+                      "example": null
+                    },
+                    "parent_conversation": {
+                      "type": "string",
+                      "description": "ID de la conversation parente",
+                      "example": "conv_123"
+                    },
+                    "parent_history": {
+                      "type": "string",
+                      "description": "ID du message parent",
+                      "example": "msg_456"
+                    },
+                    "session": {
+                      "type": "string",
+                      "description": "ID de session",
+                      "example": "sess_789"
+                    },
+                    "uuid": {
+                      "type": "string",
+                      "description": "UUID du message",
+                      "example": "uuid_abc123"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/execute": {
@@ -132,7 +206,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Étape exécutée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Résultat de l'étape exécutée",
+                  "example": {
+                    "status": "terminé",
+                    "data": {}
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

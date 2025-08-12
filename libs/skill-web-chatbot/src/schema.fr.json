@@ -42,7 +42,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Interface de chatbot pleine page rendue avec succès",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "Élément HTML contenant l'interface de chatbot pleine page",
+                  "example": "<digipair-chatbot-full code='admin' apiUrl='https://api.example.com'><!-- Interface chatbot pleine page --></digipair-chatbot-full>"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/digipair-chatbot": {
@@ -79,7 +93,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Widget de chatbot rendu avec succès",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "Élément HTML contenant l'interface du widget de chatbot",
+                  "example": "<digipair-chatbot code='admin' apiUrl='https://api.example.com'><!-- Widget chatbot --></digipair-chatbot>"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

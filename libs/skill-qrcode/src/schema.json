@@ -23,7 +23,22 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "QR code successfully generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^data:image\/png;base64,",
+                  "description": "Base64 encoded PNG image of the generated QR code as a data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/decode": {
@@ -41,7 +56,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "QR code successfully decoded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Decoded text/data from the QR code"
+                    },
+                    {
+                      "type": "null",
+                      "description": "No QR code found in the image"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -24,7 +24,63 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Objet des métadonnées de l'image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Largeur de l'image en pixels"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Hauteur de l'image en pixels"
+                    },
+                    "channels": {
+                      "type": "number",
+                      "description": "Nombre de canaux de couleur"
+                    },
+                    "format": {
+                      "type": "string",
+                      "description": "Format de l'image (jpeg, png, webp, etc.)"
+                    },
+                    "space": {
+                      "type": "string",
+                      "description": "Espace colorimétrique (srgb, rgb16, cmyk, etc.)"
+                    },
+                    "density": {
+                      "type": "number",
+                      "description": "Densité de l'image en pixels par pouce"
+                    },
+                    "hasProfile": {
+                      "type": "boolean",
+                      "description": "Si l'image a un profil de couleur intégré"
+                    },
+                    "hasAlpha": {
+                      "type": "boolean",
+                      "description": "Si l'image a un canal alpha"
+                    }
+                  },
+                  "example": {
+                    "width": 1920,
+                    "height": 1080,
+                    "channels": 3,
+                    "format": "jpeg",
+                    "space": "srgb",
+                    "density": 72,
+                    "hasProfile": false,
+                    "hasAlpha": false
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stats": {
@@ -42,7 +98,53 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Objet de statistiques de l'image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "min": {
+                            "type": "number",
+                            "description": "Valeur de pixel minimale"
+                          },
+                          "max": {
+                            "type": "number",
+                            "description": "Valeur de pixel maximale"
+                          },
+                          "sum": {
+                            "type": "number",
+                            "description": "Somme de toutes les valeurs de pixels"
+                          },
+                          "squaresSum": {
+                            "type": "number",
+                            "description": "Somme des valeurs de pixels au carré"
+                          },
+                          "mean": {
+                            "type": "number",
+                            "description": "Valeur moyenne des pixels"
+                          },
+                          "stdev": {
+                            "type": "number",
+                            "description": "Écart-type des valeurs de pixels"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/raw": {
@@ -60,7 +162,20 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Buffer brut de l'image en base64 (sans préfixe data URL)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Buffer brut de l'image encodé en base64"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/resize": {
@@ -609,12 +724,31 @@
               }
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image composite avec superpositions en data URL base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "ImageResponse": {
+        "type": "string",
+        "description": "Image encodée en base64 avec préfixe data URL",
+        "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..."
+      }
+    }
   },
   "x-scene-blocks": {}
 }

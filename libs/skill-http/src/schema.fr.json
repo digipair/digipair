@@ -59,7 +59,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse HTTP réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON quand type=json (par défaut)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte quand type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Réponse encodée en base64 quand type=buffer ou autre"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/create": {
@@ -104,7 +130,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource HTTP créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON quand type=json (par défaut)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte quand type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Réponse encodée en base64 quand type=buffer ou autre"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/read": {
@@ -140,7 +192,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource HTTP lue avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON quand type=json (par défaut)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte quand type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Réponse encodée en base64 quand type=buffer ou autre"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/update": {
@@ -185,7 +263,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource HTTP modifiée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON quand type=json (par défaut)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte quand type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Réponse encodée en base64 quand type=buffer ou autre"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/partialUpdate": {
@@ -230,7 +334,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource HTTP partiellement modifiée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON quand type=json (par défaut)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte quand type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Réponse encodée en base64 quand type=buffer ou autre"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/remove": {
@@ -266,7 +396,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource HTTP supprimée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON quand type=json (par défaut)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte quand type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Réponse encodée en base64 quand type=buffer ou autre"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
 
@@ -324,7 +480,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource HTTP uploadée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON quand type=json (par défaut)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte quand type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Réponse encodée en base64 quand type=buffer ou autre"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -41,7 +41,57 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Reservation details successfully retrieved from Smoobu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Smoobu reservation object with detailed information",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Reservation ID"
+                    },
+                    "arrival": {
+                      "type": "string",
+                      "description": "Arrival date"
+                    },
+                    "departure": {
+                      "type": "string",
+                      "description": "Departure date"
+                    },
+                    "guest_name": {
+                      "type": "string",
+                      "description": "Guest name"
+                    },
+                    "apartment": {
+                      "type": "object",
+                      "description": "Apartment details"
+                    },
+                    "price": {
+                      "type": "number",
+                      "description": "Total price"
+                    }
+                  },
+                  "example": {
+                    "id": "123456",
+                    "arrival": "2024-01-15",
+                    "departure": "2024-01-20",
+                    "guest_name": "John Doe",
+                    "apartment": {
+                      "id": "789",
+                      "name": "Deluxe Suite"
+                    },
+                    "price": 450.00
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sendMessage": {
@@ -86,7 +136,34 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message successfully sent to guest via Smoobu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Smoobu API response for sent message",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Whether message was sent successfully"
+                    },
+                    "message_id": {
+                      "type": "string",
+                      "description": "ID of the sent message"
+                    }
+                  },
+                  "example": {
+                    "success": true,
+                    "message_id": "msg_789123"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getAllReservations": {
@@ -266,7 +343,67 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of reservations successfully retrieved from Smoobu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Paginated list of Smoobu reservations",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "description": "Array of reservation objects",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Reservation ID"
+                          },
+                          "arrival": {
+                            "type": "string",
+                            "description": "Arrival date"
+                          },
+                          "departure": {
+                            "type": "string",
+                            "description": "Departure date"
+                          },
+                          "guest_name": {
+                            "type": "string",
+                            "description": "Guest name"
+                          }
+                        }
+                      }
+                    },
+                    "page": {
+                      "type": "number",
+                      "description": "Current page number"
+                    },
+                    "total": {
+                      "type": "number",
+                      "description": "Total number of reservations"
+                    }
+                  },
+                  "example": {
+                    "data": [
+                      {
+                        "id": "123456",
+                        "arrival": "2024-01-15",
+                        "departure": "2024-01-20",
+                        "guest_name": "John Doe"
+                      }
+                    ],
+                    "page": 1,
+                    "total": 25
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

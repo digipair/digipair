@@ -42,7 +42,31 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Entrées de logs pour la date et le type spécifiés",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LogEntry"
+                  }
+                },
+                "example": [
+                  {
+                    "date": 1640995200000,
+                    "digipair": "example-digipair",
+                    "reasoning": "example-reasoning",
+                    "type": "info",
+                    "message": "Exemple de message de log"
+                  }
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
@@ -70,7 +94,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des dates de logs disponibles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Chaîne de date au format YYYY-MM-DD"
+                  }
+                },
+                "example": ["2024-01-01", "2024-01-02", "2024-01-03"]
+              }
+            }
+          }
+        }
       }
     },
     "/computeDailyConsumption": {
@@ -98,7 +139,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Calcul de la consommation journalière terminé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Opération terminée avec succès"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/cleaning": {
@@ -135,11 +189,68 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nettoyage des anciens logs terminé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Opération terminée avec succès"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "LogEntry": {
+        "type": "object",
+        "description": "Objet d'entrée de log",
+        "properties": {
+          "date": {
+            "type": "number",
+            "description": "Horodatage de l'entrée de log"
+          },
+          "digipair": {
+            "type": "string",
+            "description": "Identifiant du digipair"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Identifiant du raisonnement"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type d'entrée de log (info, error, warning, etc.)"
+          },
+          "message": {
+            "type": "string",
+            "description": "Message du log"
+          },
+          "service": {
+            "type": "string",
+            "description": "Nom du service (pour les logs de consommation)"
+          },
+          "model": {
+            "type": "string",
+            "description": "Nom du modèle (pour les logs de consommation)"
+          },
+          "promptTokens": {
+            "type": "number",
+            "description": "Nombre de tokens de prompt (pour les logs de consommation)"
+          },
+          "completionTokens": {
+            "type": "number",
+            "description": "Nombre de tokens de complétion (pour les logs de consommation)"
+          }
+        },
+        "required": ["date", "digipair", "reasoning"]
+      }
+    }
   }
 }

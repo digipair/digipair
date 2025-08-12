@@ -24,7 +24,63 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image metadata object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Image width in pixels"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Image height in pixels"
+                    },
+                    "channels": {
+                      "type": "number",
+                      "description": "Number of color channels"
+                    },
+                    "format": {
+                      "type": "string",
+                      "description": "Image format (jpeg, png, webp, etc.)"
+                    },
+                    "space": {
+                      "type": "string",
+                      "description": "Color space (srgb, rgb16, cmyk, etc.)"
+                    },
+                    "density": {
+                      "type": "number",
+                      "description": "Image density in pixels per inch"
+                    },
+                    "hasProfile": {
+                      "type": "boolean",
+                      "description": "Whether the image has an embedded color profile"
+                    },
+                    "hasAlpha": {
+                      "type": "boolean",
+                      "description": "Whether the image has an alpha channel"
+                    }
+                  },
+                  "example": {
+                    "width": 1920,
+                    "height": 1080,
+                    "channels": 3,
+                    "format": "jpeg",
+                    "space": "srgb",
+                    "density": 72,
+                    "hasProfile": false,
+                    "hasAlpha": false
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stats": {
@@ -42,7 +98,65 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image statistics object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "min": {
+                            "type": "number",
+                            "description": "Minimum pixel value"
+                          },
+                          "max": {
+                            "type": "number",
+                            "description": "Maximum pixel value"
+                          },
+                          "sum": {
+                            "type": "number",
+                            "description": "Sum of all pixel values"
+                          },
+                          "squaresSum": {
+                            "type": "number",
+                            "description": "Sum of squared pixel values"
+                          },
+                          "mean": {
+                            "type": "number",
+                            "description": "Mean pixel value"
+                          },
+                          "stdev": {
+                            "type": "number",
+                            "description": "Standard deviation of pixel values"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "channels": [
+                      {
+                        "min": 0,
+                        "max": 255,
+                        "sum": 12345678,
+                        "squaresSum": 987654321,
+                        "mean": 128.5,
+                        "stdev": 64.2
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/raw": {
@@ -60,7 +174,21 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Raw image buffer as base64 string (without data URL prefix)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded raw image buffer",
+                  "example": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAA..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/resize": {
@@ -99,7 +227,21 @@
               "type": "object"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Resized image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/rotate": {
@@ -124,7 +266,21 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Rotated image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/extract": {
@@ -170,7 +326,21 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Extracted image region as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/flip": {
@@ -188,7 +358,21 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Vertically flipped image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/flop": {
@@ -206,7 +390,21 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Horizontally flipped image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/autoOrient": {
@@ -224,7 +422,21 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Auto-oriented image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/grayscale": {
@@ -242,7 +454,21 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Grayscale image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/linear": {
@@ -274,7 +500,21 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Linear transformed image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/threshold": {
@@ -307,7 +547,21 @@
               "type": "object"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Thresholded black and white image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/negate": {
@@ -325,7 +579,21 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Color-inverted image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tint": {
@@ -364,7 +632,21 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Color-tinted image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modulate": {
@@ -403,7 +685,21 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Modulated image with adjusted brightness/saturation/hue as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/blur": {
@@ -428,7 +724,21 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Blurred image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sharpen": {
@@ -446,7 +756,21 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Sharpened image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/toFormat": {
@@ -478,7 +802,21 @@
               ]
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Format-converted image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with data URL prefix in the specified format",
+                  "example": "data:image/webp;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/jpeg": {
@@ -504,7 +842,21 @@
               "default": 80
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "JPEG-encoded image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded JPEG image with data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/png": {
@@ -530,7 +882,21 @@
               "default": 6
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "PNG-encoded image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded PNG image with data URL prefix",
+                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChAJ/1y8qywAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/webp": {
@@ -556,7 +922,21 @@
               "default": 80
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "WebP-encoded image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded WebP image with data URL prefix",
+                  "example": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAwAQCdASoBAAEAAUAmJZQAA3AA/v8AAAA="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/avif": {
@@ -582,7 +962,21 @@
               "default": 50
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "AVIF-encoded image as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded AVIF image with data URL prefix",
+                  "example": "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQ=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/composite": {
@@ -627,7 +1021,21 @@
               }
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Composite image with overlays as base64-encoded data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64-encoded image with overlays applied and data URL prefix",
+                  "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH..."
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

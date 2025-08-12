@@ -24,7 +24,56 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "EXIF metadata successfully parsed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tags": {
+                      "type": "object",
+                      "description": "EXIF tags containing camera settings, date/time, GPS coordinates, etc.",
+                      "additionalProperties": true
+                    },
+                    "imageSize": {
+                      "type": "object",
+                      "description": "Image dimensions",
+                      "properties": {
+                        "width": {
+                          "type": "number",
+                          "description": "Image width in pixels"
+                        },
+                        "height": {
+                          "type": "number",
+                          "description": "Image height in pixels"
+                        }
+                      }
+                    },
+                    "thumbnailOffset": {
+                      "type": "number",
+                      "description": "Offset to thumbnail data in bytes"
+                    },
+                    "thumbnailLength": {
+                      "type": "number",
+                      "description": "Length of thumbnail data in bytes"
+                    },
+                    "thumbnailType": {
+                      "type": "number",
+                      "description": "Thumbnail image type"
+                    },
+                    "app1Offset": {
+                      "type": "number",
+                      "description": "Offset to APP1 segment"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

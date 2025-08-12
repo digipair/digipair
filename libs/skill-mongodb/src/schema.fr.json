@@ -32,7 +32,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion à la base de données établie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "client": {
+                      "type": "object",
+                      "description": "Instance du client MongoDB"
+                    },
+                    "database": {
+                      "type": "object",
+                      "description": "Instance de la base de données MongoDB"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/find": {
@@ -80,7 +102,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Tableau de documents correspondant aux critères de recherche",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "Document MongoDB",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Identifiant unique du document"
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/findOne": {
@@ -128,7 +173,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Document unique correspondant aux critères de recherche, ou null si non trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Document MongoDB",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "Identifiant unique du document"
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    {
+                      "type": "null",
+                      "description": "Aucun document trouvé"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/findById": {
@@ -172,11 +245,39 @@
             "required": true,
             "description": "Identifiant de l'élément",
             "schema": {
-              "type": "object"
+              "type": "string"
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Document trouvé par ID, ou null si non trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Document MongoDB",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "Identifiant unique du document"
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    {
+                      "type": "null",
+                      "description": "Aucun document trouvé avec l'ID spécifié"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/insertOne": {
@@ -200,7 +301,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Options d'insertion",
             "schema": {
               "type": "object"
             }
@@ -224,7 +325,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'opération d'insertion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "acknowledged": {
+                      "type": "boolean",
+                      "description": "Indique si l'opération a été reconnue par MongoDB"
+                    },
+                    "insertedId": {
+                      "type": "string",
+                      "description": "L'ObjectId du document inséré"
+                    }
+                  },
+                  "required": ["acknowledged", "insertedId"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/updateOne": {
@@ -248,7 +372,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Options de mise à jour",
             "schema": {
               "type": "object"
             }
@@ -281,7 +405,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'opération de mise à jour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "acknowledged": {
+                      "type": "boolean",
+                      "description": "Indique si l'opération a été reconnue par MongoDB"
+                    },
+                    "matchedCount": {
+                      "type": "number",
+                      "description": "Nombre de documents correspondant au filtre"
+                    },
+                    "modifiedCount": {
+                      "type": "number",
+                      "description": "Nombre de documents effectivement modifiés"
+                    },
+                    "upsertedCount": {
+                      "type": "number",
+                      "description": "Nombre de documents insérés (upsert)"
+                    },
+                    "upsertedId": {
+                      "type": ["string", "null"],
+                      "description": "L'ObjectId du document inséré (upsert), le cas échéant"
+                    }
+                  },
+                  "required": ["acknowledged", "matchedCount", "modifiedCount", "upsertedCount"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/updateById": {
@@ -305,7 +464,7 @@
             "name": "options",
             "summary": "Options",
             "required": false,
-            "description": "Options de recherche",
+            "description": "Options de mise à jour",
             "schema": {
               "type": "object"
             }
@@ -338,7 +497,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'opération de mise à jour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "acknowledged": {
+                      "type": "boolean",
+                      "description": "Indique si l'opération a été reconnue par MongoDB"
+                    },
+                    "matchedCount": {
+                      "type": "number",
+                      "description": "Nombre de documents correspondant au filtre"
+                    },
+                    "modifiedCount": {
+                      "type": "number",
+                      "description": "Nombre de documents effectivement modifiés"
+                    },
+                    "upsertedCount": {
+                      "type": "number",
+                      "description": "Nombre de documents insérés (upsert)"
+                    },
+                    "upsertedId": {
+                      "type": ["string", "null"],
+                      "description": "L'ObjectId du document inséré (upsert), le cas échéant"
+                    }
+                  },
+                  "required": ["acknowledged", "matchedCount", "modifiedCount", "upsertedCount"]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

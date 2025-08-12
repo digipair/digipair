@@ -24,6 +24,20 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Booléen indiquant si le processus a été arrêté avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "True si le processus a été trouvé et arrêté, false si le processus n'a pas été trouvé",
+                  "example": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -33,6 +47,48 @@
         "summary": "Liste des processus",
         "description": "Liste les processus en cours.",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Tableau d'objets d'informations des processus en cours",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Identifiant unique du processus"
+                      },
+                      "digipair": {
+                        "type": "string",
+                        "description": "Identifiant Digipair associé au processus"
+                      },
+                      "reasoning": {
+                        "type": "string",
+                        "description": "Raisonnement ou description du processus"
+                      },
+                      "time": {
+                        "type": "number",
+                        "description": "Horodatage de création du processus"
+                      }
+                    },
+                    "required": ["id", "digipair", "reasoning", "time"]
+                  },
+                  "example": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "digipair": "mon-instance-digipair",
+                      "reasoning": "Traitement de la demande utilisateur pour l'analyse de données",
+                      "time": 1642580400000
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

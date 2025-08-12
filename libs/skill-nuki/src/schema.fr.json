@@ -41,7 +41,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse de déverrouillage de la serrure Nuki",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                },
+                "example": {
+                  "success": true,
+                  "batteryCharging": false,
+                  "operationId": "01234567-89ab-cdef-0123-456789abcdef"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lock": {
@@ -77,12 +94,48 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse de verrouillage de la serrure Nuki",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                },
+                "example": {
+                  "success": true,
+                  "batteryCharging": false,
+                  "operationId": "01234567-89ab-cdef-0123-456789abcdef"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "NukiActionResponse": {
+        "type": "object",
+        "description": "Réponse d'une action de serrure Nuki",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Si l'action a réussi"
+          },
+          "batteryCharging": {
+            "type": "boolean",
+            "description": "Statut de charge de la batterie"
+          },
+          "operationId": {
+            "type": "string",
+            "description": "Identifiant unique de l'opération"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {}
 }

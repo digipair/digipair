@@ -51,7 +51,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Raisonnement démarré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReasoningResult"
+                },
+                "example": {
+                  "success": true,
+                  "result": {
+                    "status": "started",
+                    "reasoning": "example-reasoning",
+                    "digipair": "example-digipair"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/execute": {
@@ -82,7 +102,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Exécution des Pin's terminée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionResult"
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "executed": true,
+                    "results": []
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/keepAlive": {
@@ -91,7 +130,23 @@
         "summary": "Keep-alive",
         "description": "Garder en vie le raisonnement",
         "parameters": [],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Signal keep-alive envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeepAliveResult"
+                },
+                "example": {
+                  "type": "DIGIPAIR_KEEPALIVE",
+                  "status": "alive"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stop": {
@@ -110,7 +165,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Raisonnement arrêté avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StopResult"
+                },
+                "example": {
+                  "type": "DIGIPAIR_STOP",
+                  "value": {},
+                  "status": "stopped"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -256,6 +328,122 @@
           }
         },
         "required": ["name", "summary", "required", "schema"]
+      },
+      "ReasoningResult": {
+        "type": "object",
+        "description": "Résultat de l'exécution de raisonnement",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indique si le raisonnement a été démarré avec succès",
+            "example": true
+          },
+          "result": {
+            "type": "object",
+            "description": "Détails de l'exécution du raisonnement",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Statut actuel du raisonnement",
+                "example": "started"
+              },
+              "reasoning": {
+                "type": "string",
+                "description": "Nom du raisonnement qui a été démarré",
+                "example": "example-reasoning"
+              },
+              "digipair": {
+                "type": "string",
+                "description": "Propriétaire du raisonnement",
+                "example": "example-digipair"
+              }
+            }
+          }
+        }
+      },
+      "ExecutionResult": {
+        "type": "object",
+        "description": "Résultat de l'exécution des Pin's",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indique si l'exécution s'est déroulée avec succès",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "description": "Données retournées par l'exécution",
+            "properties": {
+              "executed": {
+                "type": "boolean",
+                "description": "Indique si l'exécution est terminée",
+                "example": true
+              },
+              "results": {
+                "type": "array",
+                "description": "Résultats des pins exécutés",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "KeepAliveResult": {
+        "type": "object",
+        "description": "Résultat de l'opération keep-alive",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type de la réponse keep-alive",
+            "example": "DIGIPAIR_KEEPALIVE"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut de l'opération keep-alive",
+            "example": "alive"
+          }
+        }
+      },
+      "StopResult": {
+        "type": "object",
+        "description": "Résultat de l'opération d'arrêt",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type de la réponse d'arrêt",
+            "example": "DIGIPAIR_STOP"
+          },
+          "value": {
+            "type": "object",
+            "description": "Valeur retournée lors de l'arrêt du raisonnement",
+            "example": {}
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut de l'opération d'arrêt",
+            "example": "stopped"
+          }
+        }
+      },
+      "TaskResult": {
+        "type": "object",
+        "description": "Résultat de l'exécution de tâche",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indique si l'exécution de la tâche s'est déroulée avec succès",
+            "example": true
+          },
+          "results": {
+            "type": "array",
+            "description": "Résultats de la tâche exécutée",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
       }
     }
   }

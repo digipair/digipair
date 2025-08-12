@@ -24,7 +24,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Notification d'information affichée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - la notification est affichée à l'utilisateur"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/error": {
@@ -43,7 +56,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Notification d'erreur affichée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - la notification d'erreur est affichée à l'utilisateur"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/confirm": {
@@ -86,7 +112,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Dialogue de confirmation affiché et réponse utilisateur traitée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Vrai si l'utilisateur a confirmé, faux si l'utilisateur a annulé",
+                  "example": true
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/alert": {
@@ -105,7 +145,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Notification d'alerte affichée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - l'alerte est affichée à l'utilisateur"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

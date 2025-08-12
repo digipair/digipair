@@ -42,7 +42,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message de log affiché avec succès dans la console et valeur du contexte précédent retournée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Retourne la valeur précédente du contexte d'exécution (passage direct)",
+                  "example": "Valeur du contexte précédent (varie selon le pipeline)"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

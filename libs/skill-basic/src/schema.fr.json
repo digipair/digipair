@@ -10,7 +10,11 @@
   "paths": {
     "/transform": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Transformer la donnée",
         "description": "Transforme une valeur grace aus mécaniques standard de transformation de données du moteur",
         "parameters": [
@@ -36,12 +40,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Données transformées",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "La valeur transformée ou le résultat des actions exécutées"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/setVariable": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Enregistrer la variable",
         "description": "Enregistre la variable dans le contexte de la compétence",
         "parameters": [
@@ -76,12 +97,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Variable enregistrée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "La valeur enregistrée ou le résultat des actions exécutées"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/defer": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Différer l'exécution",
         "description": "Diffère l'exécution d'une action",
         "parameters": [
@@ -107,12 +145,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Action différée programmée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "ID de timeout qui peut être utilisé pour annuler l'action différée",
+                  "example": 123456
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/interval": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Intervalle",
         "description": "Exécute une action à intervalle régulier",
         "parameters": [
@@ -138,12 +194,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Intervalle programmé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "ID d'intervalle qui peut être utilisé pour annuler l'intervalle",
+                  "example": 789012
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stopInterval": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Arrêter l'intervalle",
         "description": "Arrête l'intervalle d'exécution",
         "parameters": [
@@ -157,12 +231,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Intervalle arrêté",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stopDefer": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Arrêter le différé",
         "description": "Arrête le différé d'exécution",
         "parameters": [
@@ -176,12 +268,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Action différée arrêtée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/base64ToBuffer": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Convertir base64 en buffer",
         "description": "Convertit un fichier base64 en buffer",
         "parameters": [
@@ -195,12 +305,32 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Base64 converti en buffer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Objet Buffer contenant les données base64 décodées",
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/trycatch": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Attraper les erreurs",
         "description": "Essaye une action et attrape les erreurs",
         "parameters": [
@@ -229,16 +359,51 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution try-catch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Résultat de l'exécution du bloc try, ou du bloc catch si une erreur s'est produite",
+                  "example": {
+                    "result": "success"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/uuid": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Générer un UUID",
         "description": "Génère un UUID",
         "parameters": [],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "UUID généré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "Un UUID v4 généré aléatoirement",
+                  "example": "550e8400-e29b-41d4-a716-446655440000"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

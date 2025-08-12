@@ -89,7 +89,31 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion SSE établie avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Statut de la connexion",
+                      "example": "connecté"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message de connexion",
+                      "example": "Connexion SSE établie avec succès"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

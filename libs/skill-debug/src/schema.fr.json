@@ -42,7 +42,23 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Retourne la valeur de contexte précédente pour permettre le chaînage"
+                },
+                "example": {
+                  "message": "Entrée de log créée avec succès",
+                  "valeurPrecedente": "toute donnée de contexte précédente"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

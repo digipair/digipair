@@ -42,7 +42,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Material icon element successfully rendered",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "HTML element containing the Google Material icon",
+                  "example": "<digipair-material-icons-icon name=\"favorite\"><span class=\"material-icons\">favorite</span></digipair-material-icons-icon>"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -32,7 +32,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Converted markdown content"
+                },
+                "example": "# Document Title\n\nThis is the converted markdown content from the original file.\n\n## Section 1\n\nSample paragraph with text content."
+              }
+            }
+          }
+        }
       }
     }
   },

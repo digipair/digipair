@@ -60,7 +60,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "OpenAI LLM model instance successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenAIModel"
+                },
+                "example": {
+                  "modelName": "gpt-4o-mini",
+                  "temperature": 0,
+                  "_llmType": "openai",
+                  "streaming": false,
+                  "configuration": {
+                    "baseURL": "https://api.openai.com/v1"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelAzure": {
@@ -124,7 +145,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Azure OpenAI LLM model instance successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AzureOpenAIModel"
+                },
+                "example": {
+                  "deploymentName": "gpt-4",
+                  "temperature": 0,
+                  "_llmType": "azure_openai",
+                  "streaming": false,
+                  "azureOpenAIApiInstanceName": "my-instance",
+                  "openAIApiVersion": "2023-12-01-preview"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/embeddings": {
@@ -179,7 +220,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "OpenAI embeddings model instance successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenAIEmbeddings"
+                },
+                "example": {
+                  "modelName": "text-embedding-3-small",
+                  "_llmType": "openai_embeddings",
+                  "dimensions": 1536,
+                  "configuration": {
+                    "baseURL": "https://api.openai.com/v1"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/embeddingsAzure": {
@@ -243,11 +304,167 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Azure OpenAI embeddings model instance successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AzureOpenAIEmbeddings"
+                },
+                "example": {
+                  "deploymentName": "text-embedding-ada-002",
+                  "_llmType": "azure_openai_embeddings",
+                  "dimensions": 1536,
+                  "azureOpenAIApiInstanceName": "my-instance",
+                  "openAIApiVersion": "2023-12-01-preview"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "OpenAIModel": {
+        "type": "object",
+        "description": "OpenAI LLM model instance",
+        "properties": {
+          "modelName": {
+            "type": "string",
+            "description": "Name of the OpenAI model",
+            "example": "gpt-4o-mini"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "Temperature setting for the model",
+            "example": 0
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Type identifier for the LLM",
+            "example": "openai"
+          },
+          "streaming": {
+            "type": "boolean",
+            "description": "Whether streaming is enabled",
+            "example": false
+          },
+          "configuration": {
+            "type": "object",
+            "description": "Model configuration settings",
+            "properties": {
+              "baseURL": {
+                "type": "string",
+                "description": "Base URL for the OpenAI API",
+                "example": "https://api.openai.com/v1"
+              }
+            }
+          }
+        }
+      },
+      "AzureOpenAIModel": {
+        "type": "object",
+        "description": "Azure OpenAI LLM model instance",
+        "properties": {
+          "deploymentName": {
+            "type": "string",
+            "description": "Name of the Azure OpenAI deployment",
+            "example": "gpt-4"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "Temperature setting for the model",
+            "example": 0
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Type identifier for the LLM",
+            "example": "azure_openai"
+          },
+          "streaming": {
+            "type": "boolean",
+            "description": "Whether streaming is enabled",
+            "example": false
+          },
+          "azureOpenAIApiInstanceName": {
+            "type": "string",
+            "description": "Name of the Azure OpenAI instance",
+            "example": "my-instance"
+          },
+          "openAIApiVersion": {
+            "type": "string",
+            "description": "Version of the Azure OpenAI API",
+            "example": "2023-12-01-preview"
+          }
+        }
+      },
+      "OpenAIEmbeddings": {
+        "type": "object",
+        "description": "OpenAI embeddings model instance",
+        "properties": {
+          "modelName": {
+            "type": "string",
+            "description": "Name of the embeddings model",
+            "example": "text-embedding-3-small"
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Type identifier for the embeddings model",
+            "example": "openai_embeddings"
+          },
+          "dimensions": {
+            "type": "integer",
+            "description": "Dimension of the embedding vectors",
+            "example": 1536
+          },
+          "configuration": {
+            "type": "object",
+            "description": "Embeddings configuration settings",
+            "properties": {
+              "baseURL": {
+                "type": "string",
+                "description": "Base URL for the OpenAI API",
+                "example": "https://api.openai.com/v1"
+              }
+            }
+          }
+        }
+      },
+      "AzureOpenAIEmbeddings": {
+        "type": "object",
+        "description": "Azure OpenAI embeddings model instance",
+        "properties": {
+          "deploymentName": {
+            "type": "string",
+            "description": "Name of the Azure OpenAI deployment",
+            "example": "text-embedding-ada-002"
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Type identifier for the embeddings model",
+            "example": "azure_openai_embeddings"
+          },
+          "dimensions": {
+            "type": "integer",
+            "description": "Dimension of the embedding vectors",
+            "example": 1536
+          },
+          "azureOpenAIApiInstanceName": {
+            "type": "string",
+            "description": "Name of the Azure OpenAI instance",
+            "example": "my-instance"
+          },
+          "openAIApiVersion": {
+            "type": "string",
+            "description": "Version of the Azure OpenAI API",
+            "example": "2023-12-01-preview"
+          }
+        }
+      }
+    }
   }
 }

@@ -23,7 +23,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "URL d'autorisation générée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "URL d'autorisation OAuth2",
+                  "example": "https://provider.com/oauth/authorize?response_type=code&client_id=abc123&redirect_uri=http://localhost:3000/callback&scope=read write"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/authorizationCodeAccessToken": {
@@ -50,7 +64,47 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token d'accès récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "Token d'accès OAuth2",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type de token",
+                      "example": "Bearer"
+                    },
+                    "expires_in": {
+                      "type": "number",
+                      "description": "Temps d'expiration du token en secondes",
+                      "example": 3600
+                    },
+                    "refresh_token": {
+                      "type": "string",
+                      "description": "Token de rafraîchissement pour obtenir de nouveaux tokens d'accès",
+                      "example": "def456ghi789jkl012"
+                    },
+                    "scope": {
+                      "type": "string",
+                      "description": "Portée du token",
+                      "example": "read write"
+                    }
+                  },
+                  "required": ["access_token", "token_type"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/authorizationCodeCreateToken": {
@@ -77,7 +131,55 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Objet token OAuth2 créé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet token OAuth2 avec des méthodes supplémentaires",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "Token d'accès OAuth2"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type de token"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Temps d'expiration du token en secondes"
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "Token de rafraîchissement"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Méthode pour vérifier si le token est expiré"
+                    },
+                    "refresh": {
+                      "type": "string",
+                      "description": "Méthode pour rafraîchir le token"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Méthode pour révoquer le token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/resourceOwnerPasswordAccessToken": {
@@ -104,7 +206,47 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token d'accès Resource Owner Password récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "Token d'accès OAuth2",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type de token",
+                      "example": "Bearer"
+                    },
+                    "expires_in": {
+                      "type": "number",
+                      "description": "Temps d'expiration du token en secondes",
+                      "example": 3600
+                    },
+                    "refresh_token": {
+                      "type": "string",
+                      "description": "Token de rafraîchissement pour obtenir de nouveaux tokens d'accès",
+                      "example": "def456ghi789jkl012"
+                    },
+                    "scope": {
+                      "type": "string",
+                      "description": "Portée du token",
+                      "example": "read write"
+                    }
+                  },
+                  "required": ["access_token", "token_type"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/resourceOwnerPasswordCreateToken": {
@@ -131,7 +273,55 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Objet token Resource Owner Password créé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet token OAuth2 avec des méthodes supplémentaires",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "Token d'accès OAuth2"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type de token"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Temps d'expiration du token en secondes"
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "Token de rafraîchissement"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Méthode pour vérifier si le token est expiré"
+                    },
+                    "refresh": {
+                      "type": "string",
+                      "description": "Méthode pour rafraîchir le token"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Méthode pour révoquer le token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/clientCredentialsAccessToken": {
@@ -158,7 +348,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token d'accès Client Credentials récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "Token d'accès OAuth2",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type de token",
+                      "example": "Bearer"
+                    },
+                    "expires_in": {
+                      "type": "number",
+                      "description": "Temps d'expiration du token en secondes",
+                      "example": 3600
+                    },
+                    "scope": {
+                      "type": "string",
+                      "description": "Portée du token",
+                      "example": "read write"
+                    }
+                  },
+                  "required": ["access_token", "token_type"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/clientCredentialsCreateToken": {
@@ -185,7 +410,47 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Objet token Client Credentials créé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet token OAuth2 avec des méthodes supplémentaires",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "Token d'accès OAuth2"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type de token"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Temps d'expiration du token en secondes"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Méthode pour vérifier si le token est expiré"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Méthode pour révoquer le token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenExpired": {
@@ -203,7 +468,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Statut d'expiration du token vérifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Indique si le token est expiré",
+                  "example": false
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenRefresh": {
@@ -221,7 +500,59 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token rafraîchi avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet token OAuth2 rafraîchi",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "Nouveau token d'accès OAuth2",
+                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9_nouveau"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type de token",
+                          "example": "Bearer"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Temps d'expiration du token en secondes",
+                          "example": 3600
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "Nouveau token de rafraîchissement",
+                          "example": "nouveau_token_rafraichissement_xyz789"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Méthode pour vérifier si le token est expiré"
+                    },
+                    "refresh": {
+                      "type": "string",
+                      "description": "Méthode pour rafraîchir le token"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Méthode pour révoquer le token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenRevoke": {
@@ -248,7 +579,32 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token révoqué avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Résultat de la révocation du token",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indique si la révocation a réussi",
+                      "example": true
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type de token qui a été révoqué",
+                      "example": "access_token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenRevokeAll": {
@@ -266,7 +622,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Tous les tokens révoqués avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Résultat de la révocation de tous les tokens",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indique si la révocation a réussi",
+                      "example": true
+                    },
+                    "revoked_tokens": {
+                      "type": "array",
+                      "description": "Liste des types de tokens révoqués",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": ["access_token", "refresh_token"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

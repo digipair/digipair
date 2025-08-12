@@ -55,7 +55,21 @@
               }
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON editor element successfully rendered",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "HTML element containing the interactive JSON editor interface",
+                  "example": "<digipair-jsoneditor id=\"editor1\" json='{\"key\": \"value\"}'><!-- JSON Editor Interface --></digipair-jsoneditor>"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

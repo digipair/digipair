@@ -42,7 +42,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Font Awesome icon element successfully rendered",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "HTML element containing the Font Awesome icon",
+                  "example": "<digipair-font-awesome-icon name=\"heart\" category=\"solid\"><i class=\"fa-solid fa-heart\"></i></digipair-font-awesome-icon>"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

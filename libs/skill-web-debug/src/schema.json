@@ -42,7 +42,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Log message successfully displayed in console and previous context value returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Returns the previous value from the execution context (passthrough)",
+                  "example": "Previous context value (varies based on pipeline)"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

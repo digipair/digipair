@@ -33,7 +33,59 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Push notification subscription successfully initialized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Push subscription object from the browser's Push API",
+                      "properties": {
+                        "endpoint": {
+                          "type": "string",
+                          "description": "The endpoint URL for the push service"
+                        },
+                        "expirationTime": {
+                          "type": ["number", "null"],
+                          "description": "When the subscription expires"
+                        },
+                        "keys": {
+                          "type": "object",
+                          "properties": {
+                            "p256dh": {
+                              "type": "string",
+                              "description": "Client public key for encryption"
+                            },
+                            "auth": {
+                              "type": "string",
+                              "description": "Client authentication secret"
+                            }
+                          }
+                        }
+                      },
+                      "example": {
+                        "endpoint": "https://fcm.googleapis.com/fcm/send/...",
+                        "expirationTime": null,
+                        "keys": {
+                          "p256dh": "BEl62iUYgUivxIkv69yViA3...",
+                          "auth": "8eDyX_uCN0XRhSbY5hs7Hg"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null",
+                      "description": "Subscription failed (service worker not supported, permissions denied, etc.)"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

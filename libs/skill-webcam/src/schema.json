@@ -69,7 +69,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image captured successfully from webcam",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64 encoded image captured from the webcam",
+                  "example": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
@@ -78,7 +92,28 @@
         "summary": "List of Webcams",
         "description": "Returns the list of webcams present on the system",
         "parameters": [],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of webcams retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Name or identifier of a webcam device"
+                  },
+                  "example": [
+                    "USB2.0 Camera",
+                    "FaceTime HD Camera",
+                    "Microsoft LifeCam HD-3000"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

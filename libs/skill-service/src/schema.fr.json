@@ -24,6 +24,20 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse HTTP envoyée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse Express",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -43,6 +57,20 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Code de statut HTTP défini avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse Express avec statut défini",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -62,6 +90,20 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Headers HTTP définis avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse Express avec headers définis",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

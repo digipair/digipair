@@ -41,7 +41,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nuki lock unlock response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                },
+                "example": {
+                  "success": true,
+                  "batteryCharging": false,
+                  "operationId": "01234567-89ab-cdef-0123-456789abcdef"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lock": {
@@ -77,12 +94,48 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nuki lock lock response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                },
+                "example": {
+                  "success": true,
+                  "batteryCharging": false,
+                  "operationId": "01234567-89ab-cdef-0123-456789abcdef"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "NukiActionResponse": {
+        "type": "object",
+        "description": "Response from Nuki lock action",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the action was successful"
+          },
+          "batteryCharging": {
+            "type": "boolean",
+            "description": "Battery charging status"
+          },
+          "operationId": {
+            "type": "string",
+            "description": "Unique identifier for the operation"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {}
 }

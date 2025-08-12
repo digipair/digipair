@@ -68,7 +68,117 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SMS sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Unique identifier for the message",
+                      "example": "SM1234567890abcdef1234567890abcdef"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "Account SID",
+                      "example": "AC1234567890abcdef1234567890abcdef"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Sender phone number",
+                      "example": "+15551234567"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Recipient phone number",
+                      "example": "+15559876543"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Message content",
+                      "example": "Hello, this is a test message!"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Message status",
+                      "example": "queued"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Creation date",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date sent",
+                      "example": null
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Last update date",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Message direction",
+                      "example": "outbound-api"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error code if any",
+                      "example": null
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error message if any",
+                      "example": null
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Messaging service SID",
+                      "example": null
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Number of media attachments",
+                      "example": "0"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Number of message segments",
+                      "example": "1"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message price",
+                      "example": null
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Price currency",
+                      "example": null
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Resource URI",
+                      "example": "/2010-04-01/Accounts/AC1234567890abcdef1234567890abcdef/Messages/SM1234567890abcdef1234567890abcdef.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sendWhatsapp": {
@@ -131,7 +241,117 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "WhatsApp message sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Unique identifier for the message",
+                      "example": "SM1234567890abcdef1234567890abcdef"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "Account SID",
+                      "example": "AC1234567890abcdef1234567890abcdef"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Sender WhatsApp number",
+                      "example": "whatsapp:+15551234567"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Recipient phone number",
+                      "example": "+15559876543"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Message content",
+                      "example": "Hello, this is a WhatsApp test message!"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Message status",
+                      "example": "queued"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Creation date",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date sent",
+                      "example": null
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Last update date",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Message direction",
+                      "example": "outbound-api"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error code if any",
+                      "example": null
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error message if any",
+                      "example": null
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Messaging service SID",
+                      "example": null
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Number of media attachments",
+                      "example": "0"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Number of message segments",
+                      "example": "1"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message price",
+                      "example": null
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Price currency",
+                      "example": null
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Resource URI",
+                      "example": "/2010-04-01/Accounts/AC1234567890abcdef1234567890abcdef/Messages/SM1234567890abcdef1234567890abcdef.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

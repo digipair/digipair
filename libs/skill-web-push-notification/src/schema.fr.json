@@ -33,7 +33,59 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Abonnement aux notifications push initialisé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Objet d'abonnement push depuis l'API Push du navigateur",
+                      "properties": {
+                        "endpoint": {
+                          "type": "string",
+                          "description": "L'URL du point de terminaison pour le service push"
+                        },
+                        "expirationTime": {
+                          "type": ["number", "null"],
+                          "description": "Moment où l'abonnement expire"
+                        },
+                        "keys": {
+                          "type": "object",
+                          "properties": {
+                            "p256dh": {
+                              "type": "string",
+                              "description": "Clé publique client pour le chiffrement"
+                            },
+                            "auth": {
+                              "type": "string",
+                              "description": "Secret d'authentification client"
+                            }
+                          }
+                        }
+                      },
+                      "example": {
+                        "endpoint": "https://fcm.googleapis.com/fcm/send/...",
+                        "expirationTime": null,
+                        "keys": {
+                          "p256dh": "BEl62iUYgUivxIkv69yViA3...",
+                          "auth": "8eDyX_uCN0XRhSbY5hs7Hg"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null",
+                      "description": "L'abonnement a échoué (service worker non pris en charge, permissions refusées, etc.)"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

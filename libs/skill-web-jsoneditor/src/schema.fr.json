@@ -55,7 +55,21 @@
               }
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Élément d'éditeur JSON rendu avec succès",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "Élément HTML contenant l'interface d'éditeur JSON interactive",
+                  "example": "<digipair-jsoneditor id=\"editor1\" json='{\"key\": \"value\"}'><!-- Interface Éditeur JSON --></digipair-jsoneditor>"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

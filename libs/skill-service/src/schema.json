@@ -24,6 +24,20 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "HTTP response sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Express response object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -43,6 +57,20 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "HTTP status code set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Express response object with status set",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -62,6 +90,20 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "HTTP headers set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Express response object with headers set",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

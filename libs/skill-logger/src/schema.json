@@ -42,7 +42,31 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Log entries for the specified date and type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LogEntry"
+                  }
+                },
+                "example": [
+                  {
+                    "date": 1640995200000,
+                    "digipair": "example-digipair",
+                    "reasoning": "example-reasoning",
+                    "type": "info",
+                    "message": "Log message example"
+                  }
+                ]
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
@@ -70,7 +94,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of available log dates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Date string in YYYY-MM-DD format"
+                  }
+                },
+                "example": ["2024-01-01", "2024-01-02", "2024-01-03"]
+              }
+            }
+          }
+        }
       }
     },
     "/computeDailyConsumption": {
@@ -98,7 +139,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Daily consumption computation completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Operation completed successfully"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/cleaning": {
@@ -135,11 +189,68 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Old logs cleaning completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Operation completed successfully"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "LogEntry": {
+        "type": "object",
+        "description": "Log entry object",
+        "properties": {
+          "date": {
+            "type": "number",
+            "description": "Timestamp of the log entry"
+          },
+          "digipair": {
+            "type": "string",
+            "description": "Digipair identifier"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Reasoning identifier"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of log entry (info, error, warning, etc.)"
+          },
+          "message": {
+            "type": "string",
+            "description": "Log message"
+          },
+          "service": {
+            "type": "string",
+            "description": "Service name (for consumption logs)"
+          },
+          "model": {
+            "type": "string",
+            "description": "Model name (for consumption logs)"
+          },
+          "promptTokens": {
+            "type": "number",
+            "description": "Number of prompt tokens (for consumption logs)"
+          },
+          "completionTokens": {
+            "type": "number",
+            "description": "Number of completion tokens (for consumption logs)"
+          }
+        },
+        "required": ["date", "digipair", "reasoning"]
+      }
+    }
   }
 }

@@ -24,7 +24,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Information notification displayed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - notification is displayed to the user"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/error": {
@@ -43,7 +56,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Error notification displayed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - error notification is displayed to the user"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/confirm": {
@@ -86,7 +112,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation dialog displayed and user response processed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "True if user confirmed, false if user cancelled",
+                  "example": true
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/alert": {
@@ -105,7 +145,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Alert notification displayed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - alert is displayed to the user"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

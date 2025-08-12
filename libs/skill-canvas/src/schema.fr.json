@@ -45,7 +45,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Canvas créé avec les actions de dessin exécutées",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "URL de données du canvas sous forme d'image encodée en base64",
+                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/loadImage": {
@@ -64,7 +78,37 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image chargée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet image chargé pouvant être utilisé avec drawImage",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Largeur de l'image",
+                      "example": 100
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Hauteur de l'image",
+                      "example": 100
+                    },
+                    "src": {
+                      "type": "string",
+                      "description": "Source de l'image",
+                      "example": "data:image/png;base64,..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/drawImage": {
@@ -119,7 +163,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image dessinée sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeRect": {
@@ -165,7 +223,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Contour du rectangle dessiné sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillRect": {
@@ -211,7 +283,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Rectangle plein dessiné sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillText": {
@@ -248,7 +334,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Texte dessiné sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeStyle": {
@@ -267,7 +367,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Style de contour défini",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillStyle": {
@@ -286,7 +400,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Style de remplissage défini",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lineWidth": {
@@ -305,7 +433,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Largeur du trait définie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/measureText": {
@@ -324,7 +466,47 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Mesures du texte",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de métriques du texte",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Largeur du texte",
+                      "example": 42.5
+                    },
+                    "actualBoundingBoxLeft": {
+                      "type": "number",
+                      "description": "Distance du point d'alignement du texte au côté gauche de la boîte englobante",
+                      "example": 0
+                    },
+                    "actualBoundingBoxRight": {
+                      "type": "number",
+                      "description": "Distance du point d'alignement du texte au côté droit de la boîte englobante",
+                      "example": 42.5
+                    },
+                    "fontBoundingBoxAscent": {
+                      "type": "number",
+                      "description": "Distance de la ligne de base horizontale au haut de la boîte englobante de la police",
+                      "example": 12
+                    },
+                    "fontBoundingBoxDescent": {
+                      "type": "number",
+                      "description": "Distance de la ligne de base horizontale au bas de la boîte englobante de la police",
+                      "example": 3
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

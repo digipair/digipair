@@ -45,7 +45,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Canvas created with drawing actions executed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Data URL of the canvas as base64 encoded image",
+                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/loadImage": {
@@ -64,7 +78,37 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image loaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Loaded image object that can be used with drawImage",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Image width",
+                      "example": 100
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Image height",
+                      "example": 100
+                    },
+                    "src": {
+                      "type": "string",
+                      "description": "Image source",
+                      "example": "data:image/png;base64,..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/drawImage": {
@@ -119,7 +163,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeRect": {
@@ -165,7 +223,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Rectangle outline drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillRect": {
@@ -211,7 +283,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Filled rectangle drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillText": {
@@ -248,7 +334,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Text drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeStyle": {
@@ -267,7 +367,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Stroke style set",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillStyle": {
@@ -286,7 +400,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Fill style set",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lineWidth": {
@@ -305,7 +433,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Line width set",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/measureText": {
@@ -324,7 +466,47 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Text measurements",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Text metrics object",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Width of the text",
+                      "example": 42.5
+                    },
+                    "actualBoundingBoxLeft": {
+                      "type": "number",
+                      "description": "Distance from text align point to left side of bounding box",
+                      "example": 0
+                    },
+                    "actualBoundingBoxRight": {
+                      "type": "number",
+                      "description": "Distance from text align point to right side of bounding box",
+                      "example": 42.5
+                    },
+                    "fontBoundingBoxAscent": {
+                      "type": "number",
+                      "description": "Distance from horizontal baseline to top of font bounding box",
+                      "example": 12
+                    },
+                    "fontBoundingBoxDescent": {
+                      "type": "number",
+                      "description": "Distance from horizontal baseline to bottom of font bounding box",
+                      "example": 3
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

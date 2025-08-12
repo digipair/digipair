@@ -42,7 +42,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Formulaire PDF rempli avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Fichier PDF encodé en base64 avec les données de formulaire remplies",
+                  "example": "data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUl0KL0NvdW50IDEKPD4K..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getFields": {
@@ -61,7 +75,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Champs PDF extraits avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet contenant les noms de champs comme clés et leurs valeurs",
+                  "additionalProperties": {
+                    "oneOf": [
+                      {"type": "string"},
+                      {"type": "boolean"}
+                    ]
+                  },
+                  "example": {
+                    "prénom": "Jean",
+                    "nom": "Dupont",
+                    "email": "jean.dupont@exemple.com",
+                    "accepterConditions": true,
+                    "pays": "France"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getSize": {
@@ -80,7 +120,22 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nombre de pages PDF récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "Nombre de pages dans le document PDF",
+                  "minimum": 1,
+                  "example": 5
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

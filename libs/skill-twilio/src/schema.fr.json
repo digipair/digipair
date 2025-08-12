@@ -68,7 +68,117 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SMS envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Identifiant unique du message",
+                      "example": "SM1234567890abcdef1234567890abcdef"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "SID du compte",
+                      "example": "AC1234567890abcdef1234567890abcdef"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Numéro de téléphone expéditeur",
+                      "example": "+15551234567"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Numéro de téléphone destinataire",
+                      "example": "+15559876543"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Contenu du message",
+                      "example": "Bonjour, ceci est un message de test !"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Statut du message",
+                      "example": "queued"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Date de création",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date d'envoi",
+                      "example": null
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Date de dernière mise à jour",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Direction du message",
+                      "example": "outbound-api"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Code d'erreur s'il y en a une",
+                      "example": null
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message d'erreur s'il y en a une",
+                      "example": null
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "SID du service de messagerie",
+                      "example": null
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Nombre de pièces jointes média",
+                      "example": "0"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Nombre de segments du message",
+                      "example": "1"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Prix du message",
+                      "example": null
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Devise du prix",
+                      "example": null
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "URI de la ressource",
+                      "example": "/2010-04-01/Accounts/AC1234567890abcdef1234567890abcdef/Messages/SM1234567890abcdef1234567890abcdef.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sendWhatsapp": {
@@ -131,7 +241,117 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message WhatsApp envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Identifiant unique du message",
+                      "example": "SM1234567890abcdef1234567890abcdef"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "SID du compte",
+                      "example": "AC1234567890abcdef1234567890abcdef"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Numéro WhatsApp expéditeur",
+                      "example": "whatsapp:+15551234567"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Numéro de téléphone destinataire",
+                      "example": "+15559876543"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Contenu du message",
+                      "example": "Bonjour, ceci est un message de test WhatsApp !"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Statut du message",
+                      "example": "queued"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Date de création",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date d'envoi",
+                      "example": null
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Date de dernière mise à jour",
+                      "example": "2023-01-01T12:00:00Z"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Direction du message",
+                      "example": "outbound-api"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Code d'erreur s'il y en a une",
+                      "example": null
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message d'erreur s'il y en a une",
+                      "example": null
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "SID du service de messagerie",
+                      "example": null
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Nombre de pièces jointes média",
+                      "example": "0"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Nombre de segments du message",
+                      "example": "1"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Prix du message",
+                      "example": null
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Devise du prix",
+                      "example": null
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "URI de la ressource",
+                      "example": "/2010-04-01/Accounts/AC1234567890abcdef1234567890abcdef/Messages/SM1234567890abcdef1234567890abcdef.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -41,6 +41,103 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Parsed email message with content and attachments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uid": {
+                      "type": "number",
+                      "description": "Message UID"
+                    },
+                    "seq": {
+                      "type": "number",
+                      "description": "Message sequence number"
+                    },
+                    "envelope": {
+                      "type": "object",
+                      "description": "Email envelope information",
+                      "properties": {
+                        "subject": {
+                          "type": "string",
+                          "description": "Email subject"
+                        },
+                        "from": {
+                          "type": "array",
+                          "description": "From addresses"
+                        },
+                        "to": {
+                          "type": "array",
+                          "description": "To addresses"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Email date"
+                        }
+                      }
+                    },
+                    "contentText": {
+                      "type": "string",
+                      "description": "Plain text content of the email"
+                    },
+                    "contentHtml": {
+                      "type": "string",
+                      "description": "HTML content of the email"
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "description": "Email attachments",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "meta": {
+                            "type": "object",
+                            "description": "Attachment metadata",
+                            "properties": {
+                              "filename": {
+                                "type": "string",
+                                "description": "Attachment filename"
+                              },
+                              "contentType": {
+                                "type": "string",
+                                "description": "MIME content type"
+                              },
+                              "size": {
+                                "type": "number",
+                                "description": "Size in bytes"
+                              }
+                            }
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "Base64-encoded attachment content"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "uid": 123,
+                    "seq": 1,
+                    "envelope": {
+                      "subject": "Test Email",
+                      "from": [{"address": "sender@example.com", "name": "Sender"}],
+                      "to": [{"address": "recipient@example.com", "name": "Recipient"}],
+                      "date": "2023-01-15T10:30:00Z"
+                    },
+                    "contentText": "Hello, this is a test email.",
+                    "contentHtml": "<p>Hello, this is a test email.</p>",
+                    "attachments": []
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -80,6 +177,45 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Array of parsed email messages with content and attachments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ParsedMessage"
+                  },
+                  "example": [
+                    {
+                      "uid": 123,
+                      "seq": 1,
+                      "envelope": {
+                        "subject": "Test Email 1",
+                        "from": [{"address": "sender1@example.com", "name": "Sender 1"}],
+                        "date": "2023-01-15T10:30:00Z"
+                      },
+                      "contentText": "Hello, this is test email 1.",
+                      "attachments": []
+                    },
+                    {
+                      "uid": 124,
+                      "seq": 2,
+                      "envelope": {
+                        "subject": "Test Email 2",
+                        "from": [{"address": "sender2@example.com", "name": "Sender 2"}],
+                        "date": "2023-01-15T11:30:00Z"
+                      },
+                      "contentText": "Hello, this is test email 2.",
+                      "attachments": []
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -218,6 +354,33 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "IMAP service instance with established connection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "IMAP service instance",
+                  "properties": {
+                    "imap": {
+                      "type": "object",
+                      "description": "ImapFlow client instance"
+                    },
+                    "forceClose": {
+                      "type": "boolean",
+                      "description": "Force close flag"
+                    }
+                  },
+                  "example": {
+                    "imap": {},
+                    "forceClose": false
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -254,6 +417,23 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Array of message UIDs matching the search criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "description": "Message UID"
+                  },
+                  "example": [123, 124, 125, 126]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -362,6 +542,35 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Array of mailbox information objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MailboxInfo"
+                  },
+                  "example": [
+                    {
+                      "path": "INBOX",
+                      "name": "INBOX",
+                      "flags": ["\\HasNoChildren"],
+                      "specialUse": null
+                    },
+                    {
+                      "path": "INBOX/Sent",
+                      "name": "Sent",
+                      "flags": ["\\HasNoChildren", "\\Sent"],
+                      "specialUse": "\\Sent"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -1273,7 +1482,107 @@
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "ParsedMessage": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "number",
+            "description": "Message UID"
+          },
+          "seq": {
+            "type": "number",
+            "description": "Message sequence number"
+          },
+          "envelope": {
+            "type": "object",
+            "description": "Email envelope information",
+            "properties": {
+              "subject": {
+                "type": "string",
+                "description": "Email subject"
+              },
+              "from": {
+                "type": "array",
+                "description": "From addresses"
+              },
+              "to": {
+                "type": "array",
+                "description": "To addresses"
+              },
+              "date": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Email date"
+              }
+            }
+          },
+          "contentText": {
+            "type": "string",
+            "description": "Plain text content of the email"
+          },
+          "contentHtml": {
+            "type": "string",
+            "description": "HTML content of the email"
+          },
+          "attachments": {
+            "type": "array",
+            "description": "Email attachments",
+            "items": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "description": "Attachment metadata",
+                  "properties": {
+                    "filename": {
+                      "type": "string",
+                      "description": "Attachment filename"
+                    },
+                    "contentType": {
+                      "type": "string",
+                      "description": "MIME content type"
+                    },
+                    "size": {
+                      "type": "number",
+                      "description": "Size in bytes"
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Base64-encoded attachment content"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MailboxInfo": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Mailbox path"
+          },
+          "name": {
+            "type": "string",
+            "description": "Mailbox name"
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Mailbox flags"
+          },
+          "specialUse": {
+            "type": "string",
+            "description": "Special use attribute"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {}
 }
