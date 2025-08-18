@@ -24,15 +24,6 @@
             }
           },
           {
-            "name": "namespace",
-            "summary": "Namespace",
-            "required": false,
-            "description": "Namespace of the document to update",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "collection",
             "summary": "Collection name",
             "required": false,
@@ -104,15 +95,6 @@
             "summary": "Server address",
             "required": false,
             "description": "Address of the Vespa server",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "namespace",
-            "summary": "Namespace",
-            "required": false,
-            "description": "Namespace of the document to update",
             "schema": {
               "type": "string"
             }
@@ -258,15 +240,6 @@
             }
           },
           {
-            "name": "namespace",
-            "summary": "Namespace",
-            "required": false,
-            "description": "Namespace of the document to update",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "collection",
             "summary": "Collection name",
             "required": false,
@@ -316,15 +289,6 @@
             }
           },
           {
-            "name": "namespace",
-            "summary": "Namespace",
-            "required": false,
-            "description": "Namespace of the document to update",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "collection",
             "summary": "Collection name",
             "required": false,
@@ -340,61 +304,6 @@
             "description": "Filter corresponding to the documents to delete",
             "schema": {
               "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/update": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Update",
-        "description": "Updates a document in the database.",
-        "parameters": [
-          {
-            "name": "baseUrl",
-            "summary": "Server address",
-            "required": false,
-            "description": "Address of the Vespa server",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "namespace",
-            "summary": "Namespace",
-            "required": false,
-            "description": "Namespace of the document to update",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "summary": "ID",
-            "required": true,
-            "description": "ID of the document to update",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "collection",
-            "summary": "Collection name",
-            "required": false,
-            "description": "Name of the collection in which to update the documents",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "fields",
-            "summary": "Fields",
-            "required": true,
-            "description": "Fields to update",
-            "schema": {
-              "type": "object"
             }
           }
         ],

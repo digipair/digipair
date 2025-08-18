@@ -4,9 +4,9 @@ import { PinsSettings } from '@digipair/engine';
 import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/client';
 import { NativeConnection, Worker } from '@temporalio/worker';
 
-import { dataSignal, workflow as workflowJob } from './workflows';
-import { namespace, taskQueue } from './shared';
-import * as activities from './activities';
+import { dataSignal, workflow as workflowJob } from './workflows.js';
+import { namespace, taskQueue } from './shared.js';
+import * as activities from './activities.js';
 
 class TemporalService {
   private client!: WorkflowClient;

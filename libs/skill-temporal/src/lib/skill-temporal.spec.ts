@@ -1,4 +1,4 @@
-import { skillTemporal } from './skill-temporal';
+import { skillTemporal } from './skill-temporal.js';
 
 describe('skillTemporal', () => {
   it('should work', () => {

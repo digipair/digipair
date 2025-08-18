@@ -11,14 +11,14 @@ import {
   AxAIOpenAIBase,
   axModelInfoOpenAI,
   AxGenOut,
-} from '@digipair/ax';
+} from '@ax-llm/ax';
 
 class DspService {
   private async prepareFunctions(functions: AxFunction[], context: any): Promise<AxFunction[]> {
     return await Promise.all(
       functions.map(async (f, i) => ({
         ...f,
-        func: async (params: any) =>
+        func: async params =>
           await executePinsList(
             f.func as any as PinsSettings[],
             { ...context, params },
@@ -65,12 +65,6 @@ class DspService {
       apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
       apiURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       config = { model: 'gpt-4o-mini' },
-      supportFor = {
-        functions: true,
-        streaming: true,
-        hasThinkingBudget: false,
-        hasShowThoughts: false,
-      },
       options,
     } = params;
 
@@ -80,7 +74,6 @@ class DspService {
       modelInfo: axModelInfoOpenAI,
       config,
       options,
-      supportFor,
     });
 
     return modelInstance;
@@ -149,11 +142,7 @@ class DspService {
 
     for await (const item of generator) {
       if (streaming) {
-        await executePinsList(
-          streaming,
-          { ...context, event: item },
-          `${context.__PATH__}.streaming`,
-        );
+        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
       }
 
       if (item.version !== currentVersion) {
@@ -199,11 +188,7 @@ class DspService {
 
     for await (const item of generator) {
       if (streaming) {
-        await executePinsList(
-          streaming,
-          { ...context, event: item },
-          `${context.__PATH__}.streaming`,
-        );
+        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
       }
 
       if (item.version !== currentVersion) {
@@ -271,11 +256,7 @@ class DspService {
 
     for await (const item of generator) {
       if (streaming) {
-        await executePinsList(
-          streaming,
-          { ...context, event: item },
-          `${context.__PATH__}.streaming`,
-        );
+        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
       }
 
       if (item.version !== currentVersion) {

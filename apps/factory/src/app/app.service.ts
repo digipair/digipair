@@ -86,7 +86,7 @@ export class AppService implements OnModuleInit {
         try {
           await this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null, signal);
           skillProcess.remove(id);
-        } catch (error) {
+        } catch (error: any) {
           if (error.type !== 'DIGIPAIR_KEEPALIVE') {
             console.error(error);
             skillProcess.remove(id);
@@ -117,7 +117,7 @@ export class AppService implements OnModuleInit {
     body: any,
     params: string[],
     query: any,
-    method: string,
+    method: string | null,
     headers: any,
     requester: any,
     req: any,
@@ -195,7 +195,7 @@ export class AppService implements OnModuleInit {
       const result = await executePinsList([settings], context, 'reasoning');
 
       return result;
-    } catch (error) {
+    } catch (error: any) {
       if (error.type === 'DIGIPAIR_KEEPALIVE') {
         throw error;
       }
