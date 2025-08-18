@@ -54,7 +54,8 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Fichier PDF encodé en base64 avec les données de formulaire remplies"
+                  "description": "Fichier PDF encodé en base64 avec les données de formulaire remplies",
+                  "example": "data:application/pdf;base64,..."
                 }
               }
             }
@@ -101,11 +102,43 @@
                       }
                     ]
                   }
-                    "prénom": "Jean",
-                  "nom": "Dupont",
-                  "email": "jean.dupont@exemple.com",
-                  "accepterConditions": true,
-                  "pays": "France"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getSize": {
+      "post": {
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
+        "summary": "Nombre de page d'un PDF",
+        "description": "Retourne le nombre de page PDF.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Fichier PDF à analyser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nombre de pages PDF récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "Nombre de pages dans le document PDF",
+                  "minimum": 1
                 }
               }
             }
@@ -114,45 +147,7 @@
       }
     }
   },
-  "/getSize": {
-    "post": {
-      "tags": [
-        "service",
-        "web",
-        "spatial"
-      ],
-      "summary": "Nombre de page d'un PDF",
-      "description": "Retourne le nombre de page PDF.",
-      "parameters": [
-        {
-          "name": "file",
-          "summary": "Fichier",
-          "required": true,
-          "description": "Fichier PDF à analyser",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "x-events": [],
-      "responses": {
-        "200": {
-          "description": "Nombre de pages PDF récupéré avec succès",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "integer",
-                "description": "Nombre de pages dans le document PDF",
-                "minimum": 1
-              }
-            }
-          }
-        }
-      }
-    }
+  "components": {
+    "schemas": {}
   }
-},
-"components": {
-  "schemas": {}
-}
 }

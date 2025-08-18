@@ -43,7 +43,8 @@
                 "schema": {
                   "type": "string",
                   "format": "byte",
-                  "description": "Document Word encodé en base64 avec préfixe de data URL"
+                  "description": "Document Word encodé en base64 avec préfixe de data URL",
+                  "example": "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,..."
                 }
               }
             }

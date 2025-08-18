@@ -73,28 +73,21 @@
                           }
                         }
                       }
-                        "endpoint": "https://fcm.googleapis.com/fcm/send/...",
-                      "expirationTime": null,
-                      "keys": {
-                        "p256dh": "BEl62iUYgUivxIkv69yViA3...",
-                        "auth": "8eDyX_uCN0XRhSbY5hs7Hg"
-                      }
+                    },
+                    {
+                      "type": "null",
+                      "description": "L'abonnement a échoué (service worker non pris en charge, permissions refusées, etc.)"
                     }
-                  },
-                  {
-                    "type": "null",
-                    "description": "L'abonnement a échoué (service worker non pris en charge, permissions refusées, etc.)"
-                  }
-                ]
+                  ]
+                }
               }
             }
           }
         }
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
-},
-"components": {
-  "schemas": {}
-}
 }

@@ -313,12 +313,85 @@
                   "items": {
                     "type": "number"
                   }
-                    72,
-                  101,
-                  108,
-                  108,
-                  111
-                ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trycatch": {
+      "post": {
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
+        "summary": "Try and Catch",
+        "description": "Executes a series of actions and catches any errors.",
+        "parameters": [
+          {
+            "name": "executeTry",
+            "summary": "Execute",
+            "required": true,
+            "description": "Actions to execute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "executeCatch",
+            "summary": "When an error occurs",
+            "required": false,
+            "description": "Actions to execute in case of an error",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Try-catch execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Result of the try block execution, or catch block if an error occurred"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/uuid": {
+      "post": {
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
+        "summary": "Generate a UUID",
+        "description": "Generates a UUID.",
+        "parameters": [],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "UUID generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "A randomly generated UUID v4"
+                }
               }
             }
           }
@@ -326,86 +399,7 @@
       }
     }
   },
-  "/trycatch": {
-    "post": {
-      "tags": [
-        "web",
-        "service",
-        "spatial"
-      ],
-      "summary": "Try and Catch",
-      "description": "Executes a series of actions and catches any errors.",
-      "parameters": [
-        {
-          "name": "executeTry",
-          "summary": "Execute",
-          "required": true,
-          "description": "Actions to execute",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        {
-          "name": "executeCatch",
-          "summary": "When an error occurs",
-          "required": false,
-          "description": "Actions to execute in case of an error",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        }
-      ],
-      "x-events": [],
-      "responses": {
-        "200": {
-          "description": "Try-catch execution result",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "description": "Result of the try block execution, or catch block if an error occurred"
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "/uuid": {
-    "post": {
-      "tags": [
-        "web",
-        "service",
-        "spatial"
-      ],
-      "summary": "Generate a UUID",
-      "description": "Generates a UUID.",
-      "parameters": [],
-      "x-events": [],
-      "responses": {
-        "200": {
-          "description": "UUID generated successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string",
-                "format": "uuid",
-                "description": "A randomly generated UUID v4"
-              }
-            }
-          }
-        }
-      }
-    }
+  "components": {
+    "schemas": {}
   }
-},
-"components": {
-  "schemas": {}
-}
 }

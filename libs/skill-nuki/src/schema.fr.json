@@ -52,9 +52,56 @@
                 "schema": {
                   "$ref": "#/components/schemas/NukiActionResponse"
                 }
-                  "success": true,
-                "batteryCharging": false,
-                "operationId": "01234567-89ab-cdef-0123-456789abcdef"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lock": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Ferme une serrure Nuki",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant de la serrure",
+            "required": true,
+            "description": "Identifiant de la serrure Nuki",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_KEY",
+            "summary": "Clé d'API",
+            "required": false,
+            "description": "Clé d'API Nuki",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_ENDPOINT",
+            "summary": "Endpoint de l'API",
+            "required": false,
+            "description": "Endpoint de l'API Nuki",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse de verrouillage de la serrure Nuki",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                }
               }
             }
           }
@@ -62,82 +109,27 @@
       }
     }
   },
-  "/lock": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Ferme une serrure Nuki",
-      "parameters": [
-        {
-          "name": "id",
-          "summary": "Identifiant de la serrure",
-          "required": true,
-          "description": "Identifiant de la serrure Nuki",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "NUKI_API_KEY",
-          "summary": "Clé d'API",
-          "required": false,
-          "description": "Clé d'API Nuki",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "NUKI_API_ENDPOINT",
-          "summary": "Endpoint de l'API",
-          "required": false,
-          "description": "Endpoint de l'API Nuki",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "x-events": [],
-      "responses": {
-        "200": {
-          "description": "Réponse de verrouillage de la serrure Nuki",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NukiActionResponse"
-              }
-                  "success": true,
-              "batteryCharging": false,
-              "operationId": "01234567-89ab-cdef-0123-456789abcdef"
-            }
+  "components": {
+    "schemas": {
+      "NukiActionResponse": {
+        "type": "object",
+        "description": "Réponse d'une action de serrure Nuki",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Si l'action a réussi"
+          },
+          "batteryCharging": {
+            "type": "boolean",
+            "description": "Statut de charge de la batterie"
+          },
+          "operationId": {
+            "type": "string",
+            "description": "Identifiant unique de l'opération"
           }
         }
       }
     }
-  }
-}
-},
-"components": {
-"schemas": {
-  "NukiActionResponse": {
-    "type": "object",
-    "description": "Réponse d'une action de serrure Nuki",
-    "properties": {
-      "success": {
-        "type": "boolean",
-        "description": "Si l'action a réussi"
-      },
-      "batteryCharging": {
-        "type": "boolean",
-        "description": "Statut de charge de la batterie"
-      },
-      "operationId": {
-        "type": "string",
-        "description": "Identifiant unique de l'opération"
-      }
-    }
-  }
-}
-},
-"x-scene-blocks": {}
+  },
+  "x-scene-blocks": {}
 }

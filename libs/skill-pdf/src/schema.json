@@ -54,7 +54,8 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Base64 encoded PDF file with filled form data"
+                  "description": "Base64 encoded PDF file with filled form data",
+                  "example": "data:application/pdf;base64,..."
                 }
               }
             }
@@ -101,11 +102,43 @@
                       }
                     ]
                   }
-                    "firstName": "John",
-                  "lastName": "Doe",
-                  "email": "john.doe@example.com",
-                  "agreeToTerms": true,
-                  "country": "USA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getSize": {
+      "post": {
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
+        "summary": "Number of pages in a PDF",
+        "description": "Returns the number of pages in a PDF.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "File",
+            "required": true,
+            "description": "PDF file to analyze",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "PDF page count retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "Number of pages in the PDF document",
+                  "minimum": 1
                 }
               }
             }
@@ -114,45 +147,7 @@
       }
     }
   },
-  "/getSize": {
-    "post": {
-      "tags": [
-        "service",
-        "web",
-        "spatial"
-      ],
-      "summary": "Number of pages in a PDF",
-      "description": "Returns the number of pages in a PDF.",
-      "parameters": [
-        {
-          "name": "file",
-          "summary": "File",
-          "required": true,
-          "description": "PDF file to analyze",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "x-events": [],
-      "responses": {
-        "200": {
-          "description": "PDF page count retrieved successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "integer",
-                "description": "Number of pages in the PDF document",
-                "minimum": 1
-              }
-            }
-          }
-        }
-      }
-    }
+  "components": {
+    "schemas": {}
   }
-},
-"components": {
-  "schemas": {}
-}
 }

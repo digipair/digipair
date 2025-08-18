@@ -52,9 +52,56 @@
                 "schema": {
                   "$ref": "#/components/schemas/NukiActionResponse"
                 }
-                  "success": true,
-                "batteryCharging": false,
-                "operationId": "01234567-89ab-cdef-0123-456789abcdef"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lock": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Locks a Nuki lock",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Lock identifier",
+            "required": true,
+            "description": "Identifier of the Nuki lock",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_KEY",
+            "summary": "API key",
+            "required": false,
+            "description": "Nuki API key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "NUKI_API_ENDPOINT",
+            "summary": "API endpoint",
+            "required": false,
+            "description": "Nuki API endpoint",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nuki lock lock response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                }
               }
             }
           }
@@ -62,82 +109,27 @@
       }
     }
   },
-  "/lock": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Locks a Nuki lock",
-      "parameters": [
-        {
-          "name": "id",
-          "summary": "Lock identifier",
-          "required": true,
-          "description": "Identifier of the Nuki lock",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "NUKI_API_KEY",
-          "summary": "API key",
-          "required": false,
-          "description": "Nuki API key",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "NUKI_API_ENDPOINT",
-          "summary": "API endpoint",
-          "required": false,
-          "description": "Nuki API endpoint",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "x-events": [],
-      "responses": {
-        "200": {
-          "description": "Nuki lock lock response",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NukiActionResponse"
-              }
-                  "success": true,
-              "batteryCharging": false,
-              "operationId": "01234567-89ab-cdef-0123-456789abcdef"
-            }
+  "components": {
+    "schemas": {
+      "NukiActionResponse": {
+        "type": "object",
+        "description": "Response from Nuki lock action",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the action was successful"
+          },
+          "batteryCharging": {
+            "type": "boolean",
+            "description": "Battery charging status"
+          },
+          "operationId": {
+            "type": "string",
+            "description": "Unique identifier for the operation"
           }
         }
       }
     }
-  }
-}
-},
-"components": {
-"schemas": {
-  "NukiActionResponse": {
-    "type": "object",
-    "description": "Response from Nuki lock action",
-    "properties": {
-      "success": {
-        "type": "boolean",
-        "description": "Whether the action was successful"
-      },
-      "batteryCharging": {
-        "type": "boolean",
-        "description": "Battery charging status"
-      },
-      "operationId": {
-        "type": "string",
-        "description": "Unique identifier for the operation"
-      }
-    }
-  }
-}
-},
-"x-scene-blocks": {}
+  },
+  "x-scene-blocks": {}
 }

@@ -55,7 +55,8 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "URL de données du canvas sous forme d'image encodée en base64"
+                  "description": "URL de données du canvas sous forme d'image encodée en base64",
+                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
                 }
               }
             }
@@ -101,7 +102,8 @@
                     },
                     "src": {
                       "type": "string",
-                      "description": "Source de l'image"
+                      "description": "Source de l'image",
+                      "example": "data:image/png;base64,..."
                     }
                   }
                 }

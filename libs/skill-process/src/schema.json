@@ -84,23 +84,16 @@
                       "time"
                     ]
                   }
-                    {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
-                    "digipair": "my-digipair-instance",
-                    "reasoning": "Processing user request for data analysis",
-                    "time": 1642580400000
-                  }
-                ]
+                }
               }
             }
           }
-        }
-      },
-      "x-events": []
+        },
+        "x-events": []
+      }
     }
+  },
+  "components": {
+    "schemas": {}
   }
-},
-"components": {
-  "schemas": {}
-}
 }

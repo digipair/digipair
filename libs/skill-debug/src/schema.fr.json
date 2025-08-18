@@ -53,17 +53,14 @@
                 "schema": {
                   "description": "Retourne la valeur de contexte précédente pour permettre le chaînage"
                 }
-                  "message": "Entrée de log créée avec succès",
-                "valeurPrecedente": "toute donnée de contexte précédente"
               }
             }
           }
         }
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
-},
-"components": {
-  "schemas": {}
-}
 }

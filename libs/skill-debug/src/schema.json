@@ -53,17 +53,14 @@
                 "schema": {
                   "description": "Returns the previous context value to allow chaining"
                 }
-                  "message": "Log entry created successfully",
-                "previousValue": "any previous context data"
               }
             }
           }
         }
       }
     }
+  },
+  "components": {
+    "schemas": {}
   }
-},
-"components": {
-  "schemas": {}
-}
 }
