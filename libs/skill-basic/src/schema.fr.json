@@ -153,8 +153,7 @@
               "application/json": {
                 "schema": {
                   "type": "number",
-                  "description": "ID de timeout qui peut être utilisé pour annuler l'action différée",
-                  "example": 123456
+                  "description": "ID de timeout qui peut être utilisé pour annuler l'action différée"
                 }
               }
             }
@@ -202,8 +201,7 @@
               "application/json": {
                 "schema": {
                   "type": "number",
-                  "description": "ID d'intervalle qui peut être utilisé pour annuler l'intervalle",
-                  "example": 789012
+                  "description": "ID d'intervalle qui peut être utilisé pour annuler l'intervalle"
                 }
               }
             }
@@ -239,8 +237,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "Aucune valeur de retour",
-                  "example": null
+                  "description": "Aucune valeur de retour"
                 }
               }
             }
@@ -276,8 +273,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "Aucune valeur de retour",
-                  "example": null
+                  "description": "Aucune valeur de retour"
                 }
               }
             }
@@ -367,38 +363,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Résultat de l'exécution du bloc try, ou du bloc catch si une erreur s'est produite",
-                  "example": {
-                    "result": "success"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/uuid": {
-      "post": {
-        "tags": [
-          "web",
-          "service",
-          "spatial"
-        ],
-        "summary": "Générer un UUID",
-        "description": "Génère un UUID",
-        "parameters": [],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "UUID généré avec succès",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "format": "uuid",
-                  "description": "Un UUID v4 généré aléatoirement",
-                  "example": "550e8400-e29b-41d4-a716-446655440000"
+                  "description": "Résultat de l'exécution du bloc try, ou du bloc catch si une erreur s'est produite""result": "success"
                 }
               }
             }
@@ -407,7 +372,35 @@
       }
     }
   },
-  "components": {
-    "schemas": {}
+  "/uuid": {
+    "post": {
+      "tags": [
+        "web",
+        "service",
+        "spatial"
+      ],
+      "summary": "Générer un UUID",
+      "description": "Génère un UUID",
+      "parameters": [],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "UUID généré avec succès",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Un UUID v4 généré aléatoirement"
+              }
+            }
+          }
+        }
+      }
+    }
   }
+},
+"components": {
+  "schemas": {}
+}
 }

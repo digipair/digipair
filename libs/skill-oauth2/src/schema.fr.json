@@ -10,7 +10,9 @@
   "paths": {
     "/authorizationCodeUrl": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère l'URL OAuth2 Authorization Code",
         "parameters": [
           {
@@ -31,8 +33,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "URL d'autorisation OAuth2",
-                  "example": "https://provider.com/oauth/authorize?response_type=code&client_id=abc123&redirect_uri=http://localhost:3000/callback&scope=read write"
+                  "description": "URL d'autorisation OAuth2"
                 }
               }
             }
@@ -42,7 +43,9 @@
     },
     "/authorizationCodeAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère le token OAuth2 Authorization Code",
         "parameters": [
           {
@@ -75,31 +78,29 @@
                   "properties": {
                     "access_token": {
                       "type": "string",
-                      "description": "Token d'accès OAuth2",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                      "description": "Token d'accès OAuth2"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type de token",
-                      "example": "Bearer"
+                      "description": "Type de token"
                     },
                     "expires_in": {
                       "type": "number",
-                      "description": "Temps d'expiration du token en secondes",
-                      "example": 3600
+                      "description": "Temps d'expiration du token en secondes"
                     },
                     "refresh_token": {
                       "type": "string",
-                      "description": "Token de rafraîchissement pour obtenir de nouveaux tokens d'accès",
-                      "example": "def456ghi789jkl012"
+                      "description": "Token de rafraîchissement pour obtenir de nouveaux tokens d'accès"
                     },
                     "scope": {
                       "type": "string",
-                      "description": "Portée du token",
-                      "example": "read write"
+                      "description": "Portée du token"
                     }
                   },
-                  "required": ["access_token", "token_type"]
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
                 }
               }
             }
@@ -109,7 +110,9 @@
     },
     "/authorizationCodeCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Crée un token OAuth2 Authorization Code",
         "parameters": [
           {
@@ -184,7 +187,9 @@
     },
     "/resourceOwnerPasswordAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère le token OAuth2 Resource Owner Password",
         "parameters": [
           {
@@ -217,31 +222,29 @@
                   "properties": {
                     "access_token": {
                       "type": "string",
-                      "description": "Token d'accès OAuth2",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                      "description": "Token d'accès OAuth2"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type de token",
-                      "example": "Bearer"
+                      "description": "Type de token"
                     },
                     "expires_in": {
                       "type": "number",
-                      "description": "Temps d'expiration du token en secondes",
-                      "example": 3600
+                      "description": "Temps d'expiration du token en secondes"
                     },
                     "refresh_token": {
                       "type": "string",
-                      "description": "Token de rafraîchissement pour obtenir de nouveaux tokens d'accès",
-                      "example": "def456ghi789jkl012"
+                      "description": "Token de rafraîchissement pour obtenir de nouveaux tokens d'accès"
                     },
                     "scope": {
                       "type": "string",
-                      "description": "Portée du token",
-                      "example": "read write"
+                      "description": "Portée du token"
                     }
                   },
-                  "required": ["access_token", "token_type"]
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
                 }
               }
             }
@@ -251,7 +254,9 @@
     },
     "/resourceOwnerPasswordCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Crée un token OAuth2 Resource Owner Password",
         "parameters": [
           {
@@ -326,7 +331,9 @@
     },
     "/clientCredentialsAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère le token OAuth2 Client Credentials",
         "parameters": [
           {
@@ -359,26 +366,25 @@
                   "properties": {
                     "access_token": {
                       "type": "string",
-                      "description": "Token d'accès OAuth2",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                      "description": "Token d'accès OAuth2"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type de token",
-                      "example": "Bearer"
+                      "description": "Type de token"
                     },
                     "expires_in": {
                       "type": "number",
-                      "description": "Temps d'expiration du token en secondes",
-                      "example": 3600
+                      "description": "Temps d'expiration du token en secondes"
                     },
                     "scope": {
                       "type": "string",
-                      "description": "Portée du token",
-                      "example": "read write"
+                      "description": "Portée du token"
                     }
                   },
-                  "required": ["access_token", "token_type"]
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
                 }
               }
             }
@@ -388,7 +394,9 @@
     },
     "/clientCredentialsCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Crée un token OAuth2 Client Credentials",
         "parameters": [
           {
@@ -455,7 +463,9 @@
     },
     "/tokenExpired": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Vérifie si le token est expiré",
         "parameters": [
           {
@@ -476,8 +486,7 @@
               "application/json": {
                 "schema": {
                   "type": "boolean",
-                  "description": "Indique si le token est expiré",
-                  "example": false
+                  "description": "Indique si le token est expiré"
                 }
               }
             }
@@ -487,7 +496,9 @@
     },
     "/tokenRefresh": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Rafraîchit le token",
         "parameters": [
           {
@@ -515,23 +526,19 @@
                       "properties": {
                         "access_token": {
                           "type": "string",
-                          "description": "Nouveau token d'accès OAuth2",
-                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9_nouveau"
+                          "description": "Nouveau token d'accès OAuth2"
                         },
                         "token_type": {
                           "type": "string",
-                          "description": "Type de token",
-                          "example": "Bearer"
+                          "description": "Type de token"
                         },
                         "expires_in": {
                           "type": "number",
-                          "description": "Temps d'expiration du token en secondes",
-                          "example": 3600
+                          "description": "Temps d'expiration du token en secondes"
                         },
                         "refresh_token": {
                           "type": "string",
-                          "description": "Nouveau token de rafraîchissement",
-                          "example": "nouveau_token_rafraichissement_xyz789"
+                          "description": "Nouveau token de rafraîchissement"
                         }
                       }
                     },
@@ -557,7 +564,9 @@
     },
     "/tokenRevoke": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Révoque le token",
         "parameters": [
           {
@@ -591,13 +600,11 @@
                   "properties": {
                     "success": {
                       "type": "boolean",
-                      "description": "Indique si la révocation a réussi",
-                      "example": true
+                      "description": "Indique si la révocation a réussi"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type de token qui a été révoqué",
-                      "example": "access_token"
+                      "description": "Type de token qui a été révoqué"
                     }
                   }
                 }
@@ -609,7 +616,9 @@
     },
     "/tokenRevokeAll": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Révoque tous les tokens",
         "parameters": [
           {
@@ -634,16 +643,14 @@
                   "properties": {
                     "success": {
                       "type": "boolean",
-                      "description": "Indique si la révocation a réussi",
-                      "example": true
+                      "description": "Indique si la révocation a réussi"
                     },
                     "revoked_tokens": {
                       "type": "array",
                       "description": "Liste des types de tokens révoqués",
                       "items": {
                         "type": "string"
-                      },
-                      "example": ["access_token", "refresh_token"]
+                      }
                     }
                   }
                 }

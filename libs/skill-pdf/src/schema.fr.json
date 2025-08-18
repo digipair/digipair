@@ -10,7 +10,11 @@
   "paths": {
     "/fillForm": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Remplir un formulaire de PDF",
         "description": "Remplit un formulaire de PDF avec les valeurs spécifiées.",
         "parameters": [
@@ -50,8 +54,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Fichier PDF encodé en base64 avec les données de formulaire remplies",
-                  "example": "data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUl0KL0NvdW50IDEKPD4K..."
+                  "description": "Fichier PDF encodé en base64 avec les données de formulaire remplies"
                 }
               }
             }
@@ -61,7 +64,11 @@
     },
     "/getFields": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Extraire les champs d'un PDF",
         "description": "Extrait les champs d'un formulaire de PDF.",
         "parameters": [
@@ -86,51 +93,19 @@
                   "description": "Objet contenant les noms de champs comme clés et leurs valeurs",
                   "additionalProperties": {
                     "oneOf": [
-                      {"type": "string"},
-                      {"type": "boolean"}
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      }
                     ]
-                  },
-                  "example": {
-                    "prénom": "Jean",
-                    "nom": "Dupont",
-                    "email": "jean.dupont@exemple.com",
-                    "accepterConditions": true,
-                    "pays": "France"
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getSize": {
-      "post": {
-        "tags": ["service", "web", "spatial"],
-        "summary": "Nombre de page d'un PDF",
-        "description": "Retourne le nombre de page PDF.",
-        "parameters": [
-          {
-            "name": "file",
-            "summary": "Fichier",
-            "required": true,
-            "description": "Fichier PDF à analyser",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Nombre de pages PDF récupéré avec succès",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "description": "Nombre de pages dans le document PDF",
-                  "minimum": 1,
-                  "example": 5
+                    "prénom": "Jean",
+                  "nom": "Dupont",
+                  "email": "jean.dupont@exemple.com",
+                  "accepterConditions": true,
+                  "pays": "France"
                 }
               }
             }
@@ -139,7 +114,45 @@
       }
     }
   },
-  "components": {
-    "schemas": {}
+  "/getSize": {
+    "post": {
+      "tags": [
+        "service",
+        "web",
+        "spatial"
+      ],
+      "summary": "Nombre de page d'un PDF",
+      "description": "Retourne le nombre de page PDF.",
+      "parameters": [
+        {
+          "name": "file",
+          "summary": "Fichier",
+          "required": true,
+          "description": "Fichier PDF à analyser",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Nombre de pages PDF récupéré avec succès",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "description": "Nombre de pages dans le document PDF",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    }
   }
+},
+"components": {
+  "schemas": {}
+}
 }

@@ -10,7 +10,9 @@
   "paths": {
     "/digipair-material-icons-icon": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Icone material",
         "description": "Icone Google Material",
         "parameters": [
@@ -50,8 +52,7 @@
               "text/html": {
                 "schema": {
                   "type": "string",
-                  "description": "Élément HTML contenant l'icône Google Material",
-                  "example": "<digipair-material-icons-icon name=\"favorite\"><span class=\"material-icons\">favorite</span></digipair-material-icons-icon>"
+                  "description": "Élément HTML contenant l'icône Google Material"
                 }
               }
             }

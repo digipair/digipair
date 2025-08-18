@@ -10,7 +10,9 @@
   "paths": {
     "/authorizationCodeUrl": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Authorization Code URL",
         "parameters": [
           {
@@ -31,8 +33,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "OAuth2 authorization URL",
-                  "example": "https://provider.com/oauth/authorize?response_type=code&client_id=abc123&redirect_uri=http://localhost:3000/callback&scope=read write"
+                  "description": "OAuth2 authorization URL"
                 }
               }
             }
@@ -42,7 +43,9 @@
     },
     "/authorizationCodeAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Authorization Code Token",
         "parameters": [
           {
@@ -75,31 +78,29 @@
                   "properties": {
                     "access_token": {
                       "type": "string",
-                      "description": "OAuth2 access token",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                      "description": "OAuth2 access token"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type of token",
-                      "example": "Bearer"
+                      "description": "Type of token"
                     },
                     "expires_in": {
                       "type": "number",
-                      "description": "Token expiration time in seconds",
-                      "example": 3600
+                      "description": "Token expiration time in seconds"
                     },
                     "refresh_token": {
                       "type": "string",
-                      "description": "Refresh token for obtaining new access tokens",
-                      "example": "def456ghi789jkl012"
+                      "description": "Refresh token for obtaining new access tokens"
                     },
                     "scope": {
                       "type": "string",
-                      "description": "Token scope",
-                      "example": "read write"
+                      "description": "Token scope"
                     }
                   },
-                  "required": ["access_token", "token_type"]
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
                 }
               }
             }
@@ -109,7 +110,9 @@
     },
     "/authorizationCodeCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create OAuth2 Authorization Code Token",
         "parameters": [
           {
@@ -184,7 +187,9 @@
     },
     "/resourceOwnerPasswordAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Resource Owner Password Token",
         "parameters": [
           {
@@ -217,31 +222,29 @@
                   "properties": {
                     "access_token": {
                       "type": "string",
-                      "description": "OAuth2 access token",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                      "description": "OAuth2 access token"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type of token",
-                      "example": "Bearer"
+                      "description": "Type of token"
                     },
                     "expires_in": {
                       "type": "number",
-                      "description": "Token expiration time in seconds",
-                      "example": 3600
+                      "description": "Token expiration time in seconds"
                     },
                     "refresh_token": {
                       "type": "string",
-                      "description": "Refresh token for obtaining new access tokens",
-                      "example": "def456ghi789jkl012"
+                      "description": "Refresh token for obtaining new access tokens"
                     },
                     "scope": {
                       "type": "string",
-                      "description": "Token scope",
-                      "example": "read write"
+                      "description": "Token scope"
                     }
                   },
-                  "required": ["access_token", "token_type"]
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
                 }
               }
             }
@@ -251,7 +254,9 @@
     },
     "/resourceOwnerPasswordCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create OAuth2 Resource Owner Password Token",
         "parameters": [
           {
@@ -326,7 +331,9 @@
     },
     "/clientCredentialsAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Client Credentials Token",
         "parameters": [
           {
@@ -359,26 +366,25 @@
                   "properties": {
                     "access_token": {
                       "type": "string",
-                      "description": "OAuth2 access token",
-                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                      "description": "OAuth2 access token"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type of token",
-                      "example": "Bearer"
+                      "description": "Type of token"
                     },
                     "expires_in": {
                       "type": "number",
-                      "description": "Token expiration time in seconds",
-                      "example": 3600
+                      "description": "Token expiration time in seconds"
                     },
                     "scope": {
                       "type": "string",
-                      "description": "Token scope",
-                      "example": "read write"
+                      "description": "Token scope"
                     }
                   },
-                  "required": ["access_token", "token_type"]
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
                 }
               }
             }
@@ -388,7 +394,9 @@
     },
     "/clientCredentialsCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create OAuth2 Client Credentials Token",
         "parameters": [
           {
@@ -455,7 +463,9 @@
     },
     "/tokenExpired": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Check if the token is expired",
         "parameters": [
           {
@@ -476,8 +486,7 @@
               "application/json": {
                 "schema": {
                   "type": "boolean",
-                  "description": "Whether the token is expired",
-                  "example": false
+                  "description": "Whether the token is expired"
                 }
               }
             }
@@ -487,7 +496,9 @@
     },
     "/tokenRefresh": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Refresh the token",
         "parameters": [
           {
@@ -515,23 +526,19 @@
                       "properties": {
                         "access_token": {
                           "type": "string",
-                          "description": "New OAuth2 access token",
-                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9_new"
+                          "description": "New OAuth2 access token"
                         },
                         "token_type": {
                           "type": "string",
-                          "description": "Type of token",
-                          "example": "Bearer"
+                          "description": "Type of token"
                         },
                         "expires_in": {
                           "type": "number",
-                          "description": "Token expiration time in seconds",
-                          "example": 3600
+                          "description": "Token expiration time in seconds"
                         },
                         "refresh_token": {
                           "type": "string",
-                          "description": "New refresh token",
-                          "example": "new_refresh_token_xyz789"
+                          "description": "New refresh token"
                         }
                       }
                     },
@@ -557,7 +564,9 @@
     },
     "/tokenRevoke": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Revoke the token",
         "parameters": [
           {
@@ -591,13 +600,11 @@
                   "properties": {
                     "success": {
                       "type": "boolean",
-                      "description": "Whether the revocation was successful",
-                      "example": true
+                      "description": "Whether the revocation was successful"
                     },
                     "token_type": {
                       "type": "string",
-                      "description": "Type of token that was revoked",
-                      "example": "access_token"
+                      "description": "Type of token that was revoked"
                     }
                   }
                 }
@@ -609,7 +616,9 @@
     },
     "/tokenRevokeAll": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Revoke all tokens",
         "parameters": [
           {
@@ -634,16 +643,14 @@
                   "properties": {
                     "success": {
                       "type": "boolean",
-                      "description": "Whether the revocation was successful",
-                      "example": true
+                      "description": "Whether the revocation was successful"
                     },
                     "revoked_tokens": {
                       "type": "array",
                       "description": "List of revoked token types",
                       "items": {
                         "type": "string"
-                      },
-                      "example": ["access_token", "refresh_token"]
+                      }
                     }
                   }
                 }

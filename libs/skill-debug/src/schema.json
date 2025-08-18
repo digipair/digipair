@@ -10,7 +10,9 @@
   "paths": {
     "/log": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Display in logs",
         "description": "Element for displaying a message in the logs",
         "parameters": [
@@ -50,19 +52,18 @@
               "application/json": {
                 "schema": {
                   "description": "Returns the previous context value to allow chaining"
-                },
-                "example": {
-                  "message": "Log entry created successfully",
-                  "previousValue": "any previous context data"
                 }
+                  "message": "Log entry created successfully",
+                "previousValue": "any previous context data"
               }
             }
           }
         }
       }
     }
-  },
-  "components": {
-    "schemas": {}
   }
+},
+"components": {
+  "schemas": {}
+}
 }

@@ -10,7 +10,9 @@
   "paths": {
     "/information": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche d'une information",
         "description": "Affiche une notification d'information",
         "parameters": [
@@ -42,7 +44,9 @@
     },
     "/error": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche d'une erreur",
         "description": "Affiche une notification d'erreur",
         "parameters": [
@@ -74,7 +78,9 @@
     },
     "/confirm": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche une confirmation",
         "description": "Affiche une notification de confirmation",
         "parameters": [
@@ -120,8 +126,7 @@
               "application/json": {
                 "schema": {
                   "type": "boolean",
-                  "description": "Vrai si l'utilisateur a confirmé, faux si l'utilisateur a annulé",
-                  "example": true
+                  "description": "Vrai si l'utilisateur a confirmé, faux si l'utilisateur a annulé"
                 }
               }
             }
@@ -131,7 +136,9 @@
     },
     "/alert": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche une alerte",
         "description": "Affiche une notification d'alerte",
         "parameters": [

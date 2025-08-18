@@ -110,10 +110,6 @@
                       "description": "Indicateur de fermeture forcée"
                     }
                   }
-                },
-                "example": {
-                  "ws": {},
-                  "cwssForceClose": false
                 }
               }
             }
@@ -157,8 +153,7 @@
               "application/json": {
                 "schema": {
                   "type": "null"
-                },
-                "example": null
+                }
               }
             }
           }
@@ -192,8 +187,7 @@
               "application/json": {
                 "schema": {
                   "type": "null"
-                },
-                "example": null
+                }
               }
             }
           }

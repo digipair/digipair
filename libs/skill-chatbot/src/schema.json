@@ -10,7 +10,9 @@
   "paths": {
     "/answer": {
       "post": {
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Chatbot response",
         "parameters": [
           {
@@ -124,63 +126,53 @@
                   "properties": {
                     "assistant": {
                       "type": "string",
-                      "description": "Assistant's response",
-                      "example": "Hello! How can I help you today?"
+                      "description": "Assistant's response"
                     },
                     "command": {
                       "type": "array",
                       "items": {
                         "type": "object"
                       },
-                      "description": "Prepared commands",
-                      "example": []
+                      "description": "Prepared commands"
                     },
                     "boosts": {
                       "type": "array",
                       "items": {
                         "type": "object"
                       },
-                      "description": "Available boosts",
-                      "example": []
+                      "description": "Available boosts"
                     },
                     "sources": {
                       "type": "array",
                       "items": {
                         "type": "object"
                       },
-                      "description": "Source references",
-                      "example": []
+                      "description": "Source references"
                     },
                     "logs": {
                       "type": "object",
-                      "description": "Debug logs",
-                      "example": {}
+                      "description": "Debug logs"
                     },
                     "boost": {
                       "type": "object",
                       "nullable": true,
-                      "description": "Boost configuration",
-                      "example": null
+                      "description": "Boost configuration"
                     },
                     "parent_conversation": {
                       "type": "string",
-                      "description": "Parent conversation ID",
-                      "example": "conv_123"
+                      "description": "Parent conversation ID"
                     },
                     "parent_history": {
                       "type": "string",
-                      "description": "Parent message ID",
-                      "example": "msg_456"
+                      "description": "Parent message ID"
                     },
                     "session": {
                       "type": "string",
-                      "description": "Session ID",
-                      "example": "sess_789"
+                      "description": "Session ID"
                     },
                     "uuid": {
                       "type": "string",
-                      "description": "Message UUID",
-                      "example": "uuid_abc123"
+                      "description": "Message UUID"
                     }
                   }
                 }
@@ -192,7 +184,9 @@
     },
     "/execute": {
       "post": {
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Execute a step",
         "description": "Execute a step of a boost",
         "parameters": [
@@ -214,11 +208,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Result of the executed step",
-                  "example": {
-                    "status": "completed",
-                    "data": {}
-                  }
+                  "description": "Result of the executed step"
                 }
               }
             }
@@ -231,7 +221,9 @@
     "schemas": {
       "Step": {
         "type": "object",
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Step",
         "properties": {
           "name": {
@@ -246,11 +238,16 @@
             }
           }
         },
-        "required": ["name", "execute"]
+        "required": [
+          "name",
+          "execute"
+        ]
       },
       "Boost": {
         "type": "object",
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Boost",
         "properties": {
           "prompt": {
@@ -279,7 +276,9 @@
       },
       "ContextParameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Context Parameter",
         "properties": {
           "name": {
@@ -303,7 +302,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   },
@@ -311,7 +315,10 @@
     "/boost": {
       "summary": "Boost",
       "description": "Boost proposed by Digipair",
-      "tags": ["boost", "service"],
+      "tags": [
+        "boost",
+        "service"
+      ],
       "metadata": [
         {
           "name": "standalone",

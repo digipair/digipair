@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activity",
         "description": "Defines an activity",
         "parameters": [
@@ -45,8 +47,7 @@
                 "schema": {
                   "type": "string",
                   "description": "Result of the activity execution"
-                },
-                "example": "Activity completed successfully"
+                }
               }
             }
           }
@@ -55,7 +56,9 @@
     },
     "/sleep": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Wait",
         "parameters": [
           {
@@ -86,8 +89,7 @@
                 "schema": {
                   "type": "string",
                   "description": "Confirmation that sleep duration has been applied"
-                },
-                "example": "1 minute"
+                }
               }
             }
           }
@@ -96,7 +98,9 @@
     },
     "/condition": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Wait condition",
         "description": "Wait condition in a workflow",
         "parameters": [
@@ -128,8 +132,7 @@
                 "schema": {
                   "type": "boolean",
                   "description": "Whether the condition was met before timeout"
-                },
-                "example": true
+                }
               }
             }
           }
@@ -138,7 +141,9 @@
     },
     "/goto": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Go to step",
         "parameters": [
           {
@@ -169,8 +174,7 @@
                 "schema": {
                   "type": "number",
                   "description": "Target step number in the workflow"
-                },
-                "example": 5
+                }
               }
             }
           }
@@ -179,7 +183,9 @@
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop the workflow",
         "description": "Stop the workflow",
         "parameters": [
@@ -211,7 +217,9 @@
     },
     "/push": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send new data to a workflow",
         "description": "Send new data to the workflow",
         "parameters": [
@@ -252,7 +260,9 @@
     },
     "/terminate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop a workflow",
         "description": "Stop a workflow",
         "parameters": [
@@ -284,7 +294,9 @@
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List workflows",
         "description": "List workflows",
         "parameters": [
@@ -309,127 +321,133 @@
                   "items": {
                     "$ref": "#/components/schemas/WorkflowExecutionInfo"
                   }
-                },
-                "example": [
+                }
                   {
-                    "workflowId": "digipair-workflow-test-reasoning-example-id",
-                    "runId": "01234567-89ab-cdef-0123-456789abcdef",
-                    "type": {
-                      "name": "workflow"
-                    },
-                    "status": "Running",
-                    "startTime": "2024-01-15T10:30:00Z",
-                    "taskQueue": "digipair-workflow"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "WorkflowExecutionInfo": {
-        "type": "object",
-        "description": "Information about a Temporal workflow execution",
-        "properties": {
-          "workflowId": {
-            "type": "string",
-            "description": "Unique identifier of the workflow"
-          },
-          "runId": {
-            "type": "string",
-            "description": "Unique identifier of the workflow run"
-          },
-          "type": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Name of the workflow type"
-              }
-            }
-          },
-          "status": {
-            "type": "string",
-            "enum": ["Running", "Completed", "Failed", "Cancelled", "Terminated"],
-            "description": "Current status of the workflow"
-          },
-          "startTime": {
-            "type": "string",
-            "format": "date-time",
-            "description": "When the workflow was started"
-          },
-          "taskQueue": {
-            "type": "string",
-            "description": "Task queue name used by the workflow"
-          }
-        }
-      }
-    }
-  },
-  "x-scene-blocks": {
-    "/workflow": {
-      "summary": "Temporal Workflow",
-      "description": "Execute a Temporal workflow",
-      "tags": ["service"],
-      "metadata": [],
-      "parameters": [
-        {
-          "name": "id",
-          "summary": "ID",
-          "required": true,
-          "description": "Workflow ID",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "steps",
-          "summary": "Execute the following steps",
-          "required": true,
-          "description": "Content of the page",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        {
-          "name": "data",
-          "summary": "Workflow data",
-          "required": false,
-          "description": "Temporal workflow data",
-          "schema": {
-            "type": "object"
-          }
-        },
-        {
-          "name": "options",
-          "summary": "Temporal options",
-          "required": false,
-          "description": "Temporal workflow options",
-          "schema": {
-            "type": "object"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Workflow execution result",
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "The result of the last executed step in the workflow"
-              },
-              "example": "Workflow completed successfully"
+                  "workflowId": "digipair-workflow-test-reasoning-example-id",
+                  "runId": "01234567-89ab-cdef-0123-456789abcdef",
+                  "type": {
+                    "name": "workflow"
+                  },
+                  "status": "Running",
+                  "startTime": "2024-01-15T10:30:00Z",
+                  "taskQueue": "digipair-workflow"
+                }
+              ]
             }
           }
         }
       }
     }
   }
+},
+"components": {
+  "schemas": {
+    "WorkflowExecutionInfo": {
+      "type": "object",
+      "description": "Information about a Temporal workflow execution",
+      "properties": {
+        "workflowId": {
+          "type": "string",
+          "description": "Unique identifier of the workflow"
+        },
+        "runId": {
+          "type": "string",
+          "description": "Unique identifier of the workflow run"
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the workflow type"
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Running",
+            "Completed",
+            "Failed",
+            "Cancelled",
+            "Terminated"
+          ],
+          "description": "Current status of the workflow"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the workflow was started"
+        },
+        "taskQueue": {
+          "type": "string",
+          "description": "Task queue name used by the workflow"
+        }
+      }
+    }
+  }
+},
+"x-scene-blocks": {
+  "/workflow": {
+    "summary": "Temporal Workflow",
+    "description": "Execute a Temporal workflow",
+    "tags": [
+      "service"
+    ],
+    "metadata": [],
+    "parameters": [
+      {
+        "name": "id",
+        "summary": "ID",
+        "required": true,
+        "description": "Workflow ID",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "steps",
+        "summary": "Execute the following steps",
+        "required": true,
+        "description": "Content of the page",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "https://schemas.digipair.ai/pinsSettings"
+          }
+        }
+      },
+      {
+        "name": "data",
+        "summary": "Workflow data",
+        "required": false,
+        "description": "Temporal workflow data",
+        "schema": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "options",
+        "summary": "Temporal options",
+        "required": false,
+        "description": "Temporal workflow options",
+        "schema": {
+          "type": "object"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Workflow execution result",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "The result of the last executed step in the workflow"
+            }
+          }
+        }
+      }
+    }
+  }
+}
 }

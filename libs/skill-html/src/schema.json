@@ -10,7 +10,9 @@
   "paths": {
     "/html2pins": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Convert HTML to Pins",
         "parameters": [
           {
@@ -40,103 +42,49 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PinsList"
-                },
-                "example": [
-                  {
-                    "library": "web",
-                    "element": "div",
-                    "properties": {
-                      "class": "container",
-                      "textContent": "Hello World"
-                    },
-                    "pins": []
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pins2html": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Convert Pins to HTML",
-        "parameters": [
-          {
-            "name": "pins",
-            "summary": "Pins",
-            "required": true,
-            "description": "List of Pins",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "description": "Generated HTML string"
-                },
-                "example": "<section><div class=\"container\">Hello World</div></section>"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/parseHtml": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Parse HTML Code",
-        "parameters": [
-          {
-            "name": "html",
-            "summary": "HTML",
-            "required": true,
-            "description": "HTML Code",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "execute",
-            "summary": "Actions",
-            "required": true,
-            "description": "List of actions to execute",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "Result of executing the pins list on the parsed HTML"
-                },
-                "example": {
-                  "extractedData": "Sample extracted content",
-                  "elements": [
-                    {
-                      "textContent": "Page title",
-                      "attributes": {
-                        "class": "title"
-                      }
-                    }
-                  ]
                 }
+                  {
+                  "library": "web",
+                  "element": "div",
+                  "properties": {
+                    "class": "container",
+                    "textContent": "Hello World"
+                  },
+                  "pins": []
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "/pins2html": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Convert Pins to HTML",
+      "parameters": [
+        {
+          "name": "pins",
+          "summary": "Pins",
+          "required": true,
+          "description": "List of Pins",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "description": "Generated HTML string"
               }
             }
           }
@@ -144,43 +92,103 @@
       }
     }
   },
-  "components": {
-    "schemas": {
-      "PinsList": {
+  "/parseHtml": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Parse HTML Code",
+      "parameters": [
+        {
+          "name": "html",
+          "summary": "HTML",
+          "required": true,
+          "description": "HTML Code",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "execute",
+          "summary": "Actions",
+          "required": true,
+          "description": "List of actions to execute",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Result of executing the pins list on the parsed HTML"
+              }
+                  "extractedData": "Sample extracted content",
+              "elements": [
+                {
+                  "textContent": "Page title",
+                  "attributes": {
+                    "class": "title"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+},
+"components": {
+"schemas": {
+  "PinsList": {
+    "type": "array",
+    "description": "Array of pins objects converted from HTML",
+    "items": {
+      "$ref": "#/components/schemas/PinsObject"
+    }
+  },
+  "PinsObject": {
+    "type": "object",
+    "description": "Individual pins object representing an HTML element",
+    "properties": {
+      "library": {
+        "type": "string",
+        "description": "Library name for the pins element"
+      },
+      "element": {
+        "type": "string",
+        "description": "HTML element tag name"
+      },
+      "properties": {
+        "type": "object",
+        "description": "Element attributes and properties",
+        "additionalProperties": true
+      },
+      "pins": {
         "type": "array",
-        "description": "Array of pins objects converted from HTML",
+        "description": "Child pins objects",
         "items": {
           "$ref": "#/components/schemas/PinsObject"
         }
-      },
-      "PinsObject": {
-        "type": "object",
-        "description": "Individual pins object representing an HTML element",
-        "properties": {
-          "library": {
-            "type": "string",
-            "description": "Library name for the pins element"
-          },
-          "element": {
-            "type": "string",
-            "description": "HTML element tag name"
-          },
-          "properties": {
-            "type": "object",
-            "description": "Element attributes and properties",
-            "additionalProperties": true
-          },
-          "pins": {
-            "type": "array",
-            "description": "Child pins objects",
-            "items": {
-              "$ref": "#/components/schemas/PinsObject"
-            }
-          }
-        },
-        "required": ["library", "element", "properties", "pins"]
       }
-    }
-  },
-  "x-scene-blocks": {}
+    },
+    "required": [
+      "library",
+      "element",
+      "properties",
+      "pins"
+    ]
+  }
+}
+},
+"x-scene-blocks": {}
 }

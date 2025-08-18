@@ -10,7 +10,9 @@
   "paths": {
     "/commit": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Commit GIT",
         "parameters": [
           {
@@ -52,8 +54,7 @@
                   "properties": {
                     "commit": {
                       "type": "string",
-                      "description": "Hash du commit",
-                      "example": "abc123def456"
+                      "description": "Hash du commit"
                     },
                     "summary": {
                       "type": "object",
@@ -83,7 +84,9 @@
     },
     "/push": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Push GIT",
         "parameters": [
           {
@@ -119,8 +122,7 @@
                   "properties": {
                     "repo": {
                       "type": "string",
-                      "description": "Nom du dépôt",
-                      "example": "origin"
+                      "description": "Nom du dépôt"
                     },
                     "ref": {
                       "type": "object",
@@ -143,7 +145,9 @@
     },
     "/show": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Show GIT",
         "parameters": [
           {
@@ -176,8 +180,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Sortie de Git show",
-                  "example": "commit abc123def456\nAuteur: Jean Dupont <jean@example.com>\nDate: Lun Jan 1 00:00:00 2023 +0000\n\n    Commit initial\n\ndiff --git a/file.txt b/file.txt\n..."
+                  "description": "Sortie de Git show"
                 }
               }
             }
@@ -187,7 +190,9 @@
     },
     "/log": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Log GIT",
         "parameters": [
           {

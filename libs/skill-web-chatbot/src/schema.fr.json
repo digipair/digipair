@@ -10,7 +10,9 @@
   "paths": {
     "/digipair-chatbot-full": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Chatbot en pleine page",
         "description": "Affiche une conversation avec un chatbot en pleine page",
         "parameters": [
@@ -50,8 +52,7 @@
               "text/html": {
                 "schema": {
                   "type": "string",
-                  "description": "Élément HTML contenant l'interface de chatbot pleine page",
-                  "example": "<digipair-chatbot-full code='admin' apiUrl='https://api.example.com'><!-- Interface chatbot pleine page --></digipair-chatbot-full>"
+                  "description": "Élément HTML contenant l'interface de chatbot pleine page"
                 }
               }
             }
@@ -61,7 +62,9 @@
     },
     "/digipair-chatbot": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Chatbot",
         "description": "Affiche un chatbot sur une page internet",
         "parameters": [
@@ -101,8 +104,7 @@
               "text/html": {
                 "schema": {
                   "type": "string",
-                  "description": "Élément HTML contenant l'interface du widget de chatbot",
-                  "example": "<digipair-chatbot code='admin' apiUrl='https://api.example.com'><!-- Widget chatbot --></digipair-chatbot>"
+                  "description": "Élément HTML contenant l'interface du widget de chatbot"
                 }
               }
             }

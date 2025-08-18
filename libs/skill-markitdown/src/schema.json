@@ -10,7 +10,9 @@
   "paths": {
     "/convert": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Convert to markdown",
         "parameters": [
           {
@@ -41,8 +43,7 @@
                 "schema": {
                   "type": "string",
                   "description": "Converted markdown content"
-                },
-                "example": "# Document Title\n\nThis is the converted markdown content from the original file.\n\n## Section 1\n\nSample paragraph with text content."
+                }
               }
             }
           }

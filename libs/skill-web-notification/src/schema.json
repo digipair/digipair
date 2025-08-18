@@ -10,7 +10,9 @@
   "paths": {
     "/information": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays an information",
         "description": "Displays an information notification",
         "parameters": [
@@ -42,7 +44,9 @@
     },
     "/error": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays an error",
         "description": "Displays an error notification",
         "parameters": [
@@ -74,7 +78,9 @@
     },
     "/confirm": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays a confirmation",
         "description": "Displays a confirmation notification",
         "parameters": [
@@ -120,8 +126,7 @@
               "application/json": {
                 "schema": {
                   "type": "boolean",
-                  "description": "True if user confirmed, false if user cancelled",
-                  "example": true
+                  "description": "True if user confirmed, false if user cancelled"
                 }
               }
             }
@@ -131,7 +136,9 @@
     },
     "/alert": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays an alert",
         "description": "Displays an alert notification",
         "parameters": [

@@ -110,99 +110,96 @@
                       "description": "Force close flag"
                     }
                   }
-                },
-                "example": {
-                  "ws": {},
-                  "cwssForceClose": false
                 }
+                  "ws": {},
+                "cwssForceClose": false
               }
             }
           }
         }
       }
-    },
-    "/send": {
-      "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
-        "summary": "Send message",
-        "parameters": [
-          {
-            "name": "websocket",
-            "summary": "Websocket",
-            "required": false,
-            "description": "Websocket to use",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "message",
-            "summary": "Message",
-            "required": true,
-            "description": "Message to send",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Message sent successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
-                },
-                "example": null
-              }
-            }
-          }
-        },
-        "x-events": []
-      }
-    },
-    "/close": {
-      "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
-        "summary": "Close Websocket",
-        "parameters": [
-          {
-            "name": "websocket",
-            "summary": "Websocket",
-            "required": false,
-            "description": "Websocket to close",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "WebSocket closed successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
-                },
-                "example": null
-              }
-            }
-          }
-        },
-        "x-events": []
-      }
     }
   },
-  "components": {
-    "schemas": {}
+  "/send": {
+    "post": {
+      "tags": [
+        "service",
+        "web",
+        "spatial"
+      ],
+      "summary": "Send message",
+      "parameters": [
+        {
+          "name": "websocket",
+          "summary": "Websocket",
+          "required": false,
+          "description": "Websocket to use",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "message",
+          "summary": "Message",
+          "required": true,
+          "description": "Message to send",
+          "schema": {
+            "type": "object"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Message sent successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      },
+      "x-events": []
+    }
   },
-  "x-scene-blocks": {}
+  "/close": {
+    "post": {
+      "tags": [
+        "service",
+        "web",
+        "spatial"
+      ],
+      "summary": "Close Websocket",
+      "parameters": [
+        {
+          "name": "websocket",
+          "summary": "Websocket",
+          "required": false,
+          "description": "Websocket to close",
+          "schema": {
+            "type": "object"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "WebSocket closed successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      },
+      "x-events": []
+    }
+  }
+},
+"components": {
+  "schemas": {}
+},
+"x-scene-blocks": {}
 }

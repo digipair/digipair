@@ -10,7 +10,9 @@
   "paths": {
     "/generate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Génère un document Word",
         "parameters": [
           {
@@ -42,8 +44,7 @@
                   "type": "string",
                   "format": "byte",
                   "description": "Document Word encodé en base64 avec préfixe de data URL"
-                },
-                "example": "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,UEsDBBQAAAAIAAAAAAAAAAAAAAAAAAAAAAAUAAAAd29yZC9kb2N1bWVudC54bWztnQdgHEmWJSYvbcp7f0r1StfgdKEABhFUOCZ7JbPZbD7dh5Nw2o73SjJ6vGT+R5ZrfqSxiW6//32QwKF7d9vtvr69w37OO2e5fvlQO9e6ZG1cRb6X3t/+cOtJNXUVwJzxUNqIJSJ0iFXLZTRQ+Ju1x9DqcJoRrccr"
+                }
               }
             }
           }

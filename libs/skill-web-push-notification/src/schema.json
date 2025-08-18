@@ -10,7 +10,10 @@
   "paths": {
     "/initialize": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": [
+          "web",
+          "spatial"
+        ],
         "summary": "Register the user for push notifications.",
         "description": "Register the user to receive push notifications for real-time updates.",
         "parameters": [
@@ -50,7 +53,10 @@
                           "description": "The endpoint URL for the push service"
                         },
                         "expirationTime": {
-                          "type": ["number", "null"],
+                          "type": [
+                            "number",
+                            "null"
+                          ],
                           "description": "When the subscription expires"
                         },
                         "keys": {
@@ -66,30 +72,29 @@
                             }
                           }
                         }
-                      },
-                      "example": {
-                        "endpoint": "https://fcm.googleapis.com/fcm/send/...",
-                        "expirationTime": null,
-                        "keys": {
-                          "p256dh": "BEl62iUYgUivxIkv69yViA3...",
-                          "auth": "8eDyX_uCN0XRhSbY5hs7Hg"
-                        }
                       }
-                    },
-                    {
-                      "type": "null",
-                      "description": "Subscription failed (service worker not supported, permissions denied, etc.)"
+                        "endpoint": "https://fcm.googleapis.com/fcm/send/...",
+                      "expirationTime": null,
+                      "keys": {
+                        "p256dh": "BEl62iUYgUivxIkv69yViA3...",
+                        "auth": "8eDyX_uCN0XRhSbY5hs7Hg"
+                      }
                     }
-                  ]
-                }
+                  },
+                  {
+                    "type": "null",
+                    "description": "Subscription failed (service worker not supported, permissions denied, etc.)"
+                  }
+                ]
               }
             }
           }
         }
       }
     }
-  },
-  "components": {
-    "schemas": {}
   }
+},
+"components": {
+  "schemas": {}
+}
 }

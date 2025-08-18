@@ -10,7 +10,9 @@
   "paths": {
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrêter un processus",
         "description": "Arrête un processus en cours.",
         "parameters": [
@@ -31,8 +33,7 @@
               "application/json": {
                 "schema": {
                   "type": "boolean",
-                  "description": "True si le processus a été trouvé et arrêté, false si le processus n'a pas été trouvé",
-                  "example": true
+                  "description": "True si le processus a été trouvé et arrêté, false si le processus n'a pas été trouvé"
                 }
               }
             }
@@ -43,7 +44,9 @@
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des processus",
         "description": "Liste les processus en cours.",
         "parameters": [],
@@ -74,26 +77,30 @@
                         "description": "Horodatage de création du processus"
                       }
                     },
-                    "required": ["id", "digipair", "reasoning", "time"]
-                  },
-                  "example": [
+                    "required": [
+                      "id",
+                      "digipair",
+                      "reasoning",
+                      "time"
+                    ]
+                  }
                     {
-                      "id": "550e8400-e29b-41d4-a716-446655440000",
-                      "digipair": "mon-instance-digipair",
-                      "reasoning": "Traitement de la demande utilisateur pour l'analyse de données",
-                      "time": 1642580400000
-                    }
-                  ]
-                }
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "digipair": "mon-instance-digipair",
+                    "reasoning": "Traitement de la demande utilisateur pour l'analyse de données",
+                    "time": 1642580400000
+                  }
+                ]
               }
             }
           }
-        },
-        "x-events": []
-      }
+        }
+      },
+      "x-events": []
     }
-  },
-  "components": {
-    "schemas": {}
   }
+},
+"components": {
+  "schemas": {}
+}
 }

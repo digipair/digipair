@@ -10,7 +10,9 @@
   "paths": {
     "/read": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Logs",
         "description": "Lecture des logs d'un jour donné",
         "parameters": [
@@ -53,151 +55,59 @@
                   "items": {
                     "$ref": "#/components/schemas/LogEntry"
                   }
-                },
-                "example": [
-                  {
-                    "date": 1640995200000,
-                    "digipair": "example-digipair",
-                    "reasoning": "example-reasoning",
-                    "type": "info",
-                    "message": "Exemple de message de log"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/list": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Liste des jours de logs",
-        "description": "Liste les jours logs",
-        "parameters": [
-          {
-            "name": "type",
-            "summary": "Type de logs",
-            "required": false,
-            "description": "Type de logs à lister (factory, consumption-daily, consumption-monthly)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "path",
-            "summary": "Chemin d'accès",
-            "required": false,
-            "description": "Chemins d'accès du répertoire Digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Liste des dates de logs disponibles",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "description": "Chaîne de date au format YYYY-MM-DD"
-                  }
-                },
-                "example": ["2024-01-01", "2024-01-02", "2024-01-03"]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/computeDailyConsumption": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Calcul et sauvegarde de la consommation journalière",
-        "description": "Calcul et sauvegarde de la consommation journalière dans le fichier de consommation mensuelle LLM",
-        "parameters": [
-          {
-            "name": "date",
-            "summary": "Date",
-            "required": true,
-            "description": "Date du jour de la consommation LLM à ajouter dans le fichier de consommation mensuelle",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "path",
-            "summary": "Chemin d'accès",
-            "required": false,
-            "description": "Chemins d'accès du répertoire Digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Calcul de la consommation journalière terminé",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null",
-                  "description": "Opération terminée avec succès"
                 }
-              }
+                  {
+                  "date": 1640995200000,
+                  "digipair": "example-digipair",
+                  "reasoning": "example-reasoning",
+                  "type": "info",
+                  "message": "Exemple de message de log"
+                }
+              ]
             }
           }
         }
       }
-    },
-    "/cleaning": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Efface les anciens logs",
-        "description": "Efface les anciens fichiers de logs",
-        "parameters": [
-          {
-            "name": "to",
-            "summary": "Jusqu'à",
-            "required": true,
-            "description": "Date jusqu'à laquelle les logs doivent être conservés",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de logs",
-            "required": false,
-            "description": "Type de logs à effacer (factory, consumption-daily, consumption-monthly)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "path",
-            "summary": "Chemin d'accès",
-            "required": false,
-            "description": "Chemins d'accès du répertoire Digipair",
-            "schema": {
-              "type": "string"
-            }
+    }
+  },
+  "/list": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Liste des jours de logs",
+      "description": "Liste les jours logs",
+      "parameters": [
+        {
+          "name": "type",
+          "summary": "Type de logs",
+          "required": false,
+          "description": "Type de logs à lister (factory, consumption-daily, consumption-monthly)",
+          "schema": {
+            "type": "string"
           }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Nettoyage des anciens logs terminé",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null",
-                  "description": "Opération terminée avec succès"
+        },
+        {
+          "name": "path",
+          "summary": "Chemin d'accès",
+          "required": false,
+          "description": "Chemins d'accès du répertoire Digipair",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Liste des dates de logs disponibles",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Chaîne de date au format YYYY-MM-DD"
                 }
               }
             }
@@ -206,51 +116,151 @@
       }
     }
   },
-  "components": {
-    "schemas": {
-      "LogEntry": {
-        "type": "object",
-        "description": "Objet d'entrée de log",
-        "properties": {
-          "date": {
-            "type": "number",
-            "description": "Horodatage de l'entrée de log"
-          },
-          "digipair": {
-            "type": "string",
-            "description": "Identifiant du digipair"
-          },
-          "reasoning": {
-            "type": "string",
-            "description": "Identifiant du raisonnement"
-          },
-          "type": {
-            "type": "string",
-            "description": "Type d'entrée de log (info, error, warning, etc.)"
-          },
-          "message": {
-            "type": "string",
-            "description": "Message du log"
-          },
-          "service": {
-            "type": "string",
-            "description": "Nom du service (pour les logs de consommation)"
-          },
-          "model": {
-            "type": "string",
-            "description": "Nom du modèle (pour les logs de consommation)"
-          },
-          "promptTokens": {
-            "type": "number",
-            "description": "Nombre de tokens de prompt (pour les logs de consommation)"
-          },
-          "completionTokens": {
-            "type": "number",
-            "description": "Nombre de tokens de complétion (pour les logs de consommation)"
+  "/computeDailyConsumption": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Calcul et sauvegarde de la consommation journalière",
+      "description": "Calcul et sauvegarde de la consommation journalière dans le fichier de consommation mensuelle LLM",
+      "parameters": [
+        {
+          "name": "date",
+          "summary": "Date",
+          "required": true,
+          "description": "Date du jour de la consommation LLM à ajouter dans le fichier de consommation mensuelle",
+          "schema": {
+            "type": "string"
           }
         },
-        "required": ["date", "digipair", "reasoning"]
+        {
+          "name": "path",
+          "summary": "Chemin d'accès",
+          "required": false,
+          "description": "Chemins d'accès du répertoire Digipair",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Calcul de la consommation journalière terminé",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "null",
+                "description": "Opération terminée avec succès"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/cleaning": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Efface les anciens logs",
+      "description": "Efface les anciens fichiers de logs",
+      "parameters": [
+        {
+          "name": "to",
+          "summary": "Jusqu'à",
+          "required": true,
+          "description": "Date jusqu'à laquelle les logs doivent être conservés",
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "name": "type",
+          "summary": "Type de logs",
+          "required": false,
+          "description": "Type de logs à effacer (factory, consumption-daily, consumption-monthly)",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "path",
+          "summary": "Chemin d'accès",
+          "required": false,
+          "description": "Chemins d'accès du répertoire Digipair",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Nettoyage des anciens logs terminé",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "null",
+                "description": "Opération terminée avec succès"
+              }
+            }
+          }
+        }
       }
     }
   }
+},
+"components": {
+  "schemas": {
+    "LogEntry": {
+      "type": "object",
+      "description": "Objet d'entrée de log",
+      "properties": {
+        "date": {
+          "type": "number",
+          "description": "Horodatage de l'entrée de log"
+        },
+        "digipair": {
+          "type": "string",
+          "description": "Identifiant du digipair"
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Identifiant du raisonnement"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type d'entrée de log (info, error, warning, etc.)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message du log"
+        },
+        "service": {
+          "type": "string",
+          "description": "Nom du service (pour les logs de consommation)"
+        },
+        "model": {
+          "type": "string",
+          "description": "Nom du modèle (pour les logs de consommation)"
+        },
+        "promptTokens": {
+          "type": "number",
+          "description": "Nombre de tokens de prompt (pour les logs de consommation)"
+        },
+        "completionTokens": {
+          "type": "number",
+          "description": "Nombre de tokens de complétion (pour les logs de consommation)"
+        }
+      },
+      "required": [
+        "date",
+        "digipair",
+        "reasoning"
+      ]
+    }
+  }
+}
 }

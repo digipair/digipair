@@ -10,7 +10,9 @@
   "paths": {
     "/digipair-font-awesome-icon": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Font-awesome icon",
         "description": "Font-awesome icon",
         "parameters": [
@@ -50,8 +52,7 @@
               "text/html": {
                 "schema": {
                   "type": "string",
-                  "description": "HTML element containing the Font Awesome icon",
-                  "example": "<digipair-font-awesome-icon name=\"heart\" category=\"solid\"><i class=\"fa-solid fa-heart\"></i></digipair-font-awesome-icon>"
+                  "description": "HTML element containing the Font Awesome icon"
                 }
               }
             }

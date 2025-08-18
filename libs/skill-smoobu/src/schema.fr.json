@@ -10,7 +10,9 @@
   "paths": {
     "/getReservationWithId": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Information d'une réservation Smoobu",
         "parameters": [
           {
@@ -75,330 +77,16 @@
                       "type": "number",
                       "description": "Prix total"
                     }
-                  },
-                  "example": {
+                  }
                     "id": "123456",
-                    "arrival": "2024-01-15",
-                    "departure": "2024-01-20",
-                    "guest_name": "John Doe",
-                    "apartment": {
-                      "id": "789",
-                      "name": "Suite Deluxe"
-                    },
-                    "price": 450.00
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sendMessage": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Envoi d'un message via Smoobu",
-        "parameters": [
-          {
-            "name": "reservationId",
-            "summary": "Identifiant de la réservation",
-            "required": true,
-            "description": "Identifiant de la réservation Smoobu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "message",
-            "summary": "Message",
-            "required": true,
-            "description": "Message à envoyer",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_KEY",
-            "summary": "Clé d'API",
-            "required": false,
-            "description": "Clé d'API Smoobu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
-            "required": false,
-            "description": "Endpoint de l'API Smoobu",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Message envoyé avec succès au client via Smoobu",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "description": "Réponse de l'API Smoobu pour le message envoyé",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "description": "Si le message a été envoyé avec succès"
-                    },
-                    "message_id": {
-                      "type": "string",
-                      "description": "ID du message envoyé"
-                    }
+                  "arrival": "2024-01-15",
+                  "departure": "2024-01-20",
+                  "guest_name": "John Doe",
+                  "apartment": {
+                    "id": "789",
+                    "name": "Suite Deluxe"
                   },
-                  "example": {
-                    "success": true,
-                    "message_id": "msg_789123"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getAllReservations": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Liste des réservations Smoobu",
-        "parameters": [
-          {
-            "name": "created_from",
-            "summary": "Créé depuis",
-            "required": false,
-            "description": "Date de création depuis",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "created_to",
-            "summary": "Créé jusqu'à",
-            "required": false,
-            "description": "Date de création jusqu'à",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "from",
-            "summary": "Début",
-            "required": false,
-            "description": "Date de début",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "to",
-            "summary": "Fin",
-            "required": false,
-            "description": "Date de fin",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "modifiedFrom",
-            "summary": "Modifié depuis",
-            "required": false,
-            "description": "Date de modification depuis",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "modifiedTo",
-            "summary": "Modifié jusqu'à",
-            "required": false,
-            "description": "Date de modification jusqu'à",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "arrivalFrom",
-            "summary": "Arrivée depuis",
-            "required": false,
-            "description": "Date d'arrivée depuis",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "arrivalTo",
-            "summary": "Arrivée jusqu'à",
-            "required": false,
-            "description": "Date d'arrivée jusqu'à",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "departureFrom",
-            "summary": "Départ depuis",
-            "required": false,
-            "description": "Date de départ depuis",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "departureTo",
-            "summary": "Départ jusqu'à",
-            "required": false,
-            "description": "Date de départ jusqu'à",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "showCancellation",
-            "summary": "Afficher les annulations",
-            "required": false,
-            "description": "Afficher les annulations",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "excludeBlocked",
-            "summary": "Exclure les bloqués",
-            "required": false,
-            "description": "Exclure les bloqués",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "summary": "Page",
-            "required": false,
-            "description": "Page",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "summary": "Taille de la page",
-            "required": false,
-            "description": "Taille de la page",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apartmentId",
-            "summary": "Identifiant de l'appartement",
-            "required": false,
-            "description": "Identifiant de l'appartement",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "includeRelated",
-            "summary": "Inclure les détails",
-            "required": false,
-            "description": "Inclure les détails",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "includePriceElements",
-            "summary": "Inclure les éléments de prix",
-            "required": false,
-            "description": "Inclure les éléments de prix",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_KEY",
-            "summary": "Clé d'API",
-            "required": false,
-            "description": "Clé d'API Smoobu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_ENDPOINT",
-            "summary": "Endpoint de l'API",
-            "required": false,
-            "description": "Endpoint de l'API Smoobu",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Liste des réservations récupérée avec succès depuis Smoobu",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "description": "Liste paginée des réservations Smoobu",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "description": "Tableau d'objets de réservation",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "description": "ID de la réservation"
-                          },
-                          "arrival": {
-                            "type": "string",
-                            "description": "Date d'arrivée"
-                          },
-                          "departure": {
-                            "type": "string",
-                            "description": "Date de départ"
-                          },
-                          "guest_name": {
-                            "type": "string",
-                            "description": "Nom du client"
-                          }
-                        }
-                      }
-                    },
-                    "page": {
-                      "type": "number",
-                      "description": "Numéro de page actuel"
-                    },
-                    "total": {
-                      "type": "number",
-                      "description": "Nombre total de réservations"
-                    }
-                  },
-                  "example": {
-                    "data": [
-                      {
-                        "id": "123456",
-                        "arrival": "2024-01-15",
-                        "departure": "2024-01-20",
-                        "guest_name": "John Doe"
-                      }
-                    ],
-                    "page": 1,
-                    "total": 25
-                  }
+                  "price": 450.00
                 }
               }
             }
@@ -407,65 +95,382 @@
       }
     }
   },
-  "components": {
-    "schemas": {}
-  },
-  "x-scene-blocks": {
-    "/event": {
-      "summary": "Réservation Smoobu",
-      "description": "Gestion des évènements sur les réservations",
-      "tags": ["service"],
-      "metadata": [],
+  "/sendMessage": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Envoi d'un message via Smoobu",
       "parameters": [
         {
-          "name": "updateRates",
-          "summary": "Lors de la mise à jour des tarifs",
-          "required": false,
-          "description": "Commandes à exécuter lors de la mise à jour des tarifs",
+          "name": "reservationId",
+          "summary": "Identifiant de la réservation",
+          "required": true,
+          "description": "Identifiant de la réservation Smoobu",
           "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
+            "type": "string"
           }
         },
         {
-          "name": "newReservation",
-          "summary": "Lors d'une nouvelle réservation",
-          "required": false,
-          "description": "Commandes à exécuter lors d'une nouvelle réservation",
+          "name": "message",
+          "summary": "Message",
+          "required": true,
+          "description": "Message à envoyer",
           "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
+            "type": "string"
           }
         },
         {
-          "name": "cancelReservation",
-          "summary": "Lors d'une annulation",
+          "name": "SMOOBU_API_KEY",
+          "summary": "Clé d'API",
           "required": false,
-          "description": "Commandes à exécuter lors d'une annulation",
+          "description": "Clé d'API Smoobu",
           "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
+            "type": "string"
           }
         },
         {
-          "name": "updateReservation",
-          "summary": "Lors de la mise à jour d'une réservation",
+          "name": "SMOOBU_API_ENDPOINT",
+          "summary": "Endpoint de l'API",
           "required": false,
-          "description": "Commandes à exécuter lors de la mise à jour d'une réservation",
+          "description": "Endpoint de l'API Smoobu",
           "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Message envoyé avec succès au client via Smoobu",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Réponse de l'API Smoobu pour le message envoyé",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "description": "Si le message a été envoyé avec succès"
+                  },
+                  "message_id": {
+                    "type": "string",
+                    "description": "ID du message envoyé"
+                  }
+                }
+                    "success": true,
+                "message_id": "msg_789123"
+              }
             }
           }
         }
-      ]
+      }
     }
   }
+},
+"/getAllReservations": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Liste des réservations Smoobu",
+    "parameters": [
+      {
+        "name": "created_from",
+        "summary": "Créé depuis",
+        "required": false,
+        "description": "Date de création depuis",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "created_to",
+        "summary": "Créé jusqu'à",
+        "required": false,
+        "description": "Date de création jusqu'à",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "from",
+        "summary": "Début",
+        "required": false,
+        "description": "Date de début",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "to",
+        "summary": "Fin",
+        "required": false,
+        "description": "Date de fin",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "modifiedFrom",
+        "summary": "Modifié depuis",
+        "required": false,
+        "description": "Date de modification depuis",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "modifiedTo",
+        "summary": "Modifié jusqu'à",
+        "required": false,
+        "description": "Date de modification jusqu'à",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "arrivalFrom",
+        "summary": "Arrivée depuis",
+        "required": false,
+        "description": "Date d'arrivée depuis",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "arrivalTo",
+        "summary": "Arrivée jusqu'à",
+        "required": false,
+        "description": "Date d'arrivée jusqu'à",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "departureFrom",
+        "summary": "Départ depuis",
+        "required": false,
+        "description": "Date de départ depuis",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "departureTo",
+        "summary": "Départ jusqu'à",
+        "required": false,
+        "description": "Date de départ jusqu'à",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "showCancellation",
+        "summary": "Afficher les annulations",
+        "required": false,
+        "description": "Afficher les annulations",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "excludeBlocked",
+        "summary": "Exclure les bloqués",
+        "required": false,
+        "description": "Exclure les bloqués",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "page",
+        "summary": "Page",
+        "required": false,
+        "description": "Page",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "pageSize",
+        "summary": "Taille de la page",
+        "required": false,
+        "description": "Taille de la page",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "apartmentId",
+        "summary": "Identifiant de l'appartement",
+        "required": false,
+        "description": "Identifiant de l'appartement",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "includeRelated",
+        "summary": "Inclure les détails",
+        "required": false,
+        "description": "Inclure les détails",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "includePriceElements",
+        "summary": "Inclure les éléments de prix",
+        "required": false,
+        "description": "Inclure les éléments de prix",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "SMOOBU_API_KEY",
+        "summary": "Clé d'API",
+        "required": false,
+        "description": "Clé d'API Smoobu",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "SMOOBU_API_ENDPOINT",
+        "summary": "Endpoint de l'API",
+        "required": false,
+        "description": "Endpoint de l'API Smoobu",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "x-events": [],
+    "responses": {
+      "200": {
+        "description": "Liste des réservations récupérée avec succès depuis Smoobu",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "description": "Liste paginée des réservations Smoobu",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "description": "Tableau d'objets de réservation",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID de la réservation"
+                      },
+                      "arrival": {
+                        "type": "string",
+                        "description": "Date d'arrivée"
+                      },
+                      "departure": {
+                        "type": "string",
+                        "description": "Date de départ"
+                      },
+                      "guest_name": {
+                        "type": "string",
+                        "description": "Nom du client"
+                      }
+                    }
+                  }
+                },
+                "page": {
+                  "type": "number",
+                  "description": "Numéro de page actuel"
+                },
+                "total": {
+                  "type": "number",
+                  "description": "Nombre total de réservations"
+                }
+              }
+                    "data": [
+                {
+                  "id": "123456",
+                  "arrival": "2024-01-15",
+                  "departure": "2024-01-20",
+                  "guest_name": "John Doe"
+                }
+              ],
+              "page": 1,
+              "total": 25
+            }
+          }
+        }
+      }
+    }
+  }
+}
+}
+},
+"components": {
+"schemas": {}
+},
+"x-scene-blocks": {
+"/event": {
+"summary": "Réservation Smoobu",
+"description": "Gestion des évènements sur les réservations",
+"tags": [
+  "service"
+],
+"metadata": [],
+"parameters": [
+  {
+    "name": "updateRates",
+    "summary": "Lors de la mise à jour des tarifs",
+    "required": false,
+    "description": "Commandes à exécuter lors de la mise à jour des tarifs",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  },
+  {
+    "name": "newReservation",
+    "summary": "Lors d'une nouvelle réservation",
+    "required": false,
+    "description": "Commandes à exécuter lors d'une nouvelle réservation",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  },
+  {
+    "name": "cancelReservation",
+    "summary": "Lors d'une annulation",
+    "required": false,
+    "description": "Commandes à exécuter lors d'une annulation",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  },
+  {
+    "name": "updateReservation",
+    "summary": "Lors de la mise à jour d'une réservation",
+    "required": false,
+    "description": "Commandes à exécuter lors de la mise à jour d'une réservation",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  }
+]
+}
+}
 }

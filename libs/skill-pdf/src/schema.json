@@ -10,7 +10,11 @@
   "paths": {
     "/fillForm": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Fill out a PDF form",
         "description": "Fills out a PDF form with the specified values.",
         "parameters": [
@@ -50,8 +54,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Base64 encoded PDF file with filled form data",
-                  "example": "data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUl0KL0NvdW50IDEKPD4K..."
+                  "description": "Base64 encoded PDF file with filled form data"
                 }
               }
             }
@@ -61,7 +64,11 @@
     },
     "/getFields": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Extract fields from a PDF",
         "description": "Extracts fields from a PDF form.",
         "parameters": [
@@ -86,51 +93,19 @@
                   "description": "Object containing field names as keys and their values",
                   "additionalProperties": {
                     "oneOf": [
-                      {"type": "string"},
-                      {"type": "boolean"}
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      }
                     ]
-                  },
-                  "example": {
-                    "firstName": "John",
-                    "lastName": "Doe",
-                    "email": "john.doe@example.com",
-                    "agreeToTerms": true,
-                    "country": "USA"
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getSize": {
-      "post": {
-        "tags": ["service", "web", "spatial"],
-        "summary": "Number of pages in a PDF",
-        "description": "Returns the number of pages in a PDF.",
-        "parameters": [
-          {
-            "name": "file",
-            "summary": "File",
-            "required": true,
-            "description": "PDF file to analyze",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "PDF page count retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "description": "Number of pages in the PDF document",
-                  "minimum": 1,
-                  "example": 5
+                    "firstName": "John",
+                  "lastName": "Doe",
+                  "email": "john.doe@example.com",
+                  "agreeToTerms": true,
+                  "country": "USA"
                 }
               }
             }
@@ -139,7 +114,45 @@
       }
     }
   },
-  "components": {
-    "schemas": {}
+  "/getSize": {
+    "post": {
+      "tags": [
+        "service",
+        "web",
+        "spatial"
+      ],
+      "summary": "Number of pages in a PDF",
+      "description": "Returns the number of pages in a PDF.",
+      "parameters": [
+        {
+          "name": "file",
+          "summary": "File",
+          "required": true,
+          "description": "PDF file to analyze",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "PDF page count retrieved successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "description": "Number of pages in the PDF document",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    }
   }
+},
+"components": {
+  "schemas": {}
+}
 }

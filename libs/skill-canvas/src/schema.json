@@ -10,7 +10,9 @@
   "paths": {
     "/canvas": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create a canvas",
         "description": "Creates a canvas with specified dimensions and executes drawing actions.",
         "parameters": [
@@ -53,8 +55,7 @@
               "application/json": {
                 "schema": {
                   "type": "string",
-                  "description": "Data URL of the canvas as base64 encoded image",
-                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                  "description": "Data URL of the canvas as base64 encoded image"
                 }
               }
             }
@@ -64,7 +65,9 @@
     },
     "/loadImage": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Load an image",
         "description": "Loads an image from a base64 string and returns the loaded image.",
         "parameters": [
@@ -90,18 +93,15 @@
                   "properties": {
                     "width": {
                       "type": "number",
-                      "description": "Image width",
-                      "example": 100
+                      "description": "Image width"
                     },
                     "height": {
                       "type": "number",
-                      "description": "Image height",
-                      "example": 100
+                      "description": "Image height"
                     },
                     "src": {
                       "type": "string",
-                      "description": "Image source",
-                      "example": "data:image/png;base64,..."
+                      "description": "Image source"
                     }
                   }
                 }
@@ -113,7 +113,9 @@
     },
     "/drawImage": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Draw an image",
         "description": "Draws an image on the canvas at the specified coordinates.",
         "parameters": [
@@ -171,8 +173,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "No return value - modifies the canvas context",
-                  "example": null
+                  "description": "No return value - modifies the canvas context"
                 }
               }
             }
@@ -182,7 +183,9 @@
     },
     "/strokeRect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Draw an empty rectangle",
         "description": "Draws the outline of a rectangle at the specified coordinates.",
         "parameters": [
@@ -231,8 +234,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "No return value - modifies the canvas context",
-                  "example": null
+                  "description": "No return value - modifies the canvas context"
                 }
               }
             }
@@ -242,7 +244,9 @@
     },
     "/fillRect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Draw a filled rectangle",
         "description": "Draws a filled rectangle at the specified coordinates.",
         "parameters": [
@@ -291,8 +295,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "No return value - modifies the canvas context",
-                  "example": null
+                  "description": "No return value - modifies the canvas context"
                 }
               }
             }
@@ -302,7 +305,9 @@
     },
     "/fillText": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Write text",
         "description": "Writes text at the specified coordinates.",
         "parameters": [
@@ -342,8 +347,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "No return value - modifies the canvas context",
-                  "example": null
+                  "description": "No return value - modifies the canvas context"
                 }
               }
             }
@@ -353,7 +357,9 @@
     },
     "/strokeStyle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set stroke style",
         "description": "Sets the stroke style used for drawings.",
         "parameters": [
@@ -375,8 +381,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "No return value - modifies the canvas context",
-                  "example": null
+                  "description": "No return value - modifies the canvas context"
                 }
               }
             }
@@ -386,7 +391,9 @@
     },
     "/fillStyle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set fill style",
         "description": "Sets the fill style used for drawings.",
         "parameters": [
@@ -408,8 +415,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "No return value - modifies the canvas context",
-                  "example": null
+                  "description": "No return value - modifies the canvas context"
                 }
               }
             }
@@ -419,7 +425,9 @@
     },
     "/lineWidth": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set line width",
         "description": "Sets the line width used for drawings.",
         "parameters": [
@@ -441,8 +449,7 @@
               "application/json": {
                 "schema": {
                   "type": "null",
-                  "description": "No return value - modifies the canvas context",
-                  "example": null
+                  "description": "No return value - modifies the canvas context"
                 }
               }
             }
@@ -452,7 +459,9 @@
     },
     "/measureText": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Measure text",
         "description": "Measures the specified text and returns the metrics.",
         "parameters": [
@@ -478,28 +487,23 @@
                   "properties": {
                     "width": {
                       "type": "number",
-                      "description": "Width of the text",
-                      "example": 42.5
+                      "description": "Width of the text"
                     },
                     "actualBoundingBoxLeft": {
                       "type": "number",
-                      "description": "Distance from text align point to left side of bounding box",
-                      "example": 0
+                      "description": "Distance from text align point to left side of bounding box"
                     },
                     "actualBoundingBoxRight": {
                       "type": "number",
-                      "description": "Distance from text align point to right side of bounding box",
-                      "example": 42.5
+                      "description": "Distance from text align point to right side of bounding box"
                     },
                     "fontBoundingBoxAscent": {
                       "type": "number",
-                      "description": "Distance from horizontal baseline to top of font bounding box",
-                      "example": 12
+                      "description": "Distance from horizontal baseline to top of font bounding box"
                     },
                     "fontBoundingBoxDescent": {
                       "type": "number",
-                      "description": "Distance from horizontal baseline to bottom of font bounding box",
-                      "example": 3
+                      "description": "Distance from horizontal baseline to bottom of font bounding box"
                     }
                   }
                 }

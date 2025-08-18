@@ -10,7 +10,9 @@
   "paths": {
     "/sendSms": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sending an SMS via Twilio",
         "parameters": [
           {
@@ -79,99 +81,81 @@
                   "properties": {
                     "sid": {
                       "type": "string",
-                      "description": "Unique identifier for the message",
-                      "example": "SM1234567890abcdef1234567890abcdef"
+                      "description": "Unique identifier for the message"
                     },
                     "account_sid": {
                       "type": "string",
-                      "description": "Account SID",
-                      "example": "AC1234567890abcdef1234567890abcdef"
+                      "description": "Account SID"
                     },
                     "from": {
                       "type": "string",
-                      "description": "Sender phone number",
-                      "example": "+15551234567"
+                      "description": "Sender phone number"
                     },
                     "to": {
                       "type": "string",
-                      "description": "Recipient phone number",
-                      "example": "+15559876543"
+                      "description": "Recipient phone number"
                     },
                     "body": {
                       "type": "string",
-                      "description": "Message content",
-                      "example": "Hello, this is a test message!"
+                      "description": "Message content"
                     },
                     "status": {
                       "type": "string",
-                      "description": "Message status",
-                      "example": "queued"
+                      "description": "Message status"
                     },
                     "date_created": {
                       "type": "string",
-                      "description": "Creation date",
-                      "example": "2023-01-01T12:00:00Z"
+                      "description": "Creation date"
                     },
                     "date_sent": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Date sent",
-                      "example": null
+                      "description": "Date sent"
                     },
                     "date_updated": {
                       "type": "string",
-                      "description": "Last update date",
-                      "example": "2023-01-01T12:00:00Z"
+                      "description": "Last update date"
                     },
                     "direction": {
                       "type": "string",
-                      "description": "Message direction",
-                      "example": "outbound-api"
+                      "description": "Message direction"
                     },
                     "error_code": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Error code if any",
-                      "example": null
+                      "description": "Error code if any"
                     },
                     "error_message": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Error message if any",
-                      "example": null
+                      "description": "Error message if any"
                     },
                     "messaging_service_sid": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Messaging service SID",
-                      "example": null
+                      "description": "Messaging service SID"
                     },
                     "num_media": {
                       "type": "string",
-                      "description": "Number of media attachments",
-                      "example": "0"
+                      "description": "Number of media attachments"
                     },
                     "num_segments": {
                       "type": "string",
-                      "description": "Number of message segments",
-                      "example": "1"
+                      "description": "Number of message segments"
                     },
                     "price": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Message price",
-                      "example": null
+                      "description": "Message price"
                     },
                     "price_unit": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Price currency",
-                      "example": null
+                      "description": "Price currency"
                     },
                     "uri": {
                       "type": "string",
-                      "description": "Resource URI",
-                      "example": "/2010-04-01/Accounts/AC1234567890abcdef1234567890abcdef/Messages/SM1234567890abcdef1234567890abcdef.json"
+                      "description": "Resource URI"
                     }
                   }
                 }
@@ -183,7 +167,9 @@
     },
     "/sendWhatsapp": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sending a WhatsApp message via Twilio",
         "parameters": [
           {
@@ -252,99 +238,81 @@
                   "properties": {
                     "sid": {
                       "type": "string",
-                      "description": "Unique identifier for the message",
-                      "example": "SM1234567890abcdef1234567890abcdef"
+                      "description": "Unique identifier for the message"
                     },
                     "account_sid": {
                       "type": "string",
-                      "description": "Account SID",
-                      "example": "AC1234567890abcdef1234567890abcdef"
+                      "description": "Account SID"
                     },
                     "from": {
                       "type": "string",
-                      "description": "Sender WhatsApp number",
-                      "example": "whatsapp:+15551234567"
+                      "description": "Sender WhatsApp number"
                     },
                     "to": {
                       "type": "string",
-                      "description": "Recipient phone number",
-                      "example": "+15559876543"
+                      "description": "Recipient phone number"
                     },
                     "body": {
                       "type": "string",
-                      "description": "Message content",
-                      "example": "Hello, this is a WhatsApp test message!"
+                      "description": "Message content"
                     },
                     "status": {
                       "type": "string",
-                      "description": "Message status",
-                      "example": "queued"
+                      "description": "Message status"
                     },
                     "date_created": {
                       "type": "string",
-                      "description": "Creation date",
-                      "example": "2023-01-01T12:00:00Z"
+                      "description": "Creation date"
                     },
                     "date_sent": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Date sent",
-                      "example": null
+                      "description": "Date sent"
                     },
                     "date_updated": {
                       "type": "string",
-                      "description": "Last update date",
-                      "example": "2023-01-01T12:00:00Z"
+                      "description": "Last update date"
                     },
                     "direction": {
                       "type": "string",
-                      "description": "Message direction",
-                      "example": "outbound-api"
+                      "description": "Message direction"
                     },
                     "error_code": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Error code if any",
-                      "example": null
+                      "description": "Error code if any"
                     },
                     "error_message": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Error message if any",
-                      "example": null
+                      "description": "Error message if any"
                     },
                     "messaging_service_sid": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Messaging service SID",
-                      "example": null
+                      "description": "Messaging service SID"
                     },
                     "num_media": {
                       "type": "string",
-                      "description": "Number of media attachments",
-                      "example": "0"
+                      "description": "Number of media attachments"
                     },
                     "num_segments": {
                       "type": "string",
-                      "description": "Number of message segments",
-                      "example": "1"
+                      "description": "Number of message segments"
                     },
                     "price": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Message price",
-                      "example": null
+                      "description": "Message price"
                     },
                     "price_unit": {
                       "type": "string",
                       "nullable": true,
-                      "description": "Price currency",
-                      "example": null
+                      "description": "Price currency"
                     },
                     "uri": {
                       "type": "string",
-                      "description": "Resource URI",
-                      "example": "/2010-04-01/Accounts/AC1234567890abcdef1234567890abcdef/Messages/SM1234567890abcdef1234567890abcdef.json"
+                      "description": "Resource URI"
                     }
                   }
                 }

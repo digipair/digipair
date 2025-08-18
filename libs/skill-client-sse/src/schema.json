@@ -100,13 +100,11 @@
                   "properties": {
                     "status": {
                       "type": "string",
-                      "description": "Connection status",
-                      "example": "connected"
+                      "description": "Connection status"
                     },
                     "message": {
                       "type": "string",
-                      "description": "Connection message",
-                      "example": "SSE connection established successfully"
+                      "description": "Connection message"
                     }
                   }
                 }

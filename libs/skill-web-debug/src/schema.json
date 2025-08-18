@@ -10,7 +10,10 @@
   "paths": {
     "/log": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": [
+          "web",
+          "spatial"
+        ],
         "summary": "Display in Console",
         "description": "Element for displaying a message in the JavaScript console",
         "parameters": [
@@ -49,8 +52,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Returns the previous value from the execution context (passthrough)",
-                  "example": "Previous context value (varies based on pipeline)"
+                  "description": "Returns the previous value from the execution context (passthrough)"
                 }
               }
             }

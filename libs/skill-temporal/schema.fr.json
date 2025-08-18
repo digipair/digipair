@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activitée",
         "description": "Définit une activité",
         "parameters": [
@@ -45,8 +47,7 @@
                 "schema": {
                   "type": "string",
                   "description": "Résultat de l'exécution de l'activité"
-                },
-                "example": "Activité terminée avec succès"
+                }
               }
             }
           }
@@ -55,7 +56,9 @@
     },
     "/sleep": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Attente",
         "parameters": [
           {
@@ -86,8 +89,7 @@
                 "schema": {
                   "type": "string",
                   "description": "Confirmation que la durée d'attente a été appliquée"
-                },
-                "example": "1 minute"
+                }
               }
             }
           }
@@ -96,7 +98,9 @@
     },
     "/condition": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Condition d'attente",
         "description": "Condition d'attente dans un workflow",
         "parameters": [
@@ -128,8 +132,7 @@
                 "schema": {
                   "type": "boolean",
                   "description": "Si la condition a été remplie avant le timeout"
-                },
-                "example": true
+                }
               }
             }
           }
@@ -138,7 +141,9 @@
     },
     "/goto": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Aller à l'étape",
         "parameters": [
           {
@@ -169,8 +174,7 @@
                 "schema": {
                   "type": "number",
                   "description": "Numéro de l'étape cible dans le workflow"
-                },
-                "example": 5
+                }
               }
             }
           }
@@ -179,7 +183,9 @@
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrête le workflow",
         "description": "Arrête le workflow",
         "parameters": [
@@ -211,7 +217,9 @@
     },
     "/push": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoi de nouvelles données dans un workflow",
         "description": "Envoi de nouvelles données dans le workflow",
         "parameters": [
@@ -252,7 +260,9 @@
     },
     "/terminate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrête un workflow",
         "description": "Arrête un workflow",
         "parameters": [
@@ -284,7 +294,9 @@
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste les workflows",
         "description": "Liste les workflows",
         "parameters": [
@@ -309,127 +321,133 @@
                   "items": {
                     "$ref": "#/components/schemas/WorkflowExecutionInfo"
                   }
-                },
-                "example": [
+                }
                   {
-                    "workflowId": "digipair-workflow-test-reasoning-example-id",
-                    "runId": "01234567-89ab-cdef-0123-456789abcdef",
-                    "type": {
-                      "name": "workflow"
-                    },
-                    "status": "Running",
-                    "startTime": "2024-01-15T10:30:00Z",
-                    "taskQueue": "digipair-workflow"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "WorkflowExecutionInfo": {
-        "type": "object",
-        "description": "Informations sur une exécution de workflow Temporal",
-        "properties": {
-          "workflowId": {
-            "type": "string",
-            "description": "Identifiant unique du workflow"
-          },
-          "runId": {
-            "type": "string",
-            "description": "Identifiant unique de l'exécution du workflow"
-          },
-          "type": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Nom du type de workflow"
-              }
-            }
-          },
-          "status": {
-            "type": "string",
-            "enum": ["Running", "Completed", "Failed", "Cancelled", "Terminated"],
-            "description": "Statut actuel du workflow"
-          },
-          "startTime": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Quand le workflow a été démarré"
-          },
-          "taskQueue": {
-            "type": "string",
-            "description": "Nom de la file d'attente des tâches utilisée par le workflow"
-          }
-        }
-      }
-    }
-  },
-  "x-scene-blocks": {
-    "/workflow": {
-      "summary": "Workflow Temporal",
-      "description": "Execute un workflow Temporal",
-      "tags": ["service"],
-      "metadata": [],
-      "parameters": [
-        {
-          "name": "id",
-          "summary": "Identifiant",
-          "required": true,
-          "description": "Identifiant du workflow",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "steps",
-          "summary": "Exécute les étapes suivantes",
-          "required": true,
-          "description": "Exécute les étapes définies",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        {
-          "name": "data",
-          "summary": "Données du workflow",
-          "required": false,
-          "description": "Données du workflow temporal",
-          "schema": {
-            "type": "object"
-          }
-        },
-        {
-          "name": "options",
-          "summary": "Options temporal",
-          "required": false,
-          "description": "Options du workflow temporal",
-          "schema": {
-            "type": "object"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Résultat de l'exécution du workflow",
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "Le résultat de la dernière étape exécutée dans le workflow"
-              },
-              "example": "Workflow terminé avec succès"
+                  "workflowId": "digipair-workflow-test-reasoning-example-id",
+                  "runId": "01234567-89ab-cdef-0123-456789abcdef",
+                  "type": {
+                    "name": "workflow"
+                  },
+                  "status": "Running",
+                  "startTime": "2024-01-15T10:30:00Z",
+                  "taskQueue": "digipair-workflow"
+                }
+              ]
             }
           }
         }
       }
     }
   }
+},
+"components": {
+  "schemas": {
+    "WorkflowExecutionInfo": {
+      "type": "object",
+      "description": "Informations sur une exécution de workflow Temporal",
+      "properties": {
+        "workflowId": {
+          "type": "string",
+          "description": "Identifiant unique du workflow"
+        },
+        "runId": {
+          "type": "string",
+          "description": "Identifiant unique de l'exécution du workflow"
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Nom du type de workflow"
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Running",
+            "Completed",
+            "Failed",
+            "Cancelled",
+            "Terminated"
+          ],
+          "description": "Statut actuel du workflow"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Quand le workflow a été démarré"
+        },
+        "taskQueue": {
+          "type": "string",
+          "description": "Nom de la file d'attente des tâches utilisée par le workflow"
+        }
+      }
+    }
+  }
+},
+"x-scene-blocks": {
+  "/workflow": {
+    "summary": "Workflow Temporal",
+    "description": "Execute un workflow Temporal",
+    "tags": [
+      "service"
+    ],
+    "metadata": [],
+    "parameters": [
+      {
+        "name": "id",
+        "summary": "Identifiant",
+        "required": true,
+        "description": "Identifiant du workflow",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "steps",
+        "summary": "Exécute les étapes suivantes",
+        "required": true,
+        "description": "Exécute les étapes définies",
+        "schema": {
+          "type": "array",
+          "items": {
+            "$ref": "https://schemas.digipair.ai/pinsSettings"
+          }
+        }
+      },
+      {
+        "name": "data",
+        "summary": "Données du workflow",
+        "required": false,
+        "description": "Données du workflow temporal",
+        "schema": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "options",
+        "summary": "Options temporal",
+        "required": false,
+        "description": "Options du workflow temporal",
+        "schema": {
+          "type": "object"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Résultat de l'exécution du workflow",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Le résultat de la dernière étape exécutée dans le workflow"
+            }
+          }
+        }
+      }
+    }
+  }
+}
 }

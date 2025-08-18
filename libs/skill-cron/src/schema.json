@@ -10,7 +10,9 @@
   "paths": {
     "/crons": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List of Scheduled Tasks",
         "parameters": [
           {
@@ -54,163 +56,176 @@
                         "description": "Whether the cron task is enabled"
                       }
                     },
-                    "required": ["id", "time", "digipair", "reasoning", "enabled"]
+                    "required": [
+                      "id",
+                      "time",
+                      "digipair",
+                      "reasoning",
+                      "enabled"
+                    ]
                   }
-                },
-                "example": [
+                }
                   {
-                    "id": "123e4567-e89b-12d3-a456-426614174000",
-                    "time": "0 0 * * *",
-                    "digipair": "my-digipair",
-                    "reasoning": "daily-task",
-                    "enabled": true
-                  }
-                ]
-              }
+                  "id": "123e4567-e89b-12d3-a456-426614174000",
+                  "time": "0 0 * * *",
+                  "digipair": "my-digipair",
+                  "reasoning": "daily-task",
+                  "enabled": true
+                }
+              ]
             }
           }
-        },
-        "x-events": []
-      }
-    },
-    "/addCron": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Adds a Schedule",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipairs directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "time",
-            "summary": "Schedule",
-            "required": true,
-            "description": "Schedule in cron format",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair executing the reasoning",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Reasoning",
-            "required": true,
-            "description": "Name of the reasoning to be executed",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "utcOffset",
-            "summary": "Timezone Offset",
-            "required": false,
-            "description": "Timezone offset",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/deleteCron": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Deletes a Schedule",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipairs directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "summary": "Identifier",
-            "required": true,
-            "description": "Identifier of the schedule",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/enableCron": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Enables a Schedule",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipairs directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "summary": "Identifier",
-            "required": true,
-            "description": "Identifier of the schedule",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/disableCron": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Disables a Schedule",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipairs directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "summary": "Identifier",
-            "required": true,
-            "description": "Identifier of the schedule",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
+        }
+      },
+      "x-events": []
     }
   },
-  "components": {
-    "schemas": {}
+  "/addCron": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Adds a Schedule",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipairs directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "time",
+          "summary": "Schedule",
+          "required": true,
+          "description": "Schedule in cron format",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair executing the reasoning",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "reasoning",
+          "summary": "Reasoning",
+          "required": true,
+          "description": "Name of the reasoning to be executed",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "utcOffset",
+          "summary": "Timezone Offset",
+          "required": false,
+          "description": "Timezone offset",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
   },
-  "x-scene-blocks": {}
+  "/deleteCron": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Deletes a Schedule",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipairs directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "summary": "Identifier",
+          "required": true,
+          "description": "Identifier of the schedule",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/enableCron": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Enables a Schedule",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipairs directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "summary": "Identifier",
+          "required": true,
+          "description": "Identifier of the schedule",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/disableCron": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Disables a Schedule",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipairs directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "summary": "Identifier",
+          "required": true,
+          "description": "Identifier of the schedule",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  }
+},
+"components": {
+  "schemas": {}
+},
+"x-scene-blocks": {}
 }

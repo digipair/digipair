@@ -10,7 +10,9 @@
   "paths": {
     "/log": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Afficher dans les logs",
         "description": "Element permettant d'afficher un message dans les logs",
         "parameters": [
@@ -50,19 +52,18 @@
               "application/json": {
                 "schema": {
                   "description": "Retourne la valeur de contexte précédente pour permettre le chaînage"
-                },
-                "example": {
-                  "message": "Entrée de log créée avec succès",
-                  "valeurPrecedente": "toute donnée de contexte précédente"
                 }
+                  "message": "Entrée de log créée avec succès",
+                "valeurPrecedente": "toute donnée de contexte précédente"
               }
             }
           }
         }
       }
     }
-  },
-  "components": {
-    "schemas": {}
   }
+},
+"components": {
+  "schemas": {}
+}
 }
