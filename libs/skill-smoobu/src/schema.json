@@ -10,7 +10,9 @@
   "paths": {
     "/getReservationWithId": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Information about a Smoobu reservation",
         "parameters": [
           {
@@ -41,294 +43,434 @@
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/sendMessage": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Send a message via Smoobu",
-        "parameters": [
-          {
-            "name": "reservationId",
-            "summary": "Reservation ID",
-            "required": true,
-            "description": "Smoobu reservation ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "message",
-            "summary": "Message",
-            "required": true,
-            "description": "Message to send",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_KEY",
-            "summary": "API Key",
-            "required": false,
-            "description": "Smoobu API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_ENDPOINT",
-            "summary": "API Endpoint",
-            "required": false,
-            "description": "Smoobu API endpoint",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/getAllReservations": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List of Smoobu reservations",
-        "parameters": [
-          {
-            "name": "created_from",
-            "summary": "Created from",
-            "required": false,
-            "description": "Creation date from",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "created_to",
-            "summary": "Created until",
-            "required": false,
-            "description": "Creation date until",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "from",
-            "summary": "Start",
-            "required": false,
-            "description": "Start date",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "to",
-            "summary": "End",
-            "required": false,
-            "description": "End date",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "modifiedFrom",
-            "summary": "Modified from",
-            "required": false,
-            "description": "Modification date from",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "modifiedTo",
-            "summary": "Modified until",
-            "required": false,
-            "description": "Modification date until",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "arrivalFrom",
-            "summary": "Arrival from",
-            "required": false,
-            "description": "Arrival date from",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "arrivalTo",
-            "summary": "Arrival until",
-            "required": false,
-            "description": "Arrival date until",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "departureFrom",
-            "summary": "Departure from",
-            "required": false,
-            "description": "Departure date from",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "departureTo",
-            "summary": "Departure until",
-            "required": false,
-            "description": "Departure date until",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "showCancellation",
-            "summary": "Show cancellations",
-            "required": false,
-            "description": "Show cancellations",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "excludeBlocked",
-            "summary": "Exclude blocked",
-            "required": false,
-            "description": "Exclude blocked",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "summary": "Page",
-            "required": false,
-            "description": "Page",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "summary": "Page size",
-            "required": false,
-            "description": "Size of the page",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apartmentId",
-            "summary": "Apartment ID",
-            "required": false,
-            "description": "Apartment ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "includeRelated",
-            "summary": "Include details",
-            "required": false,
-            "description": "Include details",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "includePriceElements",
-            "summary": "Include price elements",
-            "required": false,
-            "description": "Include price elements",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_KEY",
-            "summary": "API Key",
-            "required": false,
-            "description": "Smoobu API key",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SMOOBU_API_ENDPOINT",
-            "summary": "API Endpoint",
-            "required": false,
-            "description": "Smoobu API endpoint",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    }
-  },
-  "components": {
-    "schemas": {}
-  },
-  "x-scene-blocks": {
-    "/event": {
-      "summary": "Smoobu reservation",
-      "description": "Management of events on reservations",
-      "tags": ["service"],
-      "metadata": [],
-      "parameters": [
-        {
-          "name": "updateRates",
-          "summary": "When updating rates",
-          "required": false,
-          "description": "Commands to execute when updating rates",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        {
-          "name": "newReservation",
-          "summary": "When a new reservation is made",
-          "required": false,
-          "description": "Commands to execute when a new reservation is made",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        {
-          "name": "cancelReservation",
-          "summary": "When a cancellation occurs",
-          "required": false,
-          "description": "Commands to execute when a cancellation occurs",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
-            }
-          }
-        },
-        {
-          "name": "updateReservation",
-          "summary": "When updating a reservation",
-          "required": false,
-          "description": "Commands to execute when updating a reservation",
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "https://schemas.digipair.ai/pinsSettings"
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Reservation details successfully retrieved from Smoobu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Smoobu reservation object with detailed information",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Reservation ID"
+                    },
+                    "arrival": {
+                      "type": "string",
+                      "description": "Arrival date"
+                    },
+                    "departure": {
+                      "type": "string",
+                      "description": "Departure date"
+                    },
+                    "guest_name": {
+                      "type": "string",
+                      "description": "Guest name"
+                    },
+                    "apartment": {
+                      "type": "object",
+                      "description": "Apartment details"
+                    },
+                    "price": {
+                      "type": "number",
+                      "description": "Total price"
+                    }
+                  }
+                    "id": "123456",
+                  "arrival": "2024-01-15",
+                  "departure": "2024-01-20",
+                  "guest_name": "John Doe",
+                  "apartment": {
+                    "id": "789",
+                    "name": "Deluxe Suite"
+                  },
+                  "price": 450.00
+                }
+              }
             }
           }
         }
-      ]
+      }
+    }
+  },
+  "/sendMessage": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Send a message via Smoobu",
+      "parameters": [
+        {
+          "name": "reservationId",
+          "summary": "Reservation ID",
+          "required": true,
+          "description": "Smoobu reservation ID",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "message",
+          "summary": "Message",
+          "required": true,
+          "description": "Message to send",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "SMOOBU_API_KEY",
+          "summary": "API Key",
+          "required": false,
+          "description": "Smoobu API key",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "SMOOBU_API_ENDPOINT",
+          "summary": "API Endpoint",
+          "required": false,
+          "description": "Smoobu API endpoint",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Message successfully sent to guest via Smoobu",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Smoobu API response for sent message",
+                "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "description": "Whether message was sent successfully"
+                  },
+                  "message_id": {
+                    "type": "string",
+                    "description": "ID of the sent message"
+                  }
+                }
+                    "success": true,
+                "message_id": "msg_789123"
+              }
+            }
+          }
+        }
+      }
     }
   }
+},
+"/getAllReservations": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "List of Smoobu reservations",
+    "parameters": [
+      {
+        "name": "created_from",
+        "summary": "Created from",
+        "required": false,
+        "description": "Creation date from",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "created_to",
+        "summary": "Created until",
+        "required": false,
+        "description": "Creation date until",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "from",
+        "summary": "Start",
+        "required": false,
+        "description": "Start date",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "to",
+        "summary": "End",
+        "required": false,
+        "description": "End date",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "modifiedFrom",
+        "summary": "Modified from",
+        "required": false,
+        "description": "Modification date from",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "modifiedTo",
+        "summary": "Modified until",
+        "required": false,
+        "description": "Modification date until",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "arrivalFrom",
+        "summary": "Arrival from",
+        "required": false,
+        "description": "Arrival date from",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "arrivalTo",
+        "summary": "Arrival until",
+        "required": false,
+        "description": "Arrival date until",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "departureFrom",
+        "summary": "Departure from",
+        "required": false,
+        "description": "Departure date from",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "departureTo",
+        "summary": "Departure until",
+        "required": false,
+        "description": "Departure date until",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "showCancellation",
+        "summary": "Show cancellations",
+        "required": false,
+        "description": "Show cancellations",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "excludeBlocked",
+        "summary": "Exclude blocked",
+        "required": false,
+        "description": "Exclude blocked",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "page",
+        "summary": "Page",
+        "required": false,
+        "description": "Page",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "pageSize",
+        "summary": "Page size",
+        "required": false,
+        "description": "Size of the page",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "apartmentId",
+        "summary": "Apartment ID",
+        "required": false,
+        "description": "Apartment ID",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "includeRelated",
+        "summary": "Include details",
+        "required": false,
+        "description": "Include details",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "includePriceElements",
+        "summary": "Include price elements",
+        "required": false,
+        "description": "Include price elements",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "SMOOBU_API_KEY",
+        "summary": "API Key",
+        "required": false,
+        "description": "Smoobu API key",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "SMOOBU_API_ENDPOINT",
+        "summary": "API Endpoint",
+        "required": false,
+        "description": "Smoobu API endpoint",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "x-events": [],
+    "responses": {
+      "200": {
+        "description": "List of reservations successfully retrieved from Smoobu",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "description": "Paginated list of Smoobu reservations",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "description": "Array of reservation objects",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Reservation ID"
+                      },
+                      "arrival": {
+                        "type": "string",
+                        "description": "Arrival date"
+                      },
+                      "departure": {
+                        "type": "string",
+                        "description": "Departure date"
+                      },
+                      "guest_name": {
+                        "type": "string",
+                        "description": "Guest name"
+                      }
+                    }
+                  }
+                },
+                "page": {
+                  "type": "number",
+                  "description": "Current page number"
+                },
+                "total": {
+                  "type": "number",
+                  "description": "Total number of reservations"
+                }
+              }
+                    "data": [
+                {
+                  "id": "123456",
+                  "arrival": "2024-01-15",
+                  "departure": "2024-01-20",
+                  "guest_name": "John Doe"
+                }
+              ],
+              "page": 1,
+              "total": 25
+            }
+          }
+        }
+      }
+    }
+  }
+}
+}
+},
+"components": {
+"schemas": {}
+},
+"x-scene-blocks": {
+"/event": {
+"summary": "Smoobu reservation",
+"description": "Management of events on reservations",
+"tags": [
+  "service"
+],
+"metadata": [],
+"parameters": [
+  {
+    "name": "updateRates",
+    "summary": "When updating rates",
+    "required": false,
+    "description": "Commands to execute when updating rates",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  },
+  {
+    "name": "newReservation",
+    "summary": "When a new reservation is made",
+    "required": false,
+    "description": "Commands to execute when a new reservation is made",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  },
+  {
+    "name": "cancelReservation",
+    "summary": "When a cancellation occurs",
+    "required": false,
+    "description": "Commands to execute when a cancellation occurs",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  },
+  {
+    "name": "updateReservation",
+    "summary": "When updating a reservation",
+    "required": false,
+    "description": "Commands to execute when updating a reservation",
+    "schema": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.digipair.ai/pinsSettings"
+      }
+    }
+  }
+]
+}
+}
 }

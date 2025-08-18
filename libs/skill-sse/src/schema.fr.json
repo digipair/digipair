@@ -35,7 +35,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Objet de session SSE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Identifiant unique de session"
+                    },
+                    "isConnected": {
+                      "type": "boolean",
+                      "description": "État de la connexion"
+                    },
+                    "lastEventId": {
+                      "type": "string",
+                      "description": "Dernier ID d'événement envoyé"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/registerChannel": {
@@ -74,7 +100,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Objet de canal SSE",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionCount": {
+                      "type": "number",
+                      "description": "Nombre de sessions connectées"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Identifiant unique du canal"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/push": {
@@ -119,7 +167,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'opération push",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Si l'envoi a réussi"
+                    },
+                    "eventId": {
+                      "type": "string",
+                      "description": "Identifiant de l'événement"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/broadcast": {
@@ -173,7 +243,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'opération broadcast",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Si le broadcast a réussi"
+                    },
+                    "sessionsCount": {
+                      "type": "number",
+                      "description": "Nombre de sessions qui ont reçu le message"
+                    },
+                    "eventId": {
+                      "type": "string",
+                      "description": "Identifiant de l'événement"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

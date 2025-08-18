@@ -59,7 +59,43 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "HeyGen session created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "HeyGen session data with session ID and connection details",
+                  "properties": {
+                    "session_id": {
+                      "type": "string",
+                      "description": "Unique session identifier"
+                    },
+                    "sdp": {
+                      "type": "object",
+                      "description": "Session Description Protocol data"
+                    },
+                    "ice_servers": {
+                      "type": "array",
+                      "description": "ICE server configuration"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid avatar or voice parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "500": {
+            "description": "Server error - HeyGen API internal error"
+          }
+        }
       }
     },
     "/handleICE": {
@@ -104,7 +140,32 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "ICE candidate handled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ICE handling confirmation from HeyGen API"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid session ID or candidate data"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not found - Session not found"
+          },
+          "500": {
+            "description": "Server error - HeyGen API internal error"
+          }
+        }
       }
     },
     "/startSession": {
@@ -149,7 +210,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "HeyGen session started successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Session start confirmation with streaming details",
+                  "properties": {
+                    "session_id": {
+                      "type": "string",
+                      "description": "Active session identifier"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Session status"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid session ID or SDP data"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not found - Session not found"
+          },
+          "500": {
+            "description": "Server error - HeyGen API internal error"
+          }
+        }
       }
     },
     "/talk": {
@@ -194,7 +290,46 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Avatar speech generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Speech generation confirmation with task details",
+                  "properties": {
+                    "task_id": {
+                      "type": "string",
+                      "description": "Speech task identifier"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Task status"
+                    },
+                    "duration": {
+                      "type": "number",
+                      "description": "Estimated speech duration"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid session ID or text content"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not found - Session not found or inactive"
+          },
+          "500": {
+            "description": "Server error - HeyGen API internal error"
+          }
+        }
       }
     },
     "/stop": {
@@ -230,7 +365,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "HeyGen session stopped successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Session stop confirmation",
+                  "properties": {
+                    "session_id": {
+                      "type": "string",
+                      "description": "Stopped session identifier"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Final session status"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid session ID"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not found - Session not found"
+          },
+          "500": {
+            "description": "Server error - HeyGen API internal error"
+          }
+        }
       }
     }
   },

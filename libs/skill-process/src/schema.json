@@ -10,7 +10,9 @@
   "paths": {
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop a process",
         "description": "Stop a running process.",
         "parameters": [
@@ -24,15 +26,69 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Boolean indicating whether the process was successfully stopped",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "True if process was found and stopped, false if process was not found"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List of processes",
         "description": "List the running processes.",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Array of running process information objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Unique process identifier"
+                      },
+                      "digipair": {
+                        "type": "string",
+                        "description": "Digipair identifier associated with the process"
+                      },
+                      "reasoning": {
+                        "type": "string",
+                        "description": "Reasoning or description of the process"
+                      },
+                      "time": {
+                        "type": "number",
+                        "description": "Timestamp when the process was created"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "digipair",
+                      "reasoning",
+                      "time"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

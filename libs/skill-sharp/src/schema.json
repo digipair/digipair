@@ -24,615 +24,1000 @@
               "type": "string"
             }
           }
-        ]
-      }
-    },
-    "/stats": {
-      "post": {
-        "tags": [
-          "service"
         ],
-        "summary": "Stats",
-        "description": "Returns image statistics like mean and standard deviation",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "responses": {
+          "200": {
+            "description": "Image metadata object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Image width in pixels"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Image height in pixels"
+                    },
+                    "channels": {
+                      "type": "number",
+                      "description": "Number of color channels"
+                    },
+                    "format": {
+                      "type": "string",
+                      "description": "Image format (jpeg, png, webp, etc.)"
+                    },
+                    "space": {
+                      "type": "string",
+                      "description": "Color space (srgb, rgb16, cmyk, etc.)"
+                    },
+                    "density": {
+                      "type": "number",
+                      "description": "Image density in pixels per inch"
+                    },
+                    "hasProfile": {
+                      "type": "boolean",
+                      "description": "Whether the image has an embedded color profile"
+                    },
+                    "hasAlpha": {
+                      "type": "boolean",
+                      "description": "Whether the image has an alpha channel"
+                    }
+                  }
+                    "width": 1920,
+                  "height": 1080,
+                  "channels": 3,
+                  "format": "jpeg",
+                  "space": "srgb",
+                  "density": 72,
+                  "hasProfile": false,
+                  "hasAlpha": false
+                }
+              }
             }
           }
-        ]
+        }
       }
-    },
-    "/raw": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Raw",
-        "description": "Returns raw image buffer as base64",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+    }
+  },
+  "/stats": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Stats",
+      "description": "Returns image statistics like mean and standard deviation",
+      "parameters": [
+        {
+          "name": "content",
+          "required": true,
+          "schema": {
+            "type": "string"
           }
-        ]
-      }
-    },
-    "/resize": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Resize",
-        "description": "Resizes the image",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "width",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "height",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "options",
-            "required": false,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ]
-      }
-    },
-    "/rotate": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Rotate",
-        "description": "Rotates the image (angle optional)",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "angle",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/extract": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Extract",
-        "description": "Extracts a region from the image",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "left",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "top",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "width",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "height",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/flip": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Flip",
-        "description": "Flips the image vertically",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/flop": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Flop",
-        "description": "Flips the image horizontally",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/autoOrient": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Auto Orient",
-        "description": "Automatically orients the image based on EXIF data",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/grayscale": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Grayscale",
-        "description": "Converts the image to grayscale",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/linear": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Linear",
-        "description": "Applies a linear transformation to the image",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "multiplier",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "offset",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/threshold": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Threshold",
-        "description": "Applies a threshold to the image to convert it to black and white.",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "level",
-            "required": false,
-            "schema": {
-              "type": "number",
-              "default": 128
-            }
-          },
-          {
-            "name": "option",
-            "required": false,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ]
-      }
-    },
-    "/negate": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Negate",
-        "description": "Inverts the image colors",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/tint": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Tint",
-        "description": "Applies a color tint",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "r",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "g",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "b",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/modulate": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Modulate",
-        "description": "Adjusts brightness, saturation and hue",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "brightness",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "saturation",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "hue",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/blur": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Blur",
-        "description": "Applies a blur effect",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "radius",
-            "required": false,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/sharpen": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Sharpen",
-        "description": "Sharpens the image",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/toFormat": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "To Format",
-        "description": "Converts the image to a different format",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "format",
-            "required": true,
-            "description": "jpeg, png, webp, avif",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "jpeg",
-                "png",
-                "webp",
-                "avif"
-              ]
-            }
-          }
-        ]
-      }
-    },
-    "/jpeg": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "JPEG",
-        "description": "Exports the image as JPEG",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "quality",
-            "required": false,
-            "schema": {
-              "type": "number",
-              "default": 80
-            }
-          }
-        ]
-      }
-    },
-    "/png": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "PNG",
-        "description": "Exports the image as PNG",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "compressionLevel",
-            "required": false,
-            "schema": {
-              "type": "number",
-              "default": 6
-            }
-          }
-        ]
-      }
-    },
-    "/webp": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "WebP",
-        "description": "Exports the image as WebP",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "quality",
-            "required": false,
-            "schema": {
-              "type": "number",
-              "default": 80
-            }
-          }
-        ]
-      }
-    },
-    "/avif": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "AVIF",
-        "description": "Exports the image as AVIF",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "quality",
-            "required": false,
-            "schema": {
-              "type": "number",
-              "default": 50
-            }
-          }
-        ]
-      }
-    },
-    "/composite": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Composite",
-        "description": "Overlays other images (e.g. watermark)",
-        "parameters": [
-          {
-            "name": "content",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "overlays",
-            "required": true,
-            "description": "Array of { input (base64), top, left }",
-            "schema": {
-              "type": "array",
-              "items": {
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Image statistics object",
+          "content": {
+            "application/json": {
+              "schema": {
                 "type": "object",
                 "properties": {
-                  "input": {
-                    "type": "string"
-                  },
-                  "top": {
-                    "type": "number"
-                  },
-                  "left": {
-                    "type": "number"
+                  "channels": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "min": {
+                          "type": "number",
+                          "description": "Minimum pixel value"
+                        },
+                        "max": {
+                          "type": "number",
+                          "description": "Maximum pixel value"
+                        },
+                        "sum": {
+                          "type": "number",
+                          "description": "Sum of all pixel values"
+                        },
+                        "squaresSum": {
+                          "type": "number",
+                          "description": "Sum of squared pixel values"
+                        },
+                        "mean": {
+                          "type": "number",
+                          "description": "Mean pixel value"
+                        },
+                        "stdev": {
+                          "type": "number",
+                          "description": "Standard deviation of pixel values"
+                        }
+                      }
+                    }
                   }
-                },
-                "required": [
-                  "input",
-                  "top",
-                  "left"
+                }
+                    "channels": [
+                  {
+                    "min": 0,
+                    "max": 255,
+                    "sum": 12345678,
+                    "squaresSum": 987654321,
+                    "mean": 128.5,
+                    "stdev": 64.2
+                  }
                 ]
               }
             }
           }
-        ]
+        }
       }
     }
-  },
-  "components": {
-    "schemas": {}
-  },
-  "x-scene-blocks": {}
+  }
+},
+"/raw": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Raw",
+    "description": "Returns raw image buffer as base64",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Raw image buffer as base64 string (without data URL prefix)",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded raw image buffer"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/resize": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Resize",
+    "description": "Resizes the image",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "width",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "height",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "options",
+        "required": false,
+        "schema": {
+          "type": "object"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Resized image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/rotate": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Rotate",
+    "description": "Rotates the image (angle optional)",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "angle",
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Rotated image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/extract": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Extract",
+    "description": "Extracts a region from the image",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "left",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "top",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "width",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "height",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Extracted image region as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/flip": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Flip",
+    "description": "Flips the image vertically",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Vertically flipped image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/flop": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Flop",
+    "description": "Flips the image horizontally",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Horizontally flipped image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/autoOrient": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Auto Orient",
+    "description": "Automatically orients the image based on EXIF data",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Auto-oriented image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/grayscale": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Grayscale",
+    "description": "Converts the image to grayscale",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Grayscale image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/linear": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Linear",
+    "description": "Applies a linear transformation to the image",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "multiplier",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "offset",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Linear transformed image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/threshold": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Threshold",
+    "description": "Applies a threshold to the image to convert it to black and white.",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "level",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "default": 128
+        }
+      },
+      {
+        "name": "option",
+        "required": false,
+        "schema": {
+          "type": "object"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Thresholded black and white image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/negate": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Negate",
+    "description": "Inverts the image colors",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Color-inverted image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/tint": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Tint",
+    "description": "Applies a color tint",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "r",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "g",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "b",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Color-tinted image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/modulate": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Modulate",
+    "description": "Adjusts brightness, saturation and hue",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "brightness",
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "saturation",
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "hue",
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Modulated image with adjusted brightness/saturation/hue as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/blur": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Blur",
+    "description": "Applies a blur effect",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "radius",
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Blurred image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/sharpen": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Sharpen",
+    "description": "Sharpens the image",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Sharpened image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/toFormat": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "To Format",
+    "description": "Converts the image to a different format",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "format",
+        "required": true,
+        "description": "jpeg, png, webp, avif",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "jpeg",
+            "png",
+            "webp",
+            "avif"
+          ]
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Format-converted image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with data URL prefix in the specified format"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/jpeg": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "JPEG",
+    "description": "Exports the image as JPEG",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "quality",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "default": 80
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "JPEG-encoded image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded JPEG image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/png": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "PNG",
+    "description": "Exports the image as PNG",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "compressionLevel",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "default": 6
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "PNG-encoded image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded PNG image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/webp": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "WebP",
+    "description": "Exports the image as WebP",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "quality",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "default": 80
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "WebP-encoded image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded WebP image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/avif": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "AVIF",
+    "description": "Exports the image as AVIF",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "quality",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "default": 50
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "AVIF-encoded image as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded AVIF image with data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/composite": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Composite",
+    "description": "Overlays other images (e.g. watermark)",
+    "parameters": [
+      {
+        "name": "content",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "overlays",
+        "required": true,
+        "description": "Array of { input (base64), top, left }",
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "input": {
+                "type": "string"
+              },
+              "top": {
+                "type": "number"
+              },
+              "left": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "input",
+              "top",
+              "left"
+            ]
+          }
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Composite image with overlays as base64-encoded data URL",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "description": "Base64-encoded image with overlays applied and data URL prefix"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+},
+"components": {
+"schemas": {}
+},
+"x-scene-blocks": {}
 }

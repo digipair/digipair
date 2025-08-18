@@ -89,7 +89,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SSE connection established successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Connection status"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Connection message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

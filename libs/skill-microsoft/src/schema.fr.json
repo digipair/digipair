@@ -10,7 +10,9 @@
   "paths": {
     "/request": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Exécute un service Microsoft",
         "parameters": [
           {
@@ -104,444 +106,604 @@
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/create": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Ajoute une ressource Microsoft",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Chemin du service",
-            "required": true,
-            "description": "Chemin du service à exécuter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "summary": "Valeur",
-            "required": false,
-            "description": "Valeur à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "Version de l'API",
-            "required": false,
-            "description": "Version de l'API à utiliser",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "En-têtes",
-            "required": false,
-            "description": "En-têtes à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
-            "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                }
+                  "id": "12345",
+                "displayName": "Ressource exemple",
+                "createdDateTime": "2023-01-01T00:00:00Z"
+              }
             }
           }
-        ],
-        "x-events": []
-      }
-    },
-    "/read": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Lit une ressource Microsoft",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Chemin du service",
-            "required": true,
-            "description": "Chemin du service à exécuter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "Version de l'API",
-            "required": false,
-            "description": "Version de l'API à utiliser",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "En-têtes",
-            "required": false,
-            "description": "En-têtes à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
-            "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/update": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Modifie une ressource Microsoft",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Chemin du service",
-            "required": true,
-            "description": "Chemin du service à exécuter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "summary": "Valeur",
-            "required": false,
-            "description": "Valeur à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "Version de l'API",
-            "required": false,
-            "description": "Version de l'API à utiliser",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "En-têtes",
-            "required": false,
-            "description": "En-têtes à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
-            "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/partialUpdate": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Modifie une partie d'une ressource Microsoft",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Chemin du service",
-            "required": true,
-            "description": "Chemin du service à exécuter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "summary": "Valeur",
-            "required": false,
-            "description": "Valeur à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "Version de l'API",
-            "required": false,
-            "description": "Version de l'API à utiliser",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "En-têtes",
-            "required": false,
-            "description": "En-têtes à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
-            "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/remove": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Supprime une ressource Microsoft",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Chemin du service",
-            "required": true,
-            "description": "Chemin du service à exécuter",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "Version de l'API",
-            "required": false,
-            "description": "Version de l'API à utiliser",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "En-têtes",
-            "required": false,
-            "description": "En-têtes à envoyer",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "Identifiant du client OAuth",
-            "required": false,
-            "description": "Identifiant du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "Secret du client OAuth",
-            "required": false,
-            "description": "Secret du client OAuth",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "ID du locataire",
-            "required": false,
-            "description": "ID du locataire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
+        }
       }
     }
   },
-  "components": {
-    "schemas": {}
+  "/create": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Ajoute une ressource Microsoft",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Chemin du service",
+          "required": true,
+          "description": "Chemin du service à exécuter",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "body",
+          "summary": "Valeur",
+          "required": false,
+          "description": "Valeur à envoyer",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "version",
+          "summary": "Version de l'API",
+          "required": false,
+          "description": "Version de l'API à utiliser",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "headers",
+          "summary": "En-têtes",
+          "required": false,
+          "description": "En-têtes à envoyer",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "OAUTH_CLIENT_ID",
+          "summary": "Identifiant du client OAuth",
+          "required": false,
+          "description": "Identifiant du client OAuth",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "OAUTH_CLIENT_SECRET",
+          "summary": "Secret du client OAuth",
+          "required": false,
+          "description": "Secret du client OAuth",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "TENANT_ID",
+          "summary": "ID du locataire",
+          "required": false,
+          "description": "ID du locataire",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "summary": "Type de sortie",
+          "required": false,
+          "description": "Type de sortie attendu",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "contentType",
+          "summary": "Type de contenu",
+          "required": false,
+          "description": "Type de contenu à envoyer",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Réponse réussie",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "description": "Réponse JSON de l'API Microsoft Graph"
+                  },
+                  {
+                    "type": "string",
+                    "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                  }
+                ]
+              }
+                  "id": "12345",
+              "displayName": "Ressource exemple",
+              "createdDateTime": "2023-01-01T00:00:00Z"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/read": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Lit une ressource Microsoft",
+    "parameters": [
+      {
+        "name": "path",
+        "summary": "Chemin du service",
+        "required": true,
+        "description": "Chemin du service à exécuter",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "version",
+        "summary": "Version de l'API",
+        "required": false,
+        "description": "Version de l'API à utiliser",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "headers",
+        "summary": "En-têtes",
+        "required": false,
+        "description": "En-têtes à envoyer",
+        "schema": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "OAUTH_CLIENT_ID",
+        "summary": "Identifiant du client OAuth",
+        "required": false,
+        "description": "Identifiant du client OAuth",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "OAUTH_CLIENT_SECRET",
+        "summary": "Secret du client OAuth",
+        "required": false,
+        "description": "Secret du client OAuth",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "TENANT_ID",
+        "summary": "ID du locataire",
+        "required": false,
+        "description": "ID du locataire",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "type",
+        "summary": "Type de sortie",
+        "required": false,
+        "description": "Type de sortie attendu",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "contentType",
+        "summary": "Type de contenu",
+        "required": false,
+        "description": "Type de contenu à envoyer",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "x-events": [],
+    "responses": {
+      "200": {
+        "description": "Réponse réussie",
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "description": "Réponse JSON de l'API Microsoft Graph"
+                },
+                {
+                  "type": "string",
+                  "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                }
+              ]
+            }
+                  "id": "12345",
+            "displayName": "Ressource exemple",
+            "createdDateTime": "2023-01-01T00:00:00Z"
+          }
+        }
+      }
+    }
+  }
+}
+},
+"/update": {
+"post": {
+  "tags": [
+    "service"
+  ],
+  "summary": "Modifie une ressource Microsoft",
+  "parameters": [
+    {
+      "name": "path",
+      "summary": "Chemin du service",
+      "required": true,
+      "description": "Chemin du service à exécuter",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "body",
+      "summary": "Valeur",
+      "required": false,
+      "description": "Valeur à envoyer",
+      "schema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "version",
+      "summary": "Version de l'API",
+      "required": false,
+      "description": "Version de l'API à utiliser",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "headers",
+      "summary": "En-têtes",
+      "required": false,
+      "description": "En-têtes à envoyer",
+      "schema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "OAUTH_CLIENT_ID",
+      "summary": "Identifiant du client OAuth",
+      "required": false,
+      "description": "Identifiant du client OAuth",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "OAUTH_CLIENT_SECRET",
+      "summary": "Secret du client OAuth",
+      "required": false,
+      "description": "Secret du client OAuth",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "TENANT_ID",
+      "summary": "ID du locataire",
+      "required": false,
+      "description": "ID du locataire",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "type",
+      "summary": "Type de sortie",
+      "required": false,
+      "description": "Type de sortie attendu",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "contentType",
+      "summary": "Type de contenu",
+      "required": false,
+      "description": "Type de contenu à envoyer",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "x-events": [],
+  "responses": {
+    "200": {
+      "description": "Réponse réussie",
+      "content": {
+        "application/json": {
+          "schema": {
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "Réponse JSON de l'API Microsoft Graph"
+              },
+              {
+                "type": "string",
+                "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+              }
+            ]
+          }
+                  "id": "12345",
+          "displayName": "Ressource exemple",
+          "createdDateTime": "2023-01-01T00:00:00Z"
+        }
+      }
+    }
+  }
+}
+}
+},
+"/partialUpdate": {
+"post": {
+"tags": [
+  "service"
+],
+"summary": "Modifie une partie d'une ressource Microsoft",
+"parameters": [
+  {
+    "name": "path",
+    "summary": "Chemin du service",
+    "required": true,
+    "description": "Chemin du service à exécuter",
+    "schema": {
+      "type": "string"
+    }
   },
-  "x-scene-blocks": {}
+  {
+    "name": "body",
+    "summary": "Valeur",
+    "required": false,
+    "description": "Valeur à envoyer",
+    "schema": {
+      "type": "object"
+    }
+  },
+  {
+    "name": "version",
+    "summary": "Version de l'API",
+    "required": false,
+    "description": "Version de l'API à utiliser",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "headers",
+    "summary": "En-têtes",
+    "required": false,
+    "description": "En-têtes à envoyer",
+    "schema": {
+      "type": "object"
+    }
+  },
+  {
+    "name": "OAUTH_CLIENT_ID",
+    "summary": "Identifiant du client OAuth",
+    "required": false,
+    "description": "Identifiant du client OAuth",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "OAUTH_CLIENT_SECRET",
+    "summary": "Secret du client OAuth",
+    "required": false,
+    "description": "Secret du client OAuth",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "TENANT_ID",
+    "summary": "ID du locataire",
+    "required": false,
+    "description": "ID du locataire",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "type",
+    "summary": "Type de sortie",
+    "required": false,
+    "description": "Type de sortie attendu",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "contentType",
+    "summary": "Type de contenu",
+    "required": false,
+    "description": "Type de contenu à envoyer",
+    "schema": {
+      "type": "string"
+    }
+  }
+],
+"x-events": [],
+"responses": {
+  "200": {
+    "description": "Réponse réussie",
+    "content": {
+      "application/json": {
+        "schema": {
+          "oneOf": [
+            {
+              "type": "object",
+              "description": "Réponse JSON de l'API Microsoft Graph"
+            },
+            {
+              "type": "string",
+              "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+            }
+          ]
+        }
+                  "id": "12345",
+        "displayName": "Ressource exemple",
+        "createdDateTime": "2023-01-01T00:00:00Z"
+      }
+    }
+  }
+}
+}
+}
+},
+"/remove": {
+"post": {
+"tags": [
+"service"
+],
+"summary": "Supprime une ressource Microsoft",
+"parameters": [
+{
+  "name": "path",
+  "summary": "Chemin du service",
+  "required": true,
+  "description": "Chemin du service à exécuter",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "version",
+  "summary": "Version de l'API",
+  "required": false,
+  "description": "Version de l'API à utiliser",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "headers",
+  "summary": "En-têtes",
+  "required": false,
+  "description": "En-têtes à envoyer",
+  "schema": {
+    "type": "object"
+  }
+},
+{
+  "name": "OAUTH_CLIENT_ID",
+  "summary": "Identifiant du client OAuth",
+  "required": false,
+  "description": "Identifiant du client OAuth",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "OAUTH_CLIENT_SECRET",
+  "summary": "Secret du client OAuth",
+  "required": false,
+  "description": "Secret du client OAuth",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "TENANT_ID",
+  "summary": "ID du locataire",
+  "required": false,
+  "description": "ID du locataire",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "type",
+  "summary": "Type de sortie",
+  "required": false,
+  "description": "Type de sortie attendu",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "contentType",
+  "summary": "Type de contenu",
+  "required": false,
+  "description": "Type de contenu à envoyer",
+  "schema": {
+    "type": "string"
+  }
+}
+],
+"x-events": [],
+"responses": {
+"200": {
+  "description": "Réponse réussie",
+  "content": {
+    "application/json": {
+      "schema": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "Réponse JSON de l'API Microsoft Graph"
+          },
+          {
+            "type": "string",
+            "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+          }
+        ]
+      }
+                  "id": "12345",
+      "displayName": "Ressource exemple",
+      "createdDateTime": "2023-01-01T00:00:00Z"
+    }
+  }
+}
+}
+}
+}
+}
+},
+"components": {
+"schemas": {}
+},
+"x-scene-blocks": {}
 }

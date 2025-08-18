@@ -10,7 +10,9 @@
   "paths": {
     "/canvas": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Créer un canvas",
         "description": "Crée un canvas avec des dimensions spécifiées et exécute des actions de dessin.",
         "parameters": [
@@ -45,12 +47,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Canvas créé avec les actions de dessin exécutées",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "URL de données du canvas sous forme d'image encodée en base64",
+                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/loadImage": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Charger une image",
         "description": "Charge une image à partir d'une chaîne base64 et retourne l'image chargée.",
         "parameters": [
@@ -64,12 +82,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image chargée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet image chargé pouvant être utilisé avec drawImage",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Largeur de l'image"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Hauteur de l'image"
+                    },
+                    "src": {
+                      "type": "string",
+                      "description": "Source de l'image",
+                      "example": "data:image/png;base64,..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/drawImage": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Dessiner une image",
         "description": "Dessine une image sur le canvas aux coordonnées spécifiées.",
         "parameters": [
@@ -119,12 +167,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image dessinée sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeRect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Dessiner un rectangle vide",
         "description": "Dessine le contour d'un rectangle aux coordonnées spécifiées.",
         "parameters": [
@@ -165,12 +228,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Contour du rectangle dessiné sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillRect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Déssine un rectangle plein",
         "description": "Déssine un rectangle plein aux coordonnées spécifiées.",
         "parameters": [
@@ -211,12 +289,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Rectangle plein dessiné sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillText": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Ecrire un texte",
         "description": "Ecrit du texte aux coordonnées spécifiées.",
         "parameters": [
@@ -248,12 +341,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Texte dessiné sur le canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeStyle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définir le style du contour",
         "description": "Définit le style de contour utilisé pour les dessins.",
         "parameters": [
@@ -267,12 +375,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Style de contour défini",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillStyle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définir le style de remplissage",
         "description": "Définit le style de remplissage utilisé pour les dessins.",
         "parameters": [
@@ -286,12 +409,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Style de remplissage défini",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lineWidth": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définir la largeur du trait",
         "description": "Définit la largeur du trait utilisé pour les dessins.",
         "parameters": [
@@ -305,12 +443,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Largeur du trait définie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - modifie le contexte du canvas"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/measureText": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Mesurer le texte",
         "description": "Mesure le texte spécifié et retourne les métriques.",
         "parameters": [
@@ -324,7 +477,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Mesures du texte",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de métriques du texte",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Largeur du texte"
+                    },
+                    "actualBoundingBoxLeft": {
+                      "type": "number",
+                      "description": "Distance du point d'alignement du texte au côté gauche de la boîte englobante"
+                    },
+                    "actualBoundingBoxRight": {
+                      "type": "number",
+                      "description": "Distance du point d'alignement du texte au côté droit de la boîte englobante"
+                    },
+                    "fontBoundingBoxAscent": {
+                      "type": "number",
+                      "description": "Distance de la ligne de base horizontale au haut de la boîte englobante de la police"
+                    },
+                    "fontBoundingBoxDescent": {
+                      "type": "number",
+                      "description": "Distance de la ligne de base horizontale au bas de la boîte englobante de la police"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

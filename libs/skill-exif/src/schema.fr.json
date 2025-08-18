@@ -23,7 +23,56 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Métadonnées EXIF extraites avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tags": {
+                      "type": "object",
+                      "description": "Tags EXIF contenant les paramètres de l'appareil photo, date/heure, coordonnées GPS, etc.",
+                      "additionalProperties": true
+                    },
+                    "imageSize": {
+                      "type": "object",
+                      "description": "Dimensions de l'image",
+                      "properties": {
+                        "width": {
+                          "type": "number",
+                          "description": "Largeur de l'image en pixels"
+                        },
+                        "height": {
+                          "type": "number",
+                          "description": "Hauteur de l'image en pixels"
+                        }
+                      }
+                    },
+                    "thumbnailOffset": {
+                      "type": "number",
+                      "description": "Offset des données de miniature en octets"
+                    },
+                    "thumbnailLength": {
+                      "type": "number",
+                      "description": "Taille des données de miniature en octets"
+                    },
+                    "thumbnailType": {
+                      "type": "number",
+                      "description": "Type d'image de la miniature"
+                    },
+                    "app1Offset": {
+                      "type": "number",
+                      "description": "Offset du segment APP1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

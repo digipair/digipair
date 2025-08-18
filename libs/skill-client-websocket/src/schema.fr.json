@@ -93,6 +93,28 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Objet de connexion WebSocket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ws": {
+                      "type": "object",
+                      "description": "Instance WebSocket"
+                    },
+                    "cwssForceClose": {
+                      "type": "boolean",
+                      "description": "Indicateur de fermeture forcée"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -124,6 +146,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Message envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -146,6 +180,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "WebSocket fermé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

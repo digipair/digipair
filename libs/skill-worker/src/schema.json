@@ -36,6 +36,19 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Result of executed activity commands with workflow step tracking",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Result from executePinsList - stored in context.workflow.steps[name]",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -55,6 +68,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Worker stopped with return value",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Never returns normally - throws DIGIPAIR_STOP exception"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

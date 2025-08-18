@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activitée",
         "description": "Définit une activité",
         "parameters": [
@@ -36,12 +38,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution de l'activité",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Résultat de l'exécution de l'activité"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sleep": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Attente",
         "parameters": [
           {
@@ -63,12 +80,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation de la durée d'attente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Confirmation que la durée d'attente a été appliquée"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/condition": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Condition d'attente",
         "description": "Condition d'attente dans un workflow",
         "parameters": [
@@ -91,12 +123,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de la condition d'attente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Si la condition a été remplie avant le timeout"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/goto": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Aller à l'étape",
         "parameters": [
           {
@@ -118,12 +165,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Numéro d'étape après goto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Numéro de l'étape cible dans le workflow"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrête le workflow",
         "description": "Arrête le workflow",
         "parameters": [
@@ -137,12 +199,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation de l'arrêt du workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Le workflow a été arrêté"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/push": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoi de nouvelles données dans un workflow",
         "description": "Envoi de nouvelles données dans le workflow",
         "parameters": [
@@ -165,12 +242,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation de l'envoi des données",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Les données ont été envoyées avec succès au workflow"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/terminate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrête un workflow",
         "description": "Arrête un workflow",
         "parameters": [
@@ -184,12 +276,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation de l'arrêt du workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Le workflow a été arrêté avec succès"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste les workflows",
         "description": "Liste les workflows",
         "parameters": [
@@ -203,18 +310,79 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des workflows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowExecutionInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "WorkflowExecutionInfo": {
+        "type": "object",
+        "description": "Informations sur une exécution de workflow Temporal",
+        "properties": {
+          "workflowId": {
+            "type": "string",
+            "description": "Identifiant unique du workflow"
+          },
+          "runId": {
+            "type": "string",
+            "description": "Identifiant unique de l'exécution du workflow"
+          },
+          "type": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Nom du type de workflow"
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Running",
+              "Completed",
+              "Failed",
+              "Cancelled",
+              "Terminated"
+            ],
+            "description": "Statut actuel du workflow"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Quand le workflow a été démarré"
+          },
+          "taskQueue": {
+            "type": "string",
+            "description": "Nom de la file d'attente des tâches utilisée par le workflow"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {
     "/workflow": {
       "summary": "Workflow Temporal",
       "description": "Execute un workflow Temporal",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -256,7 +424,19 @@
             "type": "object"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Résultat de l'exécution du workflow",
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Le résultat de la dernière étape exécutée dans le workflow"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

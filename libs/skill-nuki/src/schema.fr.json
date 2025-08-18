@@ -10,7 +10,9 @@
   "paths": {
     "/unlock": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Ouvre une serrure Nuki",
         "parameters": [
           {
@@ -41,12 +43,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse de déverrouillage de la serrure Nuki",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lock": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Ferme une serrure Nuki",
         "parameters": [
           {
@@ -77,12 +93,43 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse de verrouillage de la serrure Nuki",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "NukiActionResponse": {
+        "type": "object",
+        "description": "Réponse d'une action de serrure Nuki",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Si l'action a réussi"
+          },
+          "batteryCharging": {
+            "type": "boolean",
+            "description": "Statut de charge de la batterie"
+          },
+          "operationId": {
+            "type": "string",
+            "description": "Identifiant unique de l'opération"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {}
 }

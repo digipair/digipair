@@ -60,7 +60,37 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Web push notification sending result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "description": "HTTP status code from push service"
+                    },
+                    "headers": {
+                      "type": "object",
+                      "description": "Response headers from push service"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Response body from push service"
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Whether the notification was sent successfully"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

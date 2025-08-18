@@ -10,7 +10,9 @@
   "paths": {
     "/generate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Génère un document Word",
         "parameters": [
           {
@@ -32,7 +34,22 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Document Word généré",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte",
+                  "description": "Document Word encodé en base64 avec préfixe de data URL",
+                  "example": "data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,..."
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

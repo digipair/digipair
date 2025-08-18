@@ -59,7 +59,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful HTTP response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response when type=json (default)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text response when type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Base64 encoded response when type=buffer or other"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/create": {
@@ -104,7 +130,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successfully created HTTP resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response when type=json (default)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text response when type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Base64 encoded response when type=buffer or other"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/read": {
@@ -140,7 +192,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successfully read HTTP resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response when type=json (default)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text response when type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Base64 encoded response when type=buffer or other"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/update": {
@@ -185,7 +263,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successfully updated HTTP resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response when type=json (default)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text response when type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Base64 encoded response when type=buffer or other"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/partialUpdate": {
@@ -230,7 +334,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successfully partially updated HTTP resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response when type=json (default)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text response when type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Base64 encoded response when type=buffer or other"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/remove": {
@@ -266,7 +396,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successfully removed HTTP resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response when type=json (default)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text response when type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Base64 encoded response when type=buffer or other"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/upload": {
@@ -323,7 +479,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successfully uploaded HTTP resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response when type=json (default)"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text response when type=text"
+                    },
+                    {
+                      "type": "string",
+                      "format": "base64",
+                      "description": "Base64 encoded response when type=buffer or other"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

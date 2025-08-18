@@ -81,7 +81,66 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Email sending result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "messageId": {
+                      "type": "string",
+                      "description": "Unique message identifier"
+                    },
+                    "envelope": {
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "type": "string",
+                          "description": "Envelope sender"
+                        },
+                        "to": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Envelope recipients"
+                        }
+                      }
+                    },
+                    "accepted": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Accepted recipients"
+                    },
+                    "rejected": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Rejected recipients"
+                    },
+                    "pending": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Pending recipients"
+                    },
+                    "response": {
+                      "type": "string",
+                      "description": "Server response"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

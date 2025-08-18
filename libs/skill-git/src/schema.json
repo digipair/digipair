@@ -10,7 +10,9 @@
   "paths": {
     "/commit": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "GIT Commit",
         "parameters": [
           {
@@ -41,12 +43,50 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Git commit successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "commit": {
+                      "type": "string",
+                      "description": "Commit hash"
+                    },
+                    "summary": {
+                      "type": "object",
+                      "description": "Commit summary",
+                      "properties": {
+                        "changes": {
+                          "type": "number",
+                          "description": "Number of changes"
+                        },
+                        "insertions": {
+                          "type": "number",
+                          "description": "Number of insertions"
+                        },
+                        "deletions": {
+                          "type": "number",
+                          "description": "Number of deletions"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/push": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "GIT Push",
         "parameters": [
           {
@@ -71,12 +111,43 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Git push successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "repo": {
+                      "type": "string",
+                      "description": "Repository name"
+                    },
+                    "ref": {
+                      "type": "object",
+                      "description": "Reference information"
+                    },
+                    "pushed": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Pushed commits"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/show": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "GIT Show",
         "parameters": [
           {
@@ -101,12 +172,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Git show result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Git show output"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/log": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "GIT Log",
         "parameters": [
           {
@@ -209,7 +295,58 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Git log result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "all": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "hash": {
+                            "type": "string",
+                            "description": "Commit hash"
+                          },
+                          "date": {
+                            "type": "string",
+                            "description": "Commit date"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Commit message"
+                          },
+                          "author_name": {
+                            "type": "string",
+                            "description": "Author name"
+                          },
+                          "author_email": {
+                            "type": "string",
+                            "description": "Author email"
+                          }
+                        }
+                      },
+                      "description": "Array of commit objects"
+                    },
+                    "total": {
+                      "type": "number",
+                      "description": "Total number of commits"
+                    },
+                    "latest": {
+                      "type": "object",
+                      "description": "Latest commit object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

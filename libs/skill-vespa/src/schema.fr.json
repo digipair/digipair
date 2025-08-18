@@ -78,6 +78,29 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Documents trouvés dans la base de données Vespa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "uuid": {"type": "string"},
+                      "parent_uuid": {"type": "string"},
+                      "is_parent": {"type": "boolean"},
+                      "content": {"type": "string"},
+                      "source": {"type": "string"}
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -181,6 +204,30 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Résultats de recherche sémantique depuis la base Vespa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "uuid": {"type": "string"},
+                      "parent_uuid": {"type": "string"},
+                      "is_parent": {"type": "boolean"},
+                      "content": {"type": "string"},
+                      "source": {"type": "string"},
+                      "matchfeatures": {"type": "object"}
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -227,6 +274,26 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Texte découpé en fragments avec métadonnées source",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "source": {"type": "string"},
+                      "content": {"type": "string"}
+                    },
+                    "required": ["source", "content"]
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -297,6 +364,22 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "UUIDs des documents parents ajoutés avec succès dans Vespa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "UUID du document parent"
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -343,6 +426,23 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Résultat de la suppression de document dans Vespa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pathId": {"type": "string"},
+                    "documentCount": {"type": "number"}
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -398,6 +498,23 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Résultat de la mise à jour du document dans Vespa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pathId": {"type": "string"},
+                    "id": {"type": "string"}
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

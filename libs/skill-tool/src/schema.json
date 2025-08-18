@@ -24,6 +24,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Reasoning stopped with return value",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Never returns normally - throws DIGIPAIR_STOP exception"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -33,6 +45,18 @@
         "summary": "Keep alive",
         "description": "Keep alive the reasoning",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Keeps reasoning alive",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Never returns normally - throws DIGIPAIR_KEEPALIVE exception"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -64,6 +88,19 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Result of executed commands with given context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Result from executePinsList - dynamic type based on executed commands",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

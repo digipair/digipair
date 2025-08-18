@@ -32,7 +32,46 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Données YAML analysées avec succès en objet/tableau JavaScript",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Objet YAML analysé",
+                      "additionalProperties": true
+                    },
+                    {
+                      "type": "array",
+                      "description": "Tableau YAML analysé",
+                      "items": {}
+                    },
+                    {
+                      "type": "string",
+                      "description": "Valeur primitive YAML analysée"
+                    },
+                    {
+                      "type": "number",
+                      "description": "Nombre YAML analysé"
+                    },
+                    {
+                      "type": "boolean",
+                      "description": "Booléen YAML analysé"
+                    },
+                    {
+                      "type": "null",
+                      "description": "Valeur null YAML analysée"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/dump": {
@@ -45,9 +84,7 @@
             "summary": "Données",
             "required": true,
             "description": "Données à convertir en YAML",
-            "schema": {
-              "type": "string"
-            }
+            "schema": {}
           },
           {
             "name": "options",
@@ -59,7 +96,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Données converties avec succès au format YAML",
+            "content": {
+              "text/yaml": {
+                "schema": {
+                  "type": "string",
+                  "description": "Représentation YAML formatée des données d'entrée"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -10,7 +10,9 @@
   "paths": {
     "/request": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Executes a Microsoft service",
         "parameters": [
           {
@@ -104,444 +106,606 @@
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/create": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Adds a Microsoft resource",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Service path",
-            "required": true,
-            "description": "Path of the service to execute",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "summary": "Value",
-            "required": false,
-            "description": "Value to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "API version",
-            "required": false,
-            "description": "API version to use",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "Headers",
-            "required": false,
-            "description": "Headers to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "OAuth client ID",
-            "required": false,
-            "description": "OAuth client ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "OAuth client secret",
-            "required": false,
-            "description": "OAuth client secret",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "Tenant ID",
-            "required": false,
-            "description": "Tenant ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Output type",
-            "required": false,
-            "description": "Type of output expected from the service",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Content type",
-            "required": false,
-            "description": "Content type of the request",
-            "schema": {
-              "type": "string"
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                }
+                  "id": "12345",
+                "displayName": "Sample Resource",
+                "createdDateTime": "2023-01-01T00:00:00Z"
+              }
             }
           }
-        ],
-        "x-events": []
-      }
-    },
-    "/read": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Reads a Microsoft resource",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Service path",
-            "required": true,
-            "description": "Path of the service to execute",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "API version",
-            "required": false,
-            "description": "API version to use",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "Headers",
-            "required": false,
-            "description": "Headers to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "OAuth client ID",
-            "required": false,
-            "description": "OAuth client ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "OAuth client secret",
-            "required": false,
-            "description": "OAuth client secret",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "Tenant ID",
-            "required": false,
-            "description": "Tenant ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Output type",
-            "required": false,
-            "description": "Type of output expected from the service",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Content type",
-            "required": false,
-            "description": "Content type of the request",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/update": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Modifies a Microsoft resource",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Service path",
-            "required": true,
-            "description": "Path of the service to execute",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "summary": "Value",
-            "required": false,
-            "description": "Value to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "API version",
-            "required": false,
-            "description": "API version to use",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "Headers",
-            "required": false,
-            "description": "Headers to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "OAuth client ID",
-            "required": false,
-            "description": "OAuth client ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "OAuth client secret",
-            "required": false,
-            "description": "OAuth client secret",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "Tenant ID",
-            "required": false,
-            "description": "Tenant ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Output type",
-            "required": false,
-            "description": "Type of output expected from the service",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Content type",
-            "required": false,
-            "description": "Content type of the request",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/partialUpdate": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Modifies part of a Microsoft resource",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Service path",
-            "required": true,
-            "description": "Path of the service to execute",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "summary": "Value",
-            "required": false,
-            "description": "Value to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "API version",
-            "required": false,
-            "description": "API version to use",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "Headers",
-            "required": false,
-            "description": "Headers to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "OAuth client ID",
-            "required": false,
-            "description": "OAuth client ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "OAuth client secret",
-            "required": false,
-            "description": "OAuth client secret",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "Tenant ID",
-            "required": false,
-            "description": "Tenant ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Output type",
-            "required": false,
-            "description": "Type of output expected from the service",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Content type",
-            "required": false,
-            "description": "Content type of the request",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/remove": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Deletes a Microsoft resource",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Service path",
-            "required": true,
-            "description": "Path of the service to execute",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "version",
-            "summary": "API version",
-            "required": false,
-            "description": "API version to use",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "headers",
-            "summary": "Headers",
-            "required": false,
-            "description": "Headers to send",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_ID",
-            "summary": "OAuth client ID",
-            "required": false,
-            "description": "OAuth client ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OAUTH_CLIENT_SECRET",
-            "summary": "OAuth client secret",
-            "required": false,
-            "description": "OAuth client secret",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "TENANT_ID",
-            "summary": "Tenant ID",
-            "required": false,
-            "description": "Tenant ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Output type",
-            "required": false,
-            "description": "Type of output expected from the service",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Content type",
-            "required": false,
-            "description": "Content type of the request",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
+        }
       }
     }
   },
-  "components": {
-    "schemas": {}
+  "/create": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Adds a Microsoft resource",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Service path",
+          "required": true,
+          "description": "Path of the service to execute",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "body",
+          "summary": "Value",
+          "required": false,
+          "description": "Value to send",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "version",
+          "summary": "API version",
+          "required": false,
+          "description": "API version to use",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "headers",
+          "summary": "Headers",
+          "required": false,
+          "description": "Headers to send",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "OAUTH_CLIENT_ID",
+          "summary": "OAuth client ID",
+          "required": false,
+          "description": "OAuth client ID",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "OAUTH_CLIENT_SECRET",
+          "summary": "OAuth client secret",
+          "required": false,
+          "description": "OAuth client secret",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "TENANT_ID",
+          "summary": "Tenant ID",
+          "required": false,
+          "description": "Tenant ID",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "type",
+          "summary": "Output type",
+          "required": false,
+          "description": "Type of output expected from the service",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "contentType",
+          "summary": "Content type",
+          "required": false,
+          "description": "Content type of the request",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": [],
+      "responses": {
+        "200": {
+          "description": "Successful response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "description": "JSON response from Microsoft Graph API"
+                  },
+                  {
+                    "type": "string",
+                    "description": "Text or base64 response from Microsoft Graph API"
+                  }
+                ]
+              }
+                  "id": "created-resource-id",
+              "displayName": "Created Resource",
+              "status": "active"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/read": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "Reads a Microsoft resource",
+    "parameters": [
+      {
+        "name": "path",
+        "summary": "Service path",
+        "required": true,
+        "description": "Path of the service to execute",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "version",
+        "summary": "API version",
+        "required": false,
+        "description": "API version to use",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "headers",
+        "summary": "Headers",
+        "required": false,
+        "description": "Headers to send",
+        "schema": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "OAUTH_CLIENT_ID",
+        "summary": "OAuth client ID",
+        "required": false,
+        "description": "OAuth client ID",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "OAUTH_CLIENT_SECRET",
+        "summary": "OAuth client secret",
+        "required": false,
+        "description": "OAuth client secret",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "TENANT_ID",
+        "summary": "Tenant ID",
+        "required": false,
+        "description": "Tenant ID",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "type",
+        "summary": "Output type",
+        "required": false,
+        "description": "Type of output expected from the service",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "contentType",
+        "summary": "Content type",
+        "required": false,
+        "description": "Content type of the request",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "x-events": [],
+    "responses": {
+      "200": {
+        "description": "Successful response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "description": "JSON response from Microsoft Graph API"
+                },
+                {
+                  "type": "string",
+                  "description": "Text or base64 response from Microsoft Graph API"
+                }
+              ]
+            }
+                  "id": "resource-id",
+            "displayName": "Retrieved Resource",
+            "properties": {
+              "value1": "data1",
+              "value2": "data2"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+},
+"/update": {
+"post": {
+  "tags": [
+    "service"
+  ],
+  "summary": "Modifies a Microsoft resource",
+  "parameters": [
+    {
+      "name": "path",
+      "summary": "Service path",
+      "required": true,
+      "description": "Path of the service to execute",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "body",
+      "summary": "Value",
+      "required": false,
+      "description": "Value to send",
+      "schema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "version",
+      "summary": "API version",
+      "required": false,
+      "description": "API version to use",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "headers",
+      "summary": "Headers",
+      "required": false,
+      "description": "Headers to send",
+      "schema": {
+        "type": "object"
+      }
+    },
+    {
+      "name": "OAUTH_CLIENT_ID",
+      "summary": "OAuth client ID",
+      "required": false,
+      "description": "OAuth client ID",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "OAUTH_CLIENT_SECRET",
+      "summary": "OAuth client secret",
+      "required": false,
+      "description": "OAuth client secret",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "TENANT_ID",
+      "summary": "Tenant ID",
+      "required": false,
+      "description": "Tenant ID",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "type",
+      "summary": "Output type",
+      "required": false,
+      "description": "Type of output expected from the service",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "contentType",
+      "summary": "Content type",
+      "required": false,
+      "description": "Content type of the request",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "x-events": [],
+  "responses": {
+    "200": {
+      "description": "Successful response",
+      "content": {
+        "application/json": {
+          "schema": {
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "JSON response from Microsoft Graph API"
+              },
+              {
+                "type": "string",
+                "description": "Text or base64 response from Microsoft Graph API"
+              }
+            ]
+          }
+                  "id": "updated-resource-id",
+          "displayName": "Updated Resource",
+          "modifiedDateTime": "2023-01-02T00:00:00Z"
+        }
+      }
+    }
+  }
+}
+}
+},
+"/partialUpdate": {
+"post": {
+"tags": [
+  "service"
+],
+"summary": "Modifies part of a Microsoft resource",
+"parameters": [
+  {
+    "name": "path",
+    "summary": "Service path",
+    "required": true,
+    "description": "Path of the service to execute",
+    "schema": {
+      "type": "string"
+    }
   },
-  "x-scene-blocks": {}
+  {
+    "name": "body",
+    "summary": "Value",
+    "required": false,
+    "description": "Value to send",
+    "schema": {
+      "type": "object"
+    }
+  },
+  {
+    "name": "version",
+    "summary": "API version",
+    "required": false,
+    "description": "API version to use",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "headers",
+    "summary": "Headers",
+    "required": false,
+    "description": "Headers to send",
+    "schema": {
+      "type": "object"
+    }
+  },
+  {
+    "name": "OAUTH_CLIENT_ID",
+    "summary": "OAuth client ID",
+    "required": false,
+    "description": "OAuth client ID",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "OAUTH_CLIENT_SECRET",
+    "summary": "OAuth client secret",
+    "required": false,
+    "description": "OAuth client secret",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "TENANT_ID",
+    "summary": "Tenant ID",
+    "required": false,
+    "description": "Tenant ID",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "type",
+    "summary": "Output type",
+    "required": false,
+    "description": "Type of output expected from the service",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "contentType",
+    "summary": "Content type",
+    "required": false,
+    "description": "Content type of the request",
+    "schema": {
+      "type": "string"
+    }
+  }
+],
+"x-events": [],
+"responses": {
+  "200": {
+    "description": "Successful response",
+    "content": {
+      "application/json": {
+        "schema": {
+          "oneOf": [
+            {
+              "type": "object",
+              "description": "JSON response from Microsoft Graph API"
+            },
+            {
+              "type": "string",
+              "description": "Text or base64 response from Microsoft Graph API"
+            }
+          ]
+        }
+                  "id": "partially-updated-resource-id",
+        "displayName": "Partially Updated Resource",
+        "updatedProperties": [
+          "displayName",
+          "description"
+        ]
+      }
+    }
+  }
+}
+}
+}
+},
+"/remove": {
+"post": {
+"tags": [
+"service"
+],
+"summary": "Deletes a Microsoft resource",
+"parameters": [
+{
+  "name": "path",
+  "summary": "Service path",
+  "required": true,
+  "description": "Path of the service to execute",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "version",
+  "summary": "API version",
+  "required": false,
+  "description": "API version to use",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "headers",
+  "summary": "Headers",
+  "required": false,
+  "description": "Headers to send",
+  "schema": {
+    "type": "object"
+  }
+},
+{
+  "name": "OAUTH_CLIENT_ID",
+  "summary": "OAuth client ID",
+  "required": false,
+  "description": "OAuth client ID",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "OAUTH_CLIENT_SECRET",
+  "summary": "OAuth client secret",
+  "required": false,
+  "description": "OAuth client secret",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "TENANT_ID",
+  "summary": "Tenant ID",
+  "required": false,
+  "description": "Tenant ID",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "type",
+  "summary": "Output type",
+  "required": false,
+  "description": "Type of output expected from the service",
+  "schema": {
+    "type": "string"
+  }
+},
+{
+  "name": "contentType",
+  "summary": "Content type",
+  "required": false,
+  "description": "Content type of the request",
+  "schema": {
+    "type": "string"
+  }
+}
+],
+"x-events": [],
+"responses": {
+"200": {
+  "description": "Successful response",
+  "content": {
+    "application/json": {
+      "schema": {
+        "oneOf": [
+          {
+            "type": "object",
+            "description": "JSON response from Microsoft Graph API"
+          },
+          {
+            "type": "string",
+            "description": "Text or base64 response from Microsoft Graph API"
+          }
+        ]
+      }
+    }
+  }
+}
+}
+}
+}
+},
+"components": {
+"schemas": {}
+},
+"x-scene-blocks": {}
 }

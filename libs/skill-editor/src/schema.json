@@ -10,7 +10,9 @@
   "paths": {
     "/reasonings": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List Reasonings",
         "descriptions": "Lists the reasonings of a digipair",
         "parameters": [
@@ -33,422 +35,468 @@
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/reasoning": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Reasoning Information",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Reasoning",
-            "required": true,
-            "description": "Name of the reasoning",
-            "schema": {
-              "type": "string"
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of reasonings retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Name of a reasoning file"
+                  }
+                }
+                  "chatbot",
+                "data-processor",
+                "workflow-manager"
+              ]
             }
           }
-        ],
-        "x-events": []
-      }
-    },
-    "/setReasoning": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Register a Reasoning",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Reasoning",
-            "required": true,
-            "description": "Name of the reasoning",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "value",
-            "summary": "Content",
-            "required": true,
-            "description": "Content of the reasoning to be saved",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/removeReasoning": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Remove a Reasoning",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Reasoning",
-            "required": true,
-            "description": "Name of the reasoning",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/digipairs": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List Digipairs",
-        "descriptions": "Lists the available digipairs",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/digipair": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Digipair Information",
-        "descriptions": "Information about a digipair",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/setDigipair": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Register a Digipair",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "value",
-            "summary": "Content",
-            "required": true,
-            "description": "Content of the reasoning to be saved",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/removeDigipair": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Remove a Digipair",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/addDigipair": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Add a Digipair",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "templatesPath",
-            "summary": "Templates Path",
-            "required": false,
-            "description": "Path to the templates directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "template",
-            "summary": "Template",
-            "required": true,
-            "description": "Template to use",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "data",
-            "summary": "Replacement Data",
-            "required": true,
-            "description": "Data to use in the template",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "required": true,
-            "description": "Name of the digipair",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/metadata": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Metadata",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Name of the digipair",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/setAvatar": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Set avatar",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Name of the digipair",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "avatar",
-            "summary": "Avatar",
-            "description": "Avatar of the digipair",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/templates": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List Templates",
-        "descriptions": "Lists the available templates",
-        "parameters": [
-          {
-            "name": "path",
-            "summary": "Access Path",
-            "required": false,
-            "description": "Access path to the digipair's directory",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/schemas": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List Schemas",
-        "descriptions": "Lists the schemas of the libraries",
-        "parameters": [
-          {
-            "name": "libraries",
-            "summary": "Libraries",
-            "required": true,
-            "description": "List of libraries",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "language",
-            "summary": "Language",
-            "required": true,
-            "description": "Language of the schema",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
-    },
-    "/tools": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List tools",
-        "descriptions": "Lists the available tools",
-        "parameters": [
-          {
-            "name": "language",
-            "summary": "Language",
-            "required": true,
-            "description": "Language of the tools",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
+        }
       }
     }
   },
-  "components": {
-    "schemas": {}
+  "/reasoning": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Reasoning Information",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "reasoning",
+          "summary": "Reasoning",
+          "required": true,
+          "description": "Name of the reasoning",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
   },
-  "x-scene-blocks": {}
+  "/setReasoning": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Register a Reasoning",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "reasoning",
+          "summary": "Reasoning",
+          "required": true,
+          "description": "Name of the reasoning",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "summary": "Content",
+          "required": true,
+          "description": "Content of the reasoning to be saved",
+          "schema": {
+            "type": "object"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/removeReasoning": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Remove a Reasoning",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "reasoning",
+          "summary": "Reasoning",
+          "required": true,
+          "description": "Name of the reasoning",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/digipairs": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "List Digipairs",
+      "descriptions": "Lists the available digipairs",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/digipair": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Digipair Information",
+      "descriptions": "Information about a digipair",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/setDigipair": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Register a Digipair",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "value",
+          "summary": "Content",
+          "required": true,
+          "description": "Content of the reasoning to be saved",
+          "schema": {
+            "type": "object"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/removeDigipair": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Remove a Digipair",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/addDigipair": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Add a Digipair",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "templatesPath",
+          "summary": "Templates Path",
+          "required": false,
+          "description": "Path to the templates directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "template",
+          "summary": "Template",
+          "required": true,
+          "description": "Template to use",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "data",
+          "summary": "Replacement Data",
+          "required": true,
+          "description": "Data to use in the template",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "required": true,
+          "description": "Name of the digipair",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/metadata": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Metadata",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "description": "Name of the digipair",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/setAvatar": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "Set avatar",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "description": "Name of the digipair",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "avatar",
+          "summary": "Avatar",
+          "description": "Avatar of the digipair",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/templates": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "List Templates",
+      "descriptions": "Lists the available templates",
+      "parameters": [
+        {
+          "name": "path",
+          "summary": "Access Path",
+          "required": false,
+          "description": "Access path to the digipair's directory",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/schemas": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "List Schemas",
+      "descriptions": "Lists the schemas of the libraries",
+      "parameters": [
+        {
+          "name": "libraries",
+          "summary": "Libraries",
+          "required": true,
+          "description": "List of libraries",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "language",
+          "summary": "Language",
+          "required": true,
+          "description": "Language of the schema",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  },
+  "/tools": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "List tools",
+      "descriptions": "Lists the available tools",
+      "parameters": [
+        {
+          "name": "language",
+          "summary": "Language",
+          "required": true,
+          "description": "Language of the tools",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "x-events": []
+    }
+  }
+},
+"components": {
+  "schemas": {}
+},
+"x-scene-blocks": {}
 }

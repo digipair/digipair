@@ -44,6 +44,19 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Command execution result from myBuddy robot",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Result of the write operation to the robot"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -62,6 +75,22 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Current angles of the robot joints",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Array of joint angles in degrees"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },

@@ -24,6 +24,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Raisonnement arrêté avec valeur de retour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Ne retourne jamais normalement - lève une exception DIGIPAIR_STOP"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -33,6 +45,18 @@
         "summary": "Keep-alive",
         "description": "Garder en vie le raisonnement",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Maintient le raisonnement en vie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Ne retourne jamais normalement - lève une exception DIGIPAIR_KEEPALIVE"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -64,6 +88,19 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Résultat des commandes exécutées avec le contexte donné",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Résultat d'executePinsList - type dynamique basé sur les commandes exécutées",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

@@ -10,7 +10,9 @@
   "paths": {
     "/digipair-chatbot-full": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Full-page chatbot",
         "description": "Displays a conversation with a chatbot in full-page mode",
         "parameters": [
@@ -42,12 +44,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Full-page chatbot interface successfully rendered",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "HTML element containing the full-page chatbot interface"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/digipair-chatbot": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Chatbot",
         "description": "Displays a chatbot on a web page",
         "parameters": [
@@ -79,7 +96,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Chatbot widget successfully rendered",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "HTML element containing the chatbot widget interface"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

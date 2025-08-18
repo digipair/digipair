@@ -10,7 +10,10 @@
   "paths": {
     "/log": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": [
+          "web",
+          "spatial"
+        ],
         "summary": "Afficher dans la console",
         "description": "Element permettant d'afficher un message dans la console javascript",
         "parameters": [
@@ -42,7 +45,19 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message de log affiché avec succès dans la console et valeur du contexte précédent retournée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Retourne la valeur précédente du contexte d'exécution (passage direct)"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

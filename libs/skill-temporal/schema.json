@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activity",
         "description": "Defines an activity",
         "parameters": [
@@ -36,12 +38,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Activity execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Result of the activity execution"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sleep": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Wait",
         "parameters": [
           {
@@ -63,12 +80,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Sleep duration confirmation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Confirmation that sleep duration has been applied"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/condition": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Wait condition",
         "description": "Wait condition in a workflow",
         "parameters": [
@@ -91,12 +123,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Wait condition result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Whether the condition was met before timeout"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/goto": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Go to step",
         "parameters": [
           {
@@ -118,12 +165,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Step number after goto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Target step number in the workflow"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop the workflow",
         "description": "Stop the workflow",
         "parameters": [
@@ -137,12 +199,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Workflow stop confirmation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Workflow has been stopped"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/push": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send new data to a workflow",
         "description": "Send new data to the workflow",
         "parameters": [
@@ -165,12 +242,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Data push confirmation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Data has been successfully pushed to the workflow"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/terminate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop a workflow",
         "description": "Stop a workflow",
         "parameters": [
@@ -184,12 +276,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Workflow termination confirmation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Workflow has been successfully terminated"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List workflows",
         "description": "List workflows",
         "parameters": [
@@ -203,18 +310,79 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of workflows",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowExecutionInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "WorkflowExecutionInfo": {
+        "type": "object",
+        "description": "Information about a Temporal workflow execution",
+        "properties": {
+          "workflowId": {
+            "type": "string",
+            "description": "Unique identifier of the workflow"
+          },
+          "runId": {
+            "type": "string",
+            "description": "Unique identifier of the workflow run"
+          },
+          "type": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the workflow type"
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Running",
+              "Completed",
+              "Failed",
+              "Cancelled",
+              "Terminated"
+            ],
+            "description": "Current status of the workflow"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the workflow was started"
+          },
+          "taskQueue": {
+            "type": "string",
+            "description": "Task queue name used by the workflow"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {
     "/workflow": {
       "summary": "Temporal Workflow",
       "description": "Execute a Temporal workflow",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -256,7 +424,19 @@
             "type": "object"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Workflow execution result",
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "The result of the last executed step in the workflow"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

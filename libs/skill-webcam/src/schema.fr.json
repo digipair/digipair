@@ -10,7 +10,9 @@
   "paths": {
     "/capture": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Capture de la webcam",
         "description": "Capture une image de la webcam",
         "parameters": [
@@ -69,16 +71,48 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image capturée avec succès depuis la webcam",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 capturée depuis la webcam",
+                  "example": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des webcams",
         "description": "Retourne la liste des webcams présentent sur le système",
         "parameters": [],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des webcams récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Nom ou identifiant d'un périphérique webcam"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

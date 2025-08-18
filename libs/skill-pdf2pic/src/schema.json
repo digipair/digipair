@@ -51,7 +51,22 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "PDF page successfully converted to image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^data:image\/(jpeg|png);base64,",
+                  "description": "Base64 encoded image of the converted PDF page as a data URL. Format depends on the 'format' parameter (default: JPEG)"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

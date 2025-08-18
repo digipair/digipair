@@ -10,7 +10,9 @@
   "paths": {
     "/sendSms": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoi d'un sms via Twilio",
         "parameters": [
           {
@@ -68,12 +70,106 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SMS envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Identifiant unique du message"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "SID du compte"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Numéro de téléphone expéditeur"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Numéro de téléphone destinataire"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Contenu du message"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Statut du message"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Date de création"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date d'envoi"
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Date de dernière mise à jour"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Direction du message"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Code d'erreur s'il y en a une"
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message d'erreur s'il y en a une"
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "SID du service de messagerie"
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Nombre de pièces jointes média"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Nombre de segments du message"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Prix du message"
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Devise du prix"
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "URI de la ressource"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sendWhatsapp": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoi d'un Whatsapp via Twilio",
         "parameters": [
           {
@@ -131,7 +227,99 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message WhatsApp envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Identifiant unique du message"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "SID du compte"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Numéro WhatsApp expéditeur"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Numéro de téléphone destinataire"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Contenu du message"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Statut du message"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Date de création"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date d'envoi"
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Date de dernière mise à jour"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Direction du message"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Code d'erreur s'il y en a une"
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message d'erreur s'il y en a une"
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "SID du service de messagerie"
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Nombre de pièces jointes média"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Nombre de segments du message"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Prix du message"
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Devise du prix"
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "URI de la ressource"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

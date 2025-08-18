@@ -10,7 +10,9 @@
   "paths": {
     "/digipair-material-icons-icon": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Icone material",
         "description": "Icone Google Material",
         "parameters": [
@@ -42,7 +44,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Élément d'icône Material rendu avec succès",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "Élément HTML contenant l'icône Google Material"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

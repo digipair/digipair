@@ -36,6 +36,19 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Résultat des commandes d'activité exécutées avec suivi des étapes de workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Résultat d'executePinsList - stocké dans context.workflow.steps[name]",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
@@ -55,6 +68,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Worker arrêté avec valeur de retour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Ne retourne jamais normalement - lève une exception DIGIPAIR_STOP"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

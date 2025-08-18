@@ -10,7 +10,9 @@
   "paths": {
     "/infos": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List the informations",
         "parameters": [
           {
@@ -23,90 +25,280 @@
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/metadata": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List the metadata",
-        "parameters": [
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Digipair's name",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "responses": {
+          "200": {
+            "description": "Digipair information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the digipair"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the digipair"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description"
+                  ]
+                }
+                  "name": "My Digipair",
+                "description": "A sample digipair application"
+              }
             }
           }
-        ],
-        "x-events": []
-      }
-    },
-    "/boosts": {
-      "post": {
-        "tags": ["service"],
-        "summary": "List the boosts",
-        "parameters": [
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Digipair's name",
-            "required": true,
-            "schema": {
-              "type": "string"
+        }
+      },
+      "x-events": []
+    }
+  },
+  "/metadata": {
+    "post": {
+      "tags": [
+        "service"
+      ],
+      "summary": "List the metadata",
+      "parameters": [
+        {
+          "name": "digipair",
+          "summary": "Digipair",
+          "description": "Digipair's name",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Digipair metadata including avatar and configuration",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "description": "Base64 encoded avatar image"
+                  },
+                  "config": {
+                    "type": "object",
+                    "properties": {
+                      "VERSIONS": {
+                        "type": "object",
+                        "description": "Library versions"
+                      }
+                    }
+                  },
+                  "variables": {
+                    "type": "object",
+                    "description": "Configuration variables"
+                  }
+                }
+              }
+                  "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==",
+              "config": {
+                "VERSIONS": {}
+              },
+              "variables": {}
             }
           }
-        ],
-        "x-events": []
+        }
       }
     },
-    "/schema": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Schema",
-        "parameters": [
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Digipair's name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
+    "x-events": []
+  }
+},
+"/boosts": {
+  "post": {
+    "tags": [
+      "service"
+    ],
+    "summary": "List the boosts",
+    "parameters": [
+      {
+        "name": "digipair",
+        "summary": "Digipair",
+        "description": "Digipair's name",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
       }
-    },
-    "/context": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Context",
-        "parameters": [
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Digipair's name",
-            "required": true,
+    ],
+    "responses": {
+      "200": {
+        "description": "List of available boosts",
+        "content": {
+          "application/json": {
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "reasoning": {
+                    "type": "string",
+                    "description": "Boost reasoning identifier"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "description": "Boost summary"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Boost description"
+                  },
+                  "selector": {
+                    "type": "string",
+                    "description": "CSS selector for boost activation"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "URL pattern for boost activation"
+                  },
+                  "standalone": {
+                    "type": "boolean",
+                    "description": "Whether the boost runs standalone"
+                  }
+                },
+                "required": [
+                  "reasoning",
+                  "summary",
+                  "description"
+                ]
+              }
             }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Reasoning",
-            "description": "Reasoning's name",
-            "required": true,
-            "schema": {
-              "type": "string"
+                  {
+              "reasoning": "boost-example",
+              "summary": "Example boost",
+              "description": "An example boost for demonstration",
+              "selector": ".example-class",
+              "url": "https://example.com",
+              "standalone": false
             }
-          }
-        ],
-        "x-events": []
+          ]
+        }
       }
     }
   },
-  "x-scene-blocks": {}
+  "x-events": []
+}
+},
+"/schema": {
+"post": {
+  "tags": [
+    "service"
+  ],
+  "summary": "Schema",
+  "parameters": [
+    {
+      "name": "digipair",
+      "summary": "Digipair",
+      "description": "Digipair's name",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "OpenAPI schema for the digipair",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "openapi": {
+                "type": "string",
+                "description": "OpenAPI version"
+              },
+              "info": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "x-icon": {
+                    "type": "string"
+                  }
+                }
+              },
+              "paths": {
+                "type": "object",
+                "description": "API paths and operations"
+              },
+              "x-scene-blocks": {
+                "type": "object",
+                "description": "Scene blocks for triggers"
+              }
+            },
+            "required": [
+              "openapi",
+              "info"
+            ]
+          }
+                  "openapi": "3.0.0",
+          "info": {
+            "title": "digipair:example",
+            "summary": "Example Digipair",
+            "description": "An example digipair application",
+            "version": "1.0.0",
+            "x-icon": "🤖"
+          },
+          "paths": {},
+          "x-scene-blocks": {}
+        }
+      }
+    }
+  }
+},
+"x-events": []
+}
+},
+"/context": {
+"post": {
+"tags": [
+  "service"
+],
+"summary": "Context",
+"parameters": [
+  {
+    "name": "digipair",
+    "summary": "Digipair",
+    "description": "Digipair's name",
+    "required": true,
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "name": "reasoning",
+    "summary": "Reasoning",
+    "description": "Reasoning's name",
+    "required": true,
+    "schema": {
+      "type": "string"
+    }
+  }
+],
+"x-events": []
+}
+}
+},
+"x-scene-blocks": {}
 }

@@ -10,7 +10,9 @@
   "paths": {
     "/sendSms": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sending an SMS via Twilio",
         "parameters": [
           {
@@ -68,12 +70,106 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SMS sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Unique identifier for the message"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "Account SID"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Sender phone number"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Recipient phone number"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Message content"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Message status"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Creation date"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date sent"
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Last update date"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Message direction"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error code if any"
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error message if any"
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Messaging service SID"
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Number of media attachments"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Number of message segments"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message price"
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Price currency"
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Resource URI"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sendWhatsapp": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sending a WhatsApp message via Twilio",
         "parameters": [
           {
@@ -131,7 +227,99 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "WhatsApp message sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sid": {
+                      "type": "string",
+                      "description": "Unique identifier for the message"
+                    },
+                    "account_sid": {
+                      "type": "string",
+                      "description": "Account SID"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Sender WhatsApp number"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Recipient phone number"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "Message content"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Message status"
+                    },
+                    "date_created": {
+                      "type": "string",
+                      "description": "Creation date"
+                    },
+                    "date_sent": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Date sent"
+                    },
+                    "date_updated": {
+                      "type": "string",
+                      "description": "Last update date"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Message direction"
+                    },
+                    "error_code": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error code if any"
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Error message if any"
+                    },
+                    "messaging_service_sid": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Messaging service SID"
+                    },
+                    "num_media": {
+                      "type": "string",
+                      "description": "Number of media attachments"
+                    },
+                    "num_segments": {
+                      "type": "string",
+                      "description": "Number of message segments"
+                    },
+                    "price": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Message price"
+                    },
+                    "price_unit": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Price currency"
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Resource URI"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

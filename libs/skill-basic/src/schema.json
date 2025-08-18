@@ -10,7 +10,11 @@
   "paths": {
     "/transform": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Transform the data",
         "description": "Transforms a value using the standard data transformation mechanics of the engine.",
         "parameters": [
@@ -36,12 +40,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Transformed data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "The transformed value or result of the executed actions"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/setVariable": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Save the variable",
         "description": "Saves the variable in the context of the skill.",
         "parameters": [
@@ -76,12 +97,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Variable saved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "The saved value or result of the executed actions"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/defer": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Defer",
         "description": "Executes an action after a delay",
         "parameters": [
@@ -107,12 +145,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Deferred action scheduled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Timeout ID that can be used to cancel the deferred action"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/interval": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Interval",
         "description": "Executes an action at regular intervals",
         "parameters": [
@@ -138,12 +193,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Interval scheduled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Interval ID that can be used to cancel the interval"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stopInterval": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Stop the interval",
         "description": "Stops the interval from executing",
         "parameters": [
@@ -157,12 +229,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Interval stopped",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stopDefer": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Stop the defer",
         "description": "Stops the deferred action from executing",
         "parameters": [
@@ -176,12 +265,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Deferred action stopped",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/base64ToBuffer": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Convert base64 to buffer",
         "description": "Converts a base64 string to a buffer.",
         "parameters": [
@@ -195,12 +301,32 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Base64 converted to buffer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Buffer object containing the decoded base64 data",
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/trycatch": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Try and Catch",
         "description": "Executes a series of actions and catches any errors.",
         "parameters": [
@@ -229,16 +355,47 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Try-catch execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Result of the try block execution, or catch block if an error occurred"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/uuid": {
       "post": {
-        "tags": ["web", "service", "spatial"],
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
         "summary": "Generate a UUID",
         "description": "Generates a UUID.",
         "parameters": [],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "UUID generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "A randomly generated UUID v4"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

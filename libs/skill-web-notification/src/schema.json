@@ -10,7 +10,9 @@
   "paths": {
     "/information": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays an information",
         "description": "Displays an information notification",
         "parameters": [
@@ -24,12 +26,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Information notification displayed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - notification is displayed to the user"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/error": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays an error",
         "description": "Displays an error notification",
         "parameters": [
@@ -43,12 +60,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Error notification displayed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - error notification is displayed to the user"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/confirm": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays a confirmation",
         "description": "Displays a confirmation notification",
         "parameters": [
@@ -86,12 +118,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation dialog displayed and user response processed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "True if user confirmed, false if user cancelled"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/alert": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Displays an alert",
         "description": "Displays an alert notification",
         "parameters": [
@@ -105,7 +152,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Alert notification displayed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - alert is displayed to the user"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

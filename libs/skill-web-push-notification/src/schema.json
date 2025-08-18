@@ -10,7 +10,10 @@
   "paths": {
     "/initialize": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": [
+          "web",
+          "spatial"
+        ],
         "summary": "Register the user for push notifications.",
         "description": "Register the user to receive push notifications for real-time updates.",
         "parameters": [
@@ -33,7 +36,54 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Push notification subscription successfully initialized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Push subscription object from the browser's Push API",
+                      "properties": {
+                        "endpoint": {
+                          "type": "string",
+                          "description": "The endpoint URL for the push service"
+                        },
+                        "expirationTime": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "When the subscription expires"
+                        },
+                        "keys": {
+                          "type": "object",
+                          "properties": {
+                            "p256dh": {
+                              "type": "string",
+                              "description": "Client public key for encryption"
+                            },
+                            "auth": {
+                              "type": "string",
+                              "description": "Client authentication secret"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "null",
+                      "description": "Subscription failed (service worker not supported, permissions denied, etc.)"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
