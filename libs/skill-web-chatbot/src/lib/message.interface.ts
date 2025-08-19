@@ -5,6 +5,7 @@ export interface Message {
   boost?: any;
   boosts?: any[];
   sources?: any[];
+  files?: any[];
   parent_conversation?: string;
   parent_history?: string;
 }

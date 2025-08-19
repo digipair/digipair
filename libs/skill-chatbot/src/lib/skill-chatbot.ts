@@ -7,6 +7,7 @@ class ChatbotService {
       command = [],
       boosts = [],
       sources = [],
+      files = [],
       assistant,
       logs,
       boost,
@@ -22,12 +23,15 @@ class ChatbotService {
       ),
       boosts,
       sources,
+      files,
       logs,
       boost: boost
         ? {
             ...boost,
             inputs: await Promise.all(
-              (boost.inputs || []).map((settings: PinsSettings) => preparePinsSettings(settings, context)),
+              (boost.inputs || []).map((settings: PinsSettings) =>
+                preparePinsSettings(settings, context),
+              ),
             ),
           }
         : boost,
@@ -59,7 +63,11 @@ class ChatbotService {
       : 0;
     const execute = steps[step]?.execute || [];
 
-    const result = await executePinsList(execute, { ...context, boost: { steps } }, `${context.__PATH__}.steps[${step}].execute`);
+    const result = await executePinsList(
+      execute,
+      { ...context, boost: { steps } },
+      `${context.__PATH__}.steps[${step}].execute`,
+    );
     return result;
   }
 }

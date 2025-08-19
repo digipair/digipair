@@ -66,74 +66,66 @@
                       "description": "Si l'image a un canal alpha"
                     }
                   }
-                    "width": 1920,
-                  "height": 1080,
-                  "channels": 3,
-                  "format": "jpeg",
-                  "space": "srgb",
-                  "density": 72,
-                  "hasProfile": false,
-                  "hasAlpha": false
                 }
               }
             }
           }
         }
       }
-    }
-  },
-  "/stats": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Statistiques",
-      "description": "Retourne des statistiques sur l’image comme la moyenne ou l’écart-type.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
+    },
+    "/stats": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Statistiques",
+        "description": "Retourne des statistiques sur l’image comme la moyenne ou l’écart-type.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Objet de statistiques de l'image",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "channels": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "min": {
-                          "type": "number",
-                          "description": "Valeur de pixel minimale"
-                        },
-                        "max": {
-                          "type": "number",
-                          "description": "Valeur de pixel maximale"
-                        },
-                        "sum": {
-                          "type": "number",
-                          "description": "Somme de toutes les valeurs de pixels"
-                        },
-                        "squaresSum": {
-                          "type": "number",
-                          "description": "Somme des valeurs de pixels au carré"
-                        },
-                        "mean": {
-                          "type": "number",
-                          "description": "Valeur moyenne des pixels"
-                        },
-                        "stdev": {
-                          "type": "number",
-                          "description": "Écart-type des valeurs de pixels"
+        ],
+        "responses": {
+          "200": {
+            "description": "Objet de statistiques de l'image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "channels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "min": {
+                            "type": "number",
+                            "description": "Valeur de pixel minimale"
+                          },
+                          "max": {
+                            "type": "number",
+                            "description": "Valeur de pixel maximale"
+                          },
+                          "sum": {
+                            "type": "number",
+                            "description": "Somme de toutes les valeurs de pixels"
+                          },
+                          "squaresSum": {
+                            "type": "number",
+                            "description": "Somme des valeurs de pixels au carré"
+                          },
+                          "mean": {
+                            "type": "number",
+                            "description": "Valeur moyenne des pixels"
+                          },
+                          "stdev": {
+                            "type": "number",
+                            "description": "Écart-type des valeurs de pixels"
+                          }
                         }
                       }
                     }
@@ -144,609 +136,608 @@
           }
         }
       }
-    }
-  },
-  "/raw": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Brut (RAW)",
-      "description": "Retourne le buffer brut de l’image en base64.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
+    },
+    "/raw": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Brut (RAW)",
+        "description": "Retourne le buffer brut de l’image en base64.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Buffer brut de l'image en base64 (sans préfixe data URL)",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string",
-                "description": "Buffer brut de l'image encodé en base64"
+        ],
+        "responses": {
+          "200": {
+            "description": "Buffer brut de l'image en base64 (sans préfixe data URL)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Buffer brut de l'image encodé en base64"
+                }
               }
             }
           }
         }
       }
-    }
-  },
-  "/resize": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Redimensionner",
-      "description": "Redimensionne l’image selon la largeur et la hauteur spécifiées.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
+    },
+    "/resize": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Redimensionner",
+        "description": "Redimensionne l’image selon la largeur et la hauteur spécifiées.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "options",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
           }
-        },
-        {
-          "name": "width",
-          "required": true,
-          "schema": {
-            "type": "number"
+        ]
+      }
+    },
+    "/rotate": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Rotation",
+        "description": "Fait pivoter l’image (angle optionnel, utilise EXIF si absent).",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "angle",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
           }
-        },
-        {
-          "name": "height",
-          "required": true,
-          "schema": {
-            "type": "number"
+        ]
+      }
+    },
+    "/extract": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Rogner",
+        "description": "Extrait une portion de l’image.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "left",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "top",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "width",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "height",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
           }
-        },
-        {
-          "name": "options",
-          "required": false,
-          "schema": {
-            "type": "object"
+        ]
+      }
+    },
+    "/flip": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Miroir vertical",
+        "description": "Retourne l’image verticalement.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      ]
-    }
-  },
-  "/rotate": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Rotation",
-      "description": "Fait pivoter l’image (angle optionnel, utilise EXIF si absent).",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
+        ]
+      }
+    },
+    "/flop": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Miroir horizontal",
+        "description": "Retourne l’image horizontalement.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        },
-        {
-          "name": "angle",
-          "required": false,
-          "schema": {
-            "type": "number"
+        ]
+      }
+    },
+    "/autoOrient": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Orientation automatique",
+        "description": "Corrige l’orientation de l’image en fonction des métadonnées EXIF.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      ]
-    }
-  },
-  "/extract": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Rogner",
-      "description": "Extrait une portion de l’image.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
+        ]
+      }
+    },
+    "/grayscale": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Niveaux de gris",
+        "description": "Convertit l’image en niveaux de gris.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        },
-        {
-          "name": "left",
-          "required": true,
-          "schema": {
-            "type": "number"
+        ]
+      }
+    },
+    "/linear": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Linéaire",
+        "description": "Applique une transformation linéaire à l’image.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "multiplier",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
           }
-        },
-        {
-          "name": "top",
-          "required": true,
-          "schema": {
-            "type": "number"
+        ]
+      }
+    },
+    "/threshold": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Seuil",
+        "description": "Applique un seuil à l’image pour la convertir en noir et blanc.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "level",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 128
+            }
+          },
+          {
+            "name": "option",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
           }
-        },
-        {
-          "name": "width",
-          "required": true,
-          "schema": {
-            "type": "number"
+        ]
+      }
+    },
+    "/tint": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Teinte",
+        "description": "Applique une teinte colorée à l’image.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "r",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "g",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "b",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
           }
-        },
-        {
-          "name": "height",
-          "required": true,
-          "schema": {
-            "type": "number"
+        ]
+      }
+    },
+    "/modulate": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Modulation",
+        "description": "Ajuste la luminosité, la saturation et la teinte.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brightness",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "saturation",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "hue",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
           }
-        }
-      ]
-    }
-  },
-  "/flip": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Miroir vertical",
-      "description": "Retourne l’image verticalement.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
+        ]
+      }
+    },
+    "/blur": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Flou",
+        "description": "Applique un flou à l’image.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
           }
-        }
-      ]
-    }
-  },
-  "/flop": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Miroir horizontal",
-      "description": "Retourne l’image horizontalement.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
+        ]
+      }
+    },
+    "/sharpen": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Netteté",
+        "description": "Accentue les contours de l’image.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      ]
-    }
-  },
-  "/autoOrient": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Orientation automatique",
-      "description": "Corrige l’orientation de l’image en fonction des métadonnées EXIF.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "/grayscale": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Niveaux de gris",
-      "description": "Convertit l’image en niveaux de gris.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "/linear": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Linéaire",
-      "description": "Applique une transformation linéaire à l’image.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "multiplier",
-          "required": true,
-          "schema": {
-            "type": "number"
-          }
-        },
-        {
-          "name": "offset",
-          "required": true,
-          "schema": {
-            "type": "number"
-          }
-        }
-      ]
-    }
-  },
-  "/threshold": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Seuil",
-      "description": "Applique un seuil à l’image pour la convertir en noir et blanc.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "level",
-          "required": false,
-          "schema": {
-            "type": "number",
-            "default": 128
-          }
-        },
-        {
-          "name": "option",
-          "required": false,
-          "schema": {
-            "type": "object"
-          }
-        }
-      ]
-    }
-  },
-  "/tint": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Teinte",
-      "description": "Applique une teinte colorée à l’image.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "r",
-          "required": true,
-          "schema": {
-            "type": "number"
-          }
-        },
-        {
-          "name": "g",
-          "required": true,
-          "schema": {
-            "type": "number"
-          }
-        },
-        {
-          "name": "b",
-          "required": true,
-          "schema": {
-            "type": "number"
-          }
-        }
-      ]
-    }
-  },
-  "/modulate": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Modulation",
-      "description": "Ajuste la luminosité, la saturation et la teinte.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "brightness",
-          "required": false,
-          "schema": {
-            "type": "number"
-          }
-        },
-        {
-          "name": "saturation",
-          "required": false,
-          "schema": {
-            "type": "number"
-          }
-        },
-        {
-          "name": "hue",
-          "required": false,
-          "schema": {
-            "type": "number"
-          }
-        }
-      ]
-    }
-  },
-  "/blur": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Flou",
-      "description": "Applique un flou à l’image.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "radius",
-          "required": false,
-          "schema": {
-            "type": "number"
-          }
-        }
-      ]
-    }
-  },
-  "/sharpen": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Netteté",
-      "description": "Accentue les contours de l’image.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "/toFormat": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Conversion de format",
-      "description": "Convertit l’image vers un autre format.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "format",
-          "required": true,
-          "description": "jpeg, png, webp, avif",
-          "schema": {
-            "type": "string",
-            "enum": [
-              "jpeg",
-              "png",
-              "webp",
-              "avif"
-            ]
-          }
-        }
-      ]
-    }
-  },
-  "/jpeg": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Exporter en JPEG",
-      "description": "Convertit l’image en format JPEG avec qualité personnalisable.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "quality",
-          "required": false,
-          "schema": {
-            "type": "number",
-            "default": 80
-          }
-        }
-      ]
-    }
-  },
-  "/png": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Exporter en PNG",
-      "description": "Convertit l’image en format PNG avec niveau de compression personnalisé.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "compressionLevel",
-          "required": false,
-          "schema": {
-            "type": "number",
-            "default": 6
-          }
-        }
-      ]
-    }
-  },
-  "/webp": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Exporter en WebP",
-      "description": "Convertit l’image en format WebP avec qualité personnalisable.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "quality",
-          "required": false,
-          "schema": {
-            "type": "number",
-            "default": 80
-          }
-        }
-      ]
-    }
-  },
-  "/avif": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Exporter en AVIF",
-      "description": "Convertit l’image en format AVIF avec qualité personnalisable.",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "quality",
-          "required": false,
-          "schema": {
-            "type": "number",
-            "default": 50
-          }
-        }
-      ]
-    }
-  },
-  "/composite": {
-    "post": {
-      "tags": [
-        "service"
-      ],
-      "summary": "Superposition",
-      "description": "Superpose une ou plusieurs images (ex. : watermark).",
-      "parameters": [
-        {
-          "name": "content",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "overlays",
-          "required": true,
-          "description": "Liste d’éléments { input (base64), top, left }",
-          "schema": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "input": {
-                  "type": "string"
-                },
-                "top": {
-                  "type": "number"
-                },
-                "left": {
-                  "type": "number"
-                }
-              },
-              "required": [
-                "input",
-                "top",
-                "left"
+        ]
+      }
+    },
+    "/toFormat": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Conversion de format",
+        "description": "Convertit l’image vers un autre format.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "required": true,
+            "description": "jpeg, png, webp, avif",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "jpeg",
+                "png",
+                "webp",
+                "avif"
               ]
             }
           }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Image composite avec superpositions en data URL base64",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string",
-                "description": "Image encodée en base64 avec préfixe data URL"
+        ]
+      }
+    },
+    "/jpeg": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Exporter en JPEG",
+        "description": "Convertit l’image en format JPEG avec qualité personnalisable.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 80
+            }
+          }
+        ]
+      }
+    },
+    "/png": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Exporter en PNG",
+        "description": "Convertit l’image en format PNG avec niveau de compression personnalisé.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "compressionLevel",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 6
+            }
+          }
+        ]
+      }
+    },
+    "/webp": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Exporter en WebP",
+        "description": "Convertit l’image en format WebP avec qualité personnalisable.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 80
+            }
+          }
+        ]
+      }
+    },
+    "/avif": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Exporter en AVIF",
+        "description": "Convertit l’image en format AVIF avec qualité personnalisable.",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quality",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "default": 50
+            }
+          }
+        ]
+      }
+    },
+    "/composite": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Superposition",
+        "description": "Superpose une ou plusieurs images (ex. : watermark).",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "overlays",
+            "required": true,
+            "description": "Liste d’éléments { input (base64), top, left }",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "input": {
+                    "type": "string"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "input",
+                  "top",
+                  "left"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Image composite avec superpositions en data URL base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
               }
             }
           }
         }
       }
     }
-  }
-},
-"components": {
-  "schemas": {
-    "ImageResponse": {
-      "type": "string",
-      "description": "Image encodée en base64 avec préfixe data URL"
+  },
+  "components": {
+    "schemas": {
+      "ImageResponse": {
+        "type": "string",
+        "description": "Image encodée en base64 avec préfixe data URL"
+      }
     }
-  }
-},
-"x-scene-blocks": {}
+  },
+  "x-scene-blocks": {}
 }

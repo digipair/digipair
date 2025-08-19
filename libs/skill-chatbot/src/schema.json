@@ -61,6 +61,18 @@
             }
           },
           {
+            "name": "files",
+            "summary": "List of files",
+            "required": false,
+            "description": "List of files used to respond to the user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
             "name": "logs",
             "summary": "Logs",
             "required": false,
