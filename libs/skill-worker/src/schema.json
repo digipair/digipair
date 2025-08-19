@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activity",
         "description": "Execution of an activity.",
         "parameters": [
@@ -54,7 +56,9 @@
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop",
         "description": "Stop the reasoning",
         "parameters": [
@@ -88,7 +92,9 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -116,7 +122,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   },
@@ -124,7 +135,9 @@
     "/task": {
       "summary": "Task",
       "description": "Execution of a task.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -144,7 +157,9 @@
     "/action": {
       "summary": "Action",
       "description": "Executable action.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "parameters",
@@ -156,6 +171,15 @@
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
+          }
+        },
+        {
+          "name": "output",
+          "summary": "Output format",
+          "required": false,
+          "description": "Output format of the action",
+          "schema": {
+            "type": "object"
           }
         },
         {

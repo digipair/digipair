@@ -62,11 +62,106 @@
                 "schema": {
                   "$ref": "#/components/schemas/ReasoningResult"
                 }
-                  "success": true,
-                "result": {
-                  "status": "started",
-                  "reasoning": "example-reasoning",
-                  "digipair": "example-digipair"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/execute": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Execute avec un contexte",
+        "description": "Execute des Pin's avec un contexte donné",
+        "parameters": [
+          {
+            "name": "execute",
+            "required": true,
+            "summary": "Actions à exécuter",
+            "description": "Actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "context",
+            "required": false,
+            "summary": "Contexte",
+            "description": "Contexte d'exécution",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Exécution des Pin's terminée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/keepAlive": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Keep-alive",
+        "description": "Garder en vie le raisonnement",
+        "parameters": [],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Signal keep-alive envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeepAliveResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stop": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Stop",
+        "description": "Stop le raisonnement",
+        "parameters": [
+          {
+            "name": "value",
+            "required": false,
+            "summary": "Valeur",
+            "description": "Valeur à retourner",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Raisonnement arrêté avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StopResult"
                 }
               }
             }
@@ -75,381 +170,275 @@
       }
     }
   },
-  "/execute": {
-    "post": {
+  "x-scene-blocks": {
+    "/task": {
+      "summary": "Tache",
+      "description": "Exécution d'une tache.",
       "tags": [
         "service"
       ],
-      "summary": "Execute avec un contexte",
-      "description": "Execute des Pin's avec un contexte donné",
+      "metadata": [],
       "parameters": [
         {
           "name": "execute",
+          "summary": "Exécute",
           "required": true,
-          "summary": "Actions à exécuter",
-          "description": "Actions à exécuter",
+          "description": "Commandes à exécuter",
           "schema": {
             "type": "array",
             "items": {
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
+        }
+      ]
+    },
+    "/action": {
+      "summary": "Action",
+      "description": "Action exécutable.",
+      "tags": [
+        "service"
+      ],
+      "metadata": [
+        {
+          "name": "parameters",
+          "summary": "Paramètres",
+          "required": true,
+          "description": "Paramètres de l'action",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
         },
         {
-          "name": "context",
+          "name": "output",
+          "summary": "Format de sortie",
           "required": false,
-          "summary": "Contexte",
-          "description": "Contexte d'exécution",
+          "description": "Format de sortie de l'action",
           "schema": {
             "type": "object"
           }
+        },
+        {
+          "name": "context",
+          "summary": "Contexte",
+          "required": false,
+          "description": "Afficher le contexte d'exécution",
+          "schema": {
+            "type": "boolean"
+          }
         }
       ],
-      "x-events": [],
-      "responses": {
-        "200": {
-          "description": "Exécution des Pin's terminée avec succès",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExecutionResult"
-              }
-                  "success": true,
-              "data": {
-                "executed": true,
-                "results": []
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-},
-"/keepAlive": {
-  "post": {
-    "tags": [
-      "service"
-    ],
-    "summary": "Keep-alive",
-    "description": "Garder en vie le raisonnement",
-    "parameters": [],
-    "x-events": [],
-    "responses": {
-      "200": {
-        "description": "Signal keep-alive envoyé avec succès",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/KeepAliveResult"
-            }
-                  "type": "DIGIPAIR_KEEPALIVE",
-            "status": "alive"
-          }
-        }
-      }
-    }
-  }
-}
-},
-"/stop": {
-"post": {
-  "tags": [
-    "service"
-  ],
-  "summary": "Stop",
-  "description": "Stop le raisonnement",
-  "parameters": [
-    {
-      "name": "value",
-      "required": false,
-      "summary": "Valeur",
-      "description": "Valeur à retourner",
-      "schema": {
-        "type": "object"
-      }
-    }
-  ],
-  "x-events": [],
-  "responses": {
-    "200": {
-      "description": "Raisonnement arrêté avec succès",
-      "content": {
-        "application/json": {
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commandes à exécuter.",
           "schema": {
-            "$ref": "#/components/schemas/StopResult"
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
           }
-                  "type": "DIGIPAIR_STOP",
-          "value": {},
-          "status": "stopped"
+        }
+      ]
+    },
+    "/trigger": {
+      "summary": "Déclencheur",
+      "description": "Déclenchement d'une exécution d'actions.",
+      "tags": [
+        "service"
+      ],
+      "metadata": [
+        {
+          "name": "tags",
+          "summary": "Tags",
+          "required": true,
+          "description": "Tags du déclencheur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "name": "parameters",
+          "summary": "Paramètres",
+          "required": true,
+          "description": "Paramètres du déclencheur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "execute",
+          "summary": "Execute",
+          "required": true,
+          "description": "Commandes à exécuter.",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "Parameter": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Parameter",
+        "properties": {
+          "name": {
+            "summary": "Nom",
+            "type": "string"
+          },
+          "summary": {
+            "summary": "Affichage",
+            "type": "string"
+          },
+          "required": {
+            "summary": "Requis",
+            "type": "boolean"
+          },
+          "ignoreForAI": {
+            "summary": "Ignorer pour l'IA",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
+            "type": "object"
+          },
+          "description": {
+            "summary": "Description",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
+      },
+      "ReasoningResult": {
+        "type": "object",
+        "description": "Résultat de l'exécution de raisonnement",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indique si le raisonnement a été démarré avec succès"
+          },
+          "result": {
+            "type": "object",
+            "description": "Détails de l'exécution du raisonnement",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Statut actuel du raisonnement"
+              },
+              "reasoning": {
+                "type": "string",
+                "description": "Nom du raisonnement qui a été démarré"
+              },
+              "digipair": {
+                "type": "string",
+                "description": "Propriétaire du raisonnement"
+              }
+            }
+          }
+        }
+      },
+      "ExecutionResult": {
+        "type": "object",
+        "description": "Résultat de l'exécution des Pin's",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indique si l'exécution s'est déroulée avec succès"
+          },
+          "data": {
+            "type": "object",
+            "description": "Données retournées par l'exécution",
+            "properties": {
+              "executed": {
+                "type": "boolean",
+                "description": "Indique si l'exécution est terminée"
+              },
+              "results": {
+                "type": "array",
+                "description": "Résultats des pins exécutés",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "KeepAliveResult": {
+        "type": "object",
+        "description": "Résultat de l'opération keep-alive",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type de la réponse keep-alive"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut de l'opération keep-alive"
+          }
+        }
+      },
+      "StopResult": {
+        "type": "object",
+        "description": "Résultat de l'opération d'arrêt",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type de la réponse d'arrêt"
+          },
+          "value": {
+            "type": "object",
+            "description": "Valeur retournée lors de l'arrêt du raisonnement"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut de l'opération d'arrêt"
+          }
+        }
+      },
+      "TaskResult": {
+        "type": "object",
+        "description": "Résultat de l'exécution de tâche",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indique si l'exécution de la tâche s'est déroulée avec succès"
+          },
+          "results": {
+            "type": "array",
+            "description": "Résultats de la tâche exécutée",
+            "items": {
+              "type": "object"
+            }
+          }
         }
       }
     }
   }
-}
-}
-}
-},
-"x-scene-blocks": {
-"/task": {
-"summary": "Tache",
-"description": "Exécution d'une tache.",
-"tags": [
-"service"
-],
-"metadata": [],
-"parameters": [
-{
-  "name": "execute",
-  "summary": "Exécute",
-  "required": true,
-  "description": "Commandes à exécuter",
-  "schema": {
-    "type": "array",
-    "items": {
-      "$ref": "https://schemas.digipair.ai/pinsSettings"
-    }
-  }
-}
-]
-},
-"/action": {
-"summary": "Action",
-"description": "Action exécutable.",
-"tags": [
-"service"
-],
-"metadata": [
-{
-  "name": "parameters",
-  "summary": "Paramètres",
-  "required": true,
-  "description": "Paramètres de l'action",
-  "schema": {
-    "type": "array",
-    "items": {
-      "$ref": "#/components/schemas/Parameter"
-    }
-  }
-},
-{
-  "name": "context",
-  "summary": "Contexte",
-  "required": false,
-  "description": "Afficher le contexte d'exécution",
-  "schema": {
-    "type": "boolean"
-  }
-}
-],
-"parameters": [
-{
-  "name": "execute",
-  "summary": "Execute",
-  "required": true,
-  "description": "Commandes à exécuter.",
-  "schema": {
-    "type": "array",
-    "items": {
-      "$ref": "https://schemas.digipair.ai/pinsSettings"
-    }
-  }
-}
-]
-},
-"/trigger": {
-"summary": "Déclencheur",
-"description": "Déclenchement d'une exécution d'actions.",
-"tags": [
-"service"
-],
-"metadata": [
-{
-  "name": "tags",
-  "summary": "Tags",
-  "required": true,
-  "description": "Tags du déclencheur",
-  "schema": {
-    "type": "array",
-    "items": {
-      "type": "string"
-    }
-  }
-},
-{
-  "name": "parameters",
-  "summary": "Paramètres",
-  "required": true,
-  "description": "Paramètres du déclencheur",
-  "schema": {
-    "type": "array",
-    "items": {
-      "$ref": "#/components/schemas/Parameter"
-    }
-  }
-}
-],
-"parameters": [
-{
-  "name": "execute",
-  "summary": "Execute",
-  "required": true,
-  "description": "Commandes à exécuter.",
-  "schema": {
-    "type": "array",
-    "items": {
-      "$ref": "https://schemas.digipair.ai/pinsSettings"
-    }
-  }
-}
-]
-}
-},
-"components": {
-"schemas": {
-"Parameter": {
-"type": "object",
-"tags": [
-  "service"
-],
-"summary": "Parameter",
-"properties": {
-  "name": {
-    "summary": "Nom",
-    "type": "string"
-  },
-  "summary": {
-    "summary": "Affichage",
-    "type": "string"
-  },
-  "required": {
-    "summary": "Requis",
-    "type": "boolean"
-  },
-  "ignoreForAI": {
-    "summary": "Ignorer pour l'IA",
-    "type": "boolean"
-  },
-  "schema": {
-    "summary": "Schema",
-    "type": "object"
-  },
-  "description": {
-    "summary": "Description",
-    "type": "string"
-  }
-},
-"required": [
-  "name",
-  "summary",
-  "required",
-  "schema"
-]
-},
-"ReasoningResult": {
-"type": "object",
-"description": "Résultat de l'exécution de raisonnement",
-"properties": {
-  "success": {
-    "type": "boolean",
-    "description": "Indique si le raisonnement a été démarré avec succès"
-  },
-  "result": {
-    "type": "object",
-    "description": "Détails de l'exécution du raisonnement",
-    "properties": {
-      "status": {
-        "type": "string",
-        "description": "Statut actuel du raisonnement"
-      },
-      "reasoning": {
-        "type": "string",
-        "description": "Nom du raisonnement qui a été démarré"
-      },
-      "digipair": {
-        "type": "string",
-        "description": "Propriétaire du raisonnement"
-      }
-    }
-  }
-}
-},
-"ExecutionResult": {
-"type": "object",
-"description": "Résultat de l'exécution des Pin's",
-"properties": {
-  "success": {
-    "type": "boolean",
-    "description": "Indique si l'exécution s'est déroulée avec succès"
-  },
-  "data": {
-    "type": "object",
-    "description": "Données retournées par l'exécution",
-    "properties": {
-      "executed": {
-        "type": "boolean",
-        "description": "Indique si l'exécution est terminée"
-      },
-      "results": {
-        "type": "array",
-        "description": "Résultats des pins exécutés",
-        "items": {
-          "type": "object"
-        }
-      }
-    }
-  }
-}
-},
-"KeepAliveResult": {
-"type": "object",
-"description": "Résultat de l'opération keep-alive",
-"properties": {
-  "type": {
-    "type": "string",
-    "description": "Type de la réponse keep-alive"
-  },
-  "status": {
-    "type": "string",
-    "description": "Statut de l'opération keep-alive"
-  }
-}
-},
-"StopResult": {
-"type": "object",
-"description": "Résultat de l'opération d'arrêt",
-"properties": {
-  "type": {
-    "type": "string",
-    "description": "Type de la réponse d'arrêt"
-  },
-  "value": {
-    "type": "object",
-    "description": "Valeur retournée lors de l'arrêt du raisonnement"
-  },
-  "status": {
-    "type": "string",
-    "description": "Statut de l'opération d'arrêt"
-  }
-}
-},
-"TaskResult": {
-"type": "object",
-"description": "Résultat de l'exécution de tâche",
-"properties": {
-  "success": {
-    "type": "boolean",
-    "description": "Indique si l'exécution de la tâche s'est déroulée avec succès"
-  },
-  "results": {
-    "type": "array",
-    "description": "Résultats de la tâche exécutée",
-    "items": {
-      "type": "object"
-    }
-  }
-}
-}
-}
-}
 }

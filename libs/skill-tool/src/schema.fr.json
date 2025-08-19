@@ -144,6 +144,15 @@
           }
         },
         {
+          "name": "output",
+          "summary": "Format de sortie",
+          "required": false,
+          "description": "Format de sortie de l'action",
+          "schema": {
+            "type": "object"
+          }
+        },
+        {
           "name": "context",
           "summary": "Contexte",
           "required": false,

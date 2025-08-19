@@ -10,7 +10,9 @@
   "paths": {
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop",
         "description": "Stop the reasoning",
         "parameters": [
@@ -41,7 +43,9 @@
     },
     "/keepAlive": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Keep alive",
         "description": "Keep alive the reasoning",
         "parameters": [],
@@ -62,7 +66,9 @@
     },
     "/execute": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Execute with context",
         "description": "Execute a Pin's with a given context",
         "parameters": [
@@ -109,7 +115,9 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -137,7 +145,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   },
@@ -145,7 +158,9 @@
     "/task": {
       "summary": "Task",
       "description": "Execution of a task.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -165,7 +180,9 @@
     "/action": {
       "summary": "Action",
       "description": "Executable action.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "parameters",
@@ -177,6 +194,15 @@
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
+          }
+        },
+        {
+          "name": "output",
+          "summary": "Output format",
+          "required": false,
+          "description": "Output format of the action",
+          "schema": {
+            "type": "object"
           }
         },
         {
@@ -207,7 +233,9 @@
     "/trigger": {
       "summary": "Trigger",
       "description": "Executable trigger.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "tags",
