@@ -10,7 +10,9 @@
   "paths": {
     "/send": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send HTTP",
         "description": "Send an HTTP request",
         "parameters": [
@@ -43,7 +45,9 @@
     },
     "/status": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send HTTP status",
         "description": "Send an HTTP status",
         "parameters": [
@@ -76,7 +80,9 @@
     },
     "/headers": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send HTTP headers",
         "description": "Send HTTP headers",
         "parameters": [
@@ -106,6 +112,30 @@
         },
         "x-events": []
       }
+    },
+    "/files": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Handle file uploads",
+        "description": "Handle multipart file uploads using multer",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Files processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Returns null after processing file uploads"
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
     }
   },
   "components": {
@@ -115,7 +145,9 @@
     "/service": {
       "summary": "Web service",
       "description": "Response to an HTTP call.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {

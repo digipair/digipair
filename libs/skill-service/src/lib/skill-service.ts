@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
+import * as multer from 'multer';
+const upload = multer({ storage: multer.memoryStorage() });
 
 class ServiceService {
   async service(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -22,6 +24,16 @@ class ServiceService {
     const { headers } = params;
     return context.protected.res.set(headers);
   }
+
+  async files(_params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    await new Promise((resolve, reject) =>
+      upload.any()(context.protected.req, context.protected.res, err =>
+        err ? reject(err) : resolve(void 0),
+      ),
+    );
+
+    return null;
+  }
 }
 
 export const service = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -35,3 +47,6 @@ export const status = (params: any, pinsSettingsList: PinsSettings[], context: a
 
 export const headers = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ServiceService().headers(params, pinsSettingsList, context);
+
+export const files = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ServiceService().files(params, pinsSettingsList, context);
