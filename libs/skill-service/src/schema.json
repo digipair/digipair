@@ -113,7 +113,7 @@
         "x-events": []
       }
     },
-    "/files": {
+    "/upload": {
       "post": {
         "tags": [
           "service"
@@ -127,50 +127,50 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "description": "Array of uploaded file objects processed by multer",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "fieldname": {
-                        "type": "string",
-                        "description": "Field name specified in the form"
-                      },
-                      "originalname": {
-                        "type": "string",
-                        "description": "Name of the file on the user's computer"
-                      },
-                      "encoding": {
-                        "type": "string",
-                        "description": "Encoding type of the file"
-                      },
-                      "mimetype": {
-                        "type": "string",
-                        "description": "MIME type of the file"
-                      },
-                      "size": {
-                        "type": "number",
-                        "description": "Size of the file in bytes"
-                      },
-                      "destination": {
-                        "type": "string",
-                        "description": "Folder to which the file has been saved (DiskStorage only)"
-                      },
-                      "filename": {
-                        "type": "string",
-                        "description": "Name of the file within the destination (DiskStorage only)"
-                      },
-                      "path": {
-                        "type": "string",
-                        "description": "Full path to the uploaded file (DiskStorage only)"
-                      },
-                      "buffer": {
-                        "type": "object",
-                        "description": "Buffer of the entire file (MemoryStorage only)"
-                      }
+                  "type": "object",
+                  "description": "Object containing form body and uploaded files with base64 content",
+                  "properties": {
+                    "body": {
+                      "type": "object",
+                      "description": "Form body data",
+                      "additionalProperties": true
                     },
-                    "required": ["fieldname", "originalname", "encoding", "mimetype", "size"]
-                  }
+                    "files": {
+                      "type": "array",
+                      "description": "Array of uploaded file objects with base64 encoded content",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "fieldname": {
+                            "type": "string",
+                            "description": "Field name specified in the form"
+                          },
+                          "originalname": {
+                            "type": "string",
+                            "description": "Name of the file on the user's computer"
+                          },
+                          "encoding": {
+                            "type": "string",
+                            "description": "Encoding type of the file"
+                          },
+                          "mimetype": {
+                            "type": "string",
+                            "description": "MIME type of the file"
+                          },
+                          "size": {
+                            "type": "number",
+                            "description": "Size of the file in bytes"
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "Base64 encoded file content with data URI format"
+                          }
+                        },
+                        "required": ["fieldname", "originalname", "encoding", "mimetype", "size", "content"]
+                      }
+                    }
+                  },
+                  "required": ["body", "files"]
                 }
               }
             }

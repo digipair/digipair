@@ -113,7 +113,7 @@
         "x-events": []
       }
     },
-    "/files": {
+    "/upload": {
       "post": {
         "tags": [
           "service"
@@ -127,50 +127,50 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "description": "Tableau d'objets de fichiers téléchargés traités par multer",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "fieldname": {
-                        "type": "string",
-                        "description": "Nom du champ spécifié dans le formulaire"
-                      },
-                      "originalname": {
-                        "type": "string",
-                        "description": "Nom du fichier sur l'ordinateur de l'utilisateur"
-                      },
-                      "encoding": {
-                        "type": "string",
-                        "description": "Type d'encodage du fichier"
-                      },
-                      "mimetype": {
-                        "type": "string",
-                        "description": "Type MIME du fichier"
-                      },
-                      "size": {
-                        "type": "number",
-                        "description": "Taille du fichier en octets"
-                      },
-                      "destination": {
-                        "type": "string",
-                        "description": "Dossier dans lequel le fichier a été sauvegardé (DiskStorage uniquement)"
-                      },
-                      "filename": {
-                        "type": "string",
-                        "description": "Nom du fichier dans le dossier de destination (DiskStorage uniquement)"
-                      },
-                      "path": {
-                        "type": "string",
-                        "description": "Chemin complet vers le fichier téléchargé (DiskStorage uniquement)"
-                      },
-                      "buffer": {
-                        "type": "object",
-                        "description": "Buffer de l'intégralité du fichier (MemoryStorage uniquement)"
-                      }
+                  "type": "object",
+                  "description": "Objet contenant les données du formulaire et les fichiers téléchargés avec contenu base64",
+                  "properties": {
+                    "body": {
+                      "type": "object",
+                      "description": "Données du corps du formulaire",
+                      "additionalProperties": true
                     },
-                    "required": ["fieldname", "originalname", "encoding", "mimetype", "size"]
-                  }
+                    "files": {
+                      "type": "array",
+                      "description": "Tableau d'objets de fichiers téléchargés avec contenu encodé en base64",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "fieldname": {
+                            "type": "string",
+                            "description": "Nom du champ spécifié dans le formulaire"
+                          },
+                          "originalname": {
+                            "type": "string",
+                            "description": "Nom du fichier sur l'ordinateur de l'utilisateur"
+                          },
+                          "encoding": {
+                            "type": "string",
+                            "description": "Type d'encodage du fichier"
+                          },
+                          "mimetype": {
+                            "type": "string",
+                            "description": "Type MIME du fichier"
+                          },
+                          "size": {
+                            "type": "number",
+                            "description": "Taille du fichier en octets"
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "Contenu du fichier encodé en base64 au format data URI"
+                          }
+                        },
+                        "required": ["fieldname", "originalname", "encoding", "mimetype", "size", "content"]
+                      }
+                    }
+                  },
+                  "required": ["body", "files"]
                 }
               }
             }
