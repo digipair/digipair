@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import * as multer from 'multer';
+const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 
 class ServiceService {
@@ -27,7 +27,7 @@ class ServiceService {
 
   async files(_params: any, _pinsSettingsList: PinsSettings[], context: any) {
     await new Promise((resolve, reject) =>
-      upload.any()(context.protected.req, context.protected.res, err =>
+      upload.any()(context.protected.req, context.protected.res, (err: any) =>
         err ? reject(err) : resolve(void 0),
       ),
     );

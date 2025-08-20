@@ -6,7 +6,9 @@
     "service",
     "tool"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "multer": "^2.0.2"
+  },
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
 }
