@@ -112,6 +112,15 @@ class CommonService {
                   parameters: metadata.parameters ?? [],
                   'x-events': [],
                   'x-context': metadata.context ?? false,
+                  responses: {
+                    '200': {
+                      content: {
+                        'application/json': {
+                          schema: metadata.output ?? { type: 'null' },
+                        },
+                      },
+                    },
+                  },
                 },
               },
             };
@@ -144,6 +153,15 @@ class CommonService {
                   parameters: metadata.parameters ?? [],
                   'x-events': [],
                   'x-context': metadata.context ?? false,
+                  responses: {
+                    '200': {
+                      content: {
+                        'application/json': {
+                          schema: metadata.output ?? { type: 'null' },
+                        },
+                      },
+                    },
+                  },
                 },
               },
             };
