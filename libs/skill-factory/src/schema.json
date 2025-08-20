@@ -366,9 +366,9 @@
         },
         {
           "name": "output",
-          "summary": "Output format",
+          "summary": "Output schema",
           "required": false,
-          "description": "Output format of the action",
+          "description": "Output schema of the action",
           "schema": {
             "type": "object"
           }

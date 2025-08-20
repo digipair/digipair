@@ -214,9 +214,9 @@
         },
         {
           "name": "output",
-          "summary": "Format de sortie",
+          "summary": "Schema de sortie",
           "required": false,
-          "description": "Format de sortie de l'action",
+          "description": "Schema de sortie de l'action",
           "schema": {
             "type": "object"
           }
