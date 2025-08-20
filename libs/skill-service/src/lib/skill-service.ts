@@ -32,7 +32,7 @@ class ServiceService {
       ),
     );
 
-    return null;
+    return context.protected.req.files;
   }
 }
 

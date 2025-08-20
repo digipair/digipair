@@ -69,8 +69,8 @@ export class AppService implements OnModuleInit {
         null,
         {},
         context,
-        null,
-        null,
+        context.protected.req,
+        context.protected.res,
         context.protected.signal,
       ),
     );
@@ -169,6 +169,7 @@ export class AppService implements OnModuleInit {
           params,
           query,
           headers,
+          files: req?.files,
         },
         protected: {
           req,

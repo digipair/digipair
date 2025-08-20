@@ -127,8 +127,50 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "null",
-                  "description": "Returns null after processing file uploads"
+                  "type": "array",
+                  "description": "Array of uploaded file objects processed by multer",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fieldname": {
+                        "type": "string",
+                        "description": "Field name specified in the form"
+                      },
+                      "originalname": {
+                        "type": "string",
+                        "description": "Name of the file on the user's computer"
+                      },
+                      "encoding": {
+                        "type": "string",
+                        "description": "Encoding type of the file"
+                      },
+                      "mimetype": {
+                        "type": "string",
+                        "description": "MIME type of the file"
+                      },
+                      "size": {
+                        "type": "number",
+                        "description": "Size of the file in bytes"
+                      },
+                      "destination": {
+                        "type": "string",
+                        "description": "Folder to which the file has been saved (DiskStorage only)"
+                      },
+                      "filename": {
+                        "type": "string",
+                        "description": "Name of the file within the destination (DiskStorage only)"
+                      },
+                      "path": {
+                        "type": "string",
+                        "description": "Full path to the uploaded file (DiskStorage only)"
+                      },
+                      "buffer": {
+                        "type": "object",
+                        "description": "Buffer of the entire file (MemoryStorage only)"
+                      }
+                    },
+                    "required": ["fieldname", "originalname", "encoding", "mimetype", "size"]
+                  }
                 }
               }
             }
