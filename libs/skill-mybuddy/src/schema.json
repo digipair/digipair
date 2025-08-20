@@ -10,7 +10,9 @@
   "paths": {
     "/sendAngles": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sends the list of angles",
         "parameters": [
           {
@@ -62,7 +64,9 @@
     },
     "/getAngles": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the list of angles",
         "parameters": [
           {
@@ -96,7 +100,9 @@
     },
     "/powerOn": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Turns on all servos",
         "parameters": [
           {
@@ -114,7 +120,9 @@
     },
     "/powerOff": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Turns off all servos",
         "parameters": [
           {
@@ -132,7 +140,9 @@
     },
     "/releaseAllServos": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Releases all servos",
         "parameters": [
           {
@@ -150,7 +160,9 @@
     },
     "/sendAngle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sends a specific angle",
         "parameters": [
           {
@@ -195,7 +207,9 @@
     },
     "/sendCoord": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sends coordinates",
         "parameters": [
           {
@@ -240,7 +254,9 @@
     },
     "/sendCoords": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sends coordinates",
         "parameters": [
           {
@@ -288,7 +304,9 @@
     },
     "/programPause": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Pauses the program",
         "parameters": [
           {
@@ -306,7 +324,9 @@
     },
     "/programResume": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Resumes the program",
         "parameters": [
           {
@@ -324,7 +344,9 @@
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stops the program",
         "parameters": [
           {
@@ -342,7 +364,9 @@
     },
     "/jogAngle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Moves a specific angle",
         "parameters": [
           {
@@ -387,7 +411,9 @@
     },
     "/jogCoord": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Moves a specific coordinate",
         "parameters": [
           {
@@ -432,7 +458,9 @@
     },
     "/jogStop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stops the movement",
         "parameters": [
           {
@@ -450,7 +478,9 @@
     },
     "/setEncoder": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets an encoder value",
         "parameters": [
           {
@@ -486,7 +516,9 @@
     },
     "/setEncoders": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the encoder values",
         "parameters": [
           {
@@ -525,7 +557,9 @@
     },
     "/setSpeed": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the speed",
         "parameters": [
           {
@@ -552,7 +586,9 @@
     },
     "/setServoData": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets servo data",
         "parameters": [
           {
@@ -597,7 +633,9 @@
     },
     "/setServoCalibration": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the calibration of a servo",
         "parameters": [
           {
@@ -624,7 +662,9 @@
     },
     "/releaseServo": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Releases a specific servo",
         "parameters": [
           {
@@ -651,7 +691,9 @@
     },
     "/focusServo": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activates a specific servo",
         "parameters": [
           {
@@ -678,7 +720,9 @@
     },
     "/setPinMode": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the mode of a pin",
         "parameters": [
           {
@@ -714,7 +758,9 @@
     },
     "/setDigitalOutput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the digital output of a pin",
         "parameters": [
           {
@@ -750,7 +796,9 @@
     },
     "/setGripperState": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the state of the gripper",
         "parameters": [
           {
@@ -786,7 +834,9 @@
     },
     "/setGripperValue": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the value of the gripper",
         "parameters": [
           {
@@ -822,7 +872,9 @@
     },
     "/setGripperIni": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the initialization of the gripper",
         "parameters": [],
         "x-events": []
@@ -830,7 +882,9 @@
     },
     "/setBasicOutput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the basic output of a pin",
         "parameters": [
           {
@@ -866,7 +920,9 @@
     },
     "/setColor": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Sets the RGB color",
         "parameters": [
           {
@@ -911,7 +967,9 @@
     },
     "/isPowerOn": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Checks if the device is powered on",
         "parameters": [
           {
@@ -929,7 +987,9 @@
     },
     "/isControllerConnect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Checks if the controller is connected",
         "parameters": [
           {
@@ -947,7 +1007,9 @@
     },
     "/getCoords": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the coordinates",
         "parameters": [
           {
@@ -965,7 +1027,9 @@
     },
     "/isInPosition": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Checks if the device is in position",
         "parameters": [
           {
@@ -1001,7 +1065,9 @@
     },
     "/getEncoder": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the value of an encoder",
         "parameters": [
           {
@@ -1028,7 +1094,9 @@
     },
     "/getEncoders": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the values of the encoders",
         "parameters": [
           {
@@ -1046,7 +1114,9 @@
     },
     "/getSpeed": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the speed",
         "parameters": [
           {
@@ -1064,7 +1134,9 @@
     },
     "/getJointMin": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the minimum angle of a joint",
         "parameters": [
           {
@@ -1091,7 +1163,9 @@
     },
     "/getJointMax": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the maximum angle of a joint",
         "parameters": [
           {
@@ -1118,7 +1192,9 @@
     },
     "/isServoEnable": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Checks if a servo is enabled",
         "parameters": [
           {
@@ -1145,7 +1221,9 @@
     },
     "/isAllServoEnable": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Checks if all servos are enabled",
         "parameters": [
           {
@@ -1163,7 +1241,9 @@
     },
     "/getServodata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the data of a servo",
         "parameters": [
           {
@@ -1199,7 +1279,9 @@
     },
     "/getDigitalInput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the digital input of a pin",
         "parameters": [
           {
@@ -1226,7 +1308,9 @@
     },
     "/getGripperValue": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the value of the gripper",
         "parameters": [
           {
@@ -1244,7 +1328,9 @@
     },
     "/getBasicOutput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieves the basic output of a pin",
         "parameters": [
           {
@@ -1271,7 +1357,9 @@
     },
     "/isGripperMoving": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Checks if the gripper is moving",
         "parameters": [
           {
@@ -1289,7 +1377,9 @@
     },
     "/sleep": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Waits for a certain time",
         "parameters": [
           {

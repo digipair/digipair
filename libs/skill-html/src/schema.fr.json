@@ -41,7 +41,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PinsList"
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://schemas.digipair.ai/pinsSettings"
+                  }
                 }
               }
             }
@@ -116,47 +119,7 @@
     }
   },
   "components": {
-    "schemas": {
-      "PinsList": {
-        "type": "array",
-        "description": "Tableau d'objets pins convertis à partir du HTML",
-        "items": {
-          "$ref": "#/components/schemas/PinsObject"
-        }
-      },
-      "PinsObject": {
-        "type": "object",
-        "description": "Objet pins individuel représentant un élément HTML",
-        "properties": {
-          "library": {
-            "type": "string",
-            "description": "Nom de la bibliothèque pour l'élément pins"
-          },
-          "element": {
-            "type": "string",
-            "description": "Nom de la balise de l'élément HTML"
-          },
-          "properties": {
-            "type": "object",
-            "description": "Attributs et propriétés de l'élément",
-            "additionalProperties": true
-          },
-          "pins": {
-            "type": "array",
-            "description": "Objets pins enfants",
-            "items": {
-              "$ref": "#/components/schemas/PinsObject"
-            }
-          }
-        },
-        "required": [
-          "library",
-          "element",
-          "properties",
-          "pins"
-        ]
-      }
-    }
+    "schemas": {}
   },
   "x-scene-blocks": {}
 }

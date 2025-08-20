@@ -332,6 +332,7 @@
   "components": {
     "schemas": {
       "WorkflowExecutionInfo": {
+        "tags": [],
         "type": "object",
         "description": "Informations sur une exécution de workflow Temporal",
         "properties": {

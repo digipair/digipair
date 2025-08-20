@@ -10,7 +10,9 @@
   "paths": {
     "/reasonings": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste les raisonnements",
         "descriptions": "Liste les raisonnements d'un digipair",
         "parameters": [
@@ -33,12 +35,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des raisonnements récupérés avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Nom d'un fichier de raisonnement"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/reasoning": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Informations d'un raisonnement",
         "parameters": [
           {
@@ -74,7 +94,9 @@
     },
     "/setReasoning": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Enregistrement d'un raisonnement",
         "parameters": [
           {
@@ -119,7 +141,9 @@
     },
     "/removeReasoning": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Suppression d'un raisonnement",
         "parameters": [
           {
@@ -155,7 +179,9 @@
     },
     "/digipairs": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste les digipairs",
         "descriptions": "Liste des digipairs disponibles",
         "parameters": [
@@ -174,7 +200,9 @@
     },
     "/digipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Informations d'un digipair",
         "descriptions": "Informations d'un digipair",
         "parameters": [
@@ -202,7 +230,9 @@
     },
     "/setDigipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Enregistrement d'un digipair",
         "parameters": [
           {
@@ -238,7 +268,9 @@
     },
     "/removeDigipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Suppression d'un digipair",
         "parameters": [
           {
@@ -265,7 +297,9 @@
     },
     "/addDigipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Ajoute un digipair",
         "parameters": [
           {
@@ -319,7 +353,9 @@
     },
     "/metadata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Lister les metadatas",
         "parameters": [
           {
@@ -346,7 +382,9 @@
     },
     "/setAvatar": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Enregistrer l'avatar",
         "parameters": [
           {
@@ -382,7 +420,9 @@
     },
     "/templates": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des templates",
         "descriptions": "Liste des templates de digipair",
         "parameters": [
@@ -401,7 +441,9 @@
     },
     "/schemas": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des schemas",
         "descriptions": "Liste des schemas pour les librairies fournies",
         "parameters": [
@@ -429,7 +471,9 @@
     },
     "/tools": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des outils",
         "descriptions": "Liste des outils disponibles",
         "parameters": [

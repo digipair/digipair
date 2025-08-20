@@ -207,6 +207,7 @@
   "components": {
     "schemas": {
       "LogEntry": {
+        "tags": [],
         "type": "object",
         "description": "Objet d'entrée de log",
         "properties": {

@@ -306,6 +306,7 @@
   "components": {
     "schemas": {
       "OpenAIModel": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle LLM OpenAI",
         "properties": {
@@ -338,6 +339,7 @@
         }
       },
       "AzureOpenAIModel": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle LLM Azure OpenAI",
         "properties": {
@@ -368,6 +370,7 @@
         }
       },
       "OpenAIEmbeddings": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle d'embeddings OpenAI",
         "properties": {
@@ -396,6 +399,7 @@
         }
       },
       "AzureOpenAIEmbeddings": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle d'embeddings Azure OpenAI",
         "properties": {

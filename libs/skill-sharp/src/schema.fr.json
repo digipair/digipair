@@ -204,7 +204,20 @@
               "type": "object"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image redimensionnée en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/rotate": {
@@ -229,7 +242,20 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image pivotée en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/extract": {
@@ -275,7 +301,20 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Région d'image extraite en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/flip": {
@@ -293,7 +332,20 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image pivotée verticalement en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/flop": {
@@ -311,7 +363,20 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image pivotée horizontalement en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/autoOrient": {
@@ -329,7 +394,20 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image auto-orientée en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/grayscale": {
@@ -347,7 +425,20 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image en niveaux de gris en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/linear": {
@@ -379,7 +470,20 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image transformée linéairement en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/threshold": {
@@ -412,7 +516,51 @@
               "type": "object"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image en niveaux de gris en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/negate": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Negate",
+        "description": "Inverts the image colors",
+        "parameters": [
+          {
+            "name": "content",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Image avec couleurs inversées en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tint": {
@@ -451,7 +599,20 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image teintée en couleur en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modulate": {
@@ -490,7 +651,20 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image modulée avec luminosité/saturation/teinte ajustées en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/blur": {
@@ -515,7 +689,20 @@
               "type": "number"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image floue en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sharpen": {
@@ -533,7 +720,20 @@
               "type": "string"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image affinée en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/toFormat": {
@@ -565,7 +765,20 @@
               ]
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image convertie au format spécifié en tant qu'URL de données encodée en base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image encodée en base64 avec préfixe data URL dans le format spécifié"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/jpeg": {
@@ -591,7 +804,20 @@
               "default": 80
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image JPEG encodée en base64 avec préfixe data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image JPEG encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/png": {
@@ -617,7 +843,20 @@
               "default": 6
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image PNG encodée en base64 avec préfixe data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image PNG encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/webp": {
@@ -643,7 +882,20 @@
               "default": 80
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image WebP encodée en base64 avec préfixe data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image WebP encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/avif": {
@@ -669,7 +921,20 @@
               "default": 50
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Image AVIF encodée en base64 avec préfixe data URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Image AVIF encodée en base64 avec préfixe data URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/composite": {
@@ -732,12 +997,7 @@
     }
   },
   "components": {
-    "schemas": {
-      "ImageResponse": {
-        "type": "string",
-        "description": "Image encodée en base64 avec préfixe data URL"
-      }
-    }
+    "schemas": {}
   },
   "x-scene-blocks": {}
 }

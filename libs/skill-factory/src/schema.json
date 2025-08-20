@@ -212,6 +212,7 @@
         ]
       },
       "ReasoningResult": {
+        "tags": [],
         "type": "object",
         "description": "Result of reasoning execution",
         "properties": {
@@ -240,6 +241,7 @@
         }
       },
       "ExecutionResult": {
+        "tags": [],
         "type": "object",
         "description": "Result of Pin's execution",
         "properties": {
@@ -267,6 +269,7 @@
         }
       },
       "KeepAliveResult": {
+        "tags": [],
         "type": "object",
         "description": "Result of keep alive operation",
         "properties": {
@@ -281,6 +284,7 @@
         }
       },
       "StopResult": {
+        "tags": [],
         "type": "object",
         "description": "Result of stop operation",
         "properties": {
@@ -299,6 +303,7 @@
         }
       },
       "TaskResult": {
+        "tags": [],
         "type": "object",
         "description": "Result of task execution",
         "properties": {

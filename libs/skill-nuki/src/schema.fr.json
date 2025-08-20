@@ -112,6 +112,7 @@
   "components": {
     "schemas": {
       "NukiActionResponse": {
+        "tags": [],
         "type": "object",
         "description": "Réponse d'une action de serrure Nuki",
         "properties": {

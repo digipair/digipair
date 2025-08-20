@@ -10,7 +10,9 @@
   "paths": {
     "/infos": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Lister les informations",
         "parameters": [
           {
@@ -23,12 +25,40 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Informations sur le digipair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Nom du digipair"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description du digipair"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/metadata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Lister les metadatas",
         "parameters": [
           {
@@ -41,12 +71,45 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": " Metadata du digipair incluant l'avatar et la configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "avatar": {
+                      "type": "string",
+                      "description": "Image d'avatar encodée en Base64"
+                    },
+                    "config": {
+                      "type": "object",
+                      "properties": {
+                        "VERSIONS": {
+                          "type": "object",
+                          "description": "Versions de la bibliothèque"
+                        }
+                      }
+                    },
+                    "variables": {
+                      "type": "object",
+                      "description": "Variables de configuration"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/boosts": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Lister les boosts",
         "parameters": [
           {
@@ -59,12 +122,60 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Liste des boosts disponibles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "reasoning": {
+                        "type": "string",
+                        "description": "Identifiant de raisonnement du boost"
+                      },
+                      "summary": {
+                        "type": "string",
+                        "description": "Résumé du boost"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Description du boost"
+                      },
+                      "selector": {
+                        "type": "string",
+                        "description": "Sélecteur CSS pour l'activation du boost"
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "URL pattern pour l'activation du boost"
+                      },
+                      "standalone": {
+                        "type": "boolean",
+                        "description": "Indique si le boost fonctionne de manière autonome"
+                      }
+                    },
+                    "required": [
+                      "reasoning",
+                      "summary",
+                      "description"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/schema": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Schema",
         "parameters": [
           {
@@ -77,12 +188,64 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Schema OpenAPI pour le digipair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "openapi": {
+                      "type": "string",
+                      "description": "Version OpenAPI"
+                    },
+                    "info": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "summary": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        },
+                        "x-icon": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "paths": {
+                      "type": "object",
+                      "description": "Chemins et opérations de l'API"
+                    },
+                    "x-scene-blocks": {
+                      "type": "object",
+                      "description": "Blocs de scène pour les déclencheurs"
+                    }
+                  },
+                  "required": [
+                    "openapi",
+                    "info"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/context": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Context",
         "parameters": [
           {

@@ -591,6 +591,7 @@
         ]
       },
       "AxAIModelInstance": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle AxAI générique",
         "properties": {
@@ -609,6 +610,7 @@
         }
       },
       "AxAIOpenAIModelInstance": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle OpenAI",
         "properties": {
@@ -635,6 +637,7 @@
         }
       },
       "AxAIAzureOpenAIModelInstance": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle Azure OpenAI",
         "properties": {
@@ -665,6 +668,7 @@
         }
       },
       "AxAIOllamaModelInstance": {
+        "tags": [],
         "type": "object",
         "description": "Instance de modèle Ollama",
         "properties": {
@@ -694,6 +698,7 @@
         }
       },
       "GenerationResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat de génération DSP",
         "properties": {
@@ -719,6 +724,7 @@
         }
       },
       "ChainOfThoughtResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat de chaîne de pensée DSP",
         "properties": {
@@ -747,6 +753,7 @@
         }
       },
       "AgentResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat d'exécution d'agent",
         "properties": {
@@ -775,6 +782,7 @@
         }
       },
       "AxAgentInstance": {
+        "tags": [],
         "type": "object",
         "description": "Instance d'agent (quand forward=false)",
         "properties": {

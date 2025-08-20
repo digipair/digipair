@@ -10,7 +10,9 @@
   "paths": {
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop",
         "description": "Arrête le raisonnement",
         "parameters": [
@@ -41,7 +43,9 @@
     },
     "/keepAlive": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Keep-alive",
         "description": "Garder en vie le raisonnement",
         "parameters": [],
@@ -62,7 +66,9 @@
     },
     "/execute": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Execute avec un contexte",
         "description": "Execute des Pin's avec un contexte donné",
         "parameters": [
@@ -109,7 +115,9 @@
     "/task": {
       "summary": "Tache",
       "description": "Exécution d'une tache.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -129,7 +137,9 @@
     "/action": {
       "summary": "Action",
       "description": "Action exécutable.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "parameters",
@@ -180,7 +190,9 @@
     "/trigger": {
       "summary": "Déclencheur",
       "description": "Déclenchement d'une exécution d'actions.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "tags",
@@ -227,7 +239,9 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -255,7 +269,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   }

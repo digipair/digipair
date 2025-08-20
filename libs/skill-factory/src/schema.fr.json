@@ -336,6 +336,7 @@
         ]
       },
       "ReasoningResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat de l'exécution de raisonnement",
         "properties": {
@@ -364,6 +365,7 @@
         }
       },
       "ExecutionResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat de l'exécution des Pin's",
         "properties": {
@@ -391,6 +393,7 @@
         }
       },
       "KeepAliveResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat de l'opération keep-alive",
         "properties": {
@@ -405,6 +408,7 @@
         }
       },
       "StopResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat de l'opération d'arrêt",
         "properties": {
@@ -423,6 +427,7 @@
         }
       },
       "TaskResult": {
+        "tags": [],
         "type": "object",
         "description": "Résultat de l'exécution de tâche",
         "properties": {

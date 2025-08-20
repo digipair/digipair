@@ -425,7 +425,6 @@
         }
       }
     },
-
     "/upload": {
       "post": {
         "tags": ["service", "web", "spatial"],
