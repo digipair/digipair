@@ -169,7 +169,6 @@ export class AppService implements OnModuleInit {
           params,
           query,
           headers,
-          files: req?.files,
         },
         protected: {
           req,
