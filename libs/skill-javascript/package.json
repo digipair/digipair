@@ -1,0 +1,15 @@
+{
+  "name": "@digipair/skill-javascript",
+  "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "javascript",
+    "isolated-vm",
+    "execution"
+  ],
+  "dependencies": {
+    "isolated-vm": "^6.0.1"
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}

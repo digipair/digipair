@@ -1,0 +1,80 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-javascript",
+    "summary": "Exécution JavaScript",
+    "description": "Cette compétence fournit des capacités d'exécution JavaScript en utilisant isolated-vm pour une exécution de code sécurisée avec support du contexte.",
+    "version": "0.1.0",
+    "x-icon": "🔧"
+  },
+  "paths": {
+    "/execute": {
+      "post": {
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
+        "summary": "Exécuter du code JavaScript",
+        "description": "Exécute du code JavaScript dans une machine virtuelle isolée avec accès au contexte fourni.",
+        "parameters": [
+          {
+            "name": "code",
+            "summary": "Code JavaScript",
+            "required": true,
+            "description": "Le code JavaScript à exécuter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "context",
+            "summary": "Contexte",
+            "required": false,
+            "description": "Données de contexte à passer à l'environnement d'exécution JavaScript",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "timeout",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Timeout d'exécution en millisecondes (défaut: 5000ms)",
+            "schema": {
+              "type": "number",
+              "default": 5000
+            }
+          },
+          {
+            "name": "memoryLimit",
+            "summary": "Limite mémoire",
+            "required": false,
+            "description": "Limite mémoire pour l'isolate en MB (défaut: 128MB)",
+            "schema": {
+              "type": "number",
+              "default": 128
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution JavaScript",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Le résultat de l'exécution du code JavaScript"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

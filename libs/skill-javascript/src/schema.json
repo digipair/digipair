@@ -1,0 +1,80 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-javascript",
+    "summary": "JavaScript Execution",
+    "description": "This skill provides JavaScript execution capabilities using isolated-vm for secure code execution with context support.",
+    "version": "0.1.0",
+    "x-icon": "🔧"
+  },
+  "paths": {
+    "/execute": {
+      "post": {
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
+        "summary": "Execute JavaScript code",
+        "description": "Executes JavaScript code in an isolated virtual machine with access to provided context.",
+        "parameters": [
+          {
+            "name": "code",
+            "summary": "JavaScript Code",
+            "required": true,
+            "description": "The JavaScript code to execute",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "context",
+            "summary": "Context",
+            "required": false,
+            "description": "Context data to pass to the JavaScript execution environment",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "timeout",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Execution timeout in milliseconds (default: 5000ms)",
+            "schema": {
+              "type": "number",
+              "default": 5000
+            }
+          },
+          {
+            "name": "memoryLimit",
+            "summary": "Memory Limit",
+            "required": false,
+            "description": "Memory limit for the isolate in MB (default: 128MB)",
+            "schema": {
+              "type": "number",
+              "default": 128
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "JavaScript execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "The result of the JavaScript code execution"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
