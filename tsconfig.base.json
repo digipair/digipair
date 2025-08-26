@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@digipair/skill-codex": ["libs/skill-codex/src/index.ts"],
       "@digipair/engine": ["libs/engine/src/index.ts"],
       "@digipair/skill-basic": ["libs/skill-basic/src/index.ts"],
       "@digipair/skill-canvas": ["libs/skill-canvas/src/index.ts"],

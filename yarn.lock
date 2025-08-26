@@ -3103,6 +3103,13 @@
     tslib "^2.3.0"
     yargs-parser "21.1.1"
 
+"@openai/codex@^0.23.0":
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/@openai/codex/-/codex-0.23.0.tgz#e95d0775d17b4f3f0122d75f362f4642ee170a6a"
+  integrity sha512-v3eD9bugeIMGWYo5TiYNxAcW9XrJxsYdOLo2HEJgFJFXCZsUkF/Z/5TA2QJ1crslJYiziiSNAl9BmfiAKo8mMQ==
+  dependencies:
+    "@vscode/ripgrep" "^1.15.14"
+
 "@opentelemetry/api@^1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@opentelemetry/api/-/api-1.9.0.tgz#d03eba68273dc0f7509e2a3d5cba21eae10379fe"
@@ -6275,6 +6282,15 @@
     minimatch "7.4.6"
     semver "7.6.3"
 
+"@vscode/ripgrep@^1.15.14":
+  version "1.15.14"
+  resolved "https://registry.yarnpkg.com/@vscode/ripgrep/-/ripgrep-1.15.14.tgz#c5930ecd1eb37e83a9a8f4a85623041601b76392"
+  integrity sha512-/G1UJPYlm+trBWQ6cMO3sv6b8D1+G16WaJH1/DSqw32JOVlzgZbLkDxRyzIpTpv30AcYGMkCf5tUqGlW6HbDWw==
+  dependencies:
+    https-proxy-agent "^7.0.2"
+    proxy-from-env "^1.1.0"
+    yauzl "^2.9.2"
+
 "@webassemblyjs/ast@1.14.1", "@webassemblyjs/ast@^1.14.1":
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.14.1.tgz#a9f6a07f2b03c95c8d38c4536a1fdfb521ff55b6"
@@ -7327,6 +7343,11 @@ bson@^6.10.1:
   version "6.10.1"
   resolved "https://registry.yarnpkg.com/bson/-/bson-6.10.1.tgz#dcd04703178f5ecf5b25de04edd2a95ec79385d3"
   integrity sha512-P92xmHDQjSKPLHqFxefqMxASNq/aWJMEZugpCjf+AF/pgcUpMMQCg7t7+ewko0/u8AapvF3luf/FoehddEK+sA==
+
+buffer-crc32@~0.2.3:
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/buffer-crc32/-/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
+  integrity sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==
 
 buffer-equal-constant-time@1.0.1:
   version "1.0.1"
@@ -10087,6 +10108,13 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
+fd-slicer@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fd-slicer/-/fd-slicer-1.1.0.tgz#25c7c89cb1f9077f8891bbe61d8f390eae256f1e"
+  integrity sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==
+  dependencies:
+    pend "~1.2.0"
+
 feelin@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/feelin/-/feelin-3.2.0.tgz#2d482a135a7063b5897133d448a136783ddf1bfe"
@@ -11217,7 +11245,7 @@ https-proxy-agent@^2.2.1:
     agent-base "^4.3.0"
     debug "^3.1.0"
 
-https-proxy-agent@^7.0.0, https-proxy-agent@^7.0.1, https-proxy-agent@^7.0.5:
+https-proxy-agent@^7.0.0, https-proxy-agent@^7.0.1, https-proxy-agent@^7.0.2, https-proxy-agent@^7.0.5:
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz#da8dfeac7da130b05c2ba4b59c9b6cd66611a6b9"
   integrity sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==
@@ -14864,6 +14892,11 @@ peek-stream@^1.1.0:
     buffer-from "^1.0.0"
     duplexify "^3.5.0"
     through2 "^2.0.3"
+
+pend@~1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
+  integrity sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -18905,6 +18938,14 @@ yargs@^17.3.1, yargs@^17.6.2, yargs@^17.7.2:
     string-width "^4.2.3"
     y18n "^5.0.5"
     yargs-parser "^21.1.1"
+
+yauzl@^2.9.2:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/yauzl/-/yauzl-2.10.0.tgz#c7eb17c93e112cb1086fa6d8e51fb0667b79a5f9"
+  integrity sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==
+  dependencies:
+    buffer-crc32 "~0.2.3"
+    fd-slicer "~1.1.0"
 
 yn@3.1.1:
   version "3.1.1"

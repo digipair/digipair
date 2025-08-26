@@ -1,0 +1,78 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-codex",
+    "summary": "Intégration OpenAI Codex CLI",
+    "description": "Cette skill permet d'exécuter des prompts en utilisant le CLI OpenAI Codex",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/runPrompt": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Exécuter un prompt Codex",
+        "description": "Exécute un prompt en utilisant le CLI Codex local et retourne le résultat",
+        "parameters": [
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": true,
+            "description": "Le prompt à envoyer à Codex",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options Codex",
+            "required": false,
+            "description": "Options de configuration pour l'exécution de Codex",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sandbox": {
+                  "type": "string",
+                  "enum": [
+                    "read-only",
+                    "workspace-write",
+                    "danger-full-access"
+                  ],
+                  "description": "Mode sandbox (par défaut 'read-only')"
+                },
+                "cwd": {
+                  "type": "string",
+                  "description": "Répertoire de travail (par défaut process.cwd())"
+                },
+                "timeoutMs": {
+                  "type": "number",
+                  "description": "Timeout en millisecondes"
+                }
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution Codex",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "La sortie de l'exécution du CLI Codex"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
