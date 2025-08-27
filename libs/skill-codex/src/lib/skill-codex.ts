@@ -1,27 +1,8 @@
 import { executePinsList, PinsSettings } from '@digipair/engine';
 import { spawn } from 'child_process';
 import { existsSync } from 'fs';
-import { join, dirname } from 'path';
 
 class CodexService {
-  /**
-   * Find the local Codex CLI entrypoint installed in this repo.
-   * Searches upwards from the current working directory for
-   * `node_modules/@openai/codex/bin/codex.js`.
-   */
-  private findCodexBin(startDir: string): string {
-    let dir = startDir;
-    for (let i = 0; i < 6; i++) {
-      const candidate = join(dir, 'node_modules', '@openai', 'codex', 'bin', 'codex.js');
-      if (existsSync(candidate)) return candidate;
-      const parent = dirname(dir);
-      if (parent === dir) break;
-      dir = parent;
-    }
-    // Fallback to a reasonable default relative to repo root
-    return join(process.cwd(), '..', '..', 'node_modules', '@openai', 'codex', 'bin', 'codex.js');
-  }
-
   /**
    * Runs the local Codex CLI with the provided prompt and returns its stdout as a string.
    * Requires either ChatGPT sign-in (codex login) or OPENAI_API_KEY in the environment.
@@ -41,7 +22,7 @@ class CodexService {
       throw new Error('Prompt must be a non-empty string');
     }
 
-    const codexJs = this.findCodexBin(cwd);
+    const codexJs = require.resolve('@openai/codex/bin/codex.js');
     if (!existsSync(codexJs)) {
       throw new Error(
         `Codex CLI not found. Ensure @openai/codex is installed. Looked for: ${codexJs}`,
