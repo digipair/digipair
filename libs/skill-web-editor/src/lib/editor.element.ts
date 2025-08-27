@@ -101,6 +101,7 @@ export class EditorElement extends LitElement {
     Blockly.Events.disable();
     initializeWorkspaceFromPinsAndLibraries(reasoning, this.workspace, this.librariesToLoad);
     Blockly.Events.enable();
+    this.canSave = this.verifyCanSaveAndGetCode();
   }
 
   private async getLibraries(): Promise<any[]> {
