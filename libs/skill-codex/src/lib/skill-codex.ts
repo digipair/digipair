@@ -34,6 +34,7 @@ class CodexService {
       timeoutMs,
       onStdout = [],
       onAction = [],
+      debug = false,
     } = params;
 
     if (!prompt || !prompt.trim()) {
@@ -75,11 +76,22 @@ class CodexService {
     const onData = (chunk: Buffer) => {
       const s = chunk.toString();
       stdout += s;
-      if (onStdout) executePinsList(onStdout, { chunk: s, ...context });
+
+      if (debug) {
+        process.stdout.write(s);
+      }
+
+      if (onStdout) {
+        executePinsList(onStdout, { chunk: s, ...context }, `${context.__PATH__}.onStdout`);
+      }
 
       if (regexNewLine.test(s)) {
         if (listening && !line.startsWith('{'))
-          executePinsList(onAction, { action: line.trim(), ...context });
+          executePinsList(
+            onAction,
+            { action: line.trim(), ...context },
+            `${context.__PATH__}.onAction`,
+          );
         listening = false;
       }
 

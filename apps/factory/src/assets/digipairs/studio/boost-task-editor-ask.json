@@ -1,0 +1,92 @@
+{
+  "description": "This boost is designed to help users formulate their questions more effectively on the current task.",
+  "summary": "Question about the task",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": {
+    "selector": "digipair-editor",
+    "url": "-task-editor/",
+    "context": []
+  },
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "What do you want to know about this task ?",
+              "boost": [
+                {
+                  "step": "Execution",
+                  "prompt": true,
+                  "required": true,
+                  "selector": "digipair-editor",
+                  "url": ".*",
+                  "inputs": [
+                    {
+                      "library": "@digipair/skill-web-inputs",
+                      "element": "digipair-input-dom-attribute",
+                      "properties": {
+                        "selector": "digipair-editor",
+                        "attribute": "codeInWorkspace"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-sse",
+            "element": "broadcast",
+            "properties": {
+              "message": {
+                "type": "step",
+                "content": "Request analysis"
+              },
+              "id": "{{request.body.userId}}",
+              "reasoning": "notification"
+            }
+          },
+          {
+            "library": "@digipair/skill-codex",
+            "element": "runPrompt",
+            "properties": {
+              "prompt": "Answer to the user question. \n\n# Useful informations\n## User question\n{{ request.body.prompt }}\n\n## Output format: \n{ \"assistant\": [ASSISTANT_ANSWER] }\n\n## Current agent: \n{{ request.digipair }}\n\n## Current reasoning name: \n{{ request.reasoning }}\n\n## Current reasoning content: \n{{JSONstringify request.body.inputs.[0].value}}",
+              "onAction": [
+                {
+                  "library": "@digipair/skill-sse",
+                  "element": "broadcast",
+                  "properties": {
+                    "message": {
+                      "type": "step",
+                      "content": "EVALUATE: action"
+                    },
+                    "id": "{{request.body.userId}}",
+                    "reasoning": "notification"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "EVALUATE: JSONparse(previous).assistant"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

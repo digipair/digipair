@@ -58,6 +58,15 @@
             }
           },
           {
+            "name": "debug",
+            "summary": "Debug mode",
+            "required": false,
+            "description": "Enables debug mode",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "onStdout",
             "summary": "On stdout",
             "required": false,

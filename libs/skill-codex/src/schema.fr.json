@@ -32,7 +32,11 @@
             "description": "Mode sandbox pour l'exécution de Codex (par défaut 'read-only')",
             "schema": {
               "type": "string",
-              "enum": ["read-only", "workspace-write", "danger-full-access"]
+              "enum": [
+                "read-only",
+                "workspace-write",
+                "danger-full-access"
+              ]
             }
           },
           {
@@ -51,6 +55,15 @@
             "description": "Timeout en millisecondes",
             "schema": {
               "type": "number"
+            }
+          },
+          {
+            "name": "debug",
+            "summary": "Mode débogage",
+            "required": false,
+            "description": "Active le mode débogage",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
