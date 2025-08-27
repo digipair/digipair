@@ -1,22 +1,7 @@
-import { PinsSettings } from '@digipair/engine';
+import { executePinsList, PinsSettings } from '@digipair/engine';
 import { spawn } from 'child_process';
 import { existsSync } from 'fs';
 import { join, dirname } from 'path';
-
-export type RunCodexOptions = {
-  /** Sandbox mode: 'read-only' | 'workspace-write' | 'danger-full-access'. Defaults to 'read-only'. */
-  sandbox?: 'read-only' | 'workspace-write' | 'danger-full-access';
-  /** Working directory. Defaults to process.cwd(). */
-  cwd?: string;
-  /** Timeout in milliseconds. */
-  timeoutMs?: number;
-  /** Callback for real-time stdout chunks. */
-  onStdout?: (chunk: string) => void;
-  /** Callback for real-time stderr chunks. */
-  onStderr?: (chunk: string) => void;
-  /** Callback for real-time action chunks. */
-  onAction?: (action: string) => void;
-};
 
 class CodexService {
   /**
@@ -42,21 +27,19 @@ class CodexService {
    * Requires either ChatGPT sign-in (codex login) or OPENAI_API_KEY in the environment.
    */
   async runPrompt(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<string> {
-    const { prompt, options = {} } = params;
+    const {
+      prompt,
+      sandbox = 'read-only',
+      cwd = process.cwd() + '/factory/digipairs',
+      timeoutMs,
+      onStdout = [],
+      onAction = [],
+    } = params;
 
     if (!prompt || !prompt.trim()) {
       throw new Error('Prompt must be a non-empty string');
     }
 
-    const opts: RunCodexOptions = {
-      cwd: process.cwd(),
-      execMode: true,
-      sandbox: 'read-only',
-      askForApproval: 'never',
-      ...options,
-    };
-
-    const cwd = opts.cwd ?? process.cwd();
     const codexJs = this.findCodexBin(cwd);
     if (!existsSync(codexJs)) {
       throw new Error(
@@ -70,7 +53,6 @@ class CodexService {
     // Use non-interactive automation mode.
     args.push('exec');
     // codex exec expects: codex exec --sandbox <mode> [PROMPT]
-    const sandbox = opts.sandbox ?? 'read-only';
     args.push('--sandbox', sandbox);
     args.push(prompt);
 
@@ -91,10 +73,11 @@ class CodexService {
     const onData = (chunk: Buffer) => {
       const s = chunk.toString();
       stdout += s;
-      if (opts.onStdout) opts.onStdout(s);
+      if (onStdout) executePinsList(onStdout, { chunk: s, ...context });
 
       if (regexNewLine.test(s)) {
-        if (opts.onAction && listening && !line.startsWith('{')) opts.onAction(line.trim());
+        if (listening && !line.startsWith('{'))
+          executePinsList(onAction, { action: line.trim(), ...context });
         listening = false;
       }
 
@@ -106,7 +89,6 @@ class CodexService {
     const onErr = (chunk: Buffer) => {
       const s = chunk.toString();
       stderr += s;
-      if (opts.onStderr) opts.onStderr(s);
     };
 
     child.stdout?.on('data', onData);
@@ -123,11 +105,11 @@ class CodexService {
       };
 
       let timeout: NodeJS.Timeout | undefined;
-      if (opts.timeoutMs && opts.timeoutMs > 0) {
+      if (timeoutMs && timeoutMs > 0) {
         timeout = setTimeout(() => {
           child.kill('SIGTERM');
-          reject(new Error(`Codex timed out after ${opts.timeoutMs} ms`));
-        }, opts.timeoutMs);
+          reject(new Error(`Codex timed out after ${timeoutMs} ms`));
+        }, timeoutMs);
       }
 
       child.on('error', err => {

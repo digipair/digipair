@@ -26,30 +26,58 @@
             }
           },
           {
-            "name": "options",
-            "summary": "Codex options",
+            "name": "sandbox",
+            "summary": "Sandbox mode",
             "required": false,
-            "description": "Configuration options for Codex execution",
+            "description": "Sandbox mode for Codex execution (defaults to 'read-only')",
             "schema": {
-              "type": "object",
-              "properties": {
-                "sandbox": {
-                  "type": "string",
-                  "enum": [
-                    "read-only",
-                    "workspace-write",
-                    "danger-full-access"
-                  ],
-                  "description": "Sandbox mode (defaults to 'read-only')"
-                },
-                "cwd": {
-                  "type": "string",
-                  "description": "Working directory (defaults to process.cwd())"
-                },
-                "timeoutMs": {
-                  "type": "number",
-                  "description": "Timeout in milliseconds"
-                }
+              "type": "string",
+              "enum": [
+                "read-only",
+                "workspace-write",
+                "danger-full-access"
+              ]
+            }
+          },
+          {
+            "name": "cwd",
+            "summary": "Working directory",
+            "required": false,
+            "description": "Working directory for Codex execution (defaults to process.cwd() + '/factory/digipairs')",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timeoutMs",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Timeout in milliseconds",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "onStdout",
+            "summary": "On stdout",
+            "required": false,
+            "description": "Actions to execute when receiving stdout data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "onAction",
+            "summary": "On action",
+            "required": false,
+            "description": "Actions to execute when receiving action data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
               }
             }
           }

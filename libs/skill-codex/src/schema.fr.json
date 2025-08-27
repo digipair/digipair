@@ -26,30 +26,54 @@
             }
           },
           {
-            "name": "options",
-            "summary": "Options Codex",
+            "name": "sandbox",
+            "summary": "Mode sandbox",
             "required": false,
-            "description": "Options de configuration pour l'exécution de Codex",
+            "description": "Mode sandbox pour l'exécution de Codex (par défaut 'read-only')",
             "schema": {
-              "type": "object",
-              "properties": {
-                "sandbox": {
-                  "type": "string",
-                  "enum": [
-                    "read-only",
-                    "workspace-write",
-                    "danger-full-access"
-                  ],
-                  "description": "Mode sandbox (par défaut 'read-only')"
-                },
-                "cwd": {
-                  "type": "string",
-                  "description": "Répertoire de travail (par défaut process.cwd())"
-                },
-                "timeoutMs": {
-                  "type": "number",
-                  "description": "Timeout en millisecondes"
-                }
+              "type": "string",
+              "enum": ["read-only", "workspace-write", "danger-full-access"]
+            }
+          },
+          {
+            "name": "cwd",
+            "summary": "Répertoire de travail",
+            "required": false,
+            "description": "Répertoire de travail pour l'exécution de Codex (par défaut process.cwd() + '/factory/digipairs')",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timeoutMs",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Timeout en millisecondes",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "onStdout",
+            "summary": "Callback stdout",
+            "required": false,
+            "description": "Actions à exécuter lors de la réception de données stdout",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "onAction",
+            "summary": "Callback action",
+            "required": false,
+            "description": "Actions à exécuter lors de la réception de données d'action",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
               }
             }
           }
