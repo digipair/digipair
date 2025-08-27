@@ -54,6 +54,8 @@ class CodexService {
     args.push('exec');
     // codex exec expects: codex exec --sandbox <mode> [PROMPT]
     args.push('--sandbox', sandbox);
+    // skip git repo check
+    args.push('--skip-git-repo-check');
     args.push(prompt);
 
     const child = spawn(process.execPath, args, {
