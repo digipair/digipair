@@ -52,7 +52,7 @@ class CodexService {
     let listening = false;
 
     const regexNewLine = /^\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\] /;
-    const regexCodex = /^\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\] codex\n\n/;
+    const regexCodex = /^\[\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\] codex\n/;
 
     const onData = (chunk: Buffer) => {
       const s = chunk.toString();
