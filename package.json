@@ -9,7 +9,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.787.0",
     "@azure/msal-node": "^2.10.0",
-    "@digipair/ax": "11.0.51-2",
+    "@ax-llm/ax": "14.0.19",
     "@langchain/community": "^0.3.10",
     "@langchain/core": "^0.3.15",
     "@langchain/openai": "^0.3.11",

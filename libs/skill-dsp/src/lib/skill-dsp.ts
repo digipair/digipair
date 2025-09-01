@@ -5,13 +5,11 @@ import {
   AxAIAzureOpenAI,
   AxAIOllama,
   AxGen,
-  AxChainOfThought,
-  AxAgent,
   AxFunction,
   AxAIOpenAIBase,
   axModelInfoOpenAI,
   AxGenOut,
-} from '@digipair/ax';
+} from '@ax-llm/ax';
 
 class DspService {
   private async prepareFunctions(functions: AxFunction[], context: any): Promise<AxFunction[]> {
@@ -178,128 +176,6 @@ class DspService {
 
     return result;
   }
-
-  async chainOfThought(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      model = context.privates.MODEL_DSP,
-      functions = [],
-      options = {},
-      streaming,
-      signature,
-      input,
-    } = params;
-
-    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
-    const gen = new AxChainOfThought(signature, {
-      functions: await this.prepareFunctions(functions, context),
-    });
-    const generator = gen.streamingForward(modelInstance, input, options);
-    let buffer = {} as any;
-    let currentVersion = 0;
-
-    for await (const item of generator) {
-      if (streaming) {
-        await executePinsList(
-          streaming,
-          { ...context, event: item },
-          `${context.__PATH__}.streaming`,
-        );
-      }
-
-      if (item.version !== currentVersion) {
-        buffer = {};
-      }
-      currentVersion = item.version;
-      buffer = this.mergeDeltas(buffer, item.delta);
-    }
-    const result = buffer;
-
-    // add comsumption
-    const ai: any = (modelInstance as any).ai ?? modelInstance;
-    const consumption = ai.modelUsage;
-    const skillLogger = require('@digipair/skill-logger');
-    await skillLogger.addConsumption(
-      context,
-      ai.name,
-      ai.defaults.model,
-      consumption.promptTokens,
-      consumption.completionTokens,
-    );
-
-    return result;
-  }
-
-  async agent(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      model = context.privates.MODEL_DSP,
-      functions = [],
-      agents = [],
-      forward = true,
-      options = {},
-      streaming,
-      name,
-      description,
-      signature,
-      input,
-    } = params;
-
-    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
-    const agent = new AxAgent({
-      name,
-      description,
-      signature,
-      functions: await this.prepareFunctions(functions, context),
-      agents: await Promise.all(
-        agents.map(
-          async (execute: PinsSettings, i: number) =>
-            await executePinsList(
-              [{ ...execute, properties: { ...execute.properties, forward: false } }],
-              context,
-              `${context.__PATH__}.agents[${i}]`,
-            ),
-        ),
-      ),
-    });
-
-    if (!forward) {
-      return agent;
-    }
-
-    const generator = agent.streamingForward(modelInstance, input, options);
-    let buffer = {} as any;
-    let currentVersion = 0;
-
-    for await (const item of generator) {
-      if (streaming) {
-        await executePinsList(
-          streaming,
-          { ...context, event: item },
-          `${context.__PATH__}.streaming`,
-        );
-      }
-
-      if (item.version !== currentVersion) {
-        buffer = {};
-      }
-      currentVersion = item.version;
-      buffer = this.mergeDeltas(buffer, item.delta);
-    }
-    const result = buffer;
-
-    // add comsumption
-    const ai: any = (modelInstance as any).ai ?? modelInstance;
-    const consumption = ai.modelUsage;
-    const skillLogger = require('@digipair/skill-logger');
-    await skillLogger.addConsumption(
-      context,
-      ai.name,
-      ai.defaults.model,
-      consumption.promptTokens,
-      consumption.completionTokens,
-    );
-
-    return result;
-  }
 }
 
 export const model = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -316,9 +192,3 @@ export const modelOllama = (params: any, pinsSettingsList: PinsSettings[], conte
 
 export const generate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DspService().generate(params, pinsSettingsList, context);
-
-export const chainOfThought = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DspService().chainOfThought(params, pinsSettingsList, context);
-
-export const agent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DspService().agent(params, pinsSettingsList, context);

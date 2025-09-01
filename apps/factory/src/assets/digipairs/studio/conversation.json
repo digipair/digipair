@@ -39,11 +39,9 @@
           },
           {
             "library": "@digipair/skill-dsp",
-            "element": "agent",
+            "element": "generate",
             "properties": {
-              "name": "Assistant",
-              "description": "You are a helpful assistant, capable of explaining concepts in a simple manner.",
-              "signature": "\"Provide a very short, precise, and concise answer  to the user's question using only your knowledge base.\" \nuserQuestion:string,\nhistory?:string[] ->\n  answer: string \"Assistant answer\"",
+              "signature": "\"You are a helpful assistant, capable of explaining concepts in a simple manner.\" \nuserQuestion:string,\nhistory?:string[] ->\n  answer: string \"Assistant answer\"",
               "input": {
                 "userQuestion": "{{request.body.prompt}}",
                 "history": "EVALUATE:variables.history"
