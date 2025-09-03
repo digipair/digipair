@@ -169,6 +169,12 @@ In addition to standard DMN FEEL language functions, the following functions can
   btoa: (value: string) => btoa(value),
   encodeURIComponent: (value: string | number | boolean) => encodeURIComponent(value),
   decodeURIComponent: (value: string) => decodeURIComponent(value),
+  encodeUTF8: (value: string) =>
+    Array.from(new TextEncoder().encode(value))
+      .map(b => String.fromCharCode(b))
+      .join(''),
+  decodeUTF8: (value: string) =>
+    new TextDecoder().decode(new Uint8Array(Array.from(value).map(c => c.charCodeAt(0)))),
   JSONparse: (value: string) => JSON.parse(value),
   JSONstringify: (value: string) => JSON.stringify(value),
 ```
