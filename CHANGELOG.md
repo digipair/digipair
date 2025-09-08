@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.102.0] - 2025-09-09
+
+### Added
+- Context analysis service in factory assets for understanding environmental elements
+
+### Changed
+- Moved context functionality from skill-common to dedicated factory asset service
+
+### Removed
+- Context function from skill-common library (replaced by factory asset service)
+
+### Fixed
+- Optional chaining safety checks in web-editor for schema items properties
+
 ## [0.101.0] - 2025-09-03
 
 ### Added

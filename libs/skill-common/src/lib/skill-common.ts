@@ -241,38 +241,6 @@ class CommonService {
       'x-scene-blocks': { ...schema['x-scene-blocks'], ...triggersCommon, ...triggers },
     };
   }
-
-  async context(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const path =
-      context.privates?.EDITOR_PATH ??
-      (process.env['DIGIPAIR_FACTORY_PATH']
-        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
-        : './factory/digipairs');
-    const { digipair, reasoning } = params;
-    let result = {} as any;
-
-    if (existsSync(`${path}/${digipair}/${reasoning}.json`)) {
-      const text = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
-      const parsed = JSON.parse(text);
-      result = { summary: parsed.summary, context: parsed.metadata?.context ?? {} };
-    } else if (
-      reasoning.startsWith('boost-action-') &&
-      existsSync(`${path}/${digipair}/${reasoning.substring(6)}.json`)
-    ) {
-      const text = await promises.readFile(
-        `${path}/${digipair}/${reasoning.substring(6)}.json`,
-        'utf8',
-      );
-      const parsed = JSON.parse(text);
-      result = {
-        summary: parsed.summary,
-        description: parsed.description,
-        context: parsed.metadata?.parameters ?? {},
-      };
-    }
-
-    return result;
-  }
 }
 
 export const infos = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -286,6 +254,3 @@ export const boosts = (params: any, pinsSettingsList: PinsSettings[], context: a
 
 export const schema = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().schema(params, pinsSettingsList, context);
-
-export const context = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new CommonService().context(params, pinsSettingsList, context);

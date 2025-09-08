@@ -54,7 +54,7 @@ function generateSceneBlock(pinsSettings: any, workspace: any) {
             (p: { name: string }) => p.name === metadataKey,
           );
           if (parameter) {
-            if (parameter.schema.type === 'array' && parameter.schema.items.$ref) {
+            if (parameter.schema.type === 'array' && parameter.schema.items?.$ref) {
               const parameterType = getParameterType(parameter.schema.items);
 
               if (typeof metadataValue === 'string') {
@@ -115,7 +115,7 @@ function generateSceneBlock(pinsSettings: any, workspace: any) {
             (p: { name: string }) => p.name === inputName,
           );
           if (parameter) {
-            if (parameter.schema.type === 'array' && parameter.schema.items.$ref) {
+            if (parameter.schema.type === 'array' && parameter.schema.items?.$ref) {
               const parameterType = getParameterType(parameter.schema.items);
 
               if (typeof value === 'string') {
@@ -258,7 +258,7 @@ function generateBlockFromPins(pinsSettings: any, workspace: any): any {
     }
 
     const valueToLoad = pinsSettings.properties[parameter.name];
-    if (parameter.schema.type === 'array' && parameter.schema.items.$ref) {
+    if (parameter.schema.type === 'array' && parameter.schema.items?.$ref) {
       const parameterType = getParameterType(parameter.schema.items);
 
       if (typeof valueToLoad === 'string') {
@@ -407,7 +407,7 @@ function generateBlockFromComponent(
     }
     const valueToLoad = componentSettings[propertyKey];
 
-    if (schema.type === 'array' && schema.items.$ref) {
+    if (schema.type === 'array' && schema.items?.$ref) {
       const parameterType = getParameterType(schema.items);
 
       if (typeof valueToLoad === 'string') {

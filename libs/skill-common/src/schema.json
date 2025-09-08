@@ -240,35 +240,6 @@
         },
         "x-events": []
       }
-    },
-    "/context": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Context",
-        "parameters": [
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Digipair's name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Reasoning",
-            "description": "Reasoning's name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "x-events": []
-      }
     }
   },
   "x-scene-blocks": {}
