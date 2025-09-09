@@ -15,16 +15,16 @@ class MicrosoftService {
 
   constructor(context: any, params: any) {
     this.OAUTH_CLIENT_ID =
+      params?.OAUTH_CLIENT_ID ??
       context.privates.MICROSOFT_OAUTH_CLIENT_ID ??
-      params?.MICROSOFT_OAUTH_CLIENT_ID ??
       process.env['MICROSOFT_OAUTH_CLIENT_ID'];
     this.OAUTH_CLIENT_SECRET =
+      params?.OAUTH_CLIENT_SECRET ??
       context.privates.MICROSOFT_OAUTH_CLIENT_SECRET ??
-      params?.MICROSOFT_OAUTH_CLIENT_SECRET ??
       process.env['MICROSOFT_OAUTH_CLIENT_SECRET'];
     this.TENANT_ID =
+      params?.TENANT_ID ??
       context.privates.MICROSOFT_TENANT_ID ??
-      params?.MICROSOFT_TENANT_ID ??
       process.env['MICROSOFT_TENANT_ID'];
 
     this.type = params.type ?? 'json';
