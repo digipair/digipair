@@ -9,7 +9,11 @@ class WorkerService {
       steps: {},
     };
 
-    return await executePinsList(execute, { ...context, request: context.requester }, `${context.__PATH__}.execute`);
+    return await executePinsList(
+      execute,
+      { ...context, request: context.requester ?? context.request },
+      `${context.__PATH__}.execute`,
+    );
   }
 
   async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -18,13 +22,21 @@ class WorkerService {
     context.workflow = {
       steps: {},
     };
-    
-    return await executePinsList(execute, { ...context, request: context.requester }, `${context.__PATH__}.execute`);
+
+    return await executePinsList(
+      execute,
+      { ...context, request: context.requester ?? context.request },
+      `${context.__PATH__}.execute`,
+    );
   }
 
   async activity(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { name, execute } = params;
-    const result = await executePinsList(execute, { ...context, request: context.requester }, `${context.__PATH__}.execute`);
+    const result = await executePinsList(
+      execute,
+      { ...context, request: context.requester ?? context.request },
+      `${context.__PATH__}.execute`,
+    );
 
     context.workflow.steps[name] = result;
 

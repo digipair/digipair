@@ -5,19 +5,19 @@ class ToolService {
   async task(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
-    return await executePinsList(execute, { ...context, request: context.requester }, `${context.__PATH__}.execute`);
+    return await executePinsList(execute, { ...context, request: context.requester ?? context.request }, `${context.__PATH__}.execute`);
   }
 
   async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
-    return await executePinsList(execute, { ...context, request: context.requester }, `${context.__PATH__}.execute`);
+    return await executePinsList(execute, { ...context, request: context.requester ?? context.request }, `${context.__PATH__}.execute`);
   }
 
   async trigger(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { execute } = params;
 
-    return await executePinsList(execute, { ...context, request: context.requester }, `${context.__PATH__}.execute`);
+    return await executePinsList(execute, { ...context, request: context.requester ?? context.request }, `${context.__PATH__}.execute`);
   }
 
   async stop(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
