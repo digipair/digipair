@@ -11,7 +11,7 @@ class WorkerService {
 
     return await executePinsList(
       execute,
-      { ...context, request: context.requester ?? context.request },
+      { ...context, request: context.requester },
       `${context.__PATH__}.execute`,
     );
   }
@@ -25,7 +25,7 @@ class WorkerService {
 
     return await executePinsList(
       execute,
-      { ...context, request: context.requester ?? context.request },
+      { ...context, request: context.requester },
       `${context.__PATH__}.execute`,
     );
   }
@@ -34,7 +34,13 @@ class WorkerService {
     const { name, execute } = params;
     const result = await executePinsList(
       execute,
-      { ...context, request: context.requester ?? context.request },
+      {
+        ...context,
+        request:
+          context.requester && Object.keys(context.requester).length >= 0
+            ? context.requester
+            : context.request,
+      },
       `${context.__PATH__}.execute`,
     );
 
