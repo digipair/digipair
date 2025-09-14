@@ -9,11 +9,7 @@ class WorkerService {
       steps: {},
     };
 
-    return await executePinsList(
-      execute,
-      { ...context, request: context.requester },
-      `${context.__PATH__}.execute`,
-    );
+    return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
   async action(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -23,11 +19,7 @@ class WorkerService {
       steps: {},
     };
 
-    return await executePinsList(
-      execute,
-      { ...context, request: context.requester },
-      `${context.__PATH__}.execute`,
-    );
+    return await executePinsList(execute, context, `${context.__PATH__}.execute`);
   }
 
   async activity(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -36,10 +28,7 @@ class WorkerService {
       execute,
       {
         ...context,
-        request:
-          context.requester && Object.keys(context.requester).length > 0
-            ? context.requester
-            : context.request,
+        request: context.requester?.request ?? context.request,
       },
       `${context.__PATH__}.execute`,
     );
