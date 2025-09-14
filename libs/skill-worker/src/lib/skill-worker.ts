@@ -37,7 +37,7 @@ class WorkerService {
       {
         ...context,
         request:
-          context.requester && Object.keys(context.requester).length >= 0
+          context.requester && Object.keys(context.requester).length > 0
             ? context.requester
             : context.request,
       },

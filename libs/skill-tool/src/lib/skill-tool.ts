@@ -51,7 +51,7 @@ class ToolService {
         ...context,
         ..._context,
         request:
-          _context.requester && Object.keys(_context.requester).length >= 0
+          _context.requester && Object.keys(_context.requester).length > 0
             ? _context.requester
             : _context.request,
       },
