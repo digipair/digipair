@@ -290,6 +290,15 @@
           }
         },
         {
+          "name": "keycloakJsUrl",
+          "summary": "Keycloak JS URL",
+          "required": false,
+          "description": "URL of the Keycloak JS script to include in the page (defaults to taken from the 'url' parameter)",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
           "name": "factoryInitialize",
           "summary": "During factory initialization",
           "required": false,
