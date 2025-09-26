@@ -2,12 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import {
-  StreamableHTTPClientTransport,
-  StreamableHTTPClientTransportOptions,
-} from '@modelcontextprotocol/sdk/client/streamableHttp.js';
+import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
-class MCPService {
+class MCPClientService {
   async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<Client> {
     const { url, name = 'digipair-mcp-client', version = '1.0.0', options = {} } = params;
 
@@ -133,34 +130,34 @@ class MCPService {
 }
 
 export const connect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().connect(params, pinsSettingsList, context);
+  new MCPClientService().connect(params, pinsSettingsList, context);
 
 export const disconnect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().disconnect(params, pinsSettingsList, context);
+  new MCPClientService().disconnect(params, pinsSettingsList, context);
 
 export const listResources = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().listResources(params, pinsSettingsList, context);
+  new MCPClientService().listResources(params, pinsSettingsList, context);
 
 export const readResource = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().readResource(params, pinsSettingsList, context);
+  new MCPClientService().readResource(params, pinsSettingsList, context);
 
 export const listTools = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().listTools(params, pinsSettingsList, context);
+  new MCPClientService().listTools(params, pinsSettingsList, context);
 
 export const callTool = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().callTool(params, pinsSettingsList, context);
+  new MCPClientService().callTool(params, pinsSettingsList, context);
 
 export const listPrompts = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().listPrompts(params, pinsSettingsList, context);
+  new MCPClientService().listPrompts(params, pinsSettingsList, context);
 
 export const getPrompt = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().getPrompt(params, pinsSettingsList, context);
+  new MCPClientService().getPrompt(params, pinsSettingsList, context);
 
 export const getServerCapabilities = (
   params: any,
   pinsSettingsList: PinsSettings[],
   context: any,
-) => new MCPService().getServerCapabilities(params, pinsSettingsList, context);
+) => new MCPClientService().getServerCapabilities(params, pinsSettingsList, context);
 
 export const getServerInfo = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPService().getServerInfo(params, pinsSettingsList, context);
+  new MCPClientService().getServerInfo(params, pinsSettingsList, context);

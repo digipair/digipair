@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-mcp",
+    "summary": "Model Context Protocol server",
+    "description": "This skill provides functions to create and manage MCP (Model Context Protocol) servers using StreamableHTTP transport.",
+    "version": "0.1.0",
+    "x-icon": "🖥️"
+  },
+  "paths": {
+    "/createServer": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Creates an MCP server",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Name",
+            "required": false,
+            "description": "Name of the MCP server (default: digipair-mcp-server)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version",
+            "required": false,
+            "description": "Version of the MCP server (default: 1.0.0)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tools",
+            "summary": "Tools",
+            "required": false,
+            "description": "Array of tools to register on the server",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ServerTool"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successfully created MCP server and handled request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ServerTool": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the tool"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the tool"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of what the tool does"
+          },
+          "inputSchema": {
+            "type": "object",
+            "description": "JSON Schema for tool input parameters"
+          },
+          "outputSchema": {
+            "type": "object",
+            "description": "JSON Schema for tool output"
+          },
+          "execute": {
+            "type": "array",
+            "description": "PINS execution list for the tool functionality",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "execute"
+        ]
+      }
+    }
+  },
+  "x-scene-blocks": {}
+}
