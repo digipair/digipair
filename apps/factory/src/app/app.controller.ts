@@ -77,6 +77,7 @@ export class AppController {
         request,
         res,
         signal,
+        true,
       );
       
       res.send(result);

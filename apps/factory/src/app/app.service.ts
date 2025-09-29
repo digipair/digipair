@@ -123,6 +123,7 @@ export class AppService implements OnModuleInit {
     req: any,
     res: any,
     signal: AbortSignal,
+    isHttpRequest = false,
   ): Promise<any> {
     const assets = process.env.DIGIPAIR_FACTORY_PATH || './factory';
     let context: any;
@@ -192,6 +193,13 @@ export class AppService implements OnModuleInit {
       }
 
       const settings = JSON.parse(content);
+
+      if (isHttpRequest === true && settings.element !== 'page' && settings.element !== 'service') {
+        // for external calls, only 'page' and 'service' elements are allowed
+        res.status(400);
+        return { status: 'bad request' };
+      }
+
       const result = await executePinsList([settings], context, requester?.__PATH__ ?? 'reasoning');
 
       return result;
