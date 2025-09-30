@@ -194,7 +194,12 @@ export class AppService implements OnModuleInit {
 
       const settings = JSON.parse(content);
 
-      if (isHttpRequest === true && settings.element !== 'page' && settings.element !== 'service') {
+      if (
+        isHttpRequest === true &&
+        settings.element !== 'page' &&
+        settings.element !== 'service' &&
+        settings.element !== 'boost'
+      ) {
         // for external calls, only 'page' and 'service' elements are allowed
         res.status(400);
         return { status: 'bad request' };
