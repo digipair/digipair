@@ -10206,13 +10206,13 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-feelin@^3.1.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/feelin/-/feelin-3.2.0.tgz#2d482a135a7063b5897133d448a136783ddf1bfe"
-  integrity sha512-GFDbHsTYk7YXO1tyw1dOjb7IODeAZvNIosdGZThUwPx5XcD/XhO0hnPZXsIbAzSsIdrgGlTEEdby9fZ2gixysA==
+feelin@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/feelin/-/feelin-4.3.0.tgz#2979208ab34b816311c45917ef6137aaf64a443f"
+  integrity sha512-Uv3YNCrmXSXgkCJSfa2jR7SL/acjPhfEHKNsaL///fRJxD7epUvUJyF1WXbh8oh9Myv+z3WVClGb+rIuT7LDow==
   dependencies:
     "@lezer/lr" "^1.4.2"
-    lezer-feel "^1.4.0"
+    lezer-feel "^1.6.0"
     luxon "^3.5.0"
 
 figlet@^1.1.1:
@@ -12820,10 +12820,10 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-lezer-feel@^1.4.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/lezer-feel/-/lezer-feel-1.7.0.tgz#f35e4ae01150f49ce6108cebdec154aa009c52bc"
-  integrity sha512-UC8h3Nu4llRPISEUhv+Ne7bNkdxjf4+/DcU4KfO8zKxycWxev8d2BoVnGlG17zbQDtQJBD39ZQvWtjCeTFm69g==
+lezer-feel@^1.6.0:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/lezer-feel/-/lezer-feel-1.8.1.tgz#1c896c25e4e9ddbc92afeb1281643b79b6bae6b0"
+  integrity sha512-g0eGi7/INNPtPbtcz5ubInc3rSvXuJI5NfmS1hVU1FkaKNdBpwWdxXzrUb4wxr8DNXhXnUs1/a9rO4HaDzII7Q==
   dependencies:
     "@lezer/highlight" "^1.2.1"
     "@lezer/lr" "^1.4.2"
