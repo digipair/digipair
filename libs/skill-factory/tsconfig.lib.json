@@ -9,9 +9,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["es2022", "DOM"]
+
   },
   "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
   "references": [
     {
       "path": "../engine/tsconfig.lib.json"

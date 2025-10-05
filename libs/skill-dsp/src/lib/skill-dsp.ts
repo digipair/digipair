@@ -5,8 +5,6 @@ import {
   AxAIAzureOpenAI,
   AxAIOllama,
   AxGen,
-  AxChainOfThought,
-  AxAgent,
   AxFunction,
   AxAIOpenAIBase,
   axModelInfoOpenAI,
@@ -18,7 +16,7 @@ class DspService {
     return await Promise.all(
       functions.map(async (f, i) => ({
         ...f,
-        func: async params =>
+        func: async (params: any) =>
           await executePinsList(
             f.func as any as PinsSettings[],
             { ...context, params },
@@ -65,6 +63,12 @@ class DspService {
       apiKey = context.privates.OPENAI_API_KEY ?? process.env['OPENAI_API_KEY'],
       apiURL = context.privates.OPENAI_SERVER ?? process.env['OPENAI_SERVER'],
       config = { model: 'gpt-4o-mini' },
+      supportFor = {
+        functions: true,
+        streaming: true,
+        hasThinkingBudget: false,
+        hasShowThoughts: false,
+      },
       options,
     } = params;
 
@@ -74,6 +78,7 @@ class DspService {
       modelInfo: axModelInfoOpenAI,
       config,
       options,
+      supportFor,
     });
 
     return modelInstance;
@@ -142,7 +147,11 @@ class DspService {
 
     for await (const item of generator) {
       if (streaming) {
-        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
+        await executePinsList(
+          streaming,
+          { ...context, event: item },
+          `${context.__PATH__}.streaming`,
+        );
       }
 
       if (item.version !== currentVersion) {
@@ -155,121 +164,7 @@ class DspService {
 
     // add comsumption
     const ai: any = (modelInstance as any).ai ?? modelInstance;
-    const consumption = ai.modelUsage;
-    const skillLogger = require('@digipair/skill-logger');
-    await skillLogger.addConsumption(
-      context,
-      ai.name,
-      ai.defaults.model,
-      consumption.promptTokens,
-      consumption.completionTokens,
-    );
-
-    return result;
-  }
-
-  async chainOfThought(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      model = context.privates.MODEL_DSP,
-      functions = [],
-      options = {},
-      streaming,
-      signature,
-      input,
-    } = params;
-
-    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
-    const gen = new AxChainOfThought(signature, {
-      functions: await this.prepareFunctions(functions, context),
-    });
-    const generator = gen.streamingForward(modelInstance, input, options);
-    let buffer = {} as any;
-    let currentVersion = 0;
-
-    for await (const item of generator) {
-      if (streaming) {
-        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
-      }
-
-      if (item.version !== currentVersion) {
-        buffer = {};
-      }
-      currentVersion = item.version;
-      buffer = this.mergeDeltas(buffer, item.delta);
-    }
-    const result = buffer;
-
-    // add comsumption
-    const ai: any = (modelInstance as any).ai ?? modelInstance;
-    const consumption = ai.modelUsage;
-    const skillLogger = require('@digipair/skill-logger');
-    await skillLogger.addConsumption(
-      context,
-      ai.name,
-      ai.defaults.model,
-      consumption.promptTokens,
-      consumption.completionTokens,
-    );
-
-    return result;
-  }
-
-  async agent(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const {
-      model = context.privates.MODEL_DSP,
-      functions = [],
-      agents = [],
-      forward = true,
-      options = {},
-      streaming,
-      name,
-      description,
-      signature,
-      input,
-    } = params;
-
-    const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
-    const agent = new AxAgent({
-      name,
-      description,
-      signature,
-      functions: await this.prepareFunctions(functions, context),
-      agents: await Promise.all(
-        agents.map(
-          async (execute: PinsSettings, i: number) =>
-            await executePinsList(
-              [{ ...execute, properties: { ...execute.properties, forward: false } }],
-              context,
-              `${context.__PATH__}.agents[${i}]`,
-            ),
-        ),
-      ),
-    });
-
-    if (!forward) {
-      return agent;
-    }
-
-    const generator = agent.streamingForward(modelInstance, input, options);
-    let buffer = {} as any;
-    let currentVersion = 0;
-
-    for await (const item of generator) {
-      if (streaming) {
-        await executePinsList(streaming, { ...context, event: item }, `${context.__PATH__}.streaming`);
-      }
-
-      if (item.version !== currentVersion) {
-        buffer = {};
-      }
-      currentVersion = item.version;
-      buffer = this.mergeDeltas(buffer, item.delta);
-    }
-    const result = buffer;
-
-    // add comsumption
-    const ai: any = (modelInstance as any).ai ?? modelInstance;
-    const consumption = ai.modelUsage;
+    const consumption = ai.tokensUsed;
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
@@ -297,9 +192,3 @@ export const modelOllama = (params: any, pinsSettingsList: PinsSettings[], conte
 
 export const generate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new DspService().generate(params, pinsSettingsList, context);
-
-export const chainOfThought = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DspService().chainOfThought(params, pinsSettingsList, context);
-
-export const agent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new DspService().agent(params, pinsSettingsList, context);

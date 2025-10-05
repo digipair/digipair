@@ -58,6 +58,9 @@
       "path": "../../libs/skill-tool"
     },
     {
+      "path": "../../libs/skill-temporal"
+    },
+    {
       "path": "../../libs/skill-sse"
     },
     {

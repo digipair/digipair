@@ -134,22 +134,20 @@ class VespaService {
     for (const document of documents) {
       // eslint-disable-next-line no-control-regex
       const content = document.content.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
-      const content_embedding = await modelEmbeddings.embedQuery(content);
-
       const response = await fetch(
         `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
         {
           signal,
           method: 'POST',
-          body: JSON.stringify(
-            asynchronous
+          body: JSON.stringify({
+            fields: asynchronous
               ? { ...document, content }
               : {
                   ...document,
                   content,
                   content_embedding: await modelEmbeddings.embedQuery(content),
                 },
-          ),
+          }),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -167,18 +165,15 @@ class VespaService {
       if (asynchronous) {
         setImmediate(async () => {
           const content_embedding = await modelEmbeddings.embedQuery(content);
-          await fetch(
-            `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
-            {
-              method: 'POST',
-              body: JSON.stringify({
-                fields: { ...document, content, content_embedding },
-              }),
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            }
-          );
+          await fetch(`${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`, {
+            method: 'POST',
+            body: JSON.stringify({
+              fields: { ...document, content, content_embedding },
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
         });
       }
     }
@@ -337,6 +332,40 @@ class VespaService {
 
     return await response.json();
   }
+
+  async update(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const {
+      baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
+      namespace = context.privates.VESPA_NAMESPACE ??
+        process.env['VESPA_NAMESPACE'] ??
+        'Digipair_default',
+      collection,
+      id,
+      fields,
+    } = params;
+
+    let response = await fetch(`${baseUrl}/document/v1/${namespace}/${collection}/docid/${id}`, {
+      signal: context.protected.signal,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const document = (await response.json()).fields;
+
+    response = await fetch(`${baseUrl}/document/v1/${namespace}/${collection}/docid/${id}`, {
+      signal: context.protected.signal,
+      method: 'POST',
+      body: JSON.stringify({
+        fields: { ...document, ...fields },
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return await response.json();
+  }
 }
 
 export const find = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -353,3 +382,6 @@ export const push = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const remove = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new VespaService().remove(params, pinsSettingsList, context);
+
+export const update = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new VespaService().update(params, pinsSettingsList, context);

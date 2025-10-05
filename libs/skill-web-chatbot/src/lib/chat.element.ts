@@ -1,6 +1,6 @@
 import mermaid from 'mermaid/dist/mermaid.esm.min.mjs';
 import { LitElement, TemplateResult, css, html, nothing } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import * as showdown from 'showdown';
 import { InputsElement } from './inputs.element';
