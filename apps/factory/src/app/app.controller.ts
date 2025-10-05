@@ -24,7 +24,7 @@ export class AppController {
     @Req() request: Request,
     @Body() body: any,
     @Query() query: any,
-  ) {
+  ): Promise<any> {
     const assets = process.env.DIGIPAIR_FACTORY_PATH || './factory';
     const host = request.headers.host?.split(':')[0] as string;
     const path = request.params['0'];

@@ -9,7 +9,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["es2022","DOM"],
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
