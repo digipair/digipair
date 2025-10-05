@@ -41,14 +41,9 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "AI agents" }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
+                      "textContent": "AI agents",
+                      "href": "/studio/workers"
                     }
                   },
                   {
@@ -85,6 +80,14 @@
                         "properties": {
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
                         }
                       }
                     ],
@@ -281,7 +284,7 @@
             "element": "sp-field-label",
             "properties": {
               "style": "width: 100px;",
-              "textContent": "Nom",
+              "textContent": "Name",
               "for": "name",
               "required": true
             }
@@ -322,7 +325,7 @@
             "element": "sp-field-label",
             "properties": {
               "style": "width: 100px;",
-              "textContent": "Agent accessible à distance",
+              "textContent": "Shared outside the factory",
               "for": "remote",
               "required": false
             }
@@ -355,14 +358,6 @@
                     "selector": "digipair-jsoneditor",
                     "attribute": "json"
                   }
-                },
-                {
-                  "library": "@digipair/skill-web-debug",
-                  "element": "log",
-                  "properties": {
-                    "label": "Configuration",
-                    "value": "EVALUATE:previous"
-                  }
                 }
               ]
             }
@@ -379,7 +374,7 @@
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-button",
-                "properties": { "textContent": "Enregistrer" },
+                "properties": { "textContent": "Save" },
                 "events": {
                   "click": [
                     {

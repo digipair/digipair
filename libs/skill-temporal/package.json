@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-temporal",
-  "version": "0.94.0-8",
+  "version": "0.0.1",
   "keywords": [
     "digipair",
     "service",
@@ -49,11 +49,10 @@
     }
   },
   "dependencies": {
-    "tslib": "^2.3.0",
     "@temporalio/client": "^1.10.1",
     "@temporalio/common": "^1.10.1",
     "@temporalio/worker": "^1.10.1",
     "@temporalio/workflow": "^1.10.1",
-    "feelin": "^3.1.0"
+    "feelin": "^4.3.0"
   }
 }

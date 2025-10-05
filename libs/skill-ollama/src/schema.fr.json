@@ -51,7 +51,47 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Instance de modèle LLM Ollama créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Instance de modèle LangChain ChatOllama prête pour la conversation",
+                  "properties": {
+                    "model": {
+                      "type": "string",
+                      "description": "Nom du modèle (ex: mistral, llama2, codellama)"
+                    },
+                    "temperature": {
+                      "type": "number",
+                      "description": "Paramètre de température du modèle"
+                    },
+                    "baseUrl": {
+                      "type": "string",
+                      "description": "URL du serveur Ollama"
+                    },
+                    "keepAlive": {
+                      "type": "string",
+                      "description": "Durée de maintien du modèle actif"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Nom de modèle ou paramètres invalides"
+          },
+          "503": {
+            "description": "Service indisponible - Serveur Ollama non accessible"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur de chargement ou d'initialisation du modèle"
+          }
+        }
       }
     },
     "/embeddings": {
@@ -88,7 +128,43 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Instance de modèle d'embeddings Ollama créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Instance de modèle LangChain OllamaEmbeddings prête pour l'embedding de texte",
+                  "properties": {
+                    "model": {
+                      "type": "string",
+                      "description": "Nom du modèle d'embeddings (ex: nomic-embed-text, all-minilm)"
+                    },
+                    "baseUrl": {
+                      "type": "string",
+                      "description": "URL du serveur Ollama"
+                    },
+                    "dimensions": {
+                      "type": "number",
+                      "description": "Dimensions du vecteur d'embedding"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Nom de modèle d'embeddings ou paramètres invalides"
+          },
+          "503": {
+            "description": "Service indisponible - Serveur Ollama non accessible"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur de chargement ou d'initialisation du modèle d'embeddings"
+          }
+        }
       }
     }
   },

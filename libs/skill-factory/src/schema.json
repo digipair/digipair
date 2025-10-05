@@ -10,7 +10,9 @@
   "paths": {
     "/start": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Start a reasoning",
         "description": "Start a reasoning from the Digipair factory",
         "parameters": [
@@ -51,12 +53,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Reasoning started successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReasoningResult"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/execute": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Execute with context",
         "description": "Execute a Pin's with a given context",
         "parameters": [
@@ -82,21 +98,49 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Pin's execution completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionResult"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/keepAlive": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Keep Alive",
         "description": "Keep alive the reasoning",
         "parameters": [],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Keep alive signal sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KeepAliveResult"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop",
         "description": "Stop the reasoning",
         "parameters": [
@@ -110,7 +154,19 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Reasoning stopped successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StopResult"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -118,7 +174,9 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -146,7 +204,121 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
+      },
+      "ReasoningResult": {
+        "tags": [],
+        "type": "object",
+        "description": "Result of reasoning execution",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the reasoning was started successfully"
+          },
+          "result": {
+            "type": "object",
+            "description": "Details of the reasoning execution",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Current status of the reasoning"
+              },
+              "reasoning": {
+                "type": "string",
+                "description": "Name of the reasoning that was started"
+              },
+              "digipair": {
+                "type": "string",
+                "description": "Owner of the reasoning"
+              }
+            }
+          }
+        }
+      },
+      "ExecutionResult": {
+        "tags": [],
+        "type": "object",
+        "description": "Result of Pin's execution",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the execution was successful"
+          },
+          "data": {
+            "type": "object",
+            "description": "Data returned from the execution",
+            "properties": {
+              "executed": {
+                "type": "boolean",
+                "description": "Whether the execution was completed"
+              },
+              "results": {
+                "type": "array",
+                "description": "Results from the executed pins",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "KeepAliveResult": {
+        "tags": [],
+        "type": "object",
+        "description": "Result of keep alive operation",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of the keep alive response"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the keep alive operation"
+          }
+        }
+      },
+      "StopResult": {
+        "tags": [],
+        "type": "object",
+        "description": "Result of stop operation",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of the stop response"
+          },
+          "value": {
+            "type": "object",
+            "description": "Value returned when stopping the reasoning"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the stop operation"
+          }
+        }
+      },
+      "TaskResult": {
+        "tags": [],
+        "type": "object",
+        "description": "Result of task execution",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the task execution was successful"
+          },
+          "results": {
+            "type": "array",
+            "description": "Results from the executed task",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
       }
     }
   },
@@ -154,7 +326,9 @@
     "/task": {
       "summary": "Task",
       "description": "Execution of a task.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -174,7 +348,9 @@
     "/action": {
       "summary": "Action",
       "description": "Executable action.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "parameters",
@@ -186,6 +362,15 @@
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
+          }
+        },
+        {
+          "name": "output",
+          "summary": "Output schema",
+          "required": false,
+          "description": "Output schema of the action",
+          "schema": {
+            "type": "object"
           }
         },
         {
@@ -216,7 +401,9 @@
     "/trigger": {
       "summary": "Trigger",
       "description": "Executable trigger.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "tags",

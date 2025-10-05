@@ -1,56 +1,74 @@
-## 0.94.0-8 (2025-07-01)
+# Changelog
 
-This was a version bump only, there were no code changes.
+All notable changes to this project will be documented in this file.
 
-## 0.94.0-7 (2025-07-01)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-This was a version bump only, there were no code changes.
+## [0.102.2] - 2025-09-11
 
-## 0.94.0-6 (2025-07-01)
+### Fixed
+- Fixed request.body null issue for task with Web service type in AI Agent (#25)
 
-This was a version bump only, there were no code changes.
+## [0.102.0] - 2025-09-09
 
-## 0.94.0-5 (2025-07-01)
+### Added
+- Context analysis service in factory assets for understanding environmental elements
 
-This was a version bump only, there were no code changes.
+### Changed
+- Moved context functionality from skill-common to dedicated factory asset service
 
-## 0.94.0-4 (2025-07-01)
+### Removed
+- Context function from skill-common library (replaced by factory asset service)
 
-### 🚀 Features
+### Fixed
+- Optional chaining safety checks in web-editor for schema items properties
 
-- add dependancies ([6040360](https://github.com/digipair/digipair/commit/6040360))
-- minor update ([38fbb3b](https://github.com/digipair/digipair/commit/38fbb3b))
+## [0.101.0] - 2025-09-03
 
-### ❤️ Thank You
+### Added
+- FEEL functions: encodeUTF8 and decodeUTF8 for string encoding/decoding
 
-- Marc BUILS
+## [0.100.0] - 2025-01-09
 
-## 0.94.0-1 (2025-06-30)
+### Added
+- skill-codex: New Codex integration skill with events support
+- skill-agent: New agent skill for AI agent management
+- skill-dsp: Updated @ax-llm version integration
+- Studio: First version of the new studio interface
+- Output schema management in skill-common/schema
+- File upload handling in skill-service
+- Auto-orient feature in skill-sharp
+- Output action format support
+- UUID generator functionality
+- Push notification improvements
 
-This was a version bump only, there were no code changes.
+### Improved
+- Codex binary location handling for better performance
+- Files upload management across the platform
+- Editor workspace refresh functionality
+- Sharp library enhancements
+- Keycloak management improvements
+- Schema type handling
+- Vespa integration
 
-## 0.94.0-0 (2025-06-30)
+### Fixed
+- Minor fixes in Codex integration
+- Editor setReasoning not refreshing codeInWorkspace issue
+- Multer configuration issues
+- Vespa push issues
+- Removed unused code lines
 
-This was a version bump only, there were no code changes.
+### Changed
+- Replaced @diegoooo/pdf2pic with pdf2pic library
+- Updated output schemas structure
 
-## 0.91.1-0 (2025-06-30)
+### Removed
+- Admin portal (replaced by studio)
 
-### 🚀 Features
+### Breaking Changes
+- Admin portal is no longer available, users should migrate to the new studio interface
 
-- minor documentation update ([d7c0245](https://github.com/digipair/digipair/commit/d7c0245))
-- replace @diegoooo/pdf2pic by pdf2pic ([7f8de0c](https://github.com/digipair/digipair/commit/7f8de0c))
-- add skill-agent ([ac42270](https://github.com/digipair/digipair/commit/ac42270))
-- add first studio version ([f01f726](https://github.com/digipair/digipair/commit/f01f726))
-- update studio ([d53060c](https://github.com/digipair/digipair/commit/d53060c))
-- some updates ([c6b57e1](https://github.com/digipair/digipair/commit/c6b57e1))
-- update studio ([1cb629a](https://github.com/digipair/digipair/commit/1cb629a))
-- update nx ([0232742](https://github.com/digipair/digipair/commit/0232742))
-- update yarn.lock ([c5f8bac](https://github.com/digipair/digipair/commit/c5f8bac))
-- update ([dc60ffe](https://github.com/digipair/digipair/commit/dc60ffe))
-- update ([cb972ac](https://github.com/digipair/digipair/commit/cb972ac))
-- update rebase ([dd9e7cd](https://github.com/digipair/digipair/commit/dd9e7cd))
+## [0.93.0-0] and Earlier
 
-### ❤️ Thank You
-
-- Diego
-- Marc BUILS
+For versions 0.93.0-0 and earlier, please refer to the git history.

@@ -1,0 +1,622 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-client-mcp",
+    "summary": "Client Model Context Protocol",
+    "description": "Cette compétence fournit des fonctions pour se connecter et interagir avec les serveurs MCP (Model Context Protocol).",
+    "version": "0.1.0",
+    "x-icon": "🔗"
+  },
+  "paths": {
+    "/connect": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Se connecter à un serveur MCP",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL du serveur",
+            "required": true,
+            "description": "URL du serveur MCP auquel se connecter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "Nom du client",
+            "required": false,
+            "description": "Nom du client MCP (par défaut: digipair-mcp-client)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version du client",
+            "required": false,
+            "description": "Version du client MCP (par défaut: 1.0.0)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options de transport",
+            "required": false,
+            "description": "Options de transport supplémentaires",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion réussie au serveur MCP",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Instance du client MCP"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/disconnect": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Se déconnecter d'un serveur MCP",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP à déconnecter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Déconnexion réussie du serveur MCP",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/listResources": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Lister les ressources disponibles",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des ressources disponibles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resources": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Resource"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/readResource": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Lire une ressource spécifique",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "uri",
+            "summary": "URI de la ressource",
+            "required": true,
+            "description": "URI de la ressource à lire",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Contenu de la ressource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contents": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ResourceContent"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/listTools": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Lister les outils disponibles",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des outils disponibles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tools": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Tool"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/callTool": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Appeler un outil spécifique",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "Nom de l'outil",
+            "required": true,
+            "description": "Nom de l'outil à appeler",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "arguments",
+            "summary": "Arguments de l'outil",
+            "required": false,
+            "description": "Arguments à passer à l'outil",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution de l'outil",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ToolResult"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/listPrompts": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Lister les invites disponibles",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des invites disponibles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "prompts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Prompt"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getPrompt": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Obtenir une invite spécifique",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "name",
+            "summary": "Nom de l'invite",
+            "required": true,
+            "description": "Nom de l'invite à obtenir",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "arguments",
+            "summary": "Arguments de l'invite",
+            "required": false,
+            "description": "Arguments à passer à l'invite",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Contenu de l'invite",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "messages": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PromptMessage"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getServerCapabilities": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Obtenir les capacités du serveur",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Capacités du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerCapabilities"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getServerInfo": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Obtenir les informations du serveur",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client MCP",
+            "required": true,
+            "description": "L'instance du client MCP",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Informations du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceContent": {
+        "type": "object",
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "blob": {
+            "type": "string",
+            "format": "base64"
+          }
+        }
+      },
+      "Tool": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "inputSchema": {
+            "type": "object"
+          }
+        }
+      },
+      "ToolResult": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "base64"
+          }
+        }
+      },
+      "Prompt": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "arguments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromptArgument"
+            }
+          }
+        }
+      },
+      "PromptArgument": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PromptMessage": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object"
+          }
+        }
+      },
+      "ServerCapabilities": {
+        "type": "object",
+        "properties": {
+          "experimental": {
+            "type": "object"
+          },
+          "sampling": {
+            "type": "object"
+          },
+          "logging": {
+            "type": "object"
+          },
+          "prompts": {
+            "type": "object",
+            "properties": {
+              "listChanged": {
+                "type": "boolean"
+              }
+            }
+          },
+          "resources": {
+            "type": "object",
+            "properties": {
+              "subscribe": {
+                "type": "boolean"
+              },
+              "listChanged": {
+                "type": "boolean"
+              }
+            }
+          },
+          "tools": {
+            "type": "object",
+            "properties": {
+              "listChanged": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      },
+      "ServerInfo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "protocolVersion": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "x-scene-blocks": {}
+}

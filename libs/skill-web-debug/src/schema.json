@@ -10,7 +10,10 @@
   "paths": {
     "/log": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": [
+          "web",
+          "spatial"
+        ],
         "summary": "Display in Console",
         "description": "Element for displaying a message in the JavaScript console",
         "parameters": [
@@ -42,7 +45,19 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Log message successfully displayed in console and previous context value returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Returns the previous value from the execution context (passthrough)"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

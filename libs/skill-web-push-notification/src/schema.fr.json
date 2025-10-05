@@ -10,10 +10,22 @@
   "paths": {
     "/initialize": {
       "post": {
-        "tags": ["web", "spatial"],
+        "tags": [
+          "web",
+          "spatial"
+        ],
         "summary": "Enregistre l'utilisateur aux notifications push",
         "description": "Enregistre l'utilisateur pour recevoir des notifications push en temps réel.",
         "parameters": [
+          {
+            "name": "SERVICE_WORKER_PATH",
+            "summary": "Chemin du service worker",
+            "required": false,
+            "description": "Chemin du service worker pour les notifications push.",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "publicKey",
             "summary": "Clé publique VAPID",
@@ -24,7 +36,54 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Abonnement aux notifications push initialisé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Objet d'abonnement push depuis l'API Push du navigateur",
+                      "properties": {
+                        "endpoint": {
+                          "type": "string",
+                          "description": "L'URL du point de terminaison pour le service push"
+                        },
+                        "expirationTime": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Moment où l'abonnement expire"
+                        },
+                        "keys": {
+                          "type": "object",
+                          "properties": {
+                            "p256dh": {
+                              "type": "string",
+                              "description": "Clé publique client pour le chiffrement"
+                            },
+                            "auth": {
+                              "type": "string",
+                              "description": "Secret d'authentification client"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "null",
+                      "description": "L'abonnement a échoué (service worker non pris en charge, permissions refusées, etc.)"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

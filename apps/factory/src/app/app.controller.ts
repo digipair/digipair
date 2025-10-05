@@ -47,7 +47,7 @@ export class AppController {
         return;
       }
     } else if (params.length < 2) {
-      res.redirect(`/admin/digipair-list`);
+      res.redirect(`/studio/workers`);
       return;
     } else {
       digipair = params[0];
@@ -77,6 +77,7 @@ export class AppController {
         request,
         res,
         signal,
+        true,
       );
       
       res.send(result);

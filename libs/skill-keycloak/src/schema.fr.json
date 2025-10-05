@@ -36,7 +36,29 @@
               "type": "boolean"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Exécution réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Chaîne JSON contenant le résultat de l'exécution depuis la factory"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Non autorisé - Token Keycloak manquant ou invalide quand secured=true"
+          },
+          "403": {
+            "description": "Interdit - Accès refusé par Keycloak"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur d'exécution de la factory"
+          }
+        }
       }
     },
     "/login": {
@@ -45,7 +67,26 @@
         "description": "Identification de l'utilisateur sur le site internet via le serveur Keycloak",
         "tags": ["web"],
         "metadata": [],
-        "parameters": []
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Connexion initiée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Réponse de connexion depuis Keycloak"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Paramètres de connexion invalides"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur d'authentification Keycloak"
+          }
+        }
       }
     },
     "/logout": {
@@ -54,7 +95,26 @@
         "description": "Désidentification de l'utilisateur sur le site internet via le serveur Keycloak",
         "tags": ["web"],
         "metadata": [],
-        "parameters": []
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Déconnexion réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Confirmation de déconnexion depuis Keycloak"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Requête de déconnexion invalide"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur de déconnexion Keycloak"
+          }
+        }
       }
     }
   },
@@ -230,6 +290,15 @@
           }
         },
         {
+          "name": "keycloakJsUrl",
+          "summary": "URL du Keycloak JS",
+          "required": false,
+          "description": "URL du script Keycloak JS à inclure dans la page (par défaut pris depuis le paramètre 'url')",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
           "name": "factoryInitialize",
           "summary": "Lors de l'initialisation coté factory",
           "required": false,
@@ -298,7 +367,32 @@
             "type": "string"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Page web sécurisée rendue avec succès",
+          "content": {
+            "text/html": {
+              "schema": {
+                "type": "string",
+                "description": "Page HTML avec intégration et sécurité Keycloak"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Non autorisé - Authentification Keycloak requise"
+        },
+        "403": {
+          "description": "Interdit - Accès refusé par Keycloak"
+        },
+        "404": {
+          "description": "Non trouvé - Page ou ressource non trouvée"
+        },
+        "500": {
+          "description": "Erreur serveur - Erreur de rendu de page"
+        }
+      }
     },
     "/service": {
       "summary": "Web service sécurisé",
@@ -345,7 +439,29 @@
             "type": "string"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Service exécuté avec succès",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Résultat de l'exécution du service"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Non autorisé - Token Keycloak manquant ou invalide quand secured=true"
+        },
+        "403": {
+          "description": "Interdit - Accès refusé par Keycloak"
+        },
+        "500": {
+          "description": "Erreur serveur - Erreur d'exécution du service"
+        }
+      }
     },
     "/boost": {
       "summary": "Boost sécurisé",
@@ -432,7 +548,35 @@
             "type": "string"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Étape de boost exécutée avec succès",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Résultat de l'exécution du boost avec données d'étape"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Requête invalide - Étape ou paramètres de boost invalides"
+        },
+        "401": {
+          "description": "Non autorisé - Token Keycloak manquant ou invalide quand secured=true"
+        },
+        "403": {
+          "description": "Interdit - Accès refusé par Keycloak"
+        },
+        "405": {
+          "description": "Méthode non autorisée - Seule la méthode POST est supportée"
+        },
+        "500": {
+          "description": "Erreur serveur - Erreur d'exécution du boost"
+        }
+      }
     }
   }
 }

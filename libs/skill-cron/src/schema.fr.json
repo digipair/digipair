@@ -10,7 +10,9 @@
   "paths": {
     "/crons": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des taches planifiées",
         "parameters": [
           {
@@ -23,12 +25,58 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Liste des tâches cron planifiées",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the cron task"
+                      },
+                      "time": {
+                        "type": "string",
+                        "description": "Cron schedule expression"
+                      },
+                      "digipair": {
+                        "type": "string",
+                        "description": "Name of the digipair"
+                      },
+                      "reasoning": {
+                        "type": "string",
+                        "description": "Name of the reasoning to execute"
+                      },
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "Whether the cron task is enabled"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "time",
+                      "digipair",
+                      "reasoning",
+                      "enabled"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/addCron": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Ajoute une plannification",
         "parameters": [
           {
@@ -82,7 +130,9 @@
     },
     "/deleteCron": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Supprime une plannification",
         "parameters": [
           {
@@ -109,7 +159,9 @@
     },
     "/enableCron": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Active une plannification",
         "parameters": [
           {
@@ -136,7 +188,9 @@
     },
     "/disableCron": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Désactive une plannification",
         "parameters": [
           {

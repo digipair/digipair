@@ -10,7 +10,11 @@
   "paths": {
     "/fillForm": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Remplir un formulaire de PDF",
         "description": "Remplit un formulaire de PDF avec les valeurs spécifiées.",
         "parameters": [
@@ -42,12 +46,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Formulaire PDF rempli avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Fichier PDF encodé en base64 avec les données de formulaire remplies",
+                  "example": "data:application/pdf;base64,..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getFields": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Extraire les champs d'un PDF",
         "description": "Extrait les champs d'un formulaire de PDF.",
         "parameters": [
@@ -61,12 +83,39 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Champs PDF extraits avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet contenant les noms de champs comme clés et leurs valeurs",
+                  "additionalProperties": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getSize": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Nombre de page d'un PDF",
         "description": "Retourne le nombre de page PDF.",
         "parameters": [
@@ -80,7 +129,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nombre de pages PDF récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "Nombre de pages dans le document PDF",
+                  "minimum": 1
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

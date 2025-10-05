@@ -54,6 +54,7 @@
             "boost": "EVALUATE:variables.boost",
             "boosts": "EVALUATE:request.body.boosts",
             "sources": "EVALUATE:request.body.sources",
+            "files": "EVALUATE:request.body.files",
             "logs": "EVALUATE:request.body.logs"
           }
         }
@@ -73,6 +74,7 @@
                 "parent_conversation": "EVALUATE:data.parent_conversation",
                 "parent_history": "EVALUATE:data.parent_history",
                 "sources": "EVALUATE:data.sources",
+                "files": "EVALUATE:data.files",
                 "uuid": "EVALUATE:data.uuid",
                 "boost": "EVALUATE:data.boost",
                 "command": "EVALUATE:data.command"

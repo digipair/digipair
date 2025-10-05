@@ -10,7 +10,9 @@
   "paths": {
     "/model": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modèle LLM OpenAI",
         "description": "Modèle LLM OpenAI",
         "parameters": [
@@ -60,12 +62,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Instance de modèle LLM OpenAI créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenAIModel"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelAzure": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modèle LLM OpenAI sur Azure",
         "description": "Modèle LLM OpenAI sur Azure",
         "parameters": [
@@ -124,12 +140,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Instance de modèle LLM Azure OpenAI créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AzureOpenAIModel"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/embeddings": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modèle d'embeddings OpenAI",
         "description": "Modèle d'embeddings OpenAI",
         "parameters": [
@@ -179,12 +209,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Instance de modèle d'embeddings OpenAI créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenAIEmbeddings"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/embeddingsAzure": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modèle d'embeddings OpenAI",
         "description": "Modèle d'enbeddings OpenAI",
         "parameters": [
@@ -243,11 +287,144 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Instance de modèle d'embeddings Azure OpenAI créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AzureOpenAIEmbeddings"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "OpenAIModel": {
+        "tags": [],
+        "type": "object",
+        "description": "Instance de modèle LLM OpenAI",
+        "properties": {
+          "modelName": {
+            "type": "string",
+            "description": "Nom du modèle OpenAI"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "Paramètre de température du modèle"
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Identifiant de type pour le LLM"
+          },
+          "streaming": {
+            "type": "boolean",
+            "description": "Indique si le streaming est activé"
+          },
+          "configuration": {
+            "type": "object",
+            "description": "Paramètres de configuration du modèle",
+            "properties": {
+              "baseURL": {
+                "type": "string",
+                "description": "URL de base pour l'API OpenAI"
+              }
+            }
+          }
+        }
+      },
+      "AzureOpenAIModel": {
+        "tags": [],
+        "type": "object",
+        "description": "Instance de modèle LLM Azure OpenAI",
+        "properties": {
+          "deploymentName": {
+            "type": "string",
+            "description": "Nom du déploiement Azure OpenAI"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "Paramètre de température du modèle"
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Identifiant de type pour le LLM"
+          },
+          "streaming": {
+            "type": "boolean",
+            "description": "Indique si le streaming est activé"
+          },
+          "azureOpenAIApiInstanceName": {
+            "type": "string",
+            "description": "Nom de l'instance Azure OpenAI"
+          },
+          "openAIApiVersion": {
+            "type": "string",
+            "description": "Version de l'API Azure OpenAI"
+          }
+        }
+      },
+      "OpenAIEmbeddings": {
+        "tags": [],
+        "type": "object",
+        "description": "Instance de modèle d'embeddings OpenAI",
+        "properties": {
+          "modelName": {
+            "type": "string",
+            "description": "Nom du modèle d'embeddings"
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Identifiant de type pour le modèle d'embeddings"
+          },
+          "dimensions": {
+            "type": "integer",
+            "description": "Dimension des vecteurs d'embedding"
+          },
+          "configuration": {
+            "type": "object",
+            "description": "Paramètres de configuration des embeddings",
+            "properties": {
+              "baseURL": {
+                "type": "string",
+                "description": "URL de base pour l'API OpenAI"
+              }
+            }
+          }
+        }
+      },
+      "AzureOpenAIEmbeddings": {
+        "tags": [],
+        "type": "object",
+        "description": "Instance de modèle d'embeddings Azure OpenAI",
+        "properties": {
+          "deploymentName": {
+            "type": "string",
+            "description": "Nom du déploiement Azure OpenAI"
+          },
+          "_llmType": {
+            "type": "string",
+            "description": "Identifiant de type pour le modèle d'embeddings"
+          },
+          "dimensions": {
+            "type": "integer",
+            "description": "Dimension des vecteurs d'embedding"
+          },
+          "azureOpenAIApiInstanceName": {
+            "type": "string",
+            "description": "Nom de l'instance Azure OpenAI"
+          },
+          "openAIApiVersion": {
+            "type": "string",
+            "description": "Version de l'API Azure OpenAI"
+          }
+        }
+      }
+    }
   }
 }

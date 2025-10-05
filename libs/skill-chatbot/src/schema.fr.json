@@ -10,7 +10,9 @@
   "paths": {
     "/answer": {
       "post": {
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Réponse du chatbot",
         "parameters": [
           {
@@ -51,6 +53,18 @@
             "summary": "Liste des sources",
             "required": false,
             "description": "Liste des sources utilisées pour répondre a l'utilisateur",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "name": "files",
+            "summary": "Liste des fichiers",
+            "required": false,
+            "description": "Liste des fichiers utilisés pour répondre a l'utilisateur",
             "schema": {
               "type": "array",
               "items": {
@@ -113,12 +127,78 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse du chatbot préparée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "assistant": {
+                      "type": "string",
+                      "description": "Réponse de l'assistant"
+                    },
+                    "command": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Commandes à exécuter"
+                    },
+                    "boosts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Boosts disponibles"
+                    },
+                    "sources": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Références des sources"
+                    },
+                    "logs": {
+                      "type": "object",
+                      "description": "Journaux de débogage"
+                    },
+                    "boost": {
+                      "type": "object",
+                      "nullable": true,
+                      "description": "Configuration du boost"
+                    },
+                    "parent_conversation": {
+                      "type": "string",
+                      "description": "ID de la conversation parente"
+                    },
+                    "parent_history": {
+                      "type": "string",
+                      "description": "ID du message parent"
+                    },
+                    "session": {
+                      "type": "string",
+                      "description": "ID de session"
+                    },
+                    "uuid": {
+                      "type": "string",
+                      "description": "UUID du message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/execute": {
       "post": {
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Execute une étape",
         "description": "Execute une étape d'un boost",
         "parameters": [
@@ -132,7 +212,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Étape exécutée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Résultat de l'étape exécutée"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -140,7 +233,9 @@
     "schemas": {
       "Step": {
         "type": "object",
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Etape",
         "properties": {
           "name": {
@@ -155,11 +250,16 @@
             }
           }
         },
-        "required": ["name", "execute"]
+        "required": [
+          "name",
+          "execute"
+        ]
       },
       "Boost": {
         "type": "object",
-        "tags": ["boost"],
+        "tags": [
+          "boost"
+        ],
         "summary": "Boost",
         "properties": {
           "prompt": {
@@ -188,7 +288,9 @@
       },
       "ContextParameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parametre de contexte",
         "properties": {
           "name": {
@@ -212,7 +314,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   },
@@ -220,7 +327,10 @@
     "/boost": {
       "summary": "Boost",
       "description": "Boost proposé par le Digipair",
-      "tags": ["boost", "service"],
+      "tags": [
+        "boost",
+        "service"
+      ],
       "metadata": [
         {
           "name": "standalone",

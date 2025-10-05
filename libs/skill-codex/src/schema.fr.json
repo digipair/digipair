@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-codex",
+    "summary": "Intégration OpenAI Codex CLI",
+    "description": "Cette skill permet d'exécuter des prompts en utilisant le CLI OpenAI Codex",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/runPrompt": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Exécuter un prompt Codex",
+        "description": "Exécute un prompt en utilisant le CLI Codex local et retourne le résultat",
+        "parameters": [
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": true,
+            "description": "Le prompt à envoyer à Codex",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sandbox",
+            "summary": "Mode sandbox",
+            "required": false,
+            "description": "Mode sandbox pour l'exécution de Codex (par défaut 'read-only')",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "read-only",
+                "workspace-write",
+                "danger-full-access"
+              ]
+            }
+          },
+          {
+            "name": "cwd",
+            "summary": "Répertoire de travail",
+            "required": false,
+            "description": "Répertoire de travail pour l'exécution de Codex (par défaut process.cwd() + '/factory/digipairs')",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timeoutMs",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Timeout en millisecondes",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "debug",
+            "summary": "Mode débogage",
+            "required": false,
+            "description": "Active le mode débogage",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onStdout",
+            "summary": "Callback stdout",
+            "required": false,
+            "description": "Actions à exécuter lors de la réception de données stdout",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "onAction",
+            "summary": "Callback action",
+            "required": false,
+            "description": "Actions à exécuter lors de la réception de données d'action",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution Codex",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "La sortie de l'exécution du CLI Codex"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

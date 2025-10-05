@@ -10,7 +10,9 @@
   "paths": {
     "/request": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Exécute un service Microsoft",
         "parameters": [
           {
@@ -86,12 +88,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/create": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Ajoute une ressource Microsoft",
         "parameters": [
           {
@@ -158,12 +183,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/read": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Lit une ressource Microsoft",
         "parameters": [
           {
@@ -221,12 +269,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/update": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modifie une ressource Microsoft",
         "parameters": [
           {
@@ -293,12 +364,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/partialUpdate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modifie une partie d'une ressource Microsoft",
         "parameters": [
           {
@@ -365,12 +459,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/remove": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Supprime une ressource Microsoft",
         "parameters": [
           {
@@ -428,7 +545,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Réponse JSON de l'API Microsoft Graph"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Réponse texte ou base64 de l'API Microsoft Graph"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

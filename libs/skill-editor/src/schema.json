@@ -10,7 +10,9 @@
   "paths": {
     "/reasonings": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List Reasonings",
         "descriptions": "Lists the reasonings of a digipair",
         "parameters": [
@@ -33,12 +35,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of reasonings retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Name of a reasoning file"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/reasoning": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Reasoning Information",
         "parameters": [
           {
@@ -74,7 +94,9 @@
     },
     "/setReasoning": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Register a Reasoning",
         "parameters": [
           {
@@ -119,7 +141,9 @@
     },
     "/removeReasoning": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Remove a Reasoning",
         "parameters": [
           {
@@ -155,7 +179,9 @@
     },
     "/digipairs": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List Digipairs",
         "descriptions": "Lists the available digipairs",
         "parameters": [
@@ -174,7 +200,9 @@
     },
     "/digipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Digipair Information",
         "descriptions": "Information about a digipair",
         "parameters": [
@@ -202,7 +230,9 @@
     },
     "/setDigipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Register a Digipair",
         "parameters": [
           {
@@ -238,7 +268,9 @@
     },
     "/removeDigipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Remove a Digipair",
         "parameters": [
           {
@@ -265,7 +297,9 @@
     },
     "/addDigipair": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Add a Digipair",
         "parameters": [
           {
@@ -319,7 +353,9 @@
     },
     "/metadata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Metadata",
         "parameters": [
           {
@@ -346,7 +382,9 @@
     },
     "/setAvatar": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set avatar",
         "parameters": [
           {
@@ -382,7 +420,9 @@
     },
     "/templates": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List Templates",
         "descriptions": "Lists the available templates",
         "parameters": [
@@ -401,7 +441,9 @@
     },
     "/schemas": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List Schemas",
         "descriptions": "Lists the schemas of the libraries",
         "parameters": [
@@ -429,7 +471,9 @@
     },
     "/tools": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List tools",
         "descriptions": "Lists the available tools",
         "parameters": [

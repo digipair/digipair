@@ -27,9 +27,9 @@ Lister les informations
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                      |
-|----------|--------|--------|----------------------------------|
-| digipair | string | Oui    | Nom ou identifiant du digipair   |
+| Nom      | Type   | Requis | Description                    |
+| -------- | ------ | ------ | ------------------------------ |
+| digipair | string | Oui    | Nom ou identifiant du digipair |
 
 #### Exemple
 
@@ -51,9 +51,9 @@ Lister les métadonnées
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                      |
-|----------|--------|--------|----------------------------------|
-| digipair | string | Oui    | Nom ou identifiant du digipair   |
+| Nom      | Type   | Requis | Description                    |
+| -------- | ------ | ------ | ------------------------------ |
+| digipair | string | Oui    | Nom ou identifiant du digipair |
 
 #### Exemple
 
@@ -75,9 +75,9 @@ Lister les boosts
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                      |
-|----------|--------|--------|----------------------------------|
-| digipair | string | Oui    | Nom ou identifiant du digipair   |
+| Nom      | Type   | Requis | Description                    |
+| -------- | ------ | ------ | ------------------------------ |
+| digipair | string | Oui    | Nom ou identifiant du digipair |
 
 #### Exemple
 
@@ -99,9 +99,9 @@ Obtenir le schéma associé à un digipair
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                      |
-|----------|--------|--------|----------------------------------|
-| digipair | string | Oui    | Nom ou identifiant du digipair   |
+| Nom      | Type   | Requis | Description                    |
+| -------- | ------ | ------ | ------------------------------ |
+| digipair | string | Oui    | Nom ou identifiant du digipair |
 
 #### Exemple
 
@@ -111,32 +111,6 @@ Obtenir le schéma associé à un digipair
   "element": "schema",
   "properties": {
     "digipair": "identifiant_de_la_paire_digitale"
-  }
-}
-```
-
----
-
-### context
-
-Obtenir le contexte pour un digipair et un raisonnement
-
-#### Paramètres
-
-| Nom        | Type   | Requis | Description                          |
-|------------|--------|--------|--------------------------------------|
-| digipair   | string | Oui    | Nom ou identifiant du digipair       |
-| reasoning  | string | Oui    | Nom ou identifiant du reasoning      |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-common",
-  "element": "context",
-  "properties": {
-    "digipair": "identifiant_de_la_paire_digitale",
-    "reasoning": "nom_du_raisonnement"
   }
 }
 ```

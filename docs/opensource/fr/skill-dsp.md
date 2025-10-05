@@ -9,16 +9,28 @@
 
 ## Table des matières
 
-- [Fonctions](#fonctions)
-  - [model](#model)
-  - [modelOpenAI](#modelopenai)
-  - [modelAzureOpenAi](#modelazureopenai)
-  - [modelOllama](#modelollama)
-  - [generate](#generate)
-  - [chainOfThought](#chainofthought)
-  - [agent](#agent)
-- [Schémas](#schémas)
-  - [Function](#function)
+- [@digipair/skill-dsp](#digipairskill-dsp)
+  - [Table des matières](#table-des-matières)
+  - [Fonctions](#fonctions)
+    - [model](#model)
+      - [Paramètres](#paramètres)
+      - [Exemple](#exemple)
+    - [modelOpenAI](#modelopenai)
+      - [Paramètres](#paramètres-1)
+      - [Exemple](#exemple-1)
+    - [modelAzureOpenAi](#modelazureopenai)
+      - [Paramètres](#paramètres-2)
+      - [Exemple](#exemple-2)
+    - [modelOllama](#modelollama)
+      - [Paramètres](#paramètres-3)
+      - [Exemple](#exemple-3)
+    - [generate](#generate)
+      - [Paramètres](#paramètres-4)
+      - [Exemple](#exemple-4)
+  - [Schémas](#schémas)
+    - [Function](#function)
+      - [Exemple](#exemple-5)
+  - [Notes](#notes)
 
 ---
 
@@ -199,80 +211,6 @@ Génère une sortie à partir d'un modèle LLM selon le protocole DSP.
       }
     ],
     "options": { "temperature": 0.7 }
-  }
-}
-```
-
----
-
-### chainOfThought
-
-Génère une chaîne de raisonnement (Chain of Thought) via DSP.
-
-#### Paramètres
-
-| Nom        | Type    | Requis | Description                                         |
-|------------|---------|--------|-----------------------------------------------------|
-| model      | array   | Non    | Modèle LLM à utiliser pour la génération            |
-| streaming  | array   | Non    | Événement de streaming pour la génération           |
-| signature  | string  | Oui    | Signature des données à extraire                    |
-| input      | object  | Oui    | Données d'entrée à traiter                          |
-| functions  | array   | Non    | Fonctions DSP utilisables pour la chaîne de pensée  |
-| options    | object  | Non    | Options de génération                               |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-dsp",
-  "element": "chainOfThought",
-  "properties": {
-    "model": [{ "name": "gpt-4" }],
-    "streaming": [],
-    "signature": "reasoning",
-    "input": { "question": "Pourquoi le ciel est bleu ?" },
-    "functions": [],
-    "options": { "max_tokens": 512 }
-  }
-}
-```
-
----
-
-### agent
-
-Crée un agent DSP pour la génération ou l'orchestration de tâches.
-
-#### Paramètres
-
-| Nom         | Type    | Requis | Description                                         |
-|-------------|---------|--------|-----------------------------------------------------|
-| model       | array   | Non    | Modèle LLM à utiliser pour la génération            |
-| streaming   | array   | Non    | Événement de streaming pour la génération           |
-| name        | string  | Oui    | Nom de l'agent                                      |
-| description | string  | Oui    | Description de l'agent                              |
-| signature   | string  | Oui    | Signature des données à extraire                    |
-| input       | object  | Non    | Données d'entrée à traiter                          |
-| functions   | array   | Non    | Fonctions DSP utilisables pour la génération        |
-| agents      | array   | Non    | Autres agents utilisables par cet agent             |
-| options     | object  | Non    | Options de génération                               |
-
-#### Exemple
-
-```json
-{
-  "library": "@digipair/skill-dsp",
-  "element": "agent",
-  "properties": {
-    "model": [{ "name": "gpt-4" }],
-    "streaming": [],
-    "name": "assistant",
-    "description": "Agent assistant pour la gestion des tâches",
-    "signature": "task_management",
-    "input": { "task": "Planifier une réunion" },
-    "functions": [],
-    "agents": [],
-    "options": { "priority": "high" }
   }
 }
 ```

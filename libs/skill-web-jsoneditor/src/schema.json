@@ -10,7 +10,9 @@
   "paths": {
     "/digipair-jsoneditor": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "JSON Editor",
         "description": "JSON Editor",
         "parameters": [
@@ -55,7 +57,20 @@
               }
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON editor element successfully rendered",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "description": "HTML element containing the interactive JSON editor interface"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

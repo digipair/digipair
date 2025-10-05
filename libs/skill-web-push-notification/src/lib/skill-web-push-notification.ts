@@ -1,16 +1,14 @@
 import { PinsSettings } from '@digipair/engine';
 
 class WebHttpNotificationService {
-  private async registerServiceWorker() {
+  private async registerServiceWorker(serviceWorkerPath: string) {
     if (!('serviceWorker' in navigator)) {
       console.log('Service Worker not supported in this browser');
       return null;
     }
 
     try {
-      const registration = await navigator.serviceWorker.register(
-        '/assets/push-notification.worker.js',
-      );
+      const registration = await navigator.serviceWorker.register(serviceWorkerPath);
       return registration;
     } catch (error) {
       console.error('Error when registering the Service Worker', error);
@@ -44,8 +42,11 @@ class WebHttpNotificationService {
   }
 
   async initialize(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { publicKey = context.variables.PUSH_NOTIFICATION_PUBLIC_KEY } = params;
-    const registration = await this.registerServiceWorker();
+    const {
+      SERVICE_WORKER_PATH = '/public/push-notification.worker.js',
+      publicKey = context.variables.PUSH_NOTIFICATION_PUBLIC_KEY,
+    } = params;
+    const registration = await this.registerServiceWorker(SERVICE_WORKER_PATH);
 
     if (registration) {
       return await this.subscribeToPushNotifications(registration, publicKey);

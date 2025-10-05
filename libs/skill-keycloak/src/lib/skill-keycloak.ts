@@ -126,7 +126,7 @@ class KeycloakService {
     }
   }
 
-  private skillKeycloak = `(() => {
+  private skillKeycloak = (keycloakJsUrl: string) => `(() => {
     class KeycloakService {
       async authentification() {
         const keycloak = await this._keycloakPromise;
@@ -140,7 +140,9 @@ class KeycloakService {
         
       async initialize(url, realm, clientId) {
         this._keycloakPromise = (async () => {
-          const keycloak = new Keycloak({
+          let KeycloakConstructor = window.Keycloak ?? (await import('${keycloakJsUrl}')).default;
+
+          const keycloak = new KeycloakConstructor({
             url,
             realm,
             clientId,
@@ -200,9 +202,11 @@ class KeycloakService {
       factoryUrl = context.privates.FACTORY_URL ||
         process.env['FACTORY_URL'] ||
         'https://factory.digipair.ai',
+      keycloakJsUrl = context.privates.KEYCLOAK_JS_URL || process.env['KEYCLOAK_JS_URL'],
     } = params;
     const engineVersion = context.config.VERSIONS['@digipair/engine'] || 'latest';
     const preparedData = {} as { [key: string]: PinsSettings };
+    const keycloakJs = keycloakJsUrl ?? `${url}/js/keycloak.js`;
 
     if (context.request.params[0] === '__digipair_www__') {
       let result: any;
@@ -298,7 +302,7 @@ class KeycloakService {
         await executePinsList(
           pinsSettingsList,
           this.mergeConttext(context.request.body.context, context),
-          `${context.request.body.params.path}.execute`
+          `${context.request.body.params.path}.execute`,
         ),
       );
     }
@@ -332,11 +336,11 @@ class KeycloakService {
   </head>
   <body style="${styleBody}">
     <script type="module">
-      import '${url}/js/keycloak.js';
+      import '${keycloakJs}';
       import { config, executePinsList, generateElementFromPins, applyTemplate } from '${baseUrl}/@digipair/engine@${engineVersion}/index.esm.js';
 
       const serverUrl = '${factoryUrl}';
-      const keycloakService = ${this.skillKeycloak};
+      const keycloakService = ${this.skillKeycloak(keycloakJs)};
 
       const originalFetch = window.fetch;
       window.fetch = async (url, options) => {
@@ -516,7 +520,11 @@ class KeycloakService {
       : 0;
     const execute = steps[step]?.execute || [];
 
-    const result = await executePinsList(execute, { ...context, boost: { steps } }, `${context.__PATH__}.execute`);
+    const result = await executePinsList(
+      execute,
+      { ...context, boost: { steps } },
+      `${context.__PATH__}.execute`,
+    );
     return result;
   }
 }

@@ -10,7 +10,11 @@
   "paths": {
     "/connect": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Websocket server connection",
         "parameters": [
           {
@@ -28,7 +32,7 @@
             "required": false,
             "description": "Time interval between each connection retry",
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
@@ -37,7 +41,7 @@
             "required": false,
             "description": "Maximum number of connection retries",
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
@@ -88,12 +92,39 @@
               }
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "WebSocket connection object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ws": {
+                      "type": "object",
+                      "description": "WebSocket instance"
+                    },
+                    "cwssForceClose": {
+                      "type": "boolean",
+                      "description": "Force close flag"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
       }
     },
     "/send": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Send message",
         "parameters": [
           {
@@ -115,12 +146,28 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Message sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/close": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Close Websocket",
         "parameters": [
           {
@@ -133,6 +180,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "WebSocket closed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

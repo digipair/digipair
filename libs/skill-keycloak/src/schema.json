@@ -36,7 +36,29 @@
               "type": "boolean"
             }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Execution successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "JSON string containing the execution result from the factory"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid Keycloak token when secured=true"
+          },
+          "403": {
+            "description": "Forbidden - Access denied by Keycloak"
+          },
+          "500": {
+            "description": "Server error - Factory execution error"
+          }
+        }
       }
     },
     "/login": {
@@ -45,7 +67,26 @@
         "description": "User authentication on the website via the Keycloak server",
         "tags": ["web"],
         "metadata": [],
-        "parameters": []
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Login initiated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Login response from Keycloak"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid login parameters"
+          },
+          "500": {
+            "description": "Server error - Keycloak authentication error"
+          }
+        }
       }
     },
     "/logout": {
@@ -54,7 +95,26 @@
         "description": "User logout from the website via the Keycloak server",
         "tags": ["web"],
         "metadata": [],
-        "parameters": []
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Logout successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Logout confirmation from Keycloak"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid logout request"
+          },
+          "500": {
+            "description": "Server error - Keycloak logout error"
+          }
+        }
       }
     }
   },
@@ -230,6 +290,15 @@
           }
         },
         {
+          "name": "keycloakJsUrl",
+          "summary": "Keycloak JS URL",
+          "required": false,
+          "description": "URL of the Keycloak JS script to include in the page (defaults to taken from the 'url' parameter)",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
           "name": "factoryInitialize",
           "summary": "During factory initialization",
           "required": false,
@@ -298,7 +367,32 @@
             "type": "string"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Secure web page rendered successfully",
+          "content": {
+            "text/html": {
+              "schema": {
+                "type": "string",
+                "description": "HTML page with Keycloak integration and security"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized - Keycloak authentication required"
+        },
+        "403": {
+          "description": "Forbidden - Access denied by Keycloak"
+        },
+        "404": {
+          "description": "Not found - Page or resource not found"
+        },
+        "500": {
+          "description": "Server error - Page rendering error"
+        }
+      }
     },
     "/service": {
       "summary": "Secure web service",
@@ -345,7 +439,29 @@
             "type": "string"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Service executed successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Service execution result"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized - Missing or invalid Keycloak token when secured=true"
+        },
+        "403": {
+          "description": "Forbidden - Access denied by Keycloak"
+        },
+        "500": {
+          "description": "Server error - Service execution error"
+        }
+      }
     },
     "/boost": {
       "summary": "Secure boost",
@@ -432,7 +548,35 @@
             "type": "string"
           }
         }
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "Boost step executed successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Boost execution result with step data"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request - Invalid step or boost parameters"
+        },
+        "401": {
+          "description": "Unauthorized - Missing or invalid Keycloak token when secured=true"
+        },
+        "403": {
+          "description": "Forbidden - Access denied by Keycloak"
+        },
+        "405": {
+          "description": "Method not allowed - Only POST method supported"
+        },
+        "500": {
+          "description": "Server error - Boost execution error"
+        }
+      }
     }
   }
 }

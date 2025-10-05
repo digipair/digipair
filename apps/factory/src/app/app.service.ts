@@ -69,8 +69,8 @@ export class AppService implements OnModuleInit {
         null,
         {},
         context,
-        null,
-        null,
+        context.protected.req,
+        context.protected.res,
         context.protected.signal,
       ),
     );
@@ -123,6 +123,7 @@ export class AppService implements OnModuleInit {
     req: any,
     res: any,
     signal: AbortSignal,
+    isHttpRequest = false,
   ): Promise<any> {
     const assets = process.env.DIGIPAIR_FACTORY_PATH || './factory';
     let context: any;
@@ -140,6 +141,7 @@ export class AppService implements OnModuleInit {
       const config = JSON.parse(content);
 
       context = {
+        ...requester,
         config: {
           VERSIONS: { ...defaultConfig.libraries, ...commonConfig.libraries, ...config.libraries },
           WEB_VERSIONS: {
@@ -148,8 +150,18 @@ export class AppService implements OnModuleInit {
             ...config.webLibraries,
           },
         },
-        privates: { ...defaultConfig.privates, ...commonConfig.privates, ...config.privates },
-        variables: { ...defaultConfig.variables, ...commonConfig.variables, ...config.variables },
+        privates: {
+          ...requester.privates,
+          ...defaultConfig.privates,
+          ...commonConfig.privates,
+          ...config.privates,
+        },
+        variables: {
+          ...requester.variables,
+          ...defaultConfig.variables,
+          ...commonConfig.variables,
+          ...config.variables,
+        },
         request: {
           digipair,
           reasoning,
@@ -181,7 +193,19 @@ export class AppService implements OnModuleInit {
       }
 
       const settings = JSON.parse(content);
-      const result = await executePinsList([settings], context, 'reasoning');
+
+      if (
+        isHttpRequest === true &&
+        settings.element !== 'page' &&
+        settings.element !== 'service' &&
+        settings.element !== 'boost'
+      ) {
+        // for external calls, only 'page' and 'service' elements are allowed
+        res.status(400);
+        return { status: 'bad request' };
+      }
+
+      const result = await executePinsList([settings], context, requester?.__PATH__ ?? 'reasoning');
 
       return result;
     } catch (error: any) {

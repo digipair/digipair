@@ -10,7 +10,9 @@
   "paths": {
     "/sendAngles": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoie la liste des angles",
         "parameters": [
           {
@@ -44,12 +46,27 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution de la commande du robot myBuddy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Résultat de l'écriture de l'opération sur le robot"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/getAngles": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère la liste des angles",
         "parameters": [
           {
@@ -62,12 +79,30 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Angles actuels des articulations du robot",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Tableau des angles des articulations en degrés"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/powerOn": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Allume tous les servos",
         "parameters": [
           {
@@ -85,7 +120,9 @@
     },
     "/powerOff": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Éteint tous les servos",
         "parameters": [
           {
@@ -103,7 +140,9 @@
     },
     "/releaseAllServos": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Relâche tous les servos",
         "parameters": [
           {
@@ -121,7 +160,9 @@
     },
     "/sendAngle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoie un angle spécifique",
         "parameters": [
           {
@@ -166,7 +207,9 @@
     },
     "/sendCoord": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoie les coordonnées",
         "parameters": [
           {
@@ -211,7 +254,9 @@
     },
     "/sendCoords": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoie les coordonnées",
         "parameters": [
           {
@@ -259,7 +304,9 @@
     },
     "/programPause": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Pause le programme",
         "parameters": [
           {
@@ -277,7 +324,9 @@
     },
     "/programResume": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Reprend le programme",
         "parameters": [
           {
@@ -295,7 +344,9 @@
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrête le programme",
         "parameters": [
           {
@@ -313,7 +364,9 @@
     },
     "/jogAngle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Déplace un angle spécifique",
         "parameters": [
           {
@@ -358,7 +411,9 @@
     },
     "/jogCoord": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Déplace une coordonnée spécifique",
         "parameters": [
           {
@@ -403,7 +458,9 @@
     },
     "/jogStop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrête le déplacement",
         "parameters": [
           {
@@ -421,7 +478,9 @@
     },
     "/setEncoder": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit une valeur d'encoder",
         "parameters": [
           {
@@ -457,7 +516,9 @@
     },
     "/setEncoders": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit les valeurs des encoders",
         "parameters": [
           {
@@ -496,7 +557,9 @@
     },
     "/setSpeed": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit la vitesse",
         "parameters": [
           {
@@ -523,7 +586,9 @@
     },
     "/setServoData": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit les données d'un servo",
         "parameters": [
           {
@@ -568,7 +633,9 @@
     },
     "/setServoCalibration": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit l'étalonnage d'un servo",
         "parameters": [
           {
@@ -595,7 +662,9 @@
     },
     "/releaseServo": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Relâche un servo spécifique",
         "parameters": [
           {
@@ -622,7 +691,9 @@
     },
     "/focusServo": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Active un servo spécifique",
         "parameters": [
           {
@@ -649,7 +720,9 @@
     },
     "/setPinMode": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit le mode d'une broche",
         "parameters": [
           {
@@ -685,7 +758,9 @@
     },
     "/setDigitalOutput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit la sortie numérique d'une broche",
         "parameters": [
           {
@@ -721,7 +796,9 @@
     },
     "/setGripperState": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit l'état du gripper",
         "parameters": [
           {
@@ -757,7 +834,9 @@
     },
     "/setGripperValue": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit la valeur du gripper",
         "parameters": [
           {
@@ -793,7 +872,9 @@
     },
     "/setGripperIni": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit l'initialisation du gripper",
         "parameters": [],
         "x-events": []
@@ -801,7 +882,9 @@
     },
     "/setBasicOutput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit la sortie de base d'une broche",
         "parameters": [
           {
@@ -837,7 +920,9 @@
     },
     "/setColor": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Définit la couleur RGB",
         "parameters": [
           {
@@ -882,7 +967,9 @@
     },
     "/isPowerOn": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Vérifie si le device est allumé",
         "parameters": [
           {
@@ -900,7 +987,9 @@
     },
     "/isControllerConnect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Vérifie si le contrôleur est connecté",
         "parameters": [
           {
@@ -918,7 +1007,9 @@
     },
     "/getCoords": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère les coordonnées",
         "parameters": [
           {
@@ -936,7 +1027,9 @@
     },
     "/isInPosition": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Vérifie si le device est en position",
         "parameters": [
           {
@@ -972,7 +1065,9 @@
     },
     "/getEncoder": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère la valeur d'un encoder",
         "parameters": [
           {
@@ -999,7 +1094,9 @@
     },
     "/getEncoders": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère les valeurs des encoders",
         "parameters": [
           {
@@ -1017,7 +1114,9 @@
     },
     "/getSpeed": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère la vitesse",
         "parameters": [
           {
@@ -1035,7 +1134,9 @@
     },
     "/getJointMin": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère l'angle minimum d'une articulation",
         "parameters": [
           {
@@ -1062,7 +1163,9 @@
     },
     "/getJointMax": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère l'angle maximum d'une articulation",
         "parameters": [
           {
@@ -1089,7 +1192,9 @@
     },
     "/isServoEnable": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Vérifie si un servo est activé",
         "parameters": [
           {
@@ -1116,7 +1221,9 @@
     },
     "/isAllServoEnable": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Vérifie si tous les servos sont activés",
         "parameters": [
           {
@@ -1134,7 +1241,9 @@
     },
     "/getServodata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère les données d'un servo",
         "parameters": [
           {
@@ -1170,7 +1279,9 @@
     },
     "/getDigitalInput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère l'entrée numérique d'une broche",
         "parameters": [
           {
@@ -1197,7 +1308,9 @@
     },
     "/getGripperValue": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère la valeur du gripper",
         "parameters": [
           {
@@ -1215,7 +1328,9 @@
     },
     "/getBasicOutput": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Récupère la sortie de base d'une broche",
         "parameters": [
           {
@@ -1242,7 +1357,9 @@
     },
     "/isGripperMoving": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Vérifie si le gripper est en mouvement",
         "parameters": [
           {
@@ -1260,7 +1377,9 @@
     },
     "/sleep": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Attend un certain temps",
         "parameters": [
           {

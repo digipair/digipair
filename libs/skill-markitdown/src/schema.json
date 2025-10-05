@@ -10,7 +10,9 @@
   "paths": {
     "/convert": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Convert to markdown",
         "parameters": [
           {
@@ -32,7 +34,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Converted markdown content"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

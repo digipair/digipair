@@ -10,7 +10,9 @@
   "paths": {
     "/send": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoi de données HTTP",
         "description": "Envoi de données à la connection HTTP",
         "parameters": [
@@ -24,12 +26,28 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse HTTP envoyée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse Express",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/status": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Code de retour HTTP",
         "description": "Envoi d'un code de retour à la connection HTTP",
         "parameters": [
@@ -43,12 +61,28 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Code de statut HTTP défini avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse Express avec statut défini",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/headers": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Headers HTTP",
         "description": "Envoi des headers à la connection HTTP",
         "parameters": [
@@ -62,6 +96,86 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Headers HTTP définis avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse Express avec headers définis",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Gestion des fichiers téléchargés",
+        "description": "Gestion des fichiers téléchargés en multipart avec multer",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Fichiers traités avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet contenant les données du formulaire et les fichiers téléchargés avec contenu base64",
+                  "properties": {
+                    "body": {
+                      "type": "object",
+                      "description": "Données du corps du formulaire",
+                      "additionalProperties": true
+                    },
+                    "files": {
+                      "type": "array",
+                      "description": "Tableau d'objets de fichiers téléchargés avec contenu encodé en base64",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "fieldname": {
+                            "type": "string",
+                            "description": "Nom du champ spécifié dans le formulaire"
+                          },
+                          "originalname": {
+                            "type": "string",
+                            "description": "Nom du fichier sur l'ordinateur de l'utilisateur"
+                          },
+                          "encoding": {
+                            "type": "string",
+                            "description": "Type d'encodage du fichier"
+                          },
+                          "mimetype": {
+                            "type": "string",
+                            "description": "Type MIME du fichier"
+                          },
+                          "size": {
+                            "type": "number",
+                            "description": "Taille du fichier en octets"
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "Contenu du fichier encodé en base64 au format data URI"
+                          }
+                        },
+                        "required": ["fieldname", "originalname", "encoding", "mimetype", "size", "content"]
+                      }
+                    }
+                  },
+                  "required": ["body", "files"]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }
@@ -73,7 +187,9 @@
     "/service": {
       "summary": "Web service",
       "description": "Réponse à un appel http.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {

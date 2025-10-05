@@ -34,7 +34,19 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution de la chaîne de raisonnement LLM",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Le résultat peut être de n'importe quel type selon les étapes exécutées dans la chaîne"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/reasoningStep": {
@@ -55,7 +67,24 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Objet contenant les fonctions d'étapes de raisonnement mappées aux noms d'attributs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet avec des clés correspondant aux noms d'attributs et des valeurs comme fonctions asynchrones",
+                  "additionalProperties": {
+                    "type": "object",
+                    "description": "Fonction asynchrone qui peut être appelée avec le contexte précédent"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/basic": {
@@ -95,7 +124,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse générée par le modèle LLM - texte ou données structurées selon le paramètre schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Réponse textuelle générée quand aucun schéma n'est fourni"
+                    },
+                    {
+                      "type": "object",
+                      "description": "Objet JSON structuré correspondant au schéma fourni quand le paramètre schema est utilisé"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/vision": {
@@ -144,7 +194,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse du modèle de vision - texte ou données structurées basées sur le schéma et l'analyse d'image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Description textuelle générée de l'image quand aucun schéma n'est fourni"
+                    },
+                    {
+                      "type": "object",
+                      "description": "Objet JSON structuré avec les résultats d'analyse d'image correspondant au schéma fourni quand le paramètre schema est utilisé"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/summarization": {
@@ -247,7 +318,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Texte résumé généré par le modèle LLM",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Résumé condensé du texte du document d'entrée"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

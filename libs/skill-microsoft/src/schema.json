@@ -10,7 +10,9 @@
   "paths": {
     "/request": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Executes a Microsoft service",
         "parameters": [
           {
@@ -86,12 +88,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/create": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Adds a Microsoft resource",
         "parameters": [
           {
@@ -158,12 +183,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/read": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Reads a Microsoft resource",
         "parameters": [
           {
@@ -221,12 +269,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/update": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modifies a Microsoft resource",
         "parameters": [
           {
@@ -293,12 +364,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/partialUpdate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Modifies part of a Microsoft resource",
         "parameters": [
           {
@@ -365,12 +459,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/remove": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Deletes a Microsoft resource",
         "parameters": [
           {
@@ -428,7 +545,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "JSON response from Microsoft Graph API"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Text or base64 response from Microsoft Graph API"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

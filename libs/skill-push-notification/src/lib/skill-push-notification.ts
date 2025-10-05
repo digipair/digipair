@@ -14,13 +14,8 @@ class PushNotificationService {
 
     webPush.setVapidDetails(`mailto:${mailto}`, publicKey, privateKey);
 
-    try {
-      const response = await webPush.sendNotification(subscription, payload);
-      return response;
-    } catch (error) {
-      console.error('Error sending notification:', error);
-    }
-    return null;
+    const response = await webPush.sendNotification(subscription, payload);
+    return response;
   }
 }
 

@@ -10,7 +10,9 @@
   "paths": {
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Arrêter un processus",
         "description": "Arrête un processus en cours.",
         "parameters": [
@@ -24,15 +26,69 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Booléen indiquant si le processus a été arrêté avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "True si le processus a été trouvé et arrêté, false si le processus n'a pas été trouvé"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des processus",
         "description": "Liste les processus en cours.",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Tableau d'objets d'informations des processus en cours",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Identifiant unique du processus"
+                      },
+                      "digipair": {
+                        "type": "string",
+                        "description": "Identifiant Digipair associé au processus"
+                      },
+                      "reasoning": {
+                        "type": "string",
+                        "description": "Raisonnement ou description du processus"
+                      },
+                      "time": {
+                        "type": "number",
+                        "description": "Horodatage de création du processus"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "digipair",
+                      "reasoning",
+                      "time"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

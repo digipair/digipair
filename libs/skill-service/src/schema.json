@@ -10,7 +10,9 @@
   "paths": {
     "/send": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send HTTP",
         "description": "Send an HTTP request",
         "parameters": [
@@ -24,12 +26,28 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "HTTP response sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Express response object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/status": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send HTTP status",
         "description": "Send an HTTP status",
         "parameters": [
@@ -43,12 +61,28 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "HTTP status code set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Express response object with status set",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/headers": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send HTTP headers",
         "description": "Send HTTP headers",
         "parameters": [
@@ -62,6 +96,86 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "HTTP headers set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Express response object with headers set",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Handle file uploads",
+        "description": "Handle multipart file uploads using multer",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Files processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Object containing form body and uploaded files with base64 content",
+                  "properties": {
+                    "body": {
+                      "type": "object",
+                      "description": "Form body data",
+                      "additionalProperties": true
+                    },
+                    "files": {
+                      "type": "array",
+                      "description": "Array of uploaded file objects with base64 encoded content",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "fieldname": {
+                            "type": "string",
+                            "description": "Field name specified in the form"
+                          },
+                          "originalname": {
+                            "type": "string",
+                            "description": "Name of the file on the user's computer"
+                          },
+                          "encoding": {
+                            "type": "string",
+                            "description": "Encoding type of the file"
+                          },
+                          "mimetype": {
+                            "type": "string",
+                            "description": "MIME type of the file"
+                          },
+                          "size": {
+                            "type": "number",
+                            "description": "Size of the file in bytes"
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "Base64 encoded file content with data URI format"
+                          }
+                        },
+                        "required": ["fieldname", "originalname", "encoding", "mimetype", "size", "content"]
+                      }
+                    }
+                  },
+                  "required": ["body", "files"]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }
@@ -73,7 +187,9 @@
     "/service": {
       "summary": "Web service",
       "description": "Response to an HTTP call.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {

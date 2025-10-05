@@ -1,4 +1,5 @@
 import { PinsSettings, executePinsList } from '@digipair/engine';
+import { v4 } from 'uuid';
 
 class BasicService {
   async transform(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -85,6 +86,11 @@ class BasicService {
       );
     }
   }
+
+  async uuid(_params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const uuid = v4();
+    return uuid;
+  }
 }
 
 export const transform = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -110,3 +116,6 @@ export const stopDefer = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const trycatch = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new BasicService().trycatch(params, pinsSettingsList, context);
+
+export const uuid = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new BasicService().uuid(params, pinsSettingsList, context);

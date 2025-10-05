@@ -59,7 +59,48 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'envoi SMS depuis l'API Pushbullet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "iden": {
+                      "type": "string",
+                      "description": "Identifiant unique du texte envoyé"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type de la réponse (toujours 'text')"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "description": "Direction du message (sortant/entrant)"
+                    },
+                    "timestamp": {
+                      "type": "number",
+                      "description": "Horodatage Unix de l'envoi du message"
+                    },
+                    "addresses": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Liste des numéros de téléphone destinataires"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Contenu du message envoyé"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

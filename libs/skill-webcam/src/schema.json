@@ -10,7 +10,9 @@
   "paths": {
     "/capture": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Webcam Capture",
         "description": "Captures an image from the webcam",
         "parameters": [
@@ -69,16 +71,48 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image captured successfully from webcam",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64 encoded image captured from the webcam",
+                  "example": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List of Webcams",
         "description": "Returns the list of webcams present on the system",
         "parameters": [],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of webcams retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Name or identifier of a webcam device"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

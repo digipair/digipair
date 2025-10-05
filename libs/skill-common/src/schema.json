@@ -10,7 +10,9 @@
   "paths": {
     "/infos": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List the informations",
         "parameters": [
           {
@@ -23,12 +25,40 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Digipair information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the digipair"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the digipair"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/metadata": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List the metadata",
         "parameters": [
           {
@@ -41,12 +71,45 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Digipair metadata including avatar and configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "avatar": {
+                      "type": "string",
+                      "description": "Base64 encoded avatar image"
+                    },
+                    "config": {
+                      "type": "object",
+                      "properties": {
+                        "VERSIONS": {
+                          "type": "object",
+                          "description": "Library versions"
+                        }
+                      }
+                    },
+                    "variables": {
+                      "type": "object",
+                      "description": "Configuration variables"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/boosts": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List the boosts",
         "parameters": [
           {
@@ -59,12 +122,60 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "List of available boosts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "reasoning": {
+                        "type": "string",
+                        "description": "Boost reasoning identifier"
+                      },
+                      "summary": {
+                        "type": "string",
+                        "description": "Boost summary"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Boost description"
+                      },
+                      "selector": {
+                        "type": "string",
+                        "description": "CSS selector for boost activation"
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "URL pattern for boost activation"
+                      },
+                      "standalone": {
+                        "type": "boolean",
+                        "description": "Whether the boost runs standalone"
+                      }
+                    },
+                    "required": [
+                      "reasoning",
+                      "summary",
+                      "description"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/schema": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Schema",
         "parameters": [
           {
@@ -77,33 +188,56 @@
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/context": {
-      "post": {
-        "tags": ["service"],
-        "summary": "Context",
-        "parameters": [
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Digipair's name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "reasoning",
-            "summary": "Reasoning",
-            "description": "Reasoning's name",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "responses": {
+          "200": {
+            "description": "OpenAPI schema for the digipair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "openapi": {
+                      "type": "string",
+                      "description": "OpenAPI version"
+                    },
+                    "info": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "summary": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        },
+                        "x-icon": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "paths": {
+                      "type": "object",
+                      "description": "API paths and operations"
+                    },
+                    "x-scene-blocks": {
+                      "type": "object",
+                      "description": "Scene blocks for triggers"
+                    }
+                  },
+                  "required": [
+                    "openapi",
+                    "info"
+                  ]
+                }
+              }
             }
           }
-        ],
+        },
         "x-events": []
       }
     }

@@ -41,14 +41,9 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "AI agents" }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
+                      "textContent": "AI agents",
+                      "href": "/studio/workers"
                     }
                   },
                   {
@@ -109,8 +104,7 @@
                               }
                             }
                           ]
-                        },
-                        "conditions": { "if": "EVALUATE:false" }
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",

@@ -41,14 +41,9 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "AI agents" }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
+                      "textContent": "AI agents",
+                      "href": "/studio/workers"
                     }
                   },
                   {
@@ -86,6 +81,14 @@
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
                         }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
+                        }
                       }
                     ],
                     "properties": {
@@ -103,13 +106,13 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Agents partagés à distance" }
+            "properties": { "textContent": "Agents shared outside the factory" }
           },
           {
             "library": "web",
             "element": "div",
             "properties": {
-              "textContent": "Tu n'as pas encore créé d'agent métier partagés à distance."
+              "textContent": "You haven't created any remote shared AI agents yet."
             },
             "conditions": {
               "if": "EVALUATE:count(variables.digipairs[item.metadata.remote = true]) <= 0"
@@ -156,7 +159,7 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
                             "properties": {
-                              "textContent": "Configurer",
+                              "textContent": "Settings",
                               "href": "/studio/worker-edit/{{item.infos.id}}"
                             }
                           },
@@ -164,21 +167,21 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
                             "properties": {
-                              "textContent": "Liste des taches",
+                              "textContent": "Task list",
                               "href": "/studio/worker-tasks/{{item.infos.id}}"
                             }
                           },
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Supprimer" },
+                            "properties": { "textContent": "Delete" },
                             "events": {
                               "click": [
                                 {
                                   "library": "@digipair/skill-web-notification",
                                   "element": "confirm",
                                   "properties": {
-                                    "message": "Es-tu sûr de vouloir supprimer \"{{item.infos.name}}\" ?",
+                                    "message": "Are you sure you want to delete \"{{item.infos.name}}\" ?",
                                     "ok": [
                                       {
                                         "library": "@digipair/skill-web",
@@ -225,7 +228,7 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
                             "properties": {
-                              "textContent": "Parler",
+                              "textContent": "Talk",
                               "href": "/{{item.infos.id}}/chat",
                               "target": "_blank"
                             }
@@ -245,16 +248,18 @@
               "each": "EVALUATE:variables.digipairs[item.metadata.remote = true]"
             }
           },
+          { "library": "web", "element": "br" },
+          { "library": "web", "element": "br" },
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Agents locaux" }
+            "properties": { "textContent": "Local AI agents" }
           },
           {
             "library": "web",
             "element": "div",
             "properties": {
-              "textContent": "Tu n'as pas encore créé d'agent local ? Qu'est-ce que tu attends ?"
+              "textContent": "You haven't created a local AI agent yet? What are you waiting for?"
             },
             "conditions": {
               "if": "EVALUATE:count(variables.digipairs[item.metadata.remote != true]) <= 0"
@@ -301,7 +306,7 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
                             "properties": {
-                              "textContent": "Configurer",
+                              "textContent": "Settings",
                               "href": "/studio/worker-edit/{{item.infos.id}}"
                             }
                           },
@@ -309,21 +314,21 @@
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
                             "properties": {
-                              "textContent": "Liste des taches",
+                              "textContent": "Task list",
                               "href": "/studio/worker-tasks/{{item.infos.id}}"
                             }
                           },
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Supprimer" },
+                            "properties": { "textContent": "Delete" },
                             "events": {
                               "click": [
                                 {
                                   "library": "@digipair/skill-web-notification",
                                   "element": "confirm",
                                   "properties": {
-                                    "message": "Es-tu sûr de vouloir supprimer \"{{item.infos.name}}\" ?",
+                                    "message": "Are you sure you want to delete \"{{item.infos.name}}\" ?",
                                     "ok": [
                                       {
                                         "library": "@digipair/skill-web",
@@ -390,6 +395,8 @@
               "each": "EVALUATE:variables.digipairs[item.metadata.remote != true]"
             }
           },
+          { "library": "web", "element": "br" },
+          { "library": "web", "element": "br" },
           {
             "library": "@digipair/skill-web-spectrum",
             "element": "sp-action-group",

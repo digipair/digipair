@@ -35,7 +35,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SSE session object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Session unique identifier"
+                    },
+                    "isConnected": {
+                      "type": "boolean",
+                      "description": "Connection status"
+                    },
+                    "lastEventId": {
+                      "type": "string",
+                      "description": "Last event ID sent"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/registerChannel": {
@@ -74,7 +100,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "SSE channel object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sessionCount": {
+                      "type": "number",
+                      "description": "Number of connected sessions"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Channel unique identifier"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/push": {
@@ -119,7 +167,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Push operation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Whether the push was successful"
+                    },
+                    "eventId": {
+                      "type": "string",
+                      "description": "Event identifier"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/broadcast": {
@@ -173,7 +243,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Broadcast operation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Whether the broadcast was successful"
+                    },
+                    "sessionsCount": {
+                      "type": "number",
+                      "description": "Number of sessions that received the message"
+                    },
+                    "eventId": {
+                      "type": "string",
+                      "description": "Event identifier"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -10,7 +10,9 @@
   "paths": {
     "/information": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche d'une information",
         "description": "Affiche une notification d'information",
         "parameters": [
@@ -24,12 +26,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Notification d'information affichée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - la notification est affichée à l'utilisateur"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/error": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche d'une erreur",
         "description": "Affiche une notification d'erreur",
         "parameters": [
@@ -43,12 +60,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Notification d'erreur affichée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - la notification d'erreur est affichée à l'utilisateur"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/confirm": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche une confirmation",
         "description": "Affiche une notification de confirmation",
         "parameters": [
@@ -86,12 +118,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Dialogue de confirmation affiché et réponse utilisateur traitée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Vrai si l'utilisateur a confirmé, faux si l'utilisateur a annulé"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/alert": {
       "post": {
-        "tags": ["web"],
+        "tags": [
+          "web"
+        ],
         "summary": "Affiche une alerte",
         "description": "Affiche une notification d'alerte",
         "parameters": [
@@ -105,7 +152,20 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Notification d'alerte affichée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour - l'alerte est affichée à l'utilisateur"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -41,14 +41,9 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "AI agents" }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
+                      "textContent": "AI agents",
+                      "href": "/studio/workers"
                     }
                   },
                   {
@@ -86,6 +81,14 @@
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
                         }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
+                        }
                       }
                     ],
                     "properties": {
@@ -103,13 +106,13 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Ajout d'un agent métier" }
+            "properties": { "textContent": "Add an AI agent" }
           },
           {
             "library": "web",
             "element": "div",
             "properties": {
-              "textContent": "Liste des types d'agents disponibles :"
+              "textContent": "List of available agent types:"
             }
           },
           {
@@ -133,7 +136,7 @@
                 "properties": {
                   "style": "overflow: hidden;\nmargin: 5px;\ncursor: pointer;",
                   "horizontal": true,
-                  "subheading": "Agent personnalisé"
+                  "subheading": "Custom AI agent"
                 },
                 "events": {
                   "click": [
@@ -163,7 +166,7 @@
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-button",
-                "properties": { "textContent": "Annuler", "href": "/studio/workers" }
+                "properties": { "textContent": "Cancel", "href": "/studio/workers" }
               }
             ]
           }
@@ -183,30 +186,7 @@
       }
     ],
     "styleHtml": "color-scheme:light;\npadding: 60px 40px 80px 40px;",
-    "browserInitialize": [
-      {
-        "library": "@digipair/skill-basic",
-        "element": "setVariable",
-        "properties": {
-          "name": "tools",
-          "execute": [
-            {
-              "library": "@digipair/skill-web",
-              "element": "executeFactory",
-              "properties": {
-                "execute": [
-                  {
-                    "library": "@digipair/skill-editor",
-                    "element": "tools",
-                    "properties": { "language": "en" }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      }
-    ]
+    "browserInitialize": []
   },
   "pins": []
 }

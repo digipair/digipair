@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activity",
         "description": "Execution of an activity.",
         "parameters": [
@@ -36,12 +38,27 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Result of executed activity commands with workflow step tracking",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Result from executePinsList - stored in context.workflow.steps[name]",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop",
         "description": "Stop the reasoning",
         "parameters": [
@@ -55,6 +72,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Worker stopped with return value",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Never returns normally - throws DIGIPAIR_STOP exception"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }
@@ -63,7 +92,9 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -91,7 +122,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   },
@@ -99,7 +135,9 @@
     "/task": {
       "summary": "Task",
       "description": "Execution of a task.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -119,7 +157,9 @@
     "/action": {
       "summary": "Action",
       "description": "Executable action.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "parameters",
@@ -131,6 +171,15 @@
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
+          }
+        },
+        {
+          "name": "output",
+          "summary": "Output schema",
+          "required": false,
+          "description": "Output schema of the action",
+          "schema": {
+            "type": "object"
           }
         },
         {

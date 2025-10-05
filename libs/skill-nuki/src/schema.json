@@ -10,7 +10,9 @@
   "paths": {
     "/unlock": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Unlocks a Nuki lock",
         "parameters": [
           {
@@ -41,12 +43,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nuki lock unlock response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lock": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Locks a Nuki lock",
         "parameters": [
           {
@@ -77,12 +93,44 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nuki lock lock response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NukiActionResponse"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "NukiActionResponse": {
+        "tags": [],
+        "type": "object",
+        "description": "Response from Nuki lock action",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the action was successful"
+          },
+          "batteryCharging": {
+            "type": "boolean",
+            "description": "Battery charging status"
+          },
+          "operationId": {
+            "type": "string",
+            "description": "Unique identifier for the operation"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {}
 }

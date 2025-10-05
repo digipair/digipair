@@ -1,0 +1,14 @@
+{
+  "name": "@digipair/skill-codex",
+  "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "util"
+  ],
+  "dependencies": {
+    "@openai/codex": "^0.25.0"
+  },
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js"
+}

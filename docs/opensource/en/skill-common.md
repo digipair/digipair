@@ -9,13 +9,22 @@
 
 ## Table of Contents
 
-- [Functions](#functions)
-  - [infos](#infos)
-  - [metadata](#metadata)
-  - [boosts](#boosts)
-  - [schema](#schema)
-  - [context](#context)
-- [Notes](#notes)
+- [@digipair/skill-common](#digipairskill-common)
+  - [Table of Contents](#table-of-contents)
+  - [Functions](#functions)
+    - [infos](#infos)
+      - [Parameters](#parameters)
+      - [Example](#example)
+    - [metadata](#metadata)
+      - [Parameters](#parameters-1)
+      - [Example](#example-1)
+    - [boosts](#boosts)
+      - [Parameters](#parameters-2)
+      - [Example](#example-2)
+    - [schema](#schema)
+      - [Parameters](#parameters-3)
+      - [Example](#example-3)
+  - [Notes](#notes)
 
 ---
 
@@ -111,32 +120,6 @@ Get the schema associated with a digipair
   "element": "schema",
   "properties": {
     "digipair": "digital_pair_identifier"
-  }
-}
-```
-
----
-
-### context
-
-Get the context for a digipair and a reasoning
-
-#### Parameters
-
-| Name      | Type   | Required | Description                         |
-| --------- | ------ | -------- | ----------------------------------- |
-| digipair  | string | Yes      | Name or identifier of the digipair  |
-| reasoning | string | Yes      | Name or identifier of the reasoning |
-
-#### Example
-
-```json
-{
-  "library": "@digipair/skill-common",
-  "element": "context",
-  "properties": {
-    "digipair": "digital_pair_identifier",
-    "reasoning": "reasoning_name"
   }
 }
 ```

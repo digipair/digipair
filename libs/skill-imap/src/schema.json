@@ -10,7 +10,9 @@
   "paths": {
     "/parseOne": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parse a message",
         "parameters": [
           {
@@ -41,12 +43,98 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Parsed email message with content and attachments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uid": {
+                      "type": "number",
+                      "description": "Message UID"
+                    },
+                    "seq": {
+                      "type": "number",
+                      "description": "Message sequence number"
+                    },
+                    "envelope": {
+                      "type": "object",
+                      "description": "Email envelope information",
+                      "properties": {
+                        "subject": {
+                          "type": "string",
+                          "description": "Email subject"
+                        },
+                        "from": {
+                          "type": "array",
+                          "description": "From addresses"
+                        },
+                        "to": {
+                          "type": "array",
+                          "description": "To addresses"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "Email date"
+                        }
+                      }
+                    },
+                    "contentText": {
+                      "type": "string",
+                      "description": "Plain text content of the email"
+                    },
+                    "contentHtml": {
+                      "type": "string",
+                      "description": "HTML content of the email"
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "description": "Email attachments",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "meta": {
+                            "type": "object",
+                            "description": "Attachment metadata",
+                            "properties": {
+                              "filename": {
+                                "type": "string",
+                                "description": "Attachment filename"
+                              },
+                              "contentType": {
+                                "type": "string",
+                                "description": "MIME content type"
+                              },
+                              "size": {
+                                "type": "number",
+                                "description": "Size in bytes"
+                              }
+                            }
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "Base64-encoded attachment content"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/parseAll": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parse messages",
         "parameters": [
           {
@@ -80,12 +168,29 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Array of parsed email messages with content and attachments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ParsedMessage"
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/connect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Connect the client",
         "parameters": [
           {
@@ -218,12 +323,37 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "IMAP service instance with established connection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "IMAP service instance",
+                  "properties": {
+                    "imap": {
+                      "type": "object",
+                      "description": "ImapFlow client instance"
+                    },
+                    "forceClose": {
+                      "type": "boolean",
+                      "description": "Force close flag"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/search": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Search messages",
         "parameters": [
           {
@@ -254,12 +384,30 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Array of message UIDs matching the search criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "description": "Message UID"
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/getMailboxLock": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve the locked IMAP mailbox",
         "parameters": [
           {
@@ -295,7 +443,9 @@
     },
     "/getQuota": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve the mailbox quota",
         "parameters": [
           {
@@ -322,7 +472,9 @@
     },
     "/idle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Wait for messages",
         "parameters": [
           {
@@ -340,7 +492,9 @@
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List mailboxes",
         "parameters": [
           {
@@ -362,12 +516,29 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Array of mailbox information objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MailboxInfo"
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/listTree": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List mailboxes in a tree",
         "parameters": [
           {
@@ -394,7 +565,9 @@
     },
     "/logout": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Disconnect the client",
         "parameters": [
           {
@@ -412,7 +585,9 @@
     },
     "/mailboxClose": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Close the mailbox",
         "parameters": [
           {
@@ -430,7 +605,9 @@
     },
     "/mailboxCreate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create a mailbox",
         "parameters": [
           {
@@ -457,7 +634,9 @@
     },
     "/mailboxDelete": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Delete a mailbox",
         "parameters": [
           {
@@ -484,7 +663,9 @@
     },
     "/mailboxOpen": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Open a mailbox",
         "parameters": [
           {
@@ -520,7 +701,9 @@
     },
     "/mailboxRename": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Rename a mailbox",
         "parameters": [
           {
@@ -556,7 +739,9 @@
     },
     "/mailboxSubscribe": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Subscribe to a mailbox",
         "parameters": [
           {
@@ -583,7 +768,9 @@
     },
     "/mailboxUnsubscribe": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Unsubscribe from a mailbox",
         "parameters": [
           {
@@ -610,7 +797,9 @@
     },
     "/messageCopy": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Copy a message",
         "parameters": [
           {
@@ -655,7 +844,9 @@
     },
     "/messageDelete": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Delete a message",
         "parameters": [
           {
@@ -691,7 +882,9 @@
     },
     "/messageFlagsAdd": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Add flags to a message",
         "parameters": [
           {
@@ -739,7 +932,9 @@
     },
     "/messageFlagsRemove": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Remove flags from a message",
         "parameters": [
           {
@@ -787,7 +982,9 @@
     },
     "/messageFlagsSet": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set flags for a message",
         "parameters": [
           {
@@ -835,7 +1032,9 @@
     },
     "/messageMove": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Move a message",
         "parameters": [
           {
@@ -880,7 +1079,9 @@
     },
     "/noop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "No operation",
         "parameters": [
           {
@@ -898,7 +1099,9 @@
     },
     "/setFlagColor": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set the color of a flag",
         "parameters": [
           {
@@ -934,7 +1137,9 @@
     },
     "/status": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve the mailbox status",
         "parameters": [
           {
@@ -970,7 +1175,9 @@
     },
     "/append": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Add a message",
         "parameters": [
           {
@@ -1027,7 +1234,9 @@
     },
     "/close": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Close the client",
         "parameters": [
           {
@@ -1045,7 +1254,9 @@
     },
     "/download": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Download a message",
         "parameters": [
           {
@@ -1090,7 +1301,9 @@
     },
     "/downloadMany": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Download multiple messages",
         "parameters": [
           {
@@ -1138,7 +1351,9 @@
     },
     "/fetch": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve messages",
         "parameters": [
           {
@@ -1183,7 +1398,9 @@
     },
     "/fetchAll": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve all messages",
         "parameters": [
           {
@@ -1228,7 +1445,9 @@
     },
     "/fetchOne": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve a message",
         "parameters": [
           {
@@ -1273,7 +1492,109 @@
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "ParsedMessage": {
+        "tags": [],
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "number",
+            "description": "Message UID"
+          },
+          "seq": {
+            "type": "number",
+            "description": "Message sequence number"
+          },
+          "envelope": {
+            "type": "object",
+            "description": "Email envelope information",
+            "properties": {
+              "subject": {
+                "type": "string",
+                "description": "Email subject"
+              },
+              "from": {
+                "type": "array",
+                "description": "From addresses"
+              },
+              "to": {
+                "type": "array",
+                "description": "To addresses"
+              },
+              "date": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Email date"
+              }
+            }
+          },
+          "contentText": {
+            "type": "string",
+            "description": "Plain text content of the email"
+          },
+          "contentHtml": {
+            "type": "string",
+            "description": "HTML content of the email"
+          },
+          "attachments": {
+            "type": "array",
+            "description": "Email attachments",
+            "items": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "description": "Attachment metadata",
+                  "properties": {
+                    "filename": {
+                      "type": "string",
+                      "description": "Attachment filename"
+                    },
+                    "contentType": {
+                      "type": "string",
+                      "description": "MIME content type"
+                    },
+                    "size": {
+                      "type": "number",
+                      "description": "Size in bytes"
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Base64-encoded attachment content"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MailboxInfo": {
+        "tags": [],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Mailbox path"
+          },
+          "name": {
+            "type": "string",
+            "description": "Mailbox name"
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Mailbox flags"
+          },
+          "specialUse": {
+            "type": "string",
+            "description": "Special use attribute"
+          }
+        }
+      }
+    }
   },
   "x-scene-blocks": {}
 }

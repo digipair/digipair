@@ -10,7 +10,9 @@
   "paths": {
     "/canvas": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create a canvas",
         "description": "Creates a canvas with specified dimensions and executes drawing actions.",
         "parameters": [
@@ -45,12 +47,28 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Canvas created with drawing actions executed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Data URL of the canvas as base64 encoded image",
+                  "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/loadImage": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Load an image",
         "description": "Loads an image from a base64 string and returns the loaded image.",
         "parameters": [
@@ -64,12 +82,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image loaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Loaded image object that can be used with drawImage",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Image width"
+                    },
+                    "height": {
+                      "type": "number",
+                      "description": "Image height"
+                    },
+                    "src": {
+                      "type": "string",
+                      "description": "Image source",
+                      "example": "data:image/png;base64,..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/drawImage": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Draw an image",
         "description": "Draws an image on the canvas at the specified coordinates.",
         "parameters": [
@@ -119,12 +167,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Image drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeRect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Draw an empty rectangle",
         "description": "Draws the outline of a rectangle at the specified coordinates.",
         "parameters": [
@@ -165,12 +228,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Rectangle outline drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillRect": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Draw a filled rectangle",
         "description": "Draws a filled rectangle at the specified coordinates.",
         "parameters": [
@@ -211,12 +289,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Filled rectangle drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillText": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Write text",
         "description": "Writes text at the specified coordinates.",
         "parameters": [
@@ -248,12 +341,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Text drawn on canvas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/strokeStyle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set stroke style",
         "description": "Sets the stroke style used for drawings.",
         "parameters": [
@@ -267,12 +375,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Stroke style set",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/fillStyle": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set fill style",
         "description": "Sets the fill style used for drawings.",
         "parameters": [
@@ -286,12 +409,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Fill style set",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/lineWidth": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Set line width",
         "description": "Sets the line width used for drawings.",
         "parameters": [
@@ -305,12 +443,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Line width set",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value - modifies the canvas context"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/measureText": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Measure text",
         "description": "Measures the specified text and returns the metrics.",
         "parameters": [
@@ -324,7 +477,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Text measurements",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Text metrics object",
+                  "properties": {
+                    "width": {
+                      "type": "number",
+                      "description": "Width of the text"
+                    },
+                    "actualBoundingBoxLeft": {
+                      "type": "number",
+                      "description": "Distance from text align point to left side of bounding box"
+                    },
+                    "actualBoundingBoxRight": {
+                      "type": "number",
+                      "description": "Distance from text align point to right side of bounding box"
+                    },
+                    "fontBoundingBoxAscent": {
+                      "type": "number",
+                      "description": "Distance from horizontal baseline to top of font bounding box"
+                    },
+                    "fontBoundingBoxDescent": {
+                      "type": "number",
+                      "description": "Distance from horizontal baseline to bottom of font bounding box"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

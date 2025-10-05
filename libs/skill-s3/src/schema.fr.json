@@ -10,7 +10,9 @@
   "paths": {
     "/upload": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoyer un fichier",
         "description": "Envoie un fichier dans un bucket S3",
         "parameters": [
@@ -19,36 +21,92 @@
             "summary": "Nom du bucket",
             "required": true,
             "description": "Nom du bucket S3 cible",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "key",
             "summary": "Clé de l'objet",
             "required": true,
             "description": "Clé (chemin) sous laquelle le fichier sera stocké",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "content",
             "summary": "Contenu en base64",
             "required": true,
             "description": "Contenu encodé en base64 du fichier (avec préfixe data URI)",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "config",
             "summary": "Configuration AWS",
             "required": false,
             "description": "Configuration du client AWS SDK (optionnelle)",
-            "schema": { "type": "object" }
+            "schema": {
+              "type": "object"
+            }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse AWS S3 PutObjectCommand",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ETag": {
+                      "type": "string",
+                      "description": "Étiquette d'entité pour l'objet téléchargé"
+                    },
+                    "ServerSideEncryption": {
+                      "type": "string",
+                      "description": "Chiffrement côté serveur utilisé"
+                    },
+                    "VersionId": {
+                      "type": "string",
+                      "description": "ID de version de l'objet (si le versioning est activé)"
+                    },
+                    "SSECustomerAlgorithm": {
+                      "type": "string",
+                      "description": "Algorithme de chiffrement fourni par le client"
+                    },
+                    "SSECustomerKeyMD5": {
+                      "type": "string",
+                      "description": "MD5 digest de la clé de chiffrement fournie par le client"
+                    },
+                    "SSEKMSKeyId": {
+                      "type": "string",
+                      "description": "ID de clé AWS KMS utilisé pour le chiffrement"
+                    },
+                    "BucketKeyEnabled": {
+                      "type": "boolean",
+                      "description": "Indique si la clé de bucket est activée"
+                    },
+                    "RequestCharged": {
+                      "type": "string",
+                      "description": "Indicateur de facturation de la requête"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/download": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Télécharger un fichier",
         "description": "Télécharge un fichier depuis un bucket S3",
         "parameters": [
@@ -57,29 +115,59 @@
             "summary": "Nom du bucket",
             "required": true,
             "description": "Nom du bucket S3",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "key",
             "summary": "Clé de l'objet",
             "required": true,
             "description": "Clé (chemin) du fichier à télécharger",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "range",
+            "summary": "Plage de contenu",
+            "required": false,
+            "description": "La plage de contenu du fichier à télécharger",
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "config",
             "summary": "Configuration AWS",
             "required": false,
             "description": "Configuration du client AWS SDK (optionnelle)",
-            "schema": { "type": "object" }
+            "schema": {
+              "type": "object"
+            }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Fichier téléchargé en data URL base64",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Contenu du fichier en data URL base64 avec type MIME"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/delete": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Supprimer un fichier",
         "description": "Supprime un fichier d’un bucket S3",
         "parameters": [
@@ -88,29 +176,63 @@
             "summary": "Nom du bucket",
             "required": true,
             "description": "Nom du bucket S3",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "key",
             "summary": "Clé de l'objet",
             "required": true,
             "description": "Clé (chemin) du fichier à supprimer",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "config",
             "summary": "Configuration AWS",
             "required": false,
             "description": "Configuration du client AWS SDK (optionnelle)",
-            "schema": { "type": "object" }
+            "schema": {
+              "type": "object"
+            }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse AWS S3 DeleteObjectCommand",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "DeleteMarker": {
+                      "type": "boolean",
+                      "description": "Si un marqueur de suppression a été créé"
+                    },
+                    "VersionId": {
+                      "type": "string",
+                      "description": "ID de version du marqueur de suppression"
+                    },
+                    "RequestCharged": {
+                      "type": "string",
+                      "description": "Indicateur de facturation de la requête"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Lister les fichiers",
         "description": "Liste les fichiers d’un bucket S3, avec un préfixe éventuel",
         "parameters": [
@@ -119,23 +241,105 @@
             "summary": "Nom du bucket",
             "required": true,
             "description": "Nom du bucket S3",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "prefix",
             "summary": "Préfixe",
             "required": false,
             "description": "Préfixe (dossier) pour filtrer les objets",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "config",
             "summary": "Configuration AWS",
             "required": false,
             "description": "Configuration du client AWS SDK (optionnelle)",
-            "schema": { "type": "object" }
+            "schema": {
+              "type": "object"
+            }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Réponse AWS S3 ListObjectsV2Command",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "IsTruncated": {
+                      "type": "boolean",
+                      "description": "Si la réponse est tronquée"
+                    },
+                    "Contents": {
+                      "type": "array",
+                      "description": "Liste des objets dans le bucket",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "Key": {
+                            "type": "string",
+                            "description": "Clé de l'objet (chemin)"
+                          },
+                          "LastModified": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Date de dernière modification"
+                          },
+                          "ETag": {
+                            "type": "string",
+                            "description": "Étiquette d'entité"
+                          },
+                          "Size": {
+                            "type": "number",
+                            "description": "Taille de l'objet en octets"
+                          },
+                          "StorageClass": {
+                            "type": "string",
+                            "description": "Classe de stockage"
+                          },
+                          "Owner": {
+                            "type": "object",
+                            "description": "Informations sur le propriétaire de l'objet"
+                          }
+                        }
+                      }
+                    },
+                    "Name": {
+                      "type": "string",
+                      "description": "Nom du bucket"
+                    },
+                    "Prefix": {
+                      "type": "string",
+                      "description": "Préfixe utilisé pour le filtrage"
+                    },
+                    "MaxKeys": {
+                      "type": "number",
+                      "description": "Nombre maximum de clés retournées"
+                    },
+                    "KeyCount": {
+                      "type": "number",
+                      "description": "Nombre de clés retournées"
+                    },
+                    "ContinuationToken": {
+                      "type": "string",
+                      "description": "Token de pagination"
+                    },
+                    "NextContinuationToken": {
+                      "type": "string",
+                      "description": "Token de continuation suivant pour la pagination"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }

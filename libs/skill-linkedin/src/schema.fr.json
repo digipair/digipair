@@ -68,7 +68,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse de l'API LinkedIn",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse de l'API LinkedIn avec données spécifiques à l'endpoint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Paramètres de requête invalides"
+          },
+          "401": {
+            "description": "Non autorisé - Jeton d'accès invalide ou manquant"
+          },
+          "403": {
+            "description": "Interdit - Accès refusé"
+          },
+          "404": {
+            "description": "Non trouvé - La ressource n'existe pas"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API LinkedIn"
+          }
+        }
       }
     },
     "/create": {
@@ -122,7 +150,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource créée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Données de la ressource créée depuis l'API LinkedIn"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Paramètres de création invalides"
+          },
+          "401": {
+            "description": "Non autorisé - Jeton d'accès invalide ou manquant"
+          },
+          "403": {
+            "description": "Interdit - Accès refusé pour la création de ressource"
+          },
+          "409": {
+            "description": "Conflit - La ressource existe déjà"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API LinkedIn"
+          }
+        }
       }
     },
     "/read": {
@@ -167,7 +223,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Données de la ressource LinkedIn (profil, connexions, posts, etc.)"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Identifiant de ressource invalide"
+          },
+          "401": {
+            "description": "Non autorisé - Jeton d'accès invalide ou manquant"
+          },
+          "403": {
+            "description": "Interdit - Accès refusé à la ressource"
+          },
+          "404": {
+            "description": "Non trouvé - La ressource n'existe pas"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API LinkedIn"
+          }
+        }
       }
     },
     "/update": {
@@ -221,7 +305,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource mise à jour avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Données de la ressource mise à jour depuis l'API LinkedIn"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Paramètres de mise à jour invalides"
+          },
+          "401": {
+            "description": "Non autorisé - Jeton d'accès invalide ou manquant"
+          },
+          "403": {
+            "description": "Interdit - Accès refusé pour la modification de ressource"
+          },
+          "404": {
+            "description": "Non trouvé - La ressource n'existe pas"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API LinkedIn"
+          }
+        }
       }
     },
     "/partialUpdate": {
@@ -275,7 +387,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource partiellement mise à jour avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Données de la ressource partiellement mise à jour depuis l'API LinkedIn"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Paramètres de mise à jour partielle invalides"
+          },
+          "401": {
+            "description": "Non autorisé - Jeton d'accès invalide ou manquant"
+          },
+          "403": {
+            "description": "Interdit - Accès refusé pour la modification de ressource"
+          },
+          "404": {
+            "description": "Non trouvé - La ressource n'existe pas"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API LinkedIn"
+          }
+        }
       }
     },
     "/remove": {
@@ -320,7 +460,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Ressource supprimée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Confirmation de suppression depuis l'API LinkedIn"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide - Identifiant de ressource invalide"
+          },
+          "401": {
+            "description": "Non autorisé - Jeton d'accès invalide ou manquant"
+          },
+          "403": {
+            "description": "Interdit - Accès refusé pour la suppression de ressource"
+          },
+          "404": {
+            "description": "Non trouvé - La ressource n'existe pas"
+          },
+          "500": {
+            "description": "Erreur serveur - Erreur interne de l'API LinkedIn"
+          }
+        }
       }
     }
   },

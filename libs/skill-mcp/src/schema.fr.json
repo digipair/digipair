@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-mcp",
+    "summary": "Serveur Model Context Protocol",
+    "description": "Cette compétence fournit des fonctions pour créer et gérer des serveurs MCP (Model Context Protocol) utilisant le transport StreamableHTTP.",
+    "version": "0.1.0",
+    "x-icon": "🖥️"
+  },
+  "paths": {
+    "/createServer": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Créer un serveur MCP",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom du serveur MCP (par défaut: digipair-mcp-server)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Version",
+            "required": false,
+            "description": "Version du serveur MCP (par défaut: 1.0.0)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tools",
+            "summary": "Outils",
+            "required": false,
+            "description": "Tableau des outils à enregistrer sur le serveur",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ServerTool"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Serveur MCP créé avec succès et requête traitée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ServerTool": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de l'outil"
+          },
+          "title": {
+            "type": "string",
+            "description": "Titre de l'outil"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description de ce que fait l'outil"
+          },
+          "inputSchema": {
+            "type": "object",
+            "description": "Schéma JSON pour les paramètres d'entrée de l'outil"
+          },
+          "outputSchema": {
+            "type": "object",
+            "description": "Schéma JSON pour la sortie de l'outil"
+          },
+          "execute": {
+            "type": "array",
+            "description": "Liste d'exécution PINS pour la fonctionnalité de l'outil",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "execute"
+        ]
+      }
+    }
+  },
+  "x-scene-blocks": {}
+}

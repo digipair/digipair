@@ -32,7 +32,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Database connection established",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "client": {
+                      "type": "object",
+                      "description": "MongoDB client instance"
+                    },
+                    "database": {
+                      "type": "object",
+                      "description": "MongoDB database instance"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/find": {
@@ -80,7 +102,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Array of documents matching the search criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "MongoDB document",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Document unique identifier"
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/findOne": {
@@ -128,7 +173,35 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Single document matching the search criteria, or null if not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "MongoDB document",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "Document unique identifier"
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    {
+                      "type": "null",
+                      "description": "No document found"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/findById": {
@@ -172,11 +245,39 @@
             "required": true,
             "description": "Identifier of the item",
             "schema": {
-              "type": "object"
+              "type": "string"
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Document found by ID, or null if not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "MongoDB document",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "description": "Document unique identifier"
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    {
+                      "type": "null",
+                      "description": "No document found with the specified ID"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/insertOne": {
@@ -224,7 +325,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Result of the insert operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "acknowledged": {
+                      "type": "boolean",
+                      "description": "Whether the operation was acknowledged by MongoDB"
+                    },
+                    "insertedId": {
+                      "type": "string",
+                      "description": "The ObjectId of the inserted document"
+                    }
+                  },
+                  "required": ["acknowledged", "insertedId"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/updateOne": {
@@ -281,7 +405,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Result of the update operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "acknowledged": {
+                      "type": "boolean",
+                      "description": "Whether the operation was acknowledged by MongoDB"
+                    },
+                    "matchedCount": {
+                      "type": "number",
+                      "description": "Number of documents that matched the filter"
+                    },
+                    "modifiedCount": {
+                      "type": "number",
+                      "description": "Number of documents that were actually modified"
+                    },
+                    "upsertedCount": {
+                      "type": "number",
+                      "description": "Number of documents that were upserted"
+                    },
+                    "upsertedId": {
+                      "type": ["string", "null"],
+                      "description": "The ObjectId of the upserted document, if any"
+                    }
+                  },
+                  "required": ["acknowledged", "matchedCount", "modifiedCount", "upsertedCount"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/updateById": {
@@ -338,7 +497,42 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Result of the update operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "acknowledged": {
+                      "type": "boolean",
+                      "description": "Whether the operation was acknowledged by MongoDB"
+                    },
+                    "matchedCount": {
+                      "type": "number",
+                      "description": "Number of documents that matched the filter"
+                    },
+                    "modifiedCount": {
+                      "type": "number",
+                      "description": "Number of documents that were actually modified"
+                    },
+                    "upsertedCount": {
+                      "type": "number",
+                      "description": "Number of documents that were upserted"
+                    },
+                    "upsertedId": {
+                      "type": ["string", "null"],
+                      "description": "The ObjectId of the upserted document, if any"
+                    }
+                  },
+                  "required": ["acknowledged", "matchedCount", "modifiedCount", "upsertedCount"]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

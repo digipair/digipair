@@ -41,14 +41,9 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
-                    "properties": { "textContent": "AI agents" }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "Conversationnal agents",
-                      "href": "/studio/pairs"
+                      "textContent": "AI agents",
+                      "href": "/studio/workers"
                     }
                   },
                   {
@@ -85,6 +80,14 @@
                         "properties": {
                           "textContent": "View the monthly LLM consumption",
                           "href": "/studio/consumptions-monthly"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
                         }
                       }
                     ],
@@ -183,7 +186,7 @@
             "element": "sp-field-label",
             "properties": {
               "style": "width: 100px;",
-              "textContent": "Nom",
+              "textContent": "Name",
               "for": "summary",
               "required": true
             }
@@ -229,7 +232,7 @@
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-button",
-                "properties": { "textContent": "Enregistrer" },
+                "properties": { "textContent": "Save" },
                 "events": {
                   "click": [
                     {

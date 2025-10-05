@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-service",
-  "version": "0.94.0-8",
+  "version": "0.0.1",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-service"
   },
-  "dependencies": {}
+  "dependencies": {
+    "multer": "^2.0.2"
+  }
 }

@@ -10,7 +10,9 @@
   "paths": {
     "/log": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Display in logs",
         "description": "Element for displaying a message in the logs",
         "parameters": [
@@ -42,7 +44,19 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Returns the previous context value to allow chaining"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

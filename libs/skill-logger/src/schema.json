@@ -10,7 +10,9 @@
   "paths": {
     "/read": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Logs",
         "description": "Read logs for a given day",
         "parameters": [
@@ -42,12 +44,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Log entries for the specified date and type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LogEntry"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/list": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "List of log days",
         "description": "List the log days",
         "parameters": [
@@ -70,12 +89,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of available log dates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Date string in YYYY-MM-DD format"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/computeDailyConsumption": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Calculate and save daily consumption",
         "description": "Calculate and save daily consumption in the monthly LLM consumption file",
         "parameters": [
@@ -98,12 +135,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Daily consumption computation completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Operation completed successfully"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/cleaning": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Delete old logs",
         "description": "Delete old log files",
         "parameters": [
@@ -135,11 +187,73 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Old logs cleaning completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Operation completed successfully"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {
+      "LogEntry": {
+        "tags": [],
+        "type": "object",
+        "description": "Log entry object",
+        "properties": {
+          "date": {
+            "type": "number",
+            "description": "Timestamp of the log entry"
+          },
+          "digipair": {
+            "type": "string",
+            "description": "Digipair identifier"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Reasoning identifier"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of log entry (info, error, warning, etc.)"
+          },
+          "message": {
+            "type": "string",
+            "description": "Log message"
+          },
+          "service": {
+            "type": "string",
+            "description": "Service name (for consumption logs)"
+          },
+          "model": {
+            "type": "string",
+            "description": "Model name (for consumption logs)"
+          },
+          "promptTokens": {
+            "type": "number",
+            "description": "Number of prompt tokens (for consumption logs)"
+          },
+          "completionTokens": {
+            "type": "number",
+            "description": "Number of completion tokens (for consumption logs)"
+          }
+        },
+        "required": [
+          "date",
+          "digipair",
+          "reasoning"
+        ]
+      }
+    }
   }
 }

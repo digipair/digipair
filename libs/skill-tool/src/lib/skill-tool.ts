@@ -33,7 +33,15 @@ class ToolService {
   async execute(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { execute, context = {} } = params;
 
-    const result = await executePinsList(execute, { ...context, ..._context }, `${context.__PATH__}.execute`);
+    const result = await executePinsList(
+      execute,
+      {
+        ...context,
+        ..._context,
+        request: _context.requester?.request ?? _context.request,
+      },
+      `${context.__PATH__}.execute`,
+    );
     return result;
   }
 }

@@ -10,7 +10,9 @@
   "paths": {
     "/html2pins": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Convert HTML to Pins",
         "parameters": [
           {
@@ -32,12 +34,29 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://schemas.digipair.ai/pinsSettings"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/pins2html": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Convert Pins to HTML",
         "parameters": [
           {
@@ -50,12 +69,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Generated HTML string"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/parseHtml": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parse HTML Code",
         "parameters": [
           {

@@ -10,7 +10,9 @@
   "paths": {
     "/model": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Generic Model",
         "parameters": [
           {
@@ -32,12 +34,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIModelInstance"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelOpenAI": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "OpenAI Model",
         "parameters": [
           {
@@ -77,12 +93,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIOpenAIModelInstance"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelAzureOpenAi": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Azure OpenAI Model",
         "parameters": [
           {
@@ -140,12 +170,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIAzureOpenAIModelInstance"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/modelOllama": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Ollama Model",
         "parameters": [
           {
@@ -194,12 +238,26 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AxAIOllamaModelInstance"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/generate": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "DSP Generation",
         "parameters": [
           {
@@ -266,188 +324,28 @@
             }
           }
         ],
-        "x-events": []
-      }
-    },
-    "/chainOfThought": {
-      "post": {
-        "tags": ["service"],
-        "summary": "DSP Chain of Thought",
-        "parameters": [
-          {
-            "name": "model",
-            "summary": "Model",
-            "required": false,
-            "description": "LLM model to use for generation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationResult"
+                }
               }
-            }
-          },
-          {
-            "name": "streaming",
-            "summary": "Streaming",
-            "required": false,
-            "description": "Streaming event for the generation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          },
-          {
-            "name": "signature",
-            "summary": "Signature",
-            "required": true,
-            "description": "Signature of the data to extract",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "input",
-            "summary": "Data to Process",
-            "required": true,
-            "description": "Input data to process",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "functions",
-            "summary": "DSP Functions",
-            "required": false,
-            "description": "Functions usable for the chain of thought",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Function"
-              }
-            }
-          },
-          {
-            "name": "options",
-            "summary": "Options",
-            "required": false,
-            "description": "Generation options",
-            "schema": {
-              "type": "object"
             }
           }
-        ],
-        "x-events": []
-      }
-    },
-    "/agent": {
-      "post": {
-        "tags": ["service"],
-        "summary": "DSP Agent",
-        "parameters": [
-          {
-            "name": "model",
-            "summary": "Model",
-            "required": false,
-            "description": "LLM model to use for generation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          },
-          {
-            "name": "streaming",
-            "summary": "Streaming",
-            "required": false,
-            "description": "Streaming event for the generation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          },
-          {
-            "name": "name",
-            "summary": "Name",
-            "required": true,
-            "description": "Name of the agent",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "description",
-            "summary": "Description",
-            "required": true,
-            "description": "Description of the agent",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "signature",
-            "summary": "Signature",
-            "required": true,
-            "description": "Signature of the data to extract",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "input",
-            "summary": "Data to Process",
-            "required": false,
-            "description": "Input data to process",
-            "schema": {
-              "type": "object"
-            }
-          },
-          {
-            "name": "functions",
-            "summary": "DSP Functions",
-            "required": false,
-            "description": "Functions usable for generation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Function"
-              }
-            }
-          },
-          {
-            "name": "agents",
-            "summary": "DSP Agents",
-            "required": false,
-            "description": "Other agents usable by the agent",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
-            }
-          },
-          {
-            "name": "options",
-            "summary": "Options",
-            "required": false,
-            "description": "Generation options",
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "x-events": []
+        }
       }
     }
   },
   "components": {
     "schemas": {
       "Function": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "DSP Function",
         "type": "object",
         "properties": {
@@ -467,7 +365,145 @@
             }
           }
         },
-        "required": ["name", "description", "parameters", "func"]
+        "required": [
+          "name",
+          "description",
+          "parameters",
+          "func"
+        ]
+      },
+      "AxAIModelInstance": {
+        "tags": [],
+        "type": "object",
+        "description": "Generic AxAI model instance",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Model name"
+          },
+          "config": {
+            "type": "object",
+            "description": "Model configuration"
+          },
+          "options": {
+            "type": "object",
+            "description": "Model options"
+          }
+        }
+      },
+      "AxAIOpenAIModelInstance": {
+        "tags": [],
+        "type": "object",
+        "description": "OpenAI model instance",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "OpenAI API key"
+          },
+          "apiURL": {
+            "type": "string",
+            "description": "OpenAI API URL"
+          },
+          "modelInfo": {
+            "type": "object",
+            "description": "Model information"
+          },
+          "config": {
+            "type": "object",
+            "description": "Model configuration"
+          },
+          "supportFor": {
+            "type": "object",
+            "description": "Supported features"
+          }
+        }
+      },
+      "AxAIAzureOpenAIModelInstance": {
+        "tags": [],
+        "type": "object",
+        "description": "Azure OpenAI model instance",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "Azure OpenAI API key"
+          },
+          "resourceName": {
+            "type": "string",
+            "description": "Azure resource name"
+          },
+          "deploymentName": {
+            "type": "string",
+            "description": "Deployment name"
+          },
+          "version": {
+            "type": "string",
+            "description": "API version"
+          },
+          "config": {
+            "type": "object",
+            "description": "Model configuration"
+          },
+          "options": {
+            "type": "object",
+            "description": "Model options"
+          }
+        }
+      },
+      "AxAIOllamaModelInstance": {
+        "tags": [],
+        "type": "object",
+        "description": "Ollama model instance",
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Model name"
+          },
+          "url": {
+            "type": "string",
+            "description": "Ollama server URL"
+          },
+          "apiKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "API key (if required)"
+          },
+          "config": {
+            "type": "object",
+            "description": "Model configuration"
+          },
+          "options": {
+            "type": "object",
+            "description": "Model options"
+          }
+        }
+      },
+      "GenerationResult": {
+        "tags": [],
+        "type": "object",
+        "description": "Generation result from DSP",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Generated text"
+          },
+          "data": {
+            "type": "object",
+            "description": "Extracted structured data"
+          },
+          "functions": {
+            "type": "array",
+            "description": "Function calls made during generation",
+            "items": {
+              "type": "object"
+            }
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Reasoning process"
+          }
+        }
       }
     }
   },

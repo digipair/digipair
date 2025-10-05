@@ -10,7 +10,11 @@
   "paths": {
     "/fillForm": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Fill out a PDF form",
         "description": "Fills out a PDF form with the specified values.",
         "parameters": [
@@ -42,12 +46,30 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "PDF form filled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64 encoded PDF file with filled form data",
+                  "example": "data:application/pdf;base64,..."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getFields": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Extract fields from a PDF",
         "description": "Extracts fields from a PDF form.",
         "parameters": [
@@ -61,12 +83,39 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "PDF fields extracted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Object containing field names as keys and their values",
+                  "additionalProperties": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getSize": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": [
+          "service",
+          "web",
+          "spatial"
+        ],
         "summary": "Number of pages in a PDF",
         "description": "Returns the number of pages in a PDF.",
         "parameters": [
@@ -80,7 +129,21 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "PDF page count retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "Number of pages in the PDF document",
+                  "minimum": 1
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

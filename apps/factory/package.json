@@ -12,6 +12,7 @@
     "@digipair/skill-cron": "latest",
     "@digipair/skill-basic": "latest",
     "@digipair/skill-canvas": "latest",
+    "@digipair/skill-codex": "latest",
     "@digipair/skill-debug": "latest",
     "@digipair/skill-dsp": "latest",
     "@digipair/skill-editor": "latest",

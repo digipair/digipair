@@ -10,7 +10,9 @@
   "paths": {
     "/getReservationWithId": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Information d'une réservation Smoobu",
         "parameters": [
           {
@@ -41,12 +43,53 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Détails de la réservation récupérés avec succès depuis Smoobu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réservation Smoobu avec informations détaillées",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID de la réservation"
+                    },
+                    "arrival": {
+                      "type": "string",
+                      "description": "Date d'arrivée"
+                    },
+                    "departure": {
+                      "type": "string",
+                      "description": "Date de départ"
+                    },
+                    "guest_name": {
+                      "type": "string",
+                      "description": "Nom du client"
+                    },
+                    "apartment": {
+                      "type": "object",
+                      "description": "Détails de l'appartement"
+                    },
+                    "price": {
+                      "type": "number",
+                      "description": "Prix total"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/sendMessage": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Envoi d'un message via Smoobu",
         "parameters": [
           {
@@ -86,12 +129,37 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message envoyé avec succès au client via Smoobu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Réponse de l'API Smoobu pour le message envoyé",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Si le message a été envoyé avec succès"
+                    },
+                    "message_id": {
+                      "type": "string",
+                      "description": "ID du message envoyé"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/getAllReservations": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Liste des réservations Smoobu",
         "parameters": [
           {
@@ -266,7 +334,55 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des réservations récupérée avec succès depuis Smoobu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Liste paginée des réservations Smoobu",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "description": "Tableau d'objets de réservation",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "ID de la réservation"
+                          },
+                          "arrival": {
+                            "type": "string",
+                            "description": "Date d'arrivée"
+                          },
+                          "departure": {
+                            "type": "string",
+                            "description": "Date de départ"
+                          },
+                          "guest_name": {
+                            "type": "string",
+                            "description": "Nom du client"
+                          }
+                        }
+                      }
+                    },
+                    "page": {
+                      "type": "number",
+                      "description": "Numéro de page actuel"
+                    },
+                    "total": {
+                      "type": "number",
+                      "description": "Nombre total de réservations"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -277,7 +393,9 @@
     "/event": {
       "summary": "Réservation Smoobu",
       "description": "Gestion des évènements sur les réservations",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {

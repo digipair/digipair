@@ -10,7 +10,9 @@
   "paths": {
     "/authorizationCodeUrl": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Authorization Code URL",
         "parameters": [
           {
@@ -23,12 +25,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Authorization URL generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "OAuth2 authorization URL"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/authorizationCodeAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Authorization Code Token",
         "parameters": [
           {
@@ -50,12 +67,52 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Access token retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "OAuth2 access token"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type of token"
+                    },
+                    "expires_in": {
+                      "type": "number",
+                      "description": "Token expiration time in seconds"
+                    },
+                    "refresh_token": {
+                      "type": "string",
+                      "description": "Refresh token for obtaining new access tokens"
+                    },
+                    "scope": {
+                      "type": "string",
+                      "description": "Token scope"
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/authorizationCodeCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create OAuth2 Authorization Code Token",
         "parameters": [
           {
@@ -77,12 +134,62 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "OAuth2 token object created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "OAuth2 token object with additional methods",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "OAuth2 access token"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type of token"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Token expiration time in seconds"
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "Refresh token"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Method to check if token is expired"
+                    },
+                    "refresh": {
+                      "type": "string",
+                      "description": "Method to refresh the token"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Method to revoke the token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/resourceOwnerPasswordAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Resource Owner Password Token",
         "parameters": [
           {
@@ -104,12 +211,52 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Resource owner password access token retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "OAuth2 access token"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type of token"
+                    },
+                    "expires_in": {
+                      "type": "number",
+                      "description": "Token expiration time in seconds"
+                    },
+                    "refresh_token": {
+                      "type": "string",
+                      "description": "Refresh token for obtaining new access tokens"
+                    },
+                    "scope": {
+                      "type": "string",
+                      "description": "Token scope"
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/resourceOwnerPasswordCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create OAuth2 Resource Owner Password Token",
         "parameters": [
           {
@@ -131,12 +278,62 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Resource owner password token object created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "OAuth2 token object with additional methods",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "OAuth2 access token"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type of token"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Token expiration time in seconds"
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "Refresh token"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Method to check if token is expired"
+                    },
+                    "refresh": {
+                      "type": "string",
+                      "description": "Method to refresh the token"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Method to revoke the token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/clientCredentialsAccessToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Retrieve OAuth2 Client Credentials Token",
         "parameters": [
           {
@@ -158,12 +355,48 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Client credentials access token retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "OAuth2 access token"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type of token"
+                    },
+                    "expires_in": {
+                      "type": "number",
+                      "description": "Token expiration time in seconds"
+                    },
+                    "scope": {
+                      "type": "string",
+                      "description": "Token scope"
+                    }
+                  },
+                  "required": [
+                    "access_token",
+                    "token_type"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/clientCredentialsCreateToken": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Create OAuth2 Client Credentials Token",
         "parameters": [
           {
@@ -185,12 +418,54 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Client credentials token object created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "OAuth2 token object with additional methods",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "OAuth2 access token"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type of token"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Token expiration time in seconds"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Method to check if token is expired"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Method to revoke the token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenExpired": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Check if the token is expired",
         "parameters": [
           {
@@ -203,12 +478,27 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token expiration status checked successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Whether the token is expired"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenRefresh": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Refresh the token",
         "parameters": [
           {
@@ -221,12 +511,62 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token refreshed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Refreshed OAuth2 token object",
+                  "properties": {
+                    "token": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "description": "New OAuth2 access token"
+                        },
+                        "token_type": {
+                          "type": "string",
+                          "description": "Type of token"
+                        },
+                        "expires_in": {
+                          "type": "number",
+                          "description": "Token expiration time in seconds"
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "New refresh token"
+                        }
+                      }
+                    },
+                    "expired": {
+                      "type": "string",
+                      "description": "Method to check if token is expired"
+                    },
+                    "refresh": {
+                      "type": "string",
+                      "description": "Method to refresh the token"
+                    },
+                    "revoke": {
+                      "type": "string",
+                      "description": "Method to revoke the token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenRevoke": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Revoke the token",
         "parameters": [
           {
@@ -248,12 +588,37 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Token revoked successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Token revocation result",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Whether the revocation was successful"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Type of token that was revoked"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/tokenRevokeAll": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Revoke all tokens",
         "parameters": [
           {
@@ -266,7 +631,33 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "All tokens revoked successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Token revocation result for all tokens",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Whether the revocation was successful"
+                    },
+                    "revoked_tokens": {
+                      "type": "array",
+                      "description": "List of revoked token types",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

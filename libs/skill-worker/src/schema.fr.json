@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activité",
         "description": "Exécute une activité.",
         "parameters": [
@@ -36,12 +38,27 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Résultat des commandes d'activité exécutées avec suivi des étapes de workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Résultat d'executePinsList - stocké dans context.workflow.steps[name]",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop",
         "description": "Stop le raisonnement",
         "parameters": [
@@ -55,6 +72,18 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Worker arrêté avec valeur de retour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Ne retourne jamais normalement - lève une exception DIGIPAIR_STOP"
+                }
+              }
+            }
+          }
+        },
         "x-events": []
       }
     }
@@ -63,7 +92,9 @@
     "/task": {
       "summary": "Tache",
       "description": "Exécution d'une tache.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -83,7 +114,9 @@
     "/action": {
       "summary": "Action",
       "description": "Action exécutable.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "parameters",
@@ -95,6 +128,15 @@
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
+          }
+        },
+        {
+          "name": "output",
+          "summary": "Schema de sortie",
+          "required": false,
+          "description": "Schema de sortie de l'action",
+          "schema": {
+            "type": "object"
           }
         },
         {
@@ -127,7 +169,9 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -155,7 +199,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   }

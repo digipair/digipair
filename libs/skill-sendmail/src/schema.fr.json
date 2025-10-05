@@ -81,7 +81,66 @@
             }
           }
         ],
-        "x-events": []
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'envoi d'email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "messageId": {
+                      "type": "string",
+                      "description": "Identifiant unique du message"
+                    },
+                    "envelope": {
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "type": "string",
+                          "description": "Expéditeur de l'enveloppe"
+                        },
+                        "to": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Destinataires de l'enveloppe"
+                        }
+                      }
+                    },
+                    "accepted": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Destinataires acceptés"
+                    },
+                    "rejected": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Destinataires rejetés"
+                    },
+                    "pending": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Destinataires en attente"
+                    },
+                    "response": {
+                      "type": "string",
+                      "description": "Réponse du serveur"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

@@ -1,0 +1,40 @@
+{
+  "name": "skill-client-mcp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/skill-client-mcp/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/skill-client-mcp",
+        "main": "libs/skill-client-mcp/src/index.ts",
+        "tsConfig": "libs/skill-client-mcp/tsconfig.lib.json",
+        "assets": [
+          "libs/skill-client-mcp/src/index.d.ts",
+          "libs/skill-client-mcp/src/schema.json",
+          "libs/skill-client-mcp/src/schema.fr.json"
+        ],
+        "rollupConfig": [
+          "libs/skill-client-mcp/rollup.build.cjs"
+        ],
+        "project": "libs/skill-client-mcp/package.json",
+        "compiler": "swc",
+        "format": [
+          "cjs",
+          "esm"
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs skill-client-mcp {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    }
+  },
+  "tags": []
+}
