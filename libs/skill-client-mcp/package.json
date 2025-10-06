@@ -1,6 +1,11 @@
 {
   "name": "@digipair/skill-client-mcp",
   "version": "0.0.1",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.2"
   },

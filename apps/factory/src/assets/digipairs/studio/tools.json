@@ -31,7 +31,9 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -106,7 +108,6 @@
               "style": "background-color: white;\npadding: 0 20px 0 20px;\nposition: fixed;\nz-index: 10000;\ntop: 0;\nleft: 0;\nright: 0;"
             }
           },
-
           {
             "library": "web",
             "element": "h4",
@@ -192,7 +193,7 @@
                                     "message": "Are you sure you want to delete \"{{item.infos.name}}\" ?",
                                     "ok": [
                                       {
-                                        "library": "@digipair/skill-keycloak",
+                                        "library": "@digipair/skill-web",
                                         "element": "executeFactory",
                                         "properties": {
                                           "execute": [
@@ -255,8 +256,14 @@
               "each": "EVALUATE:variables.digipairs[item.metadata.shared = true]"
             }
           },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
           {
             "library": "web",
             "element": "h4",
@@ -270,7 +277,9 @@
             "properties": {
               "textContent": "You haven't created a technical tool agent yet? What are you waiting for?"
             },
-            "conditions": { "if": "EVALUATE:count(variables.digipairs) <= 0" }
+            "conditions": {
+              "if": "EVALUATE:count(variables.digipairs) <= 0"
+            }
           },
           {
             "library": "web",
@@ -328,7 +337,9 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Remove" },
+                            "properties": {
+                              "textContent": "Remove"
+                            },
                             "events": {
                               "click": [
                                 {
@@ -402,8 +413,14 @@
               "each": "EVALUATE: variables.digipairs[item.metadata.shared != true]"
             }
           },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
           {
             "library": "@digipair/skill-web-spectrum",
             "element": "sp-action-group",
@@ -415,10 +432,15 @@
                   {
                     "library": "@digipair/skill-web-font-awesome",
                     "element": "digipair-font-awesome-icon",
-                    "properties": { "name": "plus" }
+                    "properties": {
+                      "name": "plus"
+                    }
                   }
                 ],
-                "properties": { "href": "/studio/tool-add", "quiet": true }
+                "properties": {
+                  "href": "/studio/tool-add",
+                  "quiet": true
+                }
               }
             ]
           }
@@ -432,7 +454,9 @@
       {
         "library": "@digipair/skill-web-chatbot",
         "element": "digipair-chatbot",
-        "properties": { "code": "{{request.digipair}}" }
+        "properties": {
+          "code": "{{request.digipair}}"
+        }
       }
     ],
     "styleHtml": "color-scheme:light;\npadding: 60px 40px 80px 40px;",
@@ -466,7 +490,9 @@
                               {
                                 "library": "@digipair/skill-editor",
                                 "element": "digipair",
-                                "properties": { "digipair": "{{item}}" }
+                                "properties": {
+                                  "digipair": "{{item}}"
+                                }
                               }
                             ]
                           }
@@ -480,7 +506,9 @@
                               {
                                 "library": "@digipair/skill-editor",
                                 "element": "metadata",
-                                "properties": { "digipair": "{{item}}" }
+                                "properties": {
+                                  "digipair": "{{item}}"
+                                }
                               }
                             ]
                           }

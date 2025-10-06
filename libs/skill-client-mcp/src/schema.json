@@ -8,16 +8,16 @@
     "x-icon": "🔗"
   },
   "paths": {
-    "/connect": {
+    "/StreamableHTTPClient": {
       "post": {
         "tags": [
           "service"
         ],
-        "summary": "Connects to an MCP server",
+        "summary": "Client MCP HTTP",
         "parameters": [
           {
             "name": "url",
-            "summary": "Server URL",
+            "summary": "URL",
             "required": true,
             "description": "URL of the MCP server to connect to",
             "schema": {
@@ -26,7 +26,7 @@
           },
           {
             "name": "name",
-            "summary": "Client name",
+            "summary": "Client Name",
             "required": false,
             "description": "Name of the MCP client (default: digipair-mcp-client)",
             "schema": {
@@ -35,7 +35,7 @@
           },
           {
             "name": "version",
-            "summary": "Client version",
+            "summary": "Client Version",
             "required": false,
             "description": "Version of the MCP client (default: 1.0.0)",
             "schema": {
@@ -44,7 +44,7 @@
           },
           {
             "name": "options",
-            "summary": "Transport options",
+            "summary": "Transport Options",
             "required": false,
             "description": "Additional transport options",
             "schema": {
@@ -55,12 +55,12 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Successfully connected to MCP server",
+            "description": "Connection successful to the MCP server",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "MCP client instance"
+                  "description": "Instance of the MCP client"
                 }
               }
             }
@@ -68,18 +68,36 @@
         }
       }
     },
-    "/disconnect": {
+    "/StdioClient": {
       "post": {
         "tags": [
           "service"
         ],
-        "summary": "Disconnects from an MCP server",
+        "summary": "MCP STDIO Client",
         "parameters": [
           {
-            "name": "client",
-            "summary": "MCP client",
-            "required": true,
-            "description": "The MCP client instance to disconnect",
+            "name": "name",
+            "summary": "Client Name",
+            "required": false,
+            "description": "Name of the MCP client (default: digipair-mcp-client)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "summary": "Client Version",
+            "required": false,
+            "description": "Version of the MCP client (default: 1.0.0)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Transport Options",
+            "required": false,
+            "description": "Additional transport options",
             "schema": {
               "type": "object"
             }
@@ -88,11 +106,12 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Successfully disconnected from MCP server",
+            "description": "Connection successful to the MCP server",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "null"
+                  "type": "object",
+                  "description": "Instance of the MCP client"
                 }
               }
             }
@@ -109,11 +128,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],
@@ -149,11 +171,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           },
           {
@@ -198,11 +223,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],
@@ -238,11 +266,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           },
           {
@@ -296,11 +327,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],
@@ -336,11 +370,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           },
           {
@@ -397,11 +434,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],
@@ -429,11 +469,14 @@
         "parameters": [
           {
             "name": "client",
-            "summary": "MCP client",
+            "summary": "MCP Client",
             "required": true,
-            "description": "The MCP client instance",
+            "description": "Instance of the MCP client",
             "schema": {
-              "type": "object"
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
             }
           }
         ],
@@ -456,6 +499,9 @@
   "components": {
     "schemas": {
       "Resource": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "uri": {
@@ -473,6 +519,9 @@
         }
       },
       "ResourceContent": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "uri": {
@@ -491,6 +540,9 @@
         }
       },
       "Tool": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -505,6 +557,9 @@
         }
       },
       "ToolResult": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "type": {
@@ -520,6 +575,9 @@
         }
       },
       "Prompt": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -537,6 +595,9 @@
         }
       },
       "PromptArgument": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -551,6 +612,9 @@
         }
       },
       "PromptMessage": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "role": {
@@ -562,6 +626,9 @@
         }
       },
       "ServerCapabilities": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "experimental": {
@@ -603,6 +670,9 @@
         }
       },
       "ServerInfo": {
+        "tags": [
+          "service"
+        ],
         "type": "object",
         "properties": {
           "name": {
