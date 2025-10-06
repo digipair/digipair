@@ -31,7 +31,9 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -109,12 +111,16 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Add a tool agent" }
+            "properties": {
+              "textContent": "Add a tool agent"
+            }
           },
           {
             "library": "web",
             "element": "div",
-            "properties": { "textContent": "List of available tools:" }
+            "properties": {
+              "textContent": "List of available tools:"
+            }
           },
           {
             "library": "web",
@@ -147,7 +153,11 @@
                       "properties": {
                         "name": "executeBoost",
                         "selector": "digipair-chatbot",
-                        "args": [{ "reasoning": "boost-tool-add" }]
+                        "args": [
+                          {
+                            "reasoning": "boost-tool-add"
+                          }
+                        ]
                       }
                     }
                   ]
@@ -186,7 +196,54 @@
                       "properties": {
                         "name": "executeBoost",
                         "selector": "digipair-chatbot",
-                        "args": [{ "reasoning": "boost-tool-add-openapi" }]
+                        "args": [
+                          {
+                            "reasoning": "boost-tool-add-openapi"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "library": "web",
+            "element": "div",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-card",
+                "pins": [
+                  {
+                    "library": "web",
+                    "element": "img",
+                    "properties": {
+                      "src": "/public/mcp.svg",
+                      "style": "height: 60px;",
+                      "slot": "preview"
+                    }
+                  }
+                ],
+                "properties": {
+                  "style": "overflow: hidden;\nmargin: 5px;\ncursor: pointer;",
+                  "horizontal": true,
+                  "subheading": "MCP Client"
+                },
+                "events": {
+                  "click": [
+                    {
+                      "library": "@digipair/skill-web-interact",
+                      "element": "execute",
+                      "properties": {
+                        "name": "executeBoost",
+                        "selector": "digipair-chatbot",
+                        "args": [
+                          {
+                            "reasoning": "boost-tool-add-client-mcp"
+                          }
+                        ]
                       }
                     }
                   ]
@@ -228,7 +285,9 @@
                         "args": [
                           {
                             "reasoning": "boost-tool-add-library",
-                            "context": { "library": "{{item.name}}" }
+                            "context": {
+                              "library": "{{item.name}}"
+                            }
                           }
                         ]
                       }
@@ -237,12 +296,16 @@
                 }
               }
             ],
-            "conditions": { "each": "EVALUATE:variables.tools" }
+            "conditions": {
+              "each": "EVALUATE:variables.tools"
+            }
           },
           {
             "library": "web",
             "element": "div",
-            "properties": { "style": "height: 50px" }
+            "properties": {
+              "style": "height: 50px"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -268,7 +331,9 @@
       {
         "library": "@digipair/skill-web-chatbot",
         "element": "digipair-chatbot",
-        "properties": { "code": "{{request.digipair}}" }
+        "properties": {
+          "code": "{{request.digipair}}"
+        }
       }
     ],
     "styleHtml": "color-scheme:light;\npadding: 60px 40px 80px 40px;",
@@ -287,7 +352,9 @@
                   {
                     "library": "@digipair/skill-editor",
                     "element": "tools",
-                    "properties": { "language": "en" }
+                    "properties": {
+                      "language": "en"
+                    }
                   }
                 ]
               }

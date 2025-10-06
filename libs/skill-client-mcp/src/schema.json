@@ -96,7 +96,7 @@
           {
             "name": "options",
             "summary": "Transport Options",
-            "required": false,
+            "required": true,
             "description": "Additional transport options",
             "schema": {
               "type": "object"
@@ -129,7 +129,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
@@ -172,7 +172,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
@@ -224,7 +224,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
@@ -267,7 +267,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
@@ -328,7 +328,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
@@ -371,7 +371,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
@@ -435,7 +435,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
@@ -470,7 +470,7 @@
           {
             "name": "client",
             "summary": "MCP Client",
-            "required": true,
+            "required": false,
             "description": "Instance of the MCP client",
             "schema": {
               "type": "array",
