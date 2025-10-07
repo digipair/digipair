@@ -31,7 +31,9 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -45,7 +47,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "AI agents",
+                      "textContent": "Worker agents",
                       "href": "/studio/workers"
                     }
                   },
@@ -109,12 +111,16 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Add a task" }
+            "properties": {
+              "textContent": "Add a task"
+            }
           },
           {
             "library": "web",
             "element": "div",
-            "properties": { "textContent": "List of available task types:" }
+            "properties": {
+              "textContent": "List of available task types:"
+            }
           },
           {
             "library": "web",
@@ -164,12 +170,16 @@
                 }
               }
             ],
-            "conditions": { "each": "EVALUATE:variables.scenes" }
+            "conditions": {
+              "each": "EVALUATE:variables.scenes"
+            }
           },
           {
             "library": "web",
             "element": "div",
-            "properties": { "style": "height: 50px" }
+            "properties": {
+              "style": "height: 50px"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -216,7 +226,9 @@
                   {
                     "library": "@digipair/skill-editor",
                     "element": "digipair",
-                    "properties": { "digipair": "{{request.params.[0]}}" }
+                    "properties": {
+                      "digipair": "{{request.params.[0]}}"
+                    }
                   }
                 ]
               }
@@ -291,7 +303,9 @@
                               }
                             ]
                           },
-                          "conditions": { "each": "EVALUATE:previous" }
+                          "conditions": {
+                            "each": "EVALUATE:previous"
+                          }
                         }
                       ]
                     }
@@ -324,12 +338,16 @@
                   {
                     "library": "@digipair/skill-basic",
                     "element": "transform",
-                    "properties": { "value": "EVALUATE:flatten(previous)" }
+                    "properties": {
+                      "value": "EVALUATE:flatten(previous)"
+                    }
                   },
                   {
                     "library": "@digipair/skill-basic",
                     "element": "transform",
-                    "properties": { "value": "EVALUATE:previous[item]" }
+                    "properties": {
+                      "value": "EVALUATE:previous[item]"
+                    }
                   }
                 ]
               }

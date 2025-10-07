@@ -31,18 +31,23 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
-                  },
-                  {
-                    "library": "@digipair/skill-web-spectrum",
-                    "element": "sp-top-nav-item",
-                    "properties": { "textContent": "Tool agents", "href": "/studio/tools" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "AI agents",
+                      "textContent": "Tool agents",
+                      "href": "/studio/tools"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-top-nav-item",
+                    "properties": {
+                      "textContent": "Worker agents",
                       "href": "/studio/workers"
                     }
                   },
@@ -142,7 +147,9 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Informations" }
+            "properties": {
+              "textContent": "Informations"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -156,10 +163,18 @@
           {
             "library": "web",
             "element": "div",
-            "properties": { "textContent": "{{variables.reasoning.library}}" }
+            "properties": {
+              "textContent": "{{variables.reasoning.library}}"
+            }
           },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
           {
             "library": "@digipair/skill-web-spectrum",
             "element": "sp-field-label",
@@ -172,14 +187,24 @@
           {
             "library": "web",
             "element": "div",
-            "properties": { "textContent": "{{variables.reasoning.element}}" }
+            "properties": {
+              "textContent": "{{variables.reasoning.element}}"
+            }
           },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Configuration" }
+            "properties": {
+              "textContent": "Configuration"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -199,8 +224,14 @@
               "value": "EVALUATE:variables.reasoning.summary"
             }
           },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
           {
             "library": "@digipair/skill-web-spectrum",
             "element": "sp-field-label",
@@ -223,7 +254,9 @@
           {
             "library": "web",
             "element": "div",
-            "properties": { "style": "height: 20px" }
+            "properties": {
+              "style": "height: 20px"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -232,7 +265,9 @@
               {
                 "library": "@digipair/skill-web-spectrum",
                 "element": "sp-button",
-                "properties": { "textContent": "Save" },
+                "properties": {
+                  "textContent": "Save"
+                },
                 "events": {
                   "click": [
                     {

@@ -31,7 +31,9 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -45,7 +47,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "AI agents",
+                      "textContent": "Worker agents",
                       "href": "/studio/workers"
                     }
                   },
@@ -133,7 +135,9 @@
                     {
                       "library": "@digipair/skill-web-interact",
                       "element": "goTo",
-                      "properties": { "url": "/studio/tools" }
+                      "properties": {
+                        "url": "/studio/tools"
+                      }
                     }
                   ]
                 }
@@ -143,7 +147,9 @@
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Tasks" }
+            "properties": {
+              "textContent": "Tasks"
+            }
           },
           {
             "library": "web",
@@ -151,7 +157,9 @@
             "properties": {
               "textContent": "You haven't trained me on any tasks? What are you waiting for?"
             },
-            "conditions": { "if": "EVALUATE:count(variables.reasonings) <= 0" }
+            "conditions": {
+              "if": "EVALUATE:count(variables.reasonings) <= 0"
+            }
           },
           {
             "library": "web",
@@ -193,7 +201,9 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "View" },
+                            "properties": {
+                              "textContent": "View"
+                            },
                             "events": {
                               "click": [
                                 {
@@ -221,7 +231,9 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Edit" },
+                            "properties": {
+                              "textContent": "Edit"
+                            },
                             "events": {
                               "click": [
                                 {
@@ -237,7 +249,9 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Remove" },
+                            "properties": {
+                              "textContent": "Remove"
+                            },
                             "events": {
                               "click": [
                                 {
@@ -275,7 +289,9 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Duplicate" },
+                            "properties": {
+                              "textContent": "Duplicate"
+                            },
                             "events": {
                               "click": [
                                 {
@@ -301,7 +317,9 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Schedule" },
+                            "properties": {
+                              "textContent": "Schedule"
+                            },
                             "events": {
                               "click": [
                                 {
@@ -338,7 +356,9 @@
                 }
               }
             ],
-            "conditions": { "each": "EVALUATE:variables.reasonings" }
+            "conditions": {
+              "each": "EVALUATE:variables.reasonings"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -351,7 +371,9 @@
                   {
                     "library": "@digipair/skill-web-font-awesome",
                     "element": "digipair-font-awesome-icon",
-                    "properties": { "name": "plus" }
+                    "properties": {
+                      "name": "plus"
+                    }
                   }
                 ],
                 "properties": {
@@ -361,12 +383,20 @@
               }
             ]
           },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Task planning" }
+            "properties": {
+              "textContent": "Task planning"
+            }
           },
           {
             "library": "web",
@@ -374,7 +404,9 @@
             "properties": {
               "textContent": "No scheduled task at the moment..."
             },
-            "conditions": { "if": "EVALUATE:count(variables.crons) <= 0" }
+            "conditions": {
+              "if": "EVALUATE:count(variables.crons) <= 0"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -387,17 +419,23 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Task" }
+                    "properties": {
+                      "textContent": "Task"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Schedule" }
+                    "properties": {
+                      "textContent": "Schedule"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "" }
+                    "properties": {
+                      "textContent": ""
+                    }
                   }
                 ]
               },
@@ -412,12 +450,16 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.reasoning}}" }
+                        "properties": {
+                          "textContent": "{{item.reasoning}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.time}}" }
+                        "properties": {
+                          "textContent": "{{item.time}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
@@ -440,7 +482,9 @@
                                     }
                                   }
                                 ],
-                                "properties": { "quiet": true },
+                                "properties": {
+                                  "quiet": true
+                                },
                                 "events": {
                                   "click": [
                                     {
@@ -487,7 +531,9 @@
                                     }
                                   }
                                 ],
-                                "properties": { "quiet": true },
+                                "properties": {
+                                  "quiet": true
+                                },
                                 "events": {
                                   "click": [
                                     {
@@ -528,7 +574,9 @@
                                     }
                                   }
                                 ],
-                                "properties": { "quiet": true },
+                                "properties": {
+                                  "quiet": true
+                                },
                                 "events": {
                                   "click": [
                                     {
@@ -557,30 +605,48 @@
                                 }
                               }
                             ],
-                            "properties": { "size": "s" }
+                            "properties": {
+                              "size": "s"
+                            }
                           }
                         ]
                       }
                     ],
-                    "conditions": { "each": "EVALUATE:variables.crons" }
+                    "conditions": {
+                      "each": "EVALUATE:variables.crons"
+                    }
                   }
                 ]
               }
             ],
-            "conditions": { "if": "EVALUATE:count(variables.crons) > 0" }
+            "conditions": {
+              "if": "EVALUATE:count(variables.crons) > 0"
+            }
           },
-          { "library": "web", "element": "br" },
-          { "library": "web", "element": "br" },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
           {
             "library": "web",
             "element": "h4",
-            "properties": { "textContent": "Tool agent network" }
+            "properties": {
+              "textContent": "Tool agent network"
+            }
           },
           {
             "library": "web",
             "element": "div",
-            "properties": { "textContent": "No tool agent associated" },
-            "conditions": { "if": "EVALUATE:count(variables.tools) <= 0" }
+            "properties": {
+              "textContent": "No tool agent associated"
+            },
+            "conditions": {
+              "if": "EVALUATE:count(variables.tools) <= 0"
+            }
           },
           {
             "library": "web",
@@ -622,7 +688,9 @@
                           {
                             "library": "@digipair/skill-web-spectrum",
                             "element": "sp-menu-item",
-                            "properties": { "textContent": "Delete" },
+                            "properties": {
+                              "textContent": "Delete"
+                            },
                             "events": {
                               "click": [
                                 {
@@ -681,7 +749,9 @@
                 }
               }
             ],
-            "conditions": { "each": "EVALUATE:variables.tools" }
+            "conditions": {
+              "each": "EVALUATE:variables.tools"
+            }
           },
           {
             "library": "@digipair/skill-web-spectrum",
@@ -694,7 +764,9 @@
                   {
                     "library": "@digipair/skill-web-font-awesome",
                     "element": "digipair-font-awesome-icon",
-                    "properties": { "name": "plus" }
+                    "properties": {
+                      "name": "plus"
+                    }
                   }
                 ],
                 "properties": {
@@ -705,12 +777,17 @@
             ]
           }
         ],
-        "properties": { "color": "light", "scale": "medium" }
+        "properties": {
+          "color": "light",
+          "scale": "medium"
+        }
       },
       {
         "library": "@digipair/skill-web-chatbot",
         "element": "digipair-chatbot",
-        "properties": { "code": "{{request.digipair}}" }
+        "properties": {
+          "code": "{{request.digipair}}"
+        }
       }
     ],
     "styleHtml": "color-scheme:light; \npadding: 60px 40px 80px 40px;",
@@ -729,7 +806,9 @@
                   {
                     "library": "@digipair/skill-editor",
                     "element": "digipair",
-                    "properties": { "digipair": "{{request.params.[0]}}" }
+                    "properties": {
+                      "digipair": "{{request.params.[0]}}"
+                    }
                   }
                 ]
               }
@@ -751,7 +830,9 @@
                   {
                     "library": "@digipair/skill-editor",
                     "element": "reasonings",
-                    "properties": { "digipair": "{{request.params.[0]}}" }
+                    "properties": {
+                      "digipair": "{{request.params.[0]}}"
+                    }
                   },
                   {
                     "library": "@digipair/skill-basic",
@@ -789,7 +870,10 @@
               "element": "executeFactory",
               "properties": {
                 "execute": [
-                  { "library": "@digipair/skill-cron", "element": "crons" },
+                  {
+                    "library": "@digipair/skill-cron",
+                    "element": "crons"
+                  },
                   {
                     "library": "@digipair/skill-basic",
                     "element": "transform",
@@ -828,7 +912,9 @@
                               {
                                 "library": "@digipair/skill-editor",
                                 "element": "digipair",
-                                "properties": { "digipair": "EVALUATE:item" }
+                                "properties": {
+                                  "digipair": "EVALUATE:item"
+                                }
                               }
                             ]
                           }
@@ -842,7 +928,9 @@
                               {
                                 "library": "@digipair/skill-editor",
                                 "element": "metadata",
-                                "properties": { "digipair": "EVALUATE:item" }
+                                "properties": {
+                                  "digipair": "EVALUATE:item"
+                                }
                               }
                             ]
                           }

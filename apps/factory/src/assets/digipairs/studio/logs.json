@@ -32,7 +32,9 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -46,7 +48,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "AI agents",
+                      "textContent": "Worker agents",
                       "href": "/studio/workers"
                     }
                   },
@@ -139,11 +141,15 @@
                     {
                       "library": "@digipair/skill-web-interact",
                       "element": "goTo",
-                      "properties": { "url": "/studio/logs/{{item}}" }
+                      "properties": {
+                        "url": "/studio/logs/{{item}}"
+                      }
                     }
                   ]
                 },
-                "conditions": { "each": "EVALUATE:variables.dates" }
+                "conditions": {
+                  "each": "EVALUATE:variables.dates"
+                }
               }
             ]
           },
@@ -166,27 +172,37 @@
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Heure" }
+                    "properties": {
+                      "textContent": "Heure"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Digipair" }
+                    "properties": {
+                      "textContent": "Digipair"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Raisonnement" }
+                    "properties": {
+                      "textContent": "Raisonnement"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Type" }
+                    "properties": {
+                      "textContent": "Type"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-table-head-cell",
-                    "properties": { "textContent": "Message" }
+                    "properties": {
+                      "textContent": "Message"
+                    }
                   }
                 ]
               },
@@ -208,32 +224,45 @@
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.digipair}}" }
+                        "properties": {
+                          "textContent": "{{item.digipair}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.reasoning}}" }
+                        "properties": {
+                          "textContent": "{{item.reasoning}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.type}}" }
+                        "properties": {
+                          "textContent": "{{item.type}}"
+                        }
                       },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
-                        "properties": { "textContent": "{{item.message}}" }
+                        "properties": {
+                          "textContent": "{{item.message}}"
+                        }
                       }
                     ],
-                    "conditions": { "each": "EVALUATE:variables.logs" }
+                    "conditions": {
+                      "each": "EVALUATE:variables.logs"
+                    }
                   }
                 ]
               }
             ]
           }
         ],
-        "properties": { "color": "light", "scale": "medium" }
+        "properties": {
+          "color": "light",
+          "scale": "medium"
+        }
       },
       {
         "library": "@digipair/skill-web-chatbot",
@@ -251,12 +280,17 @@
         "properties": {
           "url": "EVALUATE:\"/studio/logs/\" + substring(string(now()), 1, 10)"
         },
-        "conditions": { "if": "EVALUATE:count(request.params) = 0" }
+        "conditions": {
+          "if": "EVALUATE:count(request.params) = 0"
+        }
       },
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
-        "properties": { "name": "date", "value": "{{request.params.[0]}}" }
+        "properties": {
+          "name": "date",
+          "value": "{{request.params.[0]}}"
+        }
       },
       {
         "library": "@digipair/skill-basic",
@@ -280,7 +314,9 @@
                   {
                     "library": "@digipair/skill-basic",
                     "element": "transform",
-                    "properties": { "value": "EVALUATE:reverse(previous)" }
+                    "properties": {
+                      "value": "EVALUATE:reverse(previous)"
+                    }
                   }
                 ]
               }

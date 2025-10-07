@@ -47,7 +47,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "AI agents",
+                      "textContent": "Worker agents",
                       "href": "/studio/workers"
                     }
                   },
