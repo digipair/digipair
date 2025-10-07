@@ -17,20 +17,22 @@
   },
   "variables": {},
   "privates": {
-    "CLIENT_MCP": {
-      "library": "@digipair/skill-client-mcp",
-      "element": "StreamableHTTPClient",
-      "properties": {
-        "url": "<%= api %>",
-        "options": {
-          "requestInit": {
-            "headers": {
-              "Authorization": "Bearer <%= key %>"
+    "CLIENT_MCP": [
+      {
+        "library": "@digipair/skill-client-mcp",
+        "element": "StreamableHTTPClient",
+        "properties": {
+          "url": "<%= api %>",
+          "options": {
+            "requestInit": {
+              "headers": {
+                "Authorization": "Bearer <%= key %>"
+              }
             }
           }
         }
       }
-    }
+    ]
   },
   "digipair": "<%= digipair %>"
 }
