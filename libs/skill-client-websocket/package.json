@@ -25,5 +25,7 @@
   "nx": {
     "name": "skill-client-websocket"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

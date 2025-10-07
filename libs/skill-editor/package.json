@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-editor"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

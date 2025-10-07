@@ -7,9 +7,10 @@
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es2021"
+    "target": "es2022"
   },
-  "include": ["src/**/*.ts"],"exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
 
   "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
   "references": [
@@ -96,6 +97,9 @@
     },
     {
       "path": "../../libs/skill-debug/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/skill-codex/tsconfig.lib.json"
     },
     {
       "path": "../../libs/skill-canvas/tsconfig.lib.json"

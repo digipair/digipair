@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-cron"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

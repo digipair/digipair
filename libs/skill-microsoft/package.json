@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-microsoft"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

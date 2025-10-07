@@ -88,6 +88,9 @@
       "path": "../../libs/skill-debug"
     },
     {
+      "path": "../../libs/skill-codex"
+    },
+    {
       "path": "../../libs/skill-canvas"
     },
     {

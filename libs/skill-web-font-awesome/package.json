@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-web-font-awesome"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

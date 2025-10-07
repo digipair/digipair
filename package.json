@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "publish": "npx nx release -y $NPMVERSION && yarn run replace-in-file /latest/g $NPMVERSION dist/apps/factory/package.json && node tools/scripts/publish.mjs factory $NPMVERSION latest"
+    "publish": "npx nx release -y $NPMVERSION && yarn run replace-in-file /latest/g $NPMVERSION dist/apps/factory/package.json && node tools/scripts/publish.mjs factory $NPMVERSION latest",
+    "publish:local": "node tools/scripts/publish-all-local.mjs",
+    "registry-local:start": "node tools/registry/start-local-registry.js",
+    "registry-local:clean": "node tools/registry/clean-local-registry.js"
   },
   "private": true,
   "dependencies": {
@@ -128,6 +131,7 @@
     "jest-environment-node": "^29.7.0",
     "jsonc-eslint-parser": "^2.1.0",
     "lit": "^3.1.4",
+    "npm-cli-login": "^1.0.0",
     "nx": "21.2.0",
     "prettier": "^2.6.2",
     "rollup": "^4.14.0",

@@ -23,5 +23,7 @@
   "nx": {
     "name": "skill-client-sse"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-web-jsoneditor"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

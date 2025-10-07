@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-web-ocr"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

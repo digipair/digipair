@@ -26,6 +26,7 @@
     "name": "skill-canvas"
   },
   "dependencies": {
+    "@digipair/engine": "workspace:*",
     "canvas": "^3.2.0"
   }
 }

@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-logger"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

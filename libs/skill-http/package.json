@@ -25,5 +25,8 @@
   "nx": {
     "name": "skill-http"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*",
+    "form-data": "4.0.1"
+  }
 }

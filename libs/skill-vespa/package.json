@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-vespa"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

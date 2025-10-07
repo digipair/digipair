@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-mongodb"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

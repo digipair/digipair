@@ -13,5 +13,9 @@
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
-  "references": []
+  "references": [
+    {
+      "path": "../engine/tsconfig.lib.json"
+    }
+  ]
 }

@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-openai"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

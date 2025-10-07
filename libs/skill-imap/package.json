@@ -24,5 +24,9 @@
   "nx": {
     "name": "skill-imap"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*",
+    "imapflow": "^1.0.171",
+    "jsdom": "^25.0.1"
+  }
 }

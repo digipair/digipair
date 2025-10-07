@@ -10,9 +10,7 @@
   "paths": {
     "/html2pins": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Convertir du HTML en Pin's",
         "parameters": [
           {
@@ -20,18 +18,14 @@
             "summary": "HTML",
             "required": true,
             "description": "Code HTML",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "library",
             "summary": "Librarie des Pin's",
             "required": false,
             "description": "Librarie des Pin's",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "x-events": [],
@@ -54,9 +48,7 @@
     },
     "/pins2html": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Convertir des Pin's en HTML",
         "parameters": [
           {
@@ -64,9 +56,7 @@
             "summary": "Pin's",
             "required": true,
             "description": "Liste des Pin's",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "x-events": [],
@@ -87,9 +77,7 @@
     },
     "/parseHtml": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Parse un code HTML",
         "parameters": [
           {
@@ -97,9 +85,7 @@
             "summary": "HTML",
             "required": true,
             "description": "Code HTML",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "execute",
@@ -118,8 +104,6 @@
       }
     }
   },
-  "components": {
-    "schemas": {}
-  },
+  "components": { "schemas": {} },
   "x-scene-blocks": {}
 }

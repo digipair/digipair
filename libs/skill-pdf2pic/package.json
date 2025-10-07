@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-pdf2pic"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

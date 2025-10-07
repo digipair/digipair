@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-s3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

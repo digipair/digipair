@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-web-push-notification"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

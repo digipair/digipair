@@ -25,7 +25,7 @@
     "name": "skill-debug"
   },
   "dependencies": {
-    "@digipair/engine": "0.94.0-8",
-    "@digipair/skill-logger": "0.94.0-8"
+    "@digipair/engine": "workspace:*",
+    "@digipair/skill-logger": "workspace:*"
   }
 }

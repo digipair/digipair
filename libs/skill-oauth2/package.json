@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-oauth2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-web-keycloak"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

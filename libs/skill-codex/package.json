@@ -1,14 +1,31 @@
 {
   "name": "@digipair/skill-codex",
   "version": "0.0.1",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "digipair",
     "service",
     "util"
   ],
-  "dependencies": {
-    "@openai/codex": "^0.25.0"
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
+    }
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "name": "skill-codex"
+  },
+  "dependencies": {
+    "@digipair/engine": "workspace:*",
+    "@openai/codex": "^0.25.0"
+  }
 }

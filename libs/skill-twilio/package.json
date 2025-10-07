@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-twilio"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

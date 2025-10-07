@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-web-ionic"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

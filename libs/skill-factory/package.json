@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-factory"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

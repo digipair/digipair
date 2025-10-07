@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-web-spectrum"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

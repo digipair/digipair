@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-pushbullet"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

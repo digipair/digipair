@@ -10,11 +10,15 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
-    "lib": ["es2022","DOM"],
+    "lib": ["es2022", "DOM"],
     "experimentalDecorators": true,
     "useDefineForClassFields": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
-  "references": []
+  "references": [
+    {
+      "path": "../engine/tsconfig.lib.json"
+    }
+  ]
 }

@@ -24,5 +24,8 @@
   "nx": {
     "name": "skill-html"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*",
+    "jsdom": "^25.0.1"
+  }
 }

@@ -25,5 +25,7 @@
   "nx": {
     "name": "skill-basic"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

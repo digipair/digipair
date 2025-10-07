@@ -24,5 +24,7 @@
   "nx": {
     "name": "skill-tensorflow"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

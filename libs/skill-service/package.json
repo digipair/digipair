@@ -25,6 +25,7 @@
     "name": "skill-service"
   },
   "dependencies": {
+    "@digipair/engine": "workspace:*",
     "multer": "^2.0.2"
   }
 }

@@ -26,6 +26,7 @@
     "name": "skill-qrcode"
   },
   "dependencies": {
+    "@digipair/engine": "workspace:*",
     "canvas": "^3.2.0"
   }
 }

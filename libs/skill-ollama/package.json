@@ -22,7 +22,9 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "name": "skill-ollam"
+    "name": "skill-ollama"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

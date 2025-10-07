@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
+import FormDataNode from "form-data";
 
 class HttpService {
   private type: string;
@@ -89,7 +90,7 @@ class HttpService {
 
   async upload(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { path, parameters, method = 'POST', headers = {} } = params;
-    const formData = typeof window !== 'undefined' ? new FormData() : new (require('form-data'))();
+    const formData = typeof window !== 'undefined' ? new FormData() : new FormDataNode();
 
     let result: any;
 

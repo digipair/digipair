@@ -25,5 +25,7 @@
   "nx": {
     "name": "skill-yaml"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@digipair/engine": "workspace:*"
+  }
 }

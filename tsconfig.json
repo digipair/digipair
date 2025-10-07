@@ -218,6 +218,15 @@
     },
     {
       "path": "./apps/factory"
+    },
+    {
+      "path": "./libs/skill-client-mcp"
+    },
+    {
+      "path": "./libs/skill-codex"
+    },
+    {
+      "path": "./libs/skill-mcp"
     }
   ]
 }
