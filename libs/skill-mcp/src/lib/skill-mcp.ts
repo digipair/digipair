@@ -27,8 +27,8 @@ class MCPServerService {
         },
         async (params: any) => {
           return await executePinsList(
-            { ...tool.execute, params },
-            context,
+            tool.execute,
+            { context, params },
             `${context.__PATH__}.tools[${i}].execute`,
           );
         },

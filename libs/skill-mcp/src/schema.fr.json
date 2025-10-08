@@ -94,7 +94,7 @@
             "type": "array",
             "description": "Liste d'exécution PINS pour la fonctionnalité de l'outil",
             "items": {
-              "type": "object"
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
         },
