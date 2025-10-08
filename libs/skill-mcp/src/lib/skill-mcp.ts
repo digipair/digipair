@@ -42,9 +42,9 @@ class MCPServerService {
     // Start the server
     await server.connect(transport);
     await transport.handleRequest(
-      context.privates.req,
-      context.privates.res,
-      context.privates.req.body,
+      context.protected.req,
+      context.protected.res,
+      context.protected.req.body,
     );
   }
 }
