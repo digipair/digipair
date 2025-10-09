@@ -5,12 +5,6 @@
   "bin": {
     "digipair": "./bin/digipair.js"
   },
-  "main": "./src/main.js",
-  "scripts": {
-    "build": "NODE_ENV=production webpack-cli --config ./webpack.config.js",
-    "build:dev": "NODE_ENV=development webpack-cli --config ./webpack.config.js",
-    "publish:local": "node ../../tools/scripts/publish-local.mjs factory 1.0.0-local"
-  },
   "dependencies": {
     "@digipair/engine": "latest",
     "@digipair/skill-chatbot": "latest",

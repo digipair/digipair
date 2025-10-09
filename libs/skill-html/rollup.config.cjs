@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-html/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-html/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

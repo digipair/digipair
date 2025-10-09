@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-debug/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-debug/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

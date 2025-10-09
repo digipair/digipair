@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-voice-activity-detection/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-voice-activity-detection/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

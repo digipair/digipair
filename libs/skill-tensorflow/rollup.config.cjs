@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-tensorflow/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-tensorflow/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

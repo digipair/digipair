@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-smoobu/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-smoobu/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-cron/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-cron/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

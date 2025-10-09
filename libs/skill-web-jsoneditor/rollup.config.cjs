@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-jsoneditor/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-jsoneditor/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

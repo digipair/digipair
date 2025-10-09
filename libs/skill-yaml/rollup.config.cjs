@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-yaml/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-yaml/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

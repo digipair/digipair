@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-http/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-http/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-client-websocket/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-client-websocket/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

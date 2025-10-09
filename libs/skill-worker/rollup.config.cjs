@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-worker/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-worker/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

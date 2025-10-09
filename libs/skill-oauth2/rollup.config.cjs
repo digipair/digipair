@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-oauth2/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-oauth2/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

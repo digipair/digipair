@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-spectrum/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-spectrum/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

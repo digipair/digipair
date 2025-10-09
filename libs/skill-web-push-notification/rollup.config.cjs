@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-push-notification/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-push-notification/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

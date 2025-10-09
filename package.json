@@ -5,7 +5,6 @@
   "scripts": {
     "publish": "npx nx release -y $NPMVERSION && yarn run replace-in-file /latest/g $NPMVERSION dist/apps/factory/package.json && node tools/scripts/publish.mjs factory $NPMVERSION latest",
     "publish:local": "node tools/scripts/publish-all-local.mjs",
-    "build:factory": "yarn nx run factory:build && rm -f dist/digipair/yarn.lock",
     "registry-local:start": "node tools/registry/clean-local-registry.js && node tools/registry/start-local-registry.js",
     "registry-local:clean": "node tools/registry/clean-local-registry.js"
   },

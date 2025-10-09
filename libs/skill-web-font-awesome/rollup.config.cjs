@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-font-awesome/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-font-awesome/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

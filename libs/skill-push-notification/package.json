@@ -1,9 +1,9 @@
 {
   "name": "@digipair/skill-push-notification",
   "version": "1.0.1-local",
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js",
-  "types": "./index.d.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "digipair",
     "service",
@@ -11,16 +11,17 @@
   ],
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./index.esm.js",
-      "default": "./index.cjs.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
     }
   },
   "files": [
-    "*.js",
-    "*.d.ts",
-    "*.json",
-    "!**/*.tsbuildinfo"
+    "dist",
+    "README.md",
+    "schema.json",
+    "schema.fr.json",
+    "package.json"
   ],
   "nx": {
     "name": "skill-push-notification"

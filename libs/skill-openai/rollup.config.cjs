@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-openai/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-openai/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

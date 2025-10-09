@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-ocr/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-ocr/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

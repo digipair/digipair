@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-exif/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-exif/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

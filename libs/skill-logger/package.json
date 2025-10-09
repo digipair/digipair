@@ -17,10 +17,11 @@
     }
   },
   "files": [
-    "*.js",
-    "*.d.ts",
-    "*.json",
-    "!**/*.tsbuildinfo"
+    "dist",
+    "README.md",
+    "schema.json",
+    "schema.fr.json",
+    "package.json"
   ],
   "nx": {
     "name": "skill-logger"

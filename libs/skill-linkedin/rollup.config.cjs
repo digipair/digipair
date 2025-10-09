@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-linkedin/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-linkedin/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

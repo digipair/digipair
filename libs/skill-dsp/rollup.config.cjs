@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-dsp/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-dsp/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-docxtemplater/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-docxtemplater/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

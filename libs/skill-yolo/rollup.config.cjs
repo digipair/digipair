@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-yolo/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-yolo/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

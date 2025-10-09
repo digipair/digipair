@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-webcam/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-webcam/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

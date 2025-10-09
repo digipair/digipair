@@ -230,10 +230,10 @@ function main() {
     console.log("⚙️  No output path found, attempting build...");
     const defaultOutput = path.join(ROOT, "dist", "libs", name);
 
-    if (!buildIfNeeded(name, defaultOutput)) {
-      console.error(`❌ Could not find or create build output for "${name}"`);
-      process.exit(1);
-    }
+    // if (!buildIfNeeded(name, defaultOutput)) {
+    //   console.error(`❌ Could not find or create build output for "${name}"`);
+    //   process.exit(1);
+    // }
 
     outputPath = findOutputPath(project, name);
     invariant(outputPath, `Build completed but output still not found for "${name}"`);

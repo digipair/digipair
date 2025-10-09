@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-canvas/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-canvas/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-nuki/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-nuki/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

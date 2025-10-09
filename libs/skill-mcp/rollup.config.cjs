@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-mcp/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-mcp/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

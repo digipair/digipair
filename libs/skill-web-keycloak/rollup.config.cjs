@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-keycloak/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-keycloak/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

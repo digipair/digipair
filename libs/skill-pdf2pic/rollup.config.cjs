@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-pdf2pic/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-pdf2pic/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

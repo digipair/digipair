@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-factory/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-factory/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

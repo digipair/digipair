@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-sse/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-sse/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

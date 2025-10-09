@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-twilio/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-twilio/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

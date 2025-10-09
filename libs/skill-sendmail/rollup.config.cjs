@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-sendmail/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-sendmail/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

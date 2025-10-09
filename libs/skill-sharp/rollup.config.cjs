@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-sharp/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-sharp/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

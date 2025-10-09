@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-mongodb/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-mongodb/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

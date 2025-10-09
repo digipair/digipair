@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-ionic/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-ionic/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

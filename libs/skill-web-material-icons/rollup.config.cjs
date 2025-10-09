@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-material-icons/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-material-icons/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-microsoft/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-microsoft/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

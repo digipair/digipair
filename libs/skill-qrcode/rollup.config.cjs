@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-qrcode/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-qrcode/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-imap/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-imap/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

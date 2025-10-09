@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-pushbullet/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-pushbullet/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

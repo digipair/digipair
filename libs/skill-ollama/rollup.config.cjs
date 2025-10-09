@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-ollama/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-ollama/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

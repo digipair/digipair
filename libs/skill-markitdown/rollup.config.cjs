@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-markitdown/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-markitdown/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

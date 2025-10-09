@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-chatbot/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-chatbot/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

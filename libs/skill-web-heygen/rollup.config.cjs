@@ -14,12 +14,7 @@ module.exports = withNx(
         input: 'libs/skill-web-heygen/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/skill-web-heygen/',
-        glob: 'package.json',
-        output: '.',
-      },
+      }
     ],
   },
   {

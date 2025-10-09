@@ -7,7 +7,7 @@ module.exports = {
   mode: process.env.NODE_ENV || 'production',
 
   output: {
-    path: join(__dirname, '../../dist/digipair'), // ✅ le nom final du dossier
+    path: join(__dirname, '../../dist/apps/factory'),
     clean: true,
   },
 
