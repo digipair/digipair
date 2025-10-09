@@ -13,6 +13,9 @@ import { readFileSync, writeFileSync } from 'fs';
 import devkit from '@nx/devkit';
 const { readCachedProjectGraph } = devkit;
 
+const NPM_REGISTRY = 'https://registry.npmjs.org/';
+const LOCAL_REGISTRY = 'http://localhost:4873/';
+
 function invariant(condition, message) {
   if (!condition) {
     console.error(message);
@@ -22,7 +25,7 @@ function invariant(condition, message) {
 
 // Executing publish script: node path/to/publish.mjs {name} --version {version} --tag {tag}
 // Default "tag" to "next" so we won't publish the "latest" tag by accident.
-const [, , name, version, tag = 'next'] = process.argv;
+const [, , name, version, tag = 'next', target = 'npm'] = process.argv;
 
 // A simple SemVer validation to validate the version
 const validVersion = /^\d+\.\d+\.\d+(-\w+\.\d+)?/;
@@ -57,5 +60,8 @@ try {
   console.error(`Error reading package.json file from library build output.`);
 }
 
+// Manage case local registry
+const registry = target === 'local' ? ` --registry ${LOCAL_REGISTRY}` : '';
+console.log('registry : ' + registry)
 // Execute "npm publish" to publish
-execSync(`npm publish --access public --tag ${tag}`);
+execSync(`npm publish --access public --tag ${tag} ${registry}`);

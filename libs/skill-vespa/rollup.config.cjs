@@ -1,4 +1,5 @@
 const { withNx } = require('@nx/rollup/with-nx');
+const cleanupPlugin = require("../../tools/rollup-plugins/cleanup");
 
 module.exports = withNx(
   {
@@ -13,15 +14,11 @@ module.exports = withNx(
         input: 'libs/skill-vespa/src/',
         glob: '*.json',
         output: '.'
-      },
-      {
-        input: "libs/skill-vespa/",
-        glob: "package.json",
-        output: "."
       }
     ]
   },
   {
+    plugins: [cleanupPlugin()],
     // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
     // e.g.
     // output: { sourcemap: true },

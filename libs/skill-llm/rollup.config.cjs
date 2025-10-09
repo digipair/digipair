@@ -13,11 +13,6 @@ module.exports = withNx({
         input: 'libs/skill-llm/src/',
         glob: '*.json',
         output: '.'
-      },
-      {
-        input: "libs/skill-llm/",
-        glob: "package.json",
-        output: "."
       }
     ]
   },

@@ -4,12 +4,13 @@
     "outDir": "dist",
     "types": ["node"],
     "rootDir": "src",
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true
+    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2022"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
   "references": [
     {
       "path": "../../libs/skill-yaml/tsconfig.lib.json"

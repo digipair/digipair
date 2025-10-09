@@ -48,7 +48,7 @@ async function bootstrap() {
     Logger.log(`-> digipairs folder exists: ${digipairsDir}`);
   }
 
-  const assetsDir = `${__dirname}/app/assets`;
+  const assetsDir = `${__dirname}/src/app/assets`;
   const digipairsFiles = readdirSync(digipairsDir);
 
   Logger.log(

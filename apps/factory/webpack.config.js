@@ -3,16 +3,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { join } = require('path');
 
 module.exports = {
-  target: 'node',
-  mode: process.env.NODE_ENV || 'production',
-
   output: {
     path: join(__dirname, '../../dist/apps/factory'),
-    clean: true,
   },
-
   plugins: [
     new NxAppWebpackPlugin({
+      target: 'node',
       compiler: 'tsc',
       main: './src/main.ts',
       tsConfig: './tsconfig.app.json',
@@ -21,7 +17,6 @@ module.exports = {
       outputHashing: 'none',
       generatePackageJson: true,
     }),
-
     new CopyWebpackPlugin({
       patterns: [
         { from: 'bin', to: 'bin' },

@@ -13,11 +13,6 @@ module.exports = withNx({
         input: 'libs/skill-web/src/',
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: "libs/skill-web/",
-        glob: "package.json",
-        output: "."
       }
     ]
   },
