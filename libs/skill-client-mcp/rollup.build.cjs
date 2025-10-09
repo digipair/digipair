@@ -5,7 +5,15 @@ const path = require('path');
 
 function getRollupOptions(options) {
   const extraGlobals = {};
-  const externals = options.output.format === 'cjs' ? ['@modelcontextprotocol/sdk'] : [];
+  const externals =
+    options.output.format === 'cjs'
+      ? [
+          '@digipair/engine',
+          '@modelcontextprotocol/sdk/client/index.js',
+          '@modelcontextprotocol/sdk/client/streamableHttp.js',
+          '@modelcontextprotocol/sdk/client/stdio.js',
+        ]
+      : [];
 
   const value = {
     ...options,
