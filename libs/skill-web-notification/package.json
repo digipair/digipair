@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-notification",
-  "version": "0.0.1",
+  "version": "1.0.0-local",
   "main": "./index.cjs.js",
   "module": "./index.esm.js",
   "types": "./index.d.ts",
