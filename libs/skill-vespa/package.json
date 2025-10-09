@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-vespa",
-  "version": "1.0.4-local",
+  "version": "1.0.5-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -14,12 +14,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
       "default": "./dist/index.cjs.js"
-    }
+    },
+    "./schema.json": "./dist/schema.json",
+    "./schema.fr.json": "./dist/schema.fr.json"
   },
   "files": [
-    "*.js",
-    "*.d.ts",
-    "*.json"
+    "dist",
+    "README.md",
+    "package.json"
   ],
   "nx": {
     "name": "skill-vespa"

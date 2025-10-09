@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-tool",
-  "version": "1.0.4-local",
+  "version": "1.0.5-local",
   "keywords": [
     "digipair",
     "service"
@@ -13,13 +13,13 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
       "default": "./dist/index.cjs.js"
-    }
+    },
+    "./schema.json": "./dist/schema.json",
+    "./schema.fr.json": "./dist/schema.fr.json"
   },
   "files": [
     "dist",
     "README.md",
-    "schema.json",
-    "schema.fr.json",
     "package.json"
   ],
   "nx": {
