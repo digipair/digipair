@@ -20,10 +20,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'bin', to: 'bin' },
-        { from: './src/assets', to: 'src/app/assets', noErrorOnMissing: true },
-        { from: 'src/app/app.controller.ts', to: 'src/app/app.controller.ts' },
-        { from: 'src/app/app.service.ts', to: 'src/app/app.service.ts' },
-        { from: 'src/app/app.module.ts', to: 'src/app/app.module.ts' },
+        { from: './src/assets', to: 'src/app/assets', noErrorOnMissing: true }
       ],
     }),
   ],
