@@ -1,6 +1,6 @@
 {
   "name": "@digipair/engine",
-  "version": "1.0.0-local",
+  "version": "1.0.1-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -18,9 +18,11 @@
     }
   },
   "files": [
-    "*.js",
-    "*.d.ts",
-    "*.json"
+    "dist",
+    "README.md",
+    "schema.json",
+    "schema.fr.json",
+    "package.json"
   ],
   "nx": {
     "name": "engine"
