@@ -10,7 +10,6 @@
     "util"
   ],
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
@@ -18,13 +17,13 @@
     }
   },
   "files": [
-    "dist",
+    "*.js",
+    "*.d.ts",
+    "*.json",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
     "name": "skill-logger"
   },
-  "dependencies": {
-    "@digipair/engine": "workspace:*"
-  }
+  "dependencies": {}
 }

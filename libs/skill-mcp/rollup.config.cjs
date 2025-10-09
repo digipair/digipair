@@ -1,4 +1,5 @@
 const { withNx } = require('@nx/rollup/with-nx');
+const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
 
 module.exports = withNx(
   {
@@ -7,17 +8,24 @@ module.exports = withNx(
     tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
     format: ['esm', 'cjs'],
+    external: [/@digipair\//],
     assets: [
       {
         input: 'libs/skill-mcp/src/',
         glob: '*.json',
-        output: '.'
-      }
-    ]
+        output: '.',
+      },
+      {
+        input: 'libs/skill-mcp/',
+        glob: 'package.json',
+        output: '.',
+      },
+    ],
   },
   {
+    plugins: [cleanupPlugin()],
     // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
     // e.g.
     // output: { sourcemap: true },
-  }
+  },
 );

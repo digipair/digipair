@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
-    "lib": ["es2022", "DOM"]
+
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],

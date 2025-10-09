@@ -1,9 +1,15 @@
 {
   "name": "digipair",
-  "version": "0.94.0-5",
+  "version": "0.0.1",
   "private": false,
   "bin": {
     "digipair": "./bin/digipair.js"
+  },
+  "main": "./src/main.js",
+  "scripts": {
+    "build": "NODE_ENV=production webpack-cli --config ./webpack.config.js",
+    "build:dev": "NODE_ENV=development webpack-cli --config ./webpack.config.js",
+    "publish:local": "node ../../tools/scripts/publish-local.mjs factory 1.0.0-local"
   },
   "dependencies": {
     "@digipair/engine": "latest",
@@ -40,47 +46,17 @@
     "@digipair/skill-web-spectrum": "latest",
     "@digipair/skill-web-interact": "latest",
     "@digipair/skill-web-font-awesome": "latest",
-    "@digipair/skill-yaml": "latest"
+    "@digipair/skill-yaml": "latest",
+    "tslib": "^2.6.3",
+    "@nestjs/common": "^10.3.9",
+    "@nestjs/core": "^10.3.9",
+    "@nestjs/platform-express": "^10.3.9",
+    "@nestjs/serve-static": "^4.0.2",
+    "reflect-metadata": "^0.2.2",
+    "blockly": "^11.1.1",
+    "toastify-js": "1.12.0"
   },
   "nx": {
-    "name": "factory",
-    "targets": {
-      "build": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "webpack-cli build",
-          "args": [
-            "node-env=production"
-          ]
-        },
-        "configurations": {
-          "development": {
-            "args": [
-              "node-env=development"
-            ]
-          }
-        }
-      },
-      "serve": {
-        "continuous": true,
-        "executor": "@nx/js:node",
-        "defaultConfiguration": "development",
-        "dependsOn": [
-          "build"
-        ],
-        "options": {
-          "buildTarget": "factory:build",
-          "runBuildTargetDependencies": false
-        },
-        "configurations": {
-          "development": {
-            "buildTarget": "factory:build:development"
-          },
-          "production": {
-            "buildTarget": "factory:build:production"
-          }
-        }
-      }
-    }
+    "name": "factory"
   }
 }

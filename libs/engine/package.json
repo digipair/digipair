@@ -11,7 +11,6 @@
     "util"
   ],
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
@@ -19,8 +18,9 @@
     }
   },
   "files": [
-    "dist",
-    "!**/*.tsbuildinfo"
+    "*.js",
+    "*.d.ts",
+    "*.json"
   ],
   "nx": {
     "name": "engine"

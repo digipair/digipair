@@ -7,11 +7,17 @@ module.exports = withNx(
     tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
     format: ['esm', "cjs"],
+    external: [/@digipair\//],
     assets: [
       {
         input: 'libs/skill-vespa/src/',
         glob: '*.json',
         output: '.'
+      },
+      {
+        input: "libs/skill-vespa/",
+        glob: "package.json",
+        output: "."
       }
     ]
   },

@@ -35,7 +35,6 @@ function waitForVerdaccio(timeout = 10000) {
 async function main() {
   console.log("🚀 Lancement de Verdaccio...");
 
-  // Sauvegarde de l'ancien .npmrc si présent
   let backupExists = false;
   if (fs.existsSync(NPMRC_PATH)) {
     fs.renameSync(NPMRC_PATH, `${NPMRC_PATH}.backup`);

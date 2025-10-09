@@ -11,8 +11,26 @@
 import { execSync } from "child_process";
 import { readFileSync, writeFileSync, existsSync, copyFileSync, readdirSync } from "fs";
 import path from "path";
+import { fileURLToPath } from 'url';
 import devkit from "@nx/devkit";
+
 const { readCachedProjectGraph } = devkit;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, '../..');
+
+const VERDACCIO_REGISTRY = "http://localhost:4873";
+
+// 🗺️ Mapping des noms de projets Nx vers les noms de packages/dossiers
+const PROJECT_MAPPINGS = {
+  'factory': { packageName: 'digipair', outputFolder: 'digipair' }
+};
+
+function getProjectMapping(projectName) {
+  return PROJECT_MAPPINGS[projectName] || {
+    packageName: projectName,
+    outputFolder: projectName
+  };
+}
 
 function invariant(condition, message) {
   if (!condition) {
@@ -21,105 +39,219 @@ function invariant(condition, message) {
   }
 }
 
-// 🧩 Fonction utilitaire pour remplacer les dépendances "workspace:*"
-function replaceWorkspaceDeps(deps, version) {
+// 🧩 Fonction utilitaire pour remplacer les dépendances internes
+function replaceWorkspaceDeps(deps, version, projectName) {
   if (!deps) return deps;
   const newDeps = {};
+  let hasChanges = false;
+
   for (const [dep, val] of Object.entries(deps)) {
-    if (val.startsWith("workspace:")) {
-      newDeps[dep] = version;
-      console.log(`🔄 Replaced ${dep}: "workspace:*" → "${version}"`);
-    } else if (dep.startsWith("@digipair/")) {
-      // Par précaution, on force la même version pour tous les @digipair/*
-      newDeps[dep] = version;
-      console.log(`🔄 Normalized ${dep} to version ${version}`);
-    } else {
+    // Cas 1: Dépendances @digipair/* (skills, engine, etc.)
+    if (dep.startsWith("@digipair/")) {
+      // Remplace :latest, :next, ou toute version par la version cible
+      // if (val === "latest" || val === "next" || val.includes(":")) {
+      //   newDeps[dep] = version;
+      //   console.log(`   🔄 ${dep}: "${val}" → "${version}"`);
+      //   hasChanges = true;
+      // } else {
+        newDeps[dep] = version;
+        console.log(`   🔄 ${dep}: "${val}" → "${version}"`);
+        hasChanges = true;
+      // }
+    }
+    // Cas 2: Dépendances apss/factory avec @digipair/skill-xxx
+    // else if (dep.startsWith("@digipair/skill-")) {
+    //   newDeps[dep] = version;
+    //   console.log(`   🔄 ${dep}: "${val}" → "${version}"`);
+    //   hasChanges = true;
+    // }
+    // Cas 3: Autres dépendances - on garde tel quel
+    else {
       newDeps[dep] = val;
     }
   }
+
+  if (!hasChanges) {
+    console.log(`   ℹ️  No @digipair dependencies to update`);
+  }
+
   return newDeps;
 }
 
-// Arguments
-const [, , name, version, tag = "next"] = process.argv;
-const validVersion = /^\d+\.\d+\.\d+(-[\w.]+)?$/;
+// 🔍 Trouver le bon outputPath
+function findOutputPath(project, name) {
+  const candidates = [
+    // 1. Chemin configuré dans project.json
+    project.data?.targets?.build?.options?.outputPath,
 
-invariant(name, "Project name is required");
-invariant(version && validVersion.test(version), `Invalid version: ${version}`);
+    // 2. Apps avec webpack custom (ex: factory → dist/digipair)
+    path.join(ROOT, "dist", name),
 
-// Récupère le graph NX
-const graph = readCachedProjectGraph();
-const project = graph.nodes[name];
-invariant(project, `Project "${name}" not found in workspace`);
+    // 3. Cas spécifique factory
+    name === 'factory' ? path.join(ROOT, "dist", "digipair") : null,
 
-// Détecte le dossier de sortie
-let outputPath =
-  project.data?.targets?.build?.options?.outputPath ||
-  path.join("dist", "libs", name);
+    // 4. Libs standard (ex: skill-xxx → dist/libs/skill-xxx)
+    path.join(ROOT, "dist", "libs", name),
 
-// Chemin alternatif pour builds “non standard”
-const altPath = path.join(project.data.root, "dist");
+    // 5. Build dans le dossier du projet
+    path.join(ROOT, project.data.root, "dist"),
+  ];
 
-if (!existsSync(outputPath) && existsSync(altPath)) {
-  console.log(`⚙️ Using alternate output path: ${altPath}`);
-  outputPath = altPath;
-}
-
-// Build automatique si nécessaire
-if (!existsSync(outputPath)) {
-  console.log(`⚠️ Output path not found for "${name}". Running build...`);
-  execSync(`yarn nx build ${name} --with-deps`, { stdio: "inherit" });
-  if (!existsSync(outputPath) && existsSync(altPath)) {
-    console.log(`✅ Found build output after build: ${altPath}`);
-    outputPath = altPath;
+  for (const candidate of candidates) {
+    if (candidate && existsSync(candidate)) {
+      console.log(`   📂 Found output: ${candidate}`);
+      return candidate;
+    }
   }
-  invariant(existsSync(outputPath), `❌ Build output not found for "${name}" even after build`);
+
+  return null;
 }
 
-// Copier le package.json original dans dist
-const originalPkg = path.join(project.data.root, "package.json");
-const builtPkg = path.join(outputPath, "package.json");
-
-if (existsSync(originalPkg)) {
-  console.log(`📄 Copying package.json from ${originalPkg} to ${builtPkg}`);
-  copyFileSync(originalPkg, builtPkg);
-} else {
-  console.warn(`⚠️ Original package.json not found at ${originalPkg}`);
-}
-
-// Mise à jour du package.json
-try {
-  const pkgJson = JSON.parse(readFileSync(builtPkg, "utf-8"));
-  pkgJson.version = version;
-  pkgJson.private = false; // <- important pour npm publish
-  if (!pkgJson.name?.startsWith("@digipair/")) {
-    pkgJson.name = `@digipair/${name}`;
+// 🔨 Build le projet si nécessaire
+function buildIfNeeded(name, outputPath) {
+  if (existsSync(outputPath)) {
+    console.log(`✅ Build output already exists: ${outputPath}`);
+    return true;
   }
-  // Mise à jour des dépendances locales
-  pkgJson.dependencies = replaceWorkspaceDeps(pkgJson.dependencies, version);
-  pkgJson.peerDependencies = replaceWorkspaceDeps(pkgJson.peerDependencies, version);
-  pkgJson.devDependencies = replaceWorkspaceDeps(pkgJson.devDependencies, version);
 
-  writeFileSync(builtPkg, JSON.stringify(pkgJson, null, 2));
-  console.log(`✅ Updated ${name} package.json to version ${version}`);
-} catch (e) {
-  console.error(`⚠️ Could not update package.json in ${builtPkg}`);
-  console.error(e);
-  process.exit(1);
+  console.log(`⚠️  Output path not found. Running build for "${name}"...`);
+  try {
+    execSync(`yarn nx build ${name}`, {
+      stdio: "inherit",
+      cwd: ROOT
+    });
+    return existsSync(outputPath);
+  } catch (error) {
+    console.error(`❌ Build failed for "${name}"`);
+    return false;
+  }
 }
 
-// Vérification finale avant publication
-console.log(`📦 Publishing from directory: ${outputPath}`);
-console.log(readdirSync(outputPath));
+// 📝 Mise à jour du package.json
+function updatePackageJson(pkgPath, projectName, version) {
+  try {
+    if (!existsSync(pkgPath)) {
+      console.error(`❌ package.json not found at ${pkgPath}`);
+      return false;
+    }
 
-// Publication vers Verdaccio
-try {
-  execSync(`npm publish --registry http://localhost:4873 --tag ${tag}`, {
-    stdio: "inherit",
-    cwd: outputPath
-  });
-  console.log(`✅ Successfully published ${name}@${version}`);
-} catch (e) {
-  console.error("❌ Publish failed");
-  process.exit(1);
+    const mapping = getProjectMapping(projectName);
+    const packageName = mapping.packageName;
+
+    const pkgJson = JSON.parse(readFileSync(pkgPath, "utf-8"));
+
+    // Mise à jour des champs principaux
+    pkgJson.version = version;
+    pkgJson.private = false; // Important pour npm publish
+
+    // Utiliser le nom mappé
+    // if (!pkgJson.name?.startsWith("@digipair/")) {
+    //   pkgJson.name = `@digipair/${packageName}`;
+    // }
+
+    // Mise à jour des dépendances internes @digipair/*
+    // Ceci normalise toutes les dépendances @digipair/* à la même version
+    console.log(`\n   📦 Updating dependencies...`);
+    pkgJson.dependencies = replaceWorkspaceDeps(pkgJson.dependencies, version, packageName);
+    pkgJson.peerDependencies = replaceWorkspaceDeps(pkgJson.peerDependencies, version, packageName);
+    pkgJson.devDependencies = replaceWorkspaceDeps(pkgJson.devDependencies, version, packageName);
+
+    writeFileSync(pkgPath, JSON.stringify(pkgJson, null, 2));
+    console.log(`✅ Updated package.json: ${pkgJson.name}@${version}`);
+    return true;
+  } catch (error) {
+    console.error(`❌ Failed to update package.json at ${pkgPath}`);
+    console.error(error.message);
+    return false;
+  }
 }
+
+// 📦 Publication vers Verdaccio
+function publishToVerdaccio(outputPath, name, version, tag) {
+  try {
+    console.log(`📦 Publishing from: ${outputPath}`);
+    console.log(`📄 Contents:`);
+    const files = readdirSync(outputPath);
+    files.forEach(f => console.log(`   - ${f}`));
+
+    execSync(
+      `npm publish --registry ${VERDACCIO_REGISTRY} --tag ${tag}`,
+      {
+        stdio: "inherit",
+        cwd: outputPath
+      }
+    );
+
+    console.log(`✅ Successfully published ${name}@${version}`);
+    console.log(`🔗 ${VERDACCIO_REGISTRY}/-/web/detail/@digipair/${name}\n`);
+    return true;
+  } catch (error) {
+    console.error(`❌ Publish failed for ${name}@${version}`);
+    console.error(error.message);
+    return false;
+  }
+}
+
+// 🚀 Main
+function main() {
+  // Arguments
+  const [, , name, version, tag = "next"] = process.argv;
+  const validVersion = /^\d+\.\d+\.\d+(-[\w.]+)?$/;
+
+  invariant(name, "Project name is required. Usage: publish-local.mjs <name> <version> [tag]");
+  invariant(
+    version && validVersion.test(version),
+    `Invalid version format: ${version}. Expected: X.Y.Z or X.Y.Z-suffix`
+  );
+
+  console.log("\n" + "━".repeat(60));
+  console.log(`📦 Publishing ${name}@${version} (tag: ${tag})`);
+  console.log("━".repeat(60));
+
+  // Récupère le graph NX
+  let graph;
+  try {
+    graph = readCachedProjectGraph();
+  } catch (error) {
+    console.error("❌ Failed to read Nx project graph");
+    console.error("   Make sure you're in the workspace root");
+    process.exit(1);
+  }
+
+  const project = graph.nodes[name];
+  invariant(project, `Project "${name}" not found in workspace`);
+
+  console.log(`📁 Project root: ${project.data.root}`);
+
+  // Trouve le chemin de sortie
+  let outputPath = findOutputPath(project, name);
+
+  if (!outputPath) {
+    console.log("⚙️  No output path found, attempting build...");
+    const defaultOutput = path.join(ROOT, "dist", "libs", name);
+
+    if (!buildIfNeeded(name, defaultOutput)) {
+      console.error(`❌ Could not find or create build output for "${name}"`);
+      process.exit(1);
+    }
+
+    outputPath = findOutputPath(project, name);
+    invariant(outputPath, `Build completed but output still not found for "${name}"`);
+  }
+
+  console.log(`📂 Output path: ${outputPath}`);
+
+  // Mise à jour du package.json
+  const pkgPath = path.join(outputPath, "package.json");
+  if (!updatePackageJson(pkgPath, name, version)) {
+    process.exit(1);
+  }
+
+  // Publication
+  if (!publishToVerdaccio(outputPath, name, version, tag)) {
+    process.exit(1);
+  }
+}
+
+// Execute
+main();

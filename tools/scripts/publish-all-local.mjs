@@ -37,7 +37,7 @@ function getSkillProjects() {
 
 (async () => {
   try {
-    console.log("🚀 Publishing all Digipair local packages to Verdaccio...");
+    console.log("🚀 Publishing all Digipair local packages to local Verdaccio...");
     console.log(`   Version: ${VERSION}`);
     console.log(`   Tag: ${TAG}\n`);
 
@@ -52,12 +52,18 @@ function getSkillProjects() {
       console.log("⚠️ Aucun skill-* trouvé dans ./libs");
       process.exit(0);
     }
+    run(`yarn nx run-many --target=build --projects=skill-* --with-deps`)
 
     for (const skill of skills) {
       console.log(`\n🧩 Building & publishing ${skill}...`);
-      run(`yarn nx build ${skill} --with-deps`);
+      // run(`yarn nx build ${skill} --with-deps`);
       run(`node tools/scripts/publish-local.mjs ${skill} ${VERSION} ${TAG}`);
     }
+
+    // 1️⃣ Build & Publish apps factory, ie digipair
+    console.log("🧱 Building & publishing digipair");
+    run(`yarn nx build factory`);
+    run(`node tools/scripts/publish-local.mjs factory ${VERSION} ${TAG}`);
 
     console.log("\n✅ Tous les packages ont été publiés avec succès !");
     console.log("📦 Verdaccio registry: http://localhost:4873\n");

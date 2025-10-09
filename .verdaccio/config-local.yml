@@ -23,15 +23,20 @@ packages:
     unpublish: $all
     proxy: false
 
+  'digipair*':
+    access: $all
+    publish: $all
+    unpublish: $all
+    proxy: false
+
   '**':
     # give all users (including non-authenticated users) full access
     # because it is a local registry
     access: $all
     publish: $all
     unpublish: $all
-
     # if package is not available locally, proxy requests to npm registry
-    proxy: local
+    proxy: npmjs
 
 # log settings
 log:
@@ -41,3 +46,4 @@ log:
 
 publish:
   allow_offline: true # set offline to true to allow publish offline
+
