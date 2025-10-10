@@ -1,0 +1,88 @@
+{
+  "description": "Exposition of the agent via the MCP (Model Context Protocol)",
+  "summary": "Model Context Protocol",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "remote",
+          "execute": [
+            {
+              "library": "@digipair/skill-common",
+              "element": "metadata",
+              "properties": { "digipair": "EVALUATE: request.digipair" }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": { "value": "EVALUATE: previous.remote" }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-factory",
+              "element": "stop",
+              "properties": { "value": 405 }
+            }
+          ]
+        },
+        "conditions": { "if": "EVALUATE: variables.remote != true" }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "setVariable",
+              "properties": {
+                "name": "tools",
+                "execute": [
+                  {
+                    "library": "@digipair/skill-factory",
+                    "element": "start",
+                    "properties": { "reasoning": "schema.json" }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": {
+                        "name": "EVALUATE: substring(item.key, 2)",
+                        "description": "EVALUATE: item.value.post.description",
+                        "title": "EVALUATE: item.value.post.summary",
+                        "inputSchema": "EVALUATE: context(\n  for parameter in item.value.post.parameters return \n    { key: parameter.name, value: parameter.schema }\n)",
+                        "execute": "EVALUATE:  [\n  {\n    \"library\": \"@digipair/skill-factory\",\n    \"element\": \"start\",\n    \"properties\": {\n      \"reasoning\": substring(item.key, 2),\n      \"body\": \"EVALUATE: params\"\n    }\n  },\n  {\n    \"library\": \"@digipair/skill-basic\",\n    \"element\": \"transform\",\n    \"properties\": {\n      \"value\": \"EVALUATE: { content: [{ type: \\\"text\\\", text: JSONstringify(if previous != null then previous else {}) }], structuredContent: previous }\"\n    }\n  }\n]"
+                      }
+                    },
+                    "conditions": { "each": "EVALUATE: get entries(previous.paths)" }
+                  }
+                ]
+              }
+            },
+            {
+              "library": "@digipair/skill-mcp",
+              "element": "createServer",
+              "properties": { "tools": "EVALUATE: variables.tools" }
+            },
+            { "library": "@digipair/skill-factory", "element": "keepAlive" }
+          ]
+        },
+        "conditions": { "if": "EVALUATE: variables.remote = true" }
+      }
+    ]
+  },
+  "pins": []
+}
