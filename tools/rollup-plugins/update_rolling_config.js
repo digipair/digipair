@@ -2,11 +2,19 @@ const fs = require('fs');
 const path = require('path');
 
 // Liste des skills à exclure
-const EXCLUDED_SKILLS = ['skill-temporal', 'skill-llm', 'skill-vespa', 'skill-web'];
+const EXCLUDED_SKILLS = [];
 
 // Template de configuration rollup
 const generateRollupConfig = (skillName) => `const { withNx } = require('@nx/rollup/with-nx');
+const { join } = require('path');
 const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
+const pkg = require('./package.json');
+
+const externals = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+  /@digipair\\//
+];
 
 module.exports = withNx(
   {
@@ -15,19 +23,14 @@ module.exports = withNx(
     tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
     format: ['esm', 'cjs'],
-    external: [/@digipair\\//],
+    external: externals,
     assets: [
       {
-        input: 'libs/${skillName}/src/',
+        input: join(__dirname, 'src'),
         glob: '*.json',
         output: '.',
-      },
-      {
-        input: 'libs/${skillName}/',
-        glob: 'package.json',
-        output: '.',
-      },
-    ],
+      }
+    ]
   },
   {
     plugins: [cleanupPlugin()],

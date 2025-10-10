@@ -1,16 +1,25 @@
-const {withNx} = require('@nx/rollup/with-nx');
-const cleanupPlugin = require("../../tools/rollup-plugins/cleanup");
+const { withNx } = require('@nx/rollup/with-nx');
+const { join } = require('path');
+const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
+const pkg = require('./package.json');
 
-module.exports = withNx({
+const externals = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+  /@digipair\//
+];
+
+module.exports = withNx(
+  {
     main: './src/index.ts',
     outputPath: './dist',
     tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
     format: ['esm', 'cjs'],
-    external: [/@digipair\//, 'fs', 'path', 'vm', 'url', 'jsdom'],
+    external: externals,
     assets: [
       {
-        input: 'libs/skill-web/src/',
+        input: join(__dirname, 'src'),
         glob: '*.json',
         output: '.',
       }
@@ -20,6 +29,6 @@ module.exports = withNx({
     plugins: [cleanupPlugin()],
     // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
     // e.g.
-    output: {sourcemap: true},
-  }
+    // output: { sourcemap: true },
+  },
 );

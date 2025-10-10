@@ -9,8 +9,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"],
-
+    "types": ["node"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],

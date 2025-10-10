@@ -1,5 +1,13 @@
 const { withNx } = require('@nx/rollup/with-nx');
+const { join } = require('path');
 const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
+const pkg = require('./package.json');
+
+const externals = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+  /@digipair\//
+];
 
 module.exports = withNx(
   {
@@ -8,14 +16,14 @@ module.exports = withNx(
     tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
     format: ['esm', 'cjs'],
-    external: [/@digipair\//],
+    external: externals,
     assets: [
       {
-        input: 'libs/skill-s3/src/',
+        input: join(__dirname, 'src'),
         glob: '*.json',
         output: '.',
       }
-    ],
+    ]
   },
   {
     plugins: [cleanupPlugin()],

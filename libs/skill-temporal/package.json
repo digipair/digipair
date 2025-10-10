@@ -45,7 +45,7 @@
               "input": "libs/skill-temporal",
               "glob": "index.d.ts",
               "output": "."
-            }
+            }.
           ]
         }
       }

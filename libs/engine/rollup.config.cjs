@@ -1,6 +1,6 @@
 const { withNx } = require('@nx/rollup/with-nx');
 const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
-
+const { join } = require('path');
 
 module.exports = withNx(
   {
@@ -8,12 +8,12 @@ module.exports = withNx(
     outputPath: './dist',
     tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
-    format: ['esm', "cjs"],
+    format: ['esm', 'cjs'],
     assets: [
       {
-        input: 'libs/engine/src/',
+        input: join(__dirname, 'src'),
         glob: '*.json',
-        output: '.'
+        output: '.',
       }
     ]
   },
@@ -22,5 +22,5 @@ module.exports = withNx(
     // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
     // e.g.
     // output: { sourcemap: true },
-  }
+  },
 );
