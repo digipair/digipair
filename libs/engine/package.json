@@ -6,7 +6,11 @@
     "web",
     "service"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "cel-js": "^0.8.2",
+    "feelin": "^4.3.0",
+    "handlebars": "4.7.8"
+  },
   "typings": "./index.d.ts",
   "main": "./index.cjs.js",
   "module": "./index.esm.js"
