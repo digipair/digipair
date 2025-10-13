@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-temporal",
-  "version": "1.1.8-local",
+  "version": "1.2.0-local",
   "keywords": [
     "digipair",
     "service",
@@ -17,6 +17,9 @@
       "import": "./src/index.js",
       "default": "./src/index.js"
     },
+    "./index.esm.js": "./dist/index.esm.js",
+    "./index.cjs.js": "./dist/index.cjs.js",
+    "./package.json": "./package.json",
     "./schema.json": "./dist/schema.json",
     "./schema.fr.json": "./dist/schema.fr.json"
   },
