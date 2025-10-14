@@ -1,3 +1,25 @@
+## 1.4.6-local (2025-10-14)
+
+### 🚀 Features
+
+- update vespa namespace default ([733a6fc](https://github.com/digipair/digipair/commit/733a6fc))
+- improve MCP client ([3341797](https://github.com/digipair/digipair/commit/3341797))
+- add mcp client tool ([2c266ab](https://github.com/digipair/digipair/commit/2c266ab))
+- minor renaming and remove shared option on tools ([d4d8983](https://github.com/digipair/digipair/commit/d4d8983))
+- fix mcp server ([f989ad2](https://github.com/digipair/digipair/commit/f989ad2))
+- skill-mcp ok ([2101845](https://github.com/digipair/digipair/commit/2101845))
+
+### 🩹 Fixes
+
+- client mcp not working ([113d6a8](https://github.com/digipair/digipair/commit/113d6a8))
+- vanilla-jsoneditor duplicated for each change ([792e806](https://github.com/digipair/digipair/commit/792e806))
+- skill-mcp not working ([0d8a9c8](https://github.com/digipair/digipair/commit/0d8a9c8))
+- skill-mcp not working ([7a95cf9](https://github.com/digipair/digipair/commit/7a95cf9))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 1.4.5-local (2025-10-14)
 
 This was a version bump only, there were no code changes.
