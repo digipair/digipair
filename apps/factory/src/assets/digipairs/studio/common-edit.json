@@ -155,7 +155,7 @@
             "library": "@digipair/skill-web-jsoneditor",
             "element": "digipair-jsoneditor",
             "properties": {
-              "json": "EVALUATE:variables.digipair.privates"
+              "json": "FEEL:variables.digipair.privates"
             },
             "events": {
               "change": [
@@ -215,15 +215,15 @@
                             "library": "@digipair/skill-editor",
                             "element": "digipair",
                             "properties": {
-                              "digipair": "EVALUATE:common"
+                              "digipair": "FEEL:common"
                             }
                           },
                           {
                             "library": "@digipair/skill-editor",
                             "element": "setDigipair",
                             "properties": {
-                              "digipair": "EVALUATE:common",
-                              "value": "EVALUATE:context merge(\n  previous,\n  { \n    privates: variables.privates\n  }\n)"
+                              "digipair": "FEEL:common",
+                              "value": "FEEL:context merge(\n  previous,\n  { \n    privates: variables.privates\n  }\n)"
                             }
                           }
                         ]

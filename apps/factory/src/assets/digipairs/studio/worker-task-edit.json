@@ -221,7 +221,7 @@
             "element": "sp-textfield",
             "properties": {
               "id": "summary",
-              "value": "EVALUATE:variables.reasoning.summary"
+              "value": "FEEL:variables.reasoning.summary"
             }
           },
           {
@@ -248,7 +248,7 @@
             "properties": {
               "id": "description",
               "multiline": true,
-              "value": "EVALUATE:variables.reasoning.description"
+              "value": "FEEL:variables.reasoning.description"
             }
           },
           {
@@ -313,17 +313,17 @@
                             "library": "@digipair/skill-editor",
                             "element": "reasoning",
                             "properties": {
-                              "digipair": "EVALUATE:request.params[1]",
-                              "reasoning": "EVALUATE:request.params[2]"
+                              "digipair": "FEEL:request.params[1]",
+                              "reasoning": "FEEL:request.params[2]"
                             }
                           },
                           {
                             "library": "@digipair/skill-editor",
                             "element": "setReasoning",
                             "properties": {
-                              "digipair": "EVALUATE:request.params[1]",
-                              "reasoning": "EVALUATE:request.params[2]",
-                              "value": "EVALUATE:context merge(previous, { summary: variables.summary, description: variables.description })"
+                              "digipair": "FEEL:request.params[1]",
+                              "reasoning": "FEEL:request.params[2]",
+                              "value": "FEEL:context merge(previous, { summary: variables.summary, description: variables.description })"
                             }
                           }
                         ]
@@ -373,7 +373,7 @@
                     "library": "@digipair/skill-editor",
                     "element": "digipair",
                     "properties": {
-                      "digipair": "EVALUATE:request.params[1]"
+                      "digipair": "FEEL:request.params[1]"
                     }
                   }
                 ]
@@ -397,8 +397,8 @@
                     "library": "@digipair/skill-editor",
                     "element": "reasoning",
                     "properties": {
-                      "digipair": "EVALUATE:request.params[1]",
-                      "reasoning": "EVALUATE:request.params[2]"
+                      "digipair": "FEEL:request.params[1]",
+                      "reasoning": "FEEL:request.params[2]"
                     }
                   }
                 ]

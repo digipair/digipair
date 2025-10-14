@@ -17,7 +17,7 @@
               "element": "start",
               "properties": {
                 "reasoning": "schema.json",
-                "digipair": "EVALUATE: request.digipair"
+                "digipair": "FEEL: request.digipair"
               }
             }
           ]
@@ -33,17 +33,17 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE: get value(variables.schema.paths, \"/\" + request.body.reasoning).post.parameters"
+                "value": "FEEL: get value(variables.schema.paths, \"/\" + request.body.reasoning).post.parameters"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE: get value(variables.schema.paths, \"/\" + substring(request.body.reasoning, 7)).post.parameters"
+                "value": "FEEL: get value(variables.schema.paths, \"/\" + substring(request.body.reasoning, 7)).post.parameters"
               },
               "conditions": {
-                "if": "EVALUATE: previous = null and starts with(request.body.reasoning, \"boost-\")"
+                "if": "FEEL: previous = null and starts with(request.body.reasoning, \"boost-\")"
               }
             },
             {
@@ -53,7 +53,7 @@
                 "value": []
               },
               "conditions": {
-                "if": "EVALUATE: previous = null"
+                "if": "FEEL: previous = null"
               }
             }
           ]
@@ -64,9 +64,9 @@
         "element": "transform",
         "properties": {
           "value": {
-            "summary": "EVALUATE: variables.schema.info.summary",
-            "description": "EVALUATE: variables.schema.info.description",
-            "context": "EVALUATE: variables.context"
+            "summary": "FEEL: variables.schema.info.summary",
+            "description": "FEEL: variables.schema.info.description",
+            "context": "FEEL: variables.context"
           }
         }
       }

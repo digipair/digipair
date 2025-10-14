@@ -133,7 +133,7 @@
                 "element": "sp-action-button",
                 "properties": {
                   "textContent": "{{item}}",
-                  "disabled": "EVALUATE:item = variables.date"
+                  "disabled": "FEEL:item = variables.date"
                 },
                 "events": {
                   "click": [
@@ -147,7 +147,7 @@
                   ]
                 },
                 "conditions": {
-                  "each": "EVALUATE:variables.dates"
+                  "each": "FEEL:variables.dates"
                 }
               }
             ]
@@ -231,7 +231,7 @@
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
                         "properties": {
-                          "textContent": "EVALUATE:substring(fromTime(item.date), 12, 8)"
+                          "textContent": "FEEL:substring(fromTime(item.date), 12, 8)"
                         }
                       },
                       {
@@ -278,7 +278,7 @@
                       }
                     ],
                     "conditions": {
-                      "each": "EVALUATE:variables.consumptions"
+                      "each": "FEEL:variables.consumptions"
                     }
                   }
                 ]
@@ -305,10 +305,10 @@
         "library": "@digipair/skill-web-interact",
         "element": "goTo",
         "properties": {
-          "url": "EVALUATE:\"/studio/consumptions/\" + substring(string(now()), 1, 10)"
+          "url": "FEEL:\"/studio/consumptions/\" + substring(string(now()), 1, 10)"
         },
         "conditions": {
-          "if": "EVALUATE:count(request.params) = 0"
+          "if": "FEEL:count(request.params) = 0"
         }
       },
       {
@@ -334,7 +334,7 @@
                     "library": "@digipair/skill-logger",
                     "element": "read",
                     "properties": {
-                      "date": "EVALUATE:variables.date",
+                      "date": "FEEL:variables.date",
                       "type": "consumption-daily"
                     }
                   },
@@ -342,7 +342,7 @@
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "EVALUATE:reverse(previous)"
+                      "value": "FEEL:reverse(previous)"
                     }
                   }
                 ]

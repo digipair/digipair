@@ -169,7 +169,7 @@
                 "element": "img",
                 "properties": {
                   "height": "70",
-                  "src": "EVALUATE:variables.metadata.avatar",
+                  "src": "FEEL:variables.metadata.avatar",
                   "width": "70",
                   "id": "avatar"
                 },
@@ -192,7 +192,7 @@
                             "library": "@digipair/skill-canvas",
                             "element": "loadImage",
                             "properties": {
-                              "image": "EVALUATE:previous.value"
+                              "image": "FEEL:previous.value"
                             }
                           },
                           {
@@ -206,7 +206,7 @@
                                   "library": "@digipair/skill-canvas",
                                   "element": "drawImage",
                                   "properties": {
-                                    "image": "EVALUATE:parent.previous",
+                                    "image": "FEEL:parent.previous",
                                     "x": 0,
                                     "y": 0,
                                     "width": 596,
@@ -227,7 +227,7 @@
                         "selector": "#avatar",
                         "args": [
                           "src",
-                          "EVALUATE:variables.avatar"
+                          "FEEL:variables.avatar"
                         ]
                       }
                     },
@@ -268,7 +268,7 @@
                       "element": "setVariable",
                       "properties": {
                         "name": "avatar",
-                        "value": "EVALUATE:null"
+                        "value": "FEEL:null"
                       }
                     },
                     {
@@ -279,7 +279,7 @@
                         "selector": "#avatar",
                         "args": [
                           "src",
-                          "EVALUATE:variables.metadata.avatar"
+                          "FEEL:variables.metadata.avatar"
                         ]
                       }
                     },
@@ -323,7 +323,7 @@
             "element": "sp-textfield",
             "properties": {
               "id": "name",
-              "value": "EVALUATE:variables.digipair.name"
+              "value": "FEEL:variables.digipair.name"
             }
           },
           {
@@ -350,7 +350,7 @@
             "properties": {
               "id": "description",
               "multiline": true,
-              "value": "EVALUATE:variables.digipair.description"
+              "value": "FEEL:variables.digipair.description"
             }
           },
           {
@@ -375,7 +375,7 @@
             "library": "@digipair/skill-web-spectrum",
             "element": "sp-checkbox",
             "properties": {
-              "checked": "EVALUATE:variables.digipair.metadata.remote",
+              "checked": "FEEL:variables.digipair.metadata.remote",
               "id": "remote"
             }
           },
@@ -398,7 +398,7 @@
             "library": "@digipair/skill-web-jsoneditor",
             "element": "digipair-jsoneditor",
             "properties": {
-              "json": "EVALUATE:variables.digipair.privates"
+              "json": "FEEL:variables.digipair.privates"
             },
             "events": {
               "change": [
@@ -509,26 +509,26 @@
                             "library": "@digipair/skill-editor",
                             "element": "digipair",
                             "properties": {
-                              "digipair": "EVALUATE:request.params[1]"
+                              "digipair": "FEEL:request.params[1]"
                             }
                           },
                           {
                             "library": "@digipair/skill-editor",
                             "element": "setDigipair",
                             "properties": {
-                              "digipair": "EVALUATE:request.params[1]",
-                              "value": "EVALUATE:context merge(\n  previous,\n  { \n    name: variables.name,\n    description: variables.description,\n    metadata: context merge(\n      previous.metadata,\n      {\n        remote: variables.remote\n      }\n    ),\n    privates: variables.privates\n  }\n)"
+                              "digipair": "FEEL:request.params[1]",
+                              "value": "FEEL:context merge(\n  previous,\n  { \n    name: variables.name,\n    description: variables.description,\n    metadata: context merge(\n      previous.metadata,\n      {\n        remote: variables.remote\n      }\n    ),\n    privates: variables.privates\n  }\n)"
                             }
                           },
                           {
                             "library": "@digipair/skill-editor",
                             "element": "setAvatar",
                             "properties": {
-                              "digipair": "EVALUATE:request.params[1]",
-                              "avatar": "EVALUATE:variables.avatar"
+                              "digipair": "FEEL:request.params[1]",
+                              "avatar": "FEEL:variables.avatar"
                             },
                             "conditions": {
-                              "if": "EVALUATE:variables.avatar != null"
+                              "if": "FEEL:variables.avatar != null"
                             }
                           }
                         ]
@@ -578,7 +578,7 @@
                     "library": "@digipair/skill-editor",
                     "element": "digipair",
                     "properties": {
-                      "digipair": "EVALUATE:request.params[1]"
+                      "digipair": "FEEL:request.params[1]"
                     }
                   }
                 ]
@@ -602,7 +602,7 @@
                     "library": "@digipair/skill-editor",
                     "element": "metadata",
                     "properties": {
-                      "digipair": "EVALUATE:request.params[1]"
+                      "digipair": "FEEL:request.params[1]"
                     }
                   }
                 ]

@@ -154,8 +154,8 @@ The `default.json` file configures AI model endpoints:
 - An action must always have a JSON schema for the output format in the `metadata.output` parameter
 - Do not update the `schema.json` file when adding JSON reasoning files, as they are added automatically
 - Do not handle error cases (try/catch) in actions—leave error handling to the factory
-- Expressions used after the "EVALUATE:" keyword are in DMN FEEL format
-- String values in properties are interpreted by Handlebars by default, unless they start with "EVALUATE:"
+- Expressions used after the "FEEL:" keyword are in DMN FEEL format
+- String values in properties are interpreted by Handlebars by default, unless they start with "FEEL:"
 
 ### List of Usable DMN FEEL Functions
 

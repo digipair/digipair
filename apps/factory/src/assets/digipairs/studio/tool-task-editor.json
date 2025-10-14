@@ -142,7 +142,7 @@
                           ]
                         },
                         "conditions": {
-                          "if": "EVALUATE:variables.reasoning.element = \"page\""
+                          "if": "FEEL:variables.reasoning.element = \"page\""
                         }
                       },
                       {
@@ -182,7 +182,7 @@
                                     "properties": {
                                       "digipair": "{{request.params.[0]}}",
                                       "reasoning": "{{request.params.[1]}}",
-                                      "value": "EVALUATE:parent.previous"
+                                      "value": "FEEL:parent.previous"
                                     }
                                   }
                                 ]
@@ -215,8 +215,8 @@
             "library": "@digipair/skill-web-editor",
             "element": "digipair-editor",
             "properties": {
-              "reasoning": "EVALUATE:variables.reasoning",
-              "schemas": "EVALUATE:variables.schemas",
+              "reasoning": "FEEL:variables.reasoning",
+              "schemas": "FEEL:variables.schemas",
               "menuBackgroundColor": "#212e3c",
               "contentStyle": "position: fixed; top: 47px; right: 0; bottom: 0; left: 0;",
               "language": "{{variables.lang}}"
@@ -316,7 +316,7 @@
                           "library": "@digipair/skill-editor",
                           "element": "schemas",
                           "properties": {
-                            "libraries": "EVALUATE:context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"])",
+                            "libraries": "FEEL:context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"])",
                             "language": "en"
                           }
                         }
@@ -337,7 +337,7 @@
                             "digipair": "{{item}}"
                           },
                           "conditions": {
-                            "each": "EVALUATE: concatenate(\n  [request.params[1]], \n  for digipair in \n    get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and not(starts with(value, \"http\"))]\n    return substring(digipair.key, 10)\n)"
+                            "each": "FEEL: concatenate(\n  [request.params[1]], \n  for digipair in \n    get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and not(starts with(value, \"http\"))]\n    return substring(digipair.key, 10)\n)"
                           }
                         }
                       ]
@@ -358,13 +358,13 @@
                                 "library": "@digipair/skill-http",
                                 "element": "read",
                                 "properties": {
-                                  "path": "EVALUATE:item.value + \"/\" + split(item.key, \"digipair:\")[2] + \"/schema.json\""
+                                  "path": "FEEL:item.value + \"/\" + split(item.key, \"digipair:\")[2] + \"/schema.json\""
                                 }
                               }
                             ]
                           },
                           "conditions": {
-                            "each": "EVALUATE:get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and starts with(value, \"http\")]"
+                            "each": "FEEL:get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and starts with(value, \"http\")]"
                           }
                         }
                       ]
@@ -374,7 +374,7 @@
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "EVALUATE:flatten([variables.schemasLibraries, variables.schemasRemote, variables.schemasDigipair])"
+                      "value": "FEEL:flatten([variables.schemasLibraries, variables.schemasRemote, variables.schemasDigipair])"
                     }
                   }
                 ]

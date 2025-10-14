@@ -40,7 +40,9 @@
                   "element": "generate",
                   "properties": {
                     "signature": "comment:string -> cron:string \"task scheduling in relation to the comment or @startup to execute it only once\", assistant:string \"Assistant's response to indicate that the task has been successfully scheduled.\"",
-                    "input": { "comment": "EVALUATE:request.body.prompt" }
+                    "input": {
+                      "comment": "FEEL:request.body.prompt"
+                    }
                   }
                 }
               ]

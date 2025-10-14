@@ -3,7 +3,9 @@
   "summary": "Add a tool agent",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": { "standalone": true },
+  "metadata": {
+    "standalone": true
+  },
   "properties": {
     "steps": [
       {
@@ -14,7 +16,13 @@
             "element": "action-answer",
             "properties": {
               "assistant": "What is the identifier of this new tool agent?",
-              "boost": [{ "prompt": true, "required": true, "step": "Create" }]
+              "boost": [
+                {
+                  "prompt": true,
+                  "required": true,
+                  "step": "Create"
+                }
+              ]
             }
           }
         ]
@@ -33,7 +41,9 @@
                   "element": "generate",
                   "properties": {
                     "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment in french\", \n  description:string \"Short description of the agent from the comment in french\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added\"",
-                    "input": { "comment": "{{request.body.prompt}}" }
+                    "input": {
+                      "comment": "{{request.body.prompt}}"
+                    }
                   }
                 }
               ]
@@ -45,25 +55,25 @@
             "properties": {
               "template": "tool",
               "data": {
-                "digipair": "EVALUATE:\"tool-\" + request.body.prompt",
-                "name": "EVALUATE:variables.infos.name",
-                "description": "EVALUATE:variables.infos.description"
+                "digipair": "FEEL:\"tool-\" + request.body.prompt",
+                "name": "FEEL:variables.infos.name",
+                "description": "FEEL:variables.infos.description"
               },
-              "digipair": "EVALUATE:\"tool-\" + request.body.prompt"
+              "digipair": "FEEL:\"tool-\" + request.body.prompt"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "EVALUATE:\"tool-\" + request.body.prompt"
+              "digipair": "FEEL:\"tool-\" + request.body.prompt"
             }
           },
           {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "EVALUATE:variables.infos.assistant",
+              "assistant": "FEEL:variables.infos.assistant",
               "command": [
                 {
                   "library": "@digipair/skill-web-interact",

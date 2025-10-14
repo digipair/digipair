@@ -25,7 +25,7 @@
         "element": "setVariable",
         "properties": {
           "name": "server",
-          "value": "EVALUATE:variables.openapi.servers[1].url"
+          "value": "FEEL:variables.openapi.servers[1].url"
         }
       },
       {
@@ -33,7 +33,7 @@
         "element": "setVariable",
         "properties": {
           "name": "infos",
-          "value": "EVALUATE:(for line in get entries(variables.openapi.paths) return { \"path\": line.key, \"value\": get entries(line.value)[item.value.operationId = request.reasoning or item.key = \"parameters\"] })[count(item.value) > 1 or item.value[1].key != \"parameters\"][count(item.value) > 0][1]"
+          "value": "FEEL:(for line in get entries(variables.openapi.paths) return { \"path\": line.key, \"value\": get entries(line.value)[item.value.operationId = request.reasoning or item.key = \"parameters\"] })[count(item.value) > 1 or item.value[1].key != \"parameters\"][count(item.value) > 0][1]"
         }
       },
       {
@@ -41,7 +41,7 @@
         "element": "setVariable",
         "properties": {
           "name": "method",
-          "value": "EVALUATE:variables.infos.value[item.key != \"parameters\"][1].key"
+          "value": "FEEL:variables.infos.value[item.key != \"parameters\"][1].key"
         }
       },
       {
@@ -54,7 +54,7 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:concatenate(\n  flatten(variables.infos.value[item.key = \"parameters\"].value),\n  flatten(variables.infos.value[item.key != \"parameters\"].value.parameters)\n)"
+                "value": "FEEL:concatenate(\n  flatten(variables.infos.value[item.key = \"parameters\"].value),\n  flatten(variables.infos.value[item.key != \"parameters\"].value.parameters)\n)"
               }
             }
           ]
@@ -70,21 +70,21 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in variables.parameters return get entries(parameter)"
+                "value": "FEEL:for parameter in variables.parameters return get entries(parameter)"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in previous return if count(parameter[item.key = \"in\" and item.value = \"path\"]) > 0 then parameter else null "
+                "value": "FEEL:for parameter in previous return if count(parameter[item.key = \"in\" and item.value = \"path\"]) > 0 then parameter else null "
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in previous[item != null] return context(parameter)"
+                "value": "FEEL:for parameter in previous[item != null] return context(parameter)"
               }
             }
           ]
@@ -100,21 +100,21 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in variables.parameters return get entries(parameter)"
+                "value": "FEEL:for parameter in variables.parameters return get entries(parameter)"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in previous return if count(parameter[item.key = \"in\" and item.value = \"query\"]) > 0 then parameter else null "
+                "value": "FEEL:for parameter in previous return if count(parameter[item.key = \"in\" and item.value = \"query\"]) > 0 then parameter else null "
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in previous[item != null] return context(parameter)"
+                "value": "FEEL:for parameter in previous[item != null] return context(parameter)"
               }
             }
           ]
@@ -130,21 +130,21 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in variables.parameters return get entries(parameter)"
+                "value": "FEEL:for parameter in variables.parameters return get entries(parameter)"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in previous return if count(parameter[item.key = \"in\" and item.value = \"header\"]) > 0 then parameter else null "
+                "value": "FEEL:for parameter in previous return if count(parameter[item.key = \"in\" and item.value = \"header\"]) > 0 then parameter else null "
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:for parameter in previous[item != null] return context(parameter)"
+                "value": "FEEL:for parameter in previous[item != null] return context(parameter)"
               }
             }
           ]
@@ -155,7 +155,7 @@
         "element": "setVariable",
         "properties": {
           "name": "path",
-          "value": "EVALUATE:variables.infos.path"
+          "value": "FEEL:variables.infos.path"
         }
       },
       {
@@ -167,14 +167,14 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:item"
+                "value": "FEEL:item"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:get entries(request.body)[item.key = previous.name][1].value"
+                "value": "FEEL:get entries(request.body)[item.key = previous.name][1].value"
               }
             },
             {
@@ -182,13 +182,13 @@
               "element": "setVariable",
               "properties": {
                 "name": "path",
-                "value": "EVALUATE:replace(variables.path, \"\\{\" + item.name + \"\\}\", previous)"
+                "value": "FEEL:replace(variables.path, \"\\{\" + item.name + \"\\}\", previous)"
               }
             }
           ]
         },
         "conditions": {
-          "each": "EVALUATE:variables.parametersPath"
+          "each": "FEEL:variables.parametersPath"
         }
       },
       {
@@ -201,21 +201,21 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:get entries(variables.infos.value[item.key = variables.method].value.requestBody[1].content)"
+                "value": "FEEL:get entries(variables.infos.value[item.key = variables.method].value.requestBody[1].content)"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:if previous[item.key = \"application/json\"][1] != null then \n  \"application/json\" \nelse if previous[item.key = \"application/x-www-form-urlencoded\"][1] != null then \n  \"application/x-www-form-urlencoded\"\nelse\n  null"
+                "value": "FEEL:if previous[item.key = \"application/json\"][1] != null then \n  \"application/json\" \nelse if previous[item.key = \"application/x-www-form-urlencoded\"][1] != null then \n  \"application/x-www-form-urlencoded\"\nelse\n  null"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:context merge([\n  context((for parameter in get entries(request.body) return if count(variables.parametersHeaders[item.name = parameter.key]) > 0 then parameter else null)[item != null]), \n  context([{ \"key\": privates.OPENAPI_AUTHORIZATION_KEY, \"value\": privates.OPENAPI_AUTHORIZATION_VALUE }]),\n  if previous != null then\n    {\n      \"Content-Type\": previous\n    }\n  else\n    {}\n])"
+                "value": "FEEL:context merge([\n  context((for parameter in get entries(request.body) return if count(variables.parametersHeaders[item.name = parameter.key]) > 0 then parameter else null)[item != null]), \n  context([{ \"key\": privates.OPENAPI_AUTHORIZATION_KEY, \"value\": privates.OPENAPI_AUTHORIZATION_VALUE }]),\n  if previous != null then\n    {\n      \"Content-Type\": previous\n    }\n  else\n    {}\n])"
               }
             }
           ]
@@ -226,10 +226,10 @@
         "element": "setVariable",
         "properties": {
           "name": "body",
-          "value": "EVALUATE:context((for parameter in get entries(request.body) return if count(variables.parametersQuery[item.name = parameter.key]) > 0 then parameter else null)[item != null])"
+          "value": "FEEL:context((for parameter in get entries(request.body) return if count(variables.parametersQuery[item.name = parameter.key]) > 0 then parameter else null)[item != null])"
         },
         "conditions": {
-          "if": "EVALUATE:variables.infos.value[item.key = variables.method].value.requestBody[1] = null"
+          "if": "FEEL:variables.infos.value[item.key = variables.method].value.requestBody[1] = null"
         }
       },
       {
@@ -237,23 +237,23 @@
         "element": "setVariable",
         "properties": {
           "name": "body",
-          "value": "EVALUATE:request.body.body"
+          "value": "FEEL:request.body.body"
         },
         "conditions": {
-          "if": "EVALUATE:variables.infos.value[item.key = variables.method].value.requestBody[1] != null"
+          "if": "FEEL:variables.infos.value[item.key = variables.method].value.requestBody[1] != null"
         }
       },
       {
         "library": "@digipair/skill-http",
         "element": "request",
         "properties": {
-          "path": "EVALUATE:variables.server + variables.path",
-          "method": "EVALUATE:variables.method",
-          "body": "EVALUATE:if variables.method != \"get\" and variables.method != \"head\" then variables.body else null",
-          "headers": "EVALUATE:variables.headers"
+          "path": "FEEL:variables.server + variables.path",
+          "method": "FEEL:variables.method",
+          "body": "FEEL:if variables.method != \"get\" and variables.method != \"head\" then variables.body else null",
+          "headers": "FEEL:variables.headers"
         },
         "conditions": {
-          "if": "EVALUATE:true"
+          "if": "FEEL:true"
         }
       }
     ]

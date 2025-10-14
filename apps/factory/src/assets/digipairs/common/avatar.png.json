@@ -34,7 +34,7 @@
         "element": "headers",
         "properties": {
           "headers": {
-            "Content-Type": "EVALUATE: substring(split(variables.avatar, \";base64,\")[1], 6)"
+            "Content-Type": "FEEL: substring(split(variables.avatar, \";base64,\")[1], 6)"
           }
         }
       },

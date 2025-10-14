@@ -79,7 +79,7 @@ Suivez ces étapes pour écrire le programme du Boost :
    - Dans "données à traiter", ajoutez les éléments suivants :
      - `{}`
      - `document:`
-     - `{}` avec `mimeType:` (texte : `image/jpeg`) et `data:` (texte : `EVALUATE:replace(request.body.inputs[1].value, "data:image/jpeg;base64,", "")`).
+     - `{}` avec `mimeType:` (texte : `image/jpeg`) et `data:` (texte : `FEEL:replace(request.body.inputs[1].value, "data:image/jpeg;base64,", "")`).
 
    ![declencheur](./assets/screenshots/donnees.png)
 

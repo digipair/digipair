@@ -68,7 +68,7 @@
                   "properties": {
                     "message": {
                       "type": "step",
-                      "content": "EVALUATE: action"
+                      "content": "FEEL: action"
                     },
                     "id": "{{request.body.userId}}",
                     "reasoning": "notification"
@@ -81,14 +81,14 @@
             "library": "@digipair/skill-basic",
             "element": "transform",
             "properties": {
-              "value": "EVALUATE: JSONparse(previous)"
+              "value": "FEEL: JSONparse(previous)"
             }
           },
           {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "EVALUATE: previous.assistant",
+              "assistant": "FEEL: previous.assistant",
               "command": [
                 {
                   "library": "@digipair/skill-web-interact",
@@ -96,7 +96,7 @@
                   "properties": {
                     "selector": "digipair-editor",
                     "name": "setReasoning",
-                    "detail": "EVALUATE: parent.previous.content"
+                    "detail": "FEEL: parent.previous.content"
                   }
                 }
               ]
