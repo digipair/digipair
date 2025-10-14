@@ -104,7 +104,6 @@ The `default.json` file configures AI model endpoints:
 
 ```json
 "metadata": {
-  "avatar": "avatar.png",
   "color": "#3b82f6",
   "primary": "#51E0DC",
   "textPrimary": "#242E3B"

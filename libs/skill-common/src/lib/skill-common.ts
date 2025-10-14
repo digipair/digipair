@@ -39,6 +39,19 @@ class CommonService {
     };
   }
 
+  async avatar(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path =
+      context.privates?.EDITOR_PATH ??
+      (process.env['DIGIPAIR_FACTORY_PATH']
+        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+        : './factory/digipairs');
+    const { digipair } = params;
+    const buffer = await promises.readFile(`${path}/${digipair}/avatar.png`);
+    const avatar = buffer.toString('base64');
+
+    return `data:image/png;base64,${avatar}`;
+  }
+
   async boosts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const path =
       context.privates?.EDITOR_PATH ??
@@ -248,6 +261,9 @@ export const infos = (params: any, pinsSettingsList: PinsSettings[], context: an
 
 export const metadata = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().metadata(params, pinsSettingsList, context);
+
+export const avatar = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new CommonService().avatar(params, pinsSettingsList, context);
 
 export const boosts = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().boosts(params, pinsSettingsList, context);

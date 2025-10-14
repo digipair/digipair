@@ -105,6 +105,37 @@
         "x-events": []
       }
     },
+    "/avatar": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Returns the digipair avatar",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Digipair's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Digipair avatar",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Base64 encoded avatar image"
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
     "/boosts": {
       "post": {
         "tags": [
