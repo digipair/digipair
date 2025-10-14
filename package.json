@@ -6,7 +6,8 @@
     "publish": "npx nx release -y $NPMVERSION && yarn run replace-in-file /latest/g $NPMVERSION dist/apps/factory/package.json && node tools/scripts/publish-factory.mjs factory $NPMVERSION latest",
     "publish:local": "node tools/scripts/publish-local.mjs",
     "registry-local:start": "node tools/registry/clean-local-registry.js && node tools/registry/start-local-registry.js",
-    "registry-local:clean": "node tools/registry/clean-local-registry.js"
+    "registry-local:clean": "node tools/registry/clean-local-registry.js",
+    "clean-libs": "find libs -type d -name 'dist' -exec rm -rf {} +"
   },
   "private": true,
   "dependencies": {
@@ -140,7 +141,8 @@
     "showdown": "^2.1.0",
     "swc-loader": "0.1.15",
     "ts-jest": "^29.1.0",
-    "ts-node": "10.9.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "5.8.3",
     "typescript-eslint": "^8.19.0",
     "vanilla-jsoneditor": "^0.23.7",

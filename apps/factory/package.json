@@ -57,38 +57,34 @@
         "executor": "nx:run-commands",
         "options": {
           "command": "webpack-cli build",
-          "args": [
-            "node-env=production"
-          ]
-        },
-        "configurations": {
-          "development": {
-            "args": [
-              "node-env=development"
-            ]
-          }
+          "args": ["--config", "./webpack.config.js"]
         }
       },
       "serve": {
-        "continuous": true,
         "executor": "@nx/js:node",
         "defaultConfiguration": "development",
-        "dependsOn": [
-          "build"
-        ],
         "options": {
           "buildTarget": "factory:build",
-          "runBuildTargetDependencies": false
+          "runBuildTargetDependencies": false,
+          "watch": true
         },
         "configurations": {
           "development": {
-            "buildTarget": "factory:build:development"
+            "buildTarget": "factory:build"
           },
           "production": {
-            "buildTarget": "factory:build:production"
+            "buildTarget": "factory:build"
           }
+        }
+      },
+      "start:local": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "ts-node -r tsconfig-paths/register src/main.ts",
+          "cwd": "apps/factory"
         }
       }
     }
   }
+
 }

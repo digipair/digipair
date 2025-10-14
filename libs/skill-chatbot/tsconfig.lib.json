@@ -8,8 +8,8 @@
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "EsNext",
+    "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
     "types": ["node"]
   },

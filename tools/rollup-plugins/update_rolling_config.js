@@ -5,25 +5,24 @@ const path = require('path');
 const EXCLUDED_SKILLS = [];
 
 // Template de configuration rollup
-const generateRollupConfig = (skillName) => `const { withNx } = require('@nx/rollup/with-nx');
-const { join } = require('path');
+const generateRollupConfig = (skillName) => `const {withNx} = require('@nx/rollup/with-nx');
+const {join} = require('path');
 const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
-const pkg = require('./package.json');
 
-const externals = [
-  ...Object.keys(pkg.dependencies || {}),
-  ...Object.keys(pkg.peerDependencies || {}),
-  /@digipair\\//
-];
+// external dependencies on CJS
+const externalsEsm = [/@digipair\\//];
+const externalsCjs = [/@digipair\\//];
 
-module.exports = withNx(
-  {
+
+function createOutputConfig(format) {
+  const isEsm = format === 'esm';
+  return {
     main: './src/index.ts',
     outputPath: './dist',
     tsConfig: './tsconfig.lib.json',
     compiler: 'swc',
-    format: ['esm', 'cjs'],
-    external: externals,
+    format: [format],
+    external: isEsm ? externalsEsm : externalsCjs,
     assets: [
       {
         input: join(__dirname, 'src'),
@@ -31,14 +30,16 @@ module.exports = withNx(
         output: '.',
       }
     ]
-  },
-  {
-    plugins: [cleanupPlugin()],
-    // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
-    // e.g.
-    // output: { sourcemap: true },
-  },
-);
+  };
+}
+
+const esmBuild = createOutputConfig('esm');
+const cjsBuild = createOutputConfig('cjs');
+
+module.exports = [
+  withNx(esmBuild, {plugins: [cleanupPlugin()]}),
+  withNx(cjsBuild, {plugins: [cleanupPlugin()]}),
+];
 `;
 
 // Fonction principale

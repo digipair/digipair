@@ -156,7 +156,7 @@ class WebService {
           return { status: 'not found' };
         }
 
-        if (context.config.VERSIONS[library]) {
+        if (library === '@digipair/engine' || context.config.VERSIONS[library]) {
           const infos = require(`${library}/package.json`);
           if (!(infos.keywords?.indexOf('digipair') >= 0 && infos.keywords?.indexOf('web') >= 0)) {
             context.protected.res.status(404);
