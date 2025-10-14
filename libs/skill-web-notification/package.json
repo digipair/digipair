@@ -1,12 +1,12 @@
 {
   "name": "@digipair/skill-web-notification",
-  "version": "1.4.2-local",
+  "version": "1.4.3-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "keywords": [
     "digipair",
-    "service",
+    "web",
     "util"
   ],
   "exports": {
