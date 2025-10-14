@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-chatbot",
-  "version": "1.4.7-local",
+  "version": "1.4.8-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -30,7 +30,6 @@
     "name": "skill-web-chatbot"
   },
   "dependencies": {
-    "@microsoft/fetch-event-source": "^2.0.1",
     "@ui5/webcomponents": "^1.24.4",
     "@ui5/webcomponents-icons": "^1.24.4"
   }
