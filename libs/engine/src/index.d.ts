@@ -1,2 +1,2 @@
-export * from './libs/engine/src/lib/engine';
-export * from './libs/engine/src/lib/pins-settings.interface';
+export * from './src/lib/engine';
+export * from './src/lib/pins-settings.interface';
