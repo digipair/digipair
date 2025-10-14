@@ -7,7 +7,7 @@
     "tool"
   ],
   "dependencies": {
-    "@digipair/engine": "0.108.1",
+    "@digipair/engine": "0.108.3",
     "@modelcontextprotocol/sdk": "^1.18.2"
   },
   "main": "./index.cjs.js",
