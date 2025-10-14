@@ -18,7 +18,7 @@ export class JsonEditorElement extends LitElement {
     setTimeout(() => {
       const target = this.shadowRoot?.querySelector('section');
 
-      if (target) {
+      if (target && target.childElementCount === 0) {
         (window as any).__TMP_JSON_EDITOR__ = new JSONEditor({
           target,
           props: {

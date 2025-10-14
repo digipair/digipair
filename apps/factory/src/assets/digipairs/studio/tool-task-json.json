@@ -31,7 +31,9 @@
                         }
                       }
                     ],
-                    "properties": { "href": "https://www.digipair.ai" }
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
                   },
                   {
                     "library": "@digipair/skill-web-spectrum",
@@ -45,7 +47,7 @@
                     "library": "@digipair/skill-web-spectrum",
                     "element": "sp-top-nav-item",
                     "properties": {
-                      "textContent": "AI agents",
+                      "textContent": "Worker agents",
                       "href": "/studio/workers"
                     }
                   },
@@ -96,7 +98,9 @@
                             }
                           }
                         ],
-                        "properties": { "quiet": true },
+                        "properties": {
+                          "quiet": true
+                        },
                         "events": {
                           "click": [
                             {
@@ -125,7 +129,9 @@
                             }
                           }
                         ],
-                        "properties": { "quiet": true },
+                        "properties": {
+                          "quiet": true
+                        },
                         "events": {
                           "click": [
                             {
@@ -154,7 +160,9 @@
                             }
                           }
                         ],
-                        "properties": { "quiet": true },
+                        "properties": {
+                          "quiet": true
+                        },
                         "events": {
                           "click": [
                             {
@@ -214,7 +222,10 @@
             }
           }
         ],
-        "properties": { "color": "light", "scale": "medium" }
+        "properties": {
+          "color": "light",
+          "scale": "medium"
+        }
       },
       {
         "library": "@digipair/skill-web-chatbot",

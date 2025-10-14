@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings } from '@digipair/engine';
+import { executePinsList, PinsSettings } from '@digipair/engine';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 
 class MCPClientService {
-  async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<Client> {
+  async StreamableHTTPClient(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    _context: any,
+  ): Promise<Client> {
     const { url, name = 'digipair-mcp-client', version = '1.0.0', options = {} } = params;
 
     const transport = new StreamableHTTPClientTransport(new URL(url), options);
@@ -18,89 +23,74 @@ class MCPClientService {
     return client;
   }
 
-  async disconnect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<void> {
-    const { client } = params;
+  async StdioClient(
+    params: any,
+    _pinsSettingsList: PinsSettings[],
+    _context: any,
+  ): Promise<Client> {
+    const { name = 'digipair-mcp-stdio-client', version = '1.0.0', options = {} } = params;
 
-    if (client) {
-      await client.close();
-    }
+    const transport = new StdioClientTransport(options);
+    const client = new Client({
+      name,
+      version,
+    });
+
+    await client.connect(transport);
+    return client;
   }
 
   async listResources(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client } = params;
+    const { client = context.privates.CLIENT_MCP } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    const result = await client.listResources();
+    const result = await clientInstance.listResources();
+    clientInstance.close();
     return result;
   }
 
   async readResource(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client, uri } = params;
+    const { client = context.privates.CLIENT_MCP, uri } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    if (!uri) {
-      throw new Error('[SKILL-MCP] Resource URI not provided');
-    }
-
-    const result = await client.readResource({ uri });
+    const result = await clientInstance.readResource({ uri });
+    clientInstance.close();
     return result;
   }
 
   async listTools(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client } = params;
+    const { client = context.privates.CLIENT_MCP } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    const result = await client.listTools();
+    const result = await clientInstance.listTools();
+    clientInstance.close();
     return result;
   }
 
   async callTool(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client, name, arguments: args = {} } = params;
+    const { client = context.privates.CLIENT_MCP, name, arguments: args = {} } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    if (!name) {
-      throw new Error('[SKILL-MCP] Tool name not provided');
-    }
-
-    const result = await client.callTool({ name, arguments: args });
+    const result = await clientInstance.callTool({ name, arguments: args });
+    clientInstance.close();
     return result;
   }
 
   async listPrompts(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client } = params;
+    const { client = context.privates.CLIENT_MCP } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    const result = await client.listPrompts();
+    const result = await clientInstance.listPrompts();
+    clientInstance.close();
     return result;
   }
 
   async getPrompt(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client, name, arguments: args = {} } = params;
+    const { client = context.privates.CLIENT_MCP, name, arguments: args = {} } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    if (!name) {
-      throw new Error('[SKILL-MCP] Prompt name not provided');
-    }
-
-    const result = await client.getPrompt({ name, arguments: args });
+    const result = await clientInstance.getPrompt({ name, arguments: args });
+    clientInstance.close();
     return result;
   }
 
@@ -109,31 +99,29 @@ class MCPClientService {
     _pinsSettingsList: PinsSettings[],
     context: any,
   ): Promise<any> {
-    const { client } = params;
+    const { client = context.privates.CLIENT_MCP } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    return client.serverCapabilities;
+    const result = clientInstance.serverCapabilities;
+    clientInstance.close();
+    return result;
   }
 
   async getServerInfo(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client } = params;
+    const { client = context.privates.CLIENT_MCP } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
-    if (!client) {
-      throw new Error('[SKILL-MCP] Client not provided');
-    }
-
-    return client.serverInfo;
+    const result = clientInstance.serverInfo;
+    clientInstance.close();
+    return result;
   }
 }
 
-export const connect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPClientService().connect(params, pinsSettingsList, context);
+export const StreamableHTTPClient = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new MCPClientService().StreamableHTTPClient(params, pinsSettingsList, context);
 
-export const disconnect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new MCPClientService().disconnect(params, pinsSettingsList, context);
+export const StdioClient = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new MCPClientService().StdioClient(params, pinsSettingsList, context);
 
 export const listResources = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new MCPClientService().listResources(params, pinsSettingsList, context);

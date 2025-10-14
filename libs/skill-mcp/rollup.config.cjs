@@ -18,7 +18,13 @@ module.exports = withNx(
       {
         format: 'cjs',
         entryFileNames: 'index.cjs.js',
-        external: [/@digipair\//, "@modelcontextprotocol/sdk"],
+        external: [
+          /@digipair\//,
+          // "@modelcontextprotocol/sdk",
+          '@modelcontextprotocol/sdk/server/mcp.js',
+          '@modelcontextprotocol/sdk/server/streamableHttp.js',
+          'zod'
+        ],
       },
     ],
     assets: [

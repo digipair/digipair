@@ -277,7 +277,7 @@ class VespaService {
       baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
       namespace = context.privates.VESPA_NAMESPACE ??
         process.env['VESPA_NAMESPACE'] ??
-        'Digipair_default',
+        'digipair-default',
       collection = 'knowledge',
       asynchronous = false,
       documents,
@@ -307,7 +307,7 @@ class VespaService {
       baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
       namespace = context.privates.VESPA_NAMESPACE ??
         process.env['VESPA_NAMESPACE'] ??
-        'Digipair_default',
+        'digipair-default',
       collection = 'knowledge',
       selection,
     } = params;
@@ -338,7 +338,7 @@ class VespaService {
       baseUrl = context.privates.VESPA_SERVER ?? VESPA_SERVER,
       namespace = context.privates.VESPA_NAMESPACE ??
         process.env['VESPA_NAMESPACE'] ??
-        'Digipair_default',
+        'digipair-default',
       collection,
       id,
       fields,

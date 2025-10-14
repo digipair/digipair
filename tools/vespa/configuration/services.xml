@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <services version="1.0">
-    <container id="Digipair_container" version="1.0">
+    <container id="digipair-container" version="1.0">
         <search></search>
         <document-api></document-api>
         <document-processing></document-processing>
     </container>
 
-    <content id="Digipair_default" version="1.0">
+    <content id="digipair-default" version="1.0">
         <redundancy>1</redundancy>
         <documents>
             <document type="knowledge" mode="index"></document>

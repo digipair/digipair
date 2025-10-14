@@ -210,7 +210,7 @@ class EditorService {
 
     const data = avatar.replace(/^data:.*;base64,/, '');
     const buffer = Buffer.from(data, 'base64');
-    await promises.writeFile(`${path}/${digipair}/avatar.png`, buffer);
+    await promises.writeFile(`${path}/${digipair}/avatar.png`, buffer as any);
 
     return {};
   }

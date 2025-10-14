@@ -1,6 +1,7 @@
 {
   "name": "digipair",
   "version": "0.0.1",
+  "type": "commonjs",
   "private": false,
   "bin": {
     "digipair": "./bin/digipair.js"
@@ -12,6 +13,7 @@
     "@digipair/skill-cron": "latest",
     "@digipair/skill-basic": "latest",
     "@digipair/skill-canvas": "latest",
+    "@digipair/skill-client-mcp": "latest",
     "@digipair/skill-codex": "latest",
     "@digipair/skill-debug": "latest",
     "@digipair/skill-dsp": "latest",
@@ -19,6 +21,7 @@
     "@digipair/skill-factory": "latest",
     "@digipair/skill-http": "latest",
     "@digipair/skill-llm": "latest",
+    "@digipair/skill-mcp": "latest",
     "@digipair/skill-openai": "latest",
     "@digipair/skill-service": "latest",
     "@digipair/skill-sse": "latest",
@@ -47,7 +50,7 @@
     "@nestjs/platform-express": "^10.3.9",
     "@nestjs/serve-static": "^4.0.2",
     "reflect-metadata": "^0.2.2",
-    "blockly": "^11.1.1",
+    "blockly": "10.4.3",
     "toastify-js": "1.12.0"
   },
   "nx": {
@@ -86,5 +89,4 @@
       }
     }
   }
-
 }
