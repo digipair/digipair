@@ -10,7 +10,9 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Activité",
         "description": "Exécute une activité.",
         "parameters": [
@@ -54,7 +56,9 @@
     },
     "/stop": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Stop",
         "description": "Stop le raisonnement",
         "parameters": [
@@ -85,7 +89,9 @@
     },
     "/answer": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Répondre",
         "description": "Fournit une réponse de l'agent.",
         "parameters": [
@@ -95,14 +101,15 @@
             "required": true,
             "description": "Contenu de la réponse",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "additionalProperties": true
             }
           },
           {
-            "name": "assistant",
-            "summary": "Assistant",
+            "name": "prompt",
+            "summary": "Prompt",
             "required": false,
-            "description": "Détails supplémentaires de l'assistant",
+            "description": "Détails supplémentaires du prompt",
             "schema": {
               "type": "string"
             }
@@ -143,13 +150,13 @@
                   "type": "object",
                   "properties": {
                     "content": {
-                      "type": "string",
-                      "description": "Contenu de la réponse"
-                    },
-                    "assistant": {
                       "type": "object",
-                      "description": "Détails supplémentaires de l'assistant",
+                      "description": "Contenu de la réponse",
                       "additionalProperties": true
+                    },
+                    "prompt": {
+                      "type": "string",
+                      "description": "Détails supplémentaires du prompt"
                     },
                     "sources": {
                       "type": "array",
@@ -168,7 +175,9 @@
                       }
                     }
                   },
-                  "required": ["content"]
+                  "required": [
+                    "content"
+                  ]
                 }
               }
             }
@@ -182,7 +191,9 @@
     "/task": {
       "summary": "Tache",
       "description": "Exécution d'une tache.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [],
       "parameters": [
         {
@@ -202,7 +213,9 @@
     "/action": {
       "summary": "Action",
       "description": "Action exécutable.",
-      "tags": ["service"],
+      "tags": [
+        "service"
+      ],
       "metadata": [
         {
           "name": "parameters",
@@ -255,7 +268,9 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -283,7 +298,12 @@
             "type": "string"
           }
         },
-        "required": ["name", "summary", "required", "schema"]
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
       }
     }
   }

@@ -144,14 +144,15 @@
             "required": true,
             "description": "Content of the response",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "additionalProperties": true
             }
           },
           {
-            "name": "assistant",
-            "summary": "Assistant",
+            "name": "prompt",
+            "summary": "Prompt",
             "required": false,
-            "description": "Additional assistant details",
+            "description": "Additional prompt details",
             "schema": {
               "type": "string"
             }
@@ -192,13 +193,13 @@
                   "type": "object",
                   "properties": {
                     "content": {
-                      "type": "string",
-                      "description": "Content of the response"
-                    },
-                    "assistant": {
                       "type": "object",
-                      "description": "Additional assistant details",
+                      "description": "Content of the response",
                       "additionalProperties": true
+                    },
+                    "prompt": {
+                      "type": "string",
+                      "description": "Additional prompt details"
                     },
                     "sources": {
                       "type": "array",
