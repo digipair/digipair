@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-service",
-  "version": "1.4.11-local",
+  "version": "1.4.12-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
