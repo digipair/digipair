@@ -13,19 +13,12 @@ module.exports = withNx(
       {
         format: 'esm',
         entryFileNames: 'index.esm.js',
-        external: [/@digipair\//]
+        external: ['feelin']
       },
       {
         format: 'cjs',
         entryFileNames: 'index.cjs.js',
-        external: [
-          /@digipair\//,
-          "@temporalio/client",
-          "@temporalio/common",
-          "@temporalio/worker",
-          "@temporalio/workflow",
-          "feelin"
-        ]],
+        external: ['feelin', '@digipair/engine'],
       },
     ],
     assets: [

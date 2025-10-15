@@ -13,17 +13,16 @@ module.exports = withNx(
       {
         format: 'esm',
         entryFileNames: 'index.esm.js',
-        external: [/@digipair\//]
+        external: []
       },
       {
         format: 'cjs',
         entryFileNames: 'index.cjs.js',
         external: [
-          /@digipair\//,
-          // "@modelcontextprotocol/sdk",
+          '@digipair/engine',
           '@modelcontextprotocol/sdk/client/index.js',
           '@modelcontextprotocol/sdk/client/streamableHttp.js',
-          '@modelcontextprotocol/sdk/client/stdio.js'
+          '@modelcontextprotocol/sdk/client/stdio.js',
         ],
       },
     ],

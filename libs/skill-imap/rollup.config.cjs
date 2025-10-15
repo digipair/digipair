@@ -13,7 +13,7 @@ module.exports = withNx(
       {
         format: 'esm',
         entryFileNames: 'index.esm.js',
-        external: [/@digipair\//]
+        external: []
       },
       {
         format: 'cjs',

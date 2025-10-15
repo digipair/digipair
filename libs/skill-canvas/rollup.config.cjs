@@ -13,12 +13,12 @@ module.exports = withNx(
       {
         format: 'esm',
         entryFileNames: 'index.esm.js',
-        external: [/@digipair\//]
+        external: ['canvas']
       },
       {
         format: 'cjs',
         entryFileNames: 'index.cjs.js',
-        external: [/@digipair\//, "canvas"]
+        external: ['@digipair/engine', "canvas"]
       },
     ],
     assets: [

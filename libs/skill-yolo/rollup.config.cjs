@@ -13,12 +13,12 @@ module.exports = withNx(
       {
         format: 'esm',
         entryFileNames: 'index.esm.js',
-        external: [/@digipair\//]
+        external: ['onnxruntime-node', 'sharp']
       },
       {
         format: 'cjs',
         entryFileNames: 'index.cjs.js',
-        external: [/@digipair\//],
+        external: ['onnxruntime-node', 'sharp'],
       },
     ],
     assets: [

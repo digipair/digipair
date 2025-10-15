@@ -13,12 +13,12 @@ module.exports = withNx(
       {
         format: 'esm',
         entryFileNames: 'index.esm.js',
-        external: [/@digipair\//]
+        external: []
       },
       {
         format: 'cjs',
         entryFileNames: 'index.cjs.js',
-        external: [/@digipair\//, "@microsoft/fetch-event-source", "@ui5/webcomponents", "@ui5/webcomponents-icons"],
+        external: ["@ui5/webcomponents", "@ui5/webcomponents-icons"],
       },
     ],
     assets: [
