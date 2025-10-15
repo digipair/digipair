@@ -43,6 +43,11 @@ class WorkerService {
 
     throw { type: 'DIGIPAIR_STOP', value };
   }
+
+  async answer(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { content, assistant, sources, agent_history } = params;
+    return { content, assistant, sources, agent_history };
+  }
 }
 
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -56,3 +61,6 @@ export const activity = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const stop = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WorkerService().stop(params, pinsSettingsList, context);
+
+export const answer = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WorkerService().answer(params, pinsSettingsList, context);

@@ -10,9 +10,7 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Activité",
         "description": "Exécute une activité.",
         "parameters": [
@@ -56,9 +54,7 @@
     },
     "/stop": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Stop",
         "description": "Stop le raisonnement",
         "parameters": [
@@ -86,15 +82,107 @@
         },
         "x-events": []
       }
+    },
+    "/answer": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Répondre",
+        "description": "Fournit une réponse de l'agent.",
+        "parameters": [
+          {
+            "name": "content",
+            "summary": "Contenu",
+            "required": true,
+            "description": "Contenu de la réponse",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "assistant",
+            "summary": "Assistant",
+            "required": false,
+            "description": "Détails supplémentaires de l'assistant",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sources",
+            "summary": "Sources",
+            "required": false,
+            "description": "Sources d'information utilisées pour générer la réponse",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          {
+            "name": "agent_history",
+            "summary": "Historique de l'agent",
+            "required": false,
+            "description": "Historique des interactions de l'agent",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Réponse fournie par l'agent avec contenu, détails de l'assistant, sources et historique de l'agent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string",
+                      "description": "Contenu de la réponse"
+                    },
+                    "assistant": {
+                      "type": "object",
+                      "description": "Détails supplémentaires de l'assistant",
+                      "additionalProperties": true
+                    },
+                    "sources": {
+                      "type": "array",
+                      "description": "Sources d'information utilisées pour générer la réponse",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    "agent_history": {
+                      "type": "array",
+                      "description": "Historique des interactions de l'agent",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    }
+                  },
+                  "required": ["content"]
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
     }
   },
   "x-scene-blocks": {
     "/task": {
       "summary": "Tache",
       "description": "Exécution d'une tache.",
-      "tags": [
-        "service"
-      ],
+      "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
@@ -114,9 +202,7 @@
     "/action": {
       "summary": "Action",
       "description": "Action exécutable.",
-      "tags": [
-        "service"
-      ],
+      "tags": ["service"],
       "metadata": [
         {
           "name": "parameters",
@@ -169,9 +255,7 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -199,12 +283,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "summary",
-          "required",
-          "schema"
-        ]
+        "required": ["name", "summary", "required", "schema"]
       }
     }
   }

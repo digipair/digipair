@@ -129,6 +129,104 @@
           "schema"
         ]
       }
+    },
+    "/answer": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Answer",
+        "description": "Provide an answer from the agent with content, assistant details, sources, and agent history.",
+        "parameters": [
+          {
+            "name": "content",
+            "summary": "Content",
+            "required": true,
+            "description": "Content of the response",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "assistant",
+            "summary": "Assistant",
+            "required": false,
+            "description": "Additional assistant details",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sources",
+            "summary": "Sources",
+            "required": false,
+            "description": "Sources of information used to generate the response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          {
+            "name": "agent_history",
+            "summary": "Agent History",
+            "required": false,
+            "description": "History of agent interactions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RResponse provided by the agent with content, assistant details, sources, and agent history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string",
+                      "description": "Content of the response"
+                    },
+                    "assistant": {
+                      "type": "object",
+                      "description": "Additional assistant details",
+                      "additionalProperties": true
+                    },
+                    "sources": {
+                      "type": "array",
+                      "description": "Sources of information used to generate the response",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    "agent_history": {
+                      "type": "array",
+                      "description": "History of agent interactions",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    }
+                  },
+                  "required": [
+                    "content"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
     }
   },
   "x-scene-blocks": {
