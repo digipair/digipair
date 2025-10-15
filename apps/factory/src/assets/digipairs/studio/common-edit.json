@@ -215,14 +215,14 @@
                             "library": "@digipair/skill-editor",
                             "element": "digipair",
                             "properties": {
-                              "digipair": "FEEL:common"
+                              "digipair": "common"
                             }
                           },
                           {
                             "library": "@digipair/skill-editor",
                             "element": "setDigipair",
                             "properties": {
-                              "digipair": "FEEL:common",
+                              "digipair": "common",
                               "value": "FEEL:context merge(\n  previous,\n  { \n    privates: variables.privates\n  }\n)"
                             }
                           }
@@ -233,7 +233,7 @@
                       "library": "@digipair/skill-web-interact",
                       "element": "goTo",
                       "properties": {
-                        "url": "/studio/tools"
+                        "url": "/studio/workers"
                       }
                     }
                   ]

@@ -164,7 +164,7 @@ class DspService {
 
     // add comsumption
     const ai: any = (modelInstance as any).ai ?? modelInstance;
-    const consumption = ai.tokensUsed;
+    const consumption = ai.tokensUsed ?? ai.modelUsage;
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.addConsumption(
       context,
