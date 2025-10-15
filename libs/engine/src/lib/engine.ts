@@ -1,13 +1,31 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Handlebars from 'handlebars/dist/handlebars.min.js';
-import { evaluate } from 'feelin';
+import { evaluate as evaluateFeel } from 'feelin';
+import { evaluate as evaluateCel } from 'cel-js';
 import { PinsSettings } from './pins-settings.interface';
 import { Alias } from './alias.interface';
 
 Handlebars.registerHelper('JSONstringify', function (value: any) {
   return JSON.stringify(value);
 });
+
+const DIGIPAIR_FUNCTIONS = {
+  getTime: (time: string) => new Date(time).getTime(),
+  fromTime: (time: number) => new Date(time).toISOString(),
+  atob: (value: string) => atob(value),
+  btoa: (value: string) => btoa(value),
+  encodeURIComponent: (value: string | number | boolean) => encodeURIComponent(value),
+  decodeURIComponent: (value: string) => decodeURIComponent(value),
+  encodeUTF8: (value: string) =>
+    Array.from(new TextEncoder().encode(value))
+      .map(b => String.fromCharCode(b))
+      .join(''),
+  decodeUTF8: (value: string) =>
+    new TextDecoder().decode(new Uint8Array(Array.from(value).map(c => c.charCodeAt(0)))),
+  JSONparse: (value: string) => JSON.parse(value),
+  JSONstringify: (value: string) => JSON.stringify(value),
+};
 
 type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES' | 'ALIAS' | 'LOGGER';
 const globalInstance: any = typeof window === 'undefined' ? global : window;
@@ -44,23 +62,25 @@ export const applyTemplate = (value: any, context: any) => {
       result = value.substring(7);
     } else if (result.startsWith('EVALUATE:')) {
       const path = result.replace(/^EVALUATE:/, '');
-      result = evaluate(path, {
+      result = evaluateFeel(path, {
         ...context,
-        getTime: (time: string) => new Date(time).getTime(),
-        fromTime: (time: number) => new Date(time).toISOString(),
-        atob: (value: string) => atob(value),
-        btoa: (value: string) => btoa(value),
-        encodeURIComponent: (value: string | number | boolean) => encodeURIComponent(value),
-        decodeURIComponent: (value: string) => decodeURIComponent(value),
-        encodeUTF8: (value: string) =>
-          Array.from(new TextEncoder().encode(value))
-            .map(b => String.fromCharCode(b))
-            .join(''),
-        decodeUTF8: (value: string) =>
-          new TextDecoder().decode(new Uint8Array(Array.from(value).map(c => c.charCodeAt(0)))),
-        JSONparse: (value: string) => JSON.parse(value),
-        JSONstringify: (value: string) => JSON.stringify(value),
+        ...DIGIPAIR_FUNCTIONS,
       });
+    } else if (result.startsWith('FEEL:')) {
+      const path = result.replace(/^FEEL:/, '');
+      result = evaluateFeel(path, {
+        ...context,
+        ...DIGIPAIR_FUNCTIONS,
+      });
+    } else if (result.startsWith('CEL:')) {
+      const path = result.replace(/^CEL:/, '');
+      result = evaluateCel(
+        path,
+        {
+          ...context,
+        },
+        DIGIPAIR_FUNCTIONS,
+      );
     } else {
       const template = Handlebars.compile(value, { noEscape: true });
       result = template(context);

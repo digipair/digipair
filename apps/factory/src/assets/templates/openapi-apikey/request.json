@@ -15,7 +15,9 @@
             {
               "library": "@digipair/skill-http",
               "element": "read",
-              "properties": { "path": "EVALUATE:privates.OPENAPI_URL" }
+              "properties": {
+                "path": "FEEL:privates.OPENAPI_URL"
+              }
             }
           ]
         }
@@ -25,43 +27,49 @@
         "element": "setVariable",
         "properties": {
           "name": "server",
-          "value": "EVALUATE:variables.openapi.servers[1].url"
+          "value": "FEEL:variables.openapi.servers[1].url"
         }
       },
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
-        "properties": { "name": "path", "value": "EVALUATE:request.body.path" }
+        "properties": {
+          "name": "path",
+          "value": "FEEL:request.body.path"
+        }
       },
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "method",
-          "value": "EVALUATE:request.body.method"
+          "value": "FEEL:request.body.method"
         }
       },
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
-        "properties": { "name": "body", "value": "EVALUATE:request.body.body" }
+        "properties": {
+          "name": "body",
+          "value": "FEEL:request.body.body"
+        }
       },
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
           "name": "headers",
-          "value": "EVALUATE:context merge([\n  request.body, \n  context([{ \"key\": privates.OPENAPI_AUTHORIZATION_KEY, \"value\": privates.OPENAPI_AUTHORIZATION_VALUE }])\n])"
+          "value": "FEEL:context merge([\n  request.body, \n  context([{ \"key\": privates.OPENAPI_AUTHORIZATION_KEY, \"value\": privates.OPENAPI_AUTHORIZATION_VALUE }])\n])"
         }
       },
       {
         "library": "@digipair/skill-http",
         "element": "request",
         "properties": {
-          "path": "EVALUATE:variables.server + variables.path",
-          "method": "EVALUATE:variables.method",
-          "body": "EVALUATE:if variables.method != \"get\" and variables.method != \"head\" then variables.body else null",
-          "headers": "EVALUATE:variables.headers"
+          "path": "FEEL:variables.server + variables.path",
+          "method": "FEEL:variables.method",
+          "body": "FEEL:if variables.method != \"get\" and variables.method != \"head\" then variables.body else null",
+          "headers": "FEEL:variables.headers"
         }
       }
     ]

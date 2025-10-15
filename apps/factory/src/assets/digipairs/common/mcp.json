@@ -1,0 +1,88 @@
+{
+  "description": "Exposition of the agent via the MCP (Model Context Protocol)",
+  "summary": "Model Context Protocol",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "remote",
+          "execute": [
+            {
+              "library": "@digipair/skill-common",
+              "element": "metadata",
+              "properties": { "digipair": "FEEL: request.digipair" }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": { "value": "FEEL: previous.remote" }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-factory",
+              "element": "stop",
+              "properties": { "value": 405 }
+            }
+          ]
+        },
+        "conditions": { "if": "FEEL: variables.remote != true" }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "setVariable",
+              "properties": {
+                "name": "tools",
+                "execute": [
+                  {
+                    "library": "@digipair/skill-factory",
+                    "element": "start",
+                    "properties": { "reasoning": "schema.json" }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": {
+                        "name": "FEEL: substring(item.key, 2)",
+                        "description": "FEEL: item.value.post.description",
+                        "title": "FEEL: item.value.post.summary",
+                        "inputSchema": "FEEL: context(\n  for parameter in item.value.post.parameters return \n    { key: parameter.name, value: parameter.schema }\n)",
+                        "execute": "FEEL:  [\n  {\n    \"library\": \"@digipair/skill-factory\",\n    \"element\": \"start\",\n    \"properties\": {\n      \"reasoning\": substring(item.key, 2),\n      \"body\": \"FEEL: params\"\n    }\n  },\n  {\n    \"library\": \"@digipair/skill-basic\",\n    \"element\": \"transform\",\n    \"properties\": {\n      \"value\": \"FEEL: { content: [{ type: \\\"text\\\", text: JSONstringify(if previous != null then previous else {}) }], structuredContent: previous }\"\n    }\n  }\n]"
+                      }
+                    },
+                    "conditions": { "each": "FEEL: get entries(previous.paths)" }
+                  }
+                ]
+              }
+            },
+            {
+              "library": "@digipair/skill-mcp",
+              "element": "createServer",
+              "properties": { "tools": "FEEL: variables.tools" }
+            },
+            { "library": "@digipair/skill-factory", "element": "keepAlive" }
+          ]
+        },
+        "conditions": { "if": "FEEL: variables.remote = true" }
+      }
+    ]
+  },
+  "pins": []
+}

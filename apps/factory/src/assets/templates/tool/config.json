@@ -3,7 +3,6 @@
   "description": "<%= description %>",
   "metadata": {
     "template": "tool",
-    "avatar": "avatar.png",
     "primary": "#51E0DC",
     "textPrimary": "#242E3B",
     "secondary": "#242E3B",

@@ -297,7 +297,7 @@
               }
             ],
             "conditions": {
-              "each": "EVALUATE:variables.tools"
+              "each": "FEEL:variables.tools"
             }
           },
           {

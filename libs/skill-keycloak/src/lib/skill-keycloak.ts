@@ -295,7 +295,10 @@ class KeycloakService {
           pinsSettings.properties?.['secured']) &&
         !context.keycloak.decodedToken
       ) {
-        throw new Error('Unauthorized');
+        context.protected.res.status(401);
+        context.protected.res.setHeader('Content-Type', 'application/json');
+        context.protected.res.setHeader('WWW-Authenticate', `Bearer realm="${realm}"`);
+        return { error: 'Unauthorized' };
       }
 
       return JSON.stringify(
@@ -429,7 +432,7 @@ class KeycloakService {
       }, 1);
 
       window.addEventListener('beforeunload', (event) => {
-        const showConfirmationMessage = applyTemplate('EVALUATE:' + ${JSON.stringify(confirmBeforeUnload)}, context);
+        const showConfirmationMessage = applyTemplate('CEL:' + ${JSON.stringify(confirmBeforeUnload)}, context);
 
         if (showConfirmationMessage) {
           event.preventDefault();
@@ -474,7 +477,10 @@ class KeycloakService {
     }
 
     if (secured && !context.keycloak.decodedToken) {
-      throw new Error('Unauthorized');
+      context.protected.res.status(401);
+      context.protected.res.setHeader('Content-Type', 'application/json');
+      context.protected.res.setHeader('WWW-Authenticate', `Bearer realm="${realm}"`);
+      return { error: 'Unauthorized' };
     }
 
     return await executePinsList(execute, context, `${context.__PATH__}.execute`);
@@ -512,7 +518,10 @@ class KeycloakService {
     }
 
     if (secured && !context.keycloak.decodedToken) {
-      throw new Error('Unauthorized');
+      context.protected.res.status(401);
+      context.protected.res.setHeader('Content-Type', 'application/json');
+      context.protected.res.setHeader('WWW-Authenticate', `Bearer realm="${realm}"`);
+      return { error: 'Unauthorized' };
     }
 
     const step = context.request.body.step

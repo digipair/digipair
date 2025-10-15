@@ -7,6 +7,7 @@ class ChatbotService {
       command = [],
       boosts = [],
       sources = [],
+      agent_history = [],
       files = [],
       assistant,
       logs,
@@ -23,6 +24,7 @@ class ChatbotService {
       ),
       boosts,
       sources,
+      agent_history,
       files,
       logs,
       boost: boost

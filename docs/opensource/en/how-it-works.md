@@ -40,11 +40,11 @@ FEEL (Friendly Enough Expression Language) is an expression language used in PIN
 
 ```pins
 {
-  "condition": "EVALUATE: if (age > 18) then 'adult' else 'minor'"
+  "condition": "FEEL: if (age > 18) then 'adult' else 'minor'"
 }
 ```
 
-In this example, the FEEL expression evaluates whether the age is greater than 18 to determine if the individual is an adult or a minor. The `EVALUATE:` keyword indicates that the FEEL expression should be evaluated.
+In this example, the FEEL expression evaluates whether the age is greater than 18 to determine if the individual is an adult or a minor. The `FEEL:` keyword indicates that the FEEL expression should be evaluated.
 
 ## Engine
 

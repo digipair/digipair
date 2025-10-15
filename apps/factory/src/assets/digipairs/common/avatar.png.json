@@ -1,0 +1,53 @@
+{
+  "description": "Vérifier si le fichier \"avatar.png\" est un format d'image valide et s'assurer qu'il peut être utilisé comme avatar (taille, résolution, contenu approprié).",
+  "summary": "Gestion des images",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "avatar",
+          "execute": [
+            {
+              "library": "@digipair/skill-common",
+              "element": "metadata",
+              "properties": {
+                "digipair": "CEL: request.digipair"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "CEL: previous.avatar"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-service",
+        "element": "headers",
+        "properties": {
+          "headers": {
+            "Content-Type": "FEEL: substring(split(variables.avatar, \";base64,\")[1], 6)"
+          }
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "base64ToBuffer",
+        "properties": {
+          "base64": "CEL: variables.avatar"
+        }
+      }
+    ]
+  },
+  "pins": [],
+  "digipair": "common",
+  "id": "avatar.png"
+}

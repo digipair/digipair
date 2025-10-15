@@ -1,7 +1,7 @@
 {
   "name": "common",
   "description": "common actions.",
-  "metadata": { "avatar": "avatar.png", "color": "#3b82f6" },
+  "metadata": { "color": "#3b82f6" },
   "libraries": {
     "@digipair/skill-basic": "latest",
     "@digipair/skill-factory": "latest",

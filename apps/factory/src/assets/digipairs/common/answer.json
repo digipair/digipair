@@ -15,7 +15,7 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "EVALUATE:if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then getTime() else null"
+                "value": "FEEL:if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then getTime() else null"
               }
             }
           ]
@@ -27,18 +27,18 @@
         "properties": {
           "name": "boost",
           "value": {
-            "reasoning": "EVALUATE:requester.request.reasoning",
-            "step": "EVALUATE:request.body.boost[1].step",
-            "prompt": "EVALUATE:request.body.boost[1].prompt",
-            "required": "EVALUATE:request.body.boost[1].required",
-            "selector": "EVALUATE:request.body.boost[1].selector",
-            "url": "EVALUATE:request.body.boost[1].url",
-            "inputs": "EVALUATE:request.body.boost[1].inputs",
-            "context": "EVALUATE:requester.request.body.context"
+            "reasoning": "FEEL:requester.request.reasoning",
+            "step": "FEEL:request.body.boost[1].step",
+            "prompt": "FEEL:request.body.boost[1].prompt",
+            "required": "FEEL:request.body.boost[1].required",
+            "selector": "FEEL:request.body.boost[1].selector",
+            "url": "FEEL:request.body.boost[1].url",
+            "inputs": "FEEL:request.body.boost[1].inputs",
+            "context": "FEEL:requester.request.body.context"
           }
         },
         "conditions": {
-          "if": "EVALUATE:request.body.boost[1]"
+          "if": "FEEL:request.body.boost[1]"
         }
       },
       {
@@ -46,16 +46,16 @@
         "element": "transform",
         "properties": {
           "value": {
-            "uuid": "EVALUATE:previous[1]",
-            "parent_history": "EVALUATE:variables.userMessageId",
-            "parent_conversation": "EVALUATE:requester.request.body.parent_conversation",
+            "uuid": "FEEL:previous[1]",
+            "parent_history": "FEEL:variables.userMessageId",
+            "parent_conversation": "FEEL:requester.request.body.parent_conversation",
             "assistant": "{{request.body.assistant}}",
-            "command": "EVALUATE:if request.body.command then request.body.command else []",
-            "boost": "EVALUATE:variables.boost",
-            "boosts": "EVALUATE:request.body.boosts",
-            "sources": "EVALUATE:request.body.sources",
-            "files": "EVALUATE:request.body.files",
-            "logs": "EVALUATE:request.body.logs"
+            "command": "FEEL:if request.body.command then request.body.command else []",
+            "boost": "FEEL:variables.boost",
+            "boosts": "FEEL:request.body.boosts",
+            "sources": "FEEL:request.body.sources",
+            "files": "FEEL:request.body.files",
+            "logs": "FEEL:request.body.logs"
           }
         }
       },
@@ -68,20 +68,20 @@
               "library": "@digipair/skill-chatbot",
               "element": "answer",
               "properties": {
-                "assistant": "EVALUATE:data.assistant",
-                "boosts": "EVALUATE:data.boosts",
-                "logs": "EVALUATE:data.logs",
-                "parent_conversation": "EVALUATE:data.parent_conversation",
-                "parent_history": "EVALUATE:data.parent_history",
-                "sources": "EVALUATE:data.sources",
-                "files": "EVALUATE:data.files",
-                "uuid": "EVALUATE:data.uuid",
-                "boost": "EVALUATE:data.boost",
-                "command": "EVALUATE:data.command"
+                "assistant": "FEEL:data.assistant",
+                "boosts": "FEEL:data.boosts",
+                "logs": "FEEL:data.logs",
+                "parent_conversation": "FEEL:data.parent_conversation",
+                "parent_history": "FEEL:data.parent_history",
+                "sources": "FEEL:data.sources",
+                "files": "FEEL:data.files",
+                "uuid": "FEEL:data.uuid",
+                "boost": "FEEL:data.boost",
+                "command": "FEEL:data.command"
               }
             }
           ],
-          "context": "EVALUATE:context put(requester, \"data\", previous)"
+          "context": "FEEL:context put(requester, \"data\", previous)"
         }
       }
     ]

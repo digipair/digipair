@@ -134,7 +134,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "EVALUATE:item.metadata.avatar",
+                      "src": "FEEL:item.metadata.avatar",
                       "style": "height: 60px;",
                       "slot": "preview"
                     }
@@ -156,22 +156,22 @@
                             "library": "@digipair/skill-editor",
                             "element": "digipair",
                             "properties": {
-                              "digipair": "EVALUATE:request.params[1]"
+                              "digipair": "FEEL:request.params[1]"
                             }
                           },
                           {
                             "library": "@digipair/skill-basic",
                             "element": "transform",
                             "properties": {
-                              "value": "EVALUATE:context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                              "value": "FEEL:context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
                             }
                           },
                           {
                             "library": "@digipair/skill-editor",
                             "element": "setDigipair",
                             "properties": {
-                              "digipair": "EVALUATE:request.params[1]",
-                              "value": "EVALUATE:previous"
+                              "digipair": "FEEL:request.params[1]",
+                              "value": "FEEL:previous"
                             }
                           }
                         ]
@@ -189,7 +189,7 @@
               }
             ],
             "conditions": {
-              "each": "EVALUATE:variables.digipairs"
+              "each": "FEEL:variables.digipairs"
             }
           },
           {
@@ -311,22 +311,22 @@
                           "element": "transform",
                           "properties": {
                             "value": {
-                              "infos": "EVALUATE:variables.infos",
-                              "metadata": "EVALUATE:variables.metadata"
+                              "infos": "FEEL:variables.infos",
+                              "metadata": "FEEL:variables.metadata"
                             }
                           }
                         }
                       ]
                     },
                     "conditions": {
-                      "each": "EVALUATE:(for id in previous return\n  if \n    (starts with(id, \"tool-\") or starts with(id, \"worker-\"))\n    and id != request.params[1]\n    and count(\n      get entries(\n        variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
+                      "each": "FEEL:(for id in previous return\n  if \n    (starts with(id, \"tool-\") or starts with(id, \"worker-\"))\n    and id != request.params[1]\n    and count(\n      get entries(\n        variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
                     }
                   },
                   {
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "EVALUATE:previous"
+                      "value": "FEEL:previous"
                     }
                   }
                 ]

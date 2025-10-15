@@ -1,3 +1,13 @@
+## 1.4.17-local (2025-10-15)
+
+### 🩹 Fixes
+
+- update rollup.config libs ([48361bb](https://github.com/digipair/digipair/commit/48361bb))
+
+### ❤️ Thank You
+
+- dgreboval
+
 ## 1.4.16-local (2025-10-15)
 
 This was a version bump only, there were no code changes.

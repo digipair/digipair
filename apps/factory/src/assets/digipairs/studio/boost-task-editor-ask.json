@@ -68,7 +68,7 @@
                   "properties": {
                     "message": {
                       "type": "step",
-                      "content": "EVALUATE: action"
+                      "content": "FEEL: action"
                     },
                     "id": "{{request.body.userId}}",
                     "reasoning": "notification"
@@ -81,7 +81,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "EVALUATE: JSONparse(previous).assistant"
+              "assistant": "FEEL: JSONparse(previous).assistant"
             }
           }
         ]

@@ -122,7 +122,7 @@
               "textContent": "You haven't created a tool agent yet? What are you waiting for?"
             },
             "conditions": {
-              "if": "EVALUATE:count(variables.digipairs) <= 0"
+              "if": "FEEL:count(variables.digipairs) <= 0"
             }
           },
           {
@@ -137,7 +137,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "EVALUATE:item.metadata.avatar",
+                      "src": "FEEL:item.metadata.avatar",
                       "style": "height: 60px;",
                       "slot": "preview"
                     }
@@ -254,7 +254,7 @@
               }
             ],
             "conditions": {
-              "each": "EVALUATE: variables.digipairs"
+              "each": "FEEL: variables.digipairs"
             }
           },
           {
@@ -362,15 +362,15 @@
                           "element": "transform",
                           "properties": {
                             "value": {
-                              "infos": "EVALUATE:variables.infos",
-                              "metadata": "EVALUATE:variables.metadata"
+                              "infos": "FEEL:variables.infos",
+                              "metadata": "FEEL:variables.metadata"
                             }
                           }
                         }
                       ]
                     },
                     "conditions": {
-                      "each": "EVALUATE:previous[starts with(item, \"tool-\")]"
+                      "each": "FEEL:previous[starts with(item, \"tool-\")]"
                     }
                   }
                 ]

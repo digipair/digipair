@@ -438,7 +438,8 @@ export class ChatbotElement extends LitElement {
         <img
           @click=${() => (this.resultState !== 'closed' ? this.closeResult() : this.openResult())}
           class="logo ${this.loading ? 'loading' : ''}"
-          src=${this.metadata.avatar}
+          src="${this.apiUrl}/${this.code}/avatar.png"
+          alt="Agent Avatar"
         />
       </section>
     `;

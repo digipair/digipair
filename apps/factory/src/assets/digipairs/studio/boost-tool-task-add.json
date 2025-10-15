@@ -3,7 +3,9 @@
   "summary": "Add a task",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": { "standalone": false },
+  "metadata": {
+    "standalone": false
+  },
   "properties": {
     "steps": [
       {
@@ -15,7 +17,11 @@
             "properties": {
               "assistant": "What is the identifier of this new {{request.body.context.summary}} ?",
               "boost": [
-                { "prompt": true, "required": true, "step": "Execution" }
+                {
+                  "prompt": true,
+                  "required": true,
+                  "step": "Execution"
+                }
               ]
             }
           }
@@ -35,7 +41,9 @@
                   "element": "generate",
                   "properties": {
                     "signature": "\"Extract information about the reasoning to create from the user's comment\" \ncomment:string \"User's comment describing the reasoning to create\" -> \n  reasoning:string \"Very short reasoning name in English\", \n  description:string \"Short reasoning description in English\", \n  assistant:string \"Assistant's answer in English to inform that the reasoning has been successfully added\"",
-                    "input": { "comment": "{{request.body.prompt}}" }
+                    "input": {
+                      "comment": "{{request.body.prompt}}"
+                    }
                   }
                 }
               ]
@@ -46,7 +54,7 @@
             "element": "setVariable",
             "properties": {
               "name": "reasoning",
-              "value": "EVALUATE:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse if request.body.context.element = \"action\" then \n  \"action-\" + request.body.prompt \nelse if request.body.context.element = \"trigger\" then \n  \"trigger-\" + request.body.prompt \nelse\n request.body.prompt"
+              "value": "FEEL:\nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse if request.body.context.element = \"action\" then \n  \"action-\" + request.body.prompt \nelse if request.body.context.element = \"trigger\" then \n  \"trigger-\" + request.body.prompt \nelse\n request.body.prompt"
             }
           },
           {

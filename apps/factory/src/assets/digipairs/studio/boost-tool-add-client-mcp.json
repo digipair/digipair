@@ -65,10 +65,10 @@
                       "element": "digipair-input-hidden",
                       "properties": {
                         "value": {
-                          "digipair": "EVALUATE:\"tool-\" + request.body.prompt",
-                          "name": "EVALUATE:variables.infos.name",
-                          "description": "EVALUATE:variables.infos.description",
-                          "assistant": "EVALUATE:variables.infos.assistant"
+                          "digipair": "FEEL:\"tool-\" + request.body.prompt",
+                          "name": "FEEL:variables.infos.name",
+                          "description": "FEEL:variables.infos.description",
+                          "assistant": "FEEL:variables.infos.assistant"
                         }
                       }
                     }
@@ -88,27 +88,27 @@
             "properties": {
               "template": "tool-client-mcp-apikey",
               "data": {
-                "digipair": "EVALUATE:request.body.inputs[1].value.digipair",
-                "name": "EVALUATE:request.body.inputs[1].value.name",
-                "description": "EVALUATE:request.body.inputs[1].value.description",
-                "api": "EVALUATE:request.body.prompt",
+                "digipair": "FEEL:request.body.inputs[1].value.digipair",
+                "name": "FEEL:request.body.inputs[1].value.name",
+                "description": "FEEL:request.body.inputs[1].value.description",
+                "api": "FEEL:request.body.prompt",
                 "key": "API_KEY"
               },
-              "digipair": "EVALUATE:request.body.inputs[1].value.digipair"
+              "digipair": "FEEL:request.body.inputs[1].value.digipair"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "EVALUATE:request.body.inputs[1].value.digipair"
+              "digipair": "FEEL:request.body.inputs[1].value.digipair"
             }
           },
           {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "EVALUATE:request.body.inputs[1].value.assistant",
+              "assistant": "FEEL:request.body.inputs[1].value.assistant",
               "command": [
                 {
                   "library": "@digipair/skill-web-interact",

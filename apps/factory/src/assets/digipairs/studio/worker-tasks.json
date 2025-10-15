@@ -158,7 +158,7 @@
               "textContent": "You haven't trained me on any tasks? What are you waiting for?"
             },
             "conditions": {
-              "if": "EVALUATE:count(variables.reasonings) <= 0"
+              "if": "FEEL:count(variables.reasonings) <= 0"
             }
           },
           {
@@ -173,7 +173,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "EVALUATE:if\n  starts with(item.library, \"digipair:\")\nthen \n  (for tool in variables.tools return if tool.infos.id = substring(item.library, 10) then tool.metadata.avatar else null)[item != null][1]\nelse \n  \"/public/libraries/\" + item.library + \"/\" + item.element + \".svg\"",
+                      "src": "FEEL:if\n  starts with(item.library, \"digipair:\")\nthen \n  (for tool in variables.tools return if tool.infos.id = substring(item.library, 10) then tool.metadata.avatar else null)[item != null][1]\nelse \n  \"/public/libraries/\" + item.library + \"/\" + item.element + \".svg\"",
                       "style": "height: 60px;",
                       "slot": "preview"
                     }
@@ -217,7 +217,7 @@
                               ]
                             },
                             "conditions": {
-                              "if": "EVALUATE:item.element = \"page\""
+                              "if": "FEEL:item.element = \"page\""
                             }
                           },
                           {
@@ -342,7 +342,7 @@
                               ]
                             },
                             "conditions": {
-                              "if": "EVALUATE:item.element = \"task\" or item.element = \"workflow\""
+                              "if": "FEEL:item.element = \"task\" or item.element = \"workflow\""
                             }
                           }
                         ]
@@ -357,7 +357,7 @@
               }
             ],
             "conditions": {
-              "each": "EVALUATE:variables.reasonings"
+              "each": "FEEL:variables.reasonings"
             }
           },
           {
@@ -405,7 +405,7 @@
               "textContent": "No scheduled task at the moment..."
             },
             "conditions": {
-              "if": "EVALUATE:count(variables.crons) <= 0"
+              "if": "FEEL:count(variables.crons) <= 0"
             }
           },
           {
@@ -558,7 +558,7 @@
                                   ]
                                 },
                                 "conditions": {
-                                  "if": "EVALUATE:item.enabled = true"
+                                  "if": "FEEL:item.enabled = true"
                                 }
                               },
                               {
@@ -601,7 +601,7 @@
                                   ]
                                 },
                                 "conditions": {
-                                  "if": "EVALUATE:item.enabled = false"
+                                  "if": "FEEL:item.enabled = false"
                                 }
                               }
                             ],
@@ -613,14 +613,14 @@
                       }
                     ],
                     "conditions": {
-                      "each": "EVALUATE:variables.crons"
+                      "each": "FEEL:variables.crons"
                     }
                   }
                 ]
               }
             ],
             "conditions": {
-              "if": "EVALUATE:count(variables.crons) > 0"
+              "if": "FEEL:count(variables.crons) > 0"
             }
           },
           {
@@ -645,7 +645,7 @@
               "textContent": "Aucun agent outil associé"
             },
             "conditions": {
-              "if": "EVALUATE:count(variables.tools) <= 0"
+              "if": "FEEL:count(variables.tools) <= 0"
             }
           },
           {
@@ -660,7 +660,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "EVALUATE:item.metadata.avatar",
+                      "src": "FEEL:item.metadata.avatar",
                       "style": "height: 60px;",
                       "slot": "preview"
                     }
@@ -703,29 +703,29 @@
                                         "element": "setVariable",
                                         "properties": {
                                           "name": "tool",
-                                          "value": "EVALUATE:item.infos"
+                                          "value": "FEEL:item.infos"
                                         }
                                       },
                                       {
                                         "library": "@digipair/skill-editor",
                                         "element": "digipair",
                                         "properties": {
-                                          "digipair": "EVALUATE:request.params[1]"
+                                          "digipair": "FEEL:request.params[1]"
                                         }
                                       },
                                       {
                                         "library": "@digipair/skill-basic",
                                         "element": "transform",
                                         "properties": {
-                                          "value": "EVALUATE:context merge(\n  previous, \n  { \n    libraries: context(\n        get entries(previous.libraries)[item.key != \"digipair:\" + variables.tool.id]\n    )\n  }\n)"
+                                          "value": "FEEL:context merge(\n  previous, \n  { \n    libraries: context(\n        get entries(previous.libraries)[item.key != \"digipair:\" + variables.tool.id]\n    )\n  }\n)"
                                         }
                                       },
                                       {
                                         "library": "@digipair/skill-editor",
                                         "element": "setDigipair",
                                         "properties": {
-                                          "digipair": "EVALUATE:request.params[1]",
-                                          "value": "EVALUATE:previous"
+                                          "digipair": "FEEL:request.params[1]",
+                                          "value": "FEEL:previous"
                                         }
                                       }
                                     ]
@@ -750,7 +750,7 @@
               }
             ],
             "conditions": {
-              "each": "EVALUATE:variables.tools"
+              "each": "FEEL:variables.tools"
             }
           },
           {
@@ -844,13 +844,13 @@
                           "element": "reasoning",
                           "properties": {
                             "digipair": "{{request.params.[0]}}",
-                            "reasoning": "EVALUATE:item"
+                            "reasoning": "FEEL:item"
                           }
                         }
                       ]
                     },
                     "conditions": {
-                      "each": "EVALUATE:previous"
+                      "each": "FEEL:previous"
                     }
                   }
                 ]
@@ -878,7 +878,7 @@
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "EVALUATE:previous[item.digipair = request.params[1]]"
+                      "value": "FEEL:previous[item.digipair = request.params[1]]"
                     }
                   }
                 ]
@@ -913,7 +913,7 @@
                                 "library": "@digipair/skill-editor",
                                 "element": "digipair",
                                 "properties": {
-                                  "digipair": "EVALUATE:item"
+                                  "digipair": "FEEL:item"
                                 }
                               }
                             ]
@@ -929,7 +929,7 @@
                                 "library": "@digipair/skill-editor",
                                 "element": "metadata",
                                 "properties": {
-                                  "digipair": "EVALUATE:item"
+                                  "digipair": "FEEL:item"
                                 }
                               }
                             ]
@@ -940,15 +940,15 @@
                           "element": "transform",
                           "properties": {
                             "value": {
-                              "infos": "EVALUATE:variables.toolInfos",
-                              "metadata": "EVALUATE:variables.toolMetadata"
+                              "infos": "FEEL:variables.toolInfos",
+                              "metadata": "FEEL:variables.toolMetadata"
                             }
                           }
                         }
                       ]
                     },
                     "conditions": {
-                      "each": "EVALUATE:for digipair in get entries(variables.digipair.libraries)[starts with(key, \"digipair:\")] return substring(digipair.key, 10)"
+                      "each": "FEEL:for digipair in get entries(variables.digipair.libraries)[starts with(key, \"digipair:\")] return substring(digipair.key, 10)"
                     }
                   }
                 ]
