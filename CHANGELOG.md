@@ -1,3 +1,7 @@
+## 1.4.11-local (2025-10-15)
+
+This was a version bump only, there were no code changes.
+
 ## 1.4.9-local (2025-10-14)
 
 This was a version bump only, there were no code changes.
