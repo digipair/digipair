@@ -38,13 +38,13 @@ class WorkerService {
     return result;
   }
 
-  async stop(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async stop(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { value = {} } = params;
 
     throw { type: 'DIGIPAIR_STOP', value };
   }
 
-  async answer(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async answer(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { content, prompt, sources, agent_history } = params;
     return { content, prompt, sources, agent_history };
   }
