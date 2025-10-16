@@ -10,7 +10,7 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
       tsConfig: './tsconfig.lib.json',
       compiler: 'swc',
       format: [config.format],
-      external: config.format === 'cjs' ? [] : [],
+            external: config.format === 'cjs' ? ["feelin","cel-js","handlebars/dist/handlebars.min.js"] : [],
       assets: [
         {
           input: join(__dirname, 'src'),
