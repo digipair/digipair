@@ -86,6 +86,105 @@
         },
         "x-events": []
       }
+    },
+    "/answer": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Répondre",
+        "description": "Fournit une réponse de l'agent.",
+        "parameters": [
+          {
+            "name": "content",
+            "summary": "Contenu",
+            "required": true,
+            "description": "Contenu de la réponse",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": false,
+            "description": "Détails supplémentaires du prompt",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sources",
+            "summary": "Sources",
+            "required": false,
+            "description": "Sources d'information utilisées pour générer la réponse",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          {
+            "name": "agent_history",
+            "summary": "Historique de l'agent",
+            "required": false,
+            "description": "Historique des interactions de l'agent",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Réponse fournie par l'agent avec contenu, détails de l'assistant, sources et historique de l'agent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "object",
+                      "description": "Contenu de la réponse",
+                      "additionalProperties": true
+                    },
+                    "prompt": {
+                      "type": "string",
+                      "description": "Détails supplémentaires du prompt"
+                    },
+                    "sources": {
+                      "type": "array",
+                      "description": "Sources d'information utilisées pour générer la réponse",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    "agent_history": {
+                      "type": "array",
+                      "description": "Historique des interactions de l'agent",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    }
+                  },
+                  "required": [
+                    "content"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
     }
   },
   "x-scene-blocks": {
