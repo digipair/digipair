@@ -70,6 +70,9 @@
       "path": "../../libs/skill-openai"
     },
     {
+      "path": "../../libs/skill-mcp"
+    },
+    {
       "path": "../../libs/skill-llm"
     },
     {
@@ -89,6 +92,9 @@
     },
     {
       "path": "../../libs/skill-codex"
+    },
+    {
+      "path": "../../libs/skill-client-mcp"
     },
     {
       "path": "../../libs/skill-canvas"
