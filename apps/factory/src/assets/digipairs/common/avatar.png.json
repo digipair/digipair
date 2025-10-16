@@ -16,14 +16,14 @@
               "library": "@digipair/skill-common",
               "element": "metadata",
               "properties": {
-                "digipair": "CEL: request.digipair"
+                "digipair": "FEEL: request.digipair"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "CEL: previous.avatar"
+                "value": "FEEL: previous.avatar"
               }
             }
           ]
@@ -42,7 +42,7 @@
         "library": "@digipair/skill-basic",
         "element": "base64ToBuffer",
         "properties": {
-          "base64": "CEL: variables.avatar"
+          "base64": "FEEL: variables.avatar"
         }
       }
     ]
