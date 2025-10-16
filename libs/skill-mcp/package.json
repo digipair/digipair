@@ -7,7 +7,7 @@
     "tool"
   ],
   "dependencies": {
-    "@digipair/engine": "0.110.5",
+    "@digipair/engine": "0.110.6",
     "zod": "^3.23.8",
     "@modelcontextprotocol/sdk": "^1.18.2"
   },
