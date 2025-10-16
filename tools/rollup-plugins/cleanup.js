@@ -12,9 +12,9 @@ module.exports = function cleanupPlugin(dirs = ['node_modules', '.cache']) {
         if (fs.existsSync(dir)) {
           try {
             fs.rmSync(dir, { recursive: true, force: true });
-            console.log(`✅ Nettoyé: ${path.relative(baseDir, dir)}`);
+            console.log(`✅ Clean: ${path.relative(baseDir, dir)}`);
           } catch (err) {
-            console.warn(`⚠️  Impossible de nettoyer ${dir}:`, err.message);
+            console.warn(`⚠️  Error during clean ${dir}:`, err.message);
           }
         }
       });
