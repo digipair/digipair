@@ -79,6 +79,9 @@
       "path": "../../libs/skill-openai/tsconfig.lib.json"
     },
     {
+      "path": "../../libs/skill-mcp/tsconfig.lib.json"
+    },
+    {
       "path": "../../libs/skill-llm/tsconfig.lib.json"
     },
     {
@@ -98,6 +101,9 @@
     },
     {
       "path": "../../libs/skill-codex/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/skill-client-mcp/tsconfig.lib.json"
     },
     {
       "path": "../../libs/skill-canvas/tsconfig.lib.json"
