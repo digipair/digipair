@@ -1,3 +1,22 @@
+## 1.6.0-local (2025-10-16)
+
+### 🚀 Features
+
+- add answer for worker ([d4b7c69](https://github.com/digipair/digipair/commit/d4b7c69))
+- version 0.110.1 ([3a9029e](https://github.com/digipair/digipair/commit/3a9029e))
+- version 0.110.2 ([13ada17](https://github.com/digipair/digipair/commit/13ada17))
+- add withNxDigipair ([c280c6c](https://github.com/digipair/digipair/commit/c280c6c))
+
+### 🩹 Fixes
+
+- prompt tokens count anthropic compatibility ([3b2959a](https://github.com/digipair/digipair/commit/3b2959a))
+- update all rollup.config from br main ([c914aa6](https://github.com/digipair/digipair/commit/c914aa6))
+
+### ❤️ Thank You
+
+- dgreboval
+- Marc BUILS
+
 ## 1.4.17-local (2025-10-15)
 
 ### 🩹 Fixes
