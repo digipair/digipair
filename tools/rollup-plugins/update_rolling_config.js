@@ -1,45 +1,37 @@
 const fs = require('fs');
 const path = require('path');
+const {withNxDigipair} = require("../rollup/with-nx");
+const {withNx} = require("@nx/rollup/with-nx");
+const {join} = require("path");
 
 // Liste des skills à exclure
 const EXCLUDED_SKILLS = [];
 
 // Template de configuration rollup
-const generateRollupConfig = (skillName) => `const {withNx} = require('@nx/rollup/with-nx');
-const {join} = require('path');
-const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
+const generateRollupConfig = (skillName) => `const { withNx } = require('@nx/rollup/with-nx');
+const { join } = require('path');
+const { withNxDigipair } = require('../../tools/rollup/with-nx');
 
-// external dependencies on CJS
-const externalsEsm = [/@digipair\\//];
-const externalsCjs = [/@digipair\\//];
-
-
-function createOutputConfig(format) {
-  const isEsm = format === 'esm';
-  return {
-    main: './src/index.ts',
-    outputPath: './dist',
-    tsConfig: './tsconfig.lib.json',
-    compiler: 'swc',
-    format: [format],
-    external: isEsm ? externalsEsm : externalsCjs,
-    assets: [
-      {
-        input: join(__dirname, 'src'),
-        glob: '*.json',
-        output: '.',
-      }
-    ]
-  };
-}
-
-const esmBuild = createOutputConfig('esm');
-const cjsBuild = createOutputConfig('cjs');
-
-module.exports = [
-  withNx(esmBuild, {plugins: [cleanupPlugin()]}),
-  withNx(cjsBuild, {plugins: [cleanupPlugin()]}),
-];
+module.exports = withNxDigipair(['esm', 'cjs'], config =>
+  withNx(
+    {
+      main: './src/index.ts',
+      outputPath: './dist',
+      tsConfig: './tsconfig.lib.json',
+      compiler: 'swc',
+      format: [config.format],
+      external: config.format === 'cjs' ? [] : [],
+      assets: [
+        {
+          input: join(__dirname, 'src'),
+          glob: '*.json',
+          output: '.',
+        },
+      ],
+    },
+    {},
+  ),
+);
 `;
 
 // Fonction principale

@@ -1,35 +1,24 @@
-const {withNx} = require('@nx/rollup/with-nx');
-const {join} = require('path');
-const cleanupPlugin = require('../../tools/rollup-plugins/cleanup');
+const { withNx } = require('@nx/rollup/with-nx');
+const { join } = require('path');
+const { withNxDigipair } = require('../../tools/rollup/with-nx');
 
-module.exports = withNx(
-  {
-    main: './src/index.ts',
-    outputPath: './dist',
-    tsConfig: './tsconfig.lib.json',
-    compiler: 'swc',
-    format: ['esm', 'cjs'],
-    output: [
-      {
-        format: 'esm',
-        entryFileNames: 'index.esm.js',
-        external: ['onnxruntime-node', 'sharp']
-      },
-      {
-        format: 'cjs',
-        entryFileNames: 'index.cjs.js',
-        external: ['onnxruntime-node', 'sharp'],
-      },
-    ],
-    assets: [
-      {
-        input: join(__dirname, 'src'),
-        glob: '*.json',
-        output: '.',
-      },
-    ],
-  },
-  {
-    plugins: [cleanupPlugin()],
-  },
+module.exports = withNxDigipair(['esm', 'cjs'], config =>
+  withNx(
+    {
+      main: './src/index.ts',
+      outputPath: './dist',
+      tsConfig: './tsconfig.lib.json',
+      compiler: 'swc',
+      format: [config.format],
+      external: config.format === 'cjs' ? [] : [],
+      assets: [
+        {
+          input: join(__dirname, 'src'),
+          glob: '*.json',
+          output: '.',
+        },
+      ],
+    },
+    {},
+  ),
 );
