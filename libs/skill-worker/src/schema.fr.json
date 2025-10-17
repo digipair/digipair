@@ -139,6 +139,18 @@
                 "additionalProperties": true
               }
             }
+          },
+          {
+            "name": "files",
+            "summary": "Fichiers",
+            "required": false,
+            "description": "Fichiers associés à la réponse",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/File"
+              }
+            }
           }
         ],
         "responses": {
@@ -304,6 +316,27 @@
           "required",
           "schema"
         ]
+      },
+      "File": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "File",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "summary": "File name"
+          },
+          "mimeType": {
+            "type": "string",
+            "summary": "MIME Type"
+          },
+          "uuid": {
+            "type": "string",
+            "summary": "UUID"
+          }
+        }
       }
     }
   }

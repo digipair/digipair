@@ -45,8 +45,8 @@ class WorkerService {
   }
 
   async answer(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
-    const { content, prompt, sources, agent_history } = params;
-    return { content, prompt, sources, agent_history };
+    const { content, prompt, sources, agent_history, files } = params;
+    return { content, prompt, sources, agent_history, files };
   }
 }
 

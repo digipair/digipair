@@ -86,49 +86,6 @@
         },
         "x-events": []
       }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Parameter": {
-        "type": "object",
-        "tags": [
-          "service"
-        ],
-        "summary": "Parameter",
-        "properties": {
-          "name": {
-            "summary": "Name",
-            "type": "string"
-          },
-          "summary": {
-            "summary": "Summary",
-            "type": "string"
-          },
-          "required": {
-            "summary": "Required",
-            "type": "boolean"
-          },
-          "ignoreForAI": {
-            "summary": "Ignore for AI",
-            "type": "boolean"
-          },
-          "schema": {
-            "summary": "Schema",
-            "type": "object"
-          },
-          "description": {
-            "summary": "Summary",
-            "type": "string"
-          }
-        },
-        "required": [
-          "name",
-          "summary",
-          "required",
-          "schema"
-        ]
-      }
     },
     "/answer": {
       "post": {
@@ -182,6 +139,18 @@
                 "additionalProperties": true
               }
             }
+          },
+          {
+            "name": "files",
+            "summary": "Files",
+            "required": false,
+            "description": "Files associated with the response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/File"
+              }
+            }
           }
         ],
         "responses": {
@@ -227,6 +196,70 @@
           }
         },
         "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Parameter": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Parameter",
+        "properties": {
+          "name": {
+            "summary": "Name",
+            "type": "string"
+          },
+          "summary": {
+            "summary": "Summary",
+            "type": "string"
+          },
+          "required": {
+            "summary": "Required",
+            "type": "boolean"
+          },
+          "ignoreForAI": {
+            "summary": "Ignore for AI",
+            "type": "boolean"
+          },
+          "schema": {
+            "summary": "Schema",
+            "type": "object"
+          },
+          "description": {
+            "summary": "Summary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "summary",
+          "required",
+          "schema"
+        ]
+      },
+      "File": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "File",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "summary": "File name"
+          },
+          "mimeType": {
+            "type": "string",
+            "summary": "MIME Type"
+          },
+          "uuid": {
+            "type": "string",
+            "summary": "UUID"
+          }
+        }
       }
     }
   },
