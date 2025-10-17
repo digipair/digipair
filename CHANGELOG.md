@@ -1,3 +1,18 @@
+## 1.6.1-local (2025-10-17)
+
+### 🚀 Features
+
+- update nx 21.6.5 ([3e0eedb](https://github.com/digipair/digipair/commit/3e0eedb))
+
+### 🩹 Fixes
+
+- pb with external, add code in comment ([28fb295](https://github.com/digipair/digipair/commit/28fb295))
+- dbg external rollup ([4cd86cb](https://github.com/digipair/digipair/commit/4cd86cb))
+
+### ❤️ Thank You
+
+- dgreboval
+
 ## 1.6.0-local (2025-10-16)
 
 ### 🚀 Features
