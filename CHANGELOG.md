@@ -1,3 +1,13 @@
+## 1.6.2-local (2025-10-17)
+
+### 🩹 Fixes
+
+- update rollup.config external config ([b5a07b5](https://github.com/digipair/digipair/commit/b5a07b5))
+
+### ❤️ Thank You
+
+- dgreboval
+
 ## 1.6.1-local (2025-10-17)
 
 ### 🚀 Features
