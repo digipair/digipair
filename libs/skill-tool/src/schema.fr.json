@@ -161,15 +161,6 @@
           "schema": {
             "type": "object"
           }
-        },
-        {
-          "name": "context",
-          "summary": "Contexte",
-          "required": false,
-          "description": "Afficher le contexte d'exécution",
-          "schema": {
-            "type": "boolean"
-          }
         }
       ],
       "parameters": [

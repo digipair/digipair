@@ -204,15 +204,6 @@
           "schema": {
             "type": "object"
           }
-        },
-        {
-          "name": "context",
-          "summary": "Context",
-          "required": false,
-          "description": "Show execution context",
-          "schema": {
-            "type": "boolean"
-          }
         }
       ],
       "parameters": [

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Handlebars from 'handlebars/dist/handlebars.min.js';
 import { evaluate as evaluateFeel } from 'feelin';
-// import { evaluate as evaluateCel } from 'cel-js';
+import { evaluate as evaluateCel } from 'cel-js';
 import { PinsSettings } from './pins-settings.interface';
 import { Alias } from './alias.interface';
 
@@ -72,18 +72,16 @@ export const applyTemplate = (value: any, context: any) => {
         ...context,
         ...DIGIPAIR_FUNCTIONS,
       });
-    }
-    //  else if (result.startsWith('CEL:')) {
-    //   const path = result.replace(/^CEL:/, '');
-    //   result = evaluateCel(
-    //     path,
-    //     {
-    //       ...context,
-    //     },
-    //     DIGIPAIR_FUNCTIONS,
-    //   );
-    // } 
-    else {
+    } else if (result.startsWith('CEL:')) {
+      const path = result.replace(/^CEL:/, '');
+      result = evaluateCel(
+        path,
+        {
+          ...context,
+        },
+        DIGIPAIR_FUNCTIONS,
+      );
+    } else {
       const template = Handlebars.compile(value, { noEscape: true });
       result = template(context);
     }

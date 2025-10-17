@@ -5,7 +5,7 @@ const path = require('path');
 
 function getRollupOptions(options) {
   const extraGlobals = {};
-  const externals = options.output.format === 'cjs' ? ['feelin', 'handlebars/dist/handlebars.min.js'] : [];
+  const externals = options.output.format === 'cjs' ? ['feelin', 'cel-js', 'handlebars/dist/handlebars.min.js'] : [];
 
   const value = {
     ...options,
