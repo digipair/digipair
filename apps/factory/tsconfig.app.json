@@ -13,112 +13,16 @@
   "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"],
   "references": [
     {
-      "path": "../../libs/skill-yaml/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-font-awesome/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-interact/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-spectrum/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-inputs/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-editor/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-chatbot/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-notification/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-jsoneditor/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web-debug/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-sendmail/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-imap/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-oauth2/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-process/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-logger/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-worker/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-web/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-tool/tsconfig.lib.json"
-    },
-    {
       "path": "../../libs/skill-temporal/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-sse/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-service/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-openai/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-mcp/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-llm/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-http/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-factory/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-editor/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-dsp/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-debug/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-codex/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-client-mcp/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-canvas/tsconfig.lib.json"
-    },
-    {
-      "path": "../../libs/skill-basic/tsconfig.lib.json"
     },
     {
       "path": "../../libs/skill-cron/tsconfig.lib.json"
     },
     {
-      "path": "../../libs/skill-common/tsconfig.lib.json"
+      "path": "../../libs/skill-factory/tsconfig.lib.json"
     },
     {
-      "path": "../../libs/skill-chatbot/tsconfig.lib.json"
+      "path": "../../libs/skill-logger/tsconfig.lib.json"
     },
     {
       "path": "../../libs/engine/tsconfig.lib.json"
