@@ -7619,7 +7619,7 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==
 
-cel-js@^0.8.2:
+cel-js@0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/cel-js/-/cel-js-0.8.2.tgz#877c3d0a7811ba09a85a5992d8257d5f02b528d2"
   integrity sha512-fPk7V5wcjp6GQ2CqkQKbfaIGQ5rQIm8xOueVqbp9MPfviqZEBOReBF82iZa0oHUm449UTsj1LAzUIAsI356ong==
@@ -10258,7 +10258,7 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-feelin@^4.3.0:
+feelin@4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/feelin/-/feelin-4.3.0.tgz#2979208ab34b816311c45917ef6137aaf64a443f"
   integrity sha512-Uv3YNCrmXSXgkCJSfa2jR7SL/acjPhfEHKNsaL///fRJxD7epUvUJyF1WXbh8oh9Myv+z3WVClGb+rIuT7LDow==

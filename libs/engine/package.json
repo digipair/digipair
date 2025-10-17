@@ -7,8 +7,8 @@
     "service"
   ],
   "dependencies": {
-    "cel-js": "^0.8.2",
-    "feelin": "^4.3.0",
+    "cel-js": "0.8.2",
+    "feelin": "4.3.0",
     "handlebars": "4.7.8"
   },
   "typings": "./index.d.ts",
