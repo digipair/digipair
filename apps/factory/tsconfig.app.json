@@ -122,6 +122,9 @@
     },
     {
       "path": "../../libs/engine/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/skill-process/tsconfig.lib.json"
     }
   ]
 }
