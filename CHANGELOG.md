@@ -1,3 +1,7 @@
+## 1.6.3-local (2025-10-17)
+
+This was a version bump only, there were no code changes.
+
 ## 1.6.2-local (2025-10-17)
 
 ### 🩹 Fixes
