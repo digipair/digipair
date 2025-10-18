@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-chatbot",
-  "version": "1.6.4-local",
+  "version": "1.6.6-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -19,6 +19,8 @@
     "./index.esm2.js": "./dist/index.esm2.js",
     "./index.cjs.js": "./dist/index.cjs.js",
     "./index.cjs2.js": "./dist/index.cjs2.js",
+    "./SAP-icons.esm.js": "./dist/SAP-icons.esm.js",
+    "./SAP-icons.esm2.js": "./dist/SAP-icons.esm2.js",
     "./package.json": "./package.json",
     "./schema.json": "./dist/schema.json",
     "./schema.fr.json": "./dist/schema.fr.json"

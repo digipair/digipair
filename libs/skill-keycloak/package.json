@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-keycloak",
-  "version": "1.6.4-local",
+  "version": "1.6.6-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
