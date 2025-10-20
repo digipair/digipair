@@ -99,7 +99,7 @@ class CommonService {
         }),
     );
 
-    return actions;
+    return actions.flat();
   }
 
   async schema(params: any, _pinsSettingsList: PinsSettings[], context: any) {
