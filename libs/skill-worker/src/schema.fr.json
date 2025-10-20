@@ -258,6 +258,18 @@
           "schema": {
             "type": "boolean"
           }
+        },
+        {
+          "name": "prompts",
+          "summary": "Prompts",
+          "required": true,
+          "description": "Liste des exemples de prompts",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prompts"
+            }
+          }
         }
       ],
       "parameters": [
@@ -335,6 +347,38 @@
           "uuid": {
             "type": "string",
             "summary": "UUID"
+          }
+        }
+      },
+      "Prompt": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Prompt",
+        "properties": {
+          "title": {
+            "type": "string",
+            "summary": "Titre"
+          },
+          "description": {
+            "type": "string",
+            "summary": "Description"
+          },
+          "prompt": {
+            "type": "string",
+            "summary": "Prompt"
+          },
+          "icon": {
+            "type": "string",
+            "summary": "Icône"
+          },
+          "tags": {
+            "type": "array",
+            "summary": "Tags",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }

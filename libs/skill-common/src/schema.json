@@ -107,7 +107,9 @@
     },
     "/avatar": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Returns the digipair avatar",
         "parameters": [
           {
@@ -192,6 +194,73 @@
                       "reasoning",
                       "summary",
                       "description"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
+    "/prompts": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "List the prompts",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Digipair's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of available prompts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "summary": "Title"
+                      },
+                      "description": {
+                        "type": "string",
+                        "summary": "Description"
+                      },
+                      "prompt": {
+                        "type": "string",
+                        "summary": "Prompt"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "summary": "Icon"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "summary": "Tags",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "description",
+                      "prompt",
+                      "icon",
+                      "tags"
                     ]
                   }
                 }

@@ -260,6 +260,38 @@
             "summary": "UUID"
           }
         }
+      },
+      "Prompt": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Prompt",
+        "properties": {
+          "title": {
+            "type": "string",
+            "summary": "Title"
+          },
+          "description": {
+            "type": "string",
+            "summary": "Description"
+          },
+          "prompt": {
+            "type": "string",
+            "summary": "Prompt"
+          },
+          "icon": {
+            "type": "string",
+            "summary": "Icon"
+          },
+          "tags": {
+            "type": "array",
+            "summary": "Tags",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       }
     }
   },
@@ -321,6 +353,18 @@
           "description": "Display execution context",
           "schema": {
             "type": "boolean"
+          }
+        },
+        {
+          "name": "prompts",
+          "summary": "Prompts",
+          "required": true,
+          "description": "Prompts for the action",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prompts"
+            }
           }
         }
       ],

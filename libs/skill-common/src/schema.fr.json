@@ -204,6 +204,73 @@
         "x-events": []
       }
     },
+    "/prompts": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Lister les prompts",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Nom du digipair",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des prompts disponibles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "summary": "Titre"
+                      },
+                      "description": {
+                        "type": "string",
+                        "summary": "Description"
+                      },
+                      "prompt": {
+                        "type": "string",
+                        "summary": "Prompt"
+                      },
+                      "icon": {
+                        "type": "string",
+                        "summary": "Icône"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "summary": "Tags",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "description",
+                      "prompt",
+                      "icon",
+                      "tags"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
     "/schema": {
       "post": {
         "tags": [
