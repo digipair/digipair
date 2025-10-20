@@ -432,7 +432,7 @@ class KeycloakService {
       }, 1);
 
       window.addEventListener('beforeunload', (event) => {
-        const showConfirmationMessage = applyTemplate('CEL:' + ${JSON.stringify(confirmBeforeUnload)}, context);
+        const showConfirmationMessage = applyTemplate('FEEL:' + ${JSON.stringify(confirmBeforeUnload)}, context);
 
         if (showConfirmationMessage) {
           event.preventDefault();

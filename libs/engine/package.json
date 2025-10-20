@@ -1,6 +1,6 @@
 {
   "name": "@digipair/engine",
-  "version": "1.6.91-local",
+  "version": "1.6.92-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -30,8 +30,8 @@
     "name": "engine"
   },
   "dependencies": {
-    "cel-js": "^0.8.2",
-    "feelin": "^4.3.0",
+    "cel-js": "0.8.2",
+    "feelin": "4.3.0",
     "handlebars": "4.7.8"
   }
 }

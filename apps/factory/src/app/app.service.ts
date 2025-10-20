@@ -11,7 +11,7 @@ config.set('ALIAS', [
       digipair: '{{settings.library}}',
       reasoning: '{{settings.element}}',
       version: '{{settings.version}}',
-      body: 'CEL:settings.properties',
+      body: 'FEEL:settings.properties',
     },
   },
 ]);

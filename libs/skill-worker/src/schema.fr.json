@@ -139,6 +139,18 @@
                 "additionalProperties": true
               }
             }
+          },
+          {
+            "name": "files",
+            "summary": "Fichiers",
+            "required": false,
+            "description": "Fichiers associés à la réponse",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/File"
+              }
+            }
           }
         ],
         "responses": {
@@ -246,6 +258,18 @@
           "schema": {
             "type": "boolean"
           }
+        },
+        {
+          "name": "prompts",
+          "summary": "Prompts",
+          "required": true,
+          "description": "Liste des exemples de prompts",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Prompt"
+            }
+          }
         }
       ],
       "parameters": [
@@ -303,6 +327,62 @@
           "summary",
           "required",
           "schema"
+        ]
+      },
+      "File": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "File",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "summary": "File name"
+          },
+          "mimeType": {
+            "type": "string",
+            "summary": "MIME Type"
+          },
+          "uuid": {
+            "type": "string",
+            "summary": "UUID"
+          }
+        }
+      },
+      "Prompt": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Prompt",
+        "properties": {
+          "title": {
+            "type": "string",
+            "summary": "Titre"
+          },
+          "description": {
+            "type": "string",
+            "summary": "Description"
+          },
+          "prompt": {
+            "type": "string",
+            "summary": "Prompt"
+          },
+          "icon": {
+            "type": "string",
+            "summary": "Icône"
+          },
+          "tags": {
+            "type": "object",
+            "summary": "Tags"
+          }
+        },
+        "required": [
+          "title",
+          "prompt",
+          "icon",
+          "tags"
         ]
       }
     }

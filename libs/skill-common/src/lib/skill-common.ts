@@ -28,12 +28,8 @@ class CommonService {
     const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);
 
-    const buffer = await promises.readFile(`${path}/${digipair}/avatar.png`);
-    const avatar = buffer.toString('base64');
-
     return {
       ...config.metadata,
-      avatar: `data:image/png;base64,${avatar}`,
       config: { VERSIONS: config.libraries },
       variables: config.variables,
     };
@@ -80,6 +76,30 @@ class CommonService {
     );
 
     return boosts;
+  }
+
+  async prompts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path =
+      context.privates?.EDITOR_PATH ??
+      (process.env['DIGIPAIR_FACTORY_PATH']
+        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+        : './factory/digipairs');
+    const { digipair } = params;
+    const files = await promises.readdir(`${path}/${digipair}`);
+    const actions = await Promise.all(
+      files
+        .filter(
+          file => file.substring(file.length - 5) === '.json' && file.substring(0, 7) === 'action-',
+        )
+        .map(async file => {
+          const content = await promises.readFile(`${path}/${digipair}/${file}`, 'utf8');
+          const { metadata } = JSON.parse(content);
+
+          return metadata.prompts ?? [];
+        }),
+    );
+
+    return actions.flat();
   }
 
   async schema(params: any, _pinsSettingsList: PinsSettings[], context: any) {
@@ -267,6 +287,9 @@ export const avatar = (params: any, pinsSettingsList: PinsSettings[], context: a
 
 export const boosts = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().boosts(params, pinsSettingsList, context);
+
+export const prompts = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new CommonService().prompts(params, pinsSettingsList, context);
 
 export const schema = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().schema(params, pinsSettingsList, context);

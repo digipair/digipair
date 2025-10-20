@@ -1,3 +1,13 @@
+## 1.6.92-local (2025-10-20)
+
+### 🩹 Fixes
+
+- optim config factory ([185374f6](https://github.com/digipair/digipair/commit/185374f6))
+
+### ❤️ Thank You
+
+- dgreboval
+
 ## 1.6.91-local (2025-10-20)
 
 This was a version bump only, there were no code changes.
