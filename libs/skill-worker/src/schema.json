@@ -285,13 +285,17 @@
             "summary": "Icon"
           },
           "tags": {
-            "type": "array",
-            "summary": "Tags",
-            "items": {
-              "type": "string"
-            }
+            "type": "object",
+            "summary": "Tags"
           }
-        }
+        },
+        "required": [
+          "title",
+          "description",
+          "prompt",
+          "icon",
+          "tags"
+        ]
       }
     }
   },
@@ -363,7 +367,7 @@
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Prompts"
+              "$ref": "#/components/schemas/Prompt"
             }
           }
         }
