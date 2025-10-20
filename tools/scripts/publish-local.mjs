@@ -22,7 +22,7 @@ console.log('='.repeat(50));
 
 const commands = [
   `npx nx release -y ${version}`,
-  `yarn run replace-in-file /latest/g ${version} dist/apps/factory/package.json`,
+  `yarn run replace-in-file /latest/g ${version} apps/factory/dist/package.json`,
   `npm_config_registry=http://localhost:4873/ node tools/scripts/publish-factory.mjs factory ${version} latest`
 ];
 

@@ -59,12 +59,58 @@
         "executor": "nx:run-commands",
         "options": {
           "command": "webpack-cli build",
-          "args": ["--config", "./webpack.config.js"]
+          "args": [
+            "--node-env=production"
+          ],
+          "cwd": "apps/factory"
+        },
+        "configurations": {
+          "development": {
+            "args": [
+              "--node-env=development"
+            ]
+          }
         }
       },
+      "prune-lockfile": {
+        "dependsOn": [
+          "build"
+        ],
+        "cache": true,
+        "executor": "@nx/js:prune-lockfile",
+        "outputs": [
+          "{workspaceRoot}/apps/factory/dist/package.json",
+          "{workspaceRoot}/apps/factory/dist/package-lock.json"
+        ],
+        "options": {
+          "buildTarget": "build"
+        }
+      },
+      "copy-workspace-modules": {
+        "dependsOn": [
+          "build"
+        ],
+        "cache": true,
+        "outputs": [
+          "{workspaceRoot}/apps/factory/dist/workspace_modules"
+        ],
+        "executor": "@nx/js:copy-workspace-modules",
+        "options": {
+          "buildTarget": "build"
+        }
+      },
+      "prune": {
+        "dependsOn": [
+          "prune-lockfile",
+          "copy-workspace-modules"
+        ],
+        "executor": "nx:noop"
+      },
       "serve": {
+        "continuous": true,
         "executor": "@nx/js:node",
         "defaultConfiguration": "development",
+        "dependsOn": ["build"],
         "options": {
           "buildTarget": "factory:build",
           "runBuildTargetDependencies": false,
@@ -72,18 +118,11 @@
         },
         "configurations": {
           "development": {
-            "buildTarget": "factory:build"
+            "buildTarget": "factory:build:development"
           },
           "production": {
-            "buildTarget": "factory:build"
+            "buildTarget": "factory:build:production"
           }
-        }
-      },
-      "start:local": {
-        "executor": "nx:run-commands",
-        "options": {
-          "command": "ts-node -r tsconfig-paths/register src/main.ts",
-          "cwd": "apps/factory"
         }
       }
     }

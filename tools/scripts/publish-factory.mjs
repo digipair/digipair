@@ -45,9 +45,10 @@ invariant(
 //    outputPath,
 //    `Could not find "build.options.outputPath" of project "${name}". Is project.json configured  correctly?`
 //  );
-const outputPath = 'dist/apps/factory';
+const outputPath = 'apps/factory/dist';
 
 process.chdir(outputPath);
+
 
 // Updating the version in "package.json" before publishing
 try {
