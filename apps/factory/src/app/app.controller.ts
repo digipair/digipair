@@ -1,5 +1,5 @@
 import { All, Body, Controller, Get, Query, Req, Res } from '@nestjs/common';
-import type { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { promises } from 'fs';
 import { AppService } from './app.service';
 

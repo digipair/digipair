@@ -19,7 +19,6 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
       ],
     },
     {      
-      
       external: (id) => {
         const deps = config.format === 'cjs'
           ? ["@digipair/engine","zod","@modelcontextprotocol/sdk/server/mcp.js","@modelcontextprotocol/sdk/server/streamableHttp.js"]

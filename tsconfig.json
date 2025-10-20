@@ -214,9 +214,6 @@
       "path": "./libs/skill-temporal"
     },
     {
-      "path": "./apps/factory-e2e"
-    },
-    {
       "path": "./apps/factory"
     },
     {

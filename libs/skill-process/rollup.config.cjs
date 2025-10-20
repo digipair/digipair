@@ -19,7 +19,6 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
       ],
     },
     {      
-      
       external: (id) => {
         const deps = config.format === 'cjs'
           ? ["express"]
