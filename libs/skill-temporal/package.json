@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-temporal",
-  "version": "1.6.92-local",
+  "version": "1.6.93-local",
   "keywords": [
     "digipair",
     "service",
@@ -14,11 +14,11 @@
     ".": {
       "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./src/index.js",
-      "default": "./src/index.js"
+      "import": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
     },
     "./package.json": "./package.json",
-    "./index.js": "./src/index.js",
+    "./index.js": "./dist/src/index.js",
     "./schema.json": "./dist/schema.json",
     "./schema.fr.json": "./dist/schema.fr.json"
   },
@@ -33,6 +33,9 @@
     "targets": {
       "build": {
         "executor": "@nx/js:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
         "options": {
           "outputPath": "libs/skill-temporal/dist",
           "main": "libs/skill-temporal/src/index.ts",
