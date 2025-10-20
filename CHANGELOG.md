@@ -1,3 +1,7 @@
+## 1.6.8-local (2025-10-20)
+
+This was a version bump only, there were no code changes.
+
 ## 1.6.7-local (2025-10-18)
 
 This was a version bump only, there were no code changes.

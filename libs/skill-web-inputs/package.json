@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-inputs",
-  "version": "1.6.7-local",
+  "version": "1.6.8-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
