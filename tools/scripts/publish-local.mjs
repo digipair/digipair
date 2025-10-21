@@ -13,7 +13,6 @@ const version = process.argv[2] || process.env.NPMVERSION || '0.0.1-local';
 // };
 
 console.log(`📦 Publication de la version: ${version}`);
-console.log('='.repeat(50));
 
 
 // NOTE : pb npx nx release, impossible on local registry
