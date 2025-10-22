@@ -17,6 +17,10 @@
     },
     "./index.esm.js": "./dist/index.esm.js",
     "./index.cjs.js": "./dist/index.cjs.js",
+    "./blockly-to-json.esm.js": "./dist/blockly-to-json.esm.js",
+    "./blockly-to-json.cjs.js": "./dist/blockly-to-json.cjs.js",
+    "./pins-to-blockly.esm.js": "./dist/pins-to-blockly.esm.js",
+    "./pins-to-blockly.cjs.js": "./dist/pins-to-blockly.cjs.js",
     "./package.json": "./package.json",
     "./schema.json": "./dist/schema.json",
     "./schema.fr.json": "./dist/schema.fr.json"

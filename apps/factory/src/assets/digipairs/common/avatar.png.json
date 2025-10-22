@@ -14,16 +14,9 @@
           "execute": [
             {
               "library": "@digipair/skill-common",
-              "element": "metadata",
+              "element": "avatar",
               "properties": {
                 "digipair": "FEEL: request.digipair"
-              }
-            },
-            {
-              "library": "@digipair/skill-basic",
-              "element": "transform",
-              "properties": {
-                "value": "FEEL: previous.avatar"
               }
             }
           ]
