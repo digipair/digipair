@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-client-mcp",
-  "version": "0.0.1-local",
+  "version": "0.0.2-local",
   "main": "./index.cjs.js",
   "module": "./index.esm.js",
   "types": "./dist/index.d.ts",
@@ -30,7 +30,7 @@
     "name": "skill-client-mcp"
   },
   "dependencies": {
-    "@digipair/engine": "0.0.1-local",
+    "@digipair/engine": "0.0.2-local",
     "@modelcontextprotocol/sdk": "^1.18.2"
   }
 }
