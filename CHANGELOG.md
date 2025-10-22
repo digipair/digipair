@@ -1,3 +1,19 @@
+## 0.1.0-local (2025-10-22)
+
+### 🚀 Features
+
+- script clean-libs ([e260e7f5](https://github.com/digipair/digipair/commit/e260e7f5))
+
+### 🩹 Fixes
+
+- dbg avatar chatbot, export js bockly skill-web-editor ([2ceea222](https://github.com/digipair/digipair/commit/2ceea222))
+- optim publish registry, clean tools ([42a0a66b](https://github.com/digipair/digipair/commit/42a0a66b))
+- del unused spec files on apps factory ([34121420](https://github.com/digipair/digipair/commit/34121420))
+
+### ❤️ Thank You
+
+- dgreboval
+
 ## 0.0.3-local (2025-10-22)
 
 ### 🚀 Features
