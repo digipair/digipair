@@ -7,7 +7,7 @@
     "registry-local:start": "node tools/registry/clean-local-registry.js && node tools/registry/start-local-registry.js",
     "registry-local:clean": "node tools/registry/clean-local-registry.js",
     "publish:local": "node tools/scripts/publish-local.mjs",
-    "clean-libs": "find libs -type d -name 'dist' -exec rm -rf {} +"
+    "clean-libs": "find libs apps/factory -type d \\( -name 'dist' -o -name 'node_modules' \\) -prune -exec rm -rf {} +"
   },
   "private": true,
   "dependencies": {
