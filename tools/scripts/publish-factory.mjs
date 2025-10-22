@@ -20,32 +20,24 @@ function invariant(condition, message) {
   }
 }
 
-// Executing publish script: node path/to/publish.mjs {name} --version {version} --tag {tag}
+// Executing publish script: node path/to/publish-factory.mjs {name} --version {version} --tag {tag}
 // Default "tag" to "next" so we won't publish the "latest" tag by accident.
 const [, , name, version, tag = 'next'] = process.argv;
 const registry = process.env.npm_config_registry;
 
-// A simple SemVer validation to validate the version
 const validVersion = /^\d+\.\d+\.\d+(-\w+\.\d+)?/;
+const graph = readCachedProjectGraph();
+const project = graph.nodes[name];
+const outputPath = 'apps/factory/dist';
+
 invariant(
   version && validVersion.test(version),
   `No version provided or version did not match Semantic Versioning, expected: #.#.#-tag.# or #.#.#, got ${version}.`
 );
-
-const graph = readCachedProjectGraph();
-const project = graph.nodes[name];
-
 invariant(
   project,
   `Could not find project "${name}" in the workspace. Is the project.json configured correctly?`
 );
-
-//  const outputPath = project.data?.targets?.build?.options?.outputPath;
-//  invariant(
-//    outputPath,
-//    `Could not find "build.options.outputPath" of project "${name}". Is project.json configured  correctly?`
-//  );
-const outputPath = 'apps/factory/dist';
 
 process.chdir(outputPath);
 

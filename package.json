@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "publish": "npx nx release -y $NPMVERSION && yarn run replace-in-file /latest/g $NPMVERSION dist/apps/factory/package.json && node tools/scripts/publish-factory.mjs factory $NPMVERSION latest",
-    "publish:local": "node tools/scripts/publish-local.mjs",
+    "publish": "npx nx release -y $NPMVERSION && yarn run replace-in-file /latest/g $NPMVERSION apps/factory/dist/package.json && node tools/scripts/publish-factory.mjs factory $NPMVERSION latest",
     "registry-local:start": "node tools/registry/clean-local-registry.js && node tools/registry/start-local-registry.js",
     "registry-local:clean": "node tools/registry/clean-local-registry.js",
+    "publish:local": "node tools/scripts/publish-local.mjs",
     "clean-libs": "find libs -type d -name 'dist' -exec rm -rf {} +"
   },
   "private": true,
