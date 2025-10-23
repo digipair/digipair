@@ -28,7 +28,7 @@ class CronService {
       const job = new CronJob(
         plan.time,
         async () => {
-          await this.startTask(path, plan.digipair, plan.reasoning);
+          await this.startTask(path, plan.digipair, plan.reasoning, plan.time, plan.id);
         },
         null,
         !!plan.enabled,
