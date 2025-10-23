@@ -80,7 +80,7 @@ export class AppService implements OnModuleInit {
       const skillCron = require('@digipair/skill-cron');
 
       skillCron.initialize(
-        async (path: string, digipair: string, reasoning: string, time: string, id: string) => {
+        async (path: string, digipair: string, reasoning: string, cronTime: string, cronId: string) => {
           const skillProcess = require('@digipair/skill-process');
           const { id, signal } = skillProcess.add(digipair, reasoning, null);
 
@@ -94,7 +94,7 @@ export class AppService implements OnModuleInit {
               {},
               null,
               {},
-              { cronTime: time, cronId: id },
+              { cronTime, cronId },
               null,
               null,
               signal,
