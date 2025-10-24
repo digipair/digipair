@@ -79,20 +79,35 @@ export class AppService implements OnModuleInit {
     try {
       const skillCron = require('@digipair/skill-cron');
 
-      skillCron.initialize(async (path: string, digipair: string, reasoning: string) => {
-        const skillProcess = require('@digipair/skill-process');
-        const { id, signal } = skillProcess.add(digipair, reasoning, null);
+      skillCron.initialize(
+        async (path: string, digipair: string, reasoning: string, cronTime: string, cronId: string) => {
+          const skillProcess = require('@digipair/skill-process');
+          const { id, signal } = skillProcess.add(digipair, reasoning, null);
 
-        try {
-          await this.agent(path, digipair, reasoning, {}, [], {}, null, {}, {}, null, null, signal);
-          skillProcess.remove(id);
-        } catch (error: any) {
-          if (error.type !== 'DIGIPAIR_KEEPALIVE') {
-            console.error(error);
+          try {
+            await this.agent(
+              path,
+              digipair,
+              reasoning,
+              {},
+              [],
+              {},
+              null,
+              {},
+              { cronTime, cronId },
+              null,
+              null,
+              signal,
+            );
             skillProcess.remove(id);
+          } catch (error) {
+            if (error.type !== 'DIGIPAIR_KEEPALIVE') {
+              console.error(error);
+              skillProcess.remove(id);
+            }
           }
-        }
-      });
+        },
+      );
       skillCron.start(path);
     } catch (error) {
       console.error(error);
