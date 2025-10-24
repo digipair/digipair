@@ -1,18 +1,67 @@
 {
   "name": "@digipair/skill-temporal",
-  "version": "0.0.1",
+  "version": "0.1.0-local",
   "keywords": [
     "digipair",
     "service",
     "tool"
   ],
-  "dependencies": {
-    "@temporalio/client": "^1.10.1",
-    "@temporalio/common": "^1.10.1",
-    "@temporalio/worker": "^1.10.1",
-    "@temporalio/workflow": "^1.10.1",
-    "feelin": "^4.3.0"
+  "type": "commonjs",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
+    },
+    "./package.json": "./package.json",
+    "./index.js": "./dist/src/index.js",
+    "./schema.json": "./dist/schema.json",
+    "./schema.fr.json": "./dist/schema.fr.json"
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "files": [
+    "dist",
+    "README.md",
+    "package.json",
+    "src"
+  ],
+  "nx": {
+    "name": "skill-temporal",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/skill-temporal/dist",
+          "main": "libs/skill-temporal/src/index.ts",
+          "tsConfig": "libs/skill-temporal/tsconfig.lib.json",
+          "generatePackageJson": false,
+          "assets": [
+            {
+              "input": "libs/skill-temporal/src",
+              "glob": "schema*.json",
+              "output": "."
+            },
+            {
+              "input": "libs/skill-temporal",
+              "glob": "index.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@temporalio/client": "^1.11.8",
+    "@temporalio/common": "^1.11.8",
+    "@temporalio/worker": "^1.11.8",
+    "@temporalio/workflow": "^1.11.8",
+    "feelin": "^4.3.0"
+  }
 }

@@ -12,7 +12,6 @@ class OllamaService {
       baseUrl = context.privates.OLLAMA_SERVER ??
         process.env['OLLAMA_SERVER'] ??
         'http://localhost:11434',
-      format,
     } = params;
     const modelInstance = new ChatOllama({ model, temperature, keepAlive, baseUrl });
 

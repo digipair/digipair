@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as Handlebars from 'handlebars/dist/handlebars.min.js';
+import * as HandlebarsNamespace from 'handlebars/dist/handlebars.min.js';
+const Handlebars = (HandlebarsNamespace as any).default || HandlebarsNamespace;
 import { evaluate as evaluateFeel } from 'feelin';
 import { evaluate as evaluateCel } from 'cel-js';
 import { PinsSettings } from './pins-settings.interface';

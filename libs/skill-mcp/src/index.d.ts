@@ -1,1 +1,0 @@
-export * from './libs/skill-mcp/src/index';

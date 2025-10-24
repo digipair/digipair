@@ -1,11 +1,12 @@
 import { sleep, proxyActivities, condition, setHandler, defineSignal } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
 import { PinsSettings, preparePinsSettings } from '@digipair/engine';
-import { evaluate } from 'feelin';
+import * as feelin from 'feelin';
 
-import type * as activities from './activities';
-import { WorkflowArgs } from './shared';
+import type * as activities from './activities.js';
+import { WorkflowArgs } from './shared.js';
 
+const { evaluate } = feelin as any;
 export const dataSignal = defineSignal<[any]>('data');
 
 async function executePins(

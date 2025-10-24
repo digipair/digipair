@@ -1,1 +1,1 @@
-export * from './lib/skill-temporal';
+export * from './lib/skill-temporal.js';

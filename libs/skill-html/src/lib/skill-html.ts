@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// import { PinsSettings, executePinsList } from '@digipair/engine';
-import { PinsSettings, executePinsList } from '../../../engine/src';
+import { PinsSettings, executePinsList } from '@digipair/engine';
 import { JSDOM } from 'jsdom';
 
 class HtmlService {

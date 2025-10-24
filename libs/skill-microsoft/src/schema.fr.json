@@ -86,24 +86,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "x-events": [],
@@ -199,24 +181,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "x-events": [],
@@ -300,24 +264,6 @@
             "summary": "ID du locataire",
             "required": false,
             "description": "ID du locataire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
             "schema": {
               "type": "string"
             }
@@ -416,24 +362,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "x-events": [],
@@ -529,24 +457,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "x-events": [],
@@ -630,24 +540,6 @@
             "summary": "ID du locataire",
             "required": false,
             "description": "ID du locataire",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "summary": "Type de sortie",
-            "required": false,
-            "description": "Type de sortie attendu",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentType",
-            "summary": "Type de contenu",
-            "required": false,
-            "description": "Type de contenu à envoyer",
             "schema": {
               "type": "string"
             }

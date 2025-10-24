@@ -91,15 +91,6 @@
             "schema": {
               "type": "object"
             }
-          },
-          {
-            "name": "supportFor",
-            "summary": "Support for",
-            "required": false,
-            "description": "OpenAI model support for specific features",
-            "schema": {
-              "type": "object"
-            }
           }
         ],
         "x-events": [],

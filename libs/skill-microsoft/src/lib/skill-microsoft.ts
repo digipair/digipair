@@ -10,8 +10,6 @@ class MicrosoftService {
   private OAUTH_CLIENT_ID: string;
   private OAUTH_CLIENT_SECRET: string;
   private TENANT_ID: string;
-  private type: string;
-  private contentType: string;
 
   constructor(context: any, params: any) {
     this.OAUTH_CLIENT_ID =
@@ -26,9 +24,6 @@ class MicrosoftService {
       params?.TENANT_ID ??
       context.privates.MICROSOFT_TENANT_ID ??
       process.env['MICROSOFT_TENANT_ID'];
-
-    this.type = params.type ?? 'json';
-    this.contentType = params.contentType ?? 'application/json';
   }
 
   private async getAccessToken() {
@@ -55,15 +50,7 @@ class MicrosoftService {
     }
   }
 
-  async call(
-    url: string,
-    method: string,
-    version: string,
-    data: any,
-    headers: any,
-    signal: AbortSignal,
-  ) {
-    let result: any;
+  async call(url: string, method: string, version: string, data: any, headers: any, signal: AbortSignal) {
     const accessToken = await this.getAccessToken();
 
     const response = await fetch(`${API_ENDPOINT}/${version}/${url}`, {
@@ -72,39 +59,19 @@ class MicrosoftService {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         Accept: 'application/json',
-        'Content-Type': this.contentType,
+        'Content-Type': 'application/json',
         ...headers,
       },
       body:
         method.toUpperCase() === 'GET' || method.toUpperCase() === 'HEAD'
           ? undefined
-          : this.contentType === 'application/json'
-            ? JSON.stringify(data)
-            : typeof data === 'string' && data.startsWith('data:')
-              ? Buffer.from(data.replace(/^data:.*;base64,/, ''), 'base64')
-              : data,
+          : JSON.stringify(data),
     });
-
     if (!response.ok) throw new Error('[SKILL-MICROSOFT] REQUEST FAILED: ' + response.status);
-
-    if (
-      !response.headers.has('content-length') ||
+    return !response.headers.has('content-length') ||
       (response.headers.get('content-length') as unknown as number) > 0
-    ) {
-      if (this.type === 'json') {
-        result = await response.json();
-      } else if (this.type === 'text') {
-        result = await response.text();
-      } else {
-        const arrayBuffer = await response.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
-        result = buffer.toString('base64');
-      }
-    } else {
-      result = {};
-    }
-
-    return result;
+      ? await response.json()
+      : {};
   }
 
   async create(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {

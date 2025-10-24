@@ -1,9 +1,9 @@
 import { fetchEventSource } from '@microsoft/fetch-event-source';
-import '@ui5/webcomponents-icons/dist/AllIcons';
-import '@ui5/webcomponents/dist/BusyIndicator';
-import '@ui5/webcomponents/dist/Icon';
+import '@ui5/webcomponents-icons/dist/AllIcons.js';
+import '@ui5/webcomponents/dist/BusyIndicator.js';
+import '@ui5/webcomponents/dist/Icon.js';
 import { executePinsList } from '@digipair/engine';
-import { html, LitElement, nothing, TemplateResult } from 'lit';
+import { html, LitElement, TemplateResult } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import './chat.element';
 import { ChatElement } from './chat.element';

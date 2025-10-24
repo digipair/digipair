@@ -1,14 +1,35 @@
 {
   "name": "@digipair/skill-web",
-  "version": "0.0.1",
+  "version": "0.1.0-local",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "digipair",
     "service",
     "util"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
+    },
+    "./index.esm.js": "./dist/index.esm.js",
+    "./index.cjs.js": "./dist/index.cjs.js",
+    "./package.json": "./package.json",
+    "./schema.json": "./dist/schema.json",
+    "./schema.fr.json": "./dist/schema.fr.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "nx": {
+    "name": "skill-web"
+  },
   "dependencies": {
     "jsdom": "^25.0.1"
-  },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  }
 }

@@ -11,7 +11,7 @@ import { AppModule } from './app/app.module';
 import { copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync } from 'fs';
 import path from 'path';
 
-function copyDirectoryRecursive(source, target) {
+function copyDirectoryRecursive(source: string, target: string) {
   if (!existsSync(source)) {
     Logger.error(`The source directory "${source}" doesn't exist.`);
     return;
@@ -48,7 +48,7 @@ async function bootstrap() {
     Logger.log(`-> digipairs folder exists: ${digipairsDir}`);
   }
 
-  const assetsDir = `${__dirname}/app/assets`;
+  const assetsDir = `${__dirname}/src/app/assets`;
   const digipairsFiles = readdirSync(digipairsDir);
 
   Logger.log(

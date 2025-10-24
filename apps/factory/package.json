@@ -6,43 +6,43 @@
     "digipair": "./bin/digipair.js"
   },
   "dependencies": {
-    "@digipair/engine": "0.113.1",
-    "@digipair/skill-chatbot": "0.113.1",
-    "@digipair/skill-common": "0.113.1",
-    "@digipair/skill-cron": "0.113.1",
-    "@digipair/skill-basic": "0.113.1",
-    "@digipair/skill-canvas": "0.113.1",
-    "@digipair/skill-client-mcp": "0.113.1",
-    "@digipair/skill-codex": "0.113.1",
-    "@digipair/skill-debug": "0.113.1",
-    "@digipair/skill-dsp": "0.113.1",
-    "@digipair/skill-editor": "0.113.1",
-    "@digipair/skill-factory": "0.113.1",
-    "@digipair/skill-http": "0.113.1",
-    "@digipair/skill-llm": "0.113.1",
-    "@digipair/skill-mcp": "0.113.1",
-    "@digipair/skill-openai": "0.113.1",
-    "@digipair/skill-service": "0.113.1",
-    "@digipair/skill-sse": "0.113.1",
-    "@digipair/skill-temporal": "0.113.1",
-    "@digipair/skill-tool": "0.113.1",
-    "@digipair/skill-web": "0.113.1",
-    "@digipair/skill-worker": "0.113.1",
-    "@digipair/skill-logger": "0.113.1",
-    "@digipair/skill-process": "0.113.1",
-    "@digipair/skill-oauth2": "0.113.1",
-    "@digipair/skill-imap": "0.113.1",
-    "@digipair/skill-sendmail": "0.113.1",
-    "@digipair/skill-web-debug": "0.113.1",
-    "@digipair/skill-web-jsoneditor": "0.113.1",
-    "@digipair/skill-web-notification": "0.113.1",
-    "@digipair/skill-web-chatbot": "0.113.1",
-    "@digipair/skill-web-editor": "0.113.1",
-    "@digipair/skill-web-inputs": "0.113.1",
-    "@digipair/skill-web-spectrum": "0.113.1",
-    "@digipair/skill-web-interact": "0.113.1",
-    "@digipair/skill-web-font-awesome": "0.113.1",
-    "@digipair/skill-yaml": "0.113.1",
+    "@digipair/engine": "latest",
+    "@digipair/skill-chatbot": "latest",
+    "@digipair/skill-common": "latest",
+    "@digipair/skill-cron": "latest",
+    "@digipair/skill-basic": "latest",
+    "@digipair/skill-canvas": "latest",
+    "@digipair/skill-client-mcp": "latest",
+    "@digipair/skill-codex": "latest",
+    "@digipair/skill-debug": "latest",
+    "@digipair/skill-dsp": "latest",
+    "@digipair/skill-editor": "latest",
+    "@digipair/skill-factory": "latest",
+    "@digipair/skill-http": "latest",
+    "@digipair/skill-llm": "latest",
+    "@digipair/skill-mcp": "latest",
+    "@digipair/skill-openai": "latest",
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-sse": "latest",
+    "@digipair/skill-temporal": "latest",
+    "@digipair/skill-tool": "latest",
+    "@digipair/skill-web": "latest",
+    "@digipair/skill-worker": "latest",
+    "@digipair/skill-logger": "latest",
+    "@digipair/skill-process": "latest",
+    "@digipair/skill-oauth2": "latest",
+    "@digipair/skill-imap": "latest",
+    "@digipair/skill-sendmail": "latest",
+    "@digipair/skill-web-debug": "latest",
+    "@digipair/skill-web-jsoneditor": "latest",
+    "@digipair/skill-web-notification": "latest",
+    "@digipair/skill-web-chatbot": "latest",
+    "@digipair/skill-web-editor": "latest",
+    "@digipair/skill-web-inputs": "latest",
+    "@digipair/skill-web-spectrum": "latest",
+    "@digipair/skill-web-interact": "latest",
+    "@digipair/skill-web-font-awesome": "latest",
+    "@digipair/skill-yaml": "latest",
     "tslib": "^2.6.3",
     "@nestjs/common": "^10.3.9",
     "@nestjs/core": "^10.3.9",
@@ -51,5 +51,80 @@
     "reflect-metadata": "^0.2.2",
     "blockly": "10.4.3",
     "toastify-js": "1.12.0"
+  },
+  "nx": {
+    "name": "factory",
+    "targets": {
+      "build": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "webpack-cli build",
+          "args": [
+            "--node-env=production"
+          ],
+          "cwd": "apps/factory"
+        },
+        "configurations": {
+          "development": {
+            "args": [
+              "--node-env=development"
+            ]
+          }
+        }
+      },
+      "prune-lockfile": {
+        "dependsOn": [
+          "build"
+        ],
+        "cache": true,
+        "executor": "@nx/js:prune-lockfile",
+        "outputs": [
+          "{workspaceRoot}/apps/factory/dist/package.json",
+          "{workspaceRoot}/apps/factory/dist/package-lock.json"
+        ],
+        "options": {
+          "buildTarget": "build"
+        }
+      },
+      "copy-workspace-modules": {
+        "dependsOn": [
+          "build"
+        ],
+        "cache": true,
+        "outputs": [
+          "{workspaceRoot}/apps/factory/dist/workspace_modules"
+        ],
+        "executor": "@nx/js:copy-workspace-modules",
+        "options": {
+          "buildTarget": "build"
+        }
+      },
+      "prune": {
+        "dependsOn": [
+          "prune-lockfile",
+          "copy-workspace-modules"
+        ],
+        "executor": "nx:noop"
+      },
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": ["build"],
+        "options": {
+          "buildTarget": "factory:build",
+          "runBuildTargetDependencies": false,
+          "watch": true
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "factory:build:development"
+          },
+          "production": {
+            "buildTarget": "factory:build:production"
+          }
+        }
+      }
+    }
   }
 }

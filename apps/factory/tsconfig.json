@@ -4,10 +4,25 @@
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "../../libs/skill-temporal"
     },
     {
-      "path": "./tsconfig.spec.json"
+      "path": "../../libs/skill-cron"
+    },
+    {
+      "path": "../../libs/skill-factory"
+    },
+    {
+      "path": "../../libs/skill-logger"
+    },
+    {
+      "path": "../../libs/engine"
+    },
+    {
+      "path": "../../libs/skill-process"
+    },
+    {
+      "path": "./tsconfig.app.json"
     }
   ],
   "compilerOptions": {

@@ -56,14 +56,14 @@ class CronService {
     }
 
     if (time === '@startup') {
-      this.startTask(path, digipair, reasoning);
+      this.startTask(path, digipair, reasoning, time);
       return;
     }
 
     const job = new CronJob(
       time,
       async () => {
-        await this.startTask(path, digipair, reasoning);
+        await this.startTask(path, digipair, reasoning, time, id);
       },
       null,
       true,
@@ -188,7 +188,7 @@ class CronService {
     }
 
     if (cron.time === '@startup') {
-      await this.startTask(path, cron.digipair, cron.reasoning);
+      await this.startTask(path, cron.digipair, cron.reasoning, cron.time, cron.id);
     } else {
       this.enableJob(id);
     }

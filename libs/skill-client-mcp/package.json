@@ -1,15 +1,36 @@
 {
   "name": "@digipair/skill-client-mcp",
-  "version": "0.0.1",
+  "version": "0.1.0-local",
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "digipair",
     "service",
     "tool"
   ],
-  "dependencies": {
-    "@digipair/engine": "0.113.1",
-    "@modelcontextprotocol/sdk": "^1.18.2"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
+    },
+    "./index.esm.js": "./dist/index.esm.js",
+    "./index.cjs.js": "./dist/index.cjs.js",
+    "./package.json": "./package.json",
+    "./schema.json": "./dist/schema.json",
+    "./schema.fr.json": "./dist/schema.fr.json"
   },
-  "main": "./index.cjs.js",
-  "module": "./index.esm.js"
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "nx": {
+    "name": "skill-client-mcp"
+  },
+  "dependencies": {
+    "@digipair/engine": "0.1.0-local",
+    "@modelcontextprotocol/sdk": "^1.18.2"
+  }
 }
