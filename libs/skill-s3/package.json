@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-s3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.377.0"
+  }
 }
