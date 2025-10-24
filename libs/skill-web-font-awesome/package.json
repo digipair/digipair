@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-font-awesome",
-  "version": "0.1.0-local",
+  "version": "0.114.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
