@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-tensorflow",
-  "version": "0.114.1",
+  "version": "0.114.2",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

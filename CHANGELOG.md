@@ -1,3 +1,13 @@
+## 0.114.2 (2025-10-24)
+
+### 🚀 Features
+
+- issue s3 - #30 ([#30](https://github.com/digipair/digipair/issues/30))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.114.1 (2025-10-24)
 
 This was a version bump only, there were no code changes.
