@@ -6,7 +6,6 @@
     "digipair": "./bin/digipair.js"
   },
   "dependencies": {
-    "@digipair/engine": "latest",
     "@digipair/skill-chatbot": "latest",
     "@digipair/skill-common": "latest",
     "@digipair/skill-cron": "latest",
@@ -110,7 +109,9 @@
         "continuous": true,
         "executor": "@nx/js:node",
         "defaultConfiguration": "development",
-        "dependsOn": ["build"],
+        "dependsOn": [
+          "build"
+        ],
         "options": {
           "buildTarget": "factory:build",
           "runBuildTargetDependencies": false,

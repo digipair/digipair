@@ -21,7 +21,7 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
     {      
       external: (id) => {
         const deps = config.format === 'cjs'
-          ? ["@aws-sdk/client-s3"]
+          ? ['@aws-sdk/client-s3']
           : [];
         return deps.some(dep => id === dep || id.startsWith(dep + "/"));
       }

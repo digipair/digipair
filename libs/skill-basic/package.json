@@ -30,5 +30,7 @@
   "nx": {
     "name": "skill-basic"
   },
-  "dependencies": {}
+  "dependencies": {
+    "uuid": "^10.0.0"
+  }
 }

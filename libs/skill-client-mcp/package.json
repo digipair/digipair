@@ -30,7 +30,6 @@
     "name": "skill-client-mcp"
   },
   "dependencies": {
-    "@digipair/engine": "0.114.2",
     "@modelcontextprotocol/sdk": "^1.18.2"
   }
 }

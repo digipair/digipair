@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-openai"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@langchain/openai": "^0.3.11"
+  }
 }

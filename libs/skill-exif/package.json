@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-exif"
   },
-  "dependencies": {}
+  "dependencies": {
+    "exif-parser": "^0.1.12"
+  }
 }

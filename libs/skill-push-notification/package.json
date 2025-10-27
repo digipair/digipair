@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-push-notification"
   },
-  "dependencies": {}
+  "dependencies": {
+    "web-push": "^3.6.7"
+  }
 }

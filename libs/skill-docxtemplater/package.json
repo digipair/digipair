@@ -29,5 +29,8 @@
   "nx": {
     "name": "skill-docxtemplater"
   },
-  "dependencies": {}
+  "dependencies": {
+    "docxtemplater": "^3.51.2",
+    "pizzip": "^3.1.7"
+  }
 }

@@ -80,7 +80,13 @@ export class AppService implements OnModuleInit {
       const skillCron = require('@digipair/skill-cron');
 
       skillCron.initialize(
-        async (path: string, digipair: string, reasoning: string, cronTime: string, cronId: string) => {
+        async (
+          path: string,
+          digipair: string,
+          reasoning: string,
+          cronTime: string,
+          cronId: string,
+        ) => {
           const skillProcess = require('@digipair/skill-process');
           const { id, signal } = skillProcess.add(digipair, reasoning, null);
 
@@ -213,6 +219,7 @@ export class AppService implements OnModuleInit {
         isHttpRequest === true &&
         settings.element !== 'page' &&
         settings.element !== 'service' &&
+        settings.element !== 'event' &&
         settings.element !== 'boost'
       ) {
         // for external calls, only 'page' and 'service' elements are allowed

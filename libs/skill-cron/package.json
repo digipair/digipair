@@ -29,5 +29,8 @@
   "nx": {
     "name": "skill-cron"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cron": "^3.1.7",
+    "uuid": "^10.0.0"
+  }
 }

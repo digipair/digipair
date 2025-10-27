@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-sendmail"
   },
-  "dependencies": {}
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
 }

@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-mongodb"
   },
-  "dependencies": {}
+  "dependencies": {
+    "mongodb": "^6.10.0"
+  }
 }

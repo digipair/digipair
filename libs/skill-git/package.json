@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-git"
   },
-  "dependencies": {}
+  "dependencies": {
+    "simple-git": "^3.25.0"
+  }
 }
