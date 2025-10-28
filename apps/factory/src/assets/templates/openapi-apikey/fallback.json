@@ -1,7 +1,7 @@
 {
-  "summary": "Appel d'une API",
   "description": "Mécanisme d'appel d'une API",
-  "library": "@digipair/skill-factory",
+  "summary": "Fallback",
+  "library": "@digipair/skill-tool",
   "element": "task",
   "metadata": {},
   "properties": {
@@ -33,7 +33,7 @@
         "element": "setVariable",
         "properties": {
           "name": "infos",
-          "value": "FEEL:(for line in get entries(variables.openapi.paths) return { \"path\": line.key, \"value\": get entries(line.value)[item.value.operationId = request.reasoning or item.key = \"parameters\"] })[count(item.value) > 1 or item.value[1].key != \"parameters\"][count(item.value) > 0][1]"
+          "value": "FEEL:(\n  for line in get entries(variables.openapi.paths) \n  return \n    { \n      \"path\": line.key,\n      \"value\": get entries(line.value)[(item.key = \"parameters\") or (item.value.operationId = request.reasoning) or (item.value.operationId = null and (item.key + replace(replace(replace(line.key, \"/\", \"-\"), \"\\{\", \"\"), \"\\}\", \"\")) = request.reasoning)]\n    }\n)[count(item.value) > 1 or item.value[1].key != \"parameters\"][count(item.value) > 0][1]"
         }
       },
       {
@@ -166,9 +166,7 @@
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
-              "properties": {
-                "value": "FEEL:item"
-              }
+              "properties": { "value": "FEEL:item" }
             },
             {
               "library": "@digipair/skill-basic",
@@ -182,14 +180,12 @@
               "element": "setVariable",
               "properties": {
                 "name": "path",
-                "value": "FEEL:replace(variables.path, \"\\{\" + item.name + \"\\}\", previous)"
+                "value": "FEEL:replace(variables.path, \"\\{\" + item.name + \"\\}\", string(previous))"
               }
             }
           ]
         },
-        "conditions": {
-          "each": "FEEL:variables.parametersPath"
-        }
+        "conditions": { "each": "FEEL:variables.parametersPath" }
       },
       {
         "library": "@digipair/skill-basic",
@@ -226,7 +222,7 @@
         "element": "setVariable",
         "properties": {
           "name": "body",
-          "value": "FEEL:context((for parameter in get entries(request.body) return if count(variables.parametersQuery[item.name = parameter.key]) > 0 then parameter else null)[item != null])"
+          "value": "FEEL:context(\n  (\n    for parameter in get entries(request.body)\n      return if count(variables.parametersQuery[item.name = parameter.key]) <= 0\n      then parameter \n      else null\n  )[item != null]\n)"
         },
         "conditions": {
           "if": "FEEL:variables.infos.value[item.key = variables.method].value.requestBody[1] = null"
@@ -235,25 +231,27 @@
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
-        "properties": {
-          "name": "body",
-          "value": "FEEL:request.body.body"
-        },
+        "properties": { "name": "body", "value": "FEEL:request.body.body" },
         "conditions": {
           "if": "FEEL:variables.infos.value[item.key = variables.method].value.requestBody[1] != null"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "queries",
+          "value": "FEEL:(for parameter in get entries(request.body)\n      return if count(variables.parametersQuery[item.name = parameter.key]) > 0\n      then parameter.key + \"=\" + string(parameter.value)\n      else null\n  )[item != null]"
         }
       },
       {
         "library": "@digipair/skill-http",
         "element": "request",
         "properties": {
-          "path": "FEEL:variables.server + variables.path",
+          "path": "FEEL:variables.server + variables.path + if count(variables.queries) <= 0 then \"\" else \"?\" + string join(variables.queries, \"&\")",
           "method": "FEEL:variables.method",
           "body": "FEEL:if variables.method != \"get\" and variables.method != \"head\" then variables.body else null",
           "headers": "FEEL:variables.headers"
-        },
-        "conditions": {
-          "if": "FEEL:true"
         }
       }
     ]
