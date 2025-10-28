@@ -132,6 +132,14 @@
             "library": "@digipair/skill-basic",
             "element": "setVariable",
             "properties": {
+              "name": "openapi",
+              "value": "FEEL:context merge(variables.openapi, { paths: context merge((for pathEntry in get entries(variables.openapi.paths) return context put({}, pathEntry.key, context merge((for methodEntry in get entries(pathEntry.value) return context put({}, methodEntry.key, if methodEntry.value.operationId != null then methodEntry.value else context merge(methodEntry.value, { operationId: methodEntry.key + \"-\" + replace(pathEntry.key, \"/\", \"\") }))))))) })"
+            }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
               "name": "schema",
               "execute": [
                 {
