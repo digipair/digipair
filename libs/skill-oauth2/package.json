@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-oauth2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "simple-oauth2": "^5.1.0"
+  }
 }

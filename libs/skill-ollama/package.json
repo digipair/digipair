@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-ollama"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@langchain/community": "^0.3.10"
+  }
 }

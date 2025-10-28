@@ -30,6 +30,8 @@
     "name": "skill-keycloak"
   },
   "dependencies": {
-    "jsdom": "^25.0.1"
+    "jsdom": "^25.0.1",
+    "mime-types": "^2.1.35",
+    "jsonwebtoken": "^9.0.2"
   }
 }

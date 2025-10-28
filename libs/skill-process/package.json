@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-process"
   },
-  "dependencies": {}
+  "dependencies": {
+    "uuid": "^10.0.0"
+  }
 }

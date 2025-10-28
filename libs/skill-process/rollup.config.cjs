@@ -21,7 +21,7 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
     {      
       external: (id) => {
         const deps = config.format === 'cjs'
-          ? ["express"]
+          ? ["express","uuid"]
           : ["express"];
         return deps.some(dep => id === dep || id.startsWith(dep + "/"));
       }

@@ -29,5 +29,8 @@
   "nx": {
     "name": "skill-vespa"
   },
-  "dependencies": {}
+  "dependencies": {
+    "langchain": "^0.3.5",
+    "uuid": "^10.0.0"
+  }
 }

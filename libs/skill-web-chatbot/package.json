@@ -35,6 +35,10 @@
   },
   "dependencies": {
     "@ui5/webcomponents": "^1.24.4",
-    "@ui5/webcomponents-icons": "^1.24.4"
+    "@ui5/webcomponents-icons": "^1.24.4",
+    "css-selector-generator": "^3.6.8",
+    "mermaid": "10.9.1",
+    "lit": "^3.1.4",
+    "showdown": "^2.1.0"
   }
 }

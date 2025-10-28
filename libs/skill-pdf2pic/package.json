@@ -30,6 +30,7 @@
     "name": "skill-pdf2pic"
   },
   "dependencies": {
-    "pdf2pic": "^3.2.0"
+    "pdf2pic": "^3.2.0",
+    "pdf-lib": "^1.17.1"
   }
 }

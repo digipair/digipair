@@ -21,7 +21,7 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
     {      
       external: (id) => {
         const deps = config.format === 'cjs'
-          ? []
+          ? ["@azure/msal-node"]
           : [];
         return deps.some(dep => id === dep || id.startsWith(dep + "/"));
       }

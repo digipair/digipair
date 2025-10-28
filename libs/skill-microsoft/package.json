@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-microsoft"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@azure/msal-node": "^2.10.0"
+  }
 }

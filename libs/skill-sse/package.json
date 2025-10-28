@@ -29,5 +29,7 @@
   "nx": {
     "name": "skill-sse"
   },
-  "dependencies": {}
+  "dependencies": {
+    "better-sse": "^0.14.0"
+  }
 }

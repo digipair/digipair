@@ -30,6 +30,7 @@
     "name": "skill-web"
   },
   "dependencies": {
-    "jsdom": "^25.0.1"
+    "jsdom": "^25.0.1",
+    "mime-types": "^2.1.35"
   }
 }

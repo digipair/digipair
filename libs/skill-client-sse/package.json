@@ -28,5 +28,7 @@
   "nx": {
     "name": "skill-client-sse"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1"
+  }
 }
