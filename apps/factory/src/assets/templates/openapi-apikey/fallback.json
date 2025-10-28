@@ -1,7 +1,7 @@
 {
   "description": "Mécanisme d'appel d'une API",
   "summary": "Fallback",
-  "library": "@digipair/skill-tool",
+  "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
   "properties": {
