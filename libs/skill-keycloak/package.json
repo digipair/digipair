@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-keycloak",
-  "version": "0.114.2",
+  "version": "0.114.3",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -30,6 +30,8 @@
     "name": "skill-keycloak"
   },
   "dependencies": {
-    "jsdom": "^25.0.1"
+    "jsdom": "^25.0.1",
+    "mime-types": "^2.1.35",
+    "jsonwebtoken": "^9.0.2"
   }
 }

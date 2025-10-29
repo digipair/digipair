@@ -1,3 +1,14 @@
+## 0.114.3 (2025-10-28)
+
+### 🚀 Features
+
+- add rollup and package dependencies - #32 ([#32](https://github.com/digipair/digipair/issues/32))
+- add rollup and package dependencies - #32 ([#32](https://github.com/digipair/digipair/issues/32))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.114.2 (2025-10-24)
 
 ### 🚀 Features

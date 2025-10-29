@@ -21,7 +21,7 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
     {      
       external: (id) => {
         const deps = config.format === 'cjs'
-          ? []
+          ? ["docxtemplater", "pizzip"]
           : [];
         return deps.some(dep => id === dep || id.startsWith(dep + "/"));
       }

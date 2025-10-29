@@ -3,7 +3,6 @@ import { PinsSettings, executePinsList, preparePinsSettings } from '@digipair/en
 
 class ChatbotService {
   async answer(params: any, _pinsSettingsList: PinsSettings[], context: any) {+
-    console.log('ChatbotService.answer', params, context);
     const {
       command = [],
       boosts = [],

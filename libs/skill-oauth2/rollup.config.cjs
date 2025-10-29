@@ -22,7 +22,7 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
       external: (id) => {
         const deps = config.format === 'cjs'
           ? ["simple-oauth2"]
-          : ["simple-oauth2"];
+          : [];
         return deps.some(dep => id === dep || id.startsWith(dep + "/"));
       }
     }
