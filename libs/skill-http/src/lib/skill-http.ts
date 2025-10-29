@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import FormDataNode from "form-data";
+import FormDataNode from 'form-data';
 
 class HttpService {
   private type: string;
@@ -45,11 +45,13 @@ class HttpService {
     });
     if (!response.ok) throw new Error('[SKILL-HTTP] REQUEST FAILED: ' + response.status);
 
-    const responseText = await response.text();
-    if (this.type === 'json' && !!responseText) {
-      result = await response.json();
-    } else if (this.type === 'text'  || !responseText) {
-      result = await responseText;
+    if (this.type === 'json' || this.type === 'text') {
+      const responseText = await response.text();
+      if (this.type === 'json' && !!responseText) {
+        result = JSON.parse(responseText);
+      } else {
+        result = await responseText;
+      }
     } else {
       const arrayBuffer = await response.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
