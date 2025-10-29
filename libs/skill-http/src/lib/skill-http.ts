@@ -45,10 +45,11 @@ class HttpService {
     });
     if (!response.ok) throw new Error('[SKILL-HTTP] REQUEST FAILED: ' + response.status);
 
-    if (this.type === 'json') {
+    const responseText = await response.text();
+    if (this.type === 'json' && !!responseText) {
       result = await response.json();
-    } else if (this.type === 'text') {
-      result = await response.text();
+    } else if (this.type === 'text'  || !responseText) {
+      result = await responseText;
     } else {
       const arrayBuffer = await response.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
