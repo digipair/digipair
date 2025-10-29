@@ -6,6 +6,7 @@
     "digipair": "./bin/digipair.js"
   },
   "dependencies": {
+    "@digipair/engine": "latest",
     "@digipair/skill-chatbot": "latest",
     "@digipair/skill-common": "latest",
     "@digipair/skill-cron": "latest",
