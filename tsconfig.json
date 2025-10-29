@@ -133,9 +133,6 @@
       "path": "./libs/skill-sse"
     },
     {
-      "path": "./libs/skill-tensorflow"
-    },
-    {
       "path": "./libs/skill-tool"
     },
     {
@@ -206,9 +203,6 @@
     },
     {
       "path": "./libs/skill-yaml"
-    },
-    {
-      "path": "./libs/skill-yolo"
     },
     {
       "path": "./libs/skill-temporal"
