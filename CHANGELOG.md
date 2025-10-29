@@ -1,3 +1,13 @@
+## 0.114.7 (2025-10-29)
+
+### 🩹 Fixes
+
+- digipair engine not present with factory dependencies ([33feb360](https://github.com/digipair/digipair/commit/33feb360))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.114.6 (2025-10-29)
 
 ### 🚀 Features
