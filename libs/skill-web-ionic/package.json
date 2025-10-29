@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-ionic",
-  "version": "0.114.3",
+  "version": "0.114.6",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

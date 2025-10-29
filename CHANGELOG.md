@@ -1,3 +1,17 @@
+## 0.114.6 (2025-10-29)
+
+### 🚀 Features
+
+- add rollup and package dependencies - #32 ([#33](https://github.com/digipair/digipair/pull/33), [#32](https://github.com/digipair/digipair/issues/32))
+- improve http skill with empty response management ([3262fbf7](https://github.com/digipair/digipair/commit/3262fbf7))
+- improve http skill with empty response management ([25035b7a](https://github.com/digipair/digipair/commit/25035b7a))
+- add rollup and package dependencies - #32 ([#32](https://github.com/digipair/digipair/issues/32))
+
+### ❤️ Thank You
+
+- Marc Buils @marcbuils
+- Marc BUILS
+
 ## 0.114.3 (2025-10-28)
 
 ### 🚀 Features
