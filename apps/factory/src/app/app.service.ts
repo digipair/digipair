@@ -1,7 +1,7 @@
 import { executePinsList, config } from '@digipair/engine';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { existsSync, promises } from 'fs';
-import { join } from 'path';
+import * as path from 'path';
 
 
 
@@ -135,7 +135,7 @@ export class AppService implements OnModuleInit {
   }
 
   async agent(
-    path: string,
+    basePath: string,
     digipair: string,
     reasoning: string,
     body: any,
@@ -153,40 +153,40 @@ export class AppService implements OnModuleInit {
     let context: any;
 
     try {
-      let content: string;
+      // --- Load default/common/agent config ---
+      const defaultConfig = JSON.parse(await promises.readFile(`${assets}/default.json`, 'utf8'));
+      const commonConfig = JSON.parse(await promises.readFile(`${basePath}/common/config.json`, 'utf8'));
+      const config = JSON.parse(await promises.readFile(`${basePath}/${digipair}/config.json`, 'utf8'));
 
-      content = await promises.readFile(`${assets}/default.json`, 'utf8');
-      const defaultConfig = JSON.parse(content);
+      // --- Merge roles recursively ---
+      const roles = config?.roles ?? {};
+      const rolesMerged = await this.mergeRolesForAgent(basePath, roles);
 
-      content = await promises.readFile(`${path}/common/config.json`, 'utf8');
-      const commonConfig = JSON.parse(content);
-
-      content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
-      const config = JSON.parse(content);
-      const roles = config?.roles ?? [];
-
-
+      // --- Build context ---
       context = {
         ...requester,
         config: {
-          VERSIONS: { ...defaultConfig.libraries, ...commonConfig.libraries, ...config.libraries },
+          VERSIONS: { ...defaultConfig.libraries, ...commonConfig.libraries, ...rolesMerged.libraries, ...config.libraries },
           WEB_VERSIONS: {
             ...defaultConfig.webLibraries,
             ...commonConfig.webLibraries,
-            ...config.webLibraries,
+            ...rolesMerged.webLibraries,
+            ...config.webLibraries
           },
         },
         privates: {
           ...requester.privates,
           ...defaultConfig.privates,
           ...commonConfig.privates,
-          ...config.privates,
+          ...rolesMerged.privates,
+          ...config.privates
         },
         variables: {
           ...requester.variables,
           ...defaultConfig.variables,
           ...commonConfig.variables,
-          ...config.variables,
+          ...rolesMerged.variables,
+          ...config.variables
         },
         request: {
           digipair,
@@ -205,15 +205,26 @@ export class AppService implements OnModuleInit {
         requester,
       };
 
-      if (existsSync(`${path}/${digipair}/${reasoning}.json`)) {
-        content = await promises.readFile(`${path}/${digipair}/${reasoning}.json`, 'utf8');
-      } else if (existsSync(`${path}/common/${reasoning}.json`) === true) {
-        content = await promises.readFile(`${path}/common/${reasoning}.json`, 'utf8');
-      } else if (existsSync(`${path}/${digipair}/fallback.json`)) {
-        content = await promises.readFile(`${path}/${digipair}/fallback.json`, 'utf8');
-      } else if (existsSync(`${path}/common/fallback.json`) === true) {
-        content = await promises.readFile(`${path}/common/fallback.json`, 'utf8');
-      } else {
+      // --- Reasoning lookup ---
+      let content: string | null = null;
+
+      const agentFile = path.join(basePath, digipair, `${reasoning}.json`);
+      if (existsSync(agentFile)) {
+        content = await promises.readFile(agentFile, 'utf8');
+      }
+      if (!content) {
+        content = this.findReasoningInRoles(basePath, roles, reasoning).then(f => f ? promises.readFile(f, 'utf8') : null) as any;
+      }
+
+      if (!content && existsSync(`${basePath}/common/${reasoning}.json`) === true) {
+        content = await promises.readFile(`${basePath}/common/${reasoning}.json`, 'utf8');
+      } else if (!content && existsSync(`${basePath}/${digipair}/fallback.json`)) {
+        content = await promises.readFile(`${basePath}/${digipair}/fallback.json`, 'utf8');
+      } else if (!content && existsSync(`${basePath}/common/fallback.json`) === true) {
+        content = await promises.readFile(`${basePath}/common/fallback.json`, 'utf8');
+      }
+
+      if (!content){
         res.status(404);
         return { status: 'not found' };
       }
@@ -255,38 +266,69 @@ export class AppService implements OnModuleInit {
     }
   }
 
-  private async loadRoleConfig(basePath: string, roleName: string, visited = new Set()) {
+  private async loadRoleConfig(rolePath: string, roleName: string, version = 'latest', visited = new Set<string>()) {
+    const roleFile = path.join(rolePath, roleName,`config.json`);
+    if (!existsSync(roleFile)) return {};
+
     if (visited.has(roleName)) {
-      console.warn(`Cycle detected in role inheritance: ${roleName}`);
+      console.warn(`Circular role reference detected: ${roleName}`);
       return {};
     }
     visited.add(roleName);
 
-    const rolePath = join(basePath, roleName, 'config.json');
-    if (!existsSync(rolePath)) return {};
-
-    const content = await promises.readFile(rolePath, 'utf8');
+    const content = await promises.readFile(roleFile, 'utf8');
     const config = JSON.parse(content);
-    const inheritedRoles = config.roles ?? [];
 
-    let mergedConfig = { ...config };
+    let mergedConfig = {};
 
-    // Process inherited roles first (priority: last wins)
-    for (const roleObj of inheritedRoles) {
-      const [roleName, version] = Object.entries(roleObj)[0];
-      const subConfig = await this.loadRoleConfig(basePath, roleName, visited);
-
-      // deep merge: inherited first, then override by current
-      mergedConfig = {
-        ...subConfig,
-        ...mergedConfig,
-        variables: { ...(subConfig.variables ?? {}), ...(mergedConfig.variables ?? {}) },
-        privates: { ...(subConfig.privates ?? {}), ...(mergedConfig.privates ?? {}) },
-        libraries: { ...(subConfig.libraries ?? {}), ...(mergedConfig.libraries ?? {}) },
-        webLibraries: { ...(subConfig.webLibraries ?? {}), ...(mergedConfig.webLibraries ?? {}) },
-      };
+    // Recursively merge inherited roles (priority to last)
+    const entries = Object.entries(config?.roles ?? {}).reverse();
+    for (const [subRoleName, subVersion] of entries) {
+      const subConfig = await this.loadRoleConfig(rolePath, subRoleName, subVersion as string, visited);
+      mergedConfig = this.mergeConfigs(mergedConfig, subConfig);
     }
 
+    // Merge current role last (highest priority)
+    mergedConfig = this.mergeConfigs(mergedConfig, config);
     return mergedConfig;
+  }
+
+  private mergeConfigs(base: any, override: any) {
+    return {
+      ...base,
+      ...override,
+      variables: { ...(base.variables ?? {}), ...(override.variables ?? {}) },
+      privates: { ...(base.privates ?? {}), ...(override.privates ?? {}) },
+      libraries: { ...(base.libraries ?? {}), ...(override.libraries ?? {}) },
+      webLibraries: { ...(base.webLibraries ?? {}), ...(override.webLibraries ?? {}) },
+    };
+  }
+  private async mergeRolesForAgent(basePath: string, roles: Record<string,string>): Promise<any> {
+    let merged = {};
+    const entries = Object.entries(roles).reverse(); // last added role = highest priority
+    for (const [roleName, version] of entries) {
+      const roleConfig = await this.loadRoleConfig(`${basePath}/roles`, roleName, version);
+      merged = this.mergeConfigs(merged, roleConfig);
+    }
+    return merged;
+  }
+
+  private async findReasoningInRoles(basePath: string, roles: Record<string,string>, reasoning: string): Promise<string | null> {
+    const entries = Object.entries(roles).reverse(); // last added role = first search
+    for (const [roleName] of entries) {
+      const rolePath = path.join(basePath, 'roles', roleName);
+      const reasoningFile = path.join(rolePath, `${reasoning}.json`);
+      if (existsSync(reasoningFile)) return reasoningFile;
+
+      // check inherited roles recursively
+      const configFile = path.join(rolePath, 'config.json');
+      if (existsSync(configFile)) {
+        const content = await promises.readFile(configFile, 'utf8');
+        const config = JSON.parse(content);
+        const found = await this.findReasoningInRoles(basePath, config.roles ?? {}, reasoning);
+        if (found) return found;
+      }
+    }
+    return null;
   }
 }
