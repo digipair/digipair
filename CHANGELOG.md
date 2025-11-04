@@ -1,3 +1,13 @@
+## 0.114.8 (2025-10-29)
+
+### 🚀 Features
+
+- improve http skill with empty response management ([f7650c0b](https://github.com/digipair/digipair/commit/f7650c0b))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.114.7 (2025-10-29)
 
 ### 🩹 Fixes
