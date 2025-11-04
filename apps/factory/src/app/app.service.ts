@@ -1,6 +1,9 @@
 import { executePinsList, config } from '@digipair/engine';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { existsSync, promises } from 'fs';
+import { join } from 'path';
+
+
 
 config.set('ALIAS', [
   {
@@ -160,6 +163,8 @@ export class AppService implements OnModuleInit {
 
       content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
       const config = JSON.parse(content);
+      const roles = config?.roles ?? [];
+
 
       context = {
         ...requester,
@@ -248,5 +253,40 @@ export class AppService implements OnModuleInit {
       const skillLogger = require('@digipair/skill-logger');
       skillLogger.addLog(context, 'ERROR', error.message);
     }
+  }
+
+  private async loadRoleConfig(basePath: string, roleName: string, visited = new Set()) {
+    if (visited.has(roleName)) {
+      console.warn(`Cycle detected in role inheritance: ${roleName}`);
+      return {};
+    }
+    visited.add(roleName);
+
+    const rolePath = join(basePath, roleName, 'config.json');
+    if (!existsSync(rolePath)) return {};
+
+    const content = await promises.readFile(rolePath, 'utf8');
+    const config = JSON.parse(content);
+    const inheritedRoles = config.roles ?? [];
+
+    let mergedConfig = { ...config };
+
+    // Process inherited roles first (priority: last wins)
+    for (const roleObj of inheritedRoles) {
+      const [roleName, version] = Object.entries(roleObj)[0];
+      const subConfig = await this.loadRoleConfig(basePath, roleName, visited);
+
+      // deep merge: inherited first, then override by current
+      mergedConfig = {
+        ...subConfig,
+        ...mergedConfig,
+        variables: { ...(subConfig.variables ?? {}), ...(mergedConfig.variables ?? {}) },
+        privates: { ...(subConfig.privates ?? {}), ...(mergedConfig.privates ?? {}) },
+        libraries: { ...(subConfig.libraries ?? {}), ...(mergedConfig.libraries ?? {}) },
+        webLibraries: { ...(subConfig.webLibraries ?? {}), ...(mergedConfig.webLibraries ?? {}) },
+      };
+    }
+
+    return mergedConfig;
   }
 }
