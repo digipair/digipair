@@ -20,7 +20,7 @@ config.set('ALIAS', [
     library: '@digipair/skill-factory',
     element: 'start',
     properties: {
-      digipair: '{{request.digipair}}',
+      digipair: '{{settings.requestDigipair}}',
       reasoning: '{{settings.element}}',
       version: '{{settings.version}}',
       body: 'FEEL:settings.properties',
