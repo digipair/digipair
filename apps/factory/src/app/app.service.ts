@@ -148,10 +148,10 @@ export class AppService implements OnModuleInit {
       content = await promises.readFile(`${assets}/default.json`, 'utf8');
       const defaultConfig = JSON.parse(content);
 
-      content = await promises.readFile(`${path}/common/config.json`, 'utf8');
+      content = await promises.readFile(`${basePath}/common/config.json`, 'utf8');
       const commonConfig = JSON.parse(content);
 
-      content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+      content = await promises.readFile(`${basePath}/${digipair}/config.json`, 'utf8');
       const config = JSON.parse(content);
 
       // --- Merge all roles configs recursively ---
@@ -204,7 +204,7 @@ export class AppService implements OnModuleInit {
       // --- Reasoning lookup ---
 
       // 1. agent-specific reasoning
-      content ||= await this.tryRead(path.join(basePath, digipair, `${reasoning}.json`));
+      content = await this.tryRead(path.join(basePath, digipair, `${reasoning}.json`));
 
       // 2. inherited roles (deep search)
       content ||= await (async () => {
