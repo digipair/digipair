@@ -41,8 +41,8 @@ config.set('LOGGER', (level: string, logPath: string, message: string, context: 
 export class AppService implements OnModuleInit {
   async onModuleInit() {
     const basePath = process.env.DIGIPAIR_FACTORY_PATH
-        ? `${process.env.DIGIPAIR_FACTORY_PATH}/digipairs`
-        : './factory/digipairs';
+      ? `${process.env.DIGIPAIR_FACTORY_PATH}/digipairs`
+      : './factory/digipairs';
 
     // initialize logs management
     const skillLogger = require('@digipair/skill-logger');
