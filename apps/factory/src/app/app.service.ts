@@ -1,6 +1,6 @@
 import { executePinsList, config } from '@digipair/engine';
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { promises } from 'fs';
+import { existsSync, promises } from 'fs';
 import * as path from 'path';
 
 config.set('ALIAS', [
@@ -14,7 +14,7 @@ config.set('ALIAS', [
       version: '{{settings.version}}',
       body: 'FEEL:settings.properties',
     },
-  }
+  },
 ]);
 
 config.set('LOGGER', (level: string, logPath: string, message: string, context: any, data?: any) => {
@@ -44,11 +44,11 @@ export class AppService implements OnModuleInit {
         ? `${process.env.DIGIPAIR_FACTORY_PATH}/digipairs`
         : './factory/digipairs';
 
-    // Initialize logs management
+    // initialize logs management
     const skillLogger = require('@digipair/skill-logger');
     await skillLogger.initialize();
 
-    // Initialize factory skill
+    // initialize factory skill
     const skillFactory = require('@digipair/skill-factory');
     skillFactory.initialize((context: any, digipair: string, reasoning: string, body: any) =>
       this.agent(
@@ -67,7 +67,7 @@ export class AppService implements OnModuleInit {
       ),
     );
 
-    // Start cron manager
+    // start cron manager
     try {
       const skillCron = require('@digipair/skill-cron');
 
@@ -111,7 +111,7 @@ export class AppService implements OnModuleInit {
       console.error(error);
     }
 
-    // Start workflow manager
+    // start workflow manager
     try {
       const skillTemporal = require('@digipair/skill-temporal');
 
@@ -143,11 +143,16 @@ export class AppService implements OnModuleInit {
 
     try {
       // --- Load core configs ---
-      const [defaultConfig, commonConfig, config] = (await Promise.all([
-        promises.readFile(`${assets}/default.json`, 'utf8').then(JSON.parse),
-        promises.readFile(`${basePath}/common/config.json`, 'utf8').then(JSON.parse),
-        promises.readFile(`${basePath}/${digipair}/config.json`, 'utf8').then(JSON.parse),
-      ])) as any[];
+      let content: string | null;
+
+      content = await promises.readFile(`${assets}/default.json`, 'utf8');
+      const defaultConfig = JSON.parse(content);
+
+      content = await promises.readFile(`${path}/common/config.json`, 'utf8');
+      const commonConfig = JSON.parse(content);
+
+      content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+      const config = JSON.parse(content);
 
       // --- Merge all roles recursively ---
       const roles = config?.roles ?? {};
@@ -162,7 +167,7 @@ export class AppService implements OnModuleInit {
             ...defaultConfig.webLibraries,
             ...commonConfig.webLibraries,
             ...rolesMerged.webLibraries,
-            ...config.webLibraries
+            ...config.webLibraries,
           },
         },
         privates: {
@@ -170,14 +175,14 @@ export class AppService implements OnModuleInit {
           ...defaultConfig.privates,
           ...commonConfig.privates,
           ...rolesMerged.privates,
-          ...config.privates
+          ...config.privates,
         },
         variables: {
           ...requester.variables,
           ...defaultConfig.variables,
           ...commonConfig.variables,
           ...rolesMerged.variables,
-          ...config.variables
+          ...config.variables,
         },
         request: {
           digipair,
@@ -197,7 +202,6 @@ export class AppService implements OnModuleInit {
       };
 
       // --- Reasoning lookup ---
-      let content: string | null = null;
 
       // 1. agent-specific reasoning
       content ||= await this.tryRead(path.join(basePath, digipair, `${reasoning}.json`));
@@ -205,7 +209,7 @@ export class AppService implements OnModuleInit {
       // 2. inherited roles (deep search)
       content ||= await (async () => {
         const rolePath = await this.findFileInRoles(basePath, roles, `${reasoning}.json`);
-        return rolePath ? promises.readFile(rolePath, 'utf8') : null;
+        return rolePath ? this.tryRead(rolePath) : null;
       })();
 
       // 3. common reasoning
@@ -216,8 +220,8 @@ export class AppService implements OnModuleInit {
 
       // 5. fallback via inherited roles (default depth = 1)
       content ||= await (async () => {
-        const fb = await this.findFileInRoles(basePath, roles, 'fallback.json', 1);
-        return fb ? promises.readFile(fb, 'utf8') : null;
+        const fb = await this.findFileInRoles(basePath, roles, 'fallback.json');
+        return fb ? this.tryRead(fb) : null;
       })();
 
       // 6. final fallback
@@ -264,17 +268,8 @@ export class AppService implements OnModuleInit {
   }
 
   // --- UTILITIES ---
-  private async fileExists(file: string): Promise<boolean> {
-    try {
-      await promises.access(file);
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
   private async tryRead(path: string | null): Promise<string | null> {
-    if (path && await this.fileExists(path)) {
+    if (path && existsSync(path)) {
       return promises.readFile(path, 'utf8');
     }
     return null;
@@ -283,7 +278,7 @@ export class AppService implements OnModuleInit {
   /** Recursively load a role config and its inherited roles */
   private async loadRoleConfig(rolePath: string, roleName: string, version = 'latest', visited = new Set<string>()) {
     const roleFile = path.join(rolePath, roleName, 'config.json');
-    if (!(await this.fileExists(roleFile))) return {};
+    if (!(existsSync(roleFile))) return {};
 
     if (visited.has(roleName)) {
       console.debug(`Circular role reference detected: ${roleName}`);
@@ -346,14 +341,14 @@ export class AppService implements OnModuleInit {
       const rolePath = path.join(basePath, roleName);
       const filePath = path.join(rolePath, targetFile);
 
-      if (await this.fileExists(filePath)) {
+      if (existsSync(filePath)) {
         // console.debug(`[FIND] Found ${targetFile} in role: ${roleName}`);
         return filePath;
       }
 
       if (depth > 1) {
         const configFile = path.join(rolePath, 'config.json');
-        if (await this.fileExists(configFile)) {
+        if (existsSync(configFile)) {
           const config = JSON.parse(await promises.readFile(configFile, 'utf8'));
           const found = await this.findFileInRoles(
               basePath,
