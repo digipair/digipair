@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import { ChatOllama } from '@langchain/community/chat_models/ollama';
-import { OllamaEmbeddings } from '@langchain/community/embeddings/ollama';
+import { ChatOllama, OllamaEmbeddings } from '@langchain/ollama';
 
 class OllamaService {
   async model(params: any, _pinsSettingsList: PinsSettings[], context: any) {
