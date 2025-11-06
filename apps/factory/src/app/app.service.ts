@@ -218,7 +218,7 @@ export class AppService implements OnModuleInit {
       // 4. digipair fallback
       content ||= await this.tryRead(path.join(basePath, digipair, 'fallback.json'));
 
-      // 5. fallback via inherited roles (default depth = 1)
+      // 5. fallback via inherited roles (deep search)
       content ||= await (async () => {
         const fb = await this.findFileInRoles(basePath, roles, 'fallback.json');
         return fb ? this.tryRead(fb) : null;
