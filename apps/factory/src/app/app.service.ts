@@ -14,18 +14,7 @@ config.set('ALIAS', [
       version: '{{settings.version}}',
       body: 'FEEL:settings.properties',
     },
-  },
-  {
-    name: 'digipair-role',
-    library: '@digipair/skill-factory',
-    element: 'start',
-    properties: {
-      digipair: '{{settings.requestDigipair}}',
-      reasoning: '{{settings.element}}',
-      version: '{{settings.version}}',
-      body: 'FEEL:settings.properties',
-    },
-  },
+  }
 ]);
 
 config.set('LOGGER', (level: string, logPath: string, message: string, context: any, data?: any) => {
@@ -297,7 +286,7 @@ export class AppService implements OnModuleInit {
     if (!(await this.fileExists(roleFile))) return {};
 
     if (visited.has(roleName)) {
-      console.warn(`Circular role reference detected: ${roleName}`);
+      console.debug(`Circular role reference detected: ${roleName}`);
       return {};
     }
     visited.add(roleName);
@@ -358,7 +347,7 @@ export class AppService implements OnModuleInit {
       const filePath = path.join(rolePath, targetFile);
 
       if (await this.fileExists(filePath)) {
-        console.debug(`[FIND] Found ${targetFile} in role: ${roleName}`);
+        // console.debug(`[FIND] Found ${targetFile} in role: ${roleName}`);
         return filePath;
       }
 
