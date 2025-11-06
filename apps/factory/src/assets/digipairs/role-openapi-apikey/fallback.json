@@ -1,6 +1,6 @@
 {
   "description": "Mécanisme d'appel d'une API",
-  "summary": "Fallback générique OpenApi-APIKEY",
+  "summary": "Fallback générique openApi-apiKey",
   "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},

@@ -154,7 +154,7 @@ export class AppService implements OnModuleInit {
       content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
       const config = JSON.parse(content);
 
-      // --- Merge all roles recursively ---
+      // --- Merge all roles configs recursively ---
       const roles = config?.roles ?? {};
       const rolesMerged = await this.mergeRolesForAgent(basePath, roles);
 

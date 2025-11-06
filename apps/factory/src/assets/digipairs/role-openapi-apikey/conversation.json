@@ -1,6 +1,6 @@
 {
   "description": "Generating a response for the user via the chatbot.",
-  "summary": "Conversation",
+  "summary": "Conversation générique openApi-apiKey",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": {
