@@ -122,7 +122,6 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
           ...settings,
           version,
           library: settings.library.substring(alias.name.length + 1),
-          requestDigipair: context.request.digipair
         },
       },
     );

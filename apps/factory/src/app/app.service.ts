@@ -235,6 +235,7 @@ export class AppService implements OnModuleInit {
           isHttpRequest &&
           !['page', 'service', 'event', 'boost'].includes(settings.element)
       ) {
+        // for external calls, only 'page' and 'service' elements are allowed
         res.status(400);
         return { status: 'bad request' };
       }
@@ -263,7 +264,6 @@ export class AppService implements OnModuleInit {
   }
 
   // --- UTILITIES ---
-
   private async fileExists(file: string): Promise<boolean> {
     try {
       await promises.access(file);
