@@ -10,9 +10,7 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Activity",
         "description": "Execution of an activity.",
         "parameters": [
@@ -56,9 +54,7 @@
     },
     "/stop": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Stop",
         "description": "Stop the reasoning",
         "parameters": [
@@ -89,9 +85,7 @@
     },
     "/answer": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Answer",
         "description": "Provide an answer from the agent with content, assistant details, sources, and agent history.",
         "parameters": [
@@ -187,9 +181,51 @@
                       }
                     }
                   },
-                  "required": [
-                    "content"
-                  ]
+                  "required": ["content"]
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Execute with context",
+        "description": "Execute a Pin's with a given context",
+        "parameters": [
+          {
+            "name": "execute",
+            "required": true,
+            "summary": "Actions to execute",
+            "description": "Actions to execute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "context",
+            "required": false,
+            "summary": "Context",
+            "description": "Context of the execution",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of executed commands with given context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Result from executePinsList - dynamic type based on executed commands",
+                  "additionalProperties": true
                 }
               }
             }
@@ -203,9 +239,7 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -233,18 +267,11 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "summary",
-          "required",
-          "schema"
-        ]
+        "required": ["name", "summary", "required", "schema"]
       },
       "File": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "File",
         "properties": {
           "filename": {
@@ -263,9 +290,7 @@
       },
       "Prompt": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Prompt",
         "properties": {
           "title": {
@@ -289,12 +314,7 @@
             "summary": "Tags"
           }
         },
-        "required": [
-          "title",
-          "prompt",
-          "icon",
-          "tags"
-        ]
+        "required": ["title", "prompt", "icon", "tags"]
       }
     }
   },
@@ -302,9 +322,7 @@
     "/task": {
       "summary": "Task",
       "description": "Execution of a task.",
-      "tags": [
-        "service"
-      ],
+      "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
@@ -324,9 +342,7 @@
     "/action": {
       "summary": "Action",
       "description": "Executable action.",
-      "tags": [
-        "service"
-      ],
+      "tags": ["service"],
       "metadata": [
         {
           "name": "parameters",

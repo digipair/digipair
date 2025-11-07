@@ -76,6 +76,7 @@ class MCPServerService {
         {
           title: tool.title,
           description: tool.description,
+          annotations: tool.annotations,
           inputSchema: inputSchema,
           outputSchema: outputSchema,
         },
