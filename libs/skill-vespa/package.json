@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-vespa",
-  "version": "0.114.8",
+  "version": "0.115.1",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

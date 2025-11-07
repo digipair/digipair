@@ -1,3 +1,11 @@
+## 0.115.1 (2025-11-06)
+
+This was a version bump only, there were no code changes.
+
+## 0.115.0 (2025-11-06)
+
+This was a version bump only, there were no code changes.
+
 ## 0.114.8 (2025-10-29)
 
 ### 🚀 Features

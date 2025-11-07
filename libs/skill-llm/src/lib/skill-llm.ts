@@ -3,9 +3,7 @@ import { PinsSettings, executePinsList } from '@digipair/engine';
 import { HumanMessage } from '@langchain/core/messages';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { RunnableSequence } from '@langchain/core/runnables';
-import { loadSummarizationChain } from 'langchain/chains';
-import { StructuredOutputParser } from 'langchain/output_parsers';
-import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
+import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import { z } from 'zod';
 
 class LLMService {
@@ -155,24 +153,13 @@ class LLMService {
         context,
         `${context.__PATH__}.model`,
       );
-      const parser = new StructuredOutputParser(this.jsonSchemaToZod(schema) as any);
+
+      // Use withStructuredOutput for modern structured output
+      const structuredModel = modelInstance.withStructuredOutput(this.jsonSchemaToZod(schema));
 
       chain = RunnableSequence.from([
-        PromptTemplate.fromTemplate(
-          `${prompt ?? '{prompt}'}
-          
-          Answer the users question as best as possible.
-          {format_instructions}
-          
-          JSON:`,
-          {
-            partialVariables: {
-              format_instructions: parser.getFormatInstructions(),
-            },
-          },
-        ),
-        modelInstance,
-        parser,
+        PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
+        structuredModel,
       ]);
     }
 
@@ -220,22 +207,12 @@ class LLMService {
         context,
         `${context.__PATH__}.model`,
       );
-      const parser = new StructuredOutputParser(this.jsonSchemaToZod(schema) as any);
+
+      // Use withStructuredOutput for modern structured output
+      const structuredModel = modelInstance.withStructuredOutput(this.jsonSchemaToZod(schema));
 
       chain = RunnableSequence.from([
-        PromptTemplate.fromTemplate(
-          `${prompt ?? '{prompt}'}
-            
-            Answer the users question as best as possible.
-            {format_instructions}
-            
-            JSON:`,
-          {
-            partialVariables: {
-              format_instructions: parser.getFormatInstructions(),
-            },
-          },
-        ),
+        PromptTemplate.fromTemplate(prompt ?? '{prompt}'),
         (text: any) => [
           new HumanMessage({
             content: [
@@ -252,8 +229,7 @@ class LLMService {
             ],
           }),
         ],
-        modelInstance,
-        parser,
+        structuredModel,
       ]);
     }
 
@@ -264,52 +240,73 @@ class LLMService {
     const {
       model = context.privates.MODEL_LLM,
       chunkSize = 1024,
-
       type = 'map_reduce',
-      verbose = false,
-
       prompt,
-
-      combineMapPrompt,
       combinePrompt,
-      returnIntermediateSteps,
-
-      refinePrompt,
-      questionPrompt,
     } = params;
 
     const modelInstance = await executePinsList(model, context, `${context.__PATH__}.model`);
     const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize });
 
-    const summarizationChain = loadSummarizationChain(modelInstance, {
-      type,
-      verbose,
+    // Default summarization prompts
+    const defaultMapPrompt = prompt || `
+      Write a concise summary of the following:
+      "{text}"
+      CONCISE SUMMARY:`;
 
-      prompt: !prompt ? undefined : (PromptTemplate.fromTemplate(prompt) as any),
+    const defaultCombinePrompt = combinePrompt || `
+      Write a concise summary of the following summaries:
+      {summaries}
+      CONCISE SUMMARY:`;
 
-      combineMapPrompt: !combineMapPrompt
-        ? undefined
-        : (PromptTemplate.fromTemplate(combineMapPrompt) as any),
-      combinePrompt: !combinePrompt
-        ? undefined
-        : (PromptTemplate.fromTemplate(combinePrompt) as any),
-      returnIntermediateSteps,
+    if (type === 'map_reduce') {
+      // Map-reduce approach: summarize each chunk then combine
+      const mapTemplate = PromptTemplate.fromTemplate(defaultMapPrompt);
+      const combineTemplate = PromptTemplate.fromTemplate(defaultCombinePrompt);
 
-      refinePrompt: !refinePrompt ? undefined : (PromptTemplate.fromTemplate(refinePrompt) as any),
-      questionPrompt: !questionPrompt
-        ? undefined
-        : (PromptTemplate.fromTemplate(questionPrompt) as any),
-    });
+      const chain = RunnableSequence.from([
+        {
+          input_documents: async ({ document }: any) =>
+            await textSplitter.createDocuments([document]),
+        },
+        {
+          summaries: async ({ input_documents }: any) => {
+            // Map phase: summarize each document chunk
+            const summaries = [];
+            for (const doc of input_documents) {
+              const result = await RunnableSequence.from([
+                mapTemplate,
+                modelInstance,
+              ]).invoke({ text: doc.pageContent });
+              summaries.push(typeof result === 'string' ? result : result.content);
+            }
+            return summaries.join('\n\n');
+          },
+        },
+        combineTemplate,
+        modelInstance,
+      ]);
 
-    const chain = RunnableSequence.from([
-      {
-        input_documents: async ({ document }: any) =>
-          await textSplitter.createDocuments([document]),
-      },
-      summarizationChain as any,
-    ]);
+      return chain;
+    } else {
+      // Simple approach: process all chunks at once
+      const template = PromptTemplate.fromTemplate(defaultMapPrompt);
 
-    return chain;
+      const chain = RunnableSequence.from([
+        {
+          input_documents: async ({ document }: any) =>
+            await textSplitter.createDocuments([document]),
+        },
+        {
+          text: ({ input_documents }: any) =>
+            input_documents.map((doc: any) => doc.pageContent).join('\n\n'),
+        },
+        template,
+        modelInstance,
+      ]);
+
+      return chain;
+    }
   }
 }
 
