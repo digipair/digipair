@@ -1,3 +1,14 @@
+## 0.116.0 (2025-11-07)
+
+### 🚀 Features
+
+- update zod version ([0d47a57e](https://github.com/digipair/digipair/commit/0d47a57e))
+- update mcp management ([66cdee77](https://github.com/digipair/digipair/commit/66cdee77))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.115.1 (2025-11-06)
 
 This was a version bump only, there were no code changes.
