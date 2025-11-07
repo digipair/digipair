@@ -1,3 +1,7 @@
+## 0.116.2 (2025-11-07)
+
+This was a version bump only, there were no code changes.
+
 ## 0.116.1 (2025-11-07)
 
 ### 🩹 Fixes
