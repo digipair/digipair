@@ -1,3 +1,13 @@
+## 0.116.1 (2025-11-07)
+
+### 🩹 Fixes
+
+- bad openai version ([f2f3c905](https://github.com/digipair/digipair/commit/f2f3c905))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.116.0 (2025-11-07)
 
 ### 🚀 Features
