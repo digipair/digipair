@@ -10,7 +10,6 @@ config.set('ALIAS', [
     properties: {
       digipair: '{{settings.library}}',
       reasoning: '{{settings.element}}',
-      version: '{{settings.version}}',
       body: 'FEEL:settings.properties',
     },
   },
