@@ -30,6 +30,6 @@
     "name": "skill-openai"
   },
   "dependencies": {
-    "@langchain/openai": "^0.3.11"
+    "@langchain/openai": "^1.0.0"
   }
 }
