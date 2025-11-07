@@ -9,16 +9,9 @@ class FactoryService {
   }
 
   async start(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { reasoning, digipair = context.request.digipair, body = {}, factory = null } = params;
-    let result;
+    const { reasoning, digipair = context.request.digipair, body = {} } = params;
 
-    if (factory) {
-      const response = await fetch(`${factory}/${digipair}/${reasoning}`, body);
-      result = await response.json();
-    } else {
-      result = await this.startTask(context, digipair, reasoning, body);
-    }
-
+    const result = await this.startTask(context, digipair, reasoning, body);
     return result;
   }
 
@@ -67,19 +60,19 @@ export const start = (params: any, pinsSettingsList: PinsSettings[], context: an
   instance.start(params, pinsSettingsList, context);
 
 export const execute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new FactoryService().execute(params, pinsSettingsList, context);
+  instance.execute(params, pinsSettingsList, context);
 
 export const keepAlive = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new FactoryService().keepAlive(params, pinsSettingsList, context);
+  instance.keepAlive(params, pinsSettingsList, context);
 
 export const stop = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new FactoryService().stop(params, pinsSettingsList, context);
+  instance.stop(params, pinsSettingsList, context);
 
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new FactoryService().task(params, pinsSettingsList, context);
+  instance.task(params, pinsSettingsList, context);
 
 export const action = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new FactoryService().action(params, pinsSettingsList, context);
+  instance.action(params, pinsSettingsList, context);
 
 export const trigger = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  new FactoryService().trigger(params, pinsSettingsList, context);
+  instance.trigger(params, pinsSettingsList, context);
