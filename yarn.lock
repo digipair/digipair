@@ -3587,31 +3587,6 @@
     uuid "^10.0.0"
     zod "^3.25.76 || ^4"
 
-"@langchain/langgraph-checkpoint@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@langchain/langgraph-checkpoint/-/langgraph-checkpoint-1.0.0.tgz#ece2ede439d0d0b0b532c4be7817fd5029afe4f8"
-  integrity sha512-xrclBGvNCXDmi0Nz28t3vjpxSH6UYx6w5XAXSiiB1WEdc2xD2iY/a913I3x3a31XpInUW/GGfXXfePfaghV54A==
-  dependencies:
-    uuid "^10.0.0"
-
-"@langchain/langgraph-sdk@~1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@langchain/langgraph-sdk/-/langgraph-sdk-1.0.0.tgz#16faca6cc426432dee9316428d0aecd94e5b7989"
-  integrity sha512-g25ti2W7Dl5wUPlNK+0uIGbeNFqf98imhHlbdVVKTTkDYLhi/pI1KTgsSSkzkeLuBIfvt2b0q6anQwCs7XBlbw==
-  dependencies:
-    p-queue "^6.6.2"
-    p-retry "4"
-    uuid "^9.0.0"
-
-"@langchain/langgraph@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@langchain/langgraph/-/langgraph-1.0.1.tgz#d0be714653e8a27665f86ea795c5c34189455406"
-  integrity sha512-7y8OTDLrHrpJ55Y5x7c7zU2BbqNllXwxM106Xrd+NaQB5CpEb4hbUfIwe4XmhhscKPwvhXAq3tjeUxw9MCiurQ==
-  dependencies:
-    "@langchain/langgraph-checkpoint" "^1.0.0"
-    "@langchain/langgraph-sdk" "~1.0.0"
-    uuid "^10.0.0"
-
 "@langchain/ollama@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@langchain/ollama/-/ollama-1.0.0.tgz#803c353e9dfb1a9e7b20f1460a6a201fec29bb77"
@@ -15203,18 +15178,7 @@ langchain@^0.3.5:
     yaml "^2.2.1"
     zod "^3.25.32"
 
-langchain@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/langchain/-/langchain-1.0.3.tgz#d2ca5e0bf1882678d556b087783b373f92d86677"
-  integrity sha512-nGxI9li1yttHzLHtECgw3hGMNzEDQR+EpW4kHKy1mbWjyBXtUDI6SyHjAeOAX7c6oV1QYRlFsOlXtahPiMySpQ==
-  dependencies:
-    "@langchain/langgraph" "^1.0.0"
-    "@langchain/langgraph-checkpoint" "^1.0.0"
-    langsmith "~0.3.74"
-    uuid "^10.0.0"
-    zod "^3.25.76 || ^4"
-
-langsmith@^0.3.64, langsmith@~0.3.74:
+langsmith@^0.3.64:
   version "0.3.78"
   resolved "https://registry.yarnpkg.com/langsmith/-/langsmith-0.3.78.tgz#85288d0fc383978e0f51e5ec0137933ccd3646ef"
   integrity sha512-PVrog/DiTsiyOQ38GeZEIVadgk55/dfE3axagQksT3dt6KhFuRxhNaZrC0rp3dNW9RQJCm/c3tn+PiybwQNY0Q==
@@ -21950,7 +21914,7 @@ zod@^3.22.4, zod@^3.23.8, zod@^3.25.32:
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.76.tgz#26841c3f6fd22a6a2760e7ccb719179768471e34"
   integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==
 
-"zod@^3.25.76 || ^4":
+"zod@^3.25.76 || ^4", zod@^4.1.12:
   version "4.1.12"
   resolved "https://registry.yarnpkg.com/zod/-/zod-4.1.12.tgz#64f1ea53d00eab91853195653b5af9eee68970f0"
   integrity sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==
