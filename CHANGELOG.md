@@ -1,3 +1,13 @@
+## 0.116.3 (2025-11-08)
+
+### 🚀 Features
+
+- update openai azure parameters ([a1c4f4b4](https://github.com/digipair/digipair/commit/a1c4f4b4))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.116.2 (2025-11-07)
 
 This was a version bump only, there were no code changes.
