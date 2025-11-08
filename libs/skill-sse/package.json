@@ -30,6 +30,6 @@
     "name": "skill-sse"
   },
   "dependencies": {
-    "better-sse": "^0.14.0"
+    "better-sse": "^0.15.1"
   }
 }

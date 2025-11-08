@@ -104,7 +104,7 @@
             }
           },
           {
-            "name": "openAIApiInstanceName",
+            "name": "azureOpenAIApiInstanceName",
             "summary": "Instance Name",
             "required": false,
             "description": "Name of the Azure OpenAI instance",
@@ -113,7 +113,7 @@
             }
           },
           {
-            "name": "deploymentName",
+            "name": "azureOpenAIApiDeploymentName",
             "summary": "Deployment Name",
             "required": true,
             "description": "Name of the Azure OpenAI deployment",
@@ -251,7 +251,7 @@
             }
           },
           {
-            "name": "openAIApiInstanceName",
+            "name": "azureOpenAIApiInstanceName",
             "summary": "Instance Name",
             "required": false,
             "description": "Name of the Azure OpenAI instance",
@@ -260,7 +260,7 @@
             }
           },
           {
-            "name": "deploymentName",
+            "name": "azureOpenAIApiDeploymentName",
             "summary": "Deployment Name",
             "required": true,
             "description": "Name of the Azure OpenAI deployment",
@@ -343,7 +343,7 @@
         "type": "object",
         "description": "Azure OpenAI LLM model instance",
         "properties": {
-          "deploymentName": {
+          "azureOpenAIApiDeploymentName": {
             "type": "string",
             "description": "Name of the Azure OpenAI deployment"
           },
@@ -403,7 +403,7 @@
         "type": "object",
         "description": "Azure OpenAI embeddings model instance",
         "properties": {
-          "deploymentName": {
+          "azureOpenAIApiDeploymentName": {
             "type": "string",
             "description": "Name of the Azure OpenAI deployment"
           },
