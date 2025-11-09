@@ -1,6 +1,6 @@
 {
   "description": "Mécanisme d'appel d'une API",
-  "summary": "Fallback",
+  "summary": "Fallback générique openApi-apiKey",
   "library": "@digipair/skill-factory",
   "element": "task",
   "metadata": {},
@@ -13,9 +13,15 @@
           "name": "openapi",
           "execute": [
             {
-              "library": "digipair:<%= digipair %>",
-              "element": "openapi",
-              "properties": {}
+              "library": "@digipair/skill-factory",
+              "element": "start",
+              "properties": {
+                "digipair": "FEEL:request.digipair",
+                "reasoning": "openapi",
+                "body": {}
+              },
+              "conditions": {},
+              "name": "digipair"
             }
           ]
         }
@@ -166,7 +172,9 @@
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
-              "properties": { "value": "FEEL:item" }
+              "properties": {
+                "value": "FEEL:item"
+              }
             },
             {
               "library": "@digipair/skill-basic",
@@ -185,7 +193,9 @@
             }
           ]
         },
-        "conditions": { "each": "FEEL:variables.parametersPath" }
+        "conditions": {
+          "each": "FEEL:variables.parametersPath"
+        }
       },
       {
         "library": "@digipair/skill-basic",
@@ -231,7 +241,10 @@
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
-        "properties": { "name": "body", "value": "FEEL:request.body.body" },
+        "properties": {
+          "name": "body",
+          "value": "FEEL:request.body.body"
+        },
         "conditions": {
           "if": "FEEL:variables.infos.value[item.key = variables.method].value.requestBody[1] != null"
         }

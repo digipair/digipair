@@ -1,6 +1,6 @@
 {
   "description": "Generating a response for the user via the chatbot.",
-  "summary": "Conversation",
+  "summary": "Conversation générique openApi-apiKey",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": {
@@ -27,33 +27,39 @@
             "properties": {
               "signature": "\"You are a helpful assistant, capable of explaining concepts in a simple manner.\" \nuserQuestion:string,\nhistory?:string[] ->\n  answer: string \"Assistant answer\"",
               "input": {
-                "userQuestion": "{{request.body.prompt}}",
+                "userQuestion": "FEEL:request.body.prompt",
                 "history": "FEEL:variables.history"
               }
             }
           },
           {
-            "library": "digipair:<%= digipair %>",
-            "element": "answer",
+            "library": "@digipair/skill-factory",
+            "element": "start",
             "properties": {
-              "assistant": "{{previous.answer}}",
-              "boost": [
-                {
-                  "prompt": true,
-                  "required": true,
-                  "step": "Conversation",
-                  "inputs": [
-                    {
-                      "library": "@digipair/skill-web-inputs",
-                      "element": "digipair-input-hidden",
-                      "properties": {
-                        "value": "FEEL:flatten([variables.history, [\n  \"user: \" + request.body.prompt,\n  \"assistant: \" + parent.previous.answer\n]])"
+              "digipair": "FEEL:request.digipair",
+              "reasoning": "answer",
+              "body": {
+                "assistant": "FEEL:previous.answer",
+                "boost": [
+                  {
+                    "prompt": true,
+                    "required": true,
+                    "step": "Conversation",
+                    "inputs": [
+                      {
+                        "library": "@digipair/skill-web-inputs",
+                        "element": "digipair-input-hidden",
+                        "properties": {
+                          "value": "FEEL:flatten([variables.history, [\n  \"user: \" + request.body.prompt,\n  \"assistant: \" + parent.previous.answer\n]])"
+                        }
                       }
-                    }
-                  ]
-                }
-              ]
-            }
+                    ]
+                  }
+                ]
+              }
+            },
+            "conditions": {},
+            "name": "digipair"
           }
         ]
       }
