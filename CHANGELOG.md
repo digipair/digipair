@@ -1,3 +1,13 @@
+## 0.116.4 (2025-11-09)
+
+### 🩹 Fixes
+
+- langchain openai ([c7d45472](https://github.com/digipair/digipair/commit/c7d45472))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.116.3 (2025-11-08)
 
 ### 🚀 Features
