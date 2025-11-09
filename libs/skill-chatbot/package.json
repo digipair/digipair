@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-chatbot",
-  "version": "0.116.4",
+  "version": "0.117.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
