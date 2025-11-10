@@ -1,3 +1,52 @@
+## 0.117.0 (2025-11-09)
+
+This was a version bump only, there were no code changes.
+
+## 0.116.4 (2025-11-09)
+
+### 🩹 Fixes
+
+- langchain openai ([c7d45472](https://github.com/digipair/digipair/commit/c7d45472))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.116.3 (2025-11-08)
+
+### 🚀 Features
+
+- update openai azure parameters ([a1c4f4b4](https://github.com/digipair/digipair/commit/a1c4f4b4))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.116.2 (2025-11-07)
+
+This was a version bump only, there were no code changes.
+
+## 0.116.1 (2025-11-07)
+
+### 🩹 Fixes
+
+- bad openai version ([f2f3c905](https://github.com/digipair/digipair/commit/f2f3c905))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.116.0 (2025-11-07)
+
+### 🚀 Features
+
+- update zod version ([0d47a57e](https://github.com/digipair/digipair/commit/0d47a57e))
+- update mcp management ([66cdee77](https://github.com/digipair/digipair/commit/66cdee77))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.115.1 (2025-11-06)
 
 This was a version bump only, there were no code changes.

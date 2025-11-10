@@ -1,7 +1,9 @@
 {
   "name": "common",
   "description": "common actions.",
-  "metadata": { "color": "#3b82f6" },
+  "metadata": {
+    "color": "#3b82f6"
+  },
   "libraries": {
     "@digipair/skill-basic": "latest",
     "@digipair/skill-factory": "latest",
@@ -11,6 +13,7 @@
     "@digipair/skill-sse": "latest",
     "@digipair/skill-common": "latest",
     "@digipair/skill-debug": "latest",
+    "@digipair/skill-mcp": "latest",
     "@digipair/skill-web": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-inputs": "latest"

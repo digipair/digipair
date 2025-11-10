@@ -18,7 +18,6 @@
               "properties": {
                 "digipair": "FEEL:request.digipair",
                 "reasoning": "openapi",
-                "version": "latest",
                 "body": {}
               },
               "conditions": {},

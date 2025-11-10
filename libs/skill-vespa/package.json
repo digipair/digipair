@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-vespa",
-  "version": "0.115.1",
+  "version": "0.117.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -30,7 +30,8 @@
     "name": "skill-vespa"
   },
   "dependencies": {
-    "langchain": "^0.3.5",
+    "@langchain/core": "^1.0.0",
+    "@langchain/textsplitters": "^1.0.0",
     "uuid": "^10.0.0"
   }
 }

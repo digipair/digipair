@@ -10,17 +10,12 @@
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
-          "name": "remote",
+          "name": "metadata",
           "execute": [
             {
               "library": "@digipair/skill-common",
               "element": "metadata",
-              "properties": { "digipair": "FEEL: request.digipair" }
-            },
-            {
-              "library": "@digipair/skill-basic",
-              "element": "transform",
-              "properties": { "value": "FEEL: previous.remote" }
+              "properties": { "digipair": "EVALUATE: request.digipair" }
             }
           ]
         }
@@ -37,7 +32,7 @@
             }
           ]
         },
-        "conditions": { "if": "FEEL: variables.remote != true" }
+        "conditions": { "if": "FEEL: variables.metadata.remote != true" }
       },
       {
         "library": "@digipair/skill-basic",
@@ -64,6 +59,9 @@
                         "description": "FEEL: item.value.post.description",
                         "title": "FEEL: item.value.post.summary",
                         "inputSchema": "FEEL: context(\n  for parameter in item.value.post.parameters return \n    { key: parameter.name, value: parameter.schema }\n)",
+                        "annotations": {
+                          "readOnlyHint": "FEEL: get entries(item.value.post)[key = \"x-context\"][1].value != true"
+                        },
                         "execute": "FEEL:  [\n  {\n    \"library\": \"@digipair/skill-factory\",\n    \"element\": \"start\",\n    \"properties\": {\n      \"reasoning\": substring(item.key, 2),\n      \"body\": \"FEEL: params\"\n    }\n  },\n  {\n    \"library\": \"@digipair/skill-basic\",\n    \"element\": \"transform\",\n    \"properties\": {\n      \"value\": \"FEEL: { content: [{ type: \\\"text\\\", text: JSONstringify(if previous != null then previous else {}) }], structuredContent: previous }\"\n    }\n  }\n]"
                       }
                     },
@@ -80,7 +78,7 @@
             { "library": "@digipair/skill-factory", "element": "keepAlive" }
           ]
         },
-        "conditions": { "if": "FEEL: variables.remote = true" }
+        "conditions": { "if": "FEEL: variables.metadata.remote = true" }
       }
     ]
   },
