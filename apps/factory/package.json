@@ -126,6 +126,14 @@
             "buildTarget": "factory:build:production"
           }
         }
+      },
+      "test": {
+        "executor": "@nx/jest:jest",
+        "outputs": ["{workspaceRoot}/coverage/apps/factory"],
+        "options": {
+          "jestConfig": "apps/factory/jest.config.ts",
+          "passWithNoTests": true
+        }
       }
     }
   }
