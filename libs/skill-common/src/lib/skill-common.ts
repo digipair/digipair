@@ -1,16 +1,15 @@
 import { PinsSettings } from '@digipair/engine';
 import { existsSync, promises } from 'fs';
-import * as path from 'path';
 
 class CommonService {
   async infos(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const basePath =
+    const path =
       context.privates?.EDITOR_PATH ??
       (process.env['DIGIPAIR_FACTORY_PATH']
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
-    const content = await promises.readFile(`${basePath}/${digipair}/config.json`, 'utf8');
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);
 
     return {
@@ -20,13 +19,13 @@ class CommonService {
   }
 
   async metadata(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const basePath =
+    const path =
       context.privates?.EDITOR_PATH ??
       (process.env['DIGIPAIR_FACTORY_PATH']
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
-    const content = await promises.readFile(`${basePath}/${digipair}/config.json`, 'utf8');
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);
 
     return {
@@ -37,32 +36,32 @@ class CommonService {
   }
 
   async avatar(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const basePath =
+    const path =
       context.privates?.EDITOR_PATH ??
       (process.env['DIGIPAIR_FACTORY_PATH']
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
-    const buffer = await promises.readFile(`${basePath}/${digipair}/avatar.png`);
+    const buffer = await promises.readFile(`${path}/${digipair}/avatar.png`);
     const avatar = buffer.toString('base64');
 
     return `data:image/png;base64,${avatar}`;
   }
 
   async boosts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const basePath =
+    const path =
       context.privates?.EDITOR_PATH ??
       (process.env['DIGIPAIR_FACTORY_PATH']
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
-    const files = await promises.readdir(`${basePath}/${digipair}`);
+    const files = await promises.readdir(`${path}/${digipair}`);
     const boosts = await Promise.all(
       files
         .map(file => /^boost-(.*)\.json$/.exec(file)?.[1])
         .filter(name => name)
         .map(async name => {
-          const content = await promises.readFile(`${basePath}/${digipair}/boost-${name}.json`, 'utf8');
+          const content = await promises.readFile(`${path}/${digipair}/boost-${name}.json`, 'utf8');
           const { summary, description, metadata } = JSON.parse(content);
 
           return {
@@ -80,20 +79,20 @@ class CommonService {
   }
 
   async prompts(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const basePath =
+    const path =
       context.privates?.EDITOR_PATH ??
       (process.env['DIGIPAIR_FACTORY_PATH']
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
         : './factory/digipairs');
     const { digipair } = params;
-    const files = await promises.readdir(`${basePath}/${digipair}`);
+    const files = await promises.readdir(`${path}/${digipair}`);
     const actions = await Promise.all(
       files
         .filter(
           file => file.substring(file.length - 5) === '.json' && file.substring(0, 7) === 'action-',
         )
         .map(async file => {
-          const content = await promises.readFile(`${basePath}/${digipair}/${file}`, 'utf8');
+          const content = await promises.readFile(`${path}/${digipair}/${file}`, 'utf8');
           const { metadata } = JSON.parse(content);
 
           return metadata.prompts ?? [];
@@ -104,7 +103,7 @@ class CommonService {
   }
 
   async schema(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const basePath =
+    const path =
       context.privates?.EDITOR_PATH ??
       (process.env['DIGIPAIR_FACTORY_PATH']
         ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
@@ -112,20 +111,20 @@ class CommonService {
     const { digipair } = params;
     let schema = {} as any;
 
-    const content = await promises.readFile(`${basePath}/${digipair}/config.json`, 'utf8');
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
     const config = JSON.parse(content);
 
     // check if schema.json exists
-    if (existsSync(`${basePath}/${digipair}/schema.json`)) {
-      const text = await promises.readFile(`${basePath}/${digipair}/schema.json`, 'utf8');
+    if (existsSync(`${path}/${digipair}/schema.json`)) {
+      const text = await promises.readFile(`${path}/${digipair}/schema.json`, 'utf8');
       schema = JSON.parse(text);
     }
 
-    const filesCommon = await promises.readdir(`${basePath}/common`);
-    const files = await promises.readdir(`${basePath}/${digipair}`);
+    const filesCommon = await promises.readdir(`${path}/common`);
+    const files = await promises.readdir(`${path}/${digipair}`);
 
     const roles = config?.roles ?? {};
-    const allRoles = await this.resolveRolesForAgent(basePath, roles);
+    const allRoles = await this.resolveRolesForAgent(path, roles);
 
     const actionsCommon = (
       await Promise.all(
@@ -134,7 +133,7 @@ class CommonService {
           .filter(name => name)
           .map(async name => {
             const actionContent = await promises.readFile(
-              `${basePath}/common/action-${name}.json`,
+              `${path}/common/action-${name}.json`,
               'utf8',
             );
             const { summary, description, metadata } = JSON.parse(actionContent);
@@ -175,7 +174,7 @@ class CommonService {
           .filter(name => name)
           .map(async name => {
             const actionContent = await promises.readFile(
-              `${basePath}/${digipair}/action-${name}.json`,
+              `${path}/${digipair}/action-${name}.json`,
               'utf8',
             );
             const { summary, description, metadata } = JSON.parse(actionContent);
@@ -216,7 +215,7 @@ class CommonService {
           .filter(name => name)
           .map(async name => {
             const triggerContent = await promises.readFile(
-              `${basePath}/common/trigger-${name}.json`,
+              `${path}/common/trigger-${name}.json`,
               'utf8',
             );
             const { summary, description, metadata } = JSON.parse(triggerContent);
@@ -243,7 +242,7 @@ class CommonService {
           .filter(name => name)
           .map(async name => {
             const triggerContent = await promises.readFile(
-              `${basePath}/${digipair}/trigger-${name}.json`,
+              `${path}/${digipair}/trigger-${name}.json`,
               'utf8',
             );
             const { summary, description, metadata } = JSON.parse(triggerContent);
@@ -267,47 +266,50 @@ class CommonService {
     let actionsRoles = {};
     let triggersRoles = {};
     for (const roleName of allRoles) {
-      const rolePath = `${basePath}/${roleName}`;
+      const rolePath = `${path}/${roleName}`;
       if (existsSync(rolePath)) {
         try {
           const roleFiles = await promises.readdir(rolePath);
-
           const roleActions = (
             await Promise.all(
               roleFiles
                 .map(file => /^action-(.*)\.json$/.exec(file)?.[1])
                 .filter(name => name)
                 .map(async name => {
-                  const txt = await promises.readFile(
+                  const actionContent = await promises.readFile(
                       `${rolePath}/action-${name}.json`,
                       'utf8',
                   );
-                const { summary, description, metadata } = JSON.parse(txt);
-                return {
-                  key: `/action-${name}`,
-                  value: {
-                    post: {
-                      tags: metadata.tags ?? ['service'],
-                      summary,
-                      description,
-                      parameters: metadata.parameters ?? [],
-                      'x-events': [],
-                      'x-context': metadata.context ?? false,
-                      responses: {
-                        '200': {
-                          content: {
-                            'application/json': {
-                              schema: metadata.output ?? { type: 'null' },
+                  const { summary, description, metadata } = JSON.parse(actionContent);
+
+                  return {
+                    key: `/action-${name}`,
+                    value: {
+                      post: {
+                        tags: metadata.tags ?? ['service'],
+                        summary,
+                        description,
+                        parameters: metadata.parameters ?? [],
+                        'x-events': [],
+                        'x-context': metadata.context ?? false,
+                        responses: {
+                          '200': {
+                            content: {
+                              'application/json': {
+                                schema: metadata.output ?? { type: 'null' },
+                              },
                             },
                           },
                         },
                       },
                     },
-                  },
-                };
-              }),
+                  };
+                }),
             )
-          ).reduce((acc, item) => ({ ...acc, [item.key]: item.value }), {});
+          ).reduce((acc: any, item: any) => {
+            acc[item.key] = item.value;
+            return acc;
+          }, {});
 
           actionsRoles = { ...actionsRoles, ...roleActions };
 
@@ -317,11 +319,11 @@ class CommonService {
                 .map(file => /^trigger-(.*)\.json$/.exec(file)?.[1])
                 .filter(name => name)
                 .map(async name => {
-                  const txt = await promises.readFile(
+                  const triggerContent = await promises.readFile(
                     `${rolePath}/trigger-${name}.json`,
                     'utf8',
                   );
-                  const { summary, description, metadata } = JSON.parse(txt);
+                  const { summary, description, metadata } = JSON.parse(triggerContent);
                   return {
                     key: `/trigger-${name}`,
                     value: {
@@ -333,7 +335,10 @@ class CommonService {
                   };
                 }),
               )
-          ).reduce((acc, item) => ({ ...acc, [item.key]: item.value }), {});
+          ).reduce((acc: any, item: any) => {
+            acc[item.key] = item.value;
+            return acc;
+          }, {});
 
           triggersRoles = { ...triggersRoles, ...roleTriggers };
         } catch {
@@ -385,9 +390,7 @@ class CommonService {
       }
       visited.add(roleName);
 
-      const rolePath = path.join(basePath, roleName);
-      const configFile = path.join(rolePath, 'config.json');
-
+      const configFile = `${basePath}/${roleName}/config.json`;
       if (existsSync(configFile)) {
         try {
           const config = JSON.parse(await promises.readFile(configFile, 'utf8'));
