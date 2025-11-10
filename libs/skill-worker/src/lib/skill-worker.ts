@@ -48,6 +48,21 @@ class WorkerService {
     const { content, prompt, sources, agent_history, files } = params;
     return { content, prompt, sources, agent_history, files };
   }
+
+  async execute(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { execute, context = {} } = params;
+
+    const result = await executePinsList(
+      execute,
+      {
+        ...context,
+        ..._context,
+        request: _context.requester?.request ?? _context.request,
+      },
+      `${context.__PATH__}.execute`,
+    );
+    return result;
+  }
 }
 
 export const task = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
@@ -64,3 +79,6 @@ export const stop = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const answer = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WorkerService().answer(params, pinsSettingsList, context);
+
+export const execute = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WorkerService().execute(params, pinsSettingsList, context);

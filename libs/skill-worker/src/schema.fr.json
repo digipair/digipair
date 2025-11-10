@@ -10,9 +10,7 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Activité",
         "description": "Exécute une activité.",
         "parameters": [
@@ -56,9 +54,7 @@
     },
     "/stop": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Stop",
         "description": "Stop le raisonnement",
         "parameters": [
@@ -89,9 +85,7 @@
     },
     "/answer": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Répondre",
         "description": "Fournit une réponse de l'agent.",
         "parameters": [
@@ -187,9 +181,51 @@
                       }
                     }
                   },
-                  "required": [
-                    "content"
-                  ]
+                  "required": ["content"]
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
+    "/execute": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Execute avec un contexte",
+        "description": "Execute des Pin's avec un contexte donné",
+        "parameters": [
+          {
+            "name": "execute",
+            "required": true,
+            "summary": "Actions à exécuter",
+            "description": "Actions à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "context",
+            "required": false,
+            "summary": "Contexte",
+            "description": "Contexte d'exécution",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Résultat des commandes exécutées avec le contexte donné",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Résultat d'executePinsList - type dynamique basé sur les commandes exécutées",
+                  "additionalProperties": true
                 }
               }
             }
@@ -203,9 +239,7 @@
     "/task": {
       "summary": "Tache",
       "description": "Exécution d'une tache.",
-      "tags": [
-        "service"
-      ],
+      "tags": ["service"],
       "metadata": [],
       "parameters": [
         {
@@ -225,9 +259,7 @@
     "/action": {
       "summary": "Action",
       "description": "Action exécutable.",
-      "tags": [
-        "service"
-      ],
+      "tags": ["service"],
       "metadata": [
         {
           "name": "parameters",
@@ -292,9 +324,7 @@
     "schemas": {
       "Parameter": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Parameter",
         "properties": {
           "name": {
@@ -322,18 +352,11 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "summary",
-          "required",
-          "schema"
-        ]
+        "required": ["name", "summary", "required", "schema"]
       },
       "File": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "File",
         "properties": {
           "filename": {
@@ -352,9 +375,7 @@
       },
       "Prompt": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Prompt",
         "properties": {
           "title": {
@@ -378,12 +399,7 @@
             "summary": "Tags"
           }
         },
-        "required": [
-          "title",
-          "prompt",
-          "icon",
-          "tags"
-        ]
+        "required": ["title", "prompt", "icon", "tags"]
       }
     }
   }
