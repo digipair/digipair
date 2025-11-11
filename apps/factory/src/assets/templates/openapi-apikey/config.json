@@ -1,9 +1,6 @@
 {
   "name": "<%= name %>",
   "description": "<%= description %>",
-  "roles": {
-    "role-openapi-apikey": "latest"
-  },
   "metadata": {
     "primary": "#51E0DC",
     "textPrimary": "#242E3B",
