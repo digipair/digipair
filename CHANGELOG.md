@@ -1,3 +1,13 @@
+## 0.117.1 (2025-11-11)
+
+### 🚀 Features
+
+- manage mcp required and file ([edc39409](https://github.com/digipair/digipair/commit/edc39409))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.0 (2025-11-09)
 
 This was a version bump only, there were no code changes.
