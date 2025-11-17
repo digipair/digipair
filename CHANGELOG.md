@@ -1,3 +1,13 @@
+## 0.117.3 (2025-11-17)
+
+### 🚀 Features
+
+- remove old remote management ([fce5ec66](https://github.com/digipair/digipair/commit/fce5ec66))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.2 (2025-11-11)
 
 ### 🚀 Features
