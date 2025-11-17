@@ -1,3 +1,13 @@
+## 0.117.4 (2025-11-17)
+
+### 🩹 Fixes
+
+- minor fixes ([c2287041](https://github.com/digipair/digipair/commit/c2287041))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.3 (2025-11-17)
 
 ### 🚀 Features

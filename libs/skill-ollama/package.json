@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-ollama",
-  "version": "0.117.3",
+  "version": "0.117.4",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
