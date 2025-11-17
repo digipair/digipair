@@ -105,6 +105,38 @@
         "x-events": []
       }
     },
+    "/roles": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Lister les rôles",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Nom du digipair",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rôles du digipair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
     "/avatar": {
       "post": {
         "tags": [

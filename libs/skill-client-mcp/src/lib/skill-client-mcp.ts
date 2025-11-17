@@ -63,7 +63,7 @@ class MCPClientService {
     const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
     const result = await clientInstance.listTools();
-    clientInstance.close();
+    clientInstance.close(); 
     return result;
   }
 

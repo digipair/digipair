@@ -337,34 +337,7 @@
                             "digipair": "{{item}}"
                           },
                           "conditions": {
-                            "each": "FEEL: concatenate(\n  [request.params[1]], \n  for digipair in \n    get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and not(starts with(value, \"http\"))]\n    return substring(digipair.key, 10)\n)"
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "library": "@digipair/skill-basic",
-                    "element": "setVariable",
-                    "properties": {
-                      "name": "schemasRemote",
-                      "execute": [
-                        {
-                          "library": "@digipair/skill-basic",
-                          "element": "transform",
-                          "properties": {
-                            "execute": [
-                              {
-                                "library": "@digipair/skill-http",
-                                "element": "read",
-                                "properties": {
-                                  "path": "FEEL:item.value + \"/\" + split(item.key, \"digipair:\")[2] + \"/schema.json\""
-                                }
-                              }
-                            ]
-                          },
-                          "conditions": {
-                            "each": "FEEL:get entries(variables.digipair.libraries)[starts with(key, \"digipair:\") and starts with(value, \"http\")]"
+                            "each": "FEEL: concatenate(\n  [request.params[1]], \n  for digipair in \n    get entries(variables.digipair.libraries)[starts with(key, \"digipair:\")]\n    return substring(digipair.key, 10)\n)"
                           }
                         }
                       ]
@@ -374,7 +347,7 @@
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "FEEL:flatten([variables.schemasLibraries, variables.schemasRemote, variables.schemasDigipair])"
+                      "value": "FEEL:flatten([variables.schemasLibraries, variables.schemasDigipair])"
                     }
                   }
                 ]

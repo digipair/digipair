@@ -35,6 +35,21 @@ class CommonService {
     };
   }
 
+  async roles(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path =
+      context.privates?.EDITOR_PATH ??
+      (process.env['DIGIPAIR_FACTORY_PATH']
+        ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+        : './factory/digipairs');
+    const { digipair } = params;
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+    const config = JSON.parse(content);
+
+    return {
+      ...config.roles,
+    };
+  }
+
   async avatar(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const path =
       context.privates?.EDITOR_PATH ??
