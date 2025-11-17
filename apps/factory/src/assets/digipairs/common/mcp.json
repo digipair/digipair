@@ -15,7 +15,9 @@
             {
               "library": "@digipair/skill-common",
               "element": "metadata",
-              "properties": { "digipair": "EVALUATE: request.digipair" }
+              "properties": {
+                "digipair": "EVALUATE: request.digipair"
+              }
             }
           ]
         }
@@ -28,11 +30,15 @@
             {
               "library": "@digipair/skill-factory",
               "element": "stop",
-              "properties": { "value": 405 }
+              "properties": {
+                "value": 405
+              }
             }
           ]
         },
-        "conditions": { "if": "FEEL: variables.metadata.remote != true" }
+        "conditions": {
+          "if": "FEEL: variables.metadata.remote != true"
+        }
       },
       {
         "library": "@digipair/skill-basic",
@@ -48,7 +54,9 @@
                   {
                     "library": "@digipair/skill-factory",
                     "element": "start",
-                    "properties": { "reasoning": "schema.json" }
+                    "properties": {
+                      "reasoning": "schema.json"
+                    }
                   },
                   {
                     "library": "@digipair/skill-basic",
@@ -58,14 +66,16 @@
                         "name": "FEEL: substring(item.key, 2)",
                         "description": "FEEL: item.value.post.description",
                         "title": "FEEL: item.value.post.summary",
-                        "inputSchema": "FEEL: context(\n  for parameter in item.value.post.parameters return \n    { key: parameter.name, value: parameter.schema }\n)",
+                        "inputSchema": "FEEL: {\n  type: \"object\",\n  properties: context(\n    for parameter in item.value.post.parameters return \n      { key: parameter.name, value: parameter.schema }\n  ),\n  required: for parameter in item.value.post.parameters[required = true] return parameter.name\n}",
                         "annotations": {
                           "readOnlyHint": "FEEL: get entries(item.value.post)[key = \"x-context\"][1].value != true"
                         },
                         "execute": "FEEL:  [\n  {\n    \"library\": \"@digipair/skill-factory\",\n    \"element\": \"start\",\n    \"properties\": {\n      \"reasoning\": substring(item.key, 2),\n      \"body\": \"FEEL: params\"\n    }\n  },\n  {\n    \"library\": \"@digipair/skill-basic\",\n    \"element\": \"transform\",\n    \"properties\": {\n      \"value\": \"FEEL: { content: [{ type: \\\"text\\\", text: JSONstringify(if previous != null then previous else {}) }], structuredContent: previous }\"\n    }\n  }\n]"
                       }
                     },
-                    "conditions": { "each": "FEEL: get entries(previous.paths)" }
+                    "conditions": {
+                      "each": "FEEL: get entries(previous.paths)"
+                    }
                   }
                 ]
               }
@@ -73,12 +83,19 @@
             {
               "library": "@digipair/skill-mcp",
               "element": "createServer",
-              "properties": { "tools": "FEEL: variables.tools" }
+              "properties": {
+                "tools": "FEEL: variables.tools"
+              }
             },
-            { "library": "@digipair/skill-factory", "element": "keepAlive" }
+            {
+              "library": "@digipair/skill-factory",
+              "element": "keepAlive"
+            }
           ]
         },
-        "conditions": { "if": "FEEL: variables.metadata.remote = true" }
+        "conditions": {
+          "if": "FEEL: variables.metadata.remote = true"
+        }
       }
     ]
   },

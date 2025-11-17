@@ -6,16 +6,19 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { z } from 'zod';
 
 class MCPServerService {
-  private jsonSchemaToZod(schema: any): any {
+  private jsonSchemaToZod(schema: any, isRequired = false): any {
     const zodProps: Record<string, any> = {};
 
     switch (schema.type) {
       case 'string':
-        return z.string().optional();
+        if (schema.format === 'byte') {
+          return isRequired ? z.string().base64url() : z.string().base64url().optional();
+        }
+        return isRequired ? z.string() : z.string().optional();
       case 'number':
-        return z.number().optional();
+        return isRequired ? z.number() : z.number().optional();
       case 'boolean':
-        return z.boolean().optional();
+        return isRequired ? z.boolean() : z.boolean().optional();
       case 'object':
         for (const prop in schema.properties) {
           zodProps[prop] = this.jsonSchemaToZod(schema.properties[prop]);
@@ -24,20 +27,31 @@ class MCPServerService {
             zodProps[prop] = zodProps[prop].describe(schema.properties[prop].description);
           }
         }
-        return z
-          .object(zodProps)
-          .required(
-            (schema.required ?? []).reduce(
-              (acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }),
-              {},
-            ),
-          )
-          .optional();
+        return isRequired
+          ? z
+              .object(zodProps)
+              .required(
+                (schema.required ?? []).reduce(
+                  (acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }),
+                  {},
+                ),
+              )
+          : z
+              .object(zodProps)
+              .required(
+                (schema.required ?? []).reduce(
+                  (acc: any, reqProp: any) => ({ ...acc, [reqProp]: true }),
+                  {},
+                ),
+              )
+              .optional();
       case 'array':
         if (schema.items) {
-          return z.array(this.jsonSchemaToZod(schema.items)).optional();
+          return isRequired
+            ? z.array(this.jsonSchemaToZod(schema.items, true))
+            : z.array(this.jsonSchemaToZod(schema.items, true)).optional();
         }
-        return z.array(z.unknown()).optional();
+        return isRequired ? z.array(z.unknown()) : z.array(z.unknown()).optional();
       default:
         throw new Error(`Unsupported JSON Schema type: ${schema.type}`);
     }
@@ -58,16 +72,22 @@ class MCPServerService {
       let inputSchema: any;
       if (tool.inputSchema) {
         inputSchema = {};
-        for (const prop in tool.inputSchema) {
-          inputSchema[prop] = this.jsonSchemaToZod(tool.inputSchema[prop]);
+        for (const prop in tool.inputSchema.properties) {
+          inputSchema[prop] = this.jsonSchemaToZod(
+            tool.inputSchema.properties[prop],
+            tool.inputSchema.required?.includes(prop),
+          );
         }
       }
 
       let outputSchema: any;
       if (tool.outputSchema) {
         outputSchema = {};
-        for (const prop in tool.outputSchema) {
-          outputSchema[prop] = this.jsonSchemaToZod(tool.outputSchema[prop]);
+        for (const prop in tool.outputSchema.properties) {
+          outputSchema[prop] = this.jsonSchemaToZod(
+            tool.outputSchema.properties[prop],
+            tool.outputSchema.required?.includes(prop),
+          );
         }
       }
 
