@@ -1,3 +1,48 @@
+## 0.0.20-local (2025-11-17)
+
+### 🚀 Features
+
+- add cron time and id infos ([c9656d18](https://github.com/digipair/digipair/commit/c9656d18))
+- add cron time and id infos ([79949797](https://github.com/digipair/digipair/commit/79949797))
+- issue s3 - #30 ([#30](https://github.com/digipair/digipair/issues/30))
+- add rollup and package dependencies - #32 ([#33](https://github.com/digipair/digipair/pull/33), [#32](https://github.com/digipair/digipair/issues/32))
+- improve http skill with empty response management ([3262fbf7](https://github.com/digipair/digipair/commit/3262fbf7))
+- improve http skill with empty response management ([25035b7a](https://github.com/digipair/digipair/commit/25035b7a))
+- add rollup and package dependencies - #32 ([#32](https://github.com/digipair/digipair/issues/32))
+- improve http skill with empty response management ([f7650c0b](https://github.com/digipair/digipair/commit/f7650c0b))
+- add roles management, app.service, V0.1 ([a645f40d](https://github.com/digipair/digipair/commit/a645f40d))
+- add roles management, app.service, V0.1 ([7b2fcc7b](https://github.com/digipair/digipair/commit/7b2fcc7b))
+- optim role managment V0.1 ([18a0bc8b](https://github.com/digipair/digipair/commit/18a0bc8b))
+- role mangement, V.0.1 ([5a1c520c](https://github.com/digipair/digipair/commit/5a1c520c))
+- add-roles, clean merge app.service ([96e363b6](https://github.com/digipair/digipair/commit/96e363b6))
+- add-roles, gitignore htpasswd verdaccio local ([11f074e8](https://github.com/digipair/digipair/commit/11f074e8))
+- add-roles, clean merge app.service ([4a434672](https://github.com/digipair/digipair/commit/4a434672))
+- add-roles, clean merge app.service ([b79caed8](https://github.com/digipair/digipair/commit/b79caed8))
+- add roles, dbg clean code ([6ad4e98b](https://github.com/digipair/digipair/commit/6ad4e98b))
+- add roles, dbg clean code ([50c3365d](https://github.com/digipair/digipair/commit/50c3365d))
+- add test on app factory, roles ([58dcba23](https://github.com/digipair/digipair/commit/58dcba23))
+- add jest test  on app factory, roles management use cases ([fdc26e81](https://github.com/digipair/digipair/commit/fdc26e81))
+- update zod version ([0d47a57e](https://github.com/digipair/digipair/commit/0d47a57e))
+- update skill-common, update schema with inherit roles actions and triggers ([e31fbade](https://github.com/digipair/digipair/commit/e31fbade))
+- update mcp management ([66cdee77](https://github.com/digipair/digipair/commit/66cdee77))
+- update openai azure parameters ([a1c4f4b4](https://github.com/digipair/digipair/commit/a1c4f4b4))
+- clean update schema skill-common with roles ([c10b044a](https://github.com/digipair/digipair/commit/c10b044a))
+- manage mcp required and file ([edc39409](https://github.com/digipair/digipair/commit/edc39409))
+- remove unrequired role ([c6893ce6](https://github.com/digipair/digipair/commit/c6893ce6))
+
+### 🩹 Fixes
+
+- use avatar in common ([b64a14e1](https://github.com/digipair/digipair/commit/b64a14e1))
+- digipair engine not present with factory dependencies ([33feb360](https://github.com/digipair/digipair/commit/33feb360))
+- bad openai version ([f2f3c905](https://github.com/digipair/digipair/commit/f2f3c905))
+- langchain openai ([c7d45472](https://github.com/digipair/digipair/commit/c7d45472))
+
+### ❤️ Thank You
+
+- dgreboval
+- Marc Buils @marcbuils
+- Marc BUILS
+
 ## 0.117.2 (2025-11-11)
 
 ### 🚀 Features
