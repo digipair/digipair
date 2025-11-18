@@ -271,6 +271,43 @@
         "x-events": []
       }
     },
+    "/roles": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "List the roles",
+        "parameters": [
+          {
+            "name": "digipair",
+            "summary": "Digipair",
+            "description": "Digipair's name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of roles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Key-value dictionary of role identifiers and their versions",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Version or tag of the role (e.g., 'latest')"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
     "/schema": {
       "post": {
         "tags": [

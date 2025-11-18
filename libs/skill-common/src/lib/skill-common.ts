@@ -102,6 +102,21 @@ class CommonService {
     return actions.flat();
   }
 
+  async roles(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const path =
+        context.privates?.EDITOR_PATH ??
+        (process.env['DIGIPAIR_FACTORY_PATH']
+            ? `${process.env['DIGIPAIR_FACTORY_PATH']}/digipairs`
+            : './factory/digipairs');
+    const { digipair } = params;
+    const content = await promises.readFile(`${path}/${digipair}/config.json`, 'utf8');
+    const config = JSON.parse(content);
+
+    return {
+      ...config.roles,
+    };
+  }
+
   async schema(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const path =
       context.privates?.EDITOR_PATH ??
@@ -122,9 +137,6 @@ class CommonService {
 
     const filesCommon = await promises.readdir(`${path}/common`);
     const files = await promises.readdir(`${path}/${digipair}`);
-
-    const roles = config?.roles ?? {};
-    const allRoles = await this.resolveRolesForAgent(path, roles);
 
     const actionsCommon = (
       await Promise.all(
@@ -263,91 +275,6 @@ class CommonService {
       return acc;
     }, {});
 
-    let actionsRoles = {};
-    let triggersRoles = {};
-    for (const roleName of allRoles) {
-      const rolePath = `${path}/${roleName}`;
-      if (existsSync(rolePath)) {
-        try {
-          const roleFiles = await promises.readdir(rolePath);
-          const roleActions = (
-            await Promise.all(
-              roleFiles
-                .map(file => /^action-(.*)\.json$/.exec(file)?.[1])
-                .filter(name => name)
-                .map(async name => {
-                  const actionContent = await promises.readFile(
-                      `${rolePath}/action-${name}.json`,
-                      'utf8',
-                  );
-                  const { summary, description, metadata } = JSON.parse(actionContent);
-
-                  return {
-                    key: `/action-${name}`,
-                    value: {
-                      post: {
-                        tags: metadata.tags ?? ['service'],
-                        summary,
-                        description,
-                        parameters: metadata.parameters ?? [],
-                        'x-events': [],
-                        'x-context': metadata.context ?? false,
-                        responses: {
-                          '200': {
-                            content: {
-                              'application/json': {
-                                schema: metadata.output ?? { type: 'null' },
-                              },
-                            },
-                          },
-                        },
-                      },
-                    },
-                  };
-                }),
-            )
-          ).reduce((acc: any, item: any) => {
-            acc[item.key] = item.value;
-            return acc;
-          }, {});
-
-          actionsRoles = { ...actionsRoles, ...roleActions };
-
-          const roleTriggers = (
-            await Promise.all(
-              roleFiles
-                .map(file => /^trigger-(.*)\.json$/.exec(file)?.[1])
-                .filter(name => name)
-                .map(async name => {
-                  const triggerContent = await promises.readFile(
-                    `${rolePath}/trigger-${name}.json`,
-                    'utf8',
-                  );
-                  const { summary, description, metadata } = JSON.parse(triggerContent);
-                  return {
-                    key: `/trigger-${name}`,
-                    value: {
-                      tags: metadata.tags ?? [],
-                      summary,
-                      description,
-                      parameters: metadata.parameters ?? [],
-                    },
-                  };
-                }),
-              )
-          ).reduce((acc: any, item: any) => {
-            acc[item.key] = item.value;
-            return acc;
-          }, {});
-
-          triggersRoles = { ...triggersRoles, ...roleTriggers };
-        } catch {
-          // skip if no file on role
-        }
-      }
-    }
-
-
     return {
       openapi: '3.0.0',
       info: {
@@ -358,60 +285,9 @@ class CommonService {
         'x-icon': '🤖',
       },
       ...schema,
-      paths: {
-        ...schema.paths,
-        ...actionsCommon,
-        ...actionsRoles,
-        ...actions,
-      },
-      'x-scene-blocks': {
-        ...schema['x-scene-blocks'],
-        ...triggersCommon,
-        ...triggersRoles,
-        ...triggers,
-      },
+      paths: { ...schema.paths, ...actionsCommon, ...actions },
+      'x-scene-blocks': { ...schema['x-scene-blocks'], ...triggersCommon, ...triggers },
     };
-  }
-
-  private async resolveRolesForAgent(
-      basePath: string,
-      roles: Record<string, string>,
-      visited = new Set<string>(),
-      priorityLast = true,
-  ): Promise<string[]> {
-    let result: string[] = [];
-    let entries = Object.entries(roles);
-    if (priorityLast) entries = entries.reverse();
-
-    for (const [roleName] of entries) {
-      if (visited.has(roleName)) {
-        console.debug(`[resolveRolesForAgent] Circular reference: ${roleName}`);
-        continue;
-      }
-      visited.add(roleName);
-
-      const configFile = `${basePath}/${roleName}/config.json`;
-      if (existsSync(configFile)) {
-        try {
-          const config = JSON.parse(await promises.readFile(configFile, 'utf8'));
-          const subRoles = config.roles ?? {};
-          const inherited = await this.resolveRolesForAgent(
-              basePath,
-              subRoles,
-              visited,
-              priorityLast,
-          );
-          result.push(...inherited, roleName);
-        } catch (err) {
-            console.debug(`[resolveRolesForAgent] Non Blocking Error loading ${configFile}:`, err);
-            result.push(roleName);
-        }
-      } else {
-        result.push(roleName);
-      }
-    }
-
-    return [...new Set(result)];
   }
 }
 
@@ -429,6 +305,9 @@ export const boosts = (params: any, pinsSettingsList: PinsSettings[], context: a
 
 export const prompts = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().prompts(params, pinsSettingsList, context);
+
+export const roles = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+    new CommonService().roles(params, pinsSettingsList, context);
 
 export const schema = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().schema(params, pinsSettingsList, context);

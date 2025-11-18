@@ -7,10 +7,71 @@
   "properties": {
     "execute": [
       {
-        "library": "@digipair/skill-common",
-        "element": "schema",
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
         "properties": {
-          "digipair": "FEEL:request.digipair"
+          "name": "schema_roles",
+          "execute": [
+            {
+              "library": "@digipair/skill-common",
+              "element": "roles",
+              "properties": {
+                "digipair": "FEEL:request.digipair"
+              }
+            },
+            {
+              "library": "@digipair/skill-factory",
+              "element": "start",
+              "properties": {
+                "reasoning": "schema.json",
+                "digipair": "FEEL:item"
+              },
+              "conditions": {
+                "each": "FEEL:for entry in get entries(previous)\n  return if starts with(entry.key, \"digipair:\")\n  then substring(entry.key, 10)\n  else entry.key"
+
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "schema",
+          "execute": [
+            {
+              "library": "@digipair/skill-common",
+              "element": "schema",
+              "properties": {
+                "digipair": "FEEL:request.digipair"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "paths",
+          "value": "FEEL:context merge(\n  variables.schema.paths,\n  context merge(\n    for r in variables.schema_roles\n      return r.paths)\n)"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+       "element": "setVariable",
+        "properties": {
+          "name": "scene_blocks",
+          "value": "FEEL: context merge(\n  get value(variables.schema, \"x-scene-blocks\"),\n  context merge(\n       for r in variables.schema_roles\n       return get value(r, \"x-scene-blocks\"))\n)"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": "FEEL:context put(\n  context put(\n    variables.schema,\n    \"paths\",\n    variables.paths),\n  \"x-scene-blocks\",\n  variables.scene_blocks\n)"
+
         }
       }
     ]
