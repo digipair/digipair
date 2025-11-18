@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-client-mcp",
-  "version": "0.0.21-local",
+  "version": "0.117.4",
   "main": "./index.cjs.js",
   "module": "./index.esm.js",
   "types": "./dist/index.d.ts",

@@ -275,11 +275,10 @@
                           "element": "start",
                           "properties": {
                             "reasoning": "schema.json",
-                            "digipair": "FEEL:substring(item.key, 10)",
-                            "factory": "FEEL:if starts with(value, \"http\") then value else null"
+                            "digipair": "FEEL:substring(item.key, 10)"
                           },
                           "conditions": {
-                            "each": "FEEL:context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) = \"digipair:\"])"
+                            "each": "FEEL:get entries(variables.digipair.libraries)[substring(item.key, 1, 9) = \"digipair:\"]"
                           }
                         },
                         {
@@ -322,7 +321,8 @@
                             "value": {
                               "library": "{{parent.item.info.title}}",
                               "element": "FEEL:substring(item.key,2)",
-                              "summary": "{{item.value.summary}}"
+                              "summary": "{{item.value.summary}}",
+                              "avatar": "FEEL:parent.item.metadata.avatar"
                             }
                           },
                           "conditions": {

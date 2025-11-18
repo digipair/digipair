@@ -275,8 +275,7 @@
                           "element": "start",
                           "properties": {
                             "reasoning": "schema.json",
-                            "digipair": "FEEL:substring(item.key, 10)",
-                            "factory": "FEEL:if starts with(item.value, \"http\") then item.value else null"
+                            "digipair": "FEEL:substring(item.key, 10)"
                           },
                           "conditions": {
                             "each": "FEEL:get entries(variables.digipair.libraries)[substring(item.key, 1, 9) = \"digipair:\"]"
