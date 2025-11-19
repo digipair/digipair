@@ -1,6 +1,6 @@
-const {withNx} = require('@nx/rollup/with-nx');
-const {join} = require('path');
-const {withNxDigipair} = require('../../tools/rollup/with-nx');
+const { withNx } = require('@nx/rollup/with-nx');
+const { join } = require('path');
+const { withNxDigipair } = require('../../tools/rollup/with-nx');
 
 module.exports = withNxDigipair(['esm', 'cjs'], config =>
   withNx(
@@ -19,12 +19,18 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
       ],
     },
     {
-      external: (id) => {
-        const deps = config.format === 'cjs'
-          ? ["feelin", "cel-js", "handlebars/dist/handlebars.min.js"]
-          : [];
-        return deps.some(dep => id === dep || id.startsWith(dep + "/"));
-      }
-    }
-  )
+      external: id => {
+        const deps =
+          config.format === 'cjs'
+            ? [
+                'feelin',
+                'cel-js',
+                'handlebars/dist/handlebars.min.js',
+                'case-anything/dist/index.js',
+              ]
+            : [];
+        return deps.some(dep => id === dep || id.startsWith(dep + '/'));
+      },
+    },
+  ),
 );

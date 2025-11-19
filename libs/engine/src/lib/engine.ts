@@ -4,6 +4,7 @@ import * as HandlebarsNamespace from 'handlebars/dist/handlebars.min.js';
 const Handlebars = (HandlebarsNamespace as any).default || HandlebarsNamespace;
 import { evaluate as evaluateFeel } from 'feelin';
 import { evaluate as evaluateCel } from 'cel-js';
+import { camelCase, kebabCase, snakeCase } from 'case-anything/dist/index.js';
 import { PinsSettings } from './pins-settings.interface';
 import { Alias } from './alias.interface';
 
@@ -26,6 +27,9 @@ const DIGIPAIR_FUNCTIONS = {
     new TextDecoder().decode(new Uint8Array(Array.from(value).map(c => c.charCodeAt(0)))),
   JSONparse: (value: string) => JSON.parse(value),
   JSONstringify: (value: string) => JSON.stringify(value),
+  camelCase: (value: string) => camelCase(value),
+  kebabCase: (value: string) => kebabCase(value),
+  snakeCase: (value: string) => snakeCase(value),
 };
 
 type CONFIG_KEY = 'BASE_URL' | 'LIBRARIES' | 'ALIAS' | 'LOGGER';
