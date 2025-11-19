@@ -309,8 +309,5 @@ export const boosts = (params: any, pinsSettingsList: PinsSettings[], context: a
 export const prompts = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().prompts(params, pinsSettingsList, context);
 
-export const roles = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-    new CommonService().roles(params, pinsSettingsList, context);
-
 export const schema = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().schema(params, pinsSettingsList, context);
