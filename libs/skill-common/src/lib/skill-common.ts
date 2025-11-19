@@ -297,6 +297,9 @@ export const infos = (params: any, pinsSettingsList: PinsSettings[], context: an
 export const metadata = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().metadata(params, pinsSettingsList, context);
 
+export const roles = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new CommonService().roles(params, pinsSettingsList, context);
+
 export const avatar = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new CommonService().avatar(params, pinsSettingsList, context);
 
