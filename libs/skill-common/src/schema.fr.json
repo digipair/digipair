@@ -303,43 +303,6 @@
         "x-events": []
       }
     },
-    "/roles": {
-      "post": {
-        "tags": [
-          "service"
-        ],
-        "summary": "Lister les rôles",
-        "parameters": [
-          {
-            "name": "digipair",
-            "summary": "Digipair",
-            "description": "Nom du digipair",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Liste des rôles",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "description": "Dictionnaire clé-valeur des identifiants de rôles et de leurs versions",
-                  "additionalProperties": {
-                    "type": "string",
-                    "description": "Version ou étiquette du rôle (par exemple : 'latest')"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "x-events": []
-      }
-    },
     "/schema": {
       "post": {
         "tags": [

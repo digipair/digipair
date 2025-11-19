@@ -317,10 +317,9 @@ export class AppService implements OnModuleInit {
   /** Merge all roles for a given agent */
   private async mergeRolesForAgent(basePath: string, roles: Record<string, string>): Promise<any> {
     let merged = {};
-    const entries = Object.entries(roles);
+    const entries = Object.entries(this._filteringDigipairRoles(roles));
     for (const [roleName, version] of entries) {
-      const filteredRoleName = this._extractAfterColon(roleName);
-      const roleConfig = await this.loadRoleConfig(basePath, filteredRoleName, version);
+      const roleConfig = await this.loadRoleConfig(basePath, roleName, version);
       merged = this.mergeConfigs(merged, roleConfig);
     }
     return merged;
@@ -334,12 +333,11 @@ export class AppService implements OnModuleInit {
       depth = Infinity,
       priorityLast = true
   ): Promise<string | null> {
-    let entries = Object.entries(roles);
+    let entries = Object.entries(this._filteringDigipairRoles(roles));
     if (priorityLast) entries = entries.reverse();
 
     for (const [roleName] of entries) {
-      const filteredRoleName = this._extractAfterColon(roleName);
-      const rolePath = path.join(basePath, filteredRoleName);
+      const rolePath = path.join(basePath, roleName);
       const filePath = path.join(rolePath, targetFile);
 
       if (existsSync(filePath)) {
@@ -365,8 +363,13 @@ export class AppService implements OnModuleInit {
     return null;
   }
 
-  private _extractAfterColon(roleName: string): string {
-    const index = roleName.indexOf(":");
-    return index !== -1 ? roleName.substring(index + 1) : roleName;
+  private _filteringDigipairRoles(roles: Record<string, string>): Record<string, string> {
+    return Object.entries(roles).reduce<Record<string, string>>((acc, [roleName, value]) => {
+      if (roleName.startsWith("digipair:")) {
+        const cleanName = roleName.substring("digipair:".length);
+        acc[cleanName] = value;
+      }
+      return acc;
+    }, {});
   }
 }
