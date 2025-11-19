@@ -15,7 +15,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the identifier of this new AI agent ?",
+              "assistant": "What is the summary of this new AI agent ?",
               "boost": [
                 {
                   "prompt": true,
@@ -55,18 +55,18 @@
             "properties": {
               "template": "worker",
               "data": {
-                "digipair": "FEEL: \"worker-\" + request.body.prompt",
+                "digipair": "FEEL: \"worker-\" + kebabCase(request.body.prompt)",
                 "name": "FEEL: variables.infos.name",
                 "description": "FEEL: variables.infos.description"
               },
-              "digipair": "FEEL: \"worker-\" + request.body.prompt"
+              "digipair": "FEEL: \"worker-\" + kebabCase(request.body.prompt)"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL: \"worker-\" + request.body.prompt"
+              "digipair": "FEEL: \"worker-\" + kebabCase(request.body.prompt)"
             }
           },
           {
@@ -79,7 +79,7 @@
                   "library": "@digipair/skill-web-interact",
                   "element": "goTo",
                   "properties": {
-                    "url": "/studio/worker-edit/worker-{{request.body.prompt}}"
+                    "url": "FEEL: \"/studio/worker-edit/worker-\" + kebabCase(request.body.prompt)"
                   }
                 }
               ]
@@ -89,7 +89,5 @@
       }
     ]
   },
-  "pins": [],
-  "digipair": "studio",
-  "id": "boost-worker-add"
+  "pins": []
 }

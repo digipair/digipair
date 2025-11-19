@@ -15,7 +15,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the identifier of this {{request.body.context.summary}} ?",
+              "assistant": "What is the summary of this {{request.body.context.summary}} ?",
               "boost": [
                 {
                   "prompt": true,
@@ -54,7 +54,7 @@
             "element": "setVariable",
             "properties": {
               "name": "reasoning",
-              "value": "FEEL: \nif request.body.context.element = \"boost\" then \n  \"boost-\" + request.body.prompt \nelse if request.body.context.element = \"action\" then \n  \"action-\" + request.body.prompt  \nelse if request.body.context.element = \"trigger\" then \n  \"trigger-\" + request.body.prompt \nelse\n  request.body.prompt"
+              "value": "FEEL: \nif request.body.context.element = \"boost\" then \n  \"boost-\" + kebabCase(request.body.prompt) \nelse if request.body.context.element = \"action\" then \n  \"action-\" + kebabCase(request.body.prompt)  \nelse if request.body.context.element = \"trigger\" then \n  \"trigger-\" + kebabCase(request.body.prompt) \nelse\n  kebabCase(request.body.prompt)"
             }
           },
           {

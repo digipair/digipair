@@ -16,7 +16,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the identifier of this new tool agent?",
+              "assistant": "What is the summary of this new tool agent?",
               "boost": [
                 {
                   "prompt": true,
@@ -77,7 +77,7 @@
                   "library": "@digipair/skill-basic",
                   "element": "transform",
                   "properties": {
-                    "value": "FEEL: context merge(\n  previous[1], \n  {\n    info: context merge(previous[1].info, { \n      title: \"digipair:tool-\" + request.body.prompt \n    })\n  }\n)"
+                    "value": "FEEL: context merge(\n  previous[1], \n  {\n    info: context merge(previous[1].info, { \n      title: \"digipair:tool-\" + kebabCase(request.body.prompt) \n    })\n  }\n)"
                   }
                 }
               ]
@@ -89,7 +89,7 @@
             "properties": {
               "template": "tool-library",
               "data": {
-                "digipair": "FEEL: \"tool-\" + request.body.prompt",
+                "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)",
                 "name": "FEEL: variables.infos.name",
                 "description": "FEEL: variables.infos.description",
                 "library": "FEEL: request.body.inputs[1].value",
@@ -102,7 +102,7 @@
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL: \"tool-\" + request.body.prompt"
+              "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)"
             }
           },
           {
@@ -115,7 +115,7 @@
                   "library": "@digipair/skill-web-interact",
                   "element": "goTo",
                   "properties": {
-                    "url": "/studio/tool-edit/tool-{{request.body.prompt}}"
+                    "url": "FEEL: \"/studio/tool-edit/tool-\" + kebabCase(request.body.prompt)"
                   }
                 }
               ]

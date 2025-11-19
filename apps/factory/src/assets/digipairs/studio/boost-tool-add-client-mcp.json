@@ -15,7 +15,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the identifier of this new MCP tool agent?",
+              "assistant": "What is the summary of this new MCP tool agent?",
               "boost": [
                 {
                   "prompt": true,
@@ -65,7 +65,7 @@
                       "element": "digipair-input-hidden",
                       "properties": {
                         "value": {
-                          "digipair": "FEEL: \"tool-\" + request.body.prompt",
+                          "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)",
                           "name": "FEEL: variables.infos.name",
                           "description": "FEEL: variables.infos.description",
                           "assistant": "FEEL: variables.infos.assistant"

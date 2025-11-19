@@ -15,7 +15,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the identifier of this new tool agent?",
+              "assistant": "What is the summary of this new tool agent?",
               "boost": [
                 {
                   "prompt": true,
@@ -55,18 +55,18 @@
             "properties": {
               "template": "tool",
               "data": {
-                "digipair": "FEEL: \"tool-\" + request.body.prompt",
+                "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)",
                 "name": "FEEL: variables.infos.name",
                 "description": "FEEL: variables.infos.description"
               },
-              "digipair": "FEEL: \"tool-\" + request.body.prompt"
+              "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL: \"tool-\" + request.body.prompt"
+              "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)"
             }
           },
           {
@@ -79,7 +79,7 @@
                   "library": "@digipair/skill-web-interact",
                   "element": "goTo",
                   "properties": {
-                    "url": "/studio/tool-edit/tool-{{request.body.prompt}}"
+                    "url": "FEEL: \"/studio/tool-edit/tool-\" + kebabCase(request.body.prompt)"
                   }
                 }
               ]
