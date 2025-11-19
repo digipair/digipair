@@ -1,3 +1,13 @@
+## 0.117.6 (2025-11-19)
+
+### 🚀 Features
+
+- minor refactor ([3293cae2](https://github.com/digipair/digipair/commit/3293cae2))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.5 (2025-11-19)
 
 ### 🚀 Features
