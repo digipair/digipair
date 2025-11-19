@@ -22,12 +22,7 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
       external: id => {
         const deps =
           config.format === 'cjs'
-            ? [
-                'feelin',
-                'cel-js',
-                'handlebars/dist/handlebars.min.js',
-                'case-anything/dist/index.js',
-              ]
+            ? ['feelin', 'cel-js', 'handlebars/dist/handlebars.min.js', 'case-anything']
             : [];
         return deps.some(dep => id === dep || id.startsWith(dep + '/'));
       },

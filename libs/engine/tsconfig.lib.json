@@ -8,7 +8,7 @@
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "module": "EsNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
     "types": [
       "node"

@@ -4,7 +4,7 @@ import * as HandlebarsNamespace from 'handlebars/dist/handlebars.min.js';
 const Handlebars = (HandlebarsNamespace as any).default || HandlebarsNamespace;
 import { evaluate as evaluateFeel } from 'feelin';
 import { evaluate as evaluateCel } from 'cel-js';
-import { camelCase, kebabCase, snakeCase } from 'case-anything/dist/index.js';
+import { camelCase, kebabCase, snakeCase } from 'case-anything';
 import { PinsSettings } from './pins-settings.interface';
 import { Alias } from './alias.interface';
 
