@@ -126,7 +126,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "FEEL:item.metadata.avatar",
+                      "src": "FEEL: item.metadata.avatar",
                       "style": "height: 60px;",
                       "slot": "preview"
                     }
@@ -140,40 +140,59 @@
                 "events": {
                   "click": [
                     {
-                      "library": "@digipair/skill-web",
-                      "element": "executeFactory",
+                      "library": "@digipair/skill-basic",
+                      "element": "transform",
                       "properties": {
                         "execute": [
                           {
-                            "library": "@digipair/skill-editor",
-                            "element": "digipair",
-                            "properties": {
-                              "digipair": "FEEL:request.params[1]"
-                            }
-                          },
-                          {
                             "library": "@digipair/skill-basic",
-                            "element": "transform",
+                            "element": "setVariable",
                             "properties": {
-                              "value": "FEEL:context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                              "name": "loading",
+                              "value": true
                             }
                           },
                           {
-                            "library": "@digipair/skill-editor",
-                            "element": "setDigipair",
+                            "library": "@digipair/skill-web",
+                            "element": "executeFactory",
                             "properties": {
-                              "digipair": "FEEL:request.params[1]",
-                              "value": "FEEL:previous"
+                              "execute": [
+                                {
+                                  "library": "@digipair/skill-editor",
+                                  "element": "digipair",
+                                  "properties": {
+                                    "digipair": "FEEL: request.params[1]"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "transform",
+                                  "properties": {
+                                    "value": "FEEL: context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-editor",
+                                  "element": "setDigipair",
+                                  "properties": {
+                                    "digipair": "FEEL: request.params[1]",
+                                    "value": "FEEL: previous"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-interact",
+                            "element": "goTo",
+                            "properties": {
+                              "url": "/studio/tool-tasks/{{request.params.[0]}}"
                             }
                           }
                         ]
-                      }
-                    },
-                    {
-                      "library": "@digipair/skill-web-interact",
-                      "element": "goTo",
-                      "properties": {
-                        "url": "/studio/tool-tasks/{{request.params.[0]}}"
+                      },
+                      "conditions": {
+                        "if": "FEEL: variables.loading = false"
                       }
                     }
                   ]
@@ -181,7 +200,7 @@
               }
             ],
             "conditions": {
-              "each": "FEEL:variables.digipairs"
+              "each": "FEEL: variables.digipairs"
             }
           },
           {
@@ -222,6 +241,14 @@
     ],
     "styleHtml": "color-scheme:light;\npadding: 60px 40px 80px 40px;",
     "browserInitialize": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "loading",
+          "value": false
+        }
+      },
       {
         "library": "@digipair/skill-basic",
         "element": "setVariable",
@@ -303,15 +330,15 @@
                           "element": "transform",
                           "properties": {
                             "value": {
-                              "infos": "FEEL:variables.infos",
-                              "metadata": "FEEL:variables.metadata"
+                              "infos": "FEEL: variables.infos",
+                              "metadata": "FEEL: variables.metadata"
                             }
                           }
                         }
                       ]
                     },
                     "conditions": {
-                      "each": "FEEL:(for id in previous return\n  if \n    starts with(id, \"tool-\")\n    and id != request.params[1]\n    and count(\n      get entries(\n        variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
+                      "each": "FEEL: (for id in previous return\n  if \n    starts with(id, \"tool-\")\n    and id != request.params[1]\n    and count(\n      get entries(\n        variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
                     }
                   }
                 ]

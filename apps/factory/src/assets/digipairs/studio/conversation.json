@@ -18,7 +18,7 @@
             "element": "setVariable",
             "properties": {
               "name": "history",
-              "value": "FEEL:if request.body.inputs[1].value = null then []\nelse request.body.inputs[1].value"
+              "value": "FEEL: if request.body.inputs[1].value = null then []\nelse request.body.inputs[1].value"
             }
           },
           {
@@ -31,7 +31,7 @@
                   "library": "@digipair/skill-common",
                   "element": "infos",
                   "properties": {
-                    "digipair": "FEEL:request.digipair"
+                    "digipair": "FEEL: request.digipair"
                   }
                 }
               ]
@@ -44,7 +44,7 @@
               "signature": "\"You are a helpful assistant, capable of explaining concepts in a simple manner.\" \nuserQuestion:string,\nhistory?:string[] ->\n  answer: string \"Assistant answer\"",
               "input": {
                 "userQuestion": "{{request.body.prompt}}",
-                "history": "FEEL:variables.history"
+                "history": "FEEL: variables.history"
               }
             }
           },
@@ -65,7 +65,7 @@
                         "library": "@digipair/skill-web-inputs",
                         "element": "digipair-input-hidden",
                         "properties": {
-                          "value": "FEEL:flatten([variables.history, [\n  \"user: \" + request.body.prompt,\n  \"assistant: \" + parent.previous.answer\n]])"
+                          "value": "FEEL: flatten([variables.history, [\n  \"user: \" + request.body.prompt,\n  \"assistant: \" + parent.previous.answer\n]])"
                         }
                       }
                     ]

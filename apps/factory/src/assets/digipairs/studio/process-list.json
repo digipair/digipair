@@ -179,7 +179,7 @@
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
                         "properties": {
-                          "textContent": "FEEL:fromTime(item.time)"
+                          "textContent": "FEEL: fromTime(item.time)"
                         }
                       },
                       {
@@ -251,7 +251,7 @@
                       }
                     ],
                     "conditions": {
-                      "each": "FEEL:variables.list"
+                      "each": "FEEL: variables.list"
                     }
                   }
                 ]

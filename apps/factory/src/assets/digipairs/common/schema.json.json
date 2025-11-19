@@ -10,7 +10,7 @@
         "library": "@digipair/skill-common",
         "element": "schema",
         "properties": {
-          "digipair": "FEEL:request.digipair"
+          "digipair": "FEEL: request.digipair"
         }
       }
     ]

@@ -155,7 +155,7 @@
             "library": "@digipair/skill-web-jsoneditor",
             "element": "digipair-jsoneditor",
             "properties": {
-              "json": "FEEL:variables.digipair.privates"
+              "json": "FEEL: variables.digipair.privates"
             },
             "events": {
               "change": [
@@ -223,7 +223,7 @@
                             "element": "setDigipair",
                             "properties": {
                               "digipair": "common",
-                              "value": "FEEL:context merge(\n  previous,\n  { \n    privates: variables.privates\n  }\n)"
+                              "value": "FEEL: context merge(\n  previous,\n  { \n    privates: variables.privates\n  }\n)"
                             }
                           }
                         ]

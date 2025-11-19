@@ -142,7 +142,7 @@
                           ]
                         },
                         "conditions": {
-                          "if": "FEEL:variables.reasoning.element = \"page\""
+                          "if": "FEEL: variables.reasoning.element = \"page\""
                         }
                       },
                       {
@@ -182,7 +182,7 @@
                                     "properties": {
                                       "digipair": "{{request.params.[0]}}",
                                       "reasoning": "{{request.params.[1]}}",
-                                      "value": "FEEL:parent.previous"
+                                      "value": "FEEL: parent.previous"
                                     }
                                   }
                                 ]
@@ -215,8 +215,8 @@
             "library": "@digipair/skill-web-editor",
             "element": "digipair-editor",
             "properties": {
-              "reasoning": "FEEL:variables.reasoning",
-              "schemas": "FEEL:variables.schemas",
+              "reasoning": "FEEL: variables.reasoning",
+              "schemas": "FEEL: variables.schemas",
               "menuBackgroundColor": "#212e3c",
               "contentStyle": "position: fixed; top: 47px; right: 0; bottom: 0; left: 0;",
               "language": "{{variables.lang}}"
@@ -316,7 +316,7 @@
                           "library": "@digipair/skill-editor",
                           "element": "schemas",
                           "properties": {
-                            "libraries": "FEEL:context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"])",
+                            "libraries": "FEEL: context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"])",
                             "language": "en"
                           }
                         }
@@ -347,7 +347,7 @@
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "FEEL:flatten([variables.schemasLibraries, variables.schemasDigipair])"
+                      "value": "FEEL: flatten([variables.schemasLibraries, variables.schemasDigipair])"
                     }
                   }
                 ]

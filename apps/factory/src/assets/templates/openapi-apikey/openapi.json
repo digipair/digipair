@@ -17,7 +17,7 @@
         "library": "@digipair/skill-basic",
         "element": "transform",
         "properties": {
-          "value": "FEEL:JSONparse(previous)"
+          "value": "FEEL: JSONparse(previous)"
         }
       }
     ]

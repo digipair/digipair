@@ -1,0 +1,714 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "digipair:worker-tools",
+    "summary": "Outils",
+    "description": "Agent spécialisé dans l'utilisation et la gestion des outils pour divers projets.",
+    "version": "1.0.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/action-answer": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Réponse",
+        "description": "Génération d'une réponse pour l'utilisateur via le chatbot.",
+        "parameters": [
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "parent_conversation",
+            "summary": "Parent conversation",
+            "required": true,
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "name": "assistant",
+            "summary": "Assistant",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "command",
+            "summary": "Command",
+            "required": false,
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "name": "boost",
+            "summary": "Boost",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "boosts",
+            "summary": "Boosts",
+            "required": false,
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "name": "sources",
+            "summary": "Sources",
+            "required": false,
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "name": "logs",
+            "summary": "Logs",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": false,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-instant": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Instantanéité",
+        "description": "Ce raisonnement concerne la notion d'instant et de sa perception.",
+        "parameters": [
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inputs",
+            "summary": "Inputs",
+            "required": false,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": false,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-add-calendar-event": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Ajout d'événement au calendrier",
+        "description": "Ce raisonnement permet d'ajouter un nouvel événement dans le calendrier de l'utilisateur en spécifiant le titre, la date, l'heure et éventuellement une description ou un lieu.",
+        "parameters": [
+          {
+            "name": "title",
+            "summary": "Titre",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Description",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "textarea"
+            }
+          },
+          {
+            "name": "start",
+            "summary": "Début (ISO 8601)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "summary": "Fin (ISO 8601)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "attendees",
+            "summary": "Participants (emails)",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "location",
+            "summary": "Lieu",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "online",
+            "summary": "Réunion en ligne (Teams)",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": true,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-add-scheduled-task": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Ajout d'une tâche planifiée",
+        "description": "Créer une tâche automatisée qui s'exécute à une heure ou une date précise, par exemple pour des sauvegardes, des rappels ou des mises à jour régulières.",
+        "parameters": [
+          {
+            "name": "cron",
+            "summary": "Plannification",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "summary",
+            "summary": "Nom",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": true,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-conversation-memory": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Mémoire de conversation",
+        "description": "Stocker et récupérer les échanges précédents dans une conversation pour maintenir le contexte et améliorer la cohérence des réponses.",
+        "parameters": [
+          {
+            "name": "title",
+            "summary": "Titre",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Contenu",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "markdown"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": true,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-generation-presentation": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Génération de présentation",
+        "description": "Créer une présentation structurée et visuellement attrayante à partir d'un contenu textuel ou de points clés fournis par l'utilisateur.",
+        "parameters": [
+          {
+            "name": "inputText",
+            "summary": "Entrée texte",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "textarea"
+            }
+          },
+          {
+            "name": "textMode",
+            "summary": "Mode de texte (generate, condense ou preserve)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numCards",
+            "summary": "Nombre de cartes",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format du document (presentation, document ou social)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "externalAccess",
+            "summary": "Accès externe (noAccess, view, comment ou edit)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": true,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Réponse brute de l'API Gamma"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-get-presentation-generation-status": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Vérification du statut de génération",
+        "description": "Ce raisonnement permet de récupérer l'état actuel de la génération d'une présentation (en cours, terminée, échouée, etc.).",
+        "parameters": [
+          {
+            "name": "generationId",
+            "summary": "Identifiant de génération",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": false,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Réponse brute de l'API Gamma"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-recherche-sur-internet": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Recherche sur Internet",
+        "description": "Effectuer une recherche sur Internet pour trouver des informations pertinentes et fiables en utilisant des mots-clés précis et des sources vérifiées.",
+        "parameters": [
+          {
+            "name": "query",
+            "summary": "Requete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": false,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-save-texte-in-file": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Sauvegarde de texte dans un fichier",
+        "description": "Ce raisonnement permet d'enregistrer un texte fourni par l'utilisateur dans un fichier spécifié, en gérant le chemin, le nom du fichier et le contenu à écrire.",
+        "parameters": [
+          {
+            "name": "filename",
+            "summary": "Nom du fichier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mimeType",
+            "summary": "Mime type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentText",
+            "summary": "Contenu du fichier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": false,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "files": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "filename": {
+                            "type": "string"
+                          },
+                          "mimeType": {
+                            "type": "string"
+                          },
+                          "uuid": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "filename",
+                          "mimeType",
+                          "uuid"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "files"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-search-calendar-events": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Recherche d'événements dans un calendrier",
+        "description": "Ce raisonnement permet de rechercher des événements spécifiques dans un calendrier en fonction de critères comme la date, le titre ou la description.",
+        "parameters": [
+          {
+            "name": "start",
+            "summary": "Début (ISO 8601)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "summary": "Fin (ISO 8601)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "subject",
+            "summary": "Filtre sujet (contient)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "summary": "Filtre lieu (contient)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": false,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-search-emails": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Recherche d'emails MS Graph",
+        "description": "Raisonnement pour rechercher des emails dans une boîte de réception ou un dossier spécifique en utilisant des critères comme l'expéditeur, le destinataire, le sujet ou des mots-clés.",
+        "parameters": [
+          {
+            "name": "search",
+            "summary": "Requête $search (ex: from:alice subject:facture)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onlyUnread",
+            "summary": "onlyUnread",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [],
+        "x-context": false,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action-send-email": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Envoi d'un email",
+        "description": "Envoi d'un email.",
+        "parameters": [
+          {
+            "name": "subject",
+            "summary": "Sujet",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Contenu",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "textarea"
+            }
+          },
+          {
+            "name": "address",
+            "summary": "Email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cc",
+            "summary": "cc",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "email"
+              }
+            }
+          },
+          {
+            "name": "cci",
+            "summary": "cci",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "email"
+              }
+            }
+          },
+          {
+            "name": "attachments",
+            "summary": "Fichiers joints",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "byte"
+              }
+            },
+            "ignoreForAI": true
+          }
+        ],
+        "x-events": [],
+        "x-context": true,
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-scene-blocks": {}
+}

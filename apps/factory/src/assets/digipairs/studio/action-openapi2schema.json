@@ -46,7 +46,7 @@
         "element": "setVariable",
         "properties": {
           "name": "openapi",
-          "value": "FEEL:request.body.openapi"
+          "value": "FEEL: request.body.openapi"
         }
       },
       {
@@ -65,7 +65,7 @@
                     "element": "setVariable",
                     "properties": {
                       "name": "originalPath",
-                      "value": "FEEL:item.key"
+                      "value": "FEEL: item.key"
                     }
                   },
                   {
@@ -86,14 +86,14 @@
                           "element": "setVariable",
                           "properties": {
                             "name": "params",
-                            "value": "FEEL:item.value"
+                            "value": "FEEL: item.value"
                           }
                         }
                       ]
                     },
                     "conditions": {
-                      "if": "FEEL:item.key = \"parameters\"",
-                      "each": "FEEL:get entries(item.value)"
+                      "if": "FEEL: item.key = \"parameters\"",
+                      "each": "FEEL: get entries(item.value)"
                     }
                   },
                   {
@@ -107,9 +107,9 @@
                           "properties": {
                             "name": "path",
                             "value": {
-                              "key": "FEEL:if\n  item.value.operationId != null\nthen\n  replace(replace(replace(item.value.operationId, \"/\", \"\"), \"\\{\", \"\"), \"\\}\", \"\")\nelse\n  item.key + replace(replace(replace(variables.originalPath, \"/\", \"-\"), \"\\{\", \"\"), \"\\}\", \"\")",
-                              "value": "FEEL:item.value",
-                              "method": "FEEL:item.key"
+                              "key": "FEEL: if\n  item.value.operationId != null\nthen\n  replace(replace(replace(item.value.operationId, \"/\", \"\"), \"\\{\", \"\"), \"\\}\", \"\")\nelse\n  item.key + replace(replace(replace(variables.originalPath, \"/\", \"-\"), \"\\{\", \"\"), \"\\}\", \"\")",
+                              "value": "FEEL: item.value",
+                              "method": "FEEL: item.key"
                             }
                           }
                         },
@@ -124,24 +124,24 @@
                                 "element": "transform",
                                 "properties": {
                                   "value": {
-                                    "name": "FEEL:item.name",
-                                    "summary": "FEEL:item.name",
-                                    "description": "FEEL:if item.description != null then item.description else item.name",
-                                    "required": "FEEL:if item.required = true then true else false",
+                                    "name": "FEEL: item.name",
+                                    "summary": "FEEL: item.name",
+                                    "description": "FEEL: if item.description != null then item.description else item.name",
+                                    "required": "FEEL: if item.required = true then true else false",
                                     "schema": {
-                                      "type": "FEEL:if list contains([\"string\", \"number\", \"boolean\"], item.schema.type) then item.schema.type else \"object\""
+                                      "type": "FEEL: if list contains([\"string\", \"number\", \"boolean\"], item.schema.type) then item.schema.type else \"object\""
                                     }
                                   }
                                 },
                                 "conditions": {
-                                  "each": "FEEL:if \n  variables.path.value.parameters != null\nthen\n  concatenate(\n    variables.path.value.parameters, \n    variables.params\n  )\nelse\n  variables.params"
+                                  "each": "FEEL: if \n  variables.path.value.parameters != null\nthen\n  concatenate(\n    variables.path.value.parameters, \n    variables.params\n  )\nelse\n  variables.params"
                                 }
                               },
                               {
                                 "library": "@digipair/skill-basic",
                                 "element": "transform",
                                 "properties": {
-                                  "value": "FEEL:if variables.path.value.requestBody != null then \n  append(previous, { \n    \"name\": \"body\",\n    \"summary\": \"body\",\n    \"description\": \"body\",\n    \"required\": if variables.path.value.requestBody.required = true then true else false,\n    \"schema\": { \"type\": \"object\" }\n  }) \nelse previous"
+                                  "value": "FEEL: if variables.path.value.requestBody != null then \n  append(previous, { \n    \"name\": \"body\",\n    \"summary\": \"body\",\n    \"description\": \"body\",\n    \"required\": if variables.path.value.requestBody.required = true then true else false,\n    \"schema\": { \"type\": \"object\" }\n  }) \nelse previous"
                                 }
                               }
                             ]
@@ -152,15 +152,15 @@
                           "element": "transform",
                           "properties": {
                             "value": {
-                              "key": "FEEL:\"/\" + variables.path.key",
+                              "key": "FEEL: \"/\" + variables.path.key",
                               "value": {
                                 "post": {
                                   "tags": [
                                     "service"
                                   ],
-                                  "summary": "FEEL:if \n  variables.path.value.summary != null and \n  variables.path.value.summary != \"\"\nthen\n  variables.path.value.summary \nelse\n  if \n    variables.path.value.operationId != null\n  then\n    variables.path.value.operationId\n  else\n    variables.originalPath",
-                                  "description": "FEEL:if variables.path.value.description != null then variables.path.value.description else variables.path.value.operationId",
-                                  "parameters": "FEEL:variables.parameters",
+                                  "summary": "FEEL: if \n  variables.path.value.summary != null and \n  variables.path.value.summary != \"\"\nthen\n  variables.path.value.summary \nelse\n  if \n    variables.path.value.operationId != null\n  then\n    variables.path.value.operationId\n  else\n    variables.originalPath",
+                                  "description": "FEEL: if variables.path.value.description != null then variables.path.value.description else variables.path.value.operationId",
+                                  "parameters": "FEEL: variables.parameters",
                                   "x-events": []
                                 }
                               }
@@ -170,21 +170,21 @@
                       ]
                     },
                     "conditions": {
-                      "if": "FEEL:list contains([\n  \"get\",\n  \"post\",\n  \"put\",\n  \"delete\",\n  \"patch\",\n  \"head\"\n], item.key)",
-                      "each": "FEEL:get entries(item.value)"
+                      "if": "FEEL: list contains([\n  \"get\",\n  \"post\",\n  \"put\",\n  \"delete\",\n  \"patch\",\n  \"head\"\n], item.key)",
+                      "each": "FEEL: get entries(item.value)"
                     }
                   }
                 ]
               },
               "conditions": {
-                "each": "FEEL:get entries(variables.openapi.paths)"
+                "each": "FEEL: get entries(variables.openapi.paths)"
               }
             },
             {
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "FEEL:flatten(previous)"
+                "value": "FEEL: flatten(previous)"
               }
             }
           ]
@@ -201,7 +201,7 @@
         "library": "@digipair/skill-basic",
         "element": "transform",
         "properties": {
-          "value": "FEEL:JSONparse(previous)"
+          "value": "FEEL: JSONparse(previous)"
         }
       }
     ]

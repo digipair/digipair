@@ -10,7 +10,7 @@
         "library": "@digipair/skill-tool",
         "element": "execute",
         "properties": {
-          "execute": "FEEL:[{\n  \"library\": \"@digipair/skill-client-mcp\",\n  \"element\": \"callTool\",\n  \"properties\": { \"arguments\": request.body, \"name\": request.reasoning }\n}]"
+          "execute": "FEEL: [{\n  \"library\": \"@digipair/skill-client-mcp\",\n  \"element\": \"callTool\",\n  \"properties\": { \"arguments\": request.body, \"name\": request.reasoning }\n}]"
         }
       }
     ]
