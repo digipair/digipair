@@ -319,8 +319,7 @@ export class AppService implements OnModuleInit {
     let merged = {};
     const entries = Object.entries(roles);
     for (const [roleName, version] of entries) {
-      const filteredRoleName = this._extractAfterColon(roleName);
-      const roleConfig = await this.loadRoleConfig(basePath, filteredRoleName, version);
+      const roleConfig = await this.loadRoleConfig(basePath, roleName, version);
       merged = this.mergeConfigs(merged, roleConfig);
     }
     return merged;
@@ -338,8 +337,7 @@ export class AppService implements OnModuleInit {
     if (priorityLast) entries = entries.reverse();
 
     for (const [roleName] of entries) {
-      const filteredRoleName = this._extractAfterColon(roleName);
-      const rolePath = path.join(basePath, filteredRoleName);
+      const rolePath = path.join(basePath, roleName);
       const filePath = path.join(rolePath, targetFile);
 
       if (existsSync(filePath)) {
@@ -363,10 +361,5 @@ export class AppService implements OnModuleInit {
     }
 
     return null;
-  }
-
-  private _extractAfterColon(roleName: string): string {
-    const index = roleName.indexOf(":");
-    return index !== -1 ? roleName.substring(index + 1) : roleName;
   }
 }
