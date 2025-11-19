@@ -75,7 +75,7 @@ export class AppService implements OnModuleInit {
 
       skillCron.initialize(
         async (
-          path: string,
+          basePath: string,
           digipair: string,
           reasoning: string,
           cronTime: string,
@@ -86,7 +86,7 @@ export class AppService implements OnModuleInit {
 
           try {
             await this.agent(
-              path,
+              basePath,
               digipair,
               reasoning,
               {},
@@ -272,9 +272,9 @@ export class AppService implements OnModuleInit {
   }
 
   // --- UTILITIES ---
-  private async tryRead(path: string | null): Promise<string | null> {
-    if (path && existsSync(path)) {
-      return promises.readFile(path, 'utf8');
+  private async tryRead(basePath: string | null): Promise<string | null> {
+    if (basePath && existsSync(basePath)) {
+      return promises.readFile(basePath, 'utf8');
     }
     return null;
   }
