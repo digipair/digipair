@@ -113,7 +113,7 @@
                           ]
                         },
                         "conditions": {
-                          "if": "FEEL:request.params[2] != \"config\""
+                          "if": "FEEL: request.params[2] != \"config\""
                         }
                       },
                       {
@@ -144,7 +144,7 @@
                           ]
                         },
                         "conditions": {
-                          "if": "FEEL:variables.reasoning.element = \"page\""
+                          "if": "FEEL: variables.reasoning.element = \"page\""
                         }
                       },
                       {
@@ -184,7 +184,7 @@
                                     "properties": {
                                       "digipair": "{{request.params.[0]}}",
                                       "reasoning": "{{request.params.[1]}}",
-                                      "value": "FEEL:parent.previous"
+                                      "value": "FEEL: parent.previous"
                                     }
                                   }
                                 ]
@@ -217,7 +217,7 @@
             "library": "@digipair/skill-web-jsoneditor",
             "element": "digipair-jsoneditor",
             "properties": {
-              "json": "FEEL:variables.reasoning",
+              "json": "FEEL: variables.reasoning",
               "contentStyle": "position: fixed; top: 47px; right: 0; bottom: 0; left: 0;"
             }
           }

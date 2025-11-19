@@ -125,7 +125,7 @@
                 "element": "sp-action-button",
                 "properties": {
                   "textContent": "{{item}}",
-                  "disabled": "FEEL:item = variables.date"
+                  "disabled": "FEEL: item = variables.date"
                 },
                 "events": {
                   "click": [
@@ -139,7 +139,7 @@
                   ]
                 },
                 "conditions": {
-                  "each": "FEEL:variables.dates"
+                  "each": "FEEL: variables.dates"
                 }
               }
             ]
@@ -223,7 +223,7 @@
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-table-cell",
                         "properties": {
-                          "textContent": "FEEL:item.date"
+                          "textContent": "FEEL: item.date"
                         }
                       },
                       {
@@ -270,7 +270,7 @@
                       }
                     ],
                     "conditions": {
-                      "each": "FEEL:variables.consumptions"
+                      "each": "FEEL: variables.consumptions"
                     }
                   }
                 ]
@@ -297,10 +297,10 @@
         "library": "@digipair/skill-web-interact",
         "element": "goTo",
         "properties": {
-          "url": "FEEL:\"/studio/consumptions-monthly/\" + substring(string(now()), 1, 7)"
+          "url": "FEEL: \"/studio/consumptions-monthly/\" + substring(string(now()), 1, 7)"
         },
         "conditions": {
-          "if": "FEEL:count(request.params) = 0"
+          "if": "FEEL: count(request.params) = 0"
         }
       },
       {
@@ -326,7 +326,7 @@
                     "library": "@digipair/skill-logger",
                     "element": "read",
                     "properties": {
-                      "date": "FEEL:variables.date",
+                      "date": "FEEL: variables.date",
                       "type": "consumption-monthly"
                     }
                   },
@@ -334,7 +334,7 @@
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "FEEL:reverse(previous)"
+                      "value": "FEEL: reverse(previous)"
                     }
                   }
                 ]

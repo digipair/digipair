@@ -134,7 +134,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "FEEL:if\n  starts with(item.library, \"digipair:\")\nthen \n  item.avatar \nelse \n  \"/public/libraries/\" + item.library + \"/\" + item.element + \".svg\"",
+                      "src": "FEEL: if\n  starts with(item.library, \"digipair:\")\nthen \n  item.avatar \nelse \n  \"/public/libraries/\" + item.library + \"/\" + item.element + \".svg\"",
                       "style": "height: 60px; width: 60px; object-fit: contain;",
                       "slot": "preview"
                     }
@@ -171,7 +171,7 @@
               }
             ],
             "conditions": {
-              "each": "FEEL:variables.scenes"
+              "each": "FEEL: variables.scenes"
             }
           },
           {
@@ -257,7 +257,7 @@
                           "library": "@digipair/skill-editor",
                           "element": "schemas",
                           "properties": {
-                            "libraries": "FEEL:context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"])",
+                            "libraries": "FEEL: context(get entries(variables.digipair.libraries)[substring(item.key, 1, 9) != \"digipair:\"])",
                             "language": "en"
                           }
                         }
@@ -275,10 +275,10 @@
                           "element": "start",
                           "properties": {
                             "reasoning": "schema.json",
-                            "digipair": "FEEL:substring(item.key, 10)"
+                            "digipair": "FEEL: substring(item.key, 10)"
                           },
                           "conditions": {
-                            "each": "FEEL:get entries(variables.digipair.libraries)[substring(item.key, 1, 9) = \"digipair:\"]"
+                            "each": "FEEL: get entries(variables.digipair.libraries)[substring(item.key, 1, 9) = \"digipair:\"]"
                           }
                         },
                         {
@@ -290,20 +290,20 @@
                                 "library": "@digipair/skill-editor",
                                 "element": "metadata",
                                 "properties": {
-                                  "digipair": "FEEL:substring(item.info.title, 10)"
+                                  "digipair": "FEEL: substring(item.info.title, 10)"
                                 }
                               },
                               {
                                 "library": "@digipair/skill-basic",
                                 "element": "transform",
                                 "properties": {
-                                  "value": "FEEL:context put(item, \"metadata\", previous)"
+                                  "value": "FEEL: context put(item, \"metadata\", previous)"
                                 }
                               }
                             ]
                           },
                           "conditions": {
-                            "each": "FEEL:previous"
+                            "each": "FEEL: previous"
                           }
                         }
                       ]
@@ -320,33 +320,33 @@
                           "properties": {
                             "value": {
                               "library": "{{parent.item.info.title}}",
-                              "element": "FEEL:substring(item.key,2)",
+                              "element": "FEEL: substring(item.key,2)",
                               "summary": "{{item.value.summary}}",
-                              "avatar": "FEEL:parent.item.metadata.avatar"
+                              "avatar": "FEEL: parent.item.metadata.avatar"
                             }
                           },
                           "conditions": {
-                            "each": "FEEL:get entries(if (item.x-scene-blocks) then item.x-scene-blocks else {})"
+                            "each": "FEEL: get entries(if (get value(item, \"x-scene-blocks\") != null) then get value(item, \"x-scene-blocks\") else {})"
                           }
                         }
                       ]
                     },
                     "conditions": {
-                      "each": "FEEL:flatten([variables.schemasLibraries, variables.schemasDigipair])"
+                      "each": "FEEL: flatten([variables.schemasLibraries, variables.schemasDigipair])"
                     }
                   },
                   {
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "FEEL:flatten(previous)"
+                      "value": "FEEL: flatten(previous)"
                     }
                   },
                   {
                     "library": "@digipair/skill-basic",
                     "element": "transform",
                     "properties": {
-                      "value": "FEEL:previous[item]"
+                      "value": "FEEL: previous[item]"
                     }
                   }
                 ]

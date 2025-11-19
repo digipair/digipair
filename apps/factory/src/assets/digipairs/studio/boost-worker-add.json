@@ -55,25 +55,25 @@
             "properties": {
               "template": "worker",
               "data": {
-                "digipair": "FEEL:\"worker-\" + request.body.prompt",
-                "name": "FEEL:variables.infos.name",
-                "description": "FEEL:variables.infos.description"
+                "digipair": "FEEL: \"worker-\" + request.body.prompt",
+                "name": "FEEL: variables.infos.name",
+                "description": "FEEL: variables.infos.description"
               },
-              "digipair": "FEEL:\"worker-\" + request.body.prompt"
+              "digipair": "FEEL: \"worker-\" + request.body.prompt"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL:\"worker-\" + request.body.prompt"
+              "digipair": "FEEL: \"worker-\" + request.body.prompt"
             }
           },
           {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "FEEL:variables.infos.assistant",
+              "assistant": "FEEL: variables.infos.assistant",
               "command": [
                 {
                   "library": "@digipair/skill-web-interact",

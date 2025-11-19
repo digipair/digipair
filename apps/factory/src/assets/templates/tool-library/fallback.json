@@ -10,7 +10,7 @@
         "library": "@digipair/skill-tool",
         "element": "execute",
         "properties": {
-          "execute": "FEEL:[{\n  \"library\": \"<%= library %>\",\n  \"element\": request.reasoning,\n  \"properties\": request.body\n}]"
+          "execute": "FEEL: [{\n  \"library\": \"<%= library %>\",\n  \"element\": request.reasoning,\n  \"properties\": request.body\n}]"
         }
       }
     ]

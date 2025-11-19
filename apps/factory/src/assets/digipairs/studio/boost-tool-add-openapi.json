@@ -65,10 +65,10 @@
                       "element": "digipair-input-hidden",
                       "properties": {
                         "value": {
-                          "digipair": "FEEL:\"tool-\" + request.body.prompt",
-                          "name": "FEEL:variables.infos.name",
-                          "description": "FEEL:variables.infos.description",
-                          "assistant": "FEEL:variables.infos.assistant"
+                          "digipair": "FEEL: \"tool-\" + request.body.prompt",
+                          "name": "FEEL: variables.infos.name",
+                          "description": "FEEL: variables.infos.description",
+                          "assistant": "FEEL: variables.infos.assistant"
                         }
                       }
                     }
@@ -92,13 +92,13 @@
                   "library": "@digipair/skill-http",
                   "element": "read",
                   "properties": {
-                    "path": "FEEL:request.body.prompt"
+                    "path": "FEEL: request.body.prompt"
                   }
                 }
               ]
             },
             "conditions": {
-              "if": "FEEL:ends with(request.body.prompt, \".yaml\") = false"
+              "if": "FEEL: ends with(request.body.prompt, \".yaml\") = false"
             }
           },
           {
@@ -112,20 +112,20 @@
                   "element": "read",
                   "properties": {
                     "type": "text",
-                    "path": "FEEL:request.body.prompt"
+                    "path": "FEEL: request.body.prompt"
                   }
                 },
                 {
                   "library": "@digipair/skill-yaml",
                   "element": "load",
                   "properties": {
-                    "yaml": "FEEL:previous"
+                    "yaml": "FEEL: previous"
                   }
                 }
               ]
             },
             "conditions": {
-              "if": "FEEL:ends with(request.body.prompt, \".yaml\") = true"
+              "if": "FEEL: ends with(request.body.prompt, \".yaml\") = true"
             }
           },
           {
@@ -133,7 +133,7 @@
             "element": "setVariable",
             "properties": {
               "name": "openapi",
-              "value": "FEEL:context merge(variables.openapi, { paths: context merge((for pathEntry in get entries(variables.openapi.paths) return context put({}, pathEntry.key, context merge((for methodEntry in get entries(pathEntry.value) return context put({}, methodEntry.key, if methodEntry.value.operationId != null then methodEntry.value else context merge(methodEntry.value, { operationId: methodEntry.key + \"-\" + replace(pathEntry.key, \"/\", \"\") }))))))) })"
+              "value": "FEEL: context merge(variables.openapi, { paths: context merge((for pathEntry in get entries(variables.openapi.paths) return context put({}, pathEntry.key, context merge((for methodEntry in get entries(pathEntry.value) return context put({}, methodEntry.key, if methodEntry.value.operationId != null then methodEntry.value else context merge(methodEntry.value, { operationId: methodEntry.key + \"-\" + replace(pathEntry.key, \"/\", \"\") }))))))) })"
             }
           },
           {
@@ -146,10 +146,10 @@
                   "library": "digipair:studio",
                   "element": "action-openapi2schema",
                   "properties": {
-                    "openapi": "FEEL:variables.openapi",
-                    "digipair": "FEEL:request.body.inputs[1].value.digipair",
-                    "name": "FEEL:request.body.inputs[1].value.name",
-                    "description": "FEEL:request.body.inputs[1].value.description"
+                    "openapi": "FEEL: variables.openapi",
+                    "digipair": "FEEL: request.body.inputs[1].value.digipair",
+                    "name": "FEEL: request.body.inputs[1].value.name",
+                    "description": "FEEL: request.body.inputs[1].value.description"
                   }
                 }
               ]
@@ -161,29 +161,29 @@
             "properties": {
               "template": "openapi-apikey",
               "data": {
-                "digipair": "FEEL:request.body.inputs[1].value.digipair",
-                "name": "FEEL:request.body.inputs[1].value.name",
-                "description": "FEEL:request.body.inputs[1].value.description",
-                "openapi": "FEEL:variables.openapi",
-                "schema": "FEEL:variables.schema",
-                "api": "FEEL:request.body.prompt",
+                "digipair": "FEEL: request.body.inputs[1].value.digipair",
+                "name": "FEEL: request.body.inputs[1].value.name",
+                "description": "FEEL: request.body.inputs[1].value.description",
+                "openapi": "FEEL: variables.openapi",
+                "schema": "FEEL: variables.schema",
+                "api": "FEEL: request.body.prompt",
                 "key": "API_KEY"
               },
-              "digipair": "FEEL:request.body.inputs[1].value.digipair"
+              "digipair": "FEEL: request.body.inputs[1].value.digipair"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL:request.body.inputs[1].value.digipair"
+              "digipair": "FEEL: request.body.inputs[1].value.digipair"
             }
           },
           {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "FEEL:request.body.inputs[1].value.assistant",
+              "assistant": "FEEL: request.body.inputs[1].value.assistant",
               "command": [
                 {
                   "library": "@digipair/skill-web-interact",

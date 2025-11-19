@@ -106,7 +106,7 @@
               "library": "@digipair/skill-basic",
               "element": "transform",
               "properties": {
-                "value": "FEEL:if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then getTime() else null"
+                "value": "FEEL: if requester.request.body.prompt != null and requester.request.body.prompt != \"\" then getTime() else null"
               }
             }
           ]
@@ -118,18 +118,18 @@
         "properties": {
           "name": "boost",
           "value": {
-            "reasoning": "FEEL:requester.request.reasoning",
-            "step": "FEEL:request.body.boost[1].step",
-            "prompt": "FEEL:request.body.boost[1].prompt",
-            "required": "FEEL:request.body.boost[1].required",
-            "selector": "FEEL:request.body.boost[1].selector",
-            "url": "FEEL:request.body.boost[1].url",
-            "inputs": "FEEL:request.body.boost[1].inputs",
-            "context": "FEEL:requester.request.body.context"
+            "reasoning": "FEEL: requester.request.reasoning",
+            "step": "FEEL: request.body.boost[1].step",
+            "prompt": "FEEL: request.body.boost[1].prompt",
+            "required": "FEEL: request.body.boost[1].required",
+            "selector": "FEEL: request.body.boost[1].selector",
+            "url": "FEEL: request.body.boost[1].url",
+            "inputs": "FEEL: request.body.boost[1].inputs",
+            "context": "FEEL: requester.request.body.context"
           }
         },
         "conditions": {
-          "if": "FEEL:request.body.boost[1]"
+          "if": "FEEL: request.body.boost[1]"
         }
       },
       {
@@ -137,16 +137,16 @@
         "element": "transform",
         "properties": {
           "value": {
-            "uuid": "FEEL:previous[1]",
-            "parent_history": "FEEL:variables.userMessageId",
-            "parent_conversation": "FEEL:requester.request.body.parent_conversation",
+            "uuid": "FEEL: previous[1]",
+            "parent_history": "FEEL: variables.userMessageId",
+            "parent_conversation": "FEEL: requester.request.body.parent_conversation",
             "assistant": "{{request.body.assistant}}",
-            "command": "FEEL:if request.body.command then request.body.command else []",
-            "boost": "FEEL:variables.boost",
-            "boosts": "FEEL:request.body.boosts",
-            "sources": "FEEL:request.body.sources",
-            "files": "FEEL:request.body.files",
-            "logs": "FEEL:request.body.logs"
+            "command": "FEEL: if request.body.command then request.body.command else []",
+            "boost": "FEEL: variables.boost",
+            "boosts": "FEEL: request.body.boosts",
+            "sources": "FEEL: request.body.sources",
+            "files": "FEEL: request.body.files",
+            "logs": "FEEL: request.body.logs"
           }
         }
       },
@@ -159,20 +159,20 @@
               "library": "@digipair/skill-chatbot",
               "element": "answer",
               "properties": {
-                "assistant": "FEEL:data.assistant",
-                "command": "FEEL:data.command",
-                "boosts": "FEEL:data.boosts",
-                "sources": "FEEL:data.sources",
-                "files": "FEEL:data.files",
-                "logs": "FEEL:data.logs",
-                "boost": "FEEL:data.boost",
-                "parent_conversation": "FEEL:data.parent_conversation",
-                "parent_history": "FEEL:data.parent_history",
-                "uuid": "FEEL:data.uuid"
+                "assistant": "FEEL: data.assistant",
+                "command": "FEEL: data.command",
+                "boosts": "FEEL: data.boosts",
+                "sources": "FEEL: data.sources",
+                "files": "FEEL: data.files",
+                "logs": "FEEL: data.logs",
+                "boost": "FEEL: data.boost",
+                "parent_conversation": "FEEL: data.parent_conversation",
+                "parent_history": "FEEL: data.parent_history",
+                "uuid": "FEEL: data.uuid"
               }
             }
           ],
-          "context": "FEEL:context put(requester, \"data\", previous)"
+          "context": "FEEL: context put(requester, \"data\", previous)"
         }
       }
     ]

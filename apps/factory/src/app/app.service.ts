@@ -16,25 +16,28 @@ config.set('ALIAS', [
   },
 ]);
 
-config.set('LOGGER', (level: string, logPath: string, message: string, context: any, data?: any) => {
-  const time = new Date().toISOString();
-  const prefix = `[${time}][${context.request.digipair}@${context.request.reasoning}][${logPath}]`;
+config.set(
+  'LOGGER',
+  (level: string, logPath: string, message: string, context: any, data?: any) => {
+    const time = new Date().toISOString();
+    const prefix = `[${time}][${context.request.digipair}@${context.request.reasoning}][${logPath}]`;
 
-  switch (level) {
-    case 'INFO':
-      console.log(`${prefix} ${message}`);
-      break;
-    case 'ERROR':
-      console.error(`${prefix} ${message}`, data);
-      break;
-    case 'DEBUG':
-      console.debug(`${prefix} ${message}`, data);
-      break;
-    default:
-      console.log(`${prefix} ${message}`);
-      break;
-  }
-});
+    switch (level) {
+      case 'INFO':
+        console.log(`${prefix} ${message}`);
+        break;
+      case 'ERROR':
+        console.error(`${prefix} ${message}`, data);
+        break;
+      case 'DEBUG':
+        console.debug(`${prefix} ${message}`, data);
+        break;
+      default:
+        console.log(`${prefix} ${message}`);
+        break;
+    }
+  },
+);
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -161,7 +164,12 @@ export class AppService implements OnModuleInit {
       context = {
         ...requester,
         config: {
-          VERSIONS: { ...defaultConfig.libraries, ...commonConfig.libraries, ...rolesMerged.libraries, ...config.libraries },
+          VERSIONS: {
+            ...defaultConfig.libraries,
+            ...commonConfig.libraries,
+            ...rolesMerged.libraries,
+            ...config.libraries,
+          },
           WEB_VERSIONS: {
             ...defaultConfig.webLibraries,
             ...commonConfig.webLibraries,
@@ -234,10 +242,7 @@ export class AppService implements OnModuleInit {
       // --- Parse and execute reasoning ---
       const settings = JSON.parse(content);
 
-      if (
-          isHttpRequest &&
-          !['page', 'service', 'event', 'boost'].includes(settings.element)
-      ) {
+      if (isHttpRequest && !['page', 'service', 'event', 'boost'].includes(settings.element)) {
         // for external calls, only 'page' and 'service' elements are allowed
         res.status(400);
         return { status: 'bad request' };
@@ -275,9 +280,14 @@ export class AppService implements OnModuleInit {
   }
 
   /** Recursively load a role config and its inherited roles */
-  private async loadRoleConfig(rolePath: string, roleName: string, version = 'latest', visited = new Set<string>()) {
+  private async loadRoleConfig(
+    rolePath: string,
+    roleName: string,
+    _version = 'latest',
+    visited = new Set<string>(),
+  ) {
     const roleFile = path.join(rolePath, roleName, 'config.json');
-    if (!(existsSync(roleFile))) return {};
+    if (!existsSync(roleFile)) return {};
 
     if (visited.has(roleName)) {
       console.debug(`Circular role reference detected: ${roleName}`);
@@ -293,7 +303,12 @@ export class AppService implements OnModuleInit {
     // Recursively merge inherited roles first (their settings can be overridden by this role)
     const entries = Object.entries(config?.roles ?? {});
     for (const [subRoleName, subVersion] of entries) {
-      const subConfig = await this.loadRoleConfig(rolePath, subRoleName, subVersion as string, visited);
+      const subConfig = await this.loadRoleConfig(
+        rolePath,
+        subRoleName,
+        subVersion as string,
+        visited,
+      );
       mergedConfig = this.mergeConfigs(mergedConfig, subConfig);
     }
 
@@ -327,14 +342,12 @@ export class AppService implements OnModuleInit {
 
   /** Recursively find file, ie reasoning/fallback JSON, in roles or their parents */
   private async findFileInRoles(
-      basePath: string,
-      roles: Record<string, string>,
-      targetFile: string,
-      depth = Infinity,
-      priorityLast = true
+    basePath: string,
+    roles: Record<string, string>,
+    targetFile: string,
   ): Promise<string | null> {
     let entries = Object.entries(this._filteringDigipairRoles(roles));
-    if (priorityLast) entries = entries.reverse();
+    entries = entries.reverse();
 
     for (const [roleName] of entries) {
       const rolePath = path.join(basePath, roleName);
@@ -344,19 +357,11 @@ export class AppService implements OnModuleInit {
         return filePath;
       }
 
-      if (depth > 1) {
-        const configFile = path.join(rolePath, 'config.json');
-        if (existsSync(configFile)) {
-          const config = JSON.parse(await promises.readFile(configFile, 'utf8'));
-          const found = await this.findFileInRoles(
-              basePath,
-              config.roles ?? {},
-              targetFile,
-              depth === Infinity ? Infinity : depth - 1,
-              priorityLast
-          );
-          if (found) return found;
-        }
+      const configFile = path.join(rolePath, 'config.json');
+      if (existsSync(configFile)) {
+        const config = JSON.parse(await promises.readFile(configFile, 'utf8'));
+        const found = await this.findFileInRoles(basePath, config.roles ?? {}, targetFile);
+        if (found) return found;
       }
     }
 
