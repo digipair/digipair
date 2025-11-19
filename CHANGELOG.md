@@ -1,3 +1,13 @@
+## 0.117.8 (2025-11-19)
+
+### 🩹 Fixes
+
+- case-anything broken ([89733fd4](https://github.com/digipair/digipair/commit/89733fd4))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.7 (2025-11-19)
 
 ### 🚀 Features
