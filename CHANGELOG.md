@@ -1,3 +1,13 @@
+## 0.117.9 (2025-11-19)
+
+### 🩹 Fixes
+
+- id with space broken ([41c35dd1](https://github.com/digipair/digipair/commit/41c35dd1))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.8 (2025-11-19)
 
 ### 🩹 Fixes
