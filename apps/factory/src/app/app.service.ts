@@ -332,7 +332,7 @@ export class AppService implements OnModuleInit {
   /** Merge all roles for a given agent */
   private async mergeRolesForAgent(basePath: string, roles: Record<string, string>): Promise<any> {
     let merged = {};
-    const entries = Object.entries(roles);
+    const entries = Object.entries(this._filteringDigipairRoles(roles));
     for (const [roleName, version] of entries) {
       const roleConfig = await this.loadRoleConfig(basePath, roleName, version);
       merged = this.mergeConfigs(merged, roleConfig);
@@ -346,7 +346,8 @@ export class AppService implements OnModuleInit {
     roles: Record<string, string>,
     targetFile: string,
   ): Promise<string | null> {
-    const entries = Object.entries(roles).reverse();
+    let entries = Object.entries(this._filteringDigipairRoles(roles));
+    entries = entries.reverse();
 
     for (const [roleName] of entries) {
       const rolePath = path.join(basePath, roleName);
@@ -365,5 +366,15 @@ export class AppService implements OnModuleInit {
     }
 
     return null;
+  }
+
+  private _filteringDigipairRoles(roles: Record<string, string>): Record<string, string> {
+    return Object.entries(roles).reduce<Record<string, string>>((acc, [roleName, value]) => {
+      if (roleName.startsWith("digipair:")) {
+        const cleanName = roleName.substring("digipair:".length);
+        acc[cleanName] = value;
+      }
+      return acc;
+    }, {});
   }
 }
