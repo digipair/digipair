@@ -1,3 +1,13 @@
+## 0.117.7 (2025-11-19)
+
+### 🚀 Features
+
+- add kebabCase, camelCase and snakeCase generation in FEEL and CEL ([ed0bea46](https://github.com/digipair/digipair/commit/ed0bea46))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.6 (2025-11-19)
 
 ### 🚀 Features

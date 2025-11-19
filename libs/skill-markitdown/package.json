@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-markitdown",
-  "version": "0.117.6",
+  "version": "0.117.7",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
