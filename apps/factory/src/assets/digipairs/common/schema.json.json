@@ -1,6 +1,6 @@
 {
-  "summary": "Liste les raisonnements partagés",
   "description": "Gestion des interfaces des digipairs",
+  "summary": "Liste les raisonnements partagés",
   "library": "@digipair/skill-service",
   "element": "service",
   "metadata": {},
@@ -10,13 +10,13 @@
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
-          "name": "schema_roles",
+          "name": "schemaRoles",
           "execute": [
             {
               "library": "@digipair/skill-common",
               "element": "roles",
               "properties": {
-                "digipair": "FEEL:request.digipair"
+                "digipair": "FEEL: request.digipair"
               }
             },
             {
@@ -24,11 +24,10 @@
               "element": "start",
               "properties": {
                 "reasoning": "schema.json",
-                "digipair": "FEEL:item"
+                "digipair": "FEEL: substring(item.key, 10)"
               },
               "conditions": {
-                "each": "FEEL:for entry in get entries(previous)\n  return if starts with(entry.key, \"digipair:\")\n  then substring(entry.key, 10)\n  else entry.key"
-
+                "each": "FEEL: get entries(previous)[\n  starts with(key,\"digipair:\")\n]"
               }
             }
           ]
@@ -51,27 +50,34 @@
         }
       },
       {
-        "library": "@digipair/skill-basic",
-        "element": "setVariable",
+        "library": "@digipair/skill-debug",
+        "element": "log",
         "properties": {
-          "name": "paths",
-          "value": "FEEL:context merge(\n  variables.schema.paths,\n  context merge(\n    for r in variables.schema_roles\n      return r.paths)\n)"
+          "label": "schema extracted",
+          "value": "FEEL:variables.schema"
         }
       },
       {
         "library": "@digipair/skill-basic",
-       "element": "setVariable",
+        "element": "setVariable",
+        "properties": {
+          "name": "paths",
+          "value": "FEEL: context merge(  \n  append(\n    variables.schemaRoles.paths, \n    variables.schema.paths\n  )\n)"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
         "properties": {
           "name": "scene_blocks",
-          "value": "FEEL: context merge(\n  get value(variables.schema, \"x-scene-blocks\"),\n  context merge(\n       for r in variables.schema_roles\n       return get value(r, \"x-scene-blocks\"))\n)"
+          "value": "FEEL: context merge(\n  append(\n    get value(variables.schemaRoles, \"x-scene-blocks\"), \n    get value(variables.schema, \"x-scene-blocks\")\n  )\n)"
         }
       },
       {
         "library": "@digipair/skill-basic",
         "element": "transform",
         "properties": {
-          "value": "FEEL:context put(\n  context put(\n    variables.schema,\n    \"paths\",\n    variables.paths),\n  \"x-scene-blocks\",\n  variables.scene_blocks\n)"
-
+          "value": "FEEL:context merge(\n  variables.schema,\n  {\"paths\":variables.paths},\n  {\"x-scene-blocks\": variables.scene_blocks}\n)"
         }
       }
     ]
