@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-twilio",
-  "version": "0.117.4",
+  "version": "0.117.5",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

@@ -1,3 +1,14 @@
+## 0.117.5 (2025-11-19)
+
+### 🚀 Features
+
+- add common roles ([520cf0a8](https://github.com/digipair/digipair/commit/520cf0a8))
+- minor updates ([b926acde](https://github.com/digipair/digipair/commit/b926acde))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.4 (2025-11-17)
 
 ### 🩹 Fixes
