@@ -1,3 +1,45 @@
+## 0.0.30-local (2025-11-21)
+
+### 🚀 Features
+
+- add cron time and id infos ([c9656d18](https://github.com/digipair/digipair/commit/c9656d18))
+- add cron time and id infos ([79949797](https://github.com/digipair/digipair/commit/79949797))
+- issue s3 - #30 ([#30](https://github.com/digipair/digipair/issues/30))
+- add rollup and package dependencies - #32 ([#33](https://github.com/digipair/digipair/pull/33), [#32](https://github.com/digipair/digipair/issues/32))
+- improve http skill with empty response management ([3262fbf7](https://github.com/digipair/digipair/commit/3262fbf7))
+- improve http skill with empty response management ([25035b7a](https://github.com/digipair/digipair/commit/25035b7a))
+- add rollup and package dependencies - #32 ([#32](https://github.com/digipair/digipair/issues/32))
+- improve http skill with empty response management ([f7650c0b](https://github.com/digipair/digipair/commit/f7650c0b))
+- update zod version ([0d47a57e](https://github.com/digipair/digipair/commit/0d47a57e))
+- update mcp management ([66cdee77](https://github.com/digipair/digipair/commit/66cdee77))
+- update openai azure parameters ([a1c4f4b4](https://github.com/digipair/digipair/commit/a1c4f4b4))
+- manage mcp required and file ([edc39409](https://github.com/digipair/digipair/commit/edc39409))
+- remove unrequired role ([c6893ce6](https://github.com/digipair/digipair/commit/c6893ce6))
+- remove old remote management ([fce5ec66](https://github.com/digipair/digipair/commit/fce5ec66))
+- add common roles ([520cf0a8](https://github.com/digipair/digipair/commit/520cf0a8))
+- minor updates ([b926acde](https://github.com/digipair/digipair/commit/b926acde))
+- minor refactor ([3293cae2](https://github.com/digipair/digipair/commit/3293cae2))
+- add kebabCase, camelCase and snakeCase generation in FEEL and CEL ([ed0bea46](https://github.com/digipair/digipair/commit/ed0bea46))
+- add skill-marked ([1c31fdfc](https://github.com/digipair/digipair/commit/1c31fdfc))
+- role-tool manageemnt V0.1 ([0904490b](https://github.com/digipair/digipair/commit/0904490b))
+
+### 🩹 Fixes
+
+- use avatar in common ([b64a14e1](https://github.com/digipair/digipair/commit/b64a14e1))
+- digipair engine not present with factory dependencies ([33feb360](https://github.com/digipair/digipair/commit/33feb360))
+- bad openai version ([f2f3c905](https://github.com/digipair/digipair/commit/f2f3c905))
+- langchain openai ([c7d45472](https://github.com/digipair/digipair/commit/c7d45472))
+- minor fixes ([c2287041](https://github.com/digipair/digipair/commit/c2287041))
+- case-anything broken ([89733fd4](https://github.com/digipair/digipair/commit/89733fd4))
+- id with space broken ([41c35dd1](https://github.com/digipair/digipair/commit/41c35dd1))
+- minor improvements ([d10aeb20](https://github.com/digipair/digipair/commit/d10aeb20))
+
+### ❤️ Thank You
+
+- dgreboval
+- Marc Buils @marcbuils
+- Marc BUILS
+
 ## 0.117.9 (2025-11-19)
 
 ### 🩹 Fixes
