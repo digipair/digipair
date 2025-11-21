@@ -13,10 +13,18 @@
         "name": "Initialisation",
         "execute": [
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "toolType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+            }
+          },
+          {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the summary of this new tool agent?",
+              "assistant": "What is the summary of this new {{variables.toolType}} agent?",
               "boost": [
                 {
                   "prompt": true,
@@ -63,6 +71,22 @@
             "library": "@digipair/skill-basic",
             "element": "setVariable",
             "properties": {
+              "name": "toolType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+            }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "digipairId",
+              "value": "FEEL: variables.toolType + \"-\" + kebabCase(request.body.prompt)"
+            }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
               "name": "schema",
               "execute": [
                 {
@@ -77,7 +101,7 @@
                   "library": "@digipair/skill-basic",
                   "element": "transform",
                   "properties": {
-                    "value": "FEEL: context merge(\n  previous[1], \n  {\n    info: context merge(previous[1].info, { \n      title: \"digipair:tool-\" + kebabCase(request.body.prompt) \n    })\n  }\n)"
+                    "value": "FEEL: context merge(\n  previous[1], \n  {\n    info: context merge(previous[1].info, { \n      title: \"digipair:\" + variables.digipairId \n    })\n  }\n)"
                   }
                 }
               ]
@@ -89,20 +113,20 @@
             "properties": {
               "template": "tool-library",
               "data": {
-                "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)",
+                "digipair": "FEEL: variables.digipairId",
                 "name": "FEEL: variables.infos.name",
                 "description": "FEEL: variables.infos.description",
                 "library": "FEEL: request.body.inputs[1].value",
                 "schema": "FEEL: variables.schema"
               },
-              "digipair": "FEEL: \"tool-\" + request.body.prompt"
+              "digipair": "FEEL: variables.digipairId"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)"
+              "digipair": "FEEL: variables.digipairId"
             }
           },
           {
@@ -115,7 +139,7 @@
                   "library": "@digipair/skill-web-interact",
                   "element": "goTo",
                   "properties": {
-                    "url": "FEEL: \"/studio/tool-edit/tool-\" + kebabCase(request.body.prompt)"
+                    "url": "/studio/tool-edit/{{variables.digipairId}}"
                   }
                 }
               ]

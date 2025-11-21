@@ -14,6 +14,7 @@
     "@digipair/skill-tool": "latest",
     "@digipair/skill-client-mcp": "latest"
   },
+  "roles": {},
   "variables": {},
   "privates": {
     "CLIENT_MCP": [

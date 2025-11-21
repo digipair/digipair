@@ -12,10 +12,18 @@
         "name": "Initialisation",
         "execute": [
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "toolType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+            }
+          },
+          {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the summary of this new MCP tool agent?",
+              "assistant": "What is the summary of this new MCP {{variables.toolType}} agent?",
               "boost": [
                 {
                   "prompt": true,
@@ -50,6 +58,14 @@
             }
           },
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "toolType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+            }
+          },
+          {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
@@ -65,7 +81,7 @@
                       "element": "digipair-input-hidden",
                       "properties": {
                         "value": {
-                          "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)",
+                          "digipair": "FEEL: variables.toolType + \"-\" + kebabCase(request.body.prompt)",
                           "name": "FEEL: variables.infos.name",
                           "description": "FEEL: variables.infos.description",
                           "assistant": "FEEL: variables.infos.assistant"

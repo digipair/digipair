@@ -8,6 +8,7 @@
     "textSecondary": "#FFFFFF"
   },
   "libraries": {},
+  "roles": {},
   "variables": {},
   "privates": {},
   "digipair": "<%= digipair %>"
