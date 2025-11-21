@@ -112,7 +112,7 @@
             "library": "web",
             "element": "h4",
             "properties": {
-              "textContent": "Add a tool agent"
+              "textContent": "Add a {{variables.toolType}} agent"
             }
           },
           {
@@ -155,7 +155,10 @@
                         "selector": "digipair-chatbot",
                         "args": [
                           {
-                            "reasoning": "boost-tool-add"
+                            "reasoning": "boost-tool-add",
+                            "context": {
+                              "type": "FEEL: variables.toolType"
+                            }
                           }
                         ]
                       }
@@ -198,7 +201,10 @@
                         "selector": "digipair-chatbot",
                         "args": [
                           {
-                            "reasoning": "boost-tool-add-openapi"
+                            "reasoning": "boost-tool-add-openapi",
+                            "context": {
+                              "type": "FEEL: variables.toolType"
+                            }
                           }
                         ]
                       }
@@ -241,7 +247,10 @@
                         "selector": "digipair-chatbot",
                         "args": [
                           {
-                            "reasoning": "boost-tool-add-client-mcp"
+                            "reasoning": "boost-tool-add-client-mcp",
+                            "context": {
+                              "type": "FEEL: variables.toolType"
+                            }
                           }
                         ]
                       }
@@ -286,7 +295,8 @@
                           {
                             "reasoning": "boost-tool-add-library",
                             "context": {
-                              "library": "{{item.name}}"
+                              "library": "{{item.name}}",
+                              "type": "FEEL: variables.toolType"
                             }
                           }
                         ]
@@ -354,6 +364,30 @@
                     "element": "tools",
                     "properties": {
                       "language": "en"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "toolType",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if request.params[1] != null then request.params[1] else \"tool\""
                     }
                   }
                 ]

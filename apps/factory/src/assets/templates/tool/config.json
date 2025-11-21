@@ -13,6 +13,7 @@
     "@digipair/skill-debug": "latest",
     "@digipair/skill-tool": "latest"
   },
+  "roles": {},
   "variables": {},
   "privates": {},
   "digipair": "<%= digipair %>"

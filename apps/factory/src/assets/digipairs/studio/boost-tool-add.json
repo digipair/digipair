@@ -12,10 +12,18 @@
         "name": "Initialisation",
         "execute": [
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "toolType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+            }
+          },
+          {
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the summary of this new tool agent?",
+              "assistant": "What is the summary of this new {{variables.toolType}} agent?",
               "boost": [
                 {
                   "prompt": true,
@@ -50,23 +58,39 @@
             }
           },
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "toolType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+            }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "digipairId",
+              "value": "FEEL: variables.toolType + \"-\" + request.body.prompt"
+            }
+          },
+          {
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
               "template": "tool",
               "data": {
-                "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)",
+                "digipair": "FEEL: variables.digipairId",
                 "name": "FEEL: variables.infos.name",
                 "description": "FEEL: variables.infos.description"
               },
-              "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)"
+              "digipair": "FEEL: variables.digipairId"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL: \"tool-\" + kebabCase(request.body.prompt)"
+              "digipair": "FEEL: variables.digipairId"
             }
           },
           {
@@ -79,7 +103,7 @@
                   "library": "@digipair/skill-web-interact",
                   "element": "goTo",
                   "properties": {
-                    "url": "FEEL: \"/studio/tool-edit/tool-\" + kebabCase(request.body.prompt)"
+                    "url": "/studio/tool-edit/{{variables.digipairId}}"
                   }
                 }
               ]
