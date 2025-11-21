@@ -69,7 +69,7 @@
         "library": "@digipair/skill-basic",
         "element": "transform",
         "properties": {
-          "value": "FEEL: context merge(\n  variables.schema,\n  { \"paths\":variables.paths },\n  { \"x-scene-blocks\": variables.sceneBlocks }\n)"
+          "value": "FEEL: context merge([\n  variables.schema,\n  { \"paths\": variables.paths },\n  { \"x-scene-blocks\": variables.sceneBlocks }\n])"
         }
       }
     ]

@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-marked",
+    "summary": "Markdown vers HTML",
+    "description": "Cette compétence vous permet de convertir du texte markdown en HTML en utilisant la bibliothèque marked.",
+    "version": "0.0.1",
+    "x-icon": "📝"
+  },
+  "paths": {
+    "/convert": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Convertir Markdown vers HTML",
+        "parameters": [
+          {
+            "name": "text",
+            "summary": "Texte Markdown",
+            "required": true,
+            "description": "Le texte markdown à convertir en HTML",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Conversion Markdown réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "Le résultat HTML converti"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
