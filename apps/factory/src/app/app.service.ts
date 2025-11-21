@@ -157,7 +157,11 @@ export class AppService implements OnModuleInit {
       const config = JSON.parse(content);
 
       // --- Merge all roles configs recursively ---
-      const roles = config?.roles ?? {};
+      const roles = {
+        ...(defaultConfig?.roles ?? {}),
+        ...(commonConfig?.roles ?? {}),
+        ...(config?.roles ?? {}),
+      };
       const rolesMerged = await this.mergeRolesForAgent(basePath, roles);
 
       // --- Build execution context ---
@@ -370,8 +374,8 @@ export class AppService implements OnModuleInit {
 
   private _filteringDigipairRoles(roles: Record<string, string>): Record<string, string> {
     return Object.entries(roles).reduce<Record<string, string>>((acc, [roleName, value]) => {
-      if (roleName.startsWith("digipair:")) {
-        const cleanName = roleName.substring("digipair:".length);
+      if (roleName.startsWith('digipair:')) {
+        const cleanName = roleName.substring('digipair:'.length);
         acc[cleanName] = value;
       }
       return acc;
