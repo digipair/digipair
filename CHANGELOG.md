@@ -1,3 +1,17 @@
+## 0.118.0 (2025-11-21)
+
+### 🚀 Features
+
+- add skill-marked ([1c31fdfc](https://github.com/digipair/digipair/commit/1c31fdfc))
+
+### 🩹 Fixes
+
+- minor improvements ([d10aeb20](https://github.com/digipair/digipair/commit/d10aeb20))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.117.9 (2025-11-19)
 
 ### 🩹 Fixes
