@@ -218,6 +218,9 @@
     },
     {
       "path": "./libs/skill-mcp"
+    },
+    {
+      "path": "./libs/skill-marked"
     }
   ]
 }
