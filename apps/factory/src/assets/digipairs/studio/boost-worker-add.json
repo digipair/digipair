@@ -50,23 +50,39 @@
             }
           },
           {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "workerType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"worker\""
+            }
+          },
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "digipairId",
+              "value": "FEEL: variables.workerType + \"-\" + kebabCase(request.body.prompt)"
+            }
+          },
+          {
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
               "template": "worker",
               "data": {
-                "digipair": "FEEL: \"worker-\" + kebabCase(request.body.prompt)",
+                "digipair": "FEEL: variables.digipairId",
                 "name": "FEEL: variables.infos.name",
                 "description": "FEEL: variables.infos.description"
               },
-              "digipair": "FEEL: \"worker-\" + kebabCase(request.body.prompt)"
+              "digipair": "FEEL: variables.digipairId"
             }
           },
           {
             "library": "@digipair/skill-editor",
             "element": "reasonings",
             "properties": {
-              "digipair": "FEEL: \"worker-\" + kebabCase(request.body.prompt)"
+              "digipair": "FEEL: variables.digipairId"
             }
           },
           {
@@ -79,7 +95,7 @@
                   "library": "@digipair/skill-web-interact",
                   "element": "goTo",
                   "properties": {
-                    "url": "FEEL: \"/studio/worker-edit/worker-\" + kebabCase(request.body.prompt)"
+                    "url": "/studio/worker-edit/{{variables.digipairId}}"
                   }
                 }
               ]

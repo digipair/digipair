@@ -112,7 +112,7 @@
             "library": "web",
             "element": "h4",
             "properties": {
-              "textContent": "Add a tool agent"
+              "textContent": "FEEL: \"Add a \" + if starts with(variables.workerType,\"role-\") then \"role\" else \"tool\"  +  \" agent\""
             }
           },
           {
@@ -176,8 +176,17 @@
                                   "library": "@digipair/skill-basic",
                                   "element": "transform",
                                   "properties": {
-                                    "value": "FEEL: context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
-                                  }
+                                    "value": "FEEL:context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                                  },
+                                  "conditions": { "if": "FEEL: variables.workerType = \"worker\"" }
+                                },
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "transform",
+                                  "properties": {
+                                    "value": "FEEL:context merge(\n  previous, \n  { \n    roles: context(\n      concatenate(\n        get entries(previous.roles),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                                  },
+                                  "conditions": { "if": "FEEL: variables.workerType = \"role-worker\"" }
                                 },
                                 {
                                   "library": "@digipair/skill-editor",
@@ -285,6 +294,54 @@
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
+          "name": "workerType",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if starts with(request.params[2], \"role-worker\") then \"role-worker\" else \"worker\""
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "referencePrefixes",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if starts with(request.params[2], \"role-worker\") then [\"role-tool-\", \"role-worker-\"]  else [\"tool-\", \"worker-\"]"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
           "name": "digipairs",
           "execute": [
             {
@@ -346,7 +403,7 @@
                       ]
                     },
                     "conditions": {
-                      "each": "FEEL: (for id in previous return\n  if \n    (starts with(id, \"tool-\") or starts with(id, \"worker-\"))\n    and id != request.params[1]\n    and count(\n      get entries(\n        variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
+                      "each": "FEEL:(for id in previous return\n  if \n    (some prefix in variables.referencePrefixes satisfies starts with(id, prefix))\n    and id != request.params[1]\n    and count(\n      get entries(\n        if variables.workerType = \"role-worker\"\n        then variables.digipair.roles\n        else variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
                     }
                   },
                   {

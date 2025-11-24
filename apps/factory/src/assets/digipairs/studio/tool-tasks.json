@@ -788,14 +788,14 @@
             "library": "web",
             "element": "h4",
             "properties": {
-              "textContent": "Role-tool agent network"
+              "textContent": "Role agent network"
             }
           },
           {
             "library": "web",
             "element": "div",
             "properties": {
-              "textContent": "No role-tool agent associated"
+              "textContent": "No role agent associated"
             },
             "conditions": {
               "if": "FEEL: count(variables.roleTools) <= 0"

@@ -369,6 +369,9 @@
               "textContent": "Shared outside the factory",
               "for": "remote",
               "required": false
+            },
+            "conditions": {
+              "if": "FEEL: starts with(variables.digipair.id,\"worker-\")"
             }
           },
           {
@@ -377,6 +380,9 @@
             "properties": {
               "checked": "FEEL: variables.digipair.metadata.remote",
               "id": "remote"
+            },
+            "conditions": {
+              "if": "FEEL: starts with(variables.digipair.id,\"worker-\")"
             }
           },
           {
