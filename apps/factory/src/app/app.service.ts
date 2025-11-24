@@ -157,25 +157,28 @@ export class AppService implements OnModuleInit {
       const config = JSON.parse(content);
 
       // --- Merge all roles configs recursively ---
-      const roles = {
-        ...(defaultConfig?.roles ?? {}),
-        ...(commonConfig?.roles ?? {}),
-        ...(config?.roles ?? {}),
-      };
+      const defaultRoles = defaultConfig?.roles ?? {};
+      const commonRoles = commonConfig?.roles ?? {};
+      const roles = config?.roles ?? {};
+      const defaultRolesMerged = await this.mergeRolesForAgent(basePath, defaultRoles);
+      const commonRolesMerged = await this.mergeRolesForAgent(basePath, commonRoles);
       const rolesMerged = await this.mergeRolesForAgent(basePath, roles);
-
       // --- Build execution context ---
       context = {
         ...requester,
         config: {
           VERSIONS: {
+            ...defaultRolesMerged.libraries,
             ...defaultConfig.libraries,
+            ...commonRolesMerged.libraries,
             ...commonConfig.libraries,
             ...rolesMerged.libraries,
             ...config.libraries,
           },
           WEB_VERSIONS: {
+            ...defaultRolesMerged.webLibraries,
             ...defaultConfig.webLibraries,
+            ...commonRolesMerged.webLibraries,
             ...commonConfig.webLibraries,
             ...rolesMerged.webLibraries,
             ...config.webLibraries,
@@ -183,14 +186,18 @@ export class AppService implements OnModuleInit {
         },
         privates: {
           ...requester.privates,
+          ...defaultRolesMerged.privates,
           ...defaultConfig.privates,
+          ...commonRolesMerged.privates,
           ...commonConfig.privates,
           ...rolesMerged.privates,
           ...config.privates,
         },
         variables: {
           ...requester.variables,
+          ...defaultRolesMerged.variables,
           ...defaultConfig.variables,
+          ...commonRolesMerged.variables,
           ...commonConfig.variables,
           ...rolesMerged.variables,
           ...config.variables,
@@ -226,6 +233,18 @@ export class AppService implements OnModuleInit {
       // 3. common reasoning
       content ||= await this.tryRead(path.join(basePath, 'common', `${reasoning}.json`));
 
+      // 3.b common roles reasoning
+      content ||= await (async () => {
+        const rolePath = await this.findFileInRoles(basePath, commonRoles, `${reasoning}.json`);
+        return rolePath ? this.tryRead(rolePath) : null;
+      })();
+
+      // 3.c default roles reasoning
+      content ||= await (async () => {
+        const rolePath = await this.findFileInRoles(basePath, defaultRoles, `${reasoning}.json`);
+        return rolePath ? this.tryRead(rolePath) : null;
+      })();
+
       // 4. digipair fallback
       content ||= await this.tryRead(path.join(basePath, digipair, 'fallback.json'));
 
@@ -237,6 +256,18 @@ export class AppService implements OnModuleInit {
 
       // 6. final fallback
       content ||= await this.tryRead(path.join(basePath, 'common', 'fallback.json'));
+
+      // 6.b final fallback via common roles (deep search)
+      content ||= await (async () => {
+        const fb = await this.findFileInRoles(basePath, commonRoles, 'fallback.json');
+        return fb ? this.tryRead(fb) : null;
+      })();
+
+      // 6.c final fallback via default roles (deep search)
+      content ||= await (async () => {
+        const fb = await this.findFileInRoles(basePath, defaultRoles, 'fallback.json');
+        return fb ? this.tryRead(fb) : null;
+      })();
 
       if (!content) {
         res.status(404);
