@@ -487,6 +487,20 @@
                             }
                           }
                         ]
+                      },
+                      "conditions": {
+                        "if": "FEEL: starts with(variables.digipair.id,\"worker-\")"
+                      }
+                    },
+                    {
+                      "library": "@digipair/skill-basic",
+                      "element": "setVariable",
+                      "properties": {
+                        "name": "remote",
+                        "value": "FEEL: null"
+                      },
+                      "conditions": {
+                        "if": "FEEL: starts with(variables.digipair.id,\"role-worker-\")"
                       }
                     },
                     {
