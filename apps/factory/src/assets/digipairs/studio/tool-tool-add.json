@@ -104,7 +104,7 @@
             "library": "web",
             "element": "h4",
             "properties": {
-              "textContent": "Add a {{variables.toolType}} agent"
+              "textContent": "FEEL: \"Add a \" + (if starts with(variables.toolType,\"role-\") then \"role\" else \"tool\")  +  \" agent\""
             }
           },
           {

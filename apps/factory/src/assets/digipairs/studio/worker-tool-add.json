@@ -112,7 +112,7 @@
             "library": "web",
             "element": "h4",
             "properties": {
-              "textContent": "FEEL: \"Add a \" + if starts with(variables.workerType,\"role-\") then \"role\" else \"tool\"  +  \" agent\""
+              "textContent": "FEEL: \"Add a \" + (if starts with(variables.workerType,\"role-\") then \"role\" else \"tool\") + \" agent\""
             }
           },
           {
