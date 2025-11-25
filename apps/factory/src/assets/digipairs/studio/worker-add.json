@@ -112,7 +112,7 @@
             "library": "web",
             "element": "h4",
             "properties": {
-              "textContent": "Add an AI agent"
+              "textContent": "Add a {{variables.workerType}} agent"
             }
           },
           {
@@ -155,7 +155,10 @@
                         "selector": "digipair-chatbot",
                         "args": [
                           {
-                            "reasoning": "boost-worker-add"
+                            "reasoning": "boost-worker-add",
+                            "context": {
+                              "type": "FEEL: variables.workerType"
+                            }
                           }
                         ]
                       }
@@ -198,7 +201,10 @@
                         "selector": "digipair-chatbot",
                         "args": [
                           {
-                            "reasoning": "boost-tool-add-client-mcp"
+                            "reasoning": "boost-worker-add-client-mcp",
+                            "context": {
+                              "type": "FEEL: variables.workerType"
+                            }
                           }
                         ]
                       }
@@ -245,7 +251,32 @@
       }
     ],
     "styleHtml": "color-scheme:light;\npadding: 60px 40px 80px 40px;",
-    "browserInitialize": []
+    "browserInitialize": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "workerType",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if request.params[1] != null then request.params[1] else \"worker\""
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
   },
   "pins": []
 }

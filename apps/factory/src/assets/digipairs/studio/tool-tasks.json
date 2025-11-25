@@ -775,6 +775,159 @@
                 }
               }
             ]
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "br"
+          },
+          {
+            "library": "web",
+            "element": "h4",
+            "properties": {
+              "textContent": "Role agent network"
+            }
+          },
+          {
+            "library": "web",
+            "element": "div",
+            "properties": {
+              "textContent": "No role agent associated"
+            },
+            "conditions": {
+              "if": "FEEL: count(variables.roleTools) <= 0"
+            }
+          },
+          {
+            "library": "web",
+            "element": "div",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-card",
+                "pins": [
+                  {
+                    "library": "web",
+                    "element": "img",
+                    "properties": {
+                      "src": "FEEL: item.metadata.avatar",
+                      "style": "height: 60px;",
+                      "slot": "preview"
+                    }
+                  }
+                ],
+                "properties": {
+                  "style": "overflow: hidden;\nmargin: 5px;",
+                  "id": "{{item.infos.id}}",
+                  "horizontal": true,
+                  "subheading": "{{item.infos.name}}"
+                }
+              },
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-overlay",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-popover",
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu",
+                        "pins": [
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-menu-item",
+                            "properties": {
+                              "textContent": "Delete"
+                            },
+                            "events": {
+                              "click": [
+                                {
+                                  "library": "@digipair/skill-web",
+                                  "element": "executeFactory",
+                                  "properties": {
+                                    "execute": [
+                                      {
+                                        "library": "@digipair/skill-basic",
+                                        "element": "setVariable",
+                                        "properties": {
+                                          "name": "tool",
+                                          "value": "FEEL: item.infos"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-editor",
+                                        "element": "digipair",
+                                        "properties": {
+                                          "digipair": "FEEL: request.params[1]"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-basic",
+                                        "element": "transform",
+                                        "properties": {
+                                          "value": "FEEL: context merge(\n  previous, \n  { \n    roles: context(\n        get entries(previous.roles)[item.key != \"digipair:\" + variables.tool.id]\n    )\n  }\n)"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-editor",
+                                        "element": "setDigipair",
+                                        "properties": {
+                                          "digipair": "FEEL: request.params[1]",
+                                          "value": "FEEL: previous"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-web-interact",
+                                  "element": "reload"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "properties": {
+                  "trigger": "{{item.infos.id}}@click",
+                  "placement": "left-end"
+                }
+              }
+            ],
+            "conditions": {
+              "each": "FEEL:variables.roleTools"
+            }
+          },
+          {
+            "library": "@digipair/skill-web-spectrum",
+            "element": "sp-action-group",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-action-button",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-font-awesome",
+                    "element": "digipair-font-awesome-icon",
+                    "properties": {
+                      "name": "plus"
+                    }
+                  }
+                ],
+                "properties": {
+                  "href": "/studio/tool-tool-add/{{request.params.[0]}}/role-tool",
+                  "quiet": true
+                }
+              }
+            ]
           }
         ],
         "properties": {
@@ -949,6 +1102,76 @@
                     },
                     "conditions": {
                       "each": "FEEL: for digipair in get entries(variables.digipair.libraries)[starts with(key, \"digipair:\")] return substring(digipair.key, 10)"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "roleTools",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "execute": [
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "setVariable",
+                          "properties": {
+                            "name": "toolInfos",
+                            "execute": [
+                              {
+                                "library": "@digipair/skill-editor",
+                                "element": "digipair",
+                                "properties": {
+                                  "digipair": "FEEL:item"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "setVariable",
+                          "properties": {
+                            "name": "toolMetadata",
+                            "execute": [
+                              {
+                                "library": "@digipair/skill-editor",
+                                "element": "metadata",
+                                "properties": {
+                                  "digipair": "FEEL: item"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": {
+                            "value": {
+                              "infos": "FEEL: variables.toolInfos",
+                              "metadata": "FEEL: variables.toolMetadata"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "conditions": {
+                      "each": "FEEL: for digipair in get entries(variables.digipair.roles)[starts with(key, \"digipair:\")] return substring(digipair.key, 10)"
                     }
                   }
                 ]

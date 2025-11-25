@@ -1,0 +1,34 @@
+{
+  "description": "<%= description %>",
+  "summary": "<%= name %>",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-client-mcp",
+        "element": "listTools"
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "openapi": "3.0.0",
+            "info": {
+              "title": "digipair:<%= digipair %>",
+              "summary": "<%= name %>",
+              "description": "<%= description %>",
+              "version": "1.0.0",
+              "x-icon": "🤖"
+            },
+            "paths": "FEEL: context(for tool in previous.tools return {\n  key: \"/\" + tool.name,\n  value: {\n    post: {\n      tags: [\n          \"service\"\n      ],\n      \"x-context\": if tool.annotations.readOnlyHint = true then false else true,\n      \"x-events\": [],\n      summary: tool.annotations.title,\n      description: tool.description,\n      parameters: for parameter in get entries(tool.inputSchema.properties) return {\n        name: parameter.key,\n        required: list contains(tool.inputSchema.required, parameter.key),\n        summary: parameter.key,\n        schema: parameter.value\n      }\n    }\n  }\n})",
+            "x-scene-blocks": {}
+          }
+        }
+      }
+    ]
+  },
+  "pins": []
+}

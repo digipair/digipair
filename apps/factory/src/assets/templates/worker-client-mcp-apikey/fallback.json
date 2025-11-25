@@ -1,0 +1,19 @@
+{
+  "description": "Mécanisme d'appel d'une méthode de librairie",
+  "summary": "Appel d'une méthode de librairie",
+  "library": "@digipair/skill-tool",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-tool",
+        "element": "execute",
+        "properties": {
+          "execute": "FEEL:[{\n  \"library\": \"@digipair/skill-client-mcp\",\n  \"element\": \"callTool\",\n  \"properties\": { \"arguments\": request.body, \"name\": request.reasoning }\n}]"
+        }
+      }
+    ]
+  },
+  "pins": []
+}

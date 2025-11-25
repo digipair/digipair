@@ -13,8 +13,8 @@
             "library": "@digipair/skill-basic",
             "element": "setVariable",
             "properties": {
-              "name": "toolType",
-              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+              "name": "workerType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"worker\""
             }
           },
           {
@@ -51,8 +51,8 @@
             "library": "@digipair/skill-basic",
             "element": "setVariable",
             "properties": {
-              "name": "toolType",
-              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"tool\""
+              "name": "workerType",
+              "value": "FEEL: if request.body.context.type != null then request.body.context.type else \"worker\""
             }
           },
           {
@@ -71,7 +71,7 @@
                       "element": "digipair-input-hidden",
                       "properties": {
                         "value": {
-                          "digipair": "FEEL: variables.toolType + \"-\" + kebabCase(request.body.prompt)",
+                          "digipair": "FEEL: variables.workerType + \"-\"  + request.body.prompt",
                           "name": "FEEL: variables.infos.name",
                           "description": "FEEL: variables.infos.description",
                           "assistant": "FEEL: variables.infos.assistant"
@@ -92,7 +92,7 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "template": "tool-client-mcp-apikey",
+              "template": "worker-client-mcp-apikey",
               "data": {
                 "digipair": "FEEL: request.body.inputs[1].value.digipair",
                 "name": "FEEL: request.body.inputs[1].value.name",
@@ -120,7 +120,7 @@
                   "library": "@digipair/skill-web-interact",
                   "element": "goTo",
                   "properties": {
-                    "url": "/studio/tool-edit/{{request.body.inputs.[0].value.digipair}}"
+                    "url": "/studio/worker-edit/{{request.body.inputs.[0].value.digipair}}"
                   }
                 }
               ]

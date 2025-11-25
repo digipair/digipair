@@ -21,6 +21,7 @@
     "@digipair/skill-web-inputs": "latest",
     "@digipair/skill-web-interact": "latest"
   },
+  "roles": {},
   "variables": {},
   "privates": {
     "OPENAPI_URL": "<%= api %>",

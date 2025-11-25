@@ -104,7 +104,7 @@
             "library": "web",
             "element": "h4",
             "properties": {
-              "textContent": "Add a tool agent"
+              "textContent": "FEEL: \"Add a \" + (if starts with(variables.toolType,\"role-\") then \"role\" else \"tool\")  +  \" agent\""
             }
           },
           {
@@ -168,8 +168,17 @@
                                   "library": "@digipair/skill-basic",
                                   "element": "transform",
                                   "properties": {
-                                    "value": "FEEL: context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
-                                  }
+                                    "value": "FEEL:context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                                  },
+                                  "conditions": { "if": "FEEL: variables.toolType = \"tool\"" }
+                                },
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "transform",
+                                  "properties": {
+                                    "value": "FEEL:context merge(\n  previous, \n  { \n    roles: context(\n      concatenate(\n        get entries(previous.roles),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                                  },
+                                  "conditions": { "if": "FEEL: variables.toolType = \"role-tool\"" }
                                 },
                                 {
                                   "library": "@digipair/skill-editor",
@@ -277,6 +286,30 @@
         "library": "@digipair/skill-basic",
         "element": "setVariable",
         "properties": {
+          "name": "toolType",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if starts with(request.params[2], \"role-tool\") then \"role-tool\" else \"tool\""
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
           "name": "digipairs",
           "execute": [
             {
@@ -338,7 +371,7 @@
                       ]
                     },
                     "conditions": {
-                      "each": "FEEL: (for id in previous return\n  if \n    starts with(id, \"tool-\")\n    and id != request.params[1]\n    and count(\n      get entries(\n        variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
+                      "each": "FEEL: (for id in previous return\n  if \n    starts with(id, variables.toolType)\n    and id != request.params[1]\n    and count(\n      get entries(\n        if variables.toolType = \"role-tool\"\n        then variables.digipair.roles\n        else variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
                     }
                   }
                 ]
