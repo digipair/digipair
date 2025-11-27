@@ -6,7 +6,9 @@
   "types": "./dist/index.d.ts",
   "keywords": [
     "digipair",
-    "web"
+    "web",
+    "service",
+    "tool"
   ],
   "exports": {
     ".": {
