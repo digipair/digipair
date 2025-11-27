@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-markdown-manager",
+    "summary": "Markdown manager",
+    "description": "This skill allows processing on Markdown.",
+    "version": "0.1.0",
+    "x-icon": "📄"
+  },
+  "paths": {
+    "/splitMdIntoSections": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "split markdown into sections using its headings, source docx",
+        "parameters": [
+          {
+            "name": "md",
+            "summary": "Md",
+            "required": true,
+            "description": "Markdown to split into sections",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Markdown split into sections with source metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {                      
+                      "title": {"type": "string"},
+                      "md": {"type": "string"}
+                    },
+                    "required": ["title", "md"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
