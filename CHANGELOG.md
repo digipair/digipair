@@ -1,3 +1,13 @@
+## 0.119.1 (2025-11-27)
+
+### 🚀 Features
+
+- minor fixes ([d14fab80](https://github.com/digipair/digipair/commit/d14fab80))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.119.0 (2025-11-26)
 
 ### 🚀 Features
