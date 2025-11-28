@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import { fetchEventSource as fetchEventSourceNode } from '@microsoft/fetch-event-source';
+import { fetchEventSource as fetchEventSourceNode } from '@ai-zen/node-fetch-event-source';
 import { fetchEventSource as fetchEventSourceBrowser } from '@microsoft/fetch-event-source';
 
 const fetchEventSource = typeof window === 'undefined' ? fetchEventSourceNode : fetchEventSourceBrowser;
@@ -17,7 +17,7 @@ class ClientSSEService {
       options = {},
     } = params;
 
-    await fetchEventSource(url, {
+    return await fetchEventSource(url, {
       signal: context.protected?.signal,
       method: 'POST',
       headers: {
@@ -28,7 +28,14 @@ class ClientSSEService {
           return;
         }
 
-        executePinsList(message, { ...context, message: JSON.parse(notification.data) }, `${context.__PATH__}.message`);
+        let data = '';
+        try {
+          data = JSON.parse(notification.data);
+        } catch {
+          data = notification.data;
+        }
+
+        executePinsList(message, { ...context, message: data }, `${context.__PATH__}.message`);
       },
       onopen: async () => {
         await executePinsList(open, { ...context }, `${context.__PATH__}.open`);
