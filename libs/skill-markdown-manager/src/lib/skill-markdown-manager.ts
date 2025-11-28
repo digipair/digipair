@@ -7,7 +7,7 @@ class MarkdownManagerService {
     const { md } = params;
     const lines = md.split(/\r?\n/);
 
-    const sections: {title: string, md: string}[] = [];
+    const sections: {title: string, content: string}[] = [];
 
     let currentPath: string[] = [];      // hierarchical title path
     let currentBuffer: string[] = [];    // raw markdown lines
@@ -15,10 +15,10 @@ class MarkdownManagerService {
   
     const flush = () => {
       if (currentPath.length === 0) return;
-      const mdSection = currentBuffer.join("\n").trim();
+      const sectionContent = currentBuffer.join("\n").trim();
       sections.push({
         title: currentPath.join(" >> "),
-        md: mdSection
+        content: sectionContent
       });
       currentBuffer = [];
     };

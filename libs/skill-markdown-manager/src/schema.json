@@ -37,9 +37,9 @@
                     "type": "object",
                     "properties": {                      
                       "title": {"type": "string"},
-                      "md": {"type": "string"}
+                      "content": {"type": "string"}
                     },
-                    "required": ["title", "md"]
+                    "required": ["title", "content"]
                   }
                 }
               }
