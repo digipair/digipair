@@ -76,6 +76,9 @@
       "path": "./libs/skill-llm"
     },
     {
+      "path": "./libs/skill-markdown-manager"
+    },
+    {
       "path": "./libs/skill-markitdown"
     },
     {

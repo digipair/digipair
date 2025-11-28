@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-markdown-manager",
+    "summary": "Gestionnaire Markdown",
+    "description": "Traiter des markdown, découpage, ...",
+    "version": "0.1.0",
+    "x-icon": "📄"
+  },
+  "paths": {
+    "/splitMdIntoSections": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Découpe le markdown en sections par rapport aux titres, source docx",
+        "parameters": [
+          {
+            "name": "md",
+            "summary": "Md",
+            "required": true,
+            "description": "Markdown à découper en sections",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Markdown découpé en sections",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {                      
+                      "title": {"type": "string"},
+                      "md": {"type": "string"}
+                    },
+                    "required": ["title", "md"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
