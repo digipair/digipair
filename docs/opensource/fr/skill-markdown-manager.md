@@ -7,7 +7,7 @@
 
 ## Table des matières
 
-- [Functions](#functions)
+- [Functions](#fonctions)
   - [splitMdIntoSections](#splitMdIntoSections)
 
 ---

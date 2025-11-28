@@ -28,6 +28,7 @@
 - [skill-linkedin](skill-linkedin)
 - [skill-llm](skill-llm)
 - [skill-logger](skill-logger)
+- [skill-markdown-manager](skill-markdown-manager)
 - [skill-markitdown](skill-markitdown)
 - [skill-microsoft](skill-microsoft)
 - [skill-mongodb](skill-mongodb)
