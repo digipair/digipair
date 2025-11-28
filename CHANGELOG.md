@@ -1,3 +1,13 @@
+## 0.119.3 (2025-11-28)
+
+### 🚀 Features
+
+- add client sse nodejs compatibility ([0a9c3c17](https://github.com/digipair/digipair/commit/0a9c3c17))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.119.2 (2025-11-28)
 
 This was a version bump only, there were no code changes.

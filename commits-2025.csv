@@ -1,0 +1,219 @@
+hash,date,author,email,subject
+d142415492de14e7fc2736a947041af96029c425,2025-11-22 00:14:04 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill-marked
+e5c472b05cf583e31800fb92c031a70a4b197113,2025-11-21 22:14:46 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.118.3
+222f586d0be6f2e7195de4bf585bd7f9e079a6dc,2025-11-21 22:12:58 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.118.2
+6dddd75df8bc7290303ff43a9d61a04f1adcae83,2025-11-21 18:51:30 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.118.1
+18a7e36f3e751ff41968dfdcce97f4935548c587,2025-11-21 17:51:02 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.118.0
+1c31fdfcd10ea82fe5a89b8863fa6fd80a722c9e,2025-11-21 17:49:28 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill-marked
+d10aeb20c669f333a8c6e611dd4c6552b167077d,2025-11-21 17:33:19 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: minor improvements
+2384bf3ae97095202d5eb185aa58ee5c6d00ed5c,2025-11-19 18:49:48 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.9
+41c35dd1782eb1c44979d7d0f5c49d49a4f999f6,2025-11-19 18:48:25 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: id with space broken
+721d52b775d0f9a1a0f39b5db086ccfcf6c0adc7,2025-11-19 15:26:11 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.8
+89733fd49026605de357d1ac41e731fbab089672,2025-11-19 15:24:43 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: case-anything broken
+0fc3873a26f9f64c5f4f4b0e2a6df548ffb26edc,2025-11-19 12:52:35 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.7
+ed0bea469623fed13295ab801e7c666bbd1bfc1b,2025-11-19 12:49:55 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: add kebabCase, camelCase and snakeCase generation in FEEL and CEL
+6df5ab9bbf04fba64da0fdb4f7bf6582cceeca3e,2025-11-19 12:21:37 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.6
+3293cae23cfa76f1d96a2d987691c39aa316bb48,2025-11-19 12:19:57 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor refactor
+fac85ef35b7326a10d57b40b5511919139b0583b,2025-11-19 11:34:34 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.5
+fc5a9bd3445b1cb5526e4ee2876063aea5790d13,2025-11-19 11:32:57 +0100,admien33,damiengreboval@gmail.com,Feat/manage role skill common (#37)
+b926acde62ce66bc677ac6e0b4e4e85f819e6a7a,2025-11-19 11:25:47 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor updates
+520cf0a88ec7bbdd15a1287c4987338ca33b3dc7,2025-11-19 10:27:24 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: add common roles
+82499d823ab70a0c1cbcac9b40c73f65f16d3a4a,2025-11-17 18:25:48 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.4
+c2287041b9d2a27225b9efaa45c20a0d64fa2078,2025-11-17 18:24:31 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: minor fixes
+8f2bf335c5a29c46964279cc9eb2e3123dcbb931,2025-11-17 16:14:47 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.3
+fce5ec661ea0cc6fb5f9975d3bf9fdfd73b2df25,2025-11-17 16:13:23 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: remove old remote management
+05553f7c62fec1ff9e9465c92cf175fbd61cfa6b,2025-11-11 01:11:20 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.2
+c6893ce644b34154bc8b3a95f4dcba243df8d892,2025-11-11 01:09:04 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: remove unrequired role
+d8ccbb96cf6d4043fb9add210e38e1811aa8fd61,2025-11-11 01:03:19 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.1
+edc39409b207561ce7a49a403ce85c9693549224,2025-11-11 01:01:32 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: manage mcp required and file
+14e31e21325f420f9f2c84377315a72ba2977d51,2025-11-10 11:37:08 +0100,admien33,damiengreboval@gmail.com,Feat/add test jest app factory (#36)
+0da9adafd4d9954114203c58a3245c2b51ef1f6c,2025-11-09 20:42:32 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.117.0
+7e390b07f7a6f71b755be8db50c70a3eadae7bd6,2025-11-09 20:38:05 +0100,admien33,damiengreboval@gmail.com,Feat/add roles (#35)
+0ee006bcea5764b6f3d6cb9dc02bc223fdfef951,2025-11-09 19:49:58 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.116.4
+c7d45472159adcf585301c773644cb0dada4e469,2025-11-09 19:48:43 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: langchain openai
+35c9cfd25cc007e7d42607ac528a4ccdaba57ac0,2025-11-08 18:24:35 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.116.3
+a1c4f4b4efbc505dd8c0eeb8b8b7f98231bbdbf9,2025-11-08 18:23:17 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: update openai azure parameters
+119539bbf66f4d1f26a429f3e7bebbe14adca76a,2025-11-07 17:16:50 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.116.2
+3fda2f7f5b2874ec8e25fd22175d35ae60513952,2025-11-07 17:01:18 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.116.1
+f2f3c905175a11b5a9a8fdd3343ee6569fcfcaa9,2025-11-07 17:00:03 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: bad openai version
+8e5b44fded9732de9c669bddf2c219f4c2f5c53b,2025-11-07 16:52:12 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.116.0
+66cdee771708c7507b34442066ea43d700664529,2025-11-07 16:48:35 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: update mcp management
+0d47a57e0049c16f9ce9ad10372c69a631628e1f,2025-11-07 10:21:06 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: update zod version
+d2c8dc15906a937bca09e6247b2ebdd8388dd9d0,2025-11-06 14:18:41 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.115.1
+bbe8e30327848fa4b7b4e69d1465070b735e6659,2025-11-06 14:11:16 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.115.0
+b66083fac1c5e0115bfa82b4244d87dc975faba7,2025-11-03 13:24:03 +0100,Marc Buils,marc.buils@marcbuils.fr,Comment out funding options and add custom links
+8c5472977a3fa26de8aba7a2fbe6d58856fd5d86,2025-11-03 13:22:13 +0100,Marc Buils,marc.buils@marcbuils.fr,Update funding information in FUNDING.yml
+11855d6ba3e71bf17f388e444e71a4c9bbd63579,2025-10-29 15:22:21 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.114.8
+f7650c0b29b2a2d7471f9ae7d8324feddf0f91d5,2025-10-29 15:19:53 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve http skill with empty response management
+5138e9feab7c219b48d117eec8cbdda941634152,2025-10-29 14:49:59 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.114.7
+33feb36070f31c43dc4628c73ddb5738beddc8e1,2025-10-29 14:46:42 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: digipair engine not present with factory dependencies
+2ba5142acbfbd7a4894c47d02529a4f2132d3504,2025-10-29 14:01:08 +0100,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.114.6
+c831c066c4a751d8e675c896e67f33a6fd310787,2025-10-29 14:00:29 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: add rollup and package dependencies - #32
+25035b7a7822d442984a4f98aa9dfea2c5e602ae,2025-10-29 13:47:36 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve http skill with empty response management
+3262fbf745c59d257606149129e966a4dcaa3fd6,2025-10-29 13:40:34 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve http skill with empty response management
+ba859de4acc0d353158420ea6ff4c6cc19e31721,2025-10-29 10:36:34 +0100,admien33,damiengreboval@gmail.com,Feat/add operation id on tool add open api (#34)
+6413b69ec9415c2eed2b6e49542b66da334e7f4f,2025-10-29 10:11:52 +0100,Marc Buils,marc.buils@marcbuils.fr,feat: add rollup and package dependencies - #32 (#33)
+43d7c640a5d7983fa5ba851a450f059621ea5a77,2025-10-24 16:42:33 +0200,Marc BUILS,marc.buils@presta.tessi.fr,chore(release): publish 0.114.2
+124e00f8e963bd3ff09a129a6527cd116c575183,2025-10-24 16:40:31 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: issue s3 - #30
+d20ae9236e11e81602f54ba85b64be6cc8216cca,2025-10-24 06:40:16 +0200,Marc Buils,marc.buils@marcbuils.fr,Feat/update nx optim (#29)
+7019a6dcb9dc5593b632ebe52732a44e5ca70527,2025-10-24 06:29:00 +0200,Marc Buils,marc.buils@marcbuils.fr,Feat/update nx optim (#28)
+79949797863acc3f683730903f7554fa92042b78,2025-10-23 16:25:04 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add cron time and id infos
+c9656d18cdbe5f71a24d53f7bf7ff686b304e745,2025-10-23 16:21:17 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add cron time and id infos
+b64a14e1f8e37ece32ba848fce8caff68060ed30,2025-10-22 10:11:21 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: use avatar in common
+369a73ac0629f2cbaf5d28ff5d27fc3c3e7901aa,2025-10-20 14:19:25 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor change
+827ed5fdcd8e2840971f5eb1faecc214ac6d2a52,2025-10-20 07:51:21 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update worker schema
+bca60de91858b655549a5e0636ac97baa039e20d,2025-10-20 05:58:42 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: Add prompt management
+b83397676705dbe0bfa88d3bdba7b807e403e507,2025-10-20 05:56:12 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: Add prompt management
+907892c68d11c891064f4db28d12a13fef3e2858,2025-10-20 05:55:27 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: Add prompt management
+ad67d54f0a1410aa108de3eb2b147cf4c3eeebb9,2025-10-17 13:48:48 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve skill-worker
+85ce79a38579d10ce32158dc48e5a22461674e8f,2025-10-17 13:47:36 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve skill-worker
+856e19d1e983a0dc69863c1f253b41eb7796da4c,2025-10-17 13:44:25 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve skill-worker
+d1ded91658c84e2edb7dcc41ea7993e4597780ed,2025-10-17 12:25:13 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve skill-worker
+c7aaaf1ef390a410c2c4d8e0f1ef9271e91626f7,2025-10-17 02:27:15 +0200,Marc BUILS,marc.buils@presta.tessi.fr,Revert "fix: rollbac -: remove cel-js - failed on Tessi"
+b733cf76ab0cdf0e1bc66286bef44c9c93f92e7a,2025-10-16 19:58:14 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: rollback -: remove cel-js - failed on Tessi
+b93edc4d44354f43cc8c2711b8707fd7825b8304,2025-10-16 19:57:41 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: rollbac -: remove cel-js - failed on Tessi
+b02a64c39c7925d07ed49d7327b95146ed596889,2025-10-16 17:06:50 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor improvement
+3b2959a4cf257af57d3a6f16debf7173cc1e0870,2025-10-15 21:21:54 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: prompt tokens count anthropic compatibility
+13ada174f1ff9cbf863286ce40568da40b0304fd,2025-10-15 20:58:48 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: version 0.110.2
+3a9029eb1b0b8b43d235a34dd02234705d5dfda6,2025-10-15 16:20:03 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: version 0.110.1
+d4b7c6946edbeb2f42323dd96d19adb8d5c312ea,2025-10-15 12:42:05 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add answer for worker
+290f05a230b1b6157c84090903f5fac787f472e5,2025-10-14 11:18:21 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: replace FEEL par CEL
+82df0b19ddf9d789a8696c5b4ec755acbc16491c,2025-10-14 11:06:02 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: new way to manage avatar
+0224ab5a9df9e0272e0d73c3c07a3cc6bbbe1051,2025-10-14 04:31:46 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add chatbot agent_history
+6b63a3bbc25249948c29d99ec2e2b5fd308dbfc0,2025-10-14 04:21:13 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add chatbot agent_history
+6bb4e665e5aeca01f577d157c145a15127111b2a,2025-10-12 13:39:59 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add CEL management
+afcfd8651e3421294930ba50152a3734d5ea8e46,2025-10-11 14:04:26 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add CEL management
+db6035954f65bf478335f511f1c20b6caf98b557,2025-10-10 21:49:13 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve keycloak 401 management
+e2c40bf99e6ec3c581f6473f2193581aed789c6e,2025-10-10 17:30:03 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add mcp
+210184581085d0dcfe8124bc4385ec4a4a6e72e2,2025-10-09 13:20:52 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: skill-mcp ok
+f989ad259899d279d933db1050a9c83fc2f1ba39,2025-10-09 12:08:55 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: fix mcp server
+7a95cf960f7e704fb8a9e36e8f0c69018d1b8984,2025-10-08 22:49:18 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: skill-mcp not working
+0d8a9c8e9100cd53470ddea66875a3f8e527e394,2025-10-08 18:49:58 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: skill-mcp not working
+792e8060b4a64fdbb157fa0cecb44ca3a0f2ada0,2025-10-08 15:15:46 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: vanilla-jsoneditor duplicated for each change
+d4d898359bf88b3b7408ccc4f0ca866ba865707d,2025-10-07 16:39:06 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor renaming and remove shared option on tools
+113d6a8cdfb5f756604ab0924a8140a9a654c74a,2025-10-07 15:59:39 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: client mcp not working
+2c266ab6f8263f13b732679e2415faa80fc3bd18,2025-10-07 00:35:42 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add mcp client tool
+3341797108c1b8266cdc69eaf3a5586e89690b0e,2025-10-06 22:13:20 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve MCP client
+733a6fc72806b4ff68d25881bae30d2a66d0d2db,2025-10-02 17:36:41 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update vespa namespace default
+d9823050b904d7a56d103cc477ff4ec8d41ff009,2025-10-01 15:17:39 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update feel version
+039eacedb7ff3732e378ea27769a80171b63465f,2025-09-30 10:31:11 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add boost compatibility
+f7e4acf4236dde33657ce0390e044d3cd6dece1f,2025-09-29 23:28:58 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add isHttpRequest security
+04126890ea1baa88fb94f82fa850f9697695eaef,2025-09-26 16:47:23 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add mcp
+15e8fe3e78ecafab340e917e8c398507eb797100,2025-09-25 23:53:27 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add client mcp
+d89bd6a8c9d950d5176e61a6b954670d96faae2a,2025-09-22 21:24:57 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add keycloakJsUrl parameter
+17e324a0365d7dbe1e5aac8c8596df3a7ef5e409,2025-09-22 13:59:20 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update canvas version
+8388510e419a58b9b5b4e16cd0e7fce4720ee95a,2025-09-14 19:03:37 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: request.body null for task with Web service type (in AI Agent) #25
+29a9b03814552badaf27d9895a23f5d4f9fa04e6,2025-09-14 18:16:04 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: request.body null for task with Web service type (in AI Agent) #25
+8554cfbfcd441c24ffdaa5544d60f497c10e37e3,2025-09-14 17:52:17 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: request.body null for task with Web service type (in AI Agent) #25
+e4f9d306e222e0ffcb85c35b802f9e50310d0226,2025-09-12 15:40:47 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: request.body null for task with Web service type (in AI Agent) #25
+44d97c278734c0d7c51978bcf8b2fcdf8ab4ca17,2025-09-11 13:32:35 +0200,Marc Buils,marc.buils@marcbuils.fr,fix: request.body null for task with Web service type (in AI Agent) #25 (#26)
+043217f513a9f5c6a86da5857f7b0b0dc02a903a,2025-09-09 15:02:42 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: microsoft config not used in params
+32b1f413e4d87aaff9490982382c9e9f1ed3ef41,2025-09-09 00:45:36 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: remove skill-common/context
+6ab1520e569623393caeb0d9455d3f5ada71caf0,2025-09-03 16:02:29 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add encodeUTF8 and decodeUTF8 functions in FEEL
+cc3a02bd13e31938bf7cd73a80ca101dbc312867,2025-09-01 15:08:22 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: dsp modelUsage not exists
+d3720894c5ec743c4600a153ffee2b490bd6631f,2025-09-01 13:22:48 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update @ax-llm version for skill-dsp
+03a09d60105f0edb63c0c0dbbb95dc5d4b430b12,2025-08-29 16:45:10 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: minor fix codex
+6a1fa5d78274073d1551b841c93dea20bb2de322,2025-08-27 23:09:15 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: [EDITOR] setReasoning not refresh codeInWorkspace
+123dd79b54803080ea50d415eb1fda28046aeb9b,2025-08-27 18:31:41 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve codex binary location
+9a361ff8bab1d04c8abd61087b8ef8975f7bede4,2025-08-27 17:09:05 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve skill-codex
+fd676a8c898a09a42dd4c77cd9f8f1f49545d9b7,2025-08-27 15:33:41 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: remove admin portal replaced by studio
+450104150fe6df1588349bc0cd31823fe80b37a9,2025-08-27 09:29:17 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add codex events
+1cd51a2e4c5d7c0a1418eacd797f7f17b58ebf1d,2025-08-27 09:26:47 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add codex events
+3f80c69ccdcd86d468632065fa65e3f16a27f24b,2025-08-27 00:30:40 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill-codex
+f1427e0131bece0b95981a503536b957931de24f,2025-08-21 11:25:31 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: remove unsused line
+3496958171da900d02ec85fe5ab4e25b2231ca25,2025-08-20 17:28:58 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add output schema management in skill-common/schema
+ed38e4f68f2795712cf39621670bcc700511d1fe,2025-08-20 17:00:10 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor summary update
+7b533f1cdcda83ea712ad27467449fa342ebc338,2025-08-20 16:53:44 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve upload file management
+37504fe4e23155e42371d512a66a7d4521b39849,2025-08-20 16:27:45 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve files upload management
+1a7fc31908bdc3a8926afd0816a12ed768bc4bd1,2025-08-20 15:03:38 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: multer issue
+5e00b995f4f5c78b926a0f91e05abe81524af6c8,2025-08-20 11:10:03 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: schema fixes
+fb208c179f2894ca3479ca8b681451173eea7e80,2025-08-19 16:36:49 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: some schema updates
+3cb80c658c66d5be6ae6b935b1d15b9df54098c3,2025-08-19 15:18:08 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add handle file uploads in skill-service
+77031c3a625dc85f8fd9ba19c7548d4311880665,2025-08-19 13:59:47 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add output action format
+862aaa8cc8a43f4ceb3db6568093110439ea6196,2025-08-18 15:53:18 +0200,Marc Buils,marc.buils@marcbuils.fr,feat: update output schemas (#24)
+4f465086007ac2b3632cd89bd903075d047107ea,2025-07-25 11:07:20 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add auto-orient in sharp
+e44db99d00c46a0e7d5bfd1c91ff1a8a92ca59f4,2025-07-22 23:39:03 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: schema type improvement
+703062a3aa9646226552297464414251934e3bed,2025-07-22 11:15:00 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve sharp library
+c0d63ded0eb934964e1df9af16ca1d7a7c800589,2025-07-21 16:20:56 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add uuid generator
+3ad3e889754f504dd70274d180da476781c2d4b0,2025-07-21 15:59:36 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: some improvements
+afdf0248fd05cad95cafbdbd8d63e60b0036752f,2025-07-18 12:58:19 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor improve keycloak management
+c2881451ce30bec37e8108e6a2e9930b6b4293fa,2025-07-17 14:37:31 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: some improvements push notifications
+d657eff858277fafd52ef04201c02a32d679d4e8,2025-07-08 10:59:13 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: vespa push issue
+ee98b970f5175a3f3ada382a4b34d9ffd34a8462,2025-06-30 18:51:34 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update studio
+142a1c03751352d79c92d416ca89fd22ebfe4955,2025-06-30 18:10:21 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor update
+1cb629a37185dff13e334e89f6f155452403bce2,2025-06-30 14:42:43 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update studio
+c6b57e1620f84c0b197850f309a20e8dc4b64871,2025-06-30 14:39:02 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: some updates
+d53060cbf74ef59915e5a0e91466d3445113b4bf,2025-06-27 18:23:38 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update studio
+f01f726e82fd36249781925ac9fc7599b27b8f64,2025-06-27 15:39:42 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add first studio version
+ac42270020a66c4d87b91e09bef8467ad7863cfc,2025-06-27 14:40:18 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill-agent
+7f8de0c07cb2b664d3ada4c4d8747c2c064959a2,2025-06-26 16:58:05 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: replace @diegoooo/pdf2pic by pdf2pic
+d7c024552908ead1bc0e25152efd0d2f461f9a1c,2025-06-19 16:46:44 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor documentation update
+509fc828758759da4e2248582435bf5c38181486,2025-06-19 16:39:24 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: some documentation update about base64
+7bc70b13261c84af5c308df0bc7de4d7d7742027,2025-06-19 16:32:17 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update opensource sidebar with skill list
+8b6352b6ed3150e5cca8feaed9a0e7e979964d3f,2025-06-19 16:26:10 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update documentation en
+eb976fc908ebf5dde314ea65c88c1e6eddac842b,2025-06-19 15:52:31 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update documentation fr
+4e1003bd9b703cc08d93fa3cefe167c58b242c62,2025-06-19 01:34:45 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add data type management on skill-microsoft
+38b2413b7a6fecbd4d429bf4410bd14af3f6f679,2025-06-18 23:12:53 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add update feature and msitral compatibility
+c886b159427da6bea85d5f1fbdf59a6b822a9a9e,2025-06-18 11:11:38 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: temporary use @digipair/ax to fix mistral
+121359b43d6f2533518d904b0e5a564720d302e8,2025-06-06 10:53:22 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add asynchronous document adding management in vespa
+85bc9cf30c66fda6365dd9317e92b268f06c610d,2025-06-04 18:38:52 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add context in schema
+2007dff7f0956e608793c6cf95432ab8589473e6,2025-06-04 18:22:27 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update  ignoreForAI schemas
+352f4275dbd618adda5885528f04ced82250282b,2025-06-04 15:10:37 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add ignore for AI parameter
+610957de9f62fd00a1b7ae6c87294c80d9ef3991,2025-06-04 14:54:01 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add FEEL json stringify
+4759c1c8d617c4345b44b0c8ee0926318f237ed6,2025-06-04 14:33:00 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: bad boost type in schema
+c699b12389852b23980548f1a87d4afc328fb2c5,2025-06-04 00:00:28 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: return context
+f1c5682a06f5d8376a3f9f4a61c911ebc5aa6c68,2025-06-03 16:31:22 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: rename x-action to x-context
+7af7a163e0c01d7b86430bd36c54d864fd0d919c,2025-05-30 23:34:37 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add context description
+5d57739bc31f1f421f3cbe6a20e6578c8f184990,2025-05-30 22:29:20 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add context summary
+2a7453240e0e8b5144625cf6111dccf518dda27d,2025-05-30 18:27:46 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: add context action on skill-common
+a39761b5ec543da09654abaa47d673160b342c23,2025-05-30 17:42:03 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: return context schema
+3df1d1b235c9808d655422dc7c4a496f0b8f3ee7,2025-05-30 13:05:54 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add action management
+0ff92b6e4b12728c53ade32b98398c84fa271c18,2025-05-19 14:58:02 +0200,Marc Buils,marc.buils@marcbuils.fr,feat: add chatbot session management (#22)
+6cfcaf358aa165e164c0fa777ae7353064a04aae,2025-05-19 00:40:39 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add chatbot session management
+62c77791316059dfa0cee5688bf940d2da9a0be2,2025-05-16 18:53:56 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill-pdf getSize
+89c38bb3e45ecbeb19d2d0e53f724a2ea51f5f03,2025-05-16 16:31:33 +0200,Marc Buils,marc.buils@marcbuils.fr,feat: add pdf2pic skill (#20)
+c324065d15d52cdafa15f95da938ad2213dac43b,2025-05-15 14:40:10 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor fixes
+12abbc3abdea76f821f13c201fca75bcc2a996ab,2025-05-12 16:43:37 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: tabulations is removed from contents
+27d0079e0daa77e7a8517a5463b66a62c1053a80,2025-05-05 16:39:42 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add sharp dependency
+4dbf863a5d3ca846b151bc9c8ebbee2252d3fce0,2025-05-05 15:36:16 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: bad sharp import
+0759095755100112c566ef643c8edc8e379083d4,2025-05-05 14:21:19 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: sharp not working
+c0459b8c7eecf5c8d00d8899fefbb14ce97d6cd0,2025-05-04 23:44:49 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: characters incompatible with vespa
+9983271e699d8318368aa19f0e7cece85dbc4622,2025-05-02 15:25:07 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: sharp os dependency
+5b92eaf56174b2063c7c5cd573af54cb2b50f122,2025-05-02 15:17:11 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: remove sharp dependency
+146887ef1667b5ee9be7d0256b6237dd8145ba1a,2025-05-02 14:33:04 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: worker step results not shared
+ef8d72d5c955fe449ae225533ae82868ec1892b1,2025-05-02 12:25:12 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update some tool names
+8452ae4f0dc81688b145f65b62cb6a071c6e2311,2025-05-02 12:09:01 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add dsp and langchain tool skills
+902660252cd7c396aea3cd3920927182474e0095,2025-05-01 14:23:13 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add sharp skill
+fcef8748b14bc660bfef7d4d4ff9806a33e18d53,2025-04-28 22:12:52 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: compatibility issue dsp
+e5e88dff4a6746f1ed0e92d51dc40c6e0f20962b,2025-04-28 18:32:40 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: fix schema generation
+5343a0450e9d755e5026f8d85b69d44e25f9d509,2025-04-27 06:47:24 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add common actions in schema
+b76a7ef0910016000d6cc42f40ab215f9c8613f8,2025-04-24 11:11:07 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill exif
+02213742d36bbcd8be8672df1e41c17760948499,2025-04-23 11:07:08 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: improve s3 skill
+5323b0337faf467fc093139e83192f8f74812538,2025-04-22 15:51:53 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: spectrum - add size on badge
+1a9afaa1f75ed769ecdaf5d252f0d261abda5d03,2025-04-22 15:50:20 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill s3
+ae1cafdbe4c7d01f99772214f7e51aa68c5655bc,2025-04-21 13:42:50 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill-worker activity
+64b0d20984eb09561521eb7c48f7a24b48bf6821,2025-04-18 22:06:36 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add execute pins on skill tool
+091aed93bc866c4b40810c9d6e6e196ae02eb5f3,2025-04-18 16:47:13 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add digitool skill
+d43018430c7eb456b80437a745e8edb1b975bdf2,2025-04-18 16:14:52 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: update tool list
+85ef39dc350cd22324ace918f37f435aaac0a6ca,2025-04-18 14:48:01 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: remove worker trigger
+f2fa3b5085372de5041580c1ac77402304d264d7,2025-04-18 00:22:49 +0200,Marc BUILS,marc.buils@presta.tessi.fr,fix: fix schema
+e2eddd80e651e3da7b56ccd040f12e1d6ecd9b51,2025-04-17 23:47:10 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: export digipair informations
+ffb7c55a393b379591619d0148cd439b60661a2c,2025-04-17 23:02:42 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add pins stop
+981144101335f0381d166de38e9cf47d1c513aba,2025-04-17 18:45:12 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add skill worker
+2ab335d01af15714a60fba14f3c3f80059c47899,2025-04-17 17:41:24 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: schema.json unrequired
+bb8fd59aa0ecb70df6e41b2e85ceafc7312b4bcb,2025-04-15 22:19:53 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: short french skills description
+5ae0e272811ae22fa819a270a058d5b3780632cd,2025-04-15 15:15:16 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor setAttribute update
+cf1b91d23c1622f9826f6635660d65c7a4aed5d1,2025-04-15 14:50:25 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add set avatar
+f511aec749d4db0d87aea300eda788e5215801d8,2025-04-15 14:15:04 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat update some schemas
+3ef2af9d723ecfa667a4e6a83d0e81463c55c1df,2025-04-15 10:13:51 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor updates
+7a44abf88fbfe7f672f5777919d07034e8ce92e2,2025-04-14 12:36:10 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add tools management
+d190e75205b6c6c1a8da06e0f142564bb320832b,2025-04-11 11:54:00 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: spectrum schema improvement
+dbb4667942ce2757ddefbc912270050d23550b06,2025-04-11 11:09:21 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: minor fix
+b7d29699be03f51bd0c629071d1245d8d8d61ce1,2025-04-11 03:08:37 +0200,Marc Buils,marc.buils@marcbuils.fr,feat: update default embedding size (#19)
+6a6ff8acbdcf459f12fa3e835d72365c541a0f7a,2025-04-11 03:03:18 +0200,Marc BUILS,marc.buils@presta.tessi.fr,feat: add full spectrum schema
+36f5dc7f2bd90af30be222ecd3fdd7ae87d08bc9,2025-03-28 11:54:45 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: add streaming management on dsp
+6b60c067c5754a387c7db8327bfe9d12fdb87a3f,2025-03-27 09:38:03 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: update ax-lmm with azure fix
+3008307d4d24ba0495dae3db62e779fbdc23b20f,2025-03-23 23:24:06 +0100,Marc BUILS,marc.buils@presta.tessi.fr,fix: dsp azure issue
+936834b3eaa1d36806b4a952f07d81026db169e2,2025-03-21 16:30:01 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: add configuration on openai langchain
+64a559283c72c878d3cbc2baf95a366e38e5a198,2025-03-19 10:39:47 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: update ax-llm version
+c6cbc95ebfc834873cfada9cd90583abcc15c419,2025-03-18 14:22:01 +0100,Marc BUILS,marc.buils@presta.tessi.fr,feat: accept string input on array
