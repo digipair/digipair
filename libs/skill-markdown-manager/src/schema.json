@@ -28,7 +28,7 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Markdown split into sections with source metadata",
+            "description": "Markdown split into sections",
             "content": {
               "application/json": {
                 "schema": {
