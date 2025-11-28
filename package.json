@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@ai-zen/node-fetch-event-source": "^2.1.4",
     "@aws-sdk/client-s3": "^3.787.0",
     "@ax-llm/ax": "14.0.19",
     "@azure/msal-node": "^2.10.0",
