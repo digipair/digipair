@@ -1,3 +1,13 @@
+## 0.119.6 (2025-11-28)
+
+### 🚀 Features
+
+- skill client-*sse improvement ([aeda09c8](https://github.com/digipair/digipair/commit/aeda09c8))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.119.5 (2025-11-28)
 
 This was a version bump only, there were no code changes.
