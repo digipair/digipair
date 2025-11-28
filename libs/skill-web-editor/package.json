@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-editor",
-  "version": "0.119.4",
+  "version": "0.119.5",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
