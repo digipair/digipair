@@ -1,6 +1,6 @@
-const {withNx} = require('@nx/rollup/with-nx');
-const {join} = require('path');
-const {withNxDigipair} = require('../../tools/rollup/with-nx');
+const { withNx } = require('@nx/rollup/with-nx');
+const { join } = require('path');
+const { withNxDigipair } = require('../../tools/rollup/with-nx');
 
 module.exports = withNxDigipair(['esm', 'cjs'], config =>
   withNx(
@@ -18,13 +18,18 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
         },
       ],
     },
-    {      
-      external: (id) => {
-        const deps = config.format === 'cjs'
-          ? ["@digipair/engine","microsoft/fetch-event-source"]
-          : [];
-        return deps.some(dep => id === dep || id.startsWith(dep + "/"));
-      }
-    }
-  )
+    {
+      external: id => {
+        const deps =
+          config.format === 'cjs'
+            ? [
+                '@digipair/engine',
+                '@ai-zen/node-fetch-event-source',
+                '@microsoft/fetch-event-source',
+              ]
+            : ['@ai-zen/node-fetch-event-source'];
+        return deps.some(dep => id === dep || id.startsWith(dep + '/'));
+      },
+    },
+  ),
 );

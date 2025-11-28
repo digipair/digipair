@@ -1,12 +1,14 @@
 {
   "name": "@digipair/skill-client-sse",
-  "version": "0.119.0",
+  "version": "0.119.3",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "keywords": [
     "digipair",
-    "web"
+    "web",
+    "service",
+    "tool"
   ],
   "exports": {
     ".": {
@@ -29,6 +31,6 @@
     "name": "skill-client-sse"
   },
   "dependencies": {
-    "@microsoft/fetch-event-source": "^2.0.1"
+    "@ai-zen/node-fetch-event-source": "2.1.4"
   }
 }

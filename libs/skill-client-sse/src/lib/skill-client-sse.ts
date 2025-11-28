@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings, executePinsList } from '@digipair/engine';
-import { fetchEventSource } from '@microsoft/fetch-event-source';
+import { fetchEventSource as fetchEventSourceNode } from '@microsoft/fetch-event-source';
+import { fetchEventSource as fetchEventSourceBrowser } from '@microsoft/fetch-event-source';
+
+const fetchEventSource = typeof window === 'undefined' ? fetchEventSourceNode : fetchEventSourceBrowser;
 
 class ClientSSEService {
   async connect(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
