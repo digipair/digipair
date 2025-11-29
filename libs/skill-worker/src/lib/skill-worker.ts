@@ -55,8 +55,8 @@ class WorkerService {
     const result = await executePinsList(
       execute,
       {
-        ...context,
         ..._context,
+        ...context,
         request: _context.requester?.request ?? _context.request,
       },
       `${context.__PATH__}.execute`,

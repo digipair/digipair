@@ -100,7 +100,7 @@ export class AppService implements OnModuleInit {
               signal,
             );
             skillProcess.remove(id);
-          } catch (error) {
+          } catch (error: any) {
             if (error.type !== 'DIGIPAIR_KEEPALIVE') {
               console.error(error);
               skillProcess.remove(id);
@@ -193,7 +193,15 @@ export class AppService implements OnModuleInit {
           ...rolesMerged.privates,
           ...config.privates,
         },
-        variables: requester.variables || {},
+        variables: {
+          ...requester.variables,
+          ...defaultRolesMerged.variables,
+          ...defaultConfig.variables,
+          ...commonRolesMerged.variables,
+          ...commonConfig.variables,
+          ...rolesMerged.variables,
+          ...config.variables,
+        },
         request: {
           digipair,
           reasoning,
@@ -349,6 +357,7 @@ export class AppService implements OnModuleInit {
     return {
       ...base,
       ...override,
+      variables: { ...(base.variables ?? {}), ...(override.variables ?? {}) },
       privates: { ...(base.privates ?? {}), ...(override.privates ?? {}) },
       libraries: { ...(base.libraries ?? {}), ...(override.libraries ?? {}) },
       webLibraries: { ...(base.webLibraries ?? {}), ...(override.webLibraries ?? {}) },
