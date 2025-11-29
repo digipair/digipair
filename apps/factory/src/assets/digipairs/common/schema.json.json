@@ -62,7 +62,7 @@
         "element": "setVariable",
         "properties": {
           "name": "sceneBlocks",
-          "value": "FEEL: context merge(\n  append(\n    get value(variables.schemaRoles, \"x-scene-blocks\"), \n    get value(variables.schema, \"x-scene-blocks\")\n  )\n)"
+          "value": "FEEL: context merge(\n  append(\n    for schemaRole in variables.schemaRoles return get value(schemaRole, \"x-scene-blocks\"), \n    get value(variables.schema, \"x-scene-blocks\")\n  )\n)"
         }
       },
       {

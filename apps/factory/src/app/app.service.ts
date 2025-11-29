@@ -193,15 +193,7 @@ export class AppService implements OnModuleInit {
           ...rolesMerged.privates,
           ...config.privates,
         },
-        variables: {
-          ...requester.variables,
-          ...defaultRolesMerged.variables,
-          ...defaultConfig.variables,
-          ...commonRolesMerged.variables,
-          ...commonConfig.variables,
-          ...rolesMerged.variables,
-          ...config.variables,
-        },
+        variables: requester.variables || {},
         request: {
           digipair,
           reasoning,
@@ -357,7 +349,6 @@ export class AppService implements OnModuleInit {
     return {
       ...base,
       ...override,
-      variables: { ...(base.variables ?? {}), ...(override.variables ?? {}) },
       privates: { ...(base.privates ?? {}), ...(override.privates ?? {}) },
       libraries: { ...(base.libraries ?? {}), ...(override.libraries ?? {}) },
       webLibraries: { ...(base.webLibraries ?? {}), ...(override.webLibraries ?? {}) },
