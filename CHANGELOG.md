@@ -1,3 +1,13 @@
+## 0.120.0 (2025-11-29)
+
+### 🚀 Features
+
+- add skill-markdown-manager ([#41](https://github.com/digipair/digipair/pull/41))
+
+### ❤️ Thank You
+
+- admien33
+
 ## 0.119.9 (2025-11-29)
 
 ### 🚀 Features
