@@ -1,3 +1,13 @@
+## 0.119.9 (2025-11-29)
+
+### 🚀 Features
+
+- improve sse skill ([9c724f36](https://github.com/digipair/digipair/commit/9c724f36))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.119.8 (2025-11-29)
 
 ### 🚀 Features
