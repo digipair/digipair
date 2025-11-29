@@ -1,3 +1,13 @@
+## 0.119.8 (2025-11-29)
+
+### 🚀 Features
+
+- manage context callback ([b91eafbf](https://github.com/digipair/digipair/commit/b91eafbf))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.119.7 (2025-11-29)
 
 ### 🩹 Fixes
