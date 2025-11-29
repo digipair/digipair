@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-llm",
-  "version": "0.119.6",
+  "version": "0.119.7",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

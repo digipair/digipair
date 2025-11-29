@@ -1,3 +1,13 @@
+## 0.119.7 (2025-11-29)
+
+### 🩹 Fixes
+
+- variables not working in agent callback ([b72fcdca](https://github.com/digipair/digipair/commit/b72fcdca))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.119.6 (2025-11-28)
 
 ### 🚀 Features
