@@ -10,7 +10,9 @@
   "paths": {
     "/registerSession": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Initialize an SSE session",
         "parameters": [
           {
@@ -66,7 +68,9 @@
     },
     "/registerChannel": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Initialize an SSE channel",
         "parameters": [
           {
@@ -127,7 +131,9 @@
     },
     "/push": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Send SSE data",
         "parameters": [
           {
@@ -165,6 +171,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "start",
+            "summary": "Start",
+            "required": false,
+            "description": "Start",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": [],
@@ -194,7 +209,9 @@
     },
     "/broadcast": {
       "post": {
-        "tags": ["service"],
+        "tags": [
+          "service"
+        ],
         "summary": "Broadcast SSE data",
         "parameters": [
           {
@@ -238,6 +255,15 @@
             "summary": "Digipair",
             "required": false,
             "description": "Digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "summary": "Start",
+            "required": false,
+            "description": "Start",
             "schema": {
               "type": "string"
             }

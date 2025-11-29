@@ -165,6 +165,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "start",
+            "summary": "Start",
+            "required": false,
+            "description": "Start",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": [],
@@ -238,6 +247,15 @@
             "summary": "Digipair",
             "required": false,
             "description": "Digipair",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "summary": "Start",
+            "required": false,
+            "description": "Start",
             "schema": {
               "type": "string"
             }
