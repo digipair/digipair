@@ -21,7 +21,7 @@
             "library": "digipair:studio",
             "element": "action-answer",
             "properties": {
-              "assistant": "What is the summary of this new MCP {{variables.workerType}} agent?",
+              "assistant": "What is the summary of this new MCP {{variables.toolType}} agent?",
               "boost": [{ "prompt": true, "required": true, "step": "Api" }]
             }
           }
