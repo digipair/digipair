@@ -187,6 +187,14 @@
                                     "digipair": "FEEL: request.params[1]",
                                     "value": "FEEL: previous"
                                   }
+                                },
+                                {
+                                  "library": "@digipair/skill-git",
+                                  "element": "commit"
+                                },
+                                {
+                                  "library": "@digipair/skill-git",
+                                  "element": "push"
                                 }
                               ]
                             }

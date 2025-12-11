@@ -317,6 +317,14 @@
                               "reasoning": "FEEL: request.params[2]",
                               "value": "FEEL: context merge(previous, { summary: variables.summary, description: variables.description })"
                             }
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "commit"
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "push"
                           }
                         ]
                       }

@@ -219,6 +219,14 @@
                                               "properties": {
                                                 "digipair": "{{item.infos.id}}"
                                               }
+                                            },
+                                            {
+                                              "library": "@digipair/skill-git",
+                                              "element": "commit"
+                                            },
+                                            {
+                                              "library": "@digipair/skill-git",
+                                              "element": "push"
                                             }
                                           ]
                                         }
@@ -376,6 +384,14 @@
                                               "properties": {
                                                 "digipair": "{{item.infos.id}}"
                                               }
+                                            },
+                                            {
+                                              "library": "@digipair/skill-git",
+                                              "element": "commit"
+                                            },
+                                            {
+                                              "library": "@digipair/skill-git",
+                                              "element": "push"
                                             }
                                           ]
                                         }
@@ -564,6 +580,14 @@
                                               "properties": {
                                                 "digipair": "{{item.infos.id}}"
                                               }
+                                            },
+                                            {
+                                              "library": "@digipair/skill-git",
+                                              "element": "commit"
+                                            },
+                                            {
+                                              "library": "@digipair/skill-git",
+                                              "element": "push"
                                             }
                                           ]
                                         }
