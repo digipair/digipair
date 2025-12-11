@@ -483,6 +483,14 @@
                             "conditions": {
                               "if": "FEEL: variables.avatar != null"
                             }
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "commit"
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "push"
                           }
                         ]
                       }

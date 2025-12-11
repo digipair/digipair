@@ -225,6 +225,14 @@
                               "digipair": "common",
                               "value": "FEEL: context merge(\n  previous,\n  { \n    privates: variables.privates\n  }\n)"
                             }
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "commit"
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "push"
                           }
                         ]
                       }
