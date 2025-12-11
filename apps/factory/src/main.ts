@@ -8,7 +8,7 @@ import { NestFactory } from '@nestjs/core';
 import * as bodyParser from 'body-parser';
 
 import { AppModule } from './app/app.module';
-import { copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync } from 'fs';
+import { copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync } from 'fs';
 import path from 'path';
 
 function copyDirectoryRecursive(source: string, target: string) {
@@ -60,6 +60,33 @@ async function bootstrap() {
     Logger.log(`Copy finished`);
   } else {
     Logger.log(`Digipair files already present: ${digipairsFiles.join(', ')}`);
+
+    // Replace directories in digipairs (except common) with those from assets
+    const digipairsSourceDir = `${assetsDir}/digipairs`;
+    const digipairsTargetDir = `${digipairsDir}/digipairs`;
+
+    Logger.log(`Updating digipairs directories from assets (excluding common)`);
+
+    digipairsFiles
+      .filter(folder => folder !== 'common')
+      .forEach(folder => {
+        const sourcePath = path.join(digipairsSourceDir, folder);
+        const targetPath = path.join(digipairsTargetDir, folder);
+
+        if (lstatSync(sourcePath).isDirectory()) {
+          Logger.log(`-> Replacing digipair directory: ${folder}`);
+
+          // Remove existing directory if it exists
+          if (existsSync(targetPath)) {
+            rmSync(targetPath, { recursive: true, force: true });
+          }
+
+          // Copy new directory
+          copyDirectoryRecursive(sourcePath, targetPath);
+        }
+      });
+
+    Logger.log(`Digipairs directories update completed`);
   }
 
   const app = await NestFactory.create(AppModule);

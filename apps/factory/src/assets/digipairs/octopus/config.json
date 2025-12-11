@@ -1,0 +1,15 @@
+{
+  "name": "Octopus",
+  "description": "Un agent qui représente un store d'agent.",
+  "metadata": {},
+  "libraries": {
+    "@digipair/skill-basic": "latest",
+    "@digipair/skill-worker": "latest",
+    "@digipair/skill-editor": "latest",
+    "@digipair/skill-service": "latest"
+  },
+  "roles": {},
+  "variables": {},
+  "privates": {},
+  "digipair": "shared-role-octopus"
+}

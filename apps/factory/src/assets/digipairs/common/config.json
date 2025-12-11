@@ -1,22 +1,10 @@
 {
   "name": "common",
   "description": "common actions.",
-  "metadata": {
-    "color": "#3b82f6"
-  },
-  "libraries": {
-    "@digipair/skill-basic": "latest",
-    "@digipair/skill-factory": "latest",
-    "@digipair/skill-service": "latest",
-    "@digipair/skill-chatbot": "latest",
-    "@digipair/skill-dsp": "latest",
-    "@digipair/skill-sse": "latest",
-    "@digipair/skill-common": "latest",
-    "@digipair/skill-debug": "latest",
-    "@digipair/skill-mcp": "latest",
-    "@digipair/skill-web": "latest",
-    "@digipair/skill-web-chatbot": "latest",
-    "@digipair/skill-web-inputs": "latest"
+  "metadata": {},
+  "libraries": {},
+  "roles": {
+    "role-common": "latest"
   },
   "variables": {},
   "privates": {}

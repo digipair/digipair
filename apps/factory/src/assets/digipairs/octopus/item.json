@@ -1,0 +1,31 @@
+{
+  "description": "Display an agent stored in Octopus.",
+  "summary": "Liste",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-editor",
+        "element": "digipair",
+        "properties": {
+          "digipair": "FEEL: request.body.id",
+          "path": "{{privates.GIT_PATH}}/teams/{{request.team}}"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "name": "FEEL: previous.name",
+            "description": "FEEL: previous.description",
+            "metadata": "FEEL: previous.metadata"
+          }
+        }
+      }
+    ]
+  },
+  "pins": []
+}

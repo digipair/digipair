@@ -1,0 +1,45 @@
+{
+  "description": "Create a list of agents stored in Octopus.",
+  "summary": "Liste",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-editor",
+        "element": "digipairs",
+        "properties": {
+          "path": "{{privates.GIT_PATH}}/teams/{{request.team}}"
+        }
+      },
+      {
+        "library": "@digipair/skill-editor",
+        "element": "digipair",
+        "properties": {
+          "digipair": "FEEL: item",
+          "path": "{{privates.GIT_PATH}}/teams/{{request.team}}"
+        },
+        "conditions": {
+          "each": "FEEL: previous[starts with(item, \"worker-\")]"
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "name": "FEEL: item.name",
+            "description": "FEEL: item.description",
+            "digipair": "FEEL: item.digipair",
+            "metadata": "FEEL: item.metadata"
+          }
+        },
+        "conditions": {
+          "each": "FEEL: previous"
+        }
+      }
+    ]
+  },
+  "pins": []
+}
