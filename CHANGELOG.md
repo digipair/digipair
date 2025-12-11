@@ -1,3 +1,20 @@
+## 0.121.0 (2025-12-11)
+
+### 🚀 Features
+
+- add octopus ([b80a8c5e](https://github.com/digipair/digipair/commit/b80a8c5e))
+
+### 🩹 Fixes
+
+- boost-tool-add-client-mcp, toolType ([4eb9d353](https://github.com/digipair/digipair/commit/4eb9d353))
+- dbg boost duplicate ([#43](https://github.com/digipair/digipair/pull/43))
+
+### ❤️ Thank You
+
+- admien33
+- dgreboval
+- Marc BUILS
+
 ## 0.120.1 (2025-11-29)
 
 This was a version bump only, there were no code changes.
