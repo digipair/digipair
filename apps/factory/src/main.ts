@@ -67,7 +67,9 @@ async function bootstrap() {
 
     Logger.log(`Updating digipairs directories from assets (excluding common)`);
 
-    digipairsFiles
+    const digipairFolders = readdirSync(digipairsSourceDir);
+
+    digipairFolders
       .filter(folder => folder !== 'common')
       .forEach(folder => {
         const sourcePath = path.join(digipairsSourceDir, folder);
