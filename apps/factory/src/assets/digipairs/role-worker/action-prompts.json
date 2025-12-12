@@ -52,7 +52,7 @@
                 }
               },
               "conditions": {
-                "each": "FEEL: previous[title != \"prompts\"]"
+                "each": "FEEL: previous"
               }
             }
           ]
