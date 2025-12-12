@@ -1,0 +1,18 @@
+{
+  "summary": "Get metadata",
+  "description": "Get metadata for a Digipair.",
+  "metadata": {},
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-factory",
+        "element": "start",
+        "properties": {
+          "reasoning": "action-prompts"
+        }
+      }
+    ]
+  }
+}
