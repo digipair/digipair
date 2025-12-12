@@ -10,8 +10,7 @@
         "library": "@digipair/skill-editor",
         "element": "digipair",
         "properties": {
-          "digipair": "FEEL: request.body.id",
-          "path": "{{privates.GIT_PATH}}/teams/{{request.team}}"
+          "digipair": "FEEL: request.body.id"
         }
       },
       {

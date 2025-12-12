@@ -4,7 +4,7 @@
   "metadata": {},
   "libraries": {},
   "roles": {
-    "role-common": "latest"
+    "digipair:role-common": "latest"
   },
   "variables": {},
   "privates": {}

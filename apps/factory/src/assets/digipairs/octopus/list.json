@@ -8,17 +8,13 @@
     "execute": [
       {
         "library": "@digipair/skill-editor",
-        "element": "digipairs",
-        "properties": {
-          "path": "{{privates.GIT_PATH}}/teams/{{request.team}}"
-        }
+        "element": "digipairs"
       },
       {
         "library": "@digipair/skill-editor",
         "element": "digipair",
         "properties": {
-          "digipair": "FEEL: item",
-          "path": "{{privates.GIT_PATH}}/teams/{{request.team}}"
+          "digipair": "FEEL: item"
         },
         "conditions": {
           "each": "FEEL: previous[starts with(item, \"worker-\")]"
