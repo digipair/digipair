@@ -1,9 +1,7 @@
 {
-  "name": "common",
-  "description": "common actions.",
-  "metadata": {
-    "color": "#3b82f6"
-  },
+  "name": "Role Worker",
+  "description": "Role Worker Digipair",
+  "metadata": {},
   "libraries": {
     "@digipair/skill-basic": "latest",
     "@digipair/skill-debug": "latest",

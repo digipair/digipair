@@ -1,9 +1,13 @@
 {
-  "description": "Get prompts for a digipair.",
-  "summary": "Prompts",
+  "description": "List of available action prompts for workers.",
+  "summary": "Available actions list",
   "library": "@digipair/skill-worker",
-  "element": "task",
-  "metadata": {},
+  "element": "action",
+  "metadata": {
+    "parameters": [],
+    "context": false,
+    "prompts": []
+  },
   "properties": {
     "execute": [
       {
@@ -15,7 +19,9 @@
             {
               "library": "@digipair/skill-common",
               "element": "infos",
-              "properties": { "digipair": "FEEL: request.digipair" }
+              "properties": {
+                "digipair": "FEEL: request.digipair"
+              }
             }
           ]
         }
@@ -29,7 +35,9 @@
             {
               "library": "@digipair/skill-common",
               "element": "prompts",
-              "properties": { "digipair": "FEEL: request.digipair" }
+              "properties": {
+                "digipair": "FEEL: request.digipair"
+              }
             },
             {
               "library": "@digipair/skill-basic",
@@ -43,7 +51,9 @@
                   "prompt": "Ask to {{variables.infos.name}} to {{item.prompt}}"
                 }
               },
-              "conditions": { "each": "FEEL: previous" }
+              "conditions": {
+                "each": "FEEL: previous[title != \"prompts\"]"
+              }
             }
           ]
         }

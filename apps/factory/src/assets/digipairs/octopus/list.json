@@ -32,7 +32,7 @@
           }
         },
         "conditions": {
-          "each": "FEEL: previous"
+          "each": "FEEL: previous[metadata.remote = true]"
         }
       }
     ]
