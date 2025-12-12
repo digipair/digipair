@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-client-sse",
-  "version": "0.121.6",
+  "version": "0.121.12",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

@@ -1,3 +1,17 @@
+## 0.121.12 (2025-12-12)
+
+### 🚀 Features
+
+- improve octopus ([8ec65fb9](https://github.com/digipair/digipair/commit/8ec65fb9))
+- some improvements ([10b7cba2](https://github.com/digipair/digipair/commit/10b7cba2))
+- some improvements ([fff37c8a](https://github.com/digipair/digipair/commit/fff37c8a))
+- improve action-prompts ([7b049921](https://github.com/digipair/digipair/commit/7b049921))
+- improve action-prompts ([a62b4774](https://github.com/digipair/digipair/commit/a62b4774))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.121.6 (2025-12-12)
 
 ### 🚀 Features
