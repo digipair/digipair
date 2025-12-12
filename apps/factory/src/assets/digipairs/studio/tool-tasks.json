@@ -275,11 +275,17 @@
                                             },
                                             {
                                               "library": "@digipair/skill-git",
-                                              "element": "commit"
+                                              "element": "commit",
+                                              "conditions": {
+                                                "if": "FEEL: privates.GIT_COMMIT = true"
+                                              }
                                             },
                                             {
                                               "library": "@digipair/skill-git",
-                                              "element": "push"
+                                              "element": "push",
+                                              "conditions": {
+                                                "if": "FEEL: privates.GIT_PUSH = true"
+                                              }
                                             }
                                           ]
                                         }
@@ -515,11 +521,17 @@
                                                 },
                                                 {
                                                   "library": "@digipair/skill-git",
-                                                  "element": "commit"
+                                                  "element": "commit",
+                                                  "conditions": {
+                                                    "if": "FEEL: privates.GIT_COMMIT = true"
+                                                  }
                                                 },
                                                 {
                                                   "library": "@digipair/skill-git",
-                                                  "element": "push"
+                                                  "element": "push",
+                                                  "conditions": {
+                                                    "if": "FEEL: privates.GIT_PUSH = true"
+                                                  }
                                                 }
                                               ]
                                             }
@@ -566,11 +578,17 @@
                                           },
                                           {
                                             "library": "@digipair/skill-git",
-                                            "element": "commit"
+                                            "element": "commit",
+                                            "conditions": {
+                                              "if": "FEEL: privates.GIT_COMMIT = true"
+                                            }
                                           },
                                           {
                                             "library": "@digipair/skill-git",
-                                            "element": "push"
+                                            "element": "push",
+                                            "conditions": {
+                                              "if": "FEEL: privates.GIT_PUSH = true"
+                                            }
                                           }
                                         ]
                                       }
@@ -617,11 +635,17 @@
                                           },
                                           {
                                             "library": "@digipair/skill-git",
-                                            "element": "commit"
+                                            "element": "commit",
+                                            "conditions": {
+                                              "if": "FEEL: privates.GIT_COMMIT = true"
+                                            }
                                           },
                                           {
                                             "library": "@digipair/skill-git",
-                                            "element": "push"
+                                            "element": "push",
+                                            "conditions": {
+                                              "if": "FEEL: privates.GIT_PUSH = true"
+                                            }
                                           }
                                         ]
                                       }
@@ -762,11 +786,17 @@
                                       },
                                       {
                                         "library": "@digipair/skill-git",
-                                        "element": "commit"
+                                        "element": "commit",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_COMMIT = true"
+                                        }
                                       },
                                       {
                                         "library": "@digipair/skill-git",
-                                        "element": "push"
+                                        "element": "push",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_PUSH = true"
+                                        }
                                       }
                                     ]
                                   }
@@ -923,11 +953,17 @@
                                       },
                                       {
                                         "library": "@digipair/skill-git",
-                                        "element": "commit"
+                                        "element": "commit",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_COMMIT = true"
+                                        }
                                       },
                                       {
                                         "library": "@digipair/skill-git",
-                                        "element": "push"
+                                        "element": "push",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_PUSH = true"
+                                        }
                                       }
                                     ]
                                   }

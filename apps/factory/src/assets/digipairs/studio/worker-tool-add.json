@@ -178,7 +178,9 @@
                                   "properties": {
                                     "value": "FEEL:context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
                                   },
-                                  "conditions": { "if": "FEEL: variables.workerType = \"worker\"" }
+                                  "conditions": {
+                                    "if": "FEEL: variables.workerType = \"worker\""
+                                  }
                                 },
                                 {
                                   "library": "@digipair/skill-basic",
@@ -186,7 +188,9 @@
                                   "properties": {
                                     "value": "FEEL:context merge(\n  previous, \n  { \n    roles: context(\n      concatenate(\n        get entries(previous.roles),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
                                   },
-                                  "conditions": { "if": "FEEL: variables.workerType = \"role-worker\"" }
+                                  "conditions": {
+                                    "if": "FEEL: variables.workerType = \"role-worker\""
+                                  }
                                 },
                                 {
                                   "library": "@digipair/skill-editor",
@@ -198,11 +202,17 @@
                                 },
                                 {
                                   "library": "@digipair/skill-git",
-                                  "element": "commit"
+                                  "element": "commit",
+                                  "conditions": {
+                                    "if": "FEEL: privates.GIT_COMMIT = true"
+                                  }
                                 },
                                 {
                                   "library": "@digipair/skill-git",
-                                  "element": "push"
+                                  "element": "push",
+                                  "conditions": {
+                                    "if": "FEEL: privates.GIT_PUSH = true"
+                                  }
                                 }
                               ]
                             }

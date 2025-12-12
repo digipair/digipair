@@ -1,6 +1,6 @@
 {
   "description": "Display an agent stored in Octopus.",
-  "summary": "Liste",
+  "summary": "Item",
   "library": "@digipair/skill-service",
   "element": "service",
   "metadata": {},

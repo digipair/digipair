@@ -3,7 +3,10 @@
   "summary": "Adding a digipair from a MCP.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
-  "metadata": { "standalone": true, "context": [] },
+  "metadata": {
+    "standalone": true,
+    "context": []
+  },
   "properties": {
     "steps": [
       {
@@ -22,7 +25,13 @@
             "element": "action-answer",
             "properties": {
               "assistant": "What is the summary of this new MCP {{variables.toolType}} agent?",
-              "boost": [{ "prompt": true, "required": true, "step": "Api" }]
+              "boost": [
+                {
+                  "prompt": true,
+                  "required": true,
+                  "step": "Api"
+                }
+              ]
             }
           }
         ]
@@ -41,7 +50,9 @@
                   "element": "generate",
                   "properties": {
                     "signature": "\"Extract the information for creating the digipair from the user's comment\"\ncomment:string \"User's comment describing the digipair to create\" -> \n  name:string \"Very short name of the agent from the comment in french\", \n  description:string \"Short description of the agent from the comment in french\", \n  assistant:string \"Assistant's response to confirm that the digipair has been successfully added and recall to the user to update his API key from the agent configuration in french\"",
-                    "input": { "comment": "{{request.body.prompt}}" }
+                    "input": {
+                      "comment": "{{request.body.prompt}}"
+                    }
                   }
                 }
               ]
@@ -112,11 +123,17 @@
           },
           {
             "library": "@digipair/skill-git",
-            "element": "commit"
+            "element": "commit",
+            "conditions": {
+              "if": "FEEL: privates.GIT_COMMIT = true"
+            }
           },
           {
             "library": "@digipair/skill-git",
-            "element": "push"
+            "element": "push",
+            "conditions": {
+              "if": "FEEL: privates.GIT_PUSH = true"
+            }
           },
           {
             "library": "digipair:studio",
