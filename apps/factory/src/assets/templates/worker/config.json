@@ -12,7 +12,7 @@
     "@digipair/skill-debug": "latest",
     "@digipair/skill-worker": "latest"
   },
-  "roles": {},
+  "roles": { "digipair:role-worker": "latest" },
   "variables": {},
   "privates": {},
   "digipair": "<%= digipair %>"
