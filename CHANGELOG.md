@@ -1,3 +1,17 @@
+## 0.121.6 (2025-12-12)
+
+### 🚀 Features
+
+- some improvements ([eb618a99](https://github.com/digipair/digipair/commit/eb618a99))
+
+### 🩹 Fixes
+
+- digipair not starts if factory exists ([bf31c8e3](https://github.com/digipair/digipair/commit/bf31c8e3))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.121.5 (2025-12-11)
 
 This was a version bump only, there were no code changes.
