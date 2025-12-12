@@ -8,15 +8,9 @@
     "@digipair/skill-basic": "latest",
     "@digipair/skill-factory": "latest",
     "@digipair/skill-service": "latest",
-    "@digipair/skill-chatbot": "latest",
-    "@digipair/skill-dsp": "latest",
-    "@digipair/skill-sse": "latest",
     "@digipair/skill-common": "latest",
     "@digipair/skill-debug": "latest",
-    "@digipair/skill-mcp": "latest",
-    "@digipair/skill-web": "latest",
-    "@digipair/skill-web-chatbot": "latest",
-    "@digipair/skill-web-inputs": "latest"
+    "@digipair/skill-mcp": "latest"
   },
   "variables": {},
   "privates": {}
