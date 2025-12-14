@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-oauth2",
-  "version": "0.121.12",
+  "version": "0.121.13",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

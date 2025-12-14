@@ -1,3 +1,17 @@
+## 0.121.13 (2025-12-14)
+
+### 🚀 Features
+
+- add service prompts ([a79adb4c](https://github.com/digipair/digipair/commit/a79adb4c))
+
+### 🩹 Fixes
+
+- notification not exists on studio ([4f070578](https://github.com/digipair/digipair/commit/4f070578))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.121.12 (2025-12-12)
 
 ### 🚀 Features
