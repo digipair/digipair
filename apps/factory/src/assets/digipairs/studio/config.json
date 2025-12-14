@@ -7,6 +7,9 @@
     "secondary": "#242E3B",
     "textSecondary": "#FFFFFF"
   },
+  "roles": {
+    "digipair:role-chatbot": "latest"
+  },
   "libraries": {
     "@digipair/skill-service": "latest",
     "@digipair/skill-chatbot": "latest",
