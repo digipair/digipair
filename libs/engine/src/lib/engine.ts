@@ -189,7 +189,7 @@ const executePins = async (settingsOrigin: PinsSettings, context: any = {}): Pro
     throw new Error(`Element ${settings.element} not found in library ${settings.library}`);
   }
 
-  const result = await pins(settings.properties, settings.pins, context);
+  const result = await pins(settings.noEvalProperties ?? settings.properties, settings.pins, context);
   _config.LOGGER(
     'INFO',
     context.__PATH__,
