@@ -1,3 +1,14 @@
+## 0.121.14 (2025-12-15)
+
+### 🚀 Features
+
+- rename digipair octopus in config file ([d4bb07d1](https://github.com/digipair/digipair/commit/d4bb07d1))
+- add noEvalProperties ([9f033e3f](https://github.com/digipair/digipair/commit/9f033e3f))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.121.13 (2025-12-14)
 
 ### 🚀 Features
