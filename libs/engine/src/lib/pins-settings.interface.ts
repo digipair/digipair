@@ -1,5 +1,5 @@
 export interface PinsSettings {
-  noEvalProperties: { [key: string]: any; } | undefined;
+  _properties: { [key: string]: any } | undefined;
   library: string;
   element: string;
   properties?: { [key: string]: any } | undefined;
