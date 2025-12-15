@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-mcp",
-  "version": "0.121.14",
+  "version": "0.121.15",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
