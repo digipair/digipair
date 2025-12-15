@@ -1,3 +1,13 @@
+## 0.121.16 (2025-12-15)
+
+### 🚀 Features
+
+- add noEvalProperties ([508d9fbc](https://github.com/digipair/digipair/commit/508d9fbc))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.121.15 (2025-12-15)
 
 ### 🚀 Features

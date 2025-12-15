@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-logger",
-  "version": "0.121.15",
+  "version": "0.121.16",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
