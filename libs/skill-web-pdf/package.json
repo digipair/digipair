@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-pdf",
-  "version": "0.121.16",
+  "version": "0.122.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

@@ -1,3 +1,13 @@
+## 0.122.0 (2025-12-16)
+
+### 🚀 Features
+
+- remove roles in pages ([8623150f](https://github.com/digipair/digipair/commit/8623150f))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.121.16 (2025-12-15)
 
 ### 🚀 Features
