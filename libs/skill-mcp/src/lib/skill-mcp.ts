@@ -5,6 +5,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
+const REGEX_BASE64URL = /^data:[a-zA-Z0-9\/\+\-\.]+;base64,[A-Za-z0-9+/=]+$/;
 class MCPServerService {
   private jsonSchemaToZod(schema: any, isRequired = false): any {
     const zodProps: Record<string, any> = {};
@@ -12,7 +13,7 @@ class MCPServerService {
     switch (schema.type) {
       case 'string':
         if (schema.format === 'byte') {
-          return isRequired ? z.string().base64url() : z.string().base64url().optional();
+          return isRequired ? z.string().regex(REGEX_BASE64URL) : z.string().regex(REGEX_BASE64URL).optional();
         }
         return isRequired ? z.string() : z.string().optional();
       case 'number':
