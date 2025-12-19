@@ -1,3 +1,13 @@
+## 0.122.1 (2025-12-19)
+
+### 🚀 Features
+
+- update base64 regex ([83fea970](https://github.com/digipair/digipair/commit/83fea970))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.122.0 (2025-12-16)
 
 ### 🚀 Features
