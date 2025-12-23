@@ -5,7 +5,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 
-const REGEX_BASE64URL = /^data:[a-zA-Z0-9\/\+\-\.]+;base64,[A-Za-z0-9+/=]+$/;
+const REGEX_BASE64URL = /^data:[a-zA-Z0-9\/\+\-\.]+(?:;filename=[^;]+)?;base64,[A-Za-z0-9+/=]+$/;
 class MCPServerService {
   private jsonSchemaToZod(schema: any, isRequired = false): any {
     const zodProps: Record<string, any> = {};
