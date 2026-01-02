@@ -134,47 +134,53 @@ class VespaService {
     for (const document of documents) {
       // eslint-disable-next-line no-control-regex
       const content = document.content.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
-      const response = await fetch(
-        `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
-        {
-          signal,
-          method: 'POST',
-          body: JSON.stringify({
-            fields: asynchronous
-              ? { ...document, content }
-              : {
-                  ...document,
-                  content,
-                  content_embedding: await modelEmbeddings.embedQuery(content),
-                },
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
 
-      const json = await response.json();
-      if (!json.id) {
-        throw new Error(
-          `Error - VespaService:pushDocuments - pushing ${collection} - ${json.message}`,
-        );
-      }
-      results.push(json);
-
-      if (asynchronous) {
-        setImmediate(async () => {
-          const content_embedding = await modelEmbeddings.embedQuery(content);
-          await fetch(`${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`, {
+      if (content && content.trim().length > 0) {
+        const response = await fetch(
+          `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
+          {
+            signal,
             method: 'POST',
             body: JSON.stringify({
-              fields: { ...document, content, content_embedding },
+              fields: asynchronous
+                ? { ...document, content }
+                : {
+                    ...document,
+                    content,
+                    content_embedding: await modelEmbeddings.embedQuery(content),
+                  },
             }),
             headers: {
               'Content-Type': 'application/json',
             },
+          },
+        );
+
+        const json = await response.json();
+        if (!json.id) {
+          throw new Error(
+            `Error - VespaService:pushDocuments - pushing ${collection} - ${json.message}`,
+          );
+        }
+        results.push(json);
+
+        if (asynchronous) {
+          setImmediate(async () => {
+            const content_embedding = await modelEmbeddings.embedQuery(content);
+            await fetch(
+              `${baseUrl}/document/v1/${namespace}/${collection}/docid/${document.uuid}`,
+              {
+                method: 'POST',
+                body: JSON.stringify({
+                  fields: { ...document, content, content_embedding },
+                }),
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              },
+            );
           });
-        });
+        }
       }
     }
 
@@ -312,7 +318,7 @@ class VespaService {
       selection,
     } = params;
     const response = await fetch(
-      `${baseUrl}/document/v1/${namespace}/${collection}/docid?selection=${encodeURI(
+      `${baseUrl}/document/v1/${namespace}/${collection}/docid?selection=${encodeURIComponent(
         selection,
       )}&cluster=${namespace}`,
       {
