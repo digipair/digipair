@@ -295,14 +295,13 @@ export class AppService implements OnModuleInit {
         return error.value;
       }
 
-      console.error(error);
-
-      if (!context) {
-        return;
+      if (context) {
+        console.error(error);
+        const skillLogger = require('@digipair/skill-logger');
+        (skillLogger as any).addLog(context, 'ERROR', error.message);
       }
 
-      const skillLogger = require('@digipair/skill-logger');
-      skillLogger.addLog(context, 'ERROR', error.message);
+      throw error;
     }
   }
 
