@@ -1,3 +1,18 @@
+## 0.123.0 (2026-01-20)
+
+### 🚀 Features
+
+- add json export to skill-markitdown ([c06903c0](https://github.com/digipair/digipair/commit/c06903c0))
+
+### 🩹 Fixes
+
+- empty string in vespa adding failed ([9ba8f7db](https://github.com/digipair/digipair/commit/9ba8f7db))
+- throw error management ([9f305d6b](https://github.com/digipair/digipair/commit/9f305d6b))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.122.2 (2025-12-23)
 
 This was a version bump only, there were no code changes.
