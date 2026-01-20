@@ -10,11 +10,7 @@
   "paths": {
     "/fillForm": {
       "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
+        "tags": ["service", "web", "spatial"],
         "summary": "Remplir un formulaire de PDF",
         "description": "Remplit un formulaire de PDF avec les valeurs spécifiées.",
         "parameters": [
@@ -65,11 +61,7 @@
     },
     "/getFields": {
       "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
+        "tags": ["service", "web", "spatial"],
         "summary": "Extraire les champs d'un PDF",
         "description": "Extrait les champs d'un formulaire de PDF.",
         "parameters": [
@@ -111,11 +103,7 @@
     },
     "/getSize": {
       "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
+        "tags": ["service", "web", "spatial"],
         "summary": "Nombre de page d'un PDF",
         "description": "Retourne le nombre de page PDF.",
         "parameters": [
@@ -139,6 +127,38 @@
                   "type": "integer",
                   "description": "Nombre de pages dans le document PDF",
                   "minimum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getText": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Texte d'un PDF",
+        "description": "Retourne le texte du PDF.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Fichier PDF à analyser",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Texte du PDF récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Texte extrait du document PDF organisé par page"
                 }
               }
             }

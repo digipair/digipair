@@ -10,11 +10,7 @@
   "paths": {
     "/fillForm": {
       "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
+        "tags": ["service", "web", "spatial"],
         "summary": "Fill out a PDF form",
         "description": "Fills out a PDF form with the specified values.",
         "parameters": [
@@ -65,11 +61,7 @@
     },
     "/getFields": {
       "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
+        "tags": ["service", "web", "spatial"],
         "summary": "Extract fields from a PDF",
         "description": "Extracts fields from a PDF form.",
         "parameters": [
@@ -111,11 +103,7 @@
     },
     "/getSize": {
       "post": {
-        "tags": [
-          "service",
-          "web",
-          "spatial"
-        ],
+        "tags": ["service", "web", "spatial"],
         "summary": "Number of pages in a PDF",
         "description": "Returns the number of pages in a PDF.",
         "parameters": [
@@ -139,6 +127,38 @@
                   "type": "integer",
                   "description": "Number of pages in the PDF document",
                   "minimum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getText": {
+      "post": {
+        "tags": ["service", "web", "spatial"],
+        "summary": "Text from a PDF",
+        "description": "Returns the text from a PDF.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "File",
+            "required": true,
+            "description": "PDF file to analyze",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "PDF text retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Text extracted from the PDF document organized by page"
                 }
               }
             }

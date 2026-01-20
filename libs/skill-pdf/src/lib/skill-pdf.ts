@@ -1,5 +1,6 @@
 import { PinsSettings } from '@digipair/engine';
 import { PDFDocument } from 'pdf-lib';
+import { PDFParse } from 'pdf-parse';
 
 class PDFService {
   private base64ToPdf(base64: string) {
@@ -88,13 +89,23 @@ class PDFService {
     return fields;
   }
 
-async getSize(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+  async getSize(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { file } = params;
 
     const buffer = this.base64ToPdf(file);
     const document = await PDFDocument.load(buffer);
-    
+
     return document.getPages().length;
+  }
+
+  async getText(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
+    const { file } = params;
+
+    const buffer = this.base64ToPdf(file);
+    const parser = new PDFParse({ data: buffer });
+    const data = await parser.getText();
+
+    return data;
   }
 }
 
@@ -106,3 +117,6 @@ export const getFields = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const getSize = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new PDFService().getSize(params, pinsSettingsList, context);
+
+export const getText = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new PDFService().getText(params, pinsSettingsList, context);
