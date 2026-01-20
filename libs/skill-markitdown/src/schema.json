@@ -49,6 +49,48 @@
           }
         }
       }
+    },
+    "/json": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Convert to JSON",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "File",
+            "required": true,
+            "description": "File to convert",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path to the executable",
+            "required": false,
+            "description": "Path to the markitdown executable",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Converted content in JSON format"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

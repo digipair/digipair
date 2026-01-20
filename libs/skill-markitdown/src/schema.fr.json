@@ -49,6 +49,48 @@
           }
         }
       }
+    },
+    "/json": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Convertit en JSON",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Fichier à convertir",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin de l'executable",
+            "required": false,
+            "description": "Chemin vers l'executable markitdown",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse réussie",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Contenu converti au format JSON"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
