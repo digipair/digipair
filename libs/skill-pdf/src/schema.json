@@ -10,7 +10,7 @@
   "paths": {
     "/fillForm": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": ["service"],
         "summary": "Fill out a PDF form",
         "description": "Fills out a PDF form with the specified values.",
         "parameters": [
@@ -61,7 +61,7 @@
     },
     "/getFields": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": ["service"],
         "summary": "Extract fields from a PDF",
         "description": "Extracts fields from a PDF form.",
         "parameters": [
@@ -103,7 +103,7 @@
     },
     "/getSize": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": ["service"],
         "summary": "Number of pages in a PDF",
         "description": "Returns the number of pages in a PDF.",
         "parameters": [
@@ -136,7 +136,7 @@
     },
     "/getText": {
       "post": {
-        "tags": ["service", "web", "spatial"],
+        "tags": ["service"],
         "summary": "Text from a PDF",
         "description": "Returns the text from a PDF.",
         "parameters": [
