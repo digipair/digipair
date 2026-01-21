@@ -103,8 +103,9 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "template": "worker-client-mcp-apikey",
+              "template": "worker-client-mcp-auth-type",
               "data": {
+                "authType": "apikey",
                 "digipair": "FEEL: request.body.inputs[1].value.digipair",
                 "name": "FEEL: request.body.inputs[1].value.name",
                 "description": "FEEL: request.body.inputs[1].value.description",
@@ -121,8 +122,9 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "template": "worker-client-mcp-client-credentials",
+              "template": "worker-client-mcp-auth-type",
               "data": {
+                "authType": "client-credentials",
                 "digipair": "FEEL: request.body.inputs[1].value.digipair",
                 "name": "FEEL: request.body.inputs[1].value.name",
                 "description": "FEEL: request.body.inputs[1].value.description",
