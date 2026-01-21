@@ -472,38 +472,7 @@
                 }
               }
             ]
-          },
-          {
-            "library": "web",
-            "element": "br"
-          },
-          {
-            "library": "web",
-            "element": "br"
-          },
-          {
-            "library": "@digipair/skill-web-spectrum",
-            "element": "sp-action-group",
-            "pins": [
-              {
-                "library": "@digipair/skill-web-spectrum",
-                "element": "sp-action-button",
-                "pins": [
-                  {
-                    "library": "@digipair/skill-web-font-awesome",
-                    "element": "digipair-font-awesome-icon",
-                    "properties": {
-                      "name": "plus"
-                    }
-                  }
-                ],
-                "properties": {
-                  "href": "/studio/worker-add/role-worker",
-                  "quiet": true
-                }
-              }
-            ]
-          }
+          }          
         ],
         "properties": {
           "system": "spectrum",
