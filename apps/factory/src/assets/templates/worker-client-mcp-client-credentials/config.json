@@ -12,6 +12,7 @@
     "@digipair/skill-service": "latest",
     "@digipair/skill-debug": "latest",
     "@digipair/skill-tool": "latest",
+    "@digipair/skill-http": "latest",
     "@digipair/skill-client-mcp": "latest"
   },
   "roles": {
@@ -21,15 +22,27 @@
   "privates": {
     "CLIENT_MCP": [
       {
+        "library": "@digipair/skill-http",
+        "element": "request",
+        "properties": {
+          "path": "<%= tokenUrl %>",
+          "body": {
+            "grant_type": "client_credentials",
+            "client_id": "<%= clientId %>",
+            "client_secret": "<%= clientSecret %>"
+          },
+          "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+          "method": "POST"
+        }
+      },
+      {
         "library": "@digipair/skill-client-mcp",
         "element": "StreamableHTTPClient",
         "properties": {
           "url": "<%= api %>",
           "options": {
             "requestInit": {
-              "headers": {
-                "Authorization": "Bearer <%= key %>"
-              }
+              "headers": { "Authorization": "Bearer {{previous.access_token}}" }
             }
           }
         }

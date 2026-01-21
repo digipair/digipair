@@ -189,7 +189,7 @@
                 "properties": {
                   "style": "overflow: hidden;\nmargin: 5px;\ncursor: pointer;",
                   "horizontal": true,
-                  "subheading": "MCP agent"
+                  "subheading": "MCP agent with api key"
                 },
                 "events": {
                   "click": [
@@ -201,9 +201,57 @@
                         "selector": "digipair-chatbot",
                         "args": [
                           {
-                            "reasoning": "boost-worker-add-client-mcp",
+                            "reasoning": "boost-worker-add-client-mcp-auth-type",
                             "context": {
-                              "type": "FEEL: variables.workerType"
+                              "type": "FEEL: variables.workerType",
+                              "authType": "apikey"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "library": "web",
+            "element": "div",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-card",
+                "pins": [
+                  {
+                    "library": "web",
+                    "element": "img",
+                    "properties": {
+                      "src": "/public/mcp.svg",
+                      "style": "height: 60px;",
+                      "slot": "preview"
+                    }
+                  }
+                ],
+                "properties": {
+                  "style": "overflow: hidden;\nmargin: 5px;\ncursor: pointer;",
+                  "horizontal": true,
+                  "subheading": "MCP agent with client credentials"
+                },
+                "events": {
+                  "click": [
+                    {
+                      "library": "@digipair/skill-web-interact",
+                      "element": "execute",
+                      "properties": {
+                        "name": "executeBoost",
+                        "selector": "digipair-chatbot",
+                        "args": [
+                          {
+                            "reasoning": "boost-worker-add-client-mcp-auth-type",
+                            "context": {
+                              "type": "FEEL: variables.workerType",
+                              "authType": "client-credentials"
                             }
                           }
                         ]

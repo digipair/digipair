@@ -1,0 +1,336 @@
+{
+  "description": "Mécanisme d'appel d'une méthode de librairie",
+  "summary": "Appel d'une méthode de librairie",
+  "library": "@digipair/skill-worker",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-worker",
+        "element": "execute",
+        "properties": {
+          "execute": "FEEL: [{\n  \"library\": \"@digipair/skill-client-mcp\",\n  \"element\": \"callTool\",\n  \"properties\": { \"arguments\": request.body, \"name\": request.reasoning }\n},\n{\n  \"library\": \"@digipair/skill-basic\",\n  \"element\": \"transform\",\n  \"properties\": { \"value\": \"FEEL: previous.structuredContent\" }\n}]"
+        },
+        "conditions": {
+          "if": "FEEL: substring(request.reasoning, 1, 6) != \"boost-\""
+        }
+      },
+      {
+        "library": "@digipair/skill-chatbot",
+        "element": "boost",
+        "properties": {
+          "steps": [
+            {
+              "name": "initialize",
+              "execute": [
+                {
+                  "library": "@digipair/skill-chatbot",
+                  "element": "answer",
+                  "properties": {
+                    "assistant": "",
+                    "boost": {
+                      "context": {},
+                      "step": "update",
+                      "reasoning": "FEEL: request.reasoning",
+                      "digipair": "FEEL: request.digipair",
+                      "executable": true
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "update",
+              "execute": [
+                {
+                  "library": "@digipair/skill-chatbot",
+                  "element": "answer",
+                  "properties": {
+                    "assistant": "",
+                    "boost": {
+                      "context": "FEEL: context merge(request.body.context, request.body.data)",
+                      "step": "update",
+                      "reasoning": "FEEL: request.reasoning",
+                      "digipair": "FEEL: request.digipair",
+                      "executable": true
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "manual",
+              "execute": [
+                {
+                  "library": "@digipair/skill-chatbot",
+                  "element": "answer",
+                  "properties": {
+                    "assistant": "",
+                    "boost": {
+                      "context": "FEEL: request.body.context",
+                      "step": "update",
+                      "reasoning": "FEEL: request.reasoning",
+                      "digipair": "FEEL: request.digipair",
+                      "executable": true
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "execute",
+              "execute": [
+                {
+                  "library": "@digipair/skill-basic",
+                  "element": "setVariable",
+                  "properties": {
+                    "name": "context",
+                    "execute": [
+                      {
+                        "library": "@digipair/skill-factory",
+                        "element": "start",
+                        "properties": { "reasoning": "schema.json" }
+                      },
+                      {
+                        "library": "@digipair/skill-basic",
+                        "element": "transform",
+                        "properties": {
+                          "execute": [
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "transform",
+                              "properties": {
+                                "value": {
+                                  "key": "FEEL: item.name",
+                                  "value": "FEEL: get value(request.body.context, item.name)"
+                                }
+                              },
+                              "conditions": {
+                                "if": "FEEL: ((\n  item.schema.type = \"string\" and\n  item.schema.format = \"byte\"\n) or (\n  item.schema.type = \"array\" and\n  item.schema.items.type = \"string\" and\n  item.schema.items.format = \"byte\"\n) or (\n  item.schema.type = \"array\" and\n  item.schema.items.type = \"object\" and \n  count(get entries(item.schema.items.properties)[value.type = \"string\" and value.format = \"byte\"]) > 0\n)) = false"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "transform",
+                              "properties": {
+                                "execute": [
+                                  {
+                                    "library": "@digipair/skill-basic",
+                                    "element": "transform",
+                                    "properties": {
+                                      "execute": [
+                                        {
+                                          "library": "digipair:tool-file-manager",
+                                          "element": "download",
+                                          "properties": {
+                                            "bucket": "FEEL: privates.S3_BUCKET_HISTORY",
+                                            "key": "teams/{{keycloak.decodedToken.team_id}}/{{keycloak.decodedToken.pair}}/{{item.uuid}}"
+                                          }
+                                        },
+                                        {
+                                          "library": "@digipair/skill-basic",
+                                          "element": "transform",
+                                          "properties": {
+                                            "value": "FEEL: substring before(previous, \";\") + \";filename=\" +  item.filename + \";\" + substring after(previous, \";\")"
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "conditions": {
+                                      "each": "FEEL: if get value(\n  request.body.context,\n  item.name\n) != null\nthen\n  get value(\n    request.body.context,\n    item.name\n  )\nelse\n[]"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-basic",
+                                    "element": "transform",
+                                    "properties": {
+                                      "value": {
+                                        "key": "FEEL: item.name",
+                                        "value": "FEEL: previous"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              "conditions": {
+                                "if": "FEEL: \n  item.schema.type = \"array\" and\n  item.schema.items.type = \"string\" and\n  item.schema.items.format = \"byte\""
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "transform",
+                              "properties": {
+                                "execute": [
+                                  {
+                                    "library": "@digipair/skill-basic",
+                                    "element": "setVariable",
+                                    "properties": {
+                                      "name": "file",
+                                      "value": "FEEL: get value(\n  request.body.context,\n  item.name\n)"
+                                    }
+                                  },
+                                  {
+                                    "library": "digipair:tool-file-manager",
+                                    "element": "download",
+                                    "properties": {
+                                      "bucket": "FEEL: privates.S3_BUCKET_HISTORY",
+                                      "key": "teams/{{keycloak.decodedToken.team_id}}/{{keycloak.decodedToken.pair}}/{{variables.file.uuid}}"
+                                    },
+                                    "conditions": {
+                                      "if": "FEEL: variables.file != null"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-basic",
+                                    "element": "transform",
+                                    "properties": {
+                                      "value": {
+                                        "key": "FEEL: item.name",
+                                        "value": "FEEL: if variables.file = null \n  then \n    null\n  else \n    substring before(previous, \";\") + \";filename=\" +  variables.file.filename + \";\" + substring after(previous, \";\")"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              "conditions": {
+                                "if": "FEEL: \n  item.schema.type = \"string\" and\n  item.schema.format = \"byte\""
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "transform",
+                              "properties": {
+                                "execute": [
+                                  {
+                                    "library": "@digipair/skill-basic",
+                                    "element": "setVariable",
+                                    "properties": {
+                                      "name": "itemProperties",
+                                      "value": "FEEL: item.schema.items.properties"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-basic",
+                                    "element": "transform",
+                                    "properties": {
+                                      "execute": [
+                                        {
+                                          "library": "@digipair/skill-basic",
+                                          "element": "transform",
+                                          "properties": {
+                                            "execute": [
+                                              {
+                                                "library": "@digipair/skill-basic",
+                                                "element": "transform",
+                                                "properties": {
+                                                  "value": "FEEL: item"
+                                                },
+                                                "conditions": {
+                                                  "if": "FEEL: (get value(variables.itemProperties, item.key).type = \"string\" and get value(variables.itemProperties, item.key).format = \"byte\") = false"
+                                                }
+                                              },
+                                              {
+                                                "library": "@digipair/skill-basic",
+                                                "element": "transform",
+                                                "properties": {
+                                                  "execute": [
+                                                    {
+                                                      "library": "digipair:tool-file-manager",
+                                                      "element": "download",
+                                                      "properties": {
+                                                        "bucket": "FEEL: privates.S3_BUCKET_HISTORY",
+                                                        "key": "teams/{{keycloak.decodedToken.team_id}}/{{keycloak.decodedToken.pair}}/{{item.value.uuid}}"
+                                                      }
+                                                    },
+                                                    {
+                                                      "library": "@digipair/skill-basic",
+                                                      "element": "transform",
+                                                      "properties": {
+                                                        "value": "FEEL: substring before(previous, \";\") + \";filename=\" +  item.value.filename + \";\" + substring after(previous, \";\")"
+                                                      }
+                                                    },
+                                                    {
+                                                      "library": "@digipair/skill-basic",
+                                                      "element": "transform",
+                                                      "properties": {
+                                                        "value": {
+                                                          "key": "FEEL: item.key",
+                                                          "value": "FEEL: previous"
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "conditions": {
+                                                  "if": "FEEL: (get value(variables.itemProperties, item.key).type = \"string\" and get value(variables.itemProperties, item.key).format = \"byte\") = true"
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "conditions": {
+                                            "each": "FEEL: get entries(item)"
+                                          }
+                                        },
+                                        {
+                                          "library": "@digipair/skill-basic",
+                                          "element": "transform",
+                                          "properties": {
+                                            "value": "FEEL: context(previous)"
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "conditions": {
+                                      "each": "FEEL: get value(\n  request.body.context,\n  item.name\n)"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-basic",
+                                    "element": "transform",
+                                    "properties": {
+                                      "value": "FEEL: { \n  key: item.name,\n  value: previous\n}"
+                                    }
+                                  }
+                                ]
+                              },
+                              "conditions": {
+                                "if": "FEEL: \n  item.schema.type = \"array\" and\n  item.schema.items.type = \"object\" and \n  count(get entries(item.schema.items.properties)[value.type = \"string\" and value.format = \"byte\"]) > 0"
+                              }
+                            }
+                          ]
+                        },
+                        "conditions": {
+                          "each": "FEEL: get value(previous.paths, \"/\" + substring(request.reasoning, 7)).post.parameters"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-basic",
+                        "element": "transform",
+                        "properties": { "value": "FEEL: context(previous)" }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "library": "@digipair/skill-factory",
+                  "element": "start",
+                  "properties": {
+                    "reasoning": "FEEL: substring(request.reasoning, 7)",
+                    "body": "FEEL: variables.context"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "conditions": {
+          "if": "FEEL: substring(request.reasoning, 1, 6) = \"boost-\""
+        }
+      }
+    ]
+  },
+  "pins": [],
+  "digipair": "shared-role-client-mcp",
+  "id": "fallback"
+}

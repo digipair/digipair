@@ -1,0 +1,179 @@
+{
+  "description": "Gestion des interfaces des digipairs",
+  "summary": "Liste les raisonnements partagés",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "digipair",
+          "execute": [
+            {
+              "library": "@digipair/skill-editor",
+              "element": "digipair",
+              "properties": {
+                "digipair": "FEEL: request.digipair"
+              }
+            }
+          ]
+        }
+      },
+      { "library": "@digipair/skill-client-mcp", "element": "listTools" },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "setVariable",
+              "properties": { "name": "tool", "value": "FEEL: item" }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "setVariable",
+                    "properties": { "name": "parameter", "value": "FEEL: item" }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": {
+                        "name": "FEEL: variables.parameter.key",
+                        "required": "FEEL: list contains(variables.tool.inputSchema.required, variables.parameter.key)",
+                        "summary": "FEEL: variables.parameter.key",
+                        "schema": "FEEL: if variables.parameter.value.pattern = \"^data:[a-zA-Z0-9\\/\\+\\-\\.]+(?:;filename=[^;]+)?;base64,[A-Za-z0-9+/=]+$\" then context put(variables.parameter.value, \"format\", \"byte\") else variables.parameter.value"
+                      }
+                    },
+                    "conditions": {
+                      "if": "FEEL: variables.parameter.value.type != \"array\""
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "execute": [
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": {
+                            "value": {
+                              "name": "FEEL: variables.parameter.key",
+                              "required": "FEEL: list contains(variables.tool.inputSchema.required, variables.parameter.key)",
+                              "summary": "FEEL: variables.parameter.key",
+                              "schema": "FEEL: if variables.parameter.value.items.pattern = \"^data:[a-zA-Z0-9\\/\\+\\-\\.]+(?:;filename=[^;]+)?;base64,[A-Za-z0-9+/=]+$\" then context put(variables.parameter.value, \"items\", context put(variables.parameter.value.items, \"format\", \"byte\")) else variables.parameter.value"
+                            }
+                          },
+                          "conditions": {
+                            "if": "FEEL: variables.parameter.value.items.type != \"object\""
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": {
+                            "execute": [
+                              {
+                                "library": "@digipair/skill-basic",
+                                "element": "transform",
+                                "properties": {
+                                  "value": {
+                                    "key": "FEEL: item.key",
+                                    "value": "FEEL: if item.value.pattern = \"^data:[a-zA-Z0-9\\/\\+\\-\\.]+(?:;filename=[^;]+)?;base64,[A-Za-z0-9+/=]+$\" then context put(item.value, \"format\", \"byte\") else item.value"
+                                  }
+                                },
+                                "conditions": {
+                                  "each": "FEEL: get entries(variables.parameter.value.items.properties)"
+                                }
+                              },
+                              {
+                                "library": "@digipair/skill-basic",
+                                "element": "transform",
+                                "properties": {
+                                  "value": {
+                                    "name": "FEEL: variables.parameter.key",
+                                    "required": "FEEL: list contains(variables.tool.inputSchema.required, variables.parameter.key)",
+                                    "summary": "FEEL: variables.parameter.key",
+                                    "schema": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": "FEEL: context(previous)"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "conditions": {
+                            "if": "FEEL: variables.parameter.value.items.type = \"object\""
+                          }
+                        }
+                      ]
+                    },
+                    "conditions": {
+                      "if": "FEEL: variables.parameter.value.type = \"array\""
+                    }
+                  }
+                ]
+              },
+              "conditions": {
+                "each": "FEEL: get entries(variables.tool.inputSchema.properties)"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": {
+                  "key": "/{{variables.tool.name}}",
+                  "value": {
+                    "post": {
+                      "tags": ["service"],
+                      "x-context": "FEEL: if variables.tool.annotations.readOnlyHint = true then false else true",
+                      "x-events": [],
+                      "summary": "FEEL: variables.tool.title",
+                      "description": "FEEL: variables.tool.description",
+                      "parameters": "FEEL: previous"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "conditions": { "each": "FEEL: previous.tools" }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "openapi": "3.0.0",
+            "info": {
+              "title": "digipair:{{request.digipair}}",
+              "summary": "{{variables.digipair.name}}",
+              "description": "{{variables.digipair.description}}",
+              "version": "1.0.0",
+              "x-icon": "🤖"
+            },
+            "paths": "FEEL: context(previous)",
+            "x-scene-blocks": {}
+          }
+        }
+      }
+    ]
+  },
+  "pins": []
+}
