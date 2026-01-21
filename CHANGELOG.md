@@ -1,3 +1,13 @@
+## 0.125.1 (2026-01-21)
+
+### 🚀 Features
+
+- add gettext in skill-pdf ([28f1aebf](https://github.com/digipair/digipair/commit/28f1aebf))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.125.0 (2026-01-21)
 
 ### 🚀 Features
