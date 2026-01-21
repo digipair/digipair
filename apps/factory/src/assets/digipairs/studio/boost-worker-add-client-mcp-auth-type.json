@@ -1,6 +1,6 @@
 {
-  "description": "Adding a digipair from a MCP.",
-  "summary": "Adding a digipair from a MCP.",
+  "description": "Adding a digipair from a MCP with client credentials.",
+  "summary": "Adding a digipair from a MCP with client credentials.",
   "library": "@digipair/skill-chatbot",
   "element": "boost",
   "metadata": {
@@ -103,8 +103,9 @@
             "library": "@digipair/skill-editor",
             "element": "addDigipair",
             "properties": {
-              "template": "worker-client-mcp-apikey",
+              "template": "worker-client-mcp-auth-type",
               "data": {
+                "authType": "apikey",
                 "digipair": "FEEL: request.body.inputs[1].value.digipair",
                 "name": "FEEL: request.body.inputs[1].value.name",
                 "description": "FEEL: request.body.inputs[1].value.description",
@@ -112,6 +113,30 @@
                 "key": "API_KEY"
               },
               "digipair": "FEEL: request.body.inputs[1].value.digipair"
+            },
+            "conditions": {
+              "if": "FEEL: request.body.context.authType = \"apikey\""
+            }
+          },
+          {
+            "library": "@digipair/skill-editor",
+            "element": "addDigipair",
+            "properties": {
+              "template": "worker-client-mcp-auth-type",
+              "data": {
+                "authType": "client-credentials",
+                "digipair": "FEEL: request.body.inputs[1].value.digipair",
+                "name": "FEEL: request.body.inputs[1].value.name",
+                "description": "FEEL: request.body.inputs[1].value.description",
+                "api": "FEEL: request.body.prompt",
+                "tokenUrl": "TOKEN_URL",
+                "clientId": "CLIENT_ID",
+                "clientSecret": "CLIENT_SECRET"
+              },
+              "digipair": "FEEL: request.body.inputs[1].value.digipair"
+            },
+            "conditions": {
+              "if": "FEEL: request.body.context.authType = \"client-credentials\""
             }
           },
           {

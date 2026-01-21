@@ -1,0 +1,71 @@
+{
+  "name": "<%= name %>",
+  "description": "<%= description %>",
+  "metadata": {
+    "primary": "#51E0DC",
+    "textPrimary": "#242E3B",
+    "secondary": "#242E3B",
+    "textSecondary": "#FFFFFF"
+  },
+  "libraries": {
+    "@digipair/skill-basic": "latest",
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-debug": "latest",
+    "@digipair/skill-tool": "latest",
+    "@digipair/skill-client-mcp": "latest"
+  },
+  "roles": {
+    "digipair:role-worker-client-mcp": "latest"
+  },
+  "variables": {},
+  "privates": {
+    <% if (authType === 'apikey') { %>
+    "CLIENT_MCP": [
+      {
+        "library": "@digipair/skill-client-mcp",
+        "element": "StreamableHTTPClient",
+        "properties": {
+          "url": "<%= api %>",
+          "options": {
+            "requestInit": {
+              "headers": {
+                "Authorization": "Bearer <%= key %>"
+              }
+            }
+          }
+        }
+      }
+    ]
+    <% } else if (authType === 'client-credentials') { %>
+    "CLIENT_MCP": [
+      {
+        "library": "@digipair/skill-http",
+        "element": "request",
+        "properties": {
+          "path": "<%= tokenUrl %>",
+          "body": {
+            "grant_type": "client_credentials",
+            "client_id": "<%= clientId %>",
+            "client_secret": "<%= clientSecret %>"
+          },
+          "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+          "method": "POST"
+        }
+      },
+      {
+        "library": "@digipair/skill-client-mcp",
+        "element": "StreamableHTTPClient",
+        "properties": {
+          "url": "<%= api %>",
+          "options": {
+            "requestInit": {
+              "headers": { "Authorization": "Bearer {{previous.access_token}}" }
+            }
+          }
+        }
+      }
+    ]
+    <% } %>
+  },
+  "digipair": "<%= digipair %>"
+}

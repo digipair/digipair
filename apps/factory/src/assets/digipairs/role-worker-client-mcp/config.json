@@ -1,0 +1,19 @@
+{
+  "name": "Role worker MCP client",
+  "description": "Role worker MCP client",
+  "metadata": {},
+  "libraries": {
+    "@digipair/skill-basic": "latest",
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-debug": "latest",
+    "@digipair/skill-worker": "latest",
+    "@digipair/skill-client-mcp": "latest",
+    "@digipair/skill-factory": "latest",
+    "@digipair/skill-editor": "latest"
+  },
+  "roles": { "digipair:role-worker": "latest" },
+  "variables": {},
+  "privates": {},
+  "digipair": "role-worker-client-mcp",
+  "id": "config"
+}
