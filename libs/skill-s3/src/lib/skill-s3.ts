@@ -50,7 +50,7 @@ class S3Service {
     return `data:${response.ContentType};base64,${base64}`;
   }
 
-  async delete(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+  async remove(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { bucket, key, config = context.privates.S3_CONFIG } = params;
 
     const client = this.getClient(config);
@@ -80,7 +80,7 @@ export const download = (params: any, pinsSettingsList: PinsSettings[], context:
   service.download(params, pinsSettingsList, context);
 
 export const remove = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  service.delete(params, pinsSettingsList, context);
+  service.remove(params, pinsSettingsList, context);
 
 export const list = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   service.list(params, pinsSettingsList, context);
