@@ -1,3 +1,13 @@
+## 0.125.3 (2026-01-27)
+
+### 🩹 Fixes
+
+- s3 delete to remove ([6d65c660](https://github.com/digipair/digipair/commit/6d65c660))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.125.2 (2026-01-21)
 
 This was a version bump only, there were no code changes.
