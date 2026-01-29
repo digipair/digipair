@@ -44,6 +44,29 @@ class TemporalService {
     worker.run();
   }
 
+  private removeProtectedRecursively(obj: any): any {
+    if (obj === null || typeof obj !== 'object') {
+      return obj;
+    }
+
+    if (Array.isArray(obj)) {
+      return obj.map(item => this.removeProtectedRecursively(item));
+    }
+
+    const result = { ...obj };
+    if ('protected' in result) {
+      result.protected = undefined;
+    }
+
+    for (const key in result) {
+      if (result.hasOwnProperty(key) && typeof result[key] === 'object' && result[key] !== null) {
+        result[key] = this.removeProtectedRecursively(result[key]);
+      }
+    }
+
+    return result;
+  }
+
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
     const prefix =
@@ -65,7 +88,14 @@ class TemporalService {
     };
 
     this.client.start(workflowJob, {
-      args: [{ steps, context: { ...context, protected: undefined, requester: { ...context.requester, protected: undefined } }, data, options: workflowOptions }],
+      args: [
+        {
+          steps,
+          context: this.removeProtectedRecursively(context),
+          data,
+          options: workflowOptions,
+        },
+      ],
       taskQueue,
       workflowId: `${prefix}${id}`,
     });
@@ -98,7 +128,9 @@ class TemporalService {
       process.env['TEMPORAL_PREFIX'] ??
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
 
-    const workflowIterator = this.client.list({ query: `(WorkflowId > '${prefix}' and WorkflowId < '${prefix}~') and (${query})` });
+    const workflowIterator = this.client.list({
+      query: `(WorkflowId > '${prefix}' and WorkflowId < '${prefix}~') and (${query})`,
+    });
     const workflows = [] as WorkflowExecutionInfo[];
     for await (const workflow of workflowIterator) {
       workflows.push(workflow);
