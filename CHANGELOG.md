@@ -1,3 +1,13 @@
+## 0.125.4 (2026-01-29)
+
+### 🚀 Features
+
+- fix temporal deep protected data in context ([7a03668c](https://github.com/digipair/digipair/commit/7a03668c))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.125.3 (2026-01-27)
 
 ### 🩹 Fixes
