@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-nuki",
-  "version": "0.126.0",
+  "version": "0.127.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

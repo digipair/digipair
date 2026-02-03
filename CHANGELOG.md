@@ -1,3 +1,13 @@
+## 0.127.0 (2026-02-03)
+
+### 🚀 Features
+
+- improve http with base64 output ([86534d3f](https://github.com/digipair/digipair/commit/86534d3f))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.126.0 (2026-02-03)
 
 ### 🚀 Features
