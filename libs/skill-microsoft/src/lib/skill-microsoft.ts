@@ -10,6 +10,8 @@ class MicrosoftService {
   private OAUTH_CLIENT_ID: string;
   private OAUTH_CLIENT_SECRET: string;
   private TENANT_ID: string;
+  private AUTH_TYPE: 'ClientCredential' | 'RefreshToken';
+  private REFRESH_TOKEN?: string;
 
   constructor(context: any, params: any) {
     this.OAUTH_CLIENT_ID =
@@ -24,9 +26,11 @@ class MicrosoftService {
       params?.TENANT_ID ??
       context.privates.MICROSOFT_TENANT_ID ??
       process.env['MICROSOFT_TENANT_ID'];
+    this.AUTH_TYPE = params?.AUTH_TYPE ?? 'ClientCredential';
+    this.REFRESH_TOKEN = params?.REFRESH_TOKEN ?? context.privates.MICROSOFT_REFRESH_TOKEN ?? process.env['MICROSOFT_REFRESH_TOKEN'];
   }
 
-  private async getAccessToken() {
+  private async getAccessToken(authType: 'ClientCredential' | 'RefreshToken' = 'ClientCredential', refreshToken?: string) {
     // Configuration MSAL
     const config = {
       auth: {
@@ -37,13 +41,26 @@ class MicrosoftService {
     };
     const cca = new msal.ConfidentialClientApplication(config);
 
-    const clientCredentialRequest = {
-      scopes: ['https://graph.microsoft.com/.default'],
-    };
-
     try {
-      const response: any = await cca.acquireTokenByClientCredential(clientCredentialRequest);
-      return response.accessToken;
+      if (authType === 'ClientCredential') {
+        const clientCredentialRequest = {
+          scopes: ['https://graph.microsoft.com/.default'],
+        };
+        const response: any = await cca.acquireTokenByClientCredential(clientCredentialRequest);
+        return response.accessToken;
+      } else if (authType === 'RefreshToken') {
+        if (!refreshToken) {
+          throw new Error('[SKILL-MICROSOFT] RefreshToken is required for RefreshToken auth type');
+        }
+        const refreshTokenRequest = {
+          refreshToken: refreshToken,
+          scopes: ['https://graph.microsoft.com/.default'],
+        };
+        const response: any = await cca.acquireTokenByRefreshToken(refreshTokenRequest);
+        return response.accessToken;
+      } else {
+        throw new Error(`[SKILL-MICROSOFT] Unsupported auth type: ${authType}`);
+      }
     } catch (error) {
       console.error(`[SKILL-MICROSOFT] ACCESS TOKEN FAILED : ${error}`);
       throw error;
@@ -51,7 +68,7 @@ class MicrosoftService {
   }
 
   async call(url: string, method: string, version: string, data: any, headers: any, signal: AbortSignal) {
-    const accessToken = await this.getAccessToken();
+    const accessToken = await this.getAccessToken(this.AUTH_TYPE, this.REFRESH_TOKEN);
 
     const response = await fetch(`${API_ENDPOINT}/${version}/${url}`, {
       signal,
