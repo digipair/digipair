@@ -52,6 +52,10 @@ class HttpService {
       } else {
         result = await responseText;
       }
+    } else if (this.type === 'base64') {
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      result = 'data:' + response.headers.get('content-type') + ';base64,' + buffer.toString('base64');
     } else {
       const arrayBuffer = await response.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);

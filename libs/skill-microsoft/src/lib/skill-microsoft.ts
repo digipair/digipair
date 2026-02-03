@@ -27,7 +27,7 @@ class MicrosoftService {
       context.privates.MICROSOFT_TENANT_ID ??
       process.env['MICROSOFT_TENANT_ID'];
     this.AUTH_TYPE = params?.AUTH_TYPE ?? 'ClientCredential';
-    this.REFRESH_TOKEN = params?.REFRESH_TOKEN ?? context.privates.MICROSOFT_REFRESH_TOKEN ?? process.env['MICROSOFT_REFRESH_TOKEN'];
+    this.REFRESH_TOKEN = params?.REFRESH_TOKEN;
   }
 
   private async getAccessToken(authType: 'ClientCredential' | 'RefreshToken' = 'ClientCredential', refreshToken?: string) {
