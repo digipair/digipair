@@ -1,3 +1,13 @@
+## 0.126.0 (2026-02-03)
+
+### 🚀 Features
+
+- add refresh token  for micosoft ([a846ce10](https://github.com/digipair/digipair/commit/a846ce10))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.125.4 (2026-01-29)
 
 ### 🚀 Features
