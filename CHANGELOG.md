@@ -1,3 +1,13 @@
+## 0.127.1 (2026-02-09)
+
+### 🩹 Fixes
+
+- request request ([bcd0b164](https://github.com/digipair/digipair/commit/bcd0b164))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.127.0 (2026-02-03)
 
 ### 🚀 Features
