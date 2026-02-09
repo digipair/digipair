@@ -199,9 +199,9 @@ class WebService {
 
     const path = context.protected.req.path.replace(/\/$/g, '');
     const baseUrl =
-      (context.request.headers['x-forwarded-proto'] ?? context.protected.req.protocol) +
+      (context.protected.req.headers['x-forwarded-proto'] ?? context.protected.req.protocol) +
       '://' +
-      context.request.headers.host +
+      context.protected.req.headers.host +
       (context.request.params.length <= 0 || context.request.params[0] === ''
         ? path
         : path.substring(0, path.length - context.request.params.join('/').length - 1)) +
@@ -274,7 +274,9 @@ class WebService {
       }, 1);
 
       window.addEventListener('beforeunload', (event) => {
-        const showConfirmationMessage = applyTemplate('FEEL:' + ${JSON.stringify(confirmBeforeUnload)}, context);
+        const showConfirmationMessage = applyTemplate('FEEL:' + ${JSON.stringify(
+          confirmBeforeUnload,
+        )}, context);
 
         if (showConfirmationMessage) {
           event.preventDefault();

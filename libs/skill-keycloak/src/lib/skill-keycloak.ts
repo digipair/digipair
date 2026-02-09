@@ -271,8 +271,8 @@ class KeycloakService {
       );
       const pinsSettingsList = pinsSettings.properties?.['execute'] || [];
       const token =
-        /^Bearer /g.test(context.request.headers.authorization) &&
-        context.request.headers.authorization?.replace(/^Bearer /g, '');
+        /^Bearer /g.test(context.protected.req.headers.authorization) &&
+        context.protected.req.headers.authorization?.replace(/^Bearer /g, '');
 
       if (token) {
         context.keycloak = {
@@ -280,7 +280,7 @@ class KeycloakService {
           decodedToken: await this.decodedToken(
             url,
             realm,
-            context.request.headers.authorization.replace(/^Bearer /, ''),
+            context.protected.req.headers.authorization.replace(/^Bearer /, ''),
             context.protected?.signal,
           ),
         };
@@ -312,9 +312,9 @@ class KeycloakService {
 
     const path = context.protected.req.path.replace(/\/$/g, '');
     const baseUrl =
-      (context.request.headers['x-forwarded-proto'] ?? context.protected.req.protocol) +
+      (context.protected.req.headers['x-forwarded-proto'] ?? context.protected.req.protocol) +
       '://' +
-      context.request.headers.host +
+      context.protected.req.headers.host +
       (context.request.params.length <= 0 || context.request.params[0] === ''
         ? path
         : path.substring(0, path.length - context.request.params.join('/').length - 1)) +
@@ -432,7 +432,9 @@ class KeycloakService {
       }, 1);
 
       window.addEventListener('beforeunload', (event) => {
-        const showConfirmationMessage = applyTemplate('FEEL:' + ${JSON.stringify(confirmBeforeUnload)}, context);
+        const showConfirmationMessage = applyTemplate('FEEL:' + ${JSON.stringify(
+          confirmBeforeUnload,
+        )}, context);
 
         if (showConfirmationMessage) {
           event.preventDefault();
@@ -457,8 +459,8 @@ class KeycloakService {
       realm = context.privates.KEYCLOAK_REALM,
     } = params;
     const token =
-      /^Bearer /g.test(context.request.headers.authorization) &&
-      context.request.headers.authorization?.replace(/^Bearer /g, '');
+      /^Bearer /g.test(context.protected.req.headers.authorization) &&
+      context.protected.req.headers.authorization?.replace(/^Bearer /g, '');
 
     if (token) {
       context.keycloak = {
@@ -466,7 +468,7 @@ class KeycloakService {
         decodedToken: await this.decodedToken(
           url,
           realm,
-          context.request.headers.authorization.replace(/^Bearer /, ''),
+          context.protected.req.headers.authorization.replace(/^Bearer /, ''),
           context.protected?.signal,
         ),
       };
@@ -498,8 +500,8 @@ class KeycloakService {
       realm = context.privates.KEYCLOAK_REALM,
     } = params;
     const token =
-      /^Bearer /g.test(context.request.headers.authorization) &&
-      context.request.headers.authorization?.replace(/^Bearer /g, '');
+      /^Bearer /g.test(context.protected.req.headers.authorization) &&
+      context.protected.req.headers.authorization?.replace(/^Bearer /g, '');
 
     if (token) {
       context.keycloak = {
@@ -507,7 +509,7 @@ class KeycloakService {
         decodedToken: await this.decodedToken(
           url,
           realm,
-          context.request.headers.authorization.replace(/^Bearer /, ''),
+          context.protected.req.headers.authorization.replace(/^Bearer /, ''),
           context.protected?.signal,
         ),
       };
