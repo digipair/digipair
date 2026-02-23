@@ -30,6 +30,6 @@
     "name": "skill-s3"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "3.377.0"
+    "@aws-sdk/client-s3": "3.995.0"
   }
 }
