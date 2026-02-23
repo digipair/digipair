@@ -118,7 +118,7 @@ export class AppService implements OnModuleInit {
       const skillTemporal = require('@digipair/skill-temporal');
 
       if (process.env.TEMPORAL_CLUSTER_HOST) {
-        skillTemporal.initialize();
+        skillTemporal.initialize(process.env.TEMPORAL_CLUSTER_HOST);
       }
     } catch (error) {
       console.error(error);
