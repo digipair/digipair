@@ -534,6 +534,67 @@
           }
         }
       }
+    },
+    "/count": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Compter les documents correspondant aux critères de recherche",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection à la base de données",
+            "required": false,
+            "description": "Client de connexion à la base de données",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options de recherche",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Nom de la collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "summary": "Filtre",
+            "required": true,
+            "description": "Filtre de recherche",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Nombre de documents correspondant aux critères de recherche",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Nombre de documents"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
