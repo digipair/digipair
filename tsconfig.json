@@ -224,6 +224,9 @@
     },
     {
       "path": "./libs/skill-marked"
+    },
+    {
+      "path": "./skill-kafka"
     }
   ]
 }
