@@ -4,10 +4,13 @@
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.lib.json"
+      "path": "../skill-logger"
     },
     {
-      "path": "./tsconfig.spec.json"
+      "path": "../engine"
+    },
+    {
+      "path": "./tsconfig.lib.json"
     }
   ]
 }

@@ -17,11 +17,11 @@ class KafkaService {
   }
 
   async produce(params: any, _pins: PinsSettings[], context: any) {
-    const { kafkaClient = context.privates.CLIENT_KAFKA, topic, messages } = params;
-    const kafkaInstance = await executePinsList(kafkaClient, context, `${context.__PATH__}.kafkaClient`);
+    const { client = context.privates.CLIENT_KAFKA, topic, messages } = params;
+    const kafkaInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
 
     await producer.connect();
-    await producer.send({ topic, messages });
+    await producer.send({ topic, messages });v
     await producer.disconnect();
   }
 }
