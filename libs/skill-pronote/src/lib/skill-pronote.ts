@@ -12,10 +12,10 @@ import { CourseDay, CourseResource } from './shared/timetable';
 
 class PronoteService {
   async connection(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
-    const { url, login, password } = params;
+    const { pronoteURL, username, password } = params;
     return new Pronote('', {
-      pronoteURL: url,
-      username: login,
+      pronoteURL,
+      username,
       password,
       deviceUUID: '74cc9a22-37ce-4789-998d-c736d54555a4',
     });

@@ -14,7 +14,7 @@
         "summary": "Créer une connexion Pronote",
         "parameters": [
           {
-            "name": "url",
+            "name": "pronoteURL",
             "summary": "URL Pronote",
             "required": true,
             "description": "URL de l'instance Pronote",
@@ -23,10 +23,10 @@
             }
           },
           {
-            "name": "login",
+            "name": "username",
             "summary": "Nom d'utilisateur",
             "required": true,
-            "description": "Nom d'utilisateur ou identifiant de l'étudiant",
+            "description": "Nom d'utilisateur",
             "schema": {
               "type": "string"
             }
@@ -763,32 +763,40 @@
     "schemas": {
       "Homework": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Devoir scolaire",
         "description": "Représente un devoir avec ses détails, pièces jointes et statut de completion",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID devoir",
             "description": "Identifiant unique pour le devoir"
           },
           "subject": {
             "type": "string",
+            "summary": "Nom matière",
             "description": "La matière du devoir"
           },
           "content": {
             "type": "string",
+            "summary": "Contenu devoir",
             "description": "Le contenu ou la description du devoir en HTML"
           },
           "dueDate": {
             "type": "string",
             "format": "date",
+            "summary": "Date échéance",
             "description": "La date d'échéance du devoir"
           },
           "isDone": {
             "type": "boolean",
+            "summary": "Statut terminé",
             "description": "Indique si le devoir a été terminé"
           },
           "returnFormat": {
             "type": "string",
             "enum": ["PAPER", "FILE_UPLOAD"],
+            "summary": "Format rendu",
             "description": "Le format dans lequel le devoir doit être rendu"
           },
           "attachments": {
@@ -796,18 +804,22 @@
             "items": {
               "$ref": "#/components/schemas/Attachment"
             },
+            "summary": "Pièces jointes",
             "description": "Liste des pièces jointes liées au devoir"
           },
           "evaluation": {
             "type": "boolean",
+            "summary": "Indicateur évaluation",
             "description": "Indique si le devoir fait l'objet d'une évaluation"
           },
           "custom": {
             "type": "boolean",
+            "summary": "Devoir personnalisé",
             "description": "Indique si le devoir est personnalisé ou prédéfini"
           },
           "progress": {
             "type": "number",
+            "summary": "Pourcentage progression",
             "description": "Pourcentage de progression de la completion du devoir"
           }
         },
@@ -815,23 +827,29 @@
       },
       "News": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Actualité de l'école",
         "description": "Représente un élément d'actualité de l'école avec contenu et statut d'acquittement",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID actualité",
             "description": "Identifiant unique pour l'élément d'actualité"
           },
           "title": {
             "type": "string",
+            "summary": "Titre actualité",
             "description": "Le titre de l'élément d'actualité"
           },
           "createdAt": {
             "type": "string",
             "format": "date",
+            "summary": "Date création",
             "description": "La date de création de l'élément d'actualité"
           },
           "acknowledged": {
             "type": "boolean",
+            "summary": "Statut acquittement",
             "description": "Indique si l'élément d'actualité a été acquitté par l'utilisateur"
           },
           "attachments": {
@@ -839,18 +857,22 @@
             "items": {
               "$ref": "#/components/schemas/Attachment"
             },
+            "summary": "Pièces jointes actualité",
             "description": "Liste des pièces jointes liées à l'élément d'actualité"
           },
           "content": {
             "type": "string",
+            "summary": "Contenu actualité",
             "description": "Le contenu ou la description de l'élément d'actualité en HTML"
           },
           "author": {
             "type": "string",
+            "summary": "Nom auteur",
             "description": "L'auteur de l'élément d'actualité"
           },
           "category": {
             "type": "string",
+            "summary": "Catégorie actualité",
             "description": "La catégorie de l'élément d'actualité"
           }
         },
@@ -858,24 +880,30 @@
       },
       "Period": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Période académique",
         "description": "Représente une période académique avec dates de début et de fin",
         "properties": {
           "name": {
             "type": "string",
+            "summary": "Nom période",
             "description": "Nom de la période"
           },
           "id": {
             "type": "string",
+            "summary": "ID période",
             "description": "Identifiant unique pour la période"
           },
           "start": {
             "type": "string",
             "format": "date",
+            "summary": "Date début",
             "description": "Date de début de la période"
           },
           "end": {
             "type": "string",
             "format": "date",
+            "summary": "Date fin",
             "description": "Date de fin de la période"
           }
         },
@@ -883,14 +911,18 @@
       },
       "PeriodGrades": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Notes de période",
         "description": "Contient toutes les notes et moyennes pour une période académique spécifique",
         "properties": {
           "studentOverall": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Moyenne étudiant",
             "description": "Moyenne générale de l'étudiant pour la période"
           },
           "classAverage": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Moyenne classe",
             "description": "Moyenne de classe pour la période"
           },
           "subjects": {
@@ -898,6 +930,7 @@
             "items": {
               "$ref": "#/components/schemas/Subject"
             },
+            "summary": "Notes matières",
             "description": "Liste des matières avec leurs notes"
           },
           "modules": {
@@ -905,10 +938,12 @@
             "items": {
               "$ref": "#/components/schemas/Subject"
             },
+            "summary": "Notes modules",
             "description": "Liste des modules avec leurs notes"
           },
           "rank": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Rang classe",
             "description": "Rang de l'étudiant dans la classe"
           }
         },
@@ -916,34 +951,43 @@
       },
       "Subject": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Matière scolaire",
         "description": "Représente une matière scolaire avec notes et moyennes",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID matière",
             "description": "Identifiant unique pour la matière"
           },
           "name": {
             "type": "string",
+            "summary": "Nom matière",
             "description": "Nom de la matière"
           },
           "studentAverage": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Moyenne étudiant",
             "description": "Moyenne de l'étudiant dans cette matière"
           },
           "classAverage": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Moyenne classe",
             "description": "Moyenne de classe dans cette matière"
           },
           "maximum": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Note maximale",
             "description": "Note maximale dans cette matière"
           },
           "minimum": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Note minimale",
             "description": "Note minimale dans cette matière"
           },
           "outOf": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Total points",
             "description": "Total de points possibles dans cette matière"
           },
           "grades": {
@@ -951,14 +995,17 @@
             "items": {
               "$ref": "#/components/schemas/Grade"
             },
+            "summary": "Notes individuelles",
             "description": "Notes individuelles dans cette matière"
           },
           "credits": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Crédits obtenus",
             "description": "Crédits obtenus dans cette matière"
           },
           "rank": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Rang matière",
             "description": "Rang de l'étudiant dans cette matière"
           }
         },
@@ -966,71 +1013,89 @@
       },
       "Grade": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Note individuelle",
         "description": "Représente une note individuelle avec détails sur l'évaluation",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID note",
             "description": "Identifiant unique pour la note"
           },
           "subjectId": {
             "type": "string",
+            "summary": "ID matière",
             "description": "ID de la matière à laquelle cette note appartient"
           },
           "subjectName": {
             "type": "string",
+            "summary": "Nom matière",
             "description": "Nom de la matière"
           },
           "description": {
             "type": "string",
+            "summary": "Description évaluation",
             "description": "Description de l'évaluation"
           },
           "givenAt": {
             "type": "string",
             "format": "date",
+            "summary": "Date note",
             "description": "Date à laquelle la note a été attribuée"
           },
           "subjectFile": {
             "$ref": "#/components/schemas/Attachment",
+            "summary": "Fichier matière",
             "description": "Pièce jointe liée à la matière"
           },
           "correctionFile": {
             "$ref": "#/components/schemas/Attachment",
+            "summary": "Fichier correction",
             "description": "Fichier de correction en pièce jointe"
           },
           "bonus": {
             "type": "boolean",
+            "summary": "Note bonus",
             "description": "Si c'est une note bonus"
           },
           "optional": {
             "type": "boolean",
+            "summary": "Note optionnelle",
             "description": "Si cette note est optionnelle"
           },
           "outOf": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Score maximum",
             "description": "Score maximum possible"
           },
           "coefficient": {
             "type": "number",
+            "summary": "Coefficient note",
             "description": "Coefficient de pondération de cette note"
           },
           "studentScore": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Score étudiant",
             "description": "Score de l'étudiant à cette évaluation"
           },
           "averageScore": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Score moyen",
             "description": "Score moyen de la classe"
           },
           "minScore": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Score minimum",
             "description": "Score minimum de la classe"
           },
           "maxScore": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Score maximum",
             "description": "Score maximum de la classe"
           },
           "rank": {
             "$ref": "#/components/schemas/GradeScore",
+            "summary": "Rang étudiant",
             "description": "Rang de l'étudiant pour cette évaluation"
           }
         },
@@ -1038,22 +1103,28 @@
       },
       "GradeScore": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Valeur de note",
         "description": "Représente un score ou une valeur de note avec métadonnées supplémentaires",
         "properties": {
           "value": {
             "type": "number",
+            "summary": "Valeur score",
             "description": "La valeur numérique du score"
           },
           "outOf": {
             "type": "number",
+            "summary": "Valeur maximale",
             "description": "Valeur maximale possible pour ce score"
           },
           "status": {
             "type": "string",
+            "summary": "Statut score",
             "description": "Statut du score (ex: absent, excusé)"
           },
           "disabled": {
             "type": "boolean",
+            "summary": "Statut désactivé",
             "description": "Si le score est désactivé ou invalide"
           }
         },
@@ -1061,6 +1132,8 @@
       },
       "Attendance": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Données d'assiduité",
         "description": "Contient les données d'assiduité incluant retards, absences, punitions et observations",
         "properties": {
           "delays": {
@@ -1068,6 +1141,7 @@
             "items": {
               "$ref": "#/components/schemas/Delay"
             },
+            "summary": "Enregistrements retards",
             "description": "Liste des retards enregistrés"
           },
           "absences": {
@@ -1075,6 +1149,7 @@
             "items": {
               "$ref": "#/components/schemas/Absence"
             },
+            "summary": "Enregistrements absences",
             "description": "Liste des absences enregistrées"
           },
           "punishments": {
@@ -1082,6 +1157,7 @@
             "items": {
               "$ref": "#/components/schemas/Punishment"
             },
+            "summary": "Enregistrements punitions",
             "description": "Liste des punitions enregistrées"
           },
           "observations": {
@@ -1089,6 +1165,7 @@
             "items": {
               "$ref": "#/components/schemas/Observation"
             },
+            "summary": "Enregistrements observations",
             "description": "Liste des observations enregistrées"
           }
         },
@@ -1096,27 +1173,34 @@
       },
       "Delay": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Retard d'élève",
         "description": "Représente un retard enregistré avec statut de justification",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID retard",
             "description": "Identifiant unique pour le retard"
           },
           "givenAt": {
             "type": "string",
             "format": "date",
+            "summary": "Date occurrence",
             "description": "Date et heure auxquelles le retard s'est produit"
           },
           "reason": {
             "type": "string",
+            "summary": "Raison retard",
             "description": "Raison du retard"
           },
           "justified": {
             "type": "boolean",
+            "summary": "Statut justifié",
             "description": "Si le retard est justifié"
           },
           "duration": {
             "type": "number",
+            "summary": "Durée retard",
             "description": "Durée du retard en minutes"
           }
         },
@@ -1124,32 +1208,40 @@
       },
       "Absence": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Absence d'élève",
         "description": "Représente une absence enregistrée avec période de temps et justification",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID absence",
             "description": "Identifiant unique pour l'absence"
           },
           "from": {
             "type": "string",
             "format": "date",
+            "summary": "Heure début",
             "description": "Date et heure de début de l'absence"
           },
           "to": {
             "type": "string",
             "format": "date",
+            "summary": "Heure fin",
             "description": "Date et heure de fin de l'absence"
           },
           "reason": {
             "type": "string",
+            "summary": "Raison absence",
             "description": "Raison de l'absence"
           },
           "timeMissed": {
             "type": "number",
+            "summary": "Temps manqué",
             "description": "Temps manqué en minutes"
           },
           "justified": {
             "type": "boolean",
+            "summary": "Statut justifié",
             "description": "Si l'absence est justifiée"
           }
         },
@@ -1157,27 +1249,34 @@
       },
       "Punishment": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Punition disciplinaire",
         "description": "Représente une punition disciplinaire avec détails et pièces jointes",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID punition",
             "description": "Identifiant unique pour la punition"
           },
           "givenAt": {
             "type": "string",
             "format": "date",
+            "summary": "Date donnée",
             "description": "Date à laquelle la punition a été donnée"
           },
           "givenBy": {
             "type": "string",
+            "summary": "Donnée par",
             "description": "Personne qui a donné la punition"
           },
           "exclusion": {
             "type": "boolean",
+            "summary": "Indicateur exclusion",
             "description": "Si cela implique une exclusion"
           },
           "duringLesson": {
             "type": "boolean",
+            "summary": "Pendant cours",
             "description": "Si la punition a lieu pendant les heures de cours"
           },
           "homework": {
@@ -1185,6 +1284,7 @@
             "properties": {
               "text": {
                 "type": "string",
+                "summary": "Texte devoir",
                 "description": "Texte du devoir assigné comme punition"
               },
               "documents": {
@@ -1192,6 +1292,7 @@
                 "items": {
                   "$ref": "#/components/schemas/Attachment"
                 },
+                "summary": "Documents devoir",
                 "description": "Documents liés au devoir"
               }
             },
@@ -1202,10 +1303,12 @@
             "properties": {
               "text": {
                 "type": "string",
+                "summary": "Texte raison",
                 "description": "Raison de la punition"
               },
               "circumstances": {
                 "type": "string",
+                "summary": "Circonstances",
                 "description": "Circonstances ayant mené à la punition"
               },
               "documents": {
@@ -1213,6 +1316,7 @@
                 "items": {
                   "$ref": "#/components/schemas/Attachment"
                 },
+                "summary": "Documents support",
                 "description": "Documents de support"
               }
             },
@@ -1220,10 +1324,12 @@
           },
           "nature": {
             "type": "string",
+            "summary": "Nature punition",
             "description": "Nature ou type de la punition"
           },
           "duration": {
             "type": "number",
+            "summary": "Durée punition",
             "description": "Durée de la punition en minutes"
           }
         },
@@ -1231,36 +1337,45 @@
       },
       "Observation": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Observation comportementale",
         "description": "Représente une observation comportementale ou note",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID observation",
             "description": "Identifiant unique pour l'observation"
           },
           "givenAt": {
             "type": "string",
             "format": "date",
+            "summary": "Date observation",
             "description": "Date à laquelle l'observation a été faite"
           },
           "sectionName": {
             "type": "string",
+            "summary": "Nom section",
             "description": "Nom de la section où l'observation a été faite"
           },
           "sectionType": {
             "type": "string",
             "enum": ["LogBookIssue", "Observation", "Encouragement", "Other"],
+            "summary": "Type section",
             "description": "Type d'observation"
           },
           "subjectName": {
             "type": "string",
+            "summary": "Nom matière",
             "description": "Matière liée à l'observation"
           },
           "shouldParentsJustify": {
             "type": "boolean",
+            "summary": "Parents justifier",
             "description": "Si les parents doivent justifier cette observation"
           },
           "reason": {
             "type": "string",
+            "summary": "Raison observation",
             "description": "Raison de l'observation"
           }
         },
@@ -1268,19 +1383,24 @@
       },
       "CanteenMenu": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Menu quotidien de la cantine",
         "description": "Représente un menu quotidien de la cantine avec repas",
         "properties": {
           "date": {
             "type": "string",
             "format": "date",
+            "summary": "Date menu",
             "description": "Date du menu"
           },
           "lunch": {
             "$ref": "#/components/schemas/Meal",
+            "summary": "Repas midi",
             "description": "Détails du repas de midi"
           },
           "dinner": {
             "$ref": "#/components/schemas/Meal",
+            "summary": "Repas soir",
             "description": "Détails du repas du soir"
           }
         },
@@ -1288,6 +1408,8 @@
       },
       "Meal": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Repas avec plats",
         "description": "Représente un repas avec différentes catégories de plats",
         "properties": {
           "entry": {
@@ -1295,6 +1417,7 @@
             "items": {
               "$ref": "#/components/schemas/Food"
             },
+            "summary": "Plats entrée",
             "description": "Plats d'entrée"
           },
           "main": {
@@ -1302,6 +1425,7 @@
             "items": {
               "$ref": "#/components/schemas/Food"
             },
+            "summary": "Plats principaux",
             "description": "Plats principaux"
           },
           "side": {
@@ -1309,6 +1433,7 @@
             "items": {
               "$ref": "#/components/schemas/Food"
             },
+            "summary": "Accompagnements",
             "description": "Accompagnements"
           },
           "cheese": {
@@ -1316,6 +1441,7 @@
             "items": {
               "$ref": "#/components/schemas/Food"
             },
+            "summary": "Options fromage",
             "description": "Options de fromage"
           },
           "dessert": {
@@ -1323,6 +1449,7 @@
             "items": {
               "$ref": "#/components/schemas/Food"
             },
+            "summary": "Options dessert",
             "description": "Options de dessert"
           },
           "drink": {
@@ -1330,6 +1457,7 @@
             "items": {
               "$ref": "#/components/schemas/Food"
             },
+            "summary": "Options boisson",
             "description": "Options de boisson"
           }
         },
@@ -1337,10 +1465,13 @@
       },
       "Food": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Élément alimentaire",
         "description": "Représente un élément alimentaire avec informations sur les allergènes",
         "properties": {
           "name": {
             "type": "string",
+            "summary": "Nom aliment",
             "description": "Nom de l'élément alimentaire"
           },
           "allergens": {
@@ -1348,6 +1479,7 @@
             "items": {
               "type": "string"
             },
+            "summary": "Allergènes aliment",
             "description": "Liste des allergènes présents dans l'aliment"
           }
         },
@@ -1355,11 +1487,14 @@
       },
       "CourseDay": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Planning quotidien des cours",
         "description": "Représente une journée avec cours programmés",
         "properties": {
           "date": {
             "type": "string",
             "format": "date",
+            "summary": "Date cours",
             "description": "Date de la journée de cours"
           },
           "courses": {
@@ -1367,6 +1502,7 @@
             "items": {
               "$ref": "#/components/schemas/Course"
             },
+            "summary": "Cours quotidiens",
             "description": "Liste des cours programmés pour cette journée"
           }
         },
@@ -1374,66 +1510,82 @@
       },
       "Course": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Cours programmé",
         "description": "Représente un cours programmé avec heure, lieu et détails",
         "properties": {
           "subject": {
             "type": "string",
+            "summary": "Nom matière",
             "description": "Nom de la matière du cours"
           },
           "id": {
             "type": "string",
+            "summary": "ID cours",
             "description": "Identifiant unique pour le cours"
           },
           "type": {
             "type": "string",
             "enum": ["LESSON", "ACTIVITY", "DETENTION", "VACATION"],
+            "summary": "Type cours",
             "description": "Type de cours"
           },
           "from": {
             "type": "string",
             "format": "date-time",
+            "summary": "Heure début",
             "description": "Heure de début du cours"
           },
           "to": {
             "type": "string",
             "format": "date-time",
+            "summary": "Heure fin",
             "description": "Heure de fin du cours"
           },
           "additionalInfo": {
             "type": "string",
+            "summary": "Infos supplémentaires",
             "description": "Informations supplémentaires sur le cours"
           },
           "room": {
             "type": "string",
+            "summary": "Localisation salle",
             "description": "Salle où le cours a lieu"
           },
           "teacher": {
             "type": "string",
+            "summary": "Nom enseignant",
             "description": "Enseignant qui donne le cours"
           },
           "group": {
             "type": "string",
+            "summary": "Nom groupe",
             "description": "Groupe ou classe qui assiste au cours"
           },
           "backgroundColor": {
             "type": "string",
+            "summary": "Couleur fond",
             "description": "Couleur de fond pour l'affichage"
           },
           "status": {
             "type": "string",
             "enum": ["CANCELED", "EDITED", "ONLINE", "EVALUATED"],
+            "summary": "Statut cours",
             "description": "Statut du cours"
           },
           "customStatus": {
             "type": "string",
+            "summary": "Statut personnalisé",
             "description": "Description de statut personnalisé"
           },
           "url": {
             "type": "string",
+            "summary": "URL cours",
             "description": "URL liée au cours (ex: lien de réunion en ligne)"
           },
           "resourceId": {
             "type": "string",
+            "summary": "ID ressource",
             "description": "ID des ressources attachées à ce cours"
           }
         },
@@ -1441,18 +1593,23 @@
       },
       "CourseResource": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Ressources éducatives du cours",
         "description": "Représente des ressources éducatives attachées à un cours",
         "properties": {
           "title": {
             "type": "string",
+            "summary": "Titre ressource",
             "description": "Titre de la ressource"
           },
           "description": {
             "type": "string",
+            "summary": "Description ressource",
             "description": "Description de la ressource"
           },
           "category": {
             "type": "number",
+            "summary": "Catégorie ressource",
             "description": "Numéro de catégorie de la ressource"
           },
           "attachments": {
@@ -1460,6 +1617,7 @@
             "items": {
               "$ref": "#/components/schemas/Attachment"
             },
+            "summary": "Fichiers ressource",
             "description": "Pièces jointes de fichiers pour cette ressource"
           }
         },
@@ -1467,27 +1625,34 @@
       },
       "Chat": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Conversation de chat",
         "description": "Représente une conversation de chat ou fil de discussion",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID chat",
             "description": "Identifiant unique pour le chat"
           },
           "subject": {
             "type": "string",
+            "summary": "Sujet chat",
             "description": "Sujet ou titre du chat"
           },
           "recipient": {
             "type": "string",
+            "summary": "Nom destinataire",
             "description": "Destinataire du chat"
           },
           "creator": {
             "type": "string",
+            "summary": "Nom créateur",
             "description": "Créateur du chat"
           },
           "date": {
             "type": "string",
             "format": "date",
+            "summary": "Date création",
             "description": "Date de création du chat"
           }
         },
@@ -1495,18 +1660,23 @@
       },
       "Recipient": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Destinataire de message",
         "description": "Représente une personne pouvant recevoir des messages",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID destinataire",
             "description": "Identifiant unique pour le destinataire"
           },
           "name": {
             "type": "string",
+            "summary": "Nom destinataire",
             "description": "Nom du destinataire"
           },
           "class": {
             "type": "string",
+            "summary": "Classe destinataire",
             "description": "Classe ou rôle du destinataire"
           }
         },
@@ -1514,27 +1684,34 @@
       },
       "Message": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Message de chat",
         "description": "Représente un message dans une conversation de chat",
         "properties": {
           "id": {
             "type": "string",
+            "summary": "ID message",
             "description": "Identifiant unique pour le message"
           },
           "content": {
             "type": "string",
+            "summary": "Contenu message",
             "description": "Contenu du message"
           },
           "author": {
             "type": "string",
+            "summary": "Auteur message",
             "description": "Auteur du message"
           },
           "subject": {
             "type": "string",
+            "summary": "Sujet message",
             "description": "Sujet du message"
           },
           "date": {
             "type": "string",
             "format": "date",
+            "summary": "Date message",
             "description": "Date d'envoi du message"
           },
           "attachments": {
@@ -1542,6 +1719,7 @@
             "items": {
               "$ref": "#/components/schemas/Attachment"
             },
+            "summary": "Pièces jointes message",
             "description": "Pièces jointes incluses avec le message"
           }
         },
@@ -1549,22 +1727,28 @@
       },
       "Attachment": {
         "type": "object",
+        "tags": ["service"],
+        "summary": "Pièce jointe de fichier",
         "description": "Représente une pièce jointe de fichier",
         "properties": {
           "name": {
             "type": "string",
+            "summary": "Nom fichier",
             "description": "Nom du fichier joint"
           },
           "url": {
             "type": "string",
+            "summary": "URL fichier",
             "description": "URL pour accéder à la pièce jointe"
           },
           "size": {
             "type": "number",
+            "summary": "Taille fichier",
             "description": "Taille de la pièce jointe en octets"
           },
           "type": {
             "type": "string",
+            "summary": "Type fichier",
             "description": "Type MIME de la pièce jointe"
           }
         },
