@@ -13,11 +13,11 @@ export async function refreshPronoteAccount(
 ): Promise<{ auth: Auth; session: SessionHandle }> {
   const session = createSessionHandle();
   await loginCredentials(session, {
-    url: credentials.pronoteURL as string, // https://0333273d.index-education.net/pronote
+    url: credentials.pronoteURL as string,
     kind: AccountKind.STUDENT,
-    username: credentials.username as string, // agathe.buils@gmail.com
-    password: credentials.password as string, // Agathe325?
-    deviceUUID: credentials.deviceUUID as string, // 74cc9a22-37ce-4789-998d-c736d54555a4
+    username: credentials.username as string,
+    password: credentials.password as string,
+    deviceUUID: credentials.deviceUUID as string,
   });
 
   return {
