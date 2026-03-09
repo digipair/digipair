@@ -1,0 +1,1576 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-pronote",
+    "summary": "Intégration de la plateforme éducative Pronote",
+    "description": "Cette compétence fournit des fonctions pour interagir avec la plateforme éducative Pronote, permettant l'accès aux données étudiantes, notes, devoirs, emplois du temps et plus encore.",
+    "version": "0.1.0",
+    "x-icon": "🎓"
+  },
+  "paths": {
+    "/connection": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Créer une connexion Pronote",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL Pronote",
+            "required": true,
+            "description": "URL de l'instance Pronote",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "login",
+            "summary": "Nom d'utilisateur",
+            "required": true,
+            "description": "Nom d'utilisateur ou identifiant de l'étudiant",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "summary": "Mot de passe",
+            "required": true,
+            "description": "Mot de passe de l'étudiant",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion Pronote établie avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Instance Pronote pour d'autres opérations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getHomeworks": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les devoirs de l'étudiant",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "weekNumber",
+            "summary": "Numéro de semaine",
+            "required": false,
+            "description": "Numéro de semaine pour récupérer les devoirs",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des devoirs pour la période spécifiée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Homework"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getNews": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les actualités de l'école",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des actualités de l'école",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/News"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getGradesForPeriod": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les notes pour une période spécifique",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "period",
+            "summary": "Période",
+            "required": true,
+            "description": "La période académique pour récupérer les notes",
+            "schema": {
+              "$ref": "#/components/schemas/Period"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Données de notes pour la période spécifiée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeriodGrades"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getGradesPeriods": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les périodes de notation disponibles",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des périodes académiques disponibles pour les notes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Period"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAttendanceForPeriod": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les données d'assiduité pour une période",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "period",
+            "summary": "Période",
+            "required": true,
+            "description": "La période pour récupérer les données d'assiduité",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Données d'assiduité pour la période spécifiée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attendance"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAttendancePeriods": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les périodes d'assiduité disponibles",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des périodes disponibles pour les données d'assiduité",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Period"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getWeeklyCanteenMenu": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir le menu de la cantine hebdomadaire",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "startDate",
+            "summary": "Date de début",
+            "required": true,
+            "description": "Date de début pour la semaine de récupération du menu de la cantine",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Menu hebdomadaire de la cantine à partir de la date spécifiée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CanteenMenu"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getWeeklyTimetable": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir l'emploi du temps hebdomadaire",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "weekNumber",
+            "summary": "Numéro de semaine",
+            "required": false,
+            "description": "Numéro de semaine pour récupérer l'emploi du temps",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "date",
+            "summary": "Date",
+            "required": false,
+            "description": "Date spécifique dans la semaine",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Données de l'emploi du temps hebdomadaire avec les cours pour chaque jour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseDay"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getCourseResources": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les ressources d'un cours",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "course",
+            "summary": "Cours",
+            "required": true,
+            "description": "Le cours pour lequel récupérer les ressources",
+            "schema": {
+              "$ref": "#/components/schemas/Course"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des ressources attachées au cours spécifié",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getChats": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les conversations de chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des conversations de chat disponibles pour l'étudiant",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chat"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getChatRecipients": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les destinataires d'un chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "chat",
+            "summary": "Chat",
+            "required": true,
+            "description": "La conversation de chat pour laquelle obtenir les destinataires",
+            "schema": {
+              "$ref": "#/components/schemas/Chat"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des destinataires dans le chat spécifié",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recipient"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getChatMessages": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les messages d'un chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "chat",
+            "summary": "Chat",
+            "required": true,
+            "description": "La conversation de chat pour laquelle obtenir les messages",
+            "schema": {
+              "$ref": "#/components/schemas/Chat"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des messages dans le chat spécifié",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Message"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getRecipientsAvailableForNewChat": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Obtenir les destinataires disponibles pour un nouveau chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Liste des destinataires disponibles pour démarrer un nouveau chat",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recipient"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sendMessageInChat": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Envoyer un message dans un chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "chat",
+            "summary": "Chat",
+            "required": true,
+            "description": "La conversation de chat dans laquelle envoyer le message",
+            "schema": {
+              "$ref": "#/components/schemas/Chat"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Contenu du message",
+            "required": true,
+            "description": "Le contenu du message à envoyer",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message envoyé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/setNewsAsAcknowledged": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Marquer une actualité comme acquittée",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "news",
+            "summary": "Élément d'actualité",
+            "required": true,
+            "description": "L'élément d'actualité à marquer comme acquitté",
+            "schema": {
+              "$ref": "#/components/schemas/News"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Élément d'actualité marqué comme acquitté",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/News"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/setHomeworkCompletion": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Définir le statut de completion d'un devoir",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "homework",
+            "summary": "Devoir",
+            "required": true,
+            "description": "Le devoir pour lequel mettre à jour le statut de completion",
+            "schema": {
+              "$ref": "#/components/schemas/Homework"
+            }
+          },
+          {
+            "name": "state",
+            "summary": "État de completion",
+            "required": false,
+            "description": "Si le devoir est terminé (true) ou non (false)",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Statut de completion du devoir mis à jour",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Homework"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createMail": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Créer un nouveau mail/chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Connexion Pronote",
+            "required": false,
+            "description": "Instance de connexion Pronote (utilise context.privates.PRONOTE si non fourni)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "subject",
+            "summary": "Sujet",
+            "required": true,
+            "description": "Sujet du mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Contenu",
+            "required": true,
+            "description": "Contenu du mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "recipients",
+            "summary": "Destinataires",
+            "required": true,
+            "description": "Liste des destinataires pour le mail",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Recipient"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Mail créé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Homework": {
+        "type": "object",
+        "description": "Représente un devoir avec ses détails, pièces jointes et statut de completion",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour le devoir"
+          },
+          "subject": {
+            "type": "string",
+            "description": "La matière du devoir"
+          },
+          "content": {
+            "type": "string",
+            "description": "Le contenu ou la description du devoir en HTML"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date",
+            "description": "La date d'échéance du devoir"
+          },
+          "isDone": {
+            "type": "boolean",
+            "description": "Indique si le devoir a été terminé"
+          },
+          "returnFormat": {
+            "type": "string",
+            "enum": ["PAPER", "FILE_UPLOAD"],
+            "description": "Le format dans lequel le devoir doit être rendu"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "description": "Liste des pièces jointes liées au devoir"
+          },
+          "evaluation": {
+            "type": "boolean",
+            "description": "Indique si le devoir fait l'objet d'une évaluation"
+          },
+          "custom": {
+            "type": "boolean",
+            "description": "Indique si le devoir est personnalisé ou prédéfini"
+          },
+          "progress": {
+            "type": "number",
+            "description": "Pourcentage de progression de la completion du devoir"
+          }
+        },
+        "required": ["id", "subject", "content", "dueDate", "isDone", "attachments", "evaluation", "custom"]
+      },
+      "News": {
+        "type": "object",
+        "description": "Représente un élément d'actualité de l'école avec contenu et statut d'acquittement",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour l'élément d'actualité"
+          },
+          "title": {
+            "type": "string",
+            "description": "Le titre de l'élément d'actualité"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "La date de création de l'élément d'actualité"
+          },
+          "acknowledged": {
+            "type": "boolean",
+            "description": "Indique si l'élément d'actualité a été acquitté par l'utilisateur"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "description": "Liste des pièces jointes liées à l'élément d'actualité"
+          },
+          "content": {
+            "type": "string",
+            "description": "Le contenu ou la description de l'élément d'actualité en HTML"
+          },
+          "author": {
+            "type": "string",
+            "description": "L'auteur de l'élément d'actualité"
+          },
+          "category": {
+            "type": "string",
+            "description": "La catégorie de l'élément d'actualité"
+          }
+        },
+        "required": ["id", "createdAt", "acknowledged", "attachments", "content", "author", "category"]
+      },
+      "Period": {
+        "type": "object",
+        "description": "Représente une période académique avec dates de début et de fin",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de la période"
+          },
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour la période"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de début de la période"
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de fin de la période"
+          }
+        },
+        "required": ["name", "start", "end"]
+      },
+      "PeriodGrades": {
+        "type": "object",
+        "description": "Contient toutes les notes et moyennes pour une période académique spécifique",
+        "properties": {
+          "studentOverall": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Moyenne générale de l'étudiant pour la période"
+          },
+          "classAverage": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Moyenne de classe pour la période"
+          },
+          "subjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            },
+            "description": "Liste des matières avec leurs notes"
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            },
+            "description": "Liste des modules avec leurs notes"
+          },
+          "rank": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Rang de l'étudiant dans la classe"
+          }
+        },
+        "required": ["studentOverall", "classAverage", "subjects"]
+      },
+      "Subject": {
+        "type": "object",
+        "description": "Représente une matière scolaire avec notes et moyennes",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour la matière"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nom de la matière"
+          },
+          "studentAverage": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Moyenne de l'étudiant dans cette matière"
+          },
+          "classAverage": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Moyenne de classe dans cette matière"
+          },
+          "maximum": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Note maximale dans cette matière"
+          },
+          "minimum": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Note minimale dans cette matière"
+          },
+          "outOf": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Total de points possibles dans cette matière"
+          },
+          "grades": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Grade"
+            },
+            "description": "Notes individuelles dans cette matière"
+          },
+          "credits": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Crédits obtenus dans cette matière"
+          },
+          "rank": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Rang de l'étudiant dans cette matière"
+          }
+        },
+        "required": ["id", "name", "studentAverage", "classAverage", "outOf"]
+      },
+      "Grade": {
+        "type": "object",
+        "description": "Représente une note individuelle avec détails sur l'évaluation",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour la note"
+          },
+          "subjectId": {
+            "type": "string",
+            "description": "ID de la matière à laquelle cette note appartient"
+          },
+          "subjectName": {
+            "type": "string",
+            "description": "Nom de la matière"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description de l'évaluation"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "description": "Date à laquelle la note a été attribuée"
+          },
+          "subjectFile": {
+            "$ref": "#/components/schemas/Attachment",
+            "description": "Pièce jointe liée à la matière"
+          },
+          "correctionFile": {
+            "$ref": "#/components/schemas/Attachment",
+            "description": "Fichier de correction en pièce jointe"
+          },
+          "bonus": {
+            "type": "boolean",
+            "description": "Si c'est une note bonus"
+          },
+          "optional": {
+            "type": "boolean",
+            "description": "Si cette note est optionnelle"
+          },
+          "outOf": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Score maximum possible"
+          },
+          "coefficient": {
+            "type": "number",
+            "description": "Coefficient de pondération de cette note"
+          },
+          "studentScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Score de l'étudiant à cette évaluation"
+          },
+          "averageScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Score moyen de la classe"
+          },
+          "minScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Score minimum de la classe"
+          },
+          "maxScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Score maximum de la classe"
+          },
+          "rank": {
+            "$ref": "#/components/schemas/GradeScore",
+            "description": "Rang de l'étudiant pour cette évaluation"
+          }
+        },
+        "required": ["id", "subjectId", "subjectName", "description", "outOf", "coefficient"]
+      },
+      "GradeScore": {
+        "type": "object",
+        "description": "Représente un score ou une valeur de note avec métadonnées supplémentaires",
+        "properties": {
+          "value": {
+            "type": "number",
+            "description": "La valeur numérique du score"
+          },
+          "outOf": {
+            "type": "number",
+            "description": "Valeur maximale possible pour ce score"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut du score (ex: absent, excusé)"
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Si le score est désactivé ou invalide"
+          }
+        },
+        "required": ["value"]
+      },
+      "Attendance": {
+        "type": "object",
+        "description": "Contient les données d'assiduité incluant retards, absences, punitions et observations",
+        "properties": {
+          "delays": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Delay"
+            },
+            "description": "Liste des retards enregistrés"
+          },
+          "absences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Absence"
+            },
+            "description": "Liste des absences enregistrées"
+          },
+          "punishments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Punishment"
+            },
+            "description": "Liste des punitions enregistrées"
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Observation"
+            },
+            "description": "Liste des observations enregistrées"
+          }
+        },
+        "required": ["delays", "absences", "punishments", "observations"]
+      },
+      "Delay": {
+        "type": "object",
+        "description": "Représente un retard enregistré avec statut de justification",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour le retard"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "description": "Date et heure auxquelles le retard s'est produit"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Raison du retard"
+          },
+          "justified": {
+            "type": "boolean",
+            "description": "Si le retard est justifié"
+          },
+          "duration": {
+            "type": "number",
+            "description": "Durée du retard en minutes"
+          }
+        },
+        "required": ["id", "givenAt", "justified", "duration"]
+      },
+      "Absence": {
+        "type": "object",
+        "description": "Représente une absence enregistrée avec période de temps et justification",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour l'absence"
+          },
+          "from": {
+            "type": "string",
+            "format": "date",
+            "description": "Date et heure de début de l'absence"
+          },
+          "to": {
+            "type": "string",
+            "format": "date",
+            "description": "Date et heure de fin de l'absence"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Raison de l'absence"
+          },
+          "timeMissed": {
+            "type": "number",
+            "description": "Temps manqué en minutes"
+          },
+          "justified": {
+            "type": "boolean",
+            "description": "Si l'absence est justifiée"
+          }
+        },
+        "required": ["id", "from", "to", "timeMissed", "justified"]
+      },
+      "Punishment": {
+        "type": "object",
+        "description": "Représente une punition disciplinaire avec détails et pièces jointes",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour la punition"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "description": "Date à laquelle la punition a été donnée"
+          },
+          "givenBy": {
+            "type": "string",
+            "description": "Personne qui a donné la punition"
+          },
+          "exclusion": {
+            "type": "boolean",
+            "description": "Si cela implique une exclusion"
+          },
+          "duringLesson": {
+            "type": "boolean",
+            "description": "Si la punition a lieu pendant les heures de cours"
+          },
+          "homework": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Texte du devoir assigné comme punition"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Attachment"
+                },
+                "description": "Documents liés au devoir"
+              }
+            },
+            "required": ["text", "documents"]
+          },
+          "reason": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Raison de la punition"
+              },
+              "circumstances": {
+                "type": "string",
+                "description": "Circonstances ayant mené à la punition"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Attachment"
+                },
+                "description": "Documents de support"
+              }
+            },
+            "required": ["text", "circumstances", "documents"]
+          },
+          "nature": {
+            "type": "string",
+            "description": "Nature ou type de la punition"
+          },
+          "duration": {
+            "type": "number",
+            "description": "Durée de la punition en minutes"
+          }
+        },
+        "required": ["id", "givenAt", "givenBy", "exclusion", "duringLesson", "homework", "reason", "nature", "duration"]
+      },
+      "Observation": {
+        "type": "object",
+        "description": "Représente une observation comportementale ou note",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour l'observation"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "description": "Date à laquelle l'observation a été faite"
+          },
+          "sectionName": {
+            "type": "string",
+            "description": "Nom de la section où l'observation a été faite"
+          },
+          "sectionType": {
+            "type": "string",
+            "enum": ["LogBookIssue", "Observation", "Encouragement", "Other"],
+            "description": "Type d'observation"
+          },
+          "subjectName": {
+            "type": "string",
+            "description": "Matière liée à l'observation"
+          },
+          "shouldParentsJustify": {
+            "type": "boolean",
+            "description": "Si les parents doivent justifier cette observation"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Raison de l'observation"
+          }
+        },
+        "required": ["id", "givenAt", "sectionName", "sectionType", "shouldParentsJustify"]
+      },
+      "CanteenMenu": {
+        "type": "object",
+        "description": "Représente un menu quotidien de la cantine avec repas",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date du menu"
+          },
+          "lunch": {
+            "$ref": "#/components/schemas/Meal",
+            "description": "Détails du repas de midi"
+          },
+          "dinner": {
+            "$ref": "#/components/schemas/Meal",
+            "description": "Détails du repas du soir"
+          }
+        },
+        "required": ["date"]
+      },
+      "Meal": {
+        "type": "object",
+        "description": "Représente un repas avec différentes catégories de plats",
+        "properties": {
+          "entry": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "description": "Plats d'entrée"
+          },
+          "main": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "description": "Plats principaux"
+          },
+          "side": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "description": "Accompagnements"
+          },
+          "cheese": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "description": "Options de fromage"
+          },
+          "dessert": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "description": "Options de dessert"
+          },
+          "drink": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "description": "Options de boisson"
+          }
+        },
+        "required": ["entry"]
+      },
+      "Food": {
+        "type": "object",
+        "description": "Représente un élément alimentaire avec informations sur les allergènes",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de l'élément alimentaire"
+          },
+          "allergens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Liste des allergènes présents dans l'aliment"
+          }
+        },
+        "required": ["name"]
+      },
+      "CourseDay": {
+        "type": "object",
+        "description": "Représente une journée avec cours programmés",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de la journée de cours"
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Course"
+            },
+            "description": "Liste des cours programmés pour cette journée"
+          }
+        },
+        "required": ["date", "courses"]
+      },
+      "Course": {
+        "type": "object",
+        "description": "Représente un cours programmé avec heure, lieu et détails",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "Nom de la matière du cours"
+          },
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour le cours"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["LESSON", "ACTIVITY", "DETENTION", "VACATION"],
+            "description": "Type de cours"
+          },
+          "from": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Heure de début du cours"
+          },
+          "to": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Heure de fin du cours"
+          },
+          "additionalInfo": {
+            "type": "string",
+            "description": "Informations supplémentaires sur le cours"
+          },
+          "room": {
+            "type": "string",
+            "description": "Salle où le cours a lieu"
+          },
+          "teacher": {
+            "type": "string",
+            "description": "Enseignant qui donne le cours"
+          },
+          "group": {
+            "type": "string",
+            "description": "Groupe ou classe qui assiste au cours"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "description": "Couleur de fond pour l'affichage"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["CANCELED", "EDITED", "ONLINE", "EVALUATED"],
+            "description": "Statut du cours"
+          },
+          "customStatus": {
+            "type": "string",
+            "description": "Description de statut personnalisé"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL liée au cours (ex: lien de réunion en ligne)"
+          },
+          "resourceId": {
+            "type": "string",
+            "description": "ID des ressources attachées à ce cours"
+          }
+        },
+        "required": ["subject", "id", "type", "from", "to"]
+      },
+      "CourseResource": {
+        "type": "object",
+        "description": "Représente des ressources éducatives attachées à un cours",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Titre de la ressource"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description de la ressource"
+          },
+          "category": {
+            "type": "number",
+            "description": "Numéro de catégorie de la ressource"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "description": "Pièces jointes de fichiers pour cette ressource"
+          }
+        },
+        "required": ["category", "attachments"]
+      },
+      "Chat": {
+        "type": "object",
+        "description": "Représente une conversation de chat ou fil de discussion",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour le chat"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Sujet ou titre du chat"
+          },
+          "recipient": {
+            "type": "string",
+            "description": "Destinataire du chat"
+          },
+          "creator": {
+            "type": "string",
+            "description": "Créateur du chat"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de création du chat"
+          }
+        },
+        "required": ["id", "subject", "date"]
+      },
+      "Recipient": {
+        "type": "object",
+        "description": "Représente une personne pouvant recevoir des messages",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour le destinataire"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nom du destinataire"
+          },
+          "class": {
+            "type": "string",
+            "description": "Classe ou rôle du destinataire"
+          }
+        },
+        "required": ["id", "name"]
+      },
+      "Message": {
+        "type": "object",
+        "description": "Représente un message dans une conversation de chat",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifiant unique pour le message"
+          },
+          "content": {
+            "type": "string",
+            "description": "Contenu du message"
+          },
+          "author": {
+            "type": "string",
+            "description": "Auteur du message"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Sujet du message"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date d'envoi du message"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "description": "Pièces jointes incluses avec le message"
+          }
+        },
+        "required": ["id", "content", "author", "subject", "date", "attachments"]
+      },
+      "Attachment": {
+        "type": "object",
+        "description": "Représente une pièce jointe de fichier",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du fichier joint"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL pour accéder à la pièce jointe"
+          },
+          "size": {
+            "type": "number",
+            "description": "Taille de la pièce jointe en octets"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type MIME de la pièce jointe"
+          }
+        },
+        "required": ["name"]
+      }
+    }
+  },
+  "x-scene-blocks": {}
+}
