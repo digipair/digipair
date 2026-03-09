@@ -1,3 +1,14 @@
+## 0.129.2 (2026-03-09)
+
+### 🚀 Features
+
+- add pronote ([a589eaea](https://github.com/digipair/digipair/commit/a589eaea))
+- add pronote ([4af98424](https://github.com/digipair/digipair/commit/4af98424))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.129.1 (2026-03-09)
 
 This was a version bump only, there were no code changes.
