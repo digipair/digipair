@@ -32,12 +32,25 @@ class TemporalService {
       address,
     });
 
+    const defaultWorkerOptions = {
+      maxConcurrentWorkflowTaskExecutions: 5,
+      maxConcurrentActivityTaskExecutions: 3,
+      maxConcurrentWorkflowTaskPolls: 2,
+      maxConcurrentActivityTaskPolls: 2,
+      maxCachedWorkflows: 200,
+    };
+
+    const workerOptions = process.env.TEMPORAL_WORKER_OPTIONS
+      ? { ...defaultWorkerOptions, ...JSON.parse(process.env.TEMPORAL_WORKER_OPTIONS) }
+      : defaultWorkerOptions;
+
     const worker = await Worker.create({
       connection,
       namespace,
       workflowsPath: require.resolve('./workflows'),
       activities,
       taskQueue,
+      ...workerOptions
     });
 
     // Start accepting tasks from the Task Queue.
