@@ -94,6 +94,17 @@ class MongoDBService {
 
     return value;
   }
+
+  async count(params: any, _pins: PinsSettings[], context: any) {
+    const { client = context.privates.CLIENT_MONGODB, options = {}, collection, filter } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const instance = clientInstance.database.collection(collection);
+    const value = await instance.countDocuments(filter, options);
+
+    await clientInstance.client.close();
+
+    return value;
+  }
 }
 
 export const database = (params: any, pins: PinsSettings[], context: any) =>
@@ -110,3 +121,5 @@ export const updateOne = (params: any, pins: PinsSettings[], context: any) =>
   new MongoDBService().updateOne(params, pins, context);
 export const updateById = (params: any, pins: PinsSettings[], context: any) =>
   new MongoDBService().updateById(params, pins, context);
+export const count = (params: any, pins: PinsSettings[], context: any) =>
+  new MongoDBService().count(params, pins, context);

@@ -534,6 +534,67 @@
           }
         }
       }
+    },
+    "/count": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Count documents matching the search criteria",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Insert options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "document",
+            "summary": "Document",
+            "required": true,
+            "description": "Document to insert",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Documents count matching the search criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "description": "Documents count"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
