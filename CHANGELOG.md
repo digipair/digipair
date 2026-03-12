@@ -1,3 +1,7 @@
+## 0.0.9-local (2026-03-12)
+
+This was a version bump only, there were no code changes.
+
 ## 0.0.7-local (2026-03-12)
 
 This was a version bump only, there were no code changes.
