@@ -1,3 +1,13 @@
+## 0.130.0 (2026-03-12)
+
+### 🚀 Features
+
+- add count documents to mongodb skill ([#51](https://github.com/digipair/digipair/pull/51))
+
+### ❤️ Thank You
+
+- gestform-dev @gestform-dev
+
 ## 0.129.2 (2026-03-09)
 
 ### 🚀 Features
