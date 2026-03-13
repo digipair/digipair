@@ -67,7 +67,7 @@
         "tags": [
           "service"
         ],
-        "summary": "Produire un message Kafka",
+        "summary": "Produire des messages Kafka",
         "parameters": [
           {
             "name": "client",
@@ -84,7 +84,7 @@
           {
             "name": "topic",
             "summary": "Topic",
-            "required": false,
+            "required": true,
             "description": "Topic Kafka",
             "schema": {
               "type": "string"
@@ -165,6 +165,59 @@
             }
           }
         }
+      }
+    },
+    "/consume": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Consommer un message Kafka",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection aux broker Kafka",
+            "required": true,
+            "description": "Client de production/consommation de messages Kafka",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Commandes à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "groupId",
+            "summary": "groupId",
+            "required": true,
+            "description": "Group du consumer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topic",
+            "summary": "Topic",
+            "required": true,
+            "description": "Topic Kafka",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
       }
     }
   },
