@@ -149,6 +149,21 @@ class TemporalService {
 
     return workflows;
   }
+
+  async isRunning(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    try {
+      const handle = this.client.getHandle(`${prefix}${id}`);
+      const description = await handle.describe();
+      return description.status.name === 'RUNNING';
+    } catch (error) {
+      return false;
+    }
+  }
 }
 
 let instance: TemporalService;
@@ -170,3 +185,6 @@ export const terminate = (params: any, pinsSettingsList: PinsSettings[], context
 
 export const list = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.list(params, pinsSettingsList, context);
+
+export const isRunning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.isRunning(params, pinsSettingsList, context);

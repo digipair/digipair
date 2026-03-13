@@ -361,6 +361,40 @@
           }
         }
       }
+    },
+    "/isRunning": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Workflow en cours",
+        "description": "Workflow en cours",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Workflow ID",
+            "required": true,
+            "description": "Workflow ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Workflow en cours",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Workflow en cours"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
