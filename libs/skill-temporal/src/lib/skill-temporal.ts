@@ -4,7 +4,7 @@ import { PinsSettings } from '@digipair/engine';
 import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/client';
 import { NativeConnection, Worker } from '@temporalio/worker';
 
-import { dataSignal, workflow as workflowJob } from './workflows.js';
+import { dataSignal, stopSignal, workflow as workflowJob } from './workflows.js';
 import { namespace, taskQueue } from './shared.js';
 import * as activities from './activities.js';
 
@@ -68,7 +68,7 @@ class TemporalService {
   }
 
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
+    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {}, stopEventSteps= [] } = params;
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
@@ -94,6 +94,7 @@ class TemporalService {
           context: this.removeProtectedRecursively(context),
           data,
           options: workflowOptions,
+          stopEventSteps
         },
       ],
       taskQueue,
@@ -109,6 +110,16 @@ class TemporalService {
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
     const handle = this.client.getHandle(`${prefix}${id}`);
     await handle.signal(dataSignal, data);
+  }
+
+  async stopEvent(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    const handle = this.client.getHandle(`${prefix}${id}`);
+    await handle.signal(stopSignal);
   }
 
   async terminate(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -150,6 +161,9 @@ export const workflow = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const push = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.push(params, pinsSettingsList, context);
+
+export const stopEvent = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.stopEvent(params, pinsSettingsList, context);
 
 export const terminate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.terminate(params, pinsSettingsList, context);
