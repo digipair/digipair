@@ -463,7 +463,7 @@
           "name": "stopEventSteps",
           "summary": "Stop event steps",
           "required": false,
-          "description": "Temporal workflow stop steps",
+          "description": "Temporal workflow stop event steps",
           "schema": {
             "type": "array",
             "items": {
