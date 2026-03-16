@@ -140,7 +140,7 @@ class TemporalService {
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
 
     const workflowIterator = this.client.list({
-      query: `(WorkflowId > '${prefix}' and WorkflowId < '${prefix}~') and (${query})`,
+      query: `WorkflowId STARTS_WITH '${prefix}' AND (${query})`,
     });
     const workflows = [] as WorkflowExecutionInfo[];
     for await (const workflow of workflowIterator) {
