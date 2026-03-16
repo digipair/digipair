@@ -46,4 +46,10 @@ class KafkaService {
 
     return consumer;
   }
+
+  async consumerDisconnect(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { consumer } = params;
+
+    consumer.disconnect();
+  }
 }

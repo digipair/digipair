@@ -239,6 +239,32 @@
           }
         }
       }
+    },
+    "/consumerDisconnect": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Deconnecter un consumer",
+        "parameters": [
+          {
+            "name": "consumer",
+            "summary": "Consumer",
+            "required": true,
+            "description": "Consumer Kafka",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "disconnect()": {
+                  "type": "object",
+                  "description": "Méthode de déconnexion du consumer"
+                }
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {

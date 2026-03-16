@@ -239,6 +239,32 @@
           }
         }
       }
+    },
+    "/consumerDisconnect": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Disconnect a consumer",
+        "parameters": [
+          {
+            "name": "consumer",
+            "summary": "Consumer",
+            "required": true,
+            "description": "Kafka Consumer",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "disconnect()": {
+                  "type": "object",
+                  "description": "Consumer disconnect method"
+                }
+              }
+            }
+          }
+        ],
+        "x-events": []
+      }
     }
   },
   "components": {
