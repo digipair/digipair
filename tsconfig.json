@@ -226,7 +226,10 @@
       "path": "./libs/skill-marked"
     },
     {
-      "path": "./skill-kafka"
+      "path": "./libs/skill-kafka"
+    },
+    {
+      "path": "./libs/skill-pronote"
     }
   ]
 }

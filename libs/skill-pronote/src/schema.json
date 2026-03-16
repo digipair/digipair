@@ -1,0 +1,1971 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-pronote",
+    "summary": "Pronote educational platform integration",
+    "description": "This skill provides functions to interact with the Pronote educational platform, allowing access to student data, grades, homework, timetables, and more.",
+    "version": "0.1.0",
+    "x-icon": "🎓"
+  },
+  "paths": {
+    "/connection": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Create Pronote connection",
+        "parameters": [
+          {
+            "name": "pronoteURL",
+            "summary": "Pronote URL",
+            "required": true,
+            "description": "URL of the Pronote instance",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "summary": "Username",
+            "required": true,
+            "description": "Student username",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "summary": "Password",
+            "required": true,
+            "description": "Student password",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Pronote connection established successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Pronote instance for further operations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getHomeworks": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get student homeworks",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "weekNumber",
+            "summary": "Week number",
+            "required": false,
+            "description": "Week number to fetch homeworks for",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of homeworks for the specified period",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Homework"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getNews": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get school news",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of news items from the school",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/News"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getGradesForPeriod": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get grades for a specific period",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "period",
+            "summary": "Period",
+            "required": true,
+            "description": "The academic period to fetch grades for",
+            "schema": {
+              "$ref": "#/components/schemas/Period"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Grades data for the specified period",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PeriodGrades"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getGradesPeriods": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get available grade periods",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of available academic periods for grades",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Period"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAttendanceForPeriod": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get attendance data for a period",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "period",
+            "summary": "Period",
+            "required": true,
+            "description": "The period to fetch attendance data for",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Attendance data for the specified period",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attendance"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAttendancePeriods": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get available attendance periods",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of available periods for attendance data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Period"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getWeeklyCanteenMenu": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get weekly canteen menu",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "startDate",
+            "summary": "Start date",
+            "required": true,
+            "description": "Starting date for the week to fetch canteen menu",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Weekly canteen menu starting from the specified date",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CanteenMenu"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getWeeklyTimetable": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get weekly timetable",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "weekNumber",
+            "summary": "Week number",
+            "required": false,
+            "description": "Week number to fetch timetable for",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "date",
+            "summary": "Date",
+            "required": false,
+            "description": "Specific date within the week",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Weekly timetable data with courses for each day",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseDay"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getCourseResources": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get resources for a course",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "course",
+            "summary": "Course",
+            "required": true,
+            "description": "The course to fetch resources for",
+            "schema": {
+              "$ref": "#/components/schemas/Course"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of resources attached to the specified course",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getChats": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get chat conversations",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of chat conversations available to the student",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chat"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getChatRecipients": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get recipients in a chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "chat",
+            "summary": "Chat",
+            "required": true,
+            "description": "The chat conversation to get recipients for",
+            "schema": {
+              "$ref": "#/components/schemas/Chat"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of recipients in the specified chat",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recipient"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getChatMessages": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get messages in a chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "chat",
+            "summary": "Chat",
+            "required": true,
+            "description": "The chat conversation to get messages for",
+            "schema": {
+              "$ref": "#/components/schemas/Chat"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of messages in the specified chat",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Message"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getRecipientsAvailableForNewChat": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Get available recipients for new chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "List of recipients available to start a new chat with",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recipient"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sendMessageInChat": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Send message in chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "chat",
+            "summary": "Chat",
+            "required": true,
+            "description": "The chat conversation to send message to",
+            "schema": {
+              "$ref": "#/components/schemas/Chat"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Message content",
+            "required": true,
+            "description": "The content of the message to send",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Message sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/setNewsAsAcknowledged": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Mark news as acknowledged",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "news",
+            "summary": "News item",
+            "required": true,
+            "description": "The news item to mark as acknowledged",
+            "schema": {
+              "$ref": "#/components/schemas/News"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "News item marked as acknowledged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/News"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/setHomeworkCompletion": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Set homework completion status",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "homework",
+            "summary": "Homework",
+            "required": true,
+            "description": "The homework to update completion status for",
+            "schema": {
+              "$ref": "#/components/schemas/Homework"
+            }
+          },
+          {
+            "name": "state",
+            "summary": "Completion state",
+            "required": false,
+            "description": "Whether the homework is completed (true) or not (false)",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Homework completion status updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Homework"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createMail": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Create new mail/chat",
+        "parameters": [
+          {
+            "name": "connection",
+            "summary": "Pronote connection",
+            "required": false,
+            "description": "Pronote connection instance (uses context.privates.PRONOTE if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "subject",
+            "summary": "Subject",
+            "required": true,
+            "description": "Subject of the mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "content",
+            "summary": "Content",
+            "required": true,
+            "description": "Content of the mail",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "recipients",
+            "summary": "Recipients",
+            "required": true,
+            "description": "List of recipients for the mail",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Recipient"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Mail created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chat"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Homework": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Homework assignment",
+        "description": "Represents a homework assignment with its details, attachments, and completion status",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Homework ID",
+            "description": "Unique identifier for the homework"
+          },
+          "subject": {
+            "type": "string",
+            "summary": "Subject name",
+            "description": "The subject of the homework"
+          },
+          "content": {
+            "type": "string",
+            "summary": "Homework content",
+            "description": "The content or description of the homework in HTML"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date",
+            "summary": "Due date",
+            "description": "The date when the homework is due"
+          },
+          "isDone": {
+            "type": "boolean",
+            "summary": "Completion status",
+            "description": "Indicates whether the homework has been completed"
+          },
+          "returnFormat": {
+            "type": "string",
+            "enum": [
+              "PAPER",
+              "FILE_UPLOAD"
+            ],
+            "summary": "Return format",
+            "description": "The format in which the homework should be returned"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "summary": "File attachments",
+            "description": "List of attachments related to the homework"
+          },
+          "evaluation": {
+            "type": "boolean",
+            "summary": "Evaluation flag",
+            "description": "Indicates whether the homework is subject to evaluation"
+          },
+          "custom": {
+            "type": "boolean",
+            "summary": "Custom homework",
+            "description": "Indicates whether the homework is custom or predefined"
+          },
+          "progress": {
+            "type": "number",
+            "summary": "Progress percentage",
+            "description": "Progress percentage of the homework completion"
+          }
+        },
+        "required": [
+          "id",
+          "subject",
+          "content",
+          "dueDate",
+          "isDone",
+          "attachments",
+          "evaluation",
+          "custom"
+        ]
+      },
+      "News": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "School news item",
+        "description": "Represents a news item from the school with content and acknowledgment status",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "News ID",
+            "description": "Unique identifier for the news item"
+          },
+          "title": {
+            "type": "string",
+            "summary": "News title",
+            "description": "The title of the news item"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "summary": "Creation date",
+            "description": "The date when the news item was created"
+          },
+          "acknowledged": {
+            "type": "boolean",
+            "summary": "Acknowledgment status",
+            "description": "Indicates whether the news item has been acknowledged by the user"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "summary": "News attachments",
+            "description": "List of attachments related to the news item"
+          },
+          "content": {
+            "type": "string",
+            "summary": "News content",
+            "description": "The content or description of the news item in HTML"
+          },
+          "author": {
+            "type": "string",
+            "summary": "Author name",
+            "description": "The author of the news item"
+          },
+          "category": {
+            "type": "string",
+            "summary": "News category",
+            "description": "The category of the news item"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "acknowledged",
+          "attachments",
+          "content",
+          "author",
+          "category"
+        ]
+      },
+      "Period": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Academic period",
+        "description": "Represents an academic period with start and end dates",
+        "properties": {
+          "name": {
+            "type": "string",
+            "summary": "Period name",
+            "description": "Name of the period"
+          },
+          "id": {
+            "type": "string",
+            "summary": "Period ID",
+            "description": "Unique identifier for the period"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "summary": "Start date",
+            "description": "Start date of the period"
+          },
+          "end": {
+            "type": "string",
+            "format": "date",
+            "summary": "End date",
+            "description": "End date of the period"
+          }
+        },
+        "required": [
+          "name",
+          "start",
+          "end"
+        ]
+      },
+      "PeriodGrades": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Period grades data",
+        "description": "Contains all grades and averages for a specific academic period",
+        "properties": {
+          "studentOverall": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Student average",
+            "description": "Student's overall average for the period"
+          },
+          "classAverage": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Class average",
+            "description": "Class average for the period"
+          },
+          "subjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            },
+            "summary": "Subject grades",
+            "description": "List of subjects with their grades"
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            },
+            "summary": "Module grades",
+            "description": "List of modules with their grades"
+          },
+          "rank": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Class rank",
+            "description": "Student's rank in the class"
+          }
+        },
+        "required": [
+          "studentOverall",
+          "classAverage",
+          "subjects"
+        ]
+      },
+      "Subject": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "School subject",
+        "description": "Represents a school subject with grades and averages",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Subject ID",
+            "description": "Unique identifier for the subject"
+          },
+          "name": {
+            "type": "string",
+            "summary": "Subject name",
+            "description": "Name of the subject"
+          },
+          "studentAverage": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Student average",
+            "description": "Student's average in this subject"
+          },
+          "classAverage": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Class average",
+            "description": "Class average in this subject"
+          },
+          "maximum": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Maximum grade",
+            "description": "Maximum grade in this subject"
+          },
+          "minimum": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Minimum grade",
+            "description": "Minimum grade in this subject"
+          },
+          "outOf": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Total points",
+            "description": "Total points possible in this subject"
+          },
+          "grades": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Grade"
+            },
+            "summary": "Individual grades",
+            "description": "Individual grades in this subject"
+          },
+          "credits": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Credits earned",
+            "description": "Credits earned in this subject"
+          },
+          "rank": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Subject rank",
+            "description": "Student's rank in this subject"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "studentAverage",
+          "classAverage",
+          "outOf"
+        ]
+      },
+      "Grade": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Individual grade",
+        "description": "Represents an individual grade with details about the assessment",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Grade ID",
+            "description": "Unique identifier for the grade"
+          },
+          "subjectId": {
+            "type": "string",
+            "summary": "Subject ID",
+            "description": "ID of the subject this grade belongs to"
+          },
+          "subjectName": {
+            "type": "string",
+            "summary": "Subject name",
+            "description": "Name of the subject"
+          },
+          "description": {
+            "type": "string",
+            "summary": "Assessment description",
+            "description": "Description of the assessment"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "summary": "Grade date",
+            "description": "Date when the grade was given"
+          },
+          "subjectFile": {
+            "$ref": "#/components/schemas/Attachment",
+            "summary": "Subject file",
+            "description": "Attachment related to the subject"
+          },
+          "correctionFile": {
+            "$ref": "#/components/schemas/Attachment",
+            "summary": "Correction file",
+            "description": "Correction file attachment"
+          },
+          "bonus": {
+            "type": "boolean",
+            "summary": "Bonus grade",
+            "description": "Whether this is a bonus grade"
+          },
+          "optional": {
+            "type": "boolean",
+            "summary": "Optional grade",
+            "description": "Whether this grade is optional"
+          },
+          "outOf": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Maximum score",
+            "description": "Maximum possible score"
+          },
+          "coefficient": {
+            "type": "number",
+            "summary": "Grade weight",
+            "description": "Weight coefficient of this grade"
+          },
+          "studentScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Student score",
+            "description": "Student's score on this assessment"
+          },
+          "averageScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Average score",
+            "description": "Class average score"
+          },
+          "minScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Minimum score",
+            "description": "Minimum score in the class"
+          },
+          "maxScore": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Maximum score",
+            "description": "Maximum score in the class"
+          },
+          "rank": {
+            "$ref": "#/components/schemas/GradeScore",
+            "summary": "Student rank",
+            "description": "Student's rank for this assessment"
+          }
+        },
+        "required": [
+          "id",
+          "subjectId",
+          "subjectName",
+          "description",
+          "outOf",
+          "coefficient"
+        ]
+      },
+      "GradeScore": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Grade score value",
+        "description": "Represents a score or grade value with additional metadata",
+        "properties": {
+          "value": {
+            "type": "number",
+            "summary": "Score value",
+            "description": "The numerical value of the score"
+          },
+          "outOf": {
+            "type": "number",
+            "summary": "Maximum value",
+            "description": "Maximum possible value for this score"
+          },
+          "status": {
+            "type": "string",
+            "summary": "Score status",
+            "description": "Status of the score (e.g., absent, excused)"
+          },
+          "disabled": {
+            "type": "boolean",
+            "summary": "Disabled status",
+            "description": "Whether the score is disabled or invalid"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "Attendance": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Attendance data",
+        "description": "Contains attendance data including delays, absences, punishments, and observations",
+        "properties": {
+          "delays": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Delay"
+            },
+            "summary": "Delay records",
+            "description": "List of delays recorded"
+          },
+          "absences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Absence"
+            },
+            "summary": "Absence records",
+            "description": "List of absences recorded"
+          },
+          "punishments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Punishment"
+            },
+            "summary": "Punishment records",
+            "description": "List of punishments recorded"
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Observation"
+            },
+            "summary": "Observation records",
+            "description": "List of observations recorded"
+          }
+        },
+        "required": [
+          "delays",
+          "absences",
+          "punishments",
+          "observations"
+        ]
+      },
+      "Delay": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Student delay record",
+        "description": "Represents a recorded delay with justification status",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Delay ID",
+            "description": "Unique identifier for the delay"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "summary": "Occurrence date",
+            "description": "Date and time when the delay occurred"
+          },
+          "reason": {
+            "type": "string",
+            "summary": "Delay reason",
+            "description": "Reason for the delay"
+          },
+          "justified": {
+            "type": "boolean",
+            "summary": "Justified status",
+            "description": "Whether the delay is justified"
+          },
+          "duration": {
+            "type": "number",
+            "summary": "Delay duration",
+            "description": "Duration of the delay in minutes"
+          }
+        },
+        "required": [
+          "id",
+          "givenAt",
+          "justified",
+          "duration"
+        ]
+      },
+      "Absence": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Student absence record",
+        "description": "Represents a recorded absence with time period and justification",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Absence ID",
+            "description": "Unique identifier for the absence"
+          },
+          "from": {
+            "type": "string",
+            "format": "date",
+            "summary": "Start time",
+            "description": "Start date and time of the absence"
+          },
+          "to": {
+            "type": "string",
+            "format": "date",
+            "summary": "End time",
+            "description": "End date and time of the absence"
+          },
+          "reason": {
+            "type": "string",
+            "summary": "Absence reason",
+            "description": "Reason for the absence"
+          },
+          "timeMissed": {
+            "type": "number",
+            "summary": "Time missed",
+            "description": "Amount of time missed in minutes"
+          },
+          "justified": {
+            "type": "boolean",
+            "summary": "Justified status",
+            "description": "Whether the absence is justified"
+          }
+        },
+        "required": [
+          "id",
+          "from",
+          "to",
+          "timeMissed",
+          "justified"
+        ]
+      },
+      "Punishment": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Disciplinary punishment",
+        "description": "Represents a disciplinary punishment with details and attachments",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Punishment ID",
+            "description": "Unique identifier for the punishment"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "summary": "Given date",
+            "description": "Date when the punishment was given"
+          },
+          "givenBy": {
+            "type": "string",
+            "summary": "Given by",
+            "description": "Person who gave the punishment"
+          },
+          "exclusion": {
+            "type": "boolean",
+            "summary": "Exclusion flag",
+            "description": "Whether this involves exclusion"
+          },
+          "duringLesson": {
+            "type": "boolean",
+            "summary": "During lesson",
+            "description": "Whether the punishment is during lesson time"
+          },
+          "homework": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "summary": "Homework text",
+                "description": "Homework text assigned as punishment"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Attachment"
+                },
+                "summary": "Homework documents",
+                "description": "Documents related to the homework"
+              }
+            },
+            "required": [
+              "text",
+              "documents"
+            ]
+          },
+          "reason": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "summary": "Reason text",
+                "description": "Reason for the punishment"
+              },
+              "circumstances": {
+                "type": "string",
+                "summary": "Circumstances",
+                "description": "Circumstances leading to the punishment"
+              },
+              "documents": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Attachment"
+                },
+                "summary": "Supporting documents",
+                "description": "Supporting documents"
+              }
+            },
+            "required": [
+              "text",
+              "circumstances",
+              "documents"
+            ]
+          },
+          "nature": {
+            "type": "string",
+            "summary": "Punishment nature",
+            "description": "Nature or type of the punishment"
+          },
+          "duration": {
+            "type": "number",
+            "summary": "Punishment duration",
+            "description": "Duration of the punishment in minutes"
+          }
+        },
+        "required": [
+          "id",
+          "givenAt",
+          "givenBy",
+          "exclusion",
+          "duringLesson",
+          "homework",
+          "reason",
+          "nature",
+          "duration"
+        ]
+      },
+      "Observation": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Behavioral observation",
+        "description": "Represents a behavioral observation or note",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Observation ID",
+            "description": "Unique identifier for the observation"
+          },
+          "givenAt": {
+            "type": "string",
+            "format": "date",
+            "summary": "Observation date",
+            "description": "Date when the observation was made"
+          },
+          "sectionName": {
+            "type": "string",
+            "summary": "Section name",
+            "description": "Name of the section where observation was made"
+          },
+          "sectionType": {
+            "type": "string",
+            "enum": [
+              "LogBookIssue",
+              "Observation",
+              "Encouragement",
+              "Other"
+            ],
+            "summary": "Section type",
+            "description": "Type of observation"
+          },
+          "subjectName": {
+            "type": "string",
+            "summary": "Subject name",
+            "description": "Subject related to the observation"
+          },
+          "shouldParentsJustify": {
+            "type": "boolean",
+            "summary": "Parents justify",
+            "description": "Whether parents need to justify this observation"
+          },
+          "reason": {
+            "type": "string",
+            "summary": "Observation reason",
+            "description": "Reason for the observation"
+          }
+        },
+        "required": [
+          "id",
+          "givenAt",
+          "sectionName",
+          "sectionType",
+          "shouldParentsJustify"
+        ]
+      },
+      "CanteenMenu": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Daily canteen menu",
+        "description": "Represents a daily canteen menu with meals",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "summary": "Menu date",
+            "description": "Date of the menu"
+          },
+          "lunch": {
+            "$ref": "#/components/schemas/Meal",
+            "summary": "Lunch meal",
+            "description": "Lunch meal details"
+          },
+          "dinner": {
+            "$ref": "#/components/schemas/Meal",
+            "summary": "Dinner meal",
+            "description": "Dinner meal details"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "Meal": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Meal with courses",
+        "description": "Represents a meal with different course categories",
+        "properties": {
+          "entry": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "summary": "Entry dishes",
+            "description": "Entry/starter dishes"
+          },
+          "main": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "summary": "Main dishes",
+            "description": "Main course dishes"
+          },
+          "side": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "summary": "Side dishes",
+            "description": "Side dishes"
+          },
+          "cheese": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "summary": "Cheese options",
+            "description": "Cheese options"
+          },
+          "dessert": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "summary": "Dessert options",
+            "description": "Dessert options"
+          },
+          "drink": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Food"
+            },
+            "summary": "Drink options",
+            "description": "Drink options"
+          }
+        },
+        "required": [
+          "entry"
+        ]
+      },
+      "Food": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Food item",
+        "description": "Represents a food item with allergen information",
+        "properties": {
+          "name": {
+            "type": "string",
+            "summary": "Food name",
+            "description": "Name of the food item"
+          },
+          "allergens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "summary": "Food allergens",
+            "description": "List of allergens present in the food"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CourseDay": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Daily course schedule",
+        "description": "Represents a day with scheduled courses",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "summary": "Course date",
+            "description": "Date of the course day"
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Course"
+            },
+            "summary": "Daily courses",
+            "description": "List of courses scheduled for this day"
+          }
+        },
+        "required": [
+          "date",
+          "courses"
+        ]
+      },
+      "Course": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Scheduled course",
+        "description": "Represents a scheduled course with time, location, and details",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "summary": "Subject name",
+            "description": "Subject name of the course"
+          },
+          "id": {
+            "type": "string",
+            "summary": "Course ID",
+            "description": "Unique identifier for the course"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "LESSON",
+              "ACTIVITY",
+              "DETENTION",
+              "VACATION"
+            ],
+            "summary": "Course type",
+            "description": "Type of course"
+          },
+          "from": {
+            "type": "string",
+            "format": "date-time",
+            "summary": "Start time",
+            "description": "Start time of the course"
+          },
+          "to": {
+            "type": "string",
+            "format": "date-time",
+            "summary": "End time",
+            "description": "End time of the course"
+          },
+          "additionalInfo": {
+            "type": "string",
+            "summary": "Additional info",
+            "description": "Additional information about the course"
+          },
+          "room": {
+            "type": "string",
+            "summary": "Room location",
+            "description": "Room where the course takes place"
+          },
+          "teacher": {
+            "type": "string",
+            "summary": "Teacher name",
+            "description": "Teacher conducting the course"
+          },
+          "group": {
+            "type": "string",
+            "summary": "Group name",
+            "description": "Group or class attending the course"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "summary": "Background color",
+            "description": "Background color for display purposes"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CANCELED",
+              "EDITED",
+              "ONLINE",
+              "EVALUATED"
+            ],
+            "summary": "Course status",
+            "description": "Status of the course"
+          },
+          "customStatus": {
+            "type": "string",
+            "summary": "Custom status",
+            "description": "Custom status description"
+          },
+          "url": {
+            "type": "string",
+            "summary": "Course URL",
+            "description": "URL related to the course (e.g., online meeting link)"
+          },
+          "resourceId": {
+            "type": "string",
+            "summary": "Resource ID",
+            "description": "ID of resources attached to this course"
+          }
+        },
+        "required": [
+          "subject",
+          "id",
+          "type",
+          "from",
+          "to"
+        ]
+      },
+      "CourseResource": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Course educational resources",
+        "description": "Represents educational resources attached to a course",
+        "properties": {
+          "title": {
+            "type": "string",
+            "summary": "Resource title",
+            "description": "Title of the resource"
+          },
+          "description": {
+            "type": "string",
+            "summary": "Resource description",
+            "description": "Description of the resource"
+          },
+          "category": {
+            "type": "number",
+            "summary": "Resource category",
+            "description": "Category number of the resource"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "summary": "Resource files",
+            "description": "File attachments for this resource"
+          }
+        },
+        "required": [
+          "category",
+          "attachments"
+        ]
+      },
+      "Chat": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Chat conversation",
+        "description": "Represents a chat conversation or message thread",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Chat ID",
+            "description": "Unique identifier for the chat"
+          },
+          "subject": {
+            "type": "string",
+            "summary": "Chat subject",
+            "description": "Subject or title of the chat"
+          },
+          "recipient": {
+            "type": "string",
+            "summary": "Recipient name",
+            "description": "Recipient of the chat"
+          },
+          "creator": {
+            "type": "string",
+            "summary": "Creator name",
+            "description": "Creator of the chat"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "summary": "Creation date",
+            "description": "Date when the chat was created"
+          }
+        },
+        "required": [
+          "id",
+          "subject",
+          "date"
+        ]
+      },
+      "Recipient": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Message recipient",
+        "description": "Represents a person who can receive messages",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Recipient ID",
+            "description": "Unique identifier for the recipient"
+          },
+          "name": {
+            "type": "string",
+            "summary": "Recipient name",
+            "description": "Name of the recipient"
+          },
+          "class": {
+            "type": "string",
+            "summary": "Recipient class",
+            "description": "Class or role of the recipient"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "Message": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "Chat message",
+        "description": "Represents a message within a chat conversation",
+        "properties": {
+          "id": {
+            "type": "string",
+            "summary": "Message ID",
+            "description": "Unique identifier for the message"
+          },
+          "content": {
+            "type": "string",
+            "summary": "Message content",
+            "description": "Content of the message"
+          },
+          "author": {
+            "type": "string",
+            "summary": "Message author",
+            "description": "Author of the message"
+          },
+          "subject": {
+            "type": "string",
+            "summary": "Message subject",
+            "description": "Subject of the message"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "summary": "Message date",
+            "description": "Date when the message was sent"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            },
+            "summary": "Message attachments",
+            "description": "Attachments included with the message"
+          }
+        },
+        "required": [
+          "id",
+          "content",
+          "author",
+          "subject",
+          "date",
+          "attachments"
+        ]
+      },
+      "Attachment": {
+        "type": "object",
+        "tags": [
+          "service"
+        ],
+        "summary": "File attachment",
+        "description": "Represents a file attachment",
+        "properties": {
+          "name": {
+            "type": "string",
+            "summary": "File name",
+            "description": "Name of the attached file"
+          },
+          "url": {
+            "type": "string",
+            "summary": "File URL",
+            "description": "URL to access the attachment"
+          },
+          "size": {
+            "type": "number",
+            "summary": "File size",
+            "description": "Size of the attachment in bytes"
+          },
+          "type": {
+            "type": "string",
+            "summary": "File type",
+            "description": "MIME type of the attachment"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    }
+  },
+  "x-scene-blocks": {}
+}

@@ -1,3 +1,44 @@
+## 0.130.0 (2026-03-12)
+
+### 🚀 Features
+
+- add count documents to mongodb skill ([#51](https://github.com/digipair/digipair/pull/51))
+
+### ❤️ Thank You
+
+- gestform-dev @gestform-dev
+
+## 0.129.2 (2026-03-09)
+
+### 🚀 Features
+
+- add pronote ([a589eaea](https://github.com/digipair/digipair/commit/a589eaea))
+- add pronote ([4af98424](https://github.com/digipair/digipair/commit/4af98424))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.129.1 (2026-03-09)
+
+This was a version bump only, there were no code changes.
+
+## 0.129.0 (2026-03-09)
+
+This was a version bump only, there were no code changes.
+
+## 0.128.0 (2026-03-05)
+
+### 🚀 Features
+
+- update yarn.lock ([ea662a83](https://github.com/digipair/digipair/commit/ea662a83))
+- add technical documentation ([24e9caca](https://github.com/digipair/digipair/commit/24e9caca))
+- update context and action management in prompts ([bddc4396](https://github.com/digipair/digipair/commit/bddc4396))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.127.2 (2026-02-23)
 
 This was a version bump only, there were no code changes.

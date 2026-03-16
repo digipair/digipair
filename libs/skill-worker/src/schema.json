@@ -314,7 +314,7 @@
             "summary": "Tags"
           }
         },
-        "required": ["title", "prompt", "icon", "tags"]
+        "required": ["title", "icon", "tags"]
       }
     }
   },
