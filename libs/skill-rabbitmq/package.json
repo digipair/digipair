@@ -1,5 +1,5 @@
 {
-  "name": "skill-kafka",
+  "name": "skill-rabbitmq",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -18,6 +18,6 @@
     "name": "skill-kafka"
   },
   "dependencies": {
-    "kafkajs": "^2.2.4"
+    "amqplib": "^0.10.9"
   }
 }

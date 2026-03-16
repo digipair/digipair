@@ -1,49 +1,43 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
-import { RecordMetadata } from 'kafkajs';
 
-const { Kafka } = require('kafkajs');
+const amqplib = require('amqplib');
 
-class KafkaService {
-  async kafka(params: any, _pins: PinsSettings[], context: any) {
+class RabbitMqService {
+  async rabbit(params: any, _pins: PinsSettings[], context: any) {
     const {
-      brokers = context.privates.KAFKA_BROKERS ?? params?.KAFKA_BROKERS ?? process.env['KAFKA_BROKERS'],
-      clientId = context.privates.KAFKA_CLIENT_ID ??
-        params?.KAFKA_CLIENT_ID ??
-        process.env['KAFKA_CLIENT_ID'],
+      url = context.privates.RABBITMQ_URL ?? params?.RABBITMQ_URL ?? process.env['RABBITMQ_URL'],
     } = params;
 
-    return new Kafka({ clientId, brokers });
+    return await amqplib.connect(url);
   }
 
   async produce(params: any, _pins: PinsSettings[], context: any): Promise<any> {
-    const { client = context.privates.CLIENT_KAFKA, topic, messages } = params;
-    const kafkaInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
-    const producer = kafkaInstance.producer();
+    const { client = context.privates.CLIENT_RABBITMQ, queue, message } = params;
 
-    await producer.connect();
-    const recordMetadata = await producer.send({ topic, messages });
+    const connection = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const channel = await connection.createChannel();
 
-    await producer.disconnect();
+    channel.sendToQueue(queue, Buffer.from(message));
 
-    return recordMetadata;
+    channel.close();
+    connection.close();
   }
 
   async consume(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client = context.privates.CLIENT_KAFKA, execute, groupId, topic } = params;
-    const kafkaInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
-    const consumer = kafkaInstance.consumer({ groupId });
+    const { client = context.privates.CLIENT_RABBITMQ, queue } = params;
 
-    await consumer.connect();
-    await consumer.subscribe({ topic, fromBeginning: true });
+    const connection = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const channel = await connection.createChannel();
 
-    await consumer.run({
-      eachMessage: async ({ topic, partition, message }) => {
+    channel.consume(queue, (message) => {
+      if (message !== null) {
         await executePinsList(execute, { ...context, message }, `${context.__PATH__}.execute`);
-      },
+        rabbitmqChannel.ack(message);
+      }
     });
 
-    return consumer;
+    return { connection, channel };
   }
 }
