@@ -40,5 +40,7 @@ class KafkaService {
         await executePinsList(execute, { ...context, message }, `${context.__PATH__}.execute`);
       },
     });
+
+    return consumer;
   }
 }
