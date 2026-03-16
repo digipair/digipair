@@ -2,8 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "@digipair/skill-kafka",
-    "summary": "Produire/consommer des messages Kafka",
-    "description": "Gérer la communication avec Kafka.",
+    "summary": "Produce/consume Kafka messages",
+    "description": "Manage communication with Kafka.",
     "version": "0.1.0",
     "x-icon": "💻"
   },
@@ -13,22 +13,22 @@
         "tags": [
           "service"
         ],
-        "summary": "Connecter aux brokers Kafka",
+        "summary": "Connect to Kafka brokers",
         "parameters": [
           {
             "name": "clientId",
-            "summary": "ClientId du worker",
+            "summary": "Worker clientId",
             "required": true,
-            "description": "ClientId du worker",
+            "description": "Worker clientId",
             "schema": {
               "type": "string"
             }
           },
           {
             "name": "brokers",
-            "summary": "Brokers Kafka",
+            "summary": "Kafka brokers",
             "required": true,
-            "description": "Adresses des brokers",
+            "description": "Broker addresses",
             "schema": {
               "type": "array",
               "items": {
@@ -40,7 +40,7 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Connexion aux brokers Kafka",
+            "description": "Connection to Kafka brokers",
             "content": {
               "application/json": {
                 "schema": {
@@ -48,11 +48,11 @@
                   "properties": {
                     "producer": {
                       "type": "object",
-                      "description": "Instance du producteur de messages"
+                      "description": "Message producer instance"
                     },
                     "consumer": {
                       "type": "object",
-                      "description": "Instance du consommateur de messages"
+                      "description": "Message consumer instance"
                     }
                   }
                 }
@@ -67,13 +67,13 @@
         "tags": [
           "service"
         ],
-        "summary": "Produire des messages Kafka",
+        "summary": "Produce Kafka messages",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection aux broker Kafka",
+            "summary": "Connection to Kafka brokers",
             "required": true,
-            "description": "Client de production/consommation de messages Kafka",
+            "description": "Kafka message producer/consumer client",
             "schema": {
               "type": "array",
               "items": {
@@ -85,7 +85,7 @@
             "name": "topic",
             "summary": "Topic",
             "required": true,
-            "description": "Topic Kafka",
+            "description": "Kafka topic",
             "schema": {
               "type": "string"
             }
@@ -94,7 +94,7 @@
             "name": "messages",
             "summary": "Message",
             "required": true,
-            "description": "Tableau de messages à produire",
+            "description": "Array of messages to produce",
             "schema": {
               "type": "array",
               "items": {
@@ -102,11 +102,11 @@
                 "properties": {
                   "key": {
                     "type": "string",
-                    "description": "Clé du message (pour la répartition par partition)"
+                    "description": "Message key (for partition distribution)"
                   },
                   "value": {
                     "type": "string",
-                    "description": "Contenu du message (peut être un objet stringifié)"
+                    "description": "Message content (can be a stringified object)"
                   }
                 }
               }
@@ -116,46 +116,46 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Metadata de l'enregistrement",
+            "description": "Record metadata",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "description": "Information d'enregistrement du message",
+                    "description": "Message record information",
                     "properties": {
                       "topicName": {
                         "type": "string",
-                        "description": "Nom du topic utilisé"
+                        "description": "Name of the topic used"
                       },
                       "partition": {
                         "type": "integer",
-                        "description": "Nom de la partition utilisée"
+                        "description": "Name of the partition used"
                       },
                       "errorCode": {
                         "type": "integer",
-                        "description": "Code d'erreur"
+                        "description": "Error code"
                       },
                       "offset": {
                         "type": "string",
-                        "description": "Offset du message dans le topic"
+                        "description": "Message offset in the topic"
                       },
                       "timestamp": {
                         "type": "string",
-                        "description": "Timestamp de l'enregistrement"
+                        "description": "Record timestamp"
                       },
                       "baseOffset": {
                         "type": "string",
-                        "description": "Offset du topic avant l'enregistrement"
+                        "description": "Topic offset before the record was written"
                       },
                       "logAppendTime": {
                         "type": "string",
-                        "description": "Timestamp assigné par le broker à l’écriture"
+                        "description": "Timestamp assigned by the broker when writing"
                       },
                       "logStartOffset": {
                         "type": "string",
-                        "description": "Le plus ancien offset disponible du topic"
+                        "description": "Oldest available offset in the topic"
                       }
                     },
                     "additionalProperties": true
@@ -172,13 +172,13 @@
         "tags": [
           "service"
         ],
-        "summary": "Consommer un message Kafka",
+        "summary": "Consume a Kafka message",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection aux broker Kafka",
+            "summary": "Connection to Kafka brokers",
             "required": true,
-            "description": "Client de production/consommation de messages Kafka",
+            "description": "Kafka message producer/consumer client",
             "schema": {
               "type": "array",
               "items": {
@@ -190,7 +190,7 @@
             "name": "execute",
             "summary": "Execute",
             "required": true,
-            "description": "Commandes à exécuter",
+            "description": "Commands to execute",
             "schema": {
               "type": "array",
               "items": {
@@ -202,7 +202,7 @@
             "name": "groupId",
             "summary": "groupId",
             "required": true,
-            "description": "Group du consumer",
+            "description": "Consumer group",
             "schema": {
               "type": "string"
             }
@@ -211,7 +211,7 @@
             "name": "topic",
             "summary": "Topic",
             "required": true,
-            "description": "Topic Kafka",
+            "description": "Kafka topic",
             "schema": {
               "type": "string"
             }
@@ -220,16 +220,16 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Consumer du topic",
+            "description": "Topic consumer",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Méthodes de manipulation du consumer",
+                  "description": "Consumer manipulation methods",
                   "properties": {
                     "disconnect()": {
                       "type": "object",
-                      "description": "Méthode de déconnexion du consumer"
+                      "description": "Consumer disconnect method"
                     }
                   },
                   "additionalProperties": true

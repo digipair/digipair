@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
+import { RecordMetadata } from 'kafkajs';
 
 const { Kafka } = require('kafkajs');
 
@@ -16,15 +17,17 @@ class KafkaService {
     return new Kafka({ clientId, brokers });
   }
 
-  async produce(params: any, _pins: PinsSettings[], context: any) {
+  async produce(params: any, _pins: PinsSettings[], context: any): Promise<any> {
     const { client = context.privates.CLIENT_KAFKA, topic, messages } = params;
     const kafkaInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
     const producer = kafkaInstance.producer();
 
     await producer.connect();
-    await producer.send({ topic, messages });
+    const recordMetadata = await producer.send({ topic, messages });
 
     await producer.disconnect();
+
+    return recordMetadata;
   }
 
   async consume(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
