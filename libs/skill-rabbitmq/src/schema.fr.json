@@ -1,0 +1,248 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-kafka",
+    "summary": "Produire/consommer des messages Kafka",
+    "description": "Gérer la communication avec Kafka.",
+    "version": "0.1.0",
+    "x-icon": "💻"
+  },
+  "paths": {
+    "/kafka": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Connecter aux brokers Kafka",
+        "parameters": [
+          {
+            "name": "clientId",
+            "summary": "ClientId du worker",
+            "required": true,
+            "description": "ClientId du worker",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "brokers",
+            "summary": "Brokers Kafka",
+            "required": true,
+            "description": "Adresses des brokers",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion aux brokers Kafka",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "producer": {
+                      "type": "object",
+                      "description": "Instance du producteur de messages"
+                    },
+                    "consumer": {
+                      "type": "object",
+                      "description": "Instance du consommateur de messages"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/produce": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Produire des messages Kafka",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection aux broker Kafka",
+            "required": true,
+            "description": "Client de production/consommation de messages Kafka",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "topic",
+            "summary": "Topic",
+            "required": true,
+            "description": "Topic Kafka",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messages",
+            "summary": "Message",
+            "required": true,
+            "description": "Tableau de messages à produire",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Clé du message (pour la répartition par partition)"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Contenu du message (peut être un objet stringifié)"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Metadata de l'enregistrement",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "Information d'enregistrement du message",
+                    "properties": {
+                      "topicName": {
+                        "type": "string",
+                        "description": "Nom du topic utilisé"
+                      },
+                      "partition": {
+                        "type": "integer",
+                        "description": "Nom de la partition utilisée"
+                      },
+                      "errorCode": {
+                        "type": "integer",
+                        "description": "Code d'erreur"
+                      },
+                      "offset": {
+                        "type": "string",
+                        "description": "Offset du message dans le topic"
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "description": "Timestamp de l'enregistrement"
+                      },
+                      "baseOffset": {
+                        "type": "string",
+                        "description": "Offset du topic avant l'enregistrement"
+                      },
+                      "logAppendTime": {
+                        "type": "string",
+                        "description": "Timestamp assigné par le broker à l’écriture"
+                      },
+                      "logStartOffset": {
+                        "type": "string",
+                        "description": "Le plus ancien offset disponible du topic"
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consume": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Consommer un message Kafka",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection aux broker Kafka",
+            "required": true,
+            "description": "Client de production/consommation de messages Kafka",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Commandes à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "groupId",
+            "summary": "groupId",
+            "required": true,
+            "description": "Group du consumer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "topic",
+            "summary": "Topic",
+            "required": true,
+            "description": "Topic Kafka",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Consumer du topic",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Méthodes de manipulation du consumer",
+                  "properties": {
+                    "disconnect()": {
+                      "type": "object",
+                      "description": "Méthode de déconnexion du consumer"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
