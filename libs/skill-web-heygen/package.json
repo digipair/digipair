@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-web-heygen",
-  "version": "0.0.20-local",
+  "version": "0.0.21-local",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
