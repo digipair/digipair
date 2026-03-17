@@ -1,3 +1,87 @@
+## 0.0.16-local (2026-03-17)
+
+### 🚀 Features
+
+- issue s3 - #30 ([#30](https://github.com/digipair/digipair/issues/30))
+- add rollup and package dependencies - #32 ([#33](https://github.com/digipair/digipair/pull/33), [#32](https://github.com/digipair/digipair/issues/32))
+- improve http skill with empty response management ([3262fbf7](https://github.com/digipair/digipair/commit/3262fbf7))
+- improve http skill with empty response management ([25035b7a](https://github.com/digipair/digipair/commit/25035b7a))
+- add rollup and package dependencies - #32 ([#32](https://github.com/digipair/digipair/issues/32))
+- improve http skill with empty response management ([f7650c0b](https://github.com/digipair/digipair/commit/f7650c0b))
+- update zod version ([0d47a57e](https://github.com/digipair/digipair/commit/0d47a57e))
+- update mcp management ([66cdee77](https://github.com/digipair/digipair/commit/66cdee77))
+- update openai azure parameters ([a1c4f4b4](https://github.com/digipair/digipair/commit/a1c4f4b4))
+- manage mcp required and file ([edc39409](https://github.com/digipair/digipair/commit/edc39409))
+- remove unrequired role ([c6893ce6](https://github.com/digipair/digipair/commit/c6893ce6))
+- remove old remote management ([fce5ec66](https://github.com/digipair/digipair/commit/fce5ec66))
+- add common roles ([520cf0a8](https://github.com/digipair/digipair/commit/520cf0a8))
+- minor updates ([b926acde](https://github.com/digipair/digipair/commit/b926acde))
+- minor refactor ([3293cae2](https://github.com/digipair/digipair/commit/3293cae2))
+- add kebabCase, camelCase and snakeCase generation in FEEL and CEL ([ed0bea46](https://github.com/digipair/digipair/commit/ed0bea46))
+- add skill-marked ([1c31fdfc](https://github.com/digipair/digipair/commit/1c31fdfc))
+- add skill-marked ([d1424154](https://github.com/digipair/digipair/commit/d1424154))
+- minor fixes ([d14fab80](https://github.com/digipair/digipair/commit/d14fab80))
+- add client sse nodejs compatibility ([0a9c3c17](https://github.com/digipair/digipair/commit/0a9c3c17))
+- skill client-*sse improvement ([aeda09c8](https://github.com/digipair/digipair/commit/aeda09c8))
+- manage context callback ([b91eafbf](https://github.com/digipair/digipair/commit/b91eafbf))
+- improve sse skill ([9c724f36](https://github.com/digipair/digipair/commit/9c724f36))
+- add skill-markdown-manager ([#41](https://github.com/digipair/digipair/pull/41))
+- add octopus ([b80a8c5e](https://github.com/digipair/digipair/commit/b80a8c5e))
+- some improvements ([eb618a99](https://github.com/digipair/digipair/commit/eb618a99))
+- improve octopus ([8ec65fb9](https://github.com/digipair/digipair/commit/8ec65fb9))
+- some improvements ([10b7cba2](https://github.com/digipair/digipair/commit/10b7cba2))
+- some improvements ([fff37c8a](https://github.com/digipair/digipair/commit/fff37c8a))
+- improve action-prompts ([7b049921](https://github.com/digipair/digipair/commit/7b049921))
+- improve action-prompts ([a62b4774](https://github.com/digipair/digipair/commit/a62b4774))
+- add service prompts ([a79adb4c](https://github.com/digipair/digipair/commit/a79adb4c))
+- rename digipair octopus in config file ([d4bb07d1](https://github.com/digipair/digipair/commit/d4bb07d1))
+- add noEvalProperties ([9f033e3f](https://github.com/digipair/digipair/commit/9f033e3f))
+- replace noEvalProperties by _properties ([5f7dca8e](https://github.com/digipair/digipair/commit/5f7dca8e))
+- add noEvalProperties ([508d9fbc](https://github.com/digipair/digipair/commit/508d9fbc))
+- remove roles in pages ([8623150f](https://github.com/digipair/digipair/commit/8623150f))
+- update base64 regex ([83fea970](https://github.com/digipair/digipair/commit/83fea970))
+- add json export to skill-markitdown ([c06903c0](https://github.com/digipair/digipair/commit/c06903c0))
+- add gettext in skill-pdf ([d604eaa8](https://github.com/digipair/digipair/commit/d604eaa8))
+- add gettext in skill-pdf ([1fd52a4f](https://github.com/digipair/digipair/commit/1fd52a4f))
+- add gettext in skill-pdf ([8eb84134](https://github.com/digipair/digipair/commit/8eb84134))
+- add gettext in skill-pdf ([28f1aebf](https://github.com/digipair/digipair/commit/28f1aebf))
+- fix temporal deep protected data in context ([7a03668c](https://github.com/digipair/digipair/commit/7a03668c))
+- add refresh token  for micosoft ([a846ce10](https://github.com/digipair/digipair/commit/a846ce10))
+- improve http with base64 output ([86534d3f](https://github.com/digipair/digipair/commit/86534d3f))
+- update yarn.lock ([ea662a83](https://github.com/digipair/digipair/commit/ea662a83))
+- add technical documentation ([24e9caca](https://github.com/digipair/digipair/commit/24e9caca))
+- update context and action management in prompts ([bddc4396](https://github.com/digipair/digipair/commit/bddc4396))
+- add pronote ([a589eaea](https://github.com/digipair/digipair/commit/a589eaea))
+- add pronote ([4af98424](https://github.com/digipair/digipair/commit/4af98424))
+- add count documents to mongodb skill ([#51](https://github.com/digipair/digipair/pull/51))
+
+### 🩹 Fixes
+
+- digipair engine not present with factory dependencies ([33feb360](https://github.com/digipair/digipair/commit/33feb360))
+- bad openai version ([f2f3c905](https://github.com/digipair/digipair/commit/f2f3c905))
+- langchain openai ([c7d45472](https://github.com/digipair/digipair/commit/c7d45472))
+- minor fixes ([c2287041](https://github.com/digipair/digipair/commit/c2287041))
+- case-anything broken ([89733fd4](https://github.com/digipair/digipair/commit/89733fd4))
+- id with space broken ([41c35dd1](https://github.com/digipair/digipair/commit/41c35dd1))
+- minor improvements ([d10aeb20](https://github.com/digipair/digipair/commit/d10aeb20))
+- variables not working in agent callback ([b72fcdca](https://github.com/digipair/digipair/commit/b72fcdca))
+- boost-tool-add-client-mcp, toolType ([4eb9d353](https://github.com/digipair/digipair/commit/4eb9d353))
+- dbg boost duplicate ([#43](https://github.com/digipair/digipair/pull/43))
+- digipair not starts if factory exists ([bf31c8e3](https://github.com/digipair/digipair/commit/bf31c8e3))
+- notification not exists on studio ([4f070578](https://github.com/digipair/digipair/commit/4f070578))
+- empty string in vespa adding failed ([9ba8f7db](https://github.com/digipair/digipair/commit/9ba8f7db))
+- throw error management ([9f305d6b](https://github.com/digipair/digipair/commit/9f305d6b))
+- s3 delete to remove ([6d65c660](https://github.com/digipair/digipair/commit/6d65c660))
+- request request ([bcd0b164](https://github.com/digipair/digipair/commit/bcd0b164))
+
+### ❤️ Thank You
+
+- admien33
+- dgreboval
+- gestform-dev @gestform-dev
+- Marc Buils
+- Marc BUILS
+
 ## 0.130.0 (2026-03-12)
 
 ### 🚀 Features
