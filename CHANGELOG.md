@@ -1,3 +1,13 @@
+## 0.130.4 (2026-03-18)
+
+### 🚀 Features
+
+- improve tool openapi ([fbe85584](https://github.com/digipair/digipair/commit/fbe85584))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.130.2 (2026-03-12)
 
 This was a version bump only, there were no code changes.
