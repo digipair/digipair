@@ -1,4 +1,4 @@
-import { sleep, proxyActivities, condition, setHandler, defineSignal, isCancellation } from '@temporalio/workflow';
+import { sleep, proxyActivities, condition, setHandler, defineSignal, isCancellation, CancellationScope } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
 import { PinsSettings, preparePinsSettings } from '@digipair/engine';
 // import { list as listProcess } from '@digipair/skill-process';
@@ -11,7 +11,7 @@ import { WorkflowArgs } from './shared.js';
 
 const { evaluate } = feelin as any;
 export const dataSignal = defineSignal<[any]>('data');
-export const activityCancelledSignal = defineSignal<[{ activityType: string; timestamp: string }]>('activityCancelled');
+export const cancelSignal = defineSignal<[{ activityType: string; timestamp: string }]>('activityCancelled');
 
 // export const cancelActivitySignal = defineSignal<[]>('cancelActivity');
 
@@ -126,19 +126,24 @@ async function executePins(
 
 export async function workflow({ steps, context, data, options, cancelProcessSteps }: WorkflowArgs): Promise<any> {
   let result: any;
-  // let cancelInfo: { activityType: string; timestamp: string } | null = null;
-  console.log('workflow, arg , data', data)
+  let cancelRequested = false;
+
+  // console.log('workflow, arg , data', data)
   context.workflow = { steps: {}, data };
-  context.protected = {processId: context.protected.processId};
+  // context.protected = {processId: context.protected.processId};
   console.log('workflow init, context.protected :', context.protected)
+
   const { executePinsList } = proxyActivities<typeof activities>(options);
   setHandler(dataSignal, (data: any) => {
     context.workflow.data = { ...context.workflow.data, ...data };
   });
-  setHandler(activityCancelledSignal, (info) => {
-    console.log(`[WORKFLOW] Signal reçu — activité annulée: ${info.activityType} à ${info.timestamp}`);
-    // cancelInfo = info;
-    // Tu peux déclencher une logique métier ici
+
+  // ✅ Signal métier — même flag que le cancel Temporal
+  setHandler(cancelSignal, () => {
+    console.log(`[WORKFLOW] cancel signal métier reçu`);
+    cancelRequested = true;
+    // Annuler le scope principal pour interrompre l'activité en cours
+    CancellationScope.current().cancel();
   });
 
   // vérifie si tous les pinsSettings sont bien de la librairie @digipair/skill-temporal
@@ -153,7 +158,9 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
 
   // parcourir tous les pins
   try {
-    for (let state = { step: 0 }; state.step < steps.length; state.step++) {
+    // ✅ Wrapper dans un scope pour intercepter les deux types de cancel
+    await CancellationScope.current().run(async () => {
+      for (let state = { step: 0 }; state.step < steps.length; state.step++) {
       const pinsSettings = steps[state.step];
 
       try {
@@ -171,20 +178,38 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
         context.workflow.steps[pinsSettings.properties['name']] = result;
       }
     }
+    });
   } catch (error: any) {
     if (isCancellation(error)) {
-      console.log(`[WORKFLOW][${new Date().toISOString()}]  cancelled global, error : ${error}`);
-
-      if (cancelProcessSteps?.length) {
-        console.log(`[WORKFLOW][${new Date().toISOString()}]  cancelProcessSteps defined`);
-        await sleep(5000); // heartbeatTimeout: '2s',
-        context.protected = {};
-        console.log(`[WORKFLOW][${new Date().toISOString()}]  execute cancelProcessSteps`);
-        // await executePinsList({ pinsSettingsList: cancelProcessSteps, context });
-      }
+      console.log(`[WORKFLOW] cancel reçu (UI ou métier)`);
+      cancelRequested = true; // ← si cancel Temporal direct (UI), poser le flag ici
+    } else {
       throw error;
     }
-    throw error;
+    // if (isCancellation(error)) {
+    //   console.log(`[WORKFLOW][${new Date().toISOString()}]  cancelled global, error : ${error}`);
+    //
+    //   if (cancelProcessSteps?.length) {
+    //     console.log(`[WORKFLOW][${new Date().toISOString()}]  cancelProcessSteps defined`);
+    //     await sleep(5000); // heartbeatTimeout: '2s',
+    //     context.protected = {};
+    //     console.log(`[WORKFLOW][${new Date().toISOString()}]  execute cancelProcessSteps`);
+    //     // await executePinsList({ pinsSettingsList: cancelProcessSteps, context });
+    //   }
+    //   throw error;
+    // }
+    // throw error;
   }
+  // ✅ Cleanup hors de tout scope de cancellation — s'exécute dans les deux cas
+  if (cancelRequested && cancelProcessSteps?.length) {
+    console.log(`[WORKFLOW] exécution cancelProcessSteps`);
+
+    // Nouveau scope non-cancellable pour le cleanup
+    await CancellationScope.nonCancellable(async () => {
+      context.protected = {};
+      await executePinsList({ pinsSettingsList: cancelProcessSteps, context });
+    });
+  }
+
   return result;
 }
