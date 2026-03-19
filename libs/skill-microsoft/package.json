@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-microsoft",
-  "version": "0.130.6",
+  "version": "0.130.7",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -30,6 +30,6 @@
     "name": "skill-microsoft"
   },
   "dependencies": {
-    "@azure/msal-node": "^2.10.0"
+    "@azure/msal-node": "^3.8.10"
   }
 }
