@@ -1,6 +1,6 @@
 {
   "jsc": {
-    "target": "es2017",
+    "target": "es2022",
     "parser": {
       "syntax": "typescript",
       "decorators": true,
@@ -23,7 +23,6 @@
     ".*\\.spec.tsx?$",
     ".*\\.test.tsx?$",
     "./src/jest-setup.ts$",
-    "./**/jest-setup.ts$",
-    ".*.js$"
+    "./**/jest-setup.ts$"
   ]
 }
