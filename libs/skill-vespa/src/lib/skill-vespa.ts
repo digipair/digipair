@@ -133,6 +133,7 @@ class VespaService {
 
     for (const document of documents) {
       // eslint-disable-next-line no-control-regex
+      console.log('vespa, pushDoc, signal:',signal)
       const content = document.content.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
 
       if (content && content.trim().length > 0) {

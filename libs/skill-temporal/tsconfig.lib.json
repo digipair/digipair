@@ -17,6 +17,11 @@
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts", "jest.config.ts"],
   "references": [
-    { "path": "../engine/tsconfig.lib.json" }
+    {
+      "path": "../engine/tsconfig.lib.json"
+    },
+    {
+      "path": "../skill-temporal/tsconfig.lib.json"
+    }
   ]
 }

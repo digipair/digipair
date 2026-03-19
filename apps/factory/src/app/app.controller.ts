@@ -73,7 +73,11 @@ export class AppController {
         query,
         method,
         request.headers,
-        {},
+        {
+          protected: {
+            processId: id
+          }
+        },
         request,
         res,
         signal,

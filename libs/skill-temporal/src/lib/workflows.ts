@@ -1,6 +1,9 @@
-import { sleep, proxyActivities, condition, setHandler, defineSignal } from '@temporalio/workflow';
+import { sleep, proxyActivities, condition, setHandler, defineSignal, isCancellation } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
 import { PinsSettings, preparePinsSettings } from '@digipair/engine';
+// import { list as listProcess } from '@digipair/skill-process';
+
+
 import * as feelin from 'feelin';
 
 import type * as activities from './activities.js';
@@ -8,6 +11,7 @@ import { WorkflowArgs } from './shared.js';
 
 const { evaluate } = feelin as any;
 export const dataSignal = defineSignal<[any]>('data');
+// export const cancelActivitySignal = defineSignal<[]>('cancelActivity');
 
 async function executePins(
   executePinsList: any,
@@ -91,11 +95,22 @@ async function executePins(
     result = state.step = step;
   } else if (settings.element === 'activity') {
     try {
+      // let newContext = context;
+      // if(context.protected.processId) {
+      //   console.log('executePinsList , listProcess(); :', await listProcess( undefined as any,[], undefined as any))
+      //   console.log('executePinsList , context.protected.processId :', context.protected.processId)
+      //   const {signal} = updateProcess(context.protected.processId, context.request.digipair, context.request.reasoning, undefined as any);
+      //   newContext = {...context, protected : {...context.protected, signal }}
+      // }
       result = await executePinsList({
         pinsSettingsList: (settings.properties as any)['execute'],
         context,
       });
     } catch (error) {
+      if (isCancellation(error)) {
+        console.log('[SKILL-TEMPORAL] EXECUTEPINS isCancellation error on activity')
+        throw error;
+      }
       throw new ApplicationFailure('[SKILL-TEMPORAL] EXECUTEPINS FAILED', null, null, [
         error,
         settings,
@@ -107,12 +122,12 @@ async function executePins(
   return result;
 }
 
-export async function workflow({ steps, context, data, options }: WorkflowArgs): Promise<any> {
+export async function workflow({ steps, context, data, options, cancelProcessSteps }: WorkflowArgs): Promise<any> {
   let result: any;
-
+  console.log('workflow, arg , data', data)
   context.workflow = { steps: {}, data };
-  context.protected = {};
-
+  context.protected = {processId: context.protected.processId};
+  console.log('workflow init, context.protected :', context.protected)
   const { executePinsList } = proxyActivities<typeof activities>(options);
   setHandler(dataSignal, (data: any) => {
     context.workflow.data = { ...context.workflow.data, ...data };
@@ -129,25 +144,54 @@ export async function workflow({ steps, context, data, options }: WorkflowArgs):
   }
 
   // parcourir tous les pins
-  for (let state = { step: 0 }; state.step < steps.length; state.step++) {
-    const pinsSettings = steps[state.step];
+  try {
+    for (let state = { step: 0 }; state.step < steps.length; state.step++) {
+      const pinsSettings = steps[state.step];
 
-    try {
-      result = await executePins(executePinsList, steps, state, pinsSettings, context);
-    } catch (error) {
-      if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
-        continue;
-      } else if (error === 'DIGIPAIR_WORKFLOW_STOP') {
-        return result;
+      try {
+        result = await executePins(executePinsList, steps, state, pinsSettings, context);
+      } catch (error) {
+        if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
+          continue;
+        } else if (error === 'DIGIPAIR_WORKFLOW_STOP') {
+          return result;
+        }
+        throw error;
       }
 
+      if (pinsSettings.properties?.['name']) {
+        context.workflow.steps[pinsSettings.properties['name']] = result;
+      }
+    }
+  } catch (error: any) {
+    if (isCancellation(error)) {
+      console.log('[WORKFLOW] cancelled global, error : ', error);
+    //   console.log('cancelled global, listProcess(); :', await listProcess( undefined as any,[], undefined as any))
+
+      // if (context?.protected?.activityWorkflowId) {
+      //   const handle = workflow.getHandle(context.protected.activityWorkflowId);
+      //   await handle.signal(cancelActivitySignal); // envoie le signal à l'activité
+      //   console.log('[WORKFLOW] signal cancelActivity envoyé à l’activité');
+      // }
+
+      // // si tu as stocké le contexte / listener pour les activités
+      // if (context?.protected?.activityHandle) {
+      //   console.log('[WORKFLOW] envoie signal cancelActivity aux activities');
+      //   // handle.signal déclenche le signal dans le workflow
+      //   context.protected.activityHandle.signal(cancelActivitySignal);
+      // }
+
+      // if(context?.protected.processId) {
+      //   removeProcess(context.protected.processId)
+      // }
+      // if (cancelProcessSteps?.length) {
+      //   console.log('stopEventSteps, context.protected.signal :', context?.protected.signal)
+      //   context.protected = {};
+      //   await executePinsList({ pinsSettingsList: cancelProcessSteps, context });
+      // }
       throw error;
     }
-
-    if (pinsSettings.properties?.['name']) {
-      context.workflow.steps[pinsSettings.properties['name']] = result;
-    }
+    throw error;
   }
-
   return result;
 }

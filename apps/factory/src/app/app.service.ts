@@ -212,6 +212,7 @@ export class AppService implements OnModuleInit {
           headers,
         },
         protected: {
+          ...requester.protected,
           req,
           res,
           signal,
