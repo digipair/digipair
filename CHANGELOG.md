@@ -1,3 +1,14 @@
+## 0.131.0 (2026-03-19)
+
+### 🚀 Features
+
+- update microsoft. auth ([24c6855f](https://github.com/digipair/digipair/commit/24c6855f))
+- add kafka ([1b148eed](https://github.com/digipair/digipair/commit/1b148eed))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.130.9 (2026-03-19)
 
 This was a version bump only, there were no code changes.
