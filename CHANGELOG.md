@@ -1,3 +1,13 @@
+## 0.131.1 (2026-03-19)
+
+### 🚀 Features
+
+- add kafka ([c7b7bcd2](https://github.com/digipair/digipair/commit/c7b7bcd2))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.131.0 (2026-03-19)
 
 ### 🚀 Features
