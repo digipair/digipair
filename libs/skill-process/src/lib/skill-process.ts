@@ -22,21 +22,6 @@ class ProcessService {
     return { id, signal: abortController.signal };
   }
 
-  // update(id: string, digipair: string, reasoning: string, res: Response) {
-  //   const process = this.processList.find(p => p.id === id);
-  //
-  //   if (!process) {
-  //     throw new Error(`Process ${id} not found`);
-  //   }
-  //
-  //   process.time = Date.now();
-  //   process.digipair = digipair;
-  //   process.reasoning = reasoning;
-  //   process.res = res;
-  //
-  //   return { id, signal: process.abortController.signal };
-  // }
-
   update(id: string, digipair: string, reasoning: string, res: Response) {
     const abortController = new AbortController();
     const time = Date.now();

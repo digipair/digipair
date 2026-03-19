@@ -11,6 +11,8 @@ import { WorkflowArgs } from './shared.js';
 
 const { evaluate } = feelin as any;
 export const dataSignal = defineSignal<[any]>('data');
+export const activityCancelledSignal = defineSignal<[{ activityType: string; timestamp: string }]>('activityCancelled');
+
 // export const cancelActivitySignal = defineSignal<[]>('cancelActivity');
 
 async function executePins(
@@ -108,7 +110,7 @@ async function executePins(
       });
     } catch (error) {
       if (isCancellation(error)) {
-        console.log('[SKILL-TEMPORAL] EXECUTEPINS isCancellation error on activity')
+        console.log('[WORKFLOW] [EXECUTEPINS] isCancellation error on activity')
         throw error;
       }
       throw new ApplicationFailure('[SKILL-TEMPORAL] EXECUTEPINS FAILED', null, null, [
@@ -124,6 +126,7 @@ async function executePins(
 
 export async function workflow({ steps, context, data, options, cancelProcessSteps }: WorkflowArgs): Promise<any> {
   let result: any;
+  // let cancelInfo: { activityType: string; timestamp: string } | null = null;
   console.log('workflow, arg , data', data)
   context.workflow = { steps: {}, data };
   context.protected = {processId: context.protected.processId};
@@ -131,6 +134,11 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
   const { executePinsList } = proxyActivities<typeof activities>(options);
   setHandler(dataSignal, (data: any) => {
     context.workflow.data = { ...context.workflow.data, ...data };
+  });
+  setHandler(activityCancelledSignal, (info) => {
+    console.log(`[WORKFLOW] Signal reçu — activité annulée: ${info.activityType} à ${info.timestamp}`);
+    // cancelInfo = info;
+    // Tu peux déclencher une logique métier ici
   });
 
   // vérifie si tous les pinsSettings sont bien de la librairie @digipair/skill-temporal
@@ -165,30 +173,15 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
     }
   } catch (error: any) {
     if (isCancellation(error)) {
-      console.log('[WORKFLOW] cancelled global, error : ', error);
-    //   console.log('cancelled global, listProcess(); :', await listProcess( undefined as any,[], undefined as any))
+      console.log(`[WORKFLOW][${new Date().toISOString()}]  cancelled global, error : ${error}`);
 
-      // if (context?.protected?.activityWorkflowId) {
-      //   const handle = workflow.getHandle(context.protected.activityWorkflowId);
-      //   await handle.signal(cancelActivitySignal); // envoie le signal à l'activité
-      //   console.log('[WORKFLOW] signal cancelActivity envoyé à l’activité');
-      // }
-
-      // // si tu as stocké le contexte / listener pour les activités
-      // if (context?.protected?.activityHandle) {
-      //   console.log('[WORKFLOW] envoie signal cancelActivity aux activities');
-      //   // handle.signal déclenche le signal dans le workflow
-      //   context.protected.activityHandle.signal(cancelActivitySignal);
-      // }
-
-      // if(context?.protected.processId) {
-      //   removeProcess(context.protected.processId)
-      // }
-      // if (cancelProcessSteps?.length) {
-      //   console.log('stopEventSteps, context.protected.signal :', context?.protected.signal)
-      //   context.protected = {};
-      //   await executePinsList({ pinsSettingsList: cancelProcessSteps, context });
-      // }
+      if (cancelProcessSteps?.length) {
+        console.log(`[WORKFLOW][${new Date().toISOString()}]  cancelProcessSteps defined`);
+        await sleep(5000); // heartbeatTimeout: '2s',
+        context.protected = {};
+        console.log(`[WORKFLOW][${new Date().toISOString()}]  execute cancelProcessSteps`);
+        // await executePinsList({ pinsSettingsList: cancelProcessSteps, context });
+      }
       throw error;
     }
     throw error;

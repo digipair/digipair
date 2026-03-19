@@ -5,13 +5,13 @@ import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/c
 import { NativeConnection, Worker } from '@temporalio/worker';
 
 import { dataSignal, workflow as workflowJob } from './workflows.js';
-import { namespace, taskQueue } from './shared.js';
+import { namespace, taskQueue, setSharedClient } from './shared.js';
 import * as activities from './activities.js';
 
 class TemporalService {
   private client!: WorkflowClient;
 
-  async initialize(address = 'localhost:7233') {
+  async initialize(address = 'localhost:7233', ) {
     await this.startClient(address);
     await this.startWorker(address);
   }
@@ -25,6 +25,7 @@ class TemporalService {
       connection,
       namespace,
     });
+    setSharedClient(this.client);
   }
 
   private async startWorker(address: string) {
@@ -38,6 +39,26 @@ class TemporalService {
       workflowsPath: require.resolve('./workflows'),
       activities,
       taskQueue,
+      interceptors: {
+        activity: [
+          () => ({
+            inbound:
+              {
+                async execute(input, next) {
+                  try {
+                    return await next(input);
+                  } catch (err: any) {
+                    if (err?.name === 'CancelledFailure') {
+                      console.log('[ACTIVITY INTERCEPTOR] cancelled');
+                    }
+                    throw err;
+                  }
+                },
+              },
+
+          }),
+        ],
+      }
     });
 
     // Start accepting tasks from the Task Queue.
@@ -84,7 +105,7 @@ class TemporalService {
         ...(options.retry || {}),
       },
       startToCloseTimeout: '1 minute',
-      heartbeatTimeout: '5s',
+      heartbeatTimeout: '2s',
       ...options,
     };
 
