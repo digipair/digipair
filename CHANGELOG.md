@@ -1,3 +1,15 @@
+## 0.132.1 (2026-03-19)
+
+### 🚀 Features
+
+- add skill-serialport ([8032c1bf](https://github.com/digipair/digipair/commit/8032c1bf))
+- add skill-serialport ([5591109f](https://github.com/digipair/digipair/commit/5591109f))
+- add skill-serialport ([643b056c](https://github.com/digipair/digipair/commit/643b056c))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.131.8 (2026-03-19)
 
 This was a version bump only, there were no code changes.
