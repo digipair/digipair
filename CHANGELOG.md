@@ -1,3 +1,13 @@
+## 0.130.8 (2026-03-19)
+
+### 🚀 Features
+
+- update microsoft. auth ([859e5df3](https://github.com/digipair/digipair/commit/859e5df3))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.130.7 (2026-03-19)
 
 This was a version bump only, there were no code changes.
