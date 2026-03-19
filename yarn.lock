@@ -1061,17 +1061,17 @@
     "@opentelemetry/api" "^1.9.0"
     dayjs "^1.11.13"
 
-"@azure/msal-common@14.16.1":
-  version "14.16.1"
-  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-14.16.1.tgz#d23ecce40823a4d03ad74160dc819d62e0c0a787"
-  integrity sha512-nyxsA6NA4SVKh5YyRpbSXiMr7oQbwark7JU9LMeg6tJYTSPyAGkdx61wPT4gyxZfxlSxMMEyAsWaubBlNyIa1w==
+"@azure/msal-common@15.17.0":
+  version "15.17.0"
+  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-15.17.0.tgz#ae3c03378c852642b1c9a303380e945c2b897f02"
+  integrity sha512-VQ5/gTLFADkwue+FohVuCqlzFPUq4xSrX8jeZe+iwZuY6moliNC8xt86qPVNYdtbQfELDf2Nu6LI+demFPHGgw==
 
-"@azure/msal-node@^2.10.0":
-  version "2.16.3"
-  resolved "https://registry.yarnpkg.com/@azure/msal-node/-/msal-node-2.16.3.tgz#8b805152ad780b048d6c2b33b1d4e26d7b463368"
-  integrity sha512-CO+SE4weOsfJf+C5LM8argzvotrXw252/ZU6SM2Tz63fEblhH1uuVaaO4ISYFuN4Q6BhTo7I3qIdi8ydUQCqhw==
+"@azure/msal-node@^3.8.10":
+  version "3.8.10"
+  resolved "https://registry.yarnpkg.com/@azure/msal-node/-/msal-node-3.8.10.tgz#44c900905b023e63146cead2999720f0906c74ca"
+  integrity sha512-0Hz7Kx4hs70KZWep/Rd7aw/qOLUF92wUOhn7ZsOuB5xNR/06NL1E2RAI9+UKH1FtvN8nD6mFjH7UKSjv6vOWvQ==
   dependencies:
-    "@azure/msal-common" "14.16.1"
+    "@azure/msal-common" "15.17.0"
     jsonwebtoken "^9.0.0"
     uuid "^8.3.0"
 
