@@ -78,7 +78,7 @@ class TemporalService {
   }
 
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {}, cancelProcessSteps = [] } = params;
+    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {}, cancelProcessSteps = [], failureProcessSteps = [] } = params;
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
@@ -105,7 +105,8 @@ class TemporalService {
           context: this.removeProtectedRecursively(context),
           data,
           options: workflowOptions,
-          cancelProcessSteps
+          cancelProcessSteps,
+          failureProcessSteps
         },
       ],
       taskQueue,

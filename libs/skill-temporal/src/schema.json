@@ -504,6 +504,18 @@
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
+        },
+        {
+          "name": "failureProcessSteps",
+          "summary": "Steps after a failure",
+          "required": false,
+          "description": "Executes the steps triggered when the workflow is on failure",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
         }
       ],
       "responses": {

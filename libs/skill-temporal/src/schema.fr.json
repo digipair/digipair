@@ -504,6 +504,18 @@
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
+        },
+        {
+          "name": "failureProcessSteps",
+          "summary": "Étapes après un workflow en erreur",
+          "required": false,
+          "description": "Exécute les étapes lors d'un workflow en erreur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
         }
       ],
       "responses": {

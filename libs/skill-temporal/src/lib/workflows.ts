@@ -111,7 +111,7 @@ async function executePins(
   return result;
 }
 
-export async function workflow({ steps, context, data, options, cancelProcessSteps }: WorkflowArgs): Promise<any> {
+export async function workflow({ steps, context, data, options, cancelProcessSteps, failureProcessSteps }: WorkflowArgs): Promise<any> {
   let result: any;
 
   context.workflow = { steps: {}, data };
@@ -166,8 +166,20 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
       });
       throw error;
     }
+    if (!isCancellation(error) && failureProcessSteps?.length) {
+      await CancellationScope.nonCancellable(async () => {
+        await executePinsList({
+          pinsSettingsList: failureProcessSteps,
+          context: { ...context },
+        });
+      });
+      throw error;
+    }
+
+
     throw error;
   }
 
   return result;
 }
+
