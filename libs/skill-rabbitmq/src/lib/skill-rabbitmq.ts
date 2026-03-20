@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PinsSettings } from '@digipair/engine';
+import { executePinsList, PinsSettings } from '@digipair/engine';
 
 const amqplib = require('amqplib');
 
@@ -26,18 +26,37 @@ class RabbitMqService {
   }
 
   async consume(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { client = context.privates.CLIENT_RABBITMQ, queue } = params;
+    const { client = context.privates.CLIENT_RABBITMQ, execute, queue } = params;
 
     const connection = await executePinsList(client, context, `${context.__PATH__}.client`);
     const channel = await connection.createChannel();
 
-    channel.consume(queue, (message) => {
+    channel.consume(queue, async (message) => {
       if (message !== null) {
         await executePinsList(execute, { ...context, message }, `${context.__PATH__}.execute`);
-        rabbitmqChannel.ack(message);
+        channel.ack(message);
       }
     });
 
     return { connection, channel };
   }
+
+  async consumerDisconnect(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { connection, channel } = params;
+
+    channel.close();
+    connection.close();
+  }
 }
+
+export const rabbit = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new RabbitMqService().rabbit(params, pinsSettingsList, context);
+
+export const produce = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new RabbitMqService().produce(params, pinsSettingsList, context);
+
+export const consume = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new RabbitMqService().consume(params, pinsSettingsList, context);
+
+export const consumerDisconnect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new RabbitMqService().consumerDisconnect(params, pinsSettingsList, context);
