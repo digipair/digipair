@@ -1,0 +1,140 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-serialport",
+    "summary": "Communication Série",
+    "description": "Communiquer avec des appareils via port série (écrire des données et envoyer des commandes)",
+    "version": "0.1.0",
+    "x-icon": "🔌"
+  },
+  "paths": {
+    "/write": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Écrire des données",
+        "description": "Écrire des données sur un port série sans attendre de réponse",
+        "parameters": [
+          {
+            "name": "data",
+            "summary": "Données à écrire",
+            "required": true,
+            "description": "Les données à écrire sur le port série (tableau d'octets ou buffer)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "sleep",
+            "summary": "Durée d'attente",
+            "required": false,
+            "description": "Temps d'attente en millisecondes après l'écriture (par défaut: 1000)",
+            "schema": {
+              "type": "number",
+              "default": 1000
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration Port Série",
+            "required": false,
+            "description": "Configuration du port série (optionnelle, utilise SERIALPORT_CONFIG du contexte si non fournie)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opération d'écriture terminée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objet de réponse vide indiquant une écriture réussie"
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
+    "/command": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Envoyer une commande",
+        "description": "Envoyer une commande à un appareil sur port série et attendre une réponse",
+        "parameters": [
+          {
+            "name": "data",
+            "summary": "Données de commande",
+            "required": true,
+            "description": "Les données de commande à envoyer sur le port série (tableau d'octets ou buffer)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "sleep",
+            "summary": "Durée d'attente",
+            "required": false,
+            "description": "Temps d'attente en millisecondes après l'envoi de la commande (par défaut: 1000)",
+            "schema": {
+              "type": "number",
+              "default": 1000
+            }
+          },
+          {
+            "name": "timeout",
+            "summary": "Délai d'attente de réponse",
+            "required": false,
+            "description": "Temps maximum d'attente pour une réponse en millisecondes (par défaut: 3000)",
+            "schema": {
+              "type": "number",
+              "default": 3000
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Configuration Port Série",
+            "required": false,
+            "description": "Configuration du port série (optionnelle, utilise SERIALPORT_CONFIG du contexte si non fournie)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Données de réponse reçues de l'appareil sur port série",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Tableau d'octets reçus en réponse de l'appareil"
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

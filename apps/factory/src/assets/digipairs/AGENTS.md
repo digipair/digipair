@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 
 - Source: JSON-based agent, tool, and workflow definitions at the repo root.
-- Agents: `tardi-*`, `studio`, `common`, `worker-skill-builder` (each contains `config.json`, `schema.json`, `*.json` actions/boosts/workflows, and `avatar.png`).
+- Agents: `studio`, `common`, `worker-skill-builder` (each contains `config.json`, `schema.json`, `*.json` actions/boosts/workflows, and `avatar.png`).
 - Tools: `tool-*` directories (HTTP, JSON, PDF, OAuth2, Sharp, etc.).
 - Core config: `default.json` (global settings), `planning.jsonl` (cron-like scheduled tasks).
 

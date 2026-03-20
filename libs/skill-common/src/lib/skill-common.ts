@@ -110,7 +110,13 @@ class CommonService {
           const content = await promises.readFile(`${path}/${digipair}/${file}`, 'utf8');
           const { metadata } = JSON.parse(content);
 
-          return metadata.prompts ?? [];
+          return (
+            metadata.prompts.map((p: any) => ({
+              ...p,
+              context: metadata.context ?? false,
+              action: metadata.context ? 'boost-' + file.substring(0, file.length - 5) : file.substring(0, file.length - 5),
+            })) ?? []
+          );
         }),
     );
 

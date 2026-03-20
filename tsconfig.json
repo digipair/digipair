@@ -224,6 +224,15 @@
     },
     {
       "path": "./libs/skill-marked"
+    },
+    {
+      "path": "./libs/skill-kafka"
+    },
+    {
+      "path": "./libs/skill-pronote"
+    },
+    {
+      "path": "./libs/skill-serialport"
     }
   ]
 }

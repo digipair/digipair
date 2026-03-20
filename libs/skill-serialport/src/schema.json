@@ -1,0 +1,140 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-serialport",
+    "summary": "Serial Port Communication",
+    "description": "Communicate with devices via serial port (write data and send commands)",
+    "version": "0.1.0",
+    "x-icon": "🔌"
+  },
+  "paths": {
+    "/write": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Write Data",
+        "description": "Write data to a serial port device without waiting for response",
+        "parameters": [
+          {
+            "name": "data",
+            "summary": "Data to Write",
+            "required": true,
+            "description": "The data to write to the serial port (array of bytes or buffer)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "sleep",
+            "summary": "Sleep Duration",
+            "required": false,
+            "description": "Time to wait in milliseconds after writing (default: 1000)",
+            "schema": {
+              "type": "number",
+              "default": 1000
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Serial Port Config",
+            "required": false,
+            "description": "Serial port configuration (optional, uses SERIALPORT_CONFIG from context if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Write operation completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Empty response object indicating successful write"
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    },
+    "/command": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Send Command",
+        "description": "Send a command to a serial port device and wait for response",
+        "parameters": [
+          {
+            "name": "data",
+            "summary": "Command Data",
+            "required": true,
+            "description": "The command data to send to the serial port (array of bytes or buffer)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "name": "sleep",
+            "summary": "Sleep Duration",
+            "required": false,
+            "description": "Time to wait in milliseconds after sending command (default: 1000)",
+            "schema": {
+              "type": "number",
+              "default": 1000
+            }
+          },
+          {
+            "name": "timeout",
+            "summary": "Response Timeout",
+            "required": false,
+            "description": "Maximum time to wait for response in milliseconds (default: 3000)",
+            "schema": {
+              "type": "number",
+              "default": 3000
+            }
+          },
+          {
+            "name": "config",
+            "summary": "Serial Port Config",
+            "required": false,
+            "description": "Serial port configuration (optional, uses SERIALPORT_CONFIG from context if not provided)",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response data received from serial port device",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Array of bytes received as response from the device"
+                }
+              }
+            }
+          }
+        },
+        "x-events": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
