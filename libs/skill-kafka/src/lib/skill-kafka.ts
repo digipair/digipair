@@ -36,7 +36,12 @@ class KafkaService {
 
     await consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
-        await executePinsList(execute, { ...context, topic, partition, message }, `${context.__PATH__}.execute`);
+        await executePinsList(execute, {
+          ...context,
+          topic,
+          partition,
+          message: message.value?.toString(),
+        }, `${context.__PATH__}.execute`);
       },
     });
 
