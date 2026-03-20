@@ -7,7 +7,7 @@ const amqplib = require('amqplib');
 class RabbitMqService {
   async rabbit(params: any, _pins: PinsSettings[], context: any) {
     const {
-      url = context.privates.RABBITMQ_URL ?? params?.RABBITMQ_URL ?? process.env['RABBITMQ_URL'],
+      url = context.privates.RABBITMQ_URL ?? process.env['RABBITMQ_URL'],
     } = params;
 
     return await amqplib.connect(url);
