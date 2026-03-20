@@ -47,7 +47,7 @@ class TemporalService {
       workflowsPath: require.resolve('./workflows'),
       activities,
       taskQueue,
-      workerOptions
+      ...workerOptions
     });
 
     // Start accepting tasks from the Task Queue.
