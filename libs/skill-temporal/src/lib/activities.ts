@@ -1,5 +1,4 @@
 import { executePinsList as executePinsListEngine, PinsSettings } from '@digipair/engine';
-// import { ApplicationFailure } from '@temporalio/common';
 import { heartbeat, cancellationSignal, activityInfo } from '@temporalio/activity';
 
 export async function executePinsList({
@@ -9,49 +8,27 @@ export async function executePinsList({
   pinsSettingsList: PinsSettings[];
   context: any;
 }): Promise<string> {
-  console.log('[ACTIVITY] context.protected :', context.protected)
   const info = activityInfo();
   console.log(`[ACTIVITY] info workflowId ${info.workflowExecution.workflowId}`)
+  console.log('[ACTIVITY] context.protected :', context.protected)
   const abortSignal = cancellationSignal();
   const abortController = new AbortController();
   const newContext = {...context, protected : {...context.protected, signal: abortController.signal }}
 
-  // let cancelSignalPromise: Promise<void> | null = null;
 
-  abortSignal.addEventListener('abort', () => {
-    console.log(`[ACTIVITY][${new Date().toISOString()}] cancellationSignal received`);
-    abortController.abort();
-    // Envoyer le signal au workflow parent
-    // cancelSignalPromise = (async () => {
-    //   try {
-    //     const info = activityInfo();
-    //     console.log('activityInfo : ', info);
-    //     const client = getSharedClient();
-    //     if (!client) {
-    //       console.error('[ACTIVITY] sharedClient non disponible');
-    //       return;
-    //     }
-    //     await client
-    //       .getHandle(info.workflowExecution.workflowId)
-    //       .signal(activityCancelledSignal, {
-    //         activityType: info.activityType,
-    //         timestamp: new Date().toISOString(),
-    //       });
-    //     console.log(`[ACTIVITY] Signal envoyé au workflow ${info.workflowExecution.workflowId}`);
-    //   } catch (err) {
-    //     console.error('[ACTIVITY] Erreur envoi signal:', err);
-    //   }
-    // })();
-  });
-
-  // cancelled().catch(() => {
-  //   console.log('[ACTIVITY] cancelled promise triggered');
-  // });
+  if (!context.protected?.isCleanup) {
+    abortSignal.addEventListener('abort', () => {
+      console.log(`[ACTIVITY][${new Date().toISOString()}] cancellationSignal received — isCleanup: ${context.protected?.isCleanup}`);
+      abortController.abort();
+    });
+  } else {
+    console.log(`[ACTIVITY] cleanup — cancellationSignal ignoré`);
+  }
 
   const interval = setInterval(() => {
     console.log(`[ACTIVITY][${new Date().toISOString()}] hearbeat send`);
     heartbeat();
-  }, 1000);
+  }, 3000);
 
   try {
     return await executePinsListEngine(pinsSettingsList, newContext);
@@ -59,9 +36,8 @@ export async function executePinsList({
     console.log('[ACTIVITY] error:', error);
     throw error;
   } finally {
+    console.log('[ACTIVITY] finally clearInterval and abortController.abort()');
     clearInterval(interval);
     abortController.abort();
-    // Attendre que le signal soit bien parti avant que l'activité se termine
-    // if (cancelSignalPromise) await cancelSignalPromise;
   }
 }

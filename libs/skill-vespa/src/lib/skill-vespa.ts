@@ -318,6 +318,7 @@ class VespaService {
       collection = 'knowledge',
       selection,
     } = params;
+    console.log('vespa, pushDoc, signal:',context.protected?.signal)
     const response = await fetch(
       `${baseUrl}/document/v1/${namespace}/${collection}/docid?selection=${encodeURIComponent(
         selection,
@@ -330,7 +331,7 @@ class VespaService {
         },
       },
     );
-
+    console.log('vespa, pushDoc, response.ok:',response.ok)
     if (!response.ok) {
       const error = await response.json();
       console.error('Error - VespaService:remove - fetching', error.root?.errors ?? error);
