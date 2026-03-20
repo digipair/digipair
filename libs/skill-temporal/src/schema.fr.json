@@ -258,6 +258,40 @@
         }
       }
     },
+    "/stopEvent": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Envoi stop event dans un workflow",
+        "description": "Envoi stop event dans le workflow",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant du workflow",
+            "required": true,
+            "description": "Identifiant du workflow",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation de l'envoi du stop event",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Le stop event a été envoyé avec succès au workflow"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/terminate": {
       "post": {
         "tags": [
@@ -321,6 +355,40 @@
                   "items": {
                     "$ref": "#/components/schemas/WorkflowExecutionInfo"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/isRunning": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Workflow en cours",
+        "description": "Workflow en cours",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Workflow ID",
+            "required": true,
+            "description": "Workflow ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Workflow en cours",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "description": "Workflow en cours"
                 }
               }
             }
@@ -423,6 +491,18 @@
           "description": "Options du workflow temporal",
           "schema": {
             "type": "object"
+          }
+        },
+        {
+          "name": "stopEventSteps",
+          "summary": "Stop event steps",
+          "required": false,
+          "description": "Temporal workflow stop event steps",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
           }
         }
       ],
