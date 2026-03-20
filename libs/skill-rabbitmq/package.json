@@ -15,7 +15,7 @@
     }
   },
   "nx": {
-    "name": "skill-kafka"
+    "name": "skill-rabbitmq"
   },
   "dependencies": {
     "amqplib": "^0.10.9"

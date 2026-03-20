@@ -1,1 +1,1 @@
-export * from './lib/skill-kafka.js';
+export * from './lib/skill-rabbitmq.js';

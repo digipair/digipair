@@ -19,10 +19,10 @@ class RabbitMqService {
     const connection = await executePinsList(client, context, `${context.__PATH__}.client`);
     const channel = await connection.createChannel();
 
-    channel.sendToQueue(queue, Buffer.from(message));
+    await channel.sendToQueue(queue, Buffer.from(message));
 
-    channel.close();
-    connection.close();
+    await channel.close();
+    await connection.close();
   }
 
   async consume(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -44,8 +44,8 @@ class RabbitMqService {
   async consumerDisconnect(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const { connection, channel } = params;
 
-    channel.close();
-    connection.close();
+    await channel.close();
+    await connection.close();
   }
 }
 
