@@ -1,7 +1,6 @@
 import { sleep, proxyActivities, condition, setHandler, defineSignal, isCancellation, CancellationScope, ActivityCancellationType } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
 import { PinsSettings, preparePinsSettings } from '@digipair/engine';
-
 import * as feelin from 'feelin';
 
 import type * as activities from './activities.js';
@@ -92,13 +91,6 @@ async function executePins(
     result = state.step = step;
   } else if (settings.element === 'activity') {
     try {
-      // let newContext = context;
-      // if(context.protected.processId) {
-      //   console.log('executePinsList , listProcess(); :', await listProcess( undefined as any,[], undefined as any))
-      //   console.log('executePinsList , context.protected.processId :', context.protected.processId)
-      //   const {signal} = updateProcess(context.protected.processId, context.request.digipair, context.request.reasoning, undefined as any);
-      //   newContext = {...context, protected : {...context.protected, signal }}
-      // }
       result = await executePinsList({
         pinsSettingsList: (settings.properties as any)['execute'],
         context,
@@ -123,8 +115,7 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
   let result: any;
 
   context.workflow = { steps: {}, data };
-  // context.protected = {processId: context.protected.processId};
-  // console.log('workflow init, context.protected :', context.protected)
+  context.protected = {};
 
   const { executePinsList } = proxyActivities<typeof activities>({
     ...options,
@@ -165,11 +156,12 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
       }
     }
   } catch (error: any) {
+    console.log('[WORKFLOW] catch global')
     if (isCancellation(error) && cancelProcessSteps?.length) {
       await CancellationScope.nonCancellable(async () => {
           await executePinsList({
             pinsSettingsList: cancelProcessSteps,
-            context: { ...context, protected: { isCleanup: true } },
+            context: { ...context },
           });
       });
       throw error;

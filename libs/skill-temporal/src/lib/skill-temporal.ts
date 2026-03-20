@@ -65,7 +65,7 @@ class TemporalService {
 
     const result = { ...obj };
     if ('protected' in result) {
-      result.protected = { processId: result.protected.processId };
+      result.protected = undefined;
     }
 
     for (const key in result) {

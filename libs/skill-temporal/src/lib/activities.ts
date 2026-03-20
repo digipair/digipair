@@ -9,34 +9,27 @@ export async function executePinsList({
   context: any;
 }): Promise<string> {
   const info = activityInfo();
-  console.log(`[ACTIVITY] info workflowId ${info.workflowExecution.workflowId}`)
-  console.log('[ACTIVITY] context.protected :', context.protected)
   const abortSignal = cancellationSignal();
   const abortController = new AbortController();
   const newContext = {...context, protected : {...context.protected, signal: abortController.signal }}
 
+  abortSignal.addEventListener('abort', () => {
+    console.log(`[ACTIVITY][${new Date().toISOString()}] cancellationSignal received`);
+    abortController.abort();
+  });
 
-  if (!context.protected?.isCleanup) {
-    abortSignal.addEventListener('abort', () => {
-      console.log(`[ACTIVITY][${new Date().toISOString()}] cancellationSignal received — isCleanup: ${context.protected?.isCleanup}`);
-      abortController.abort();
-    });
-  } else {
-    console.log(`[ACTIVITY] cleanup — cancellationSignal ignoré`);
-  }
-
+  const intervalMs = info.heartbeatTimeoutMs
+    ? Math.floor(info.heartbeatTimeoutMs / 3 / 1000) * 1000
+    : 3000;
   const interval = setInterval(() => {
     console.log(`[ACTIVITY][${new Date().toISOString()}] hearbeat send`);
     heartbeat();
-  }, 3000);
+  }, intervalMs);
 
   try {
     return await executePinsListEngine(pinsSettingsList, newContext);
-  } catch (error) {
-    console.log('[ACTIVITY] error:', error);
-    throw error;
   } finally {
-    console.log('[ACTIVITY] finally clearInterval and abortController.abort()');
+    console.log('[ACTIVITY] finally clean');
     clearInterval(interval);
     abortController.abort();
   }
