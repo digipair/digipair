@@ -18,6 +18,7 @@ console.log(`📦 Publication de la version: ${version}`);
 // NOTE : pb npx nx release, impossible on local registry
 // Procédure : add .npmrc on root with registry=http://localhost:4873/
 // then execute 3 commands on bash
+// get build error : yarn nx run-many -t build
 
 const commands = [
   `npx nx release -y ${version}`,

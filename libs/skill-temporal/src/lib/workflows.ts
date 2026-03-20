@@ -1,4 +1,4 @@
-import { sleep, proxyActivities, condition, setHandler, defineSignal } from '@temporalio/workflow';
+import { sleep, proxyActivities, condition, setHandler, defineSignal, isCancellation, CancellationScope, ActivityCancellationType } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
 import { PinsSettings, preparePinsSettings } from '@digipair/engine';
 import * as feelin from 'feelin';
@@ -96,6 +96,9 @@ async function executePins(
         context,
       });
     } catch (error) {
+      if (isCancellation(error)) {
+        throw error;
+      }
       throw new ApplicationFailure('[SKILL-TEMPORAL] EXECUTEPINS FAILED', null, null, [
         error,
         settings,
@@ -107,13 +110,16 @@ async function executePins(
   return result;
 }
 
-export async function workflow({ steps, context, data, options }: WorkflowArgs): Promise<any> {
+export async function workflow({ steps, context, data, options, cancelProcessSteps }: WorkflowArgs): Promise<any> {
   let result: any;
 
   context.workflow = { steps: {}, data };
   context.protected = {};
 
-  const { executePinsList } = proxyActivities<typeof activities>(options);
+  const { executePinsList } = proxyActivities<typeof activities>({
+    ...options,
+    cancellationType: ActivityCancellationType.WAIT_CANCELLATION_COMPLETED,
+  });
   setHandler(dataSignal, (data: any) => {
     context.workflow.data = { ...context.workflow.data, ...data };
   });
@@ -129,24 +135,36 @@ export async function workflow({ steps, context, data, options }: WorkflowArgs):
   }
 
   // parcourir tous les pins
-  for (let state = { step: 0 }; state.step < steps.length; state.step++) {
-    const pinsSettings = steps[state.step];
+  try {
+    for (let state = { step: 0 }; state.step < steps.length; state.step++) {
+      const pinsSettings = steps[state.step];
 
-    try {
-      result = await executePins(executePinsList, steps, state, pinsSettings, context);
-    } catch (error) {
-      if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
-        continue;
-      } else if (error === 'DIGIPAIR_WORKFLOW_STOP') {
-        return result;
+      try {
+        result = await executePins(executePinsList, steps, state, pinsSettings, context);
+      } catch (error) {
+        if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
+          continue;
+        } else if (error === 'DIGIPAIR_WORKFLOW_STOP') {
+          return result;
+        }
+        throw error;
       }
 
+      if (pinsSettings.properties?.['name']) {
+        context.workflow.steps[pinsSettings.properties['name']] = result;
+      }
+    }
+  } catch (error: any) {
+    if (isCancellation(error) && cancelProcessSteps?.length) {
+      await CancellationScope.nonCancellable(async () => {
+          await executePinsList({
+            pinsSettingsList: cancelProcessSteps,
+            context: { ...context },
+          });
+      });
       throw error;
     }
-
-    if (pinsSettings.properties?.['name']) {
-      context.workflow.steps[pinsSettings.properties['name']] = result;
-    }
+    throw error;
   }
 
   return result;

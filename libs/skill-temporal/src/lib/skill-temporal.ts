@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PinsSettings } from '@digipair/engine';
 import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/client';
-import { NativeConnection, Worker } from '@temporalio/worker';
+import { NativeConnection, Worker, WorkerOptions } from '@temporalio/worker';
 
 import { dataSignal, workflow as workflowJob } from './workflows.js';
 import { namespace, taskQueue } from './shared.js';
@@ -11,9 +11,18 @@ import * as activities from './activities.js';
 class TemporalService {
   private client!: WorkflowClient;
 
-  async initialize(address = 'localhost:7233') {
+
+  async initialize(address = 'localhost:7233', workerOptions?: Partial<WorkerOptions>) {
+    const DEFAULT_WORKER_OPTIONS: Partial<WorkerOptions> = {
+      maxConcurrentWorkflowTaskExecutions: 5,
+      maxConcurrentActivityTaskExecutions: 3
+    };
+    const finalWorkerOptions: Partial<WorkerOptions> = {
+      ...DEFAULT_WORKER_OPTIONS,
+      ...workerOptions,
+    };
     await this.startClient(address);
-    await this.startWorker(address);
+    await this.startWorker(address, finalWorkerOptions);
   }
 
   private async startClient(address: string) {
@@ -27,7 +36,7 @@ class TemporalService {
     });
   }
 
-  private async startWorker(address: string) {
+  private async startWorker(address: string, workerOptions: Partial<WorkerOptions>) {
     const connection = await NativeConnection.connect({
       address,
     });
@@ -38,6 +47,7 @@ class TemporalService {
       workflowsPath: require.resolve('./workflows'),
       activities,
       taskQueue,
+      ...workerOptions
     });
 
     // Start accepting tasks from the Task Queue.
@@ -68,7 +78,7 @@ class TemporalService {
   }
 
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {} } = params;
+    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {}, cancelProcessSteps = [] } = params;
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
@@ -79,11 +89,12 @@ class TemporalService {
         initialInterval: '1 second',
         maximumInterval: '1 minute',
         backoffCoefficient: 2,
-        maximumAttempts: 50,
+        maximumAttempts: 10,
         nonRetryableErrorTypes: [],
         ...(options.retry || {}),
       },
       startToCloseTimeout: '1 minute',
+      heartbeatTimeout: '10s',
       ...options,
     };
 
@@ -94,6 +105,7 @@ class TemporalService {
           context: this.removeProtectedRecursively(context),
           data,
           options: workflowOptions,
+          cancelProcessSteps
         },
       ],
       taskQueue,
@@ -121,6 +133,16 @@ class TemporalService {
     await handle.terminate();
   }
 
+  async cancel(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    const handle = this.client.getHandle(`${prefix}${id}`);
+    await handle.cancel();
+  }
+
   async list(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { query = `ExecutionStatus = "Running"` } = params;
     const prefix =
@@ -129,7 +151,7 @@ class TemporalService {
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
 
     const workflowIterator = this.client.list({
-      query: `(WorkflowId > '${prefix}' and WorkflowId < '${prefix}~') and (${query})`,
+      query: `WorkflowId STARTS_WITH '${prefix}' AND (${query})`
     });
     const workflows = [] as WorkflowExecutionInfo[];
     for await (const workflow of workflowIterator) {
@@ -137,6 +159,21 @@ class TemporalService {
     }
 
     return workflows;
+  }
+
+  async isRunning(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    try {
+      const handle = this.client.getHandle(`${prefix}${id}`);
+      const description = await handle.describe();
+      return description.status.name === 'RUNNING';
+    } catch (error) {
+      return false;
+    }
   }
 }
 
@@ -154,5 +191,11 @@ export const push = (params: any, pinsSettingsList: PinsSettings[], context: any
 export const terminate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.terminate(params, pinsSettingsList, context);
 
+export const cancel = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.cancel(params, pinsSettingsList, context);
+
 export const list = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.list(params, pinsSettingsList, context);
+
+export const isRunning = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.isRunning(params, pinsSettingsList, context);
