@@ -1,3 +1,7 @@
+## 0.132.5 (2026-03-20)
+
+This was a version bump only, there were no code changes.
+
 ## 0.132.4 (2026-03-20)
 
 This was a version bump only, there were no code changes.
