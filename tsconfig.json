@@ -230,6 +230,9 @@
     },
     {
       "path": "./libs/skill-pronote"
+    },
+    {
+      "path": "./libs/skill-serialport"
     }
   ]
 }

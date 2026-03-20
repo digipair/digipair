@@ -114,7 +114,7 @@
               ]
             },
             "conditions": {
-              "if": "FEEL: ends with(request.body.prompt, \".yaml\") = false"
+              "if": "FEEL: ends with(request.body.prompt, \".yaml\") = false and ends with(request.body.prompt, \".yml\") = false"
             }
           },
           {
@@ -141,7 +141,7 @@
               ]
             },
             "conditions": {
-              "if": "FEEL: ends with(request.body.prompt, \".yaml\") = true"
+              "if": "FEEL: ends with(request.body.prompt, \".yaml\") = true or ends with(request.body.prompt, \".yml\") = true"
             }
           },
           {

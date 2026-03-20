@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { executePinsList, PinsSettings } from '@digipair/engine';
-import { Kafka, RecordMetadata } from 'kafkajs';
+import { Kafka } from 'kafkajs';
 
 class KafkaService {
   async kafka(params: any, _pins: PinsSettings[], context: any) {
@@ -28,7 +28,7 @@ class KafkaService {
 
   async consume(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { client = context.privates.CLIENT_KAFKA, execute = [], groupId, topic } = params;
-    const kafkaInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const kafkaInstance = await executePinsList(client, context, `${context.__PATH__}.client`) as Kafka;
     const consumer = kafkaInstance.consumer({ groupId });
 
     await consumer.connect();
@@ -36,7 +36,7 @@ class KafkaService {
 
     await consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
-        await executePinsList(execute, { ...context, message }, `${context.__PATH__}.execute`);
+        await executePinsList(execute, { ...context, topic, partition, message }, `${context.__PATH__}.execute`);
       },
     });
 
@@ -49,3 +49,15 @@ class KafkaService {
     consumer.disconnect();
   }
 }
+
+export const kafka = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new KafkaService().kafka(params, pinsSettingsList, context);
+
+export const produce = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new KafkaService().produce(params, pinsSettingsList, context);
+
+export const consume = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new KafkaService().consume(params, pinsSettingsList, context);
+
+export const consumerDisconnect = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new KafkaService().consumerDisconnect(params, pinsSettingsList, context);

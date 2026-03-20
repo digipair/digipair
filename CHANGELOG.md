@@ -1,3 +1,112 @@
+## 0.132.2 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.132.1 (2026-03-19)
+
+### 🚀 Features
+
+- add skill-serialport ([8032c1bf](https://github.com/digipair/digipair/commit/8032c1bf))
+- add skill-serialport ([5591109f](https://github.com/digipair/digipair/commit/5591109f))
+- add skill-serialport ([643b056c](https://github.com/digipair/digipair/commit/643b056c))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.131.8 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.131.7 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.131.6 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.131.5 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.131.4 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.131.3 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.131.2 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.131.1 (2026-03-19)
+
+### 🚀 Features
+
+- add kafka ([c7b7bcd2](https://github.com/digipair/digipair/commit/c7b7bcd2))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.131.0 (2026-03-19)
+
+### 🚀 Features
+
+- update microsoft. auth ([24c6855f](https://github.com/digipair/digipair/commit/24c6855f))
+- add kafka ([1b148eed](https://github.com/digipair/digipair/commit/1b148eed))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.130.9 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.130.8 (2026-03-19)
+
+### 🚀 Features
+
+- update microsoft. auth ([859e5df3](https://github.com/digipair/digipair/commit/859e5df3))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.130.7 (2026-03-19)
+
+This was a version bump only, there were no code changes.
+
+## 0.130.6 (2026-03-18)
+
+This was a version bump only, there were no code changes.
+
+## 0.130.5 (2026-03-18)
+
+This was a version bump only, there were no code changes.
+
+## 0.130.4 (2026-03-18)
+
+### 🚀 Features
+
+- improve tool openapi ([fbe85584](https://github.com/digipair/digipair/commit/fbe85584))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
+## 0.130.2 (2026-03-12)
+
+This was a version bump only, there were no code changes.
+
+## 0.130.1 (2026-03-12)
+
+This was a version bump only, there were no code changes.
+
 ## 0.130.0 (2026-03-12)
 
 ### 🚀 Features
