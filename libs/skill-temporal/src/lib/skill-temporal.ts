@@ -161,7 +161,7 @@ class TemporalService {
     return workflows;
   }
 
-  async getDescription(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+  async describe(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
     const { id } = params;
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
@@ -196,5 +196,5 @@ export const cancel = (params: any, pinsSettingsList: PinsSettings[], context: a
 export const list = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.list(params, pinsSettingsList, context);
 
-export const getDescription = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.getDescription(params, pinsSettingsList, context);
+export const describe = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.describe(params, pinsSettingsList, context);

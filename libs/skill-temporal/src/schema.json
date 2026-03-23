@@ -362,7 +362,7 @@
         }
       }
     },
-    "/getDescription": {
+    "/describe": {
       "post": {
         "tags": [
           "service"
