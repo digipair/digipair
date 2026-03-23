@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { executePinsList, PinsSettings } from '@digipair/engine';
-
-const amqplib = require('amqplib');
+import * as amqplib from 'amqplib';
 
 class RabbitMqService {
   async rabbit(params: any, _pins: PinsSettings[], context: any) {
@@ -31,7 +30,7 @@ class RabbitMqService {
     const connection = await executePinsList(client, context, `${context.__PATH__}.client`);
     const channel = await connection.createChannel();
 
-    await channel.consume(queue, async (message) => {
+    await channel.consume(queue, async (message: any) => {
         await executePinsList(execute, { ...context, message: message?.content?.toString() }, `${context.__PATH__}.execute`);
         channel.ack(message);
 

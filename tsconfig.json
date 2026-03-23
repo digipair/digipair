@@ -233,6 +233,9 @@
     },
     {
       "path": "./libs/skill-serialport"
+    },
+    {
+      "path": "./libs/skill-rabbitmq"
     }
   ]
 }
