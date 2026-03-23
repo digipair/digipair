@@ -156,11 +156,9 @@ export async function workflow({ steps, context, data, options, cancelSteps, fai
         });
       }
       if (!isCancellation(error) && failureSteps?.length) {
-        await CancellationScope.nonCancellable(async () => {
-          await executePinsList({
-            pinsSettingsList: failureSteps,
-            context: { ...context },
-          });
+        await executePinsList({
+          pinsSettingsList: failureSteps,
+          context: { ...context },
         });
       }
       throw error;
