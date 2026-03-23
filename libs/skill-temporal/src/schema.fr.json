@@ -362,13 +362,13 @@
         }
       }
     },
-    "/isRunning": {
+    "/getDescription": {
       "post": {
         "tags": [
           "service"
         ],
-        "summary": "Workflow en cours",
-        "description": "Workflow en cours",
+        "summary": "Description du workflow",
+        "description": "Retourner la description du workflow",
         "parameters": [
           {
             "name": "id",
@@ -383,12 +383,12 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Workflow en cours",
+            "description": "Description du workflow",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "boolean",
-                  "description": "Workflow en cours"
+                  "type": "object",
+                  "description": "Descripion du workflow"
                 }
               }
             }
@@ -494,7 +494,7 @@
           }
         },
         {
-          "name": "cancelProcessSteps",
+          "name": "cancelSteps",
           "summary": "Étapes de nettoyage après annulation",
           "required": false,
           "description": "Exécute les étapes de nettoyage déclenchées lors de l'annulation",

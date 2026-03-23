@@ -5,7 +5,7 @@ export type WorkflowArgs = {
   context: any;
   data: any;
   options: any;
-  cancelProcessSteps: PinsSettings[];
+  cancelSteps: PinsSettings[];
 };
 
 export const taskQueue = 'DIGIPAIR_WORKFLOW_TASK_QUEUE';

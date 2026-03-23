@@ -362,13 +362,13 @@
         }
       }
     },
-    "/isRunning": {
+    "/getDescription": {
       "post": {
         "tags": [
           "service"
         ],
-        "summary": "Is running workflow",
-        "description": "Is running workflow",
+        "summary": "Workflow description",
+        "description": "Workflow description",
         "parameters": [
           {
             "name": "id",
@@ -383,12 +383,12 @@
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Is running workflow",
+            "description": "Workflow description",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "boolean",
-                  "description": "Is running workflow"
+                  "type": "object",
+                  "description": "Workflow description"
                 }
               }
             }
@@ -494,7 +494,7 @@
           }
         },
         {
-          "name": "cancelProcessSteps",
+          "name": "cancelSteps",
           "summary": "Cleanup steps after cancellation",
           "required": false,
           "description": "Executes the cleanup steps triggered when the workflow is canceled",

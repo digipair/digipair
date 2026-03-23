@@ -110,7 +110,7 @@ async function executePins(
   return result;
 }
 
-export async function workflow({ steps, context, data, options, cancelProcessSteps }: WorkflowArgs): Promise<any> {
+export async function workflow({ steps, context, data, options, cancelSteps }: WorkflowArgs): Promise<any> {
   let result: any;
 
   context.workflow = { steps: {}, data };
@@ -135,36 +135,33 @@ export async function workflow({ steps, context, data, options, cancelProcessSte
   }
 
   // parcourir tous les pins
-  try {
-    for (let state = { step: 0 }; state.step < steps.length; state.step++) {
-      const pinsSettings = steps[state.step];
+  for (let state = { step: 0 }; state.step < steps.length; state.step++) {
+    const pinsSettings = steps[state.step];
 
-      try {
-        result = await executePins(executePinsList, steps, state, pinsSettings, context);
-      } catch (error) {
-        if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
-          continue;
-        } else if (error === 'DIGIPAIR_WORKFLOW_STOP') {
-          return result;
-        }
-        throw error;
+    try {
+      result = await executePins(executePinsList, steps, state, pinsSettings, context);
+    } catch (error) {
+      if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
+        continue;
       }
-
-      if (pinsSettings.properties?.['name']) {
-        context.workflow.steps[pinsSettings.properties['name']] = result;
+      if (error === 'DIGIPAIR_WORKFLOW_STOP') {
+        return result;
       }
-    }
-  } catch (error: any) {
-    if (isCancellation(error) && cancelProcessSteps?.length) {
-      await CancellationScope.nonCancellable(async () => {
+      if (isCancellation(error) && cancelSteps?.length) {
+        await CancellationScope.nonCancellable(async () => {
           await executePinsList({
-            pinsSettingsList: cancelProcessSteps,
+            pinsSettingsList: cancelSteps,
             context: { ...context },
           });
-      });
+        });
+      }
+
       throw error;
     }
-    throw error;
+
+    if (pinsSettings.properties?.['name']) {
+      context.workflow.steps[pinsSettings.properties['name']] = result;
+    }
   }
 
   return result;
