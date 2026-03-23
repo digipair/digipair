@@ -1,0 +1,163 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-rabbitmq",
+    "summary": "Produire/consommer des messages RabbitMq via des channels",
+    "description": "Gérer la communication avec RabbitMq via des channels.",
+    "version": "0.1.0",
+    "x-icon": "💻"
+  },
+  "paths": {
+    "/rabbit": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Connecter au serveur RabbitMq",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Serveur RabbitMq",
+            "required": true,
+            "description": "Url du serveur",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion au serveur RabbitMq",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "createChannel": {
+                      "type": "object",
+                      "description": "Méthode de création des channels"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/produce": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Produire des messages RabbitMq",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection au serveur RabbitMq",
+            "required": true,
+            "description": "Client de production/consommation de messages RabbitMq",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "queue",
+            "summary": "Queue",
+            "required": true,
+            "description": "Queue RabbitMq",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messages",
+            "summary": "Message",
+            "required": true,
+            "description": "Contenu du message (peut être un objet stringifié)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/consume": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Consommer un message RabbitMq",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection au serveur RabbitMq",
+            "required": true,
+            "description": "Client de production/consommation de messages RabbitMq",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Commandes à exécuter",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "queue",
+            "summary": "Queue",
+            "required": true,
+            "description": "Topic RabbitMq",
+            "schema": {
+              "type": "Queue"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Objet connexion et channel pour clôture",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Objets connexion et channel",
+                  "properties": {
+                    "connection": {
+                      "type": "object",
+                      "description": "Objet connexion"
+                    },
+                    "channel": {
+                      "type": "object",
+                      "description": "Objet channel"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

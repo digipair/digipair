@@ -1,0 +1,163 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-rabbitmq",
+    "summary": "Produce/consume RabbitMQ messages through channels",
+    "description": "Manage communication with RabbitMQ through channels.",
+    "version": "0.1.0",
+    "x-icon": "💻"
+  },
+  "paths": {
+    "/rabbit": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Connect to the RabbitMQ server",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "RabbitMQ server",
+            "required": true,
+            "description": "Server URL",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connection to the RabbitMQ server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "createChannel": {
+                      "type": "object",
+                      "description": "Channel creation method"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/produce": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Produce RabbitMQ messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection to the RabbitMQ server",
+            "required": true,
+            "description": "RabbitMQ message producer/consumer client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "queue",
+            "summary": "Queue",
+            "required": true,
+            "description": "RabbitMQ queue",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messages",
+            "summary": "Message",
+            "required": true,
+            "description": "Message content (can be a stringified object)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/consume": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Consume a RabbitMQ message",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection to the RabbitMQ server",
+            "required": true,
+            "description": "RabbitMQ message producer/consumer client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Commands to execute",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "queue",
+            "summary": "Queue",
+            "required": true,
+            "description": "RabbitMQ topic",
+            "schema": {
+              "type": "Queue"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connection and channel object for closing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Connection and channel objects",
+                  "properties": {
+                    "connection": {
+                      "type": "object",
+                      "description": "Connection object"
+                    },
+                    "channel": {
+                      "type": "object",
+                      "description": "Channel object"
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
