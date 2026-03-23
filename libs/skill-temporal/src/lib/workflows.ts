@@ -147,7 +147,7 @@ export async function workflow({ steps, context, data, options, cancelSteps, fai
       if (error === 'DIGIPAIR_WORKFLOW_STOP') {
         return result;
       }
-      if (isCancellation(error) && cancelSteps?.length) {
+      if (isCancellation(error)) {
         await CancellationScope.nonCancellable(async () => {
           await executePinsList({
             pinsSettingsList: cancelSteps,
@@ -155,7 +155,7 @@ export async function workflow({ steps, context, data, options, cancelSteps, fai
           });
         });
       }
-      if (!isCancellation(error) && failureSteps?.length) {
+      if (!isCancellation(error)) {
         await executePinsList({
           pinsSettingsList: failureSteps,
           context: { ...context },
