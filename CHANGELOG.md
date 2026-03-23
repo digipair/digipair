@@ -1,3 +1,13 @@
+## 0.133.0 (2026-03-23)
+
+### 🚀 Features
+
+- improve rabbitmq ([0e1c3e70](https://github.com/digipair/digipair/commit/0e1c3e70))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.132.8 (2026-03-20)
 
 This was a version bump only, there were no code changes.
