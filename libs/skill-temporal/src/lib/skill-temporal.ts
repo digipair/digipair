@@ -167,12 +167,9 @@ class TemporalService {
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
-    try {
-      const handle = this.client.getHandle(`${prefix}${id}`);
-      return await handle.describe();
-    } catch (error) {
-      return false;
-    }
+    const handle = this.client.getHandle(`${prefix}${id}`);
+
+    return await handle.describe();
   }
 }
 
