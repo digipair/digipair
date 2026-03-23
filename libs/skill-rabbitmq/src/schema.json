@@ -1,58 +1,42 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "@digipair/skill-kafka",
-    "summary": "Produce/consume Kafka messages",
-    "description": "Manage communication with Kafka.",
+    "title": "@digipair/skill-rabbitmq",
+    "summary": "Produce/consume RabbitMQ messages through channels",
+    "description": "Manage communication with RabbitMQ through channels.",
     "version": "0.1.0",
     "x-icon": "💻"
   },
   "paths": {
-    "/kafka": {
+    "/rabbit": {
       "post": {
         "tags": [
           "service"
         ],
-        "summary": "Connect to Kafka brokers",
+        "summary": "Connect to the RabbitMQ server",
         "parameters": [
           {
-            "name": "clientId",
-            "summary": "Worker clientId",
+            "name": "url",
+            "summary": "RabbitMQ server",
             "required": true,
-            "description": "Worker clientId",
+            "description": "Server URL",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "brokers",
-            "summary": "Kafka brokers",
-            "required": true,
-            "description": "Broker addresses",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Connection to Kafka brokers",
+            "description": "Connection to the RabbitMQ server",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "producer": {
+                    "createChannel": {
                       "type": "object",
-                      "description": "Message producer instance"
-                    },
-                    "consumer": {
-                      "type": "object",
-                      "description": "Message consumer instance"
+                      "description": "Channel creation method"
                     }
                   }
                 }
@@ -67,13 +51,13 @@
         "tags": [
           "service"
         ],
-        "summary": "Produce Kafka messages",
+        "summary": "Produce RabbitMQ messages",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection to Kafka brokers",
+            "summary": "Connection to the RabbitMQ server",
             "required": true,
-            "description": "Kafka message producer/consumer client",
+            "description": "RabbitMQ message producer/consumer client",
             "schema": {
               "type": "array",
               "items": {
@@ -82,10 +66,10 @@
             }
           },
           {
-            "name": "topic",
-            "summary": "Topic",
+            "name": "queue",
+            "summary": "Queue",
             "required": true,
-            "description": "Kafka topic",
+            "description": "RabbitMQ queue",
             "schema": {
               "type": "string"
             }
@@ -94,77 +78,13 @@
             "name": "messages",
             "summary": "Message",
             "required": true,
-            "description": "Array of messages to produce",
+            "description": "Message content (can be a stringified object)",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "description": "Message key (for partition distribution)"
-                  },
-                  "value": {
-                    "type": "string",
-                    "description": "Message content (can be a stringified object)"
-                  }
-                }
-              }
+              "type": "string"
             }
           }
         ],
-        "x-events": [],
-        "responses": {
-          "200": {
-            "description": "Record metadata",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "description": "Message record information",
-                    "properties": {
-                      "topicName": {
-                        "type": "string",
-                        "description": "Name of the topic used"
-                      },
-                      "partition": {
-                        "type": "integer",
-                        "description": "Name of the partition used"
-                      },
-                      "errorCode": {
-                        "type": "integer",
-                        "description": "Error code"
-                      },
-                      "offset": {
-                        "type": "string",
-                        "description": "Message offset in the topic"
-                      },
-                      "timestamp": {
-                        "type": "string",
-                        "description": "Record timestamp"
-                      },
-                      "baseOffset": {
-                        "type": "string",
-                        "description": "Topic offset before the record was written"
-                      },
-                      "logAppendTime": {
-                        "type": "string",
-                        "description": "Timestamp assigned by the broker when writing"
-                      },
-                      "logStartOffset": {
-                        "type": "string",
-                        "description": "Oldest available offset in the topic"
-                      }
-                    },
-                    "additionalProperties": true
-                  }
-                }
-              }
-            }
-          }
-        }
+        "x-events": []
       }
     },
     "/consume": {
@@ -172,13 +92,13 @@
         "tags": [
           "service"
         ],
-        "summary": "Consume a Kafka message",
+        "summary": "Consume a RabbitMQ message",
         "parameters": [
           {
             "name": "client",
-            "summary": "Connection to Kafka brokers",
+            "summary": "Connection to the RabbitMQ server",
             "required": true,
-            "description": "Kafka message producer/consumer client",
+            "description": "RabbitMQ message producer/consumer client",
             "schema": {
               "type": "array",
               "items": {
@@ -199,37 +119,32 @@
             }
           },
           {
-            "name": "groupId",
-            "summary": "groupId",
+            "name": "queue",
+            "summary": "Queue",
             "required": true,
-            "description": "Consumer group",
+            "description": "RabbitMQ topic",
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "topic",
-            "summary": "Topic",
-            "required": true,
-            "description": "Kafka topic",
-            "schema": {
-              "type": "string"
+              "type": "Queue"
             }
           }
         ],
         "x-events": [],
         "responses": {
           "200": {
-            "description": "Topic consumer",
+            "description": "Connection and channel object for closing",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Consumer manipulation methods",
+                  "description": "Connection and channel objects",
                   "properties": {
-                    "disconnect()": {
+                    "connection": {
                       "type": "object",
-                      "description": "Consumer disconnect method"
+                      "description": "Connection object"
+                    },
+                    "channel": {
+                      "type": "object",
+                      "description": "Channel object"
                     }
                   },
                   "additionalProperties": true

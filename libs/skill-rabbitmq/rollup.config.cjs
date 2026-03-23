@@ -23,12 +23,8 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
         const deps =
           config.format === 'cjs'
             ? [
-                '@digipair/skill-logger',
                 '@digipair/engine',
-                'langchain',
-                '@langchain/core/*',
-                'langchain/textsplitters',
-                'zod',
+                'amqplib'
               ]
             : [];
         return deps.some(dep => id === dep || id.startsWith(dep + '/'));

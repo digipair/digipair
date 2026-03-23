@@ -1,7 +1,7 @@
-import { skillKafka } from './skill-kafka.js';
+import { skillKafka } from './skill-rabbitmq.js';
 
-describe('skillKafka', () => {
+describe('skillRabbitMq', () => {
   it('should work', () => {
-    expect(skillKafka()).toEqual('skill-kafka');
+    expect(skillRabbitMq()).toEqual('skill-rabbitmq');
   });
 });

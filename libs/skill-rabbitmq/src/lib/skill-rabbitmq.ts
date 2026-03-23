@@ -31,11 +31,10 @@ class RabbitMqService {
     const connection = await executePinsList(client, context, `${context.__PATH__}.client`);
     const channel = await connection.createChannel();
 
-    channel.consume(queue, async (message) => {
-      if (message !== null) {
-        await executePinsList(execute, { ...context, message }, `${context.__PATH__}.execute`);
+    await channel.consume(queue, async (message) => {
+        await executePinsList(execute, { ...context, message: message?.content?.toString() }, `${context.__PATH__}.execute`);
         channel.ack(message);
-      }
+
     });
 
     return { connection, channel };
