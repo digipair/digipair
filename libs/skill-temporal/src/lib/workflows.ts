@@ -1,4 +1,4 @@
-import { sleep, proxyActivities, condition, setHandler, defineSignal } from '@temporalio/workflow';
+import { sleep, proxyActivities, condition, setHandler, defineSignal, isCancellation, CancellationScope, ActivityCancellationType } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
 import { PinsSettings, preparePinsSettings } from '@digipair/engine';
 import * as feelin from 'feelin';
@@ -96,6 +96,9 @@ async function executePins(
         context,
       });
     } catch (error) {
+      if (isCancellation(error)) {
+        throw error;
+      }
       throw new ApplicationFailure('[SKILL-TEMPORAL] EXECUTEPINS FAILED', null, null, [
         error,
         settings,
@@ -107,13 +110,16 @@ async function executePins(
   return result;
 }
 
-export async function workflow({ steps, context, data, options }: WorkflowArgs): Promise<any> {
+export async function workflow({ steps, context, data, options, cancelSteps }: WorkflowArgs): Promise<any> {
   let result: any;
 
   context.workflow = { steps: {}, data };
   context.protected = {};
 
-  const { executePinsList } = proxyActivities<typeof activities>(options);
+  const { executePinsList } = proxyActivities<typeof activities>({
+    ...options,
+    cancellationType: ActivityCancellationType.WAIT_CANCELLATION_COMPLETED,
+  });
   setHandler(dataSignal, (data: any) => {
     context.workflow.data = { ...context.workflow.data, ...data };
   });
@@ -137,8 +143,17 @@ export async function workflow({ steps, context, data, options }: WorkflowArgs):
     } catch (error) {
       if (error === 'DIGIPAIR_CONDITIONS_IF_FALSE') {
         continue;
-      } else if (error === 'DIGIPAIR_WORKFLOW_STOP') {
+      }
+      if (error === 'DIGIPAIR_WORKFLOW_STOP') {
         return result;
+      }
+      if (isCancellation(error) && cancelSteps?.length) {
+        await CancellationScope.nonCancellable(async () => {
+          await executePinsList({
+            pinsSettingsList: cancelSteps,
+            context: { ...context },
+          });
+        });
       }
 
       throw error;

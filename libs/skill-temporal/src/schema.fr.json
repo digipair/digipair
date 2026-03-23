@@ -292,6 +292,40 @@
         }
       }
     },
+    "/cancel": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Annule un workflow",
+        "description": "Annule un workflow",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Identifiant du workflow",
+            "required": true,
+            "description": "Identifiant du workflow",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Confirmation de l'annulation du workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Le workflow a été annulé avec succès"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/list": {
       "post": {
         "tags": [
@@ -321,6 +355,40 @@
                   "items": {
                     "$ref": "#/components/schemas/WorkflowExecutionInfo"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/describe": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Description du workflow",
+        "description": "Retourner la description du workflow",
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "Workflow ID",
+            "required": true,
+            "description": "Workflow ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Description du workflow",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Descripion du workflow"
                 }
               }
             }
@@ -423,6 +491,18 @@
           "description": "Options du workflow temporal",
           "schema": {
             "type": "object"
+          }
+        },
+        {
+          "name": "cancelSteps",
+          "summary": "Étapes de nettoyage après annulation",
+          "required": false,
+          "description": "Exécute les étapes de nettoyage déclenchées lors de l'annulation",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
           }
         }
       ],
