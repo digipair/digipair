@@ -168,9 +168,14 @@ class TemporalService {
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
-    const handle = this.client.getHandle(`${prefix}${id}`);
+    try {
+      const handle = this.client.getHandle(`${prefix}${id}`);
 
-    return await handle.describe();
+      return await handle.describe();
+    } catch(error: any) {
+      if (error?.name === 'WorkflowNotFoundError') return null;
+      throw error;
+    }
   }
 }
 
