@@ -504,6 +504,18 @@
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
+        },
+        {
+          "name": "failureSteps",
+          "summary": "Cleanup steps after failure",
+          "required": false,
+          "description": "Executes the cleanup steps triggered when the workflow is on failure",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
         }
       ],
       "responses": {

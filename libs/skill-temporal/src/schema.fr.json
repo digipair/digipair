@@ -504,6 +504,18 @@
               "$ref": "https://schemas.digipair.ai/pinsSettings"
             }
           }
+        },
+        {
+          "name": "failureSteps",
+          "summary": "Étapes de nettoyage après erreur",
+          "required": false,
+          "description": "Exécute les étapes de nettoyage déclenchées lors d'un workflow en erreur",
+          "schema": {
+            "type": "array",
+            "items": {
+              "$ref": "https://schemas.digipair.ai/pinsSettings"
+            }
+          }
         }
       ],
       "responses": {
