@@ -85,6 +85,27 @@
             }
           },
           {
+            "name": "type",
+            "summary": "Read Type",
+            "required": false,
+            "description": "Type of read operation to determine end of response (default: 'delimiter')",
+            "schema": {
+              "type": "string",
+              "enum": ["size", "delimiter"],
+              "default": "delimiter"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Read Value",
+            "required": false,
+            "description": "Value associated with the read type (number of bytes to read for 'size' or ASCII code of delimiter for 'delimiter', default: 10 for '\\n')",
+            "schema": {
+              "type": "number",
+              "default": 10
+            }
+          },
+          {
             "name": "sleep",
             "summary": "Sleep Duration",
             "required": false,

@@ -10,9 +10,7 @@
   "paths": {
     "/write": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Écrire des données",
         "description": "Écrire des données sur un port série sans attendre de réponse",
         "parameters": [
@@ -66,9 +64,7 @@
     },
     "/command": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Envoyer une commande",
         "description": "Envoyer une commande à un appareil sur port série et attendre une réponse",
         "parameters": [
@@ -82,6 +78,27 @@
               "items": {
                 "type": "number"
               }
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type de lecture",
+            "required": false,
+            "description": "Méthode pour déterminer la fin de la réponse (par défaut: 'delimiter')",
+            "schema": {
+              "type": "string",
+              "enum": ["size", "delimiter"],
+              "default": "delimiter"
+            }
+          },
+          {
+            "name": "value",
+            "summary": "Valeur de lecture",
+            "required": false,
+            "description": "Valeur associée au type de lecture (taille en octets pour 'size' ou délimiteur en code ASCII pour 'delimiter', par défaut: '\\n')",
+            "schema": {
+              "type": "number",
+              "default": 10
             }
           },
           {

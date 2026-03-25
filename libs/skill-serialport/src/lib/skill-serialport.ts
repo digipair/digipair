@@ -7,7 +7,7 @@ class SerialPortService {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  private async read(ser: SerialPort, timeout: number): Promise<number[]> {
+  private async read(ser: SerialPort, timeout: number, type: 'size' | 'delimiter', value: number): Promise<number[]> {
     return new Promise(resolve => {
       const buffer: number[] = [];
 
@@ -20,7 +20,15 @@ class SerialPortService {
         for (const byte of chunk) {
           buffer.push(byte);
         }
-        if (buffer.length >= 8) {
+
+        let end = false;
+        if (type === 'size' && buffer.length >= value) {
+          end = true;
+        } else if (type === 'delimiter' && buffer.includes(value)) {
+          end = true;
+        }
+
+        if (type === 'size' && buffer.length >= value) {
           clearTimeout(instance);
           ser.removeListener('data', onData);
           resolve(buffer);
@@ -34,6 +42,8 @@ class SerialPortService {
   async command(params: any, _pinsSettingsList: PinsSettings[], context: any) {
     const {
       data,
+      type = 'delimiter',
+      value = '\n'.charCodeAt(0),
       sleep = 1000,
       timeout = 3000,
       config = context.privates.SERIALPORT_CONFIG,
@@ -52,7 +62,7 @@ class SerialPortService {
 
         await this.sleep(sleep);
 
-        const reponse = await this.read(ser, timeout);
+        const reponse = await this.read(ser, timeout, type, value);
 
         ser.close();
 
