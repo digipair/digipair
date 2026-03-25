@@ -1,3 +1,14 @@
+## 0.133.1 (2026-03-25)
+
+### 🚀 Features
+
+- update versions ([a9cb6b9f](https://github.com/digipair/digipair/commit/a9cb6b9f))
+- improve skill-serialport ([fbfa2c44](https://github.com/digipair/digipair/commit/fbfa2c44))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.133.0 (2026-03-23)
 
 ### 🚀 Features
