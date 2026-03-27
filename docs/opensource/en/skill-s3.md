@@ -23,12 +23,14 @@ Upload a file to an S3 bucket.
 
 #### Parameters
 
-| Name    | Type   | Required | Description                                             |
-| ------- | ------ | -------- | ------------------------------------------------------- |
-| bucket  | string | Yes      | Name of the target S3 bucket.                           |
-| key     | string | Yes      | Key (path) where the file will be stored in the bucket. |
-| content | string | Yes      | File content encoded in base64 (with data URI prefix).  |
-| config  | object | No       | AWS SDK client configuration (optional).                |
+| Name      | Type   | Required | Description                                             |
+|-----------|--------| -------- |---------------------------------------------------------|
+| bucket    | string | Yes      | Name of the target S3 bucket.                           |
+| key       | string | Yes      | Key (path) where the file will be stored in the bucket. |
+| content   | string | Yes      | File content encoded in base64 (with data URI prefix).  |
+| config    | object | No       | AWS SDK client configuration (optional).                |
+| maxSizeMb | nomber | No       | Max file size Mb (optional).                            |
+
 
 #### Example
 
@@ -44,7 +46,8 @@ Upload a file to an S3 bucket.
       "region": "eu-west-1",
       "accessKeyId": "AKIA...",
       "secretAccessKey": "..."
-    }
+    },
+    "maxSizeMb": 50
   }
 }
 ```
