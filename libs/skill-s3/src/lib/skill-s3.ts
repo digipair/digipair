@@ -9,15 +9,73 @@ import {
 } from '@aws-sdk/client-s3';
 import { Readable } from 'stream';
 
+interface Oauth2Config  {
+  tokenUrl: string;
+  clientId: string;
+  clientSecret: string;
+};
+
+
 class S3Service {
-  private getClient(config: any) {
-    return new S3Client(config);
+
+  private async getOauth2Token(authConfig: Oauth2Config) {
+    try {
+      const res = await fetch(authConfig.tokenUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            grant_type: 'client_credentials',
+            client_id: authConfig.clientId,
+            client_secret: authConfig.clientSecret,
+          }),
+        }
+      );
+      if (!res.ok) {
+        throw new Error(`[SKILL-S3] access token error: ${res.status}`);
+      }
+      const data = await res.json();
+      return data.access_token;
+
+    } catch (error) {
+      console.error(`[SKILL-S3] ACCESS OAUTH2 TOKEN FAILED : ${error}`);
+      throw error;
+    }
   }
 
-  async upload(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { bucket, key, content, config = context.privates.S3_CONFIG } = params;
+  private getClient(config: any, oauth2Config?: Oauth2Config) {
+    const client = new S3Client(config);
 
-    const client = this.getClient(config);
+    if (oauth2Config) {
+      client.middlewareStack.remove("awsAuthMiddleware");
+      client.middlewareStack.add(
+        (next) => async (args) => {
+
+          const token = await this.getOidcToken(oauth2Config);
+
+          args.request.headers = {
+            ...args.request.headers,
+            Authorization: `Bearer ${token}`,
+          };
+
+          return next(args);
+        },
+        {
+          step: 'build',
+          name: 'injectOidcToken',
+        }
+      );
+    }
+
+    return client;
+  }
+
+
+
+  async upload(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { bucket, key, content, config = context.privates.S3_CONFIG, oauth2Config = context.privates.S3_OAUTH2_CONFIG } = params;
+
+    const client = this.getClient(config, oauth2Config);
+
     const match = content.match(/^data:(.*?);base64,/);
     const contentType = match[1];
 
@@ -32,9 +90,9 @@ class S3Service {
   }
 
   async download(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { bucket, key, range, config = context.privates.S3_CONFIG } = params;
+    const { bucket, key, range, config = context.privates.S3_CONFIG, oauth2Config = context.privates.S3_OAUTH2_CONFIG } = params;
 
-    const client = this.getClient(config);
+    const client = this.getClient(config, oauth2Config);
 
     const command = new GetObjectCommand({ Bucket: bucket, Key: key, Range: range });
     const response = await client.send(command);
@@ -51,9 +109,9 @@ class S3Service {
   }
 
   async remove(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { bucket, key, config = context.privates.S3_CONFIG } = params;
+    const { bucket, key, config = context.privates.S3_CONFIG, oauth2Config = context.privates.S3_OAUTH2_CONFIG } = params;
 
-    const client = this.getClient(config);
+    const client = this.getClient(config, oauth2Config);
 
     const command = new DeleteObjectCommand({ Bucket: bucket, Key: key });
     await client.send(command);
@@ -62,8 +120,8 @@ class S3Service {
   }
 
   async list(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { bucket, prefix = '', config = context.privates.S3_CONFIG } = params;
-    const client = this.getClient(config);
+    const { bucket, prefix = '', config = context.privates.S3_CONFIG, oauth2Config = context.privates.S3_OAUTH2_CONFIG } = params;
+    const client = this.getClient(config, oauth2Config);
     const command = new ListObjectsV2Command({ Bucket: bucket, Prefix: prefix });
 
     return await client.send(command);
