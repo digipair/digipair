@@ -46,22 +46,19 @@ class S3Service {
     const client = new S3Client(config);
 
     if (oauth2Config) {
-      client.middlewareStack.remove("awsAuthMiddleware");
       client.middlewareStack.add(
         (next) => async (args) => {
-
-          const token = await this.getOidcToken(oauth2Config);
-
-          args.request.headers = {
-            ...args.request.headers,
-            Authorization: `Bearer ${token}`,
-          };
+          const token = await this.getOauth2Token(oauth2Config);
+          
+          const request = args.request as any;          
+          request.headers ??= {};
+          request.headers.Authorization = `Bearer ${token}`;
 
           return next(args);
         },
         {
-          step: 'build',
-          name: 'injectOidcToken',
+          step: 'finalizeRequest',
+          name: 'injectOauth2Token',
         }
       );
     }
@@ -114,7 +111,6 @@ class S3Service {
     const client = this.getClient(config, oauth2Config);
 
     const command = new DeleteObjectCommand({ Bucket: bucket, Key: key });
-    await client.send(command);
 
     return client.send(command);
   }
