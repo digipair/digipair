@@ -1,3 +1,13 @@
+## 0.133.2 (2026-05-13)
+
+### 🚀 Features
+
+- add temporal workflow and chatbot boost actions ([1287f5c9](https://github.com/digipair/digipair/commit/1287f5c9))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.133.1 (2026-03-25)
 
 ### 🚀 Features
