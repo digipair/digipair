@@ -10,9 +10,7 @@
   "paths": {
     "/activity": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Activity",
         "description": "Defines an activity",
         "parameters": [
@@ -56,9 +54,7 @@
     },
     "/sleep": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Wait",
         "parameters": [
           {
@@ -98,9 +94,7 @@
     },
     "/condition": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Wait condition",
         "description": "Wait condition in a workflow",
         "parameters": [
@@ -141,9 +135,7 @@
     },
     "/goto": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Go to step",
         "parameters": [
           {
@@ -183,9 +175,7 @@
     },
     "/stop": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Stop the workflow",
         "description": "Stop the workflow",
         "parameters": [
@@ -217,9 +207,7 @@
     },
     "/push": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Send new data to a workflow",
         "description": "Send new data to the workflow",
         "parameters": [
@@ -260,9 +248,7 @@
     },
     "/terminate": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Stop a workflow",
         "description": "Stop a workflow",
         "parameters": [
@@ -294,9 +280,7 @@
     },
     "/cancel": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Cancel a workflow",
         "description": "Cancel a workflow",
         "parameters": [
@@ -328,9 +312,7 @@
     },
     "/list": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "List workflows",
         "description": "List workflows",
         "parameters": [
@@ -364,9 +346,7 @@
     },
     "/describe": {
       "post": {
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Workflow description",
         "description": "Workflow description",
         "parameters": [
@@ -389,6 +369,90 @@
                 "schema": {
                   "type": "object",
                   "description": "Workflow description"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow": {
+      "post": {
+        "summary": "Temporal Workflow",
+        "description": "Execute a Temporal workflow",
+        "tags": ["service"],
+        "parameters": [
+          {
+            "name": "id",
+            "summary": "ID",
+            "required": true,
+            "description": "Workflow ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "steps",
+            "summary": "Execute the following steps",
+            "required": true,
+            "description": "Content of the page",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Workflow data",
+            "required": false,
+            "description": "Temporal workflow data",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Temporal options",
+            "required": false,
+            "description": "Temporal workflow options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "cancelSteps",
+            "summary": "Cleanup steps after cancellation",
+            "required": false,
+            "description": "Executes the cleanup steps triggered when the workflow is canceled",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "failureSteps",
+            "summary": "Cleanup steps after failure",
+            "required": false,
+            "description": "Executes the cleanup steps triggered when the workflow is on failure",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workflow execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The result of the last executed step in the workflow"
                 }
               }
             }
@@ -423,13 +487,7 @@
           },
           "status": {
             "type": "string",
-            "enum": [
-              "Running",
-              "Completed",
-              "Failed",
-              "Cancelled",
-              "Terminated"
-            ],
+            "enum": ["Running", "Completed", "Failed", "Cancelled", "Terminated"],
             "description": "Current status of the workflow"
           },
           "startTime": {
@@ -449,9 +507,7 @@
     "/workflow": {
       "summary": "Temporal Workflow",
       "description": "Execute a Temporal workflow",
-      "tags": [
-        "service"
-      ],
+      "tags": ["service"],
       "metadata": [],
       "parameters": [
         {

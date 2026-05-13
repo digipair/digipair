@@ -10,9 +10,7 @@
   "paths": {
     "/answer": {
       "post": {
-        "tags": [
-          "boost"
-        ],
+        "tags": ["boost"],
         "summary": "Réponse du chatbot",
         "parameters": [
           {
@@ -196,9 +194,7 @@
     },
     "/execute": {
       "post": {
-        "tags": [
-          "boost"
-        ],
+        "tags": ["boost"],
         "summary": "Execute une étape",
         "description": "Execute une étape d'un boost",
         "parameters": [
@@ -227,15 +223,34 @@
           }
         }
       }
+    },
+    "/boost": {
+      "post": {
+        "summary": "Boost",
+        "description": "Boost proposé par le Digipair",
+        "tags": ["boost", "service"],
+        "parameters": [
+          {
+            "name": "steps",
+            "summary": "Exécute les étapes suivantes",
+            "required": true,
+            "description": "Exécute les étapes définies",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Step"
+              }
+            }
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
       "Step": {
         "type": "object",
-        "tags": [
-          "boost"
-        ],
+        "tags": ["boost"],
         "summary": "Etape",
         "properties": {
           "name": {
@@ -250,16 +265,11 @@
             }
           }
         },
-        "required": [
-          "name",
-          "execute"
-        ]
+        "required": ["name", "execute"]
       },
       "Boost": {
         "type": "object",
-        "tags": [
-          "boost"
-        ],
+        "tags": ["boost"],
         "summary": "Boost",
         "properties": {
           "prompt": {
@@ -288,9 +298,7 @@
       },
       "ContextParameter": {
         "type": "object",
-        "tags": [
-          "service"
-        ],
+        "tags": ["service"],
         "summary": "Parametre de contexte",
         "properties": {
           "name": {
@@ -314,12 +322,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "summary",
-          "required",
-          "schema"
-        ]
+        "required": ["name", "summary", "required", "schema"]
       }
     }
   },
@@ -327,10 +330,7 @@
     "/boost": {
       "summary": "Boost",
       "description": "Boost proposé par le Digipair",
-      "tags": [
-        "boost",
-        "service"
-      ],
+      "tags": ["boost", "service"],
       "metadata": [
         {
           "name": "standalone",
