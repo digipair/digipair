@@ -1,3 +1,13 @@
+## 0.134.0 (2026-05-16)
+
+### 🚀 Features
+
+- remove parent_conversation ([0680894a](https://github.com/digipair/digipair/commit/0680894a))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.133.2 (2026-05-13)
 
 ### 🚀 Features
