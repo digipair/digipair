@@ -21,7 +21,6 @@ Lors du démarrage, le chatbot effectue une série d'appels pour configurer son 
   - `content` : contenu du message
   - `uuid` : identifiant unique du message
   - `parent_history`: référence du message précédent
-  - `parent_conversation` : référence de fil de discussion (1er message de la discussion)
   - `boost` : configuration du boost associé, le cas échéant
   - `boosts` : liste des boosts proposés à ce moment, si applicable
   - `sources` : sources d'information utilisées
@@ -211,7 +210,7 @@ Une fois le formulaire ou les champs requis renseignés par l’utilisateur, le 
   - `inputs` : données utilisateur collectées (texte, fichiers, sélections, etc.)
   - `userId` : identifiant de l’utilisateur final
   - `step` : toujours `Execution`
-  - `parent_history` / `parent_conversation` : références contextuelles
+  - `parent_history` : références contextuelles
   - `context` : information sur le DOM ou la position de déclenchement
 
 Exemple de payload :
@@ -228,7 +227,6 @@ Exemple de payload :
   "userId": "fe647c8clkd",
   "step": "Execution",
   "parent_history": "beb800fa-b498-4115-9a65-7acd026381a2",
-  "parent_conversation": "beb800fa-b498-4115-9a65-7acd026381a2",
   "context": {
     "element": "body"
   }
@@ -266,7 +264,7 @@ Exemple de payload :
   - `command` : liste d’instructions éventuelles à exécuter côté client
   - `boosts`, `sources`, `logs` : généralement null dans un échange classique
   - `boost` : null si aucun boost déclenché
-  - `uuid`, `parent_conversation`, `parent_history` : identifiants de suivi contextuel
+  - `uuid`, `parent_history` : identifiants de suivi contextuel
 
 Exemple de réponse :
 
@@ -278,7 +276,6 @@ Exemple de réponse :
   "sources": null,
   "logs": null,
   "boost": null,
-  "parent_conversation": null,
   "parent_history": "6435831a-77e4-411a-8b7b-7b92e862cd68",
   "uuid": "1af2bc8c-3aca-45cc-8635-7e97ac4d2290"
 }

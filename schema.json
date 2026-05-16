@@ -25,14 +25,6 @@
             }
           },
           {
-            "name": "parent_conversation",
-            "summary": "Parent conversation",
-            "required": true,
-            "schema": {
-              "type": "array"
-            }
-          },
-          {
             "name": "assistant",
             "summary": "Assistant",
             "required": true,

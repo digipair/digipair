@@ -196,7 +196,6 @@ export class DigipairFullElement extends LitElement {
         userId: this.userId,
         step: boost?.step,
         parent_history: boost?.parent_history,
-        parent_conversation: boost?.parent_conversation,
         context: boost?.context || {},
         ...(!boost
           ? {}
@@ -219,7 +218,6 @@ export class DigipairFullElement extends LitElement {
       this.currentBoost = detail.boost
         ? {
             parent_history: detail.uuid,
-            parent_conversation: detail.parent_conversation || detail.uuid,
             ...detail.boost,
           }
         : null;
@@ -230,7 +228,6 @@ export class DigipairFullElement extends LitElement {
         boost: detail.boost,
         boosts: detail.boosts,
         sources: detail.sources,
-        parent_conversation: detail.parent_conversation,
         parent_history: detail.parent_history,
       });
 

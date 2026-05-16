@@ -9,14 +9,23 @@
 
 ## Table of Contents
 
-- [Functions](#functions)
-  - [answer](#answer)
-  - [execute](#execute)
-- [Data Schemas](#data-schemas)
-  - [Step](#step)
-  - [Boost](#boost)
-  - [ContextParameter](#contextparameter)
-- [Notes](#notes)
+- [@digipair/skill-chatbot](#digipairskill-chatbot)
+  - [Table of Contents](#table-of-contents)
+  - [Functions](#functions)
+    - [answer](#answer)
+      - [Parameters](#parameters)
+      - [Example](#example)
+    - [execute](#execute)
+      - [Parameters](#parameters-1)
+      - [Example](#example-1)
+  - [Data Schemas](#data-schemas)
+    - [Step](#step)
+      - [Example](#example-2)
+    - [Boost](#boost)
+      - [Example](#example-3)
+    - [ContextParameter](#contextparameter)
+      - [Example](#example-4)
+  - [Notes](#notes)
 
 ---
 
@@ -36,7 +45,6 @@ Generates a chatbot response, including the assistant’s reply, executed comman
 | sources             | object[] | No       | List of sources used to answer the user      |
 | logs                | object   | No       | Useful information for debugging             |
 | boost               | object   | No       | Boost to execute in response to this message |
-| parent_conversation | string   | No       | Parent conversation                          |
 | parent_history      | string   | No       | Parent message                               |
 | session             | string   | No       | Session                                      |
 | uuid                | string   | No       | Message identifier                           |
@@ -54,7 +62,6 @@ Generates a chatbot response, including the assistant’s reply, executed comman
     "sources": [{ "type": "document", "id": "doc-123" }],
     "logs": { "debug": "No errors detected" },
     "boost": { "selector": "#main", "step": "init" },
-    "parent_conversation": "conv-001",
     "parent_history": "msg-001",
     "session": "session-abc",
     "uuid": "uuid-xyz"

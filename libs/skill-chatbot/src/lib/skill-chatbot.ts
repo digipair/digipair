@@ -12,7 +12,6 @@ class ChatbotService {
       assistant,
       logs,
       boost,
-      parent_conversation,
       parent_history,
       session,
       uuid,
@@ -37,7 +36,6 @@ class ChatbotService {
             ),
           }
         : boost,
-      parent_conversation,
       parent_history,
       session,
       uuid,

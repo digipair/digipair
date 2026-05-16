@@ -9,14 +9,23 @@
 
 ## Table des matières
 
-- [Fonctions](#fonctions)
-  - [answer](#answer)
-  - [execute](#execute)
-- [Schémas de données](#schémas-de-données)
-  - [Step](#step)
-  - [Boost](#boost)
-  - [ContextParameter](#contextparameter)
-- [Notes](#notes)
+- [@digipair/skill-chatbot](#digipairskill-chatbot)
+  - [Table des matières](#table-des-matières)
+  - [Fonctions](#fonctions)
+    - [answer](#answer)
+      - [Paramètres](#paramètres)
+      - [Exemple](#exemple)
+    - [execute](#execute)
+      - [Paramètres](#paramètres-1)
+      - [Exemple](#exemple-1)
+  - [Schémas de données](#schémas-de-données)
+    - [Step](#step)
+      - [Exemple](#exemple-2)
+    - [Boost](#boost)
+      - [Exemple](#exemple-3)
+    - [ContextParameter](#contextparameter)
+      - [Exemple](#exemple-4)
+  - [Notes](#notes)
 
 ---
 
@@ -36,7 +45,6 @@ Générer une réponse du chatbot, incluant la réponse de l’assistant, les co
 | sources            | object[] | Non    | Liste des sources utilisées pour répondre à l’utilisateur|
 | logs               | object   | Non    | Informations utiles pour le débogage                     |
 | boost              | object   | Non    | Boost à exécuter en réponse à ce message                 |
-| parent_conversation| string   | Non    | Conversation parente                                     |
 | parent_history     | string   | Non    | Message parent                                           |
 | session            | string   | Non    | Session                                                  |
 | uuid               | string   | Non    | Identifiant du message                                   |
@@ -54,7 +62,6 @@ Générer une réponse du chatbot, incluant la réponse de l’assistant, les co
     "sources": [{ "type": "document", "id": "doc-123" }],
     "logs": { "debug": "Aucune erreur détectée" },
     "boost": { "selector": "#main", "step": "init" },
-    "parent_conversation": "conv-001",
     "parent_history": "msg-001",
     "session": "session-abc",
     "uuid": "uuid-xyz"

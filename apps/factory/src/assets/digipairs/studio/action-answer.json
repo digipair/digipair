@@ -14,14 +14,6 @@
         }
       },
       {
-        "name": "parent_conversation",
-        "summary": "Parent conversation",
-        "required": false,
-        "schema": {
-          "type": "string"
-        }
-      },
-      {
         "name": "assistant",
         "summary": "Assistant",
         "required": true,
@@ -139,7 +131,6 @@
           "value": {
             "uuid": "FEEL: previous[1]",
             "parent_history": "FEEL: variables.userMessageId",
-            "parent_conversation": "FEEL: requester.request.body.parent_conversation",
             "assistant": "{{request.body.assistant}}",
             "command": "FEEL: if request.body.command then request.body.command else []",
             "boost": "FEEL: variables.boost",
@@ -166,7 +157,6 @@
                 "files": "FEEL: data.files",
                 "logs": "FEEL: data.logs",
                 "boost": "FEEL: data.boost",
-                "parent_conversation": "FEEL: data.parent_conversation",
                 "parent_history": "FEEL: data.parent_history",
                 "uuid": "FEEL: data.uuid"
               }

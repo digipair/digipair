@@ -89,15 +89,6 @@
             }
           },
           {
-            "name": "parent_conversation",
-            "summary": "Parent conversation",
-            "required": false,
-            "description": "Parent conversation",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "parent_history",
             "summary": "Parent message",
             "required": false,
@@ -167,10 +158,6 @@
                       "type": "object",
                       "nullable": true,
                       "description": "Boost configuration"
-                    },
-                    "parent_conversation": {
-                      "type": "string",
-                      "description": "Parent conversation ID"
                     },
                     "parent_history": {
                       "type": "string",

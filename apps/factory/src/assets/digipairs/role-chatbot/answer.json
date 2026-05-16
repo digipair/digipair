@@ -48,7 +48,6 @@
           "value": {
             "uuid": "FEEL: previous[1]",
             "parent_history": "FEEL: variables.userMessageId",
-            "parent_conversation": "FEEL: requester.request.body.parent_conversation",
             "assistant": "{{request.body.assistant}}",
             "command": "FEEL: if request.body.command then request.body.command else []",
             "boost": "FEEL: variables.boost",
@@ -71,7 +70,6 @@
                 "assistant": "FEEL: data.assistant",
                 "boosts": "FEEL: data.boosts",
                 "logs": "FEEL: data.logs",
-                "parent_conversation": "FEEL: data.parent_conversation",
                 "parent_history": "FEEL: data.parent_history",
                 "sources": "FEEL: data.sources",
                 "files": "FEEL: data.files",

@@ -18,9 +18,6 @@ schema history inherits line {
         field parent_history type string {
             indexing: summary | attribute
         }
-        field parent_conversation type string {
-            indexing: summary | attribute
-        }
         field boost type string {
             indexing: summary | attribute
         }

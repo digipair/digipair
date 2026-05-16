@@ -404,7 +404,6 @@ export class ChatElement extends LitElement {
       new CustomEvent('boost', {
         detail: {
           parent_history: message.uuid,
-          parent_conversation: message.parent_conversation || message.uuid,
           ...boost,
         },
       }),
