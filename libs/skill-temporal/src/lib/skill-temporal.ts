@@ -142,13 +142,13 @@ class TemporalService {
   }
 
   async updateSteps(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, data } = params;
+    const { id, steps } = params;
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
     const handle = this.client.getHandle(`${prefix}${id}`);
-    await handle.signal(stepsSignal, data);
+    await handle.signal(stepsSignal, steps);
   }
 
   async getSteps(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -239,3 +239,13 @@ export const list = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const describe = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.describe(params, pinsSettingsList, context);
+
+export const getData = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.getData(params, pinsSettingsList, context);
+
+export const updateSteps = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.updateSteps(params, pinsSettingsList, context);
+
+export const getSteps = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.getSteps(params, pinsSettingsList, context);
+
