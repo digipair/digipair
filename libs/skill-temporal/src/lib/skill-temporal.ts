@@ -4,18 +4,17 @@ import { PinsSettings } from '@digipair/engine';
 import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/client';
 import { NativeConnection, Worker, WorkerOptions } from '@temporalio/worker';
 
-import { dataSignal, workflow as workflowJob } from './workflows.js';
+import { dataSignal, dataQuery, stepsSignal, stepsQuery, workflow as workflowJob } from './workflows.js';
 import { namespace, taskQueue } from './shared.js';
 import * as activities from './activities.js';
 
 class TemporalService {
   private client!: WorkflowClient;
 
-
   async initialize(address = 'localhost:7233', workerOptions?: Partial<WorkerOptions>) {
     const DEFAULT_WORKER_OPTIONS: Partial<WorkerOptions> = {
       maxConcurrentWorkflowTaskExecutions: 5,
-      maxConcurrentActivityTaskExecutions: 3
+      maxConcurrentActivityTaskExecutions: 3,
     };
     const finalWorkerOptions: Partial<WorkerOptions> = {
       ...DEFAULT_WORKER_OPTIONS,
@@ -47,7 +46,7 @@ class TemporalService {
       workflowsPath: require.resolve('./workflows'),
       activities,
       taskQueue,
-      ...workerOptions
+      ...workerOptions,
     });
 
     // Start accepting tasks from the Task Queue.
@@ -78,7 +77,14 @@ class TemporalService {
   }
 
   async workflow(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, steps, data = {}, options = context.privates.TEMPORAL_OPTIONS ?? {}, cancelSteps = [], failureSteps = [] } = params;
+    const {
+      id,
+      steps,
+      data = {},
+      options = context.privates.TEMPORAL_OPTIONS ?? {},
+      cancelSteps = [],
+      failureSteps = [],
+    } = params;
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
@@ -106,7 +112,7 @@ class TemporalService {
           data,
           options: workflowOptions,
           cancelSteps,
-          failureSteps
+          failureSteps,
         },
       ],
       taskQueue,
@@ -122,6 +128,38 @@ class TemporalService {
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
     const handle = this.client.getHandle(`${prefix}${id}`);
     await handle.signal(dataSignal, data);
+  }
+
+  async getData(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    const handle = this.client.getHandle(`${prefix}${id}`);
+    const result = await handle.query(dataQuery);
+    return result;
+  }
+
+  async updateSteps(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id, data } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    const handle = this.client.getHandle(`${prefix}${id}`);
+    await handle.signal(stepsSignal, data);
+  }
+
+  async getSteps(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { id } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+    const handle = this.client.getHandle(`${prefix}${id}`);
+    const result = await handle.query(stepsQuery);
+    return result;
   }
 
   async terminate(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -152,7 +190,7 @@ class TemporalService {
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
 
     const workflowIterator = this.client.list({
-      query: `WorkflowId STARTS_WITH '${prefix}' AND (${query})`
+      query: `WorkflowId STARTS_WITH '${prefix}' AND (${query})`,
     });
     const workflows = [] as WorkflowExecutionInfo[];
     for await (const workflow of workflowIterator) {
@@ -172,7 +210,7 @@ class TemporalService {
       const handle = this.client.getHandle(`${prefix}${id}`);
 
       return await handle.describe();
-    } catch(error: any) {
+    } catch (error: any) {
       if (error?.name === 'WorkflowNotFoundError') return null;
       throw error;
     }
