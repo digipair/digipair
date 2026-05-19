@@ -1,3 +1,13 @@
+## 0.135.0 (2026-05-19)
+
+### 🚀 Features
+
+- add query data and get and set steps ([f1f1ba4c](https://github.com/digipair/digipair/commit/f1f1ba4c))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.134.0 (2026-05-16)
 
 ### 🚀 Features
