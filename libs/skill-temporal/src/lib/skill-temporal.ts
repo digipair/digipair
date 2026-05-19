@@ -242,10 +242,3 @@ export const describe = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const getData = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.getData(params, pinsSettingsList, context);
-
-export const updateSteps = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.updateSteps(params, pinsSettingsList, context);
-
-export const getSteps = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
-  instance.getSteps(params, pinsSettingsList, context);
-

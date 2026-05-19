@@ -19,8 +19,6 @@ import { WorkflowArgs } from './shared.js';
 const { evaluate } = feelin as any;
 export const dataSignal = defineSignal<[any]>('data');
 export const dataQuery = defineQuery<[any]>('data');
-export const stepsSignal = defineSignal<[any]>('steps');
-export const stepsQuery = defineQuery<[any]>('steps');
 
 async function executePins(
   executePinsList: any,
@@ -143,14 +141,8 @@ export async function workflow({
   setHandler(dataSignal, (data: any) => {
     context.workflow.data = { ...context.workflow.data, ...data };
   });
-  setHandler(stepsSignal, (steps: any) => {
-    context.workflow.steps = steps;
-  });
   setHandler(dataQuery, () => {
     return context.workflow.data;
-  });
-  setHandler(stepsQuery, () => {
-    return context.workflow.steps;
   });
 
   // vérifie si tous les pinsSettings sont bien de la librairie @digipair/skill-temporal
