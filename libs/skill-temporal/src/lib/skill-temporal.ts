@@ -4,7 +4,7 @@ import { PinsSettings } from '@digipair/engine';
 import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/client';
 import { NativeConnection, Worker, WorkerOptions } from '@temporalio/worker';
 
-import { dataSignal, dataQuery, stepsSignal, stepsQuery, workflow as workflowJob } from './workflows.js';
+import { dataSignal, dataQuery, workflow as workflowJob } from './workflows.js';
 import { namespace, taskQueue } from './shared.js';
 import * as activities from './activities.js';
 
@@ -138,27 +138,6 @@ class TemporalService {
       `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
     const handle = this.client.getHandle(`${prefix}${id}`);
     const result = await handle.query(dataQuery);
-    return result;
-  }
-
-  async updateSteps(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id, steps } = params;
-    const prefix =
-      context.privates.TEMPORAL_PREFIX ??
-      process.env['TEMPORAL_PREFIX'] ??
-      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
-    const handle = this.client.getHandle(`${prefix}${id}`);
-    await handle.signal(stepsSignal, steps);
-  }
-
-  async getSteps(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
-    const { id } = params;
-    const prefix =
-      context.privates.TEMPORAL_PREFIX ??
-      process.env['TEMPORAL_PREFIX'] ??
-      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
-    const handle = this.client.getHandle(`${prefix}${id}`);
-    const result = await handle.query(stepsQuery);
     return result;
   }
 

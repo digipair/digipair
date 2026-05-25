@@ -1,3 +1,13 @@
+## 0.136.0 (2026-05-25)
+
+### 🚀 Features
+
+- remove step management signals ([540ca288](https://github.com/digipair/digipair/commit/540ca288))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.135.2 (2026-05-19)
 
 ### 🚀 Features
