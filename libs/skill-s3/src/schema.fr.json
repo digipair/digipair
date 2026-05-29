@@ -51,6 +51,15 @@
             "schema": {
               "type": "object"
             }
+          },
+          {
+            "name": "maxSizeMb",
+            "summary": "Max file size Mb",
+            "required": false,
+              "description": "Taille max du fichier en Mo (optionnelle)",
+            "schema": {
+              "type": "number"
+            }
           }
         ],
         "responses": {
