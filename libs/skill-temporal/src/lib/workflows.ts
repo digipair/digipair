@@ -172,7 +172,7 @@ export async function workflow({
         await CancellationScope.nonCancellable(async () => {
           await executePinsList({
             pinsSettingsList: cancelSteps,
-            context: { ...context },
+            context: { ...context, error },
           });
         });
       }
@@ -180,7 +180,7 @@ export async function workflow({
         await CancellationScope.nonCancellable(async () => {
           await executePinsList({
             pinsSettingsList: failureSteps,
-            context: { ...context },
+            context: { ...context, error },
           });
         });
       }
