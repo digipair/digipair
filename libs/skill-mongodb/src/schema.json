@@ -571,10 +571,10 @@
             }
           },
           {
-            "name": "document",
-            "summary": "Document",
+            "name": "filter",
+            "summary": "Filter",
             "required": true,
-            "description": "Document to insert",
+            "description": "Search filter",
             "schema": {
               "type": "object"
             }
@@ -589,6 +589,77 @@
                 "schema": {
                   "type": "number",
                   "description": "Documents count"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aggregate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Aggregate search in a MongoDB database",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Database connection",
+            "required": false,
+            "description": "Database connection client",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Insert options",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Name of the collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pipeline",
+            "summary": "Pipeline",
+            "required": true,
+            "description": "Aggregate filter",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Array of documents matching the aggregate criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "MongoDB document",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Document unique identifier"
+                      }
+                    },
+                    "additionalProperties": true
+                  }
                 }
               }
             }
