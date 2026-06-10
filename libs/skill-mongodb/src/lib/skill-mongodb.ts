@@ -105,6 +105,17 @@ class MongoDBService {
 
     return value;
   }
+
+  async aggregate(params: any, _pins: PinsSettings[], context: any) {
+    const { client = context.privates.CLIENT_MONGODB, options = {}, collection, pipeline } = params;
+    const clientInstance = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const instance = clientInstance.database.collection(collection);
+    const values = await instance.aggregate(pipeline, options).toArray();
+
+    await clientInstance.client.close();
+
+    return values;
+  }
 }
 
 export const database = (params: any, pins: PinsSettings[], context: any) =>
@@ -123,3 +134,5 @@ export const updateById = (params: any, pins: PinsSettings[], context: any) =>
   new MongoDBService().updateById(params, pins, context);
 export const count = (params: any, pins: PinsSettings[], context: any) =>
   new MongoDBService().count(params, pins, context);
+export const aggregate = (params: any, pins: PinsSettings[], context: any) =>
+  new MongoDBService().aggregate(params, pins, context);

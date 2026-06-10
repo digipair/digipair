@@ -595,6 +595,77 @@
           }
         }
       }
+    },
+    "/aggregate": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Rechercher par aggregation dans une base MongoDB",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connection à la base de données",
+            "required": false,
+            "description": "Client de connexion à la base de données",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options de recherche",
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "collection",
+            "summary": "Collection",
+            "required": true,
+            "description": "Nom de la collection",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pipeline",
+            "summary": "Pipepline",
+            "required": true,
+            "description": "Pipeline d'aggregation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Tableau de documents correspondant aux critères d'aggregation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "Document MongoDB",
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "description": "Identifiant unique du document"
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
