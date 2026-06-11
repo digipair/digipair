@@ -1,3 +1,14 @@
+## 0.136.3 (2026-06-11)
+
+### 🚀 Features
+
+- add error object for cancel and failure events on temporal ([5352a881](https://github.com/digipair/digipair/commit/5352a881))
+- update yarn ([c1df5d99](https://github.com/digipair/digipair/commit/c1df5d99))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.136.0 (2026-05-25)
 
 ### 🚀 Features
