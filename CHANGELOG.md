@@ -1,3 +1,13 @@
+## 0.136.5 (2026-06-11)
+
+### 🚀 Features
+
+- update yarn ([64238399](https://github.com/digipair/digipair/commit/64238399))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.136.4 (2026-06-11)
 
 This was a version bump only, there were no code changes.
