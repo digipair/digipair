@@ -194,6 +194,7 @@ class VespaService {
       limit = 100,
       orderby = '',
       query,
+      filter='true',
       grouping,
     } = params;
 
@@ -208,7 +209,7 @@ class VespaService {
     const results = await this.searchDocuments(
       baseUrl,
       collection,
-      `is_parent = true and userQuery() ${orderbySecured} limit ${parseInt(limit)}` +
+      `is_parent = true and userQuery() and (${filter}) ${orderbySecured} limit ${parseInt(limit)}` +
         (grouping ? ` | ${grouping}` : ''),
       {
         query,
