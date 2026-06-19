@@ -69,6 +69,15 @@
             }
           },
           {
+            "name": "filter",
+            "summary": "Filtres",
+            "required": false,
+            "description": "Filtres de recherche",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "grouping",
             "summary": "Filtre de regroupement",
             "required": false,
