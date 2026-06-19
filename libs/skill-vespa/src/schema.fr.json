@@ -9,6 +9,21 @@
   },
   "paths": {
     "/find": {
+      "get": {
+        "description": "New endpoint",
+        "responses": {
+          "200": {
+            "description": "New response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "": ""
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": ["service"],
         "summary": "Récupérer",
@@ -64,6 +79,15 @@
             "summary": "Requête",
             "required": true,
             "description": "Requête de recherche",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "summary": "Filtres",
+            "required": false,
+            "description": "Filtres de recherche",
             "schema": {
               "type": "string"
             }
