@@ -131,7 +131,7 @@ export async function workflow({
 }: WorkflowArgs): Promise<any> {
   let result: any;
 
-  context.workflow = { steps: {}, data };
+  context.workflow = { data };
   context.protected = {};
 
   const { executePinsList } = proxyActivities<typeof activities>({
@@ -185,10 +185,6 @@ export async function workflow({
         });
       }
       throw error;
-    }
-
-    if (pinsSettings.properties?.['name']) {
-      context.workflow.steps[pinsSettings.properties['name']] = result;
     }
   }
 
