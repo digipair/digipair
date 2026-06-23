@@ -1,6 +1,6 @@
 {
   "name": "@digipair/skill-exif",
-  "version": "0.136.5",
+  "version": "0.137.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",

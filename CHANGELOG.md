@@ -1,3 +1,14 @@
+## 0.137.0 (2026-06-23)
+
+### 🚀 Features
+
+- update yarn ([64238399](https://github.com/digipair/digipair/commit/64238399))
+- remove saving temporal steps data ([b2e1bfb5](https://github.com/digipair/digipair/commit/b2e1bfb5))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.136.5 (2026-06-11)
 
 ### 🚀 Features
