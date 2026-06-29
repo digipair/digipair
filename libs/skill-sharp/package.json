@@ -28,8 +28,5 @@
   ],
   "nx": {
     "name": "skill-sharp"
-  },
-  "dependencies": {
-    "sharp": "^0.34.1"
   }
 }
