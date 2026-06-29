@@ -1,3 +1,13 @@
+## 0.137.2 (2026-06-29)
+
+### 🚀 Features
+
+- fix sharp multiplateform issue ([5832db41](https://github.com/digipair/digipair/commit/5832db41))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.137.1 (2026-06-23)
 
 This was a version bump only, there were no code changes.
