@@ -1,3 +1,7 @@
+## 0.138.1 (2026-07-19)
+
+This was a version bump only, there were no code changes.
+
 ## 0.138.0 (2026-07-19)
 
 ### 🚀 Features
