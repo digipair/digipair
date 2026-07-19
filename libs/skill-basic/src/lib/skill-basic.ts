@@ -52,6 +52,21 @@ class BasicService {
     return result;
   }
 
+  async sleep(params: any, _pinsSettingsList: PinsSettings[], context: any) {
+    const { time } = params;
+    const signal = context.protected?.signal;
+
+    return new Promise(resolve => {
+      const timeoutId = setTimeout(() => {
+        resolve(true);
+      }, time);
+
+      signal?.addEventListener('abort', () => {
+        clearTimeout(timeoutId);
+      });
+    });
+  }
+
   async stopInterval(params: any, _pinsSettingsList: PinsSettings[], _context: any) {
     const { id } = params;
 
@@ -107,6 +122,9 @@ export const interval = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const defer = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new BasicService().defer(params, pinsSettingsList, context);
+
+export const sleep = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new BasicService().sleep(params, pinsSettingsList, context);
 
 export const stopInterval = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new BasicService().stopInterval(params, pinsSettingsList, context);

@@ -88,7 +88,7 @@ class TemporalService {
     const prefix =
       context.privates.TEMPORAL_PREFIX ??
       process.env['TEMPORAL_PREFIX'] ??
-      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+      `digipair-workflow-`;
     const workflowOptions = {
       // RetryPolicy specifies how to automatically handle retries if an Activity fails.
       retry: {

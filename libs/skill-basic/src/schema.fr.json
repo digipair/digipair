@@ -161,6 +161,42 @@
         }
       }
     },
+    "/sleep": {
+      "post": {
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
+        "summary": "Mettre en pause l'exécution",
+        "description": "Met en pause l'exécution d'une action",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "Temps",
+            "required": true,
+            "description": "Temps en millisecondes avant de reprendre l'exécution",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Exécution mise en pause avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "Aucune valeur de retour"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/interval": {
       "post": {
         "tags": [

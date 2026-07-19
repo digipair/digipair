@@ -161,6 +161,42 @@
         }
       }
     },
+    "/sleep": {
+      "post": {
+        "tags": [
+          "web",
+          "service",
+          "spatial"
+        ],
+        "summary": "Sleep",
+        "description": "Pauses execution for a specified duration.",
+        "parameters": [
+          {
+            "name": "time",
+            "summary": "Time",
+            "required": true,
+            "description": "Time in milliseconds to sleep",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Sleep completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null",
+                  "description": "No return value"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/interval": {
       "post": {
         "tags": [
