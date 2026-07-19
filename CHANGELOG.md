@@ -1,3 +1,13 @@
+## 0.138.0 (2026-07-19)
+
+### 🚀 Features
+
+- add sleep action ([31f4f3e6](https://github.com/digipair/digipair/commit/31f4f3e6))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.137.2 (2026-06-29)
 
 ### 🚀 Features
