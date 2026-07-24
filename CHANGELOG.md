@@ -1,3 +1,13 @@
+## 0.136.6 (2026-07-24)
+
+### 🩹 Fixes
+
+- temporal goto broken ([dd67572e](https://github.com/digipair/digipair/commit/dd67572e))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.138.1 (2026-07-19)
 
 This was a version bump only, there were no code changes.
