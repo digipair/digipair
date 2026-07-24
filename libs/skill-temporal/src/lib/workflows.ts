@@ -91,12 +91,12 @@ async function executePins(
     const step = steps
       .filter(current => !!current.properties?.['name'])
       .findIndex(
-        current => (current.properties as any)['name'] === (settings.properties as any)['name'],
+        current => (current.properties as any)['name'] === (settings.properties as any)['target'],
       );
 
     if (step <= -1) {
       throw new ApplicationFailure('[SKILL-TEMPORAL] GOTO FAILED - STEP NOT FOUND', null, null, [
-        (settings.properties as any)['name'],
+        (settings.properties as any)['target'],
       ]);
     }
     result = state.step = step;
