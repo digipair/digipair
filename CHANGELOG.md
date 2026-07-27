@@ -1,3 +1,13 @@
+## 0.139.0 (2026-07-27)
+
+### 🚀 Features
+
+- add author on git ([e8f517b2](https://github.com/digipair/digipair/commit/e8f517b2))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.138.2 (2026-07-24)
 
 ### 🩹 Fixes
