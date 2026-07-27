@@ -16,9 +16,10 @@ class GitService {
         .getUTCSeconds()
         .toString()
         .padStart(2, '0')}:${now.getUTCMilliseconds().toString().padStart(3, '0')}`,
+      author = 'Unknown <unknown@digipair.ai>',
     } = params;
 
-    return await simpleGit(path).add(selector).commit(message);
+    return await simpleGit(path).add(selector).commit(message, undefined, { '--author': author });
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any) {

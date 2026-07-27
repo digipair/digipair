@@ -41,6 +41,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "author",
+            "summary": "Author",
+            "required": false,
+            "description": "Author of the commit",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-events": [],
