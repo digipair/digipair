@@ -1,3 +1,15 @@
+## 0.140.0 (2026-07-30)
+
+### 🚀 Features
+
+- add arg model on skill-codex run-rompt, default gpt-5 ([#66](https://github.com/digipair/digipair/pull/66))
+- add author on git ([6cc6b700](https://github.com/digipair/digipair/commit/6cc6b700))
+
+### ❤️ Thank You
+
+- admien33
+- Marc BUILS
+
 ## 0.139.0 (2026-07-27)
 
 ### 🚀 Features
