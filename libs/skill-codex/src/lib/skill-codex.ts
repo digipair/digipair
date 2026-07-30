@@ -18,7 +18,7 @@ class CodexService {
       debug = false,
     } = params;
 
-    const model = context.privates.CODEX_MODEL || 'gpt-5';
+    const model = context.privates?.CODEX_MODEL ?? 'gpt-5';
 
     if (!prompt || !prompt.trim()) {
       throw new Error('Prompt must be a non-empty string');
