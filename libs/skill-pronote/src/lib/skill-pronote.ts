@@ -33,7 +33,7 @@ class PronoteService {
       context,
       `${context.__PATH__}.connection`,
     )) as Pronote;
-    return instance.getHomeworks(weekNumber);
+    return connection.getHomeworks(weekNumber);
   }
 
   async getNews(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<News[]> {
