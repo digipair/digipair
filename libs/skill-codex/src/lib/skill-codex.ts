@@ -18,6 +18,8 @@ class CodexService {
       debug = false,
     } = params;
 
+    const model = context.privates.CODEX_MODEL || 'gpt-5';
+
     if (!prompt || !prompt.trim()) {
       throw new Error('Prompt must be a non-empty string');
     }
@@ -36,6 +38,8 @@ class CodexService {
     args.push('exec');
     // codex exec expects: codex exec --sandbox <mode> [PROMPT]
     args.push('--sandbox', sandbox);
+    // add arg model, default gpt-5
+    args.push('--model', model);
     // skip git repo check
     args.push('--skip-git-repo-check');
     args.push(prompt);
