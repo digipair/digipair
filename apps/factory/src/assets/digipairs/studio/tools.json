@@ -110,15 +110,90 @@
           },
           {
             "library": "web",
-            "element": "h4",
+            "element": "div",
             "properties": {
-              "textContent": "Tools agents"
-            }
+              "class": "dp-zhead"
+            },
+            "pins": [
+              {
+                "library": "web",
+                "element": "div",
+                "properties": {
+                  "class": "dp-badge"
+                },
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-font-awesome",
+                    "element": "digipair-font-awesome-icon",
+                    "properties": {
+                      "name": "screwdriver-wrench"
+                    }
+                  }
+                ]
+              },
+              {
+                "library": "web",
+                "element": "div",
+                "pins": [
+                  {
+                    "library": "web",
+                    "element": "div",
+                    "properties": {
+                      "class": "dp-ztitle",
+                      "textContent": "Tool agents"
+                    }
+                  },
+                  {
+                    "library": "web",
+                    "element": "div",
+                    "properties": {
+                      "class": "dp-zsub",
+                      "textContent": "Raisonnement outillé, exécuté dans cette factory"
+                    }
+                  }
+                ]
+              },
+              {
+                "library": "web",
+                "element": "div",
+                "properties": {
+                  "class": "dp-zcount",
+                  "textContent": "FEEL: string(count(variables.digipairTools)) + \" agents · \" + string(count(variables.folders)) + \" dossiers\""
+                }
+              },
+              {
+                "library": "web",
+                "element": "button",
+                "properties": {
+                  "class": "dp-toggle-all",
+                  "data-toggle-all": "true",
+                  "type": "button"
+                },
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-font-awesome",
+                    "element": "digipair-font-awesome-icon",
+                    "properties": {
+                      "name": "angles-down"
+                    }
+                  },
+                  {
+                    "library": "web",
+                    "element": "span",
+                    "properties": {
+                      "class": "dp-ta-label",
+                      "textContent": "Tout déplier"
+                    }
+                  }
+                ]
+              }
+            ]
           },
           {
             "library": "web",
             "element": "div",
             "properties": {
+              "class": "dp-empty",
               "textContent": "You haven't created a tool agent yet? What are you waiting for?"
             },
             "conditions": {
@@ -128,10 +203,264 @@
           {
             "library": "web",
             "element": "div",
+            "properties": {
+              "class": "dp-newfolder"
+            },
             "pins": [
               {
                 "library": "@digipair/skill-web-spectrum",
-                "element": "sp-card",
+                "element": "sp-textfield",
+                "properties": {
+                  "id": "new-folder-name",
+                  "placeholder": "New folder name"
+                }
+              },
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-button",
+                "properties": {
+                  "textContent": "New folder",
+                  "treatment": "outline"
+                },
+                "events": {
+                  "click": [
+                    {
+                      "library": "@digipair/skill-basic",
+                      "element": "setVariable",
+                      "properties": {
+                        "name": "newFolderName",
+                        "execute": [
+                          {
+                            "library": "@digipair/skill-web-interact",
+                            "element": "getAttribute",
+                            "properties": {
+                              "selector": "#new-folder-name",
+                              "attribute": "value"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "library": "@digipair/skill-basic",
+                      "element": "setVariable",
+                      "properties": {
+                        "name": "newFolderId",
+                        "execute": [
+                          {
+                            "library": "@digipair/skill-basic",
+                            "element": "uuid"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "library": "@digipair/skill-web",
+                      "element": "executeFactory",
+                      "properties": {
+                        "execute": [
+                          {
+                            "library": "@digipair/skill-editor",
+                            "element": "digipair",
+                            "properties": {
+                              "digipair": "common"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-editor",
+                            "element": "setDigipair",
+                            "properties": {
+                              "digipair": "common",
+                              "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"toolFolders\", flatten([(if previous.metadata.toolFolders = null then [] else previous.metadata.toolFolders), [{ id: variables.newFolderId, name: variables.newFolderName }]])))"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "commit",
+                            "conditions": {
+                              "if": "FEEL: privates.GIT_COMMIT = true"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-git",
+                            "element": "push",
+                            "conditions": {
+                              "if": "FEEL: privates.GIT_PUSH = true"
+                            }
+                          }
+                        ]
+                      },
+                      "conditions": {
+                        "if": "FEEL: variables.newFolderName != null and variables.newFolderName != \"\""
+                      }
+                    },
+                    {
+                      "library": "@digipair/skill-web-interact",
+                      "element": "reload",
+                      "conditions": {
+                        "if": "FEEL: variables.newFolderName != null and variables.newFolderName != \"\""
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "library": "web",
+            "element": "style",
+            "properties": {
+              "textContent": "body{--dp-accent:#0FA39D;--dp-tint:#E6F6F5;--dp-ink:#19212A;--dp-muted:#5F6C76;--dp-faint:#8B97A1;--dp-border:#E4E9ED;} .dp-zhead{display:flex;align-items:center;gap:12px;padding:10px 0 12px 16px;border-left:3px solid var(--dp-accent);margin-top:8px;} .dp-badge{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;background:var(--dp-tint);color:var(--dp-accent);font-size:16px;} .dp-ztitle{font-size:15px;font-weight:650;color:var(--dp-ink);} .dp-zsub{font-size:12.5px;color:var(--dp-muted);margin-top:1px;} .dp-zcount{margin-left:auto;font-size:12px;color:var(--dp-muted);} .dp-toggle-all{display:inline-flex;align-items:center;gap:6px;margin-left:14px;font:inherit;font-size:12px;font-weight:550;cursor:pointer;color:var(--dp-accent);background:transparent;border:0;padding:5px 8px;border-radius:7px;} .dp-toggle-all:hover{background:var(--dp-tint);} .dp-newfolder{display:flex;align-items:flex-end;gap:8px;margin:2px 0 10px;} .dp-folder{background:#FCFDFE;border:1px solid var(--dp-border);border-radius:12px;box-shadow:0 1px 2px rgba(20,30,40,.05),0 4px 14px rgba(20,30,40,.05);overflow:hidden;margin:0 0 12px;} .dp-folder>summary{display:flex;align-items:center;gap:10px;padding:12px;cursor:pointer;user-select:none;background:#F1F5F7;list-style:none;border-bottom:1px solid transparent;} .dp-folder[open]>summary{border-bottom-color:var(--dp-border);} .dp-folder>summary::-webkit-details-marker{display:none;} .dp-folder>summary::before{content:'\\25B8';color:var(--dp-faint);font-size:12px;display:inline-block;width:12px;transition:transform .16s;} .dp-folder[open]>summary::before{transform:rotate(90deg);} .dp-folder>*:not(summary){display:none;} .dp-folder[open]>*:not(summary){display:block;} .dp-fico{color:var(--dp-accent);} .dp-fname{font-size:14px;font-weight:600;color:var(--dp-ink);} .dp-none .dp-fname{color:var(--dp-muted);} .dp-none .dp-fico{color:var(--dp-faint);} .dp-count{font-size:11.5px;font-weight:600;color:var(--dp-muted);background:#fff;border:1px solid var(--dp-border);border-radius:999px;padding:1px 8px;min-width:22px;text-align:center;} .dp-spacer{margin-left:auto;} .dp-agents{padding:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;} .dp-folder sp-card{margin:0!important;width:100%;} .dp-empty{padding:12px 14px;color:var(--dp-faint);font-size:13px;font-style:italic;}"
+            }
+          },
+          {
+            "library": "web",
+            "element": "script",
+            "properties": {
+              "textContent": "if(!window.__dpToggle){window.__dpToggle=1;document.addEventListener('click',function(e){var b=e.target.closest('[data-toggle-all]');if(!b)return;var s=b.closest('[data-dp-zone]')||document;var d=s.querySelectorAll('details.dp-folder');var o=Array.prototype.some.call(d,function(x){return !x.open;});Array.prototype.forEach.call(d,function(x){x.open=o;});var l=b.querySelector('.dp-ta-label');if(l)l.textContent=o?'Tout replier':'Tout déplier';});}"
+            }
+          },
+          {
+            "library": "web",
+            "element": "details",
+            "conditions": {
+              "each": "FEEL: variables.toolGroups",
+              "if": "FEEL: item.id != null or count(item.agents) > 0"
+            },
+            "properties": {
+              "class": "FEEL: if item.id = null then \"dp-folder dp-none\" else \"dp-folder\""
+            },
+            "pins": [
+              {
+                "library": "web",
+                "element": "summary",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-font-awesome",
+                    "element": "digipair-font-awesome-icon",
+                    "properties": {
+                      "name": "folder",
+                      "class": "dp-fico"
+                    }
+                  },
+                  {
+                    "library": "web",
+                    "element": "span",
+                    "properties": {
+                      "class": "dp-fname",
+                      "textContent": "{{item.name}}"
+                    }
+                  },
+                  {
+                    "library": "web",
+                    "element": "span",
+                    "properties": {
+                      "class": "dp-count",
+                      "textContent": "FEEL: string(count(item.agents))"
+                    }
+                  },
+                  {
+                    "library": "web",
+                    "element": "span",
+                    "properties": {
+                      "class": "dp-spacer"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-action-menu",
+                    "conditions": {
+                      "if": "FEEL: item.id != null"
+                    },
+                    "properties": {
+                      "quiet": true,
+                      "label": "Folder options",
+                      "style": "margin-inline-start: 4px;"
+                    },
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Delete folder"
+                        },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "deleteFolderId",
+                                "value": "{{item.id}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web-notification",
+                              "element": "confirm",
+                              "properties": {
+                                "message": "Delete folder \"{{item.name}}\" ? Agents inside will move to \"Sans dossier\".",
+                                "ok": [
+                                  {
+                                    "library": "@digipair/skill-web",
+                                    "element": "executeFactory",
+                                    "properties": {
+                                      "execute": [
+                                        {
+                                          "library": "@digipair/skill-editor",
+                                          "element": "digipair",
+                                          "properties": {
+                                            "digipair": "common"
+                                          }
+                                        },
+                                        {
+                                          "library": "@digipair/skill-editor",
+                                          "element": "setDigipair",
+                                          "properties": {
+                                            "digipair": "common",
+                                            "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"toolFolders\", (if previous.metadata.toolFolders = null then [] else previous.metadata.toolFolders)[item.id != variables.deleteFolderId]))"
+                                          }
+                                        },
+                                        {
+                                          "library": "@digipair/skill-git",
+                                          "element": "commit",
+                                          "conditions": {
+                                            "if": "FEEL: privates.GIT_COMMIT = true"
+                                          }
+                                        },
+                                        {
+                                          "library": "@digipair/skill-git",
+                                          "element": "push",
+                                          "conditions": {
+                                            "if": "FEEL: privates.GIT_PUSH = true"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-web-interact",
+                                    "element": "reload"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "library": "web",
+                "element": "div",
+                "properties": {
+                  "class": "dp-agents"
+                },
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-card",
                 "pins": [
                   {
                     "library": "web",
@@ -176,6 +505,149 @@
                             "properties": {
                               "textContent": "Task list",
                               "href": "/studio/tool-tasks/{{item.infos.id}}"
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-menu-item",
+                            "properties": {
+                              "textContent": "Move to: {{item.folderName}}"
+                            },
+                            "conditions": {
+                              "if": "FEEL: not(item.isCurrent)",
+                              "each": "FEEL: item.moveTargets"
+                            },
+                            "events": {
+                              "click": [
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "setVariable",
+                                  "properties": {
+                                    "name": "moveAgentId",
+                                    "value": "{{item.agentId}}"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "setVariable",
+                                  "properties": {
+                                    "name": "moveFolderId",
+                                    "value": "{{item.folderId}}"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-web",
+                                  "element": "executeFactory",
+                                  "properties": {
+                                    "execute": [
+                                      {
+                                        "library": "@digipair/skill-editor",
+                                        "element": "digipair",
+                                        "properties": {
+                                          "digipair": "FEEL: variables.moveAgentId"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-editor",
+                                        "element": "setDigipair",
+                                        "properties": {
+                                          "digipair": "FEEL: variables.moveAgentId",
+                                          "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"folder\", variables.moveFolderId))"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-git",
+                                        "element": "commit",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_COMMIT = true"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-git",
+                                        "element": "push",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_PUSH = true"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-web-interact",
+                                  "element": "reload"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-spectrum",
+                            "element": "sp-menu-item",
+                            "properties": {
+                              "textContent": "Remove from folder"
+                            },
+                            "conditions": {
+                              "if": "FEEL: item.metadata.folder != null"
+                            },
+                            "events": {
+                              "click": [
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "setVariable",
+                                  "properties": {
+                                    "name": "moveAgentId",
+                                    "value": "{{item.infos.id}}"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "setVariable",
+                                  "properties": {
+                                    "name": "moveFolderId",
+                                    "value": "FEEL: null"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-web",
+                                  "element": "executeFactory",
+                                  "properties": {
+                                    "execute": [
+                                      {
+                                        "library": "@digipair/skill-editor",
+                                        "element": "digipair",
+                                        "properties": {
+                                          "digipair": "FEEL: variables.moveAgentId"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-editor",
+                                        "element": "setDigipair",
+                                        "properties": {
+                                          "digipair": "FEEL: variables.moveAgentId",
+                                          "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"folder\", variables.moveFolderId))"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-git",
+                                        "element": "commit",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_COMMIT = true"
+                                        }
+                                      },
+                                      {
+                                        "library": "@digipair/skill-git",
+                                        "element": "push",
+                                        "conditions": {
+                                          "if": "FEEL: privates.GIT_PUSH = true"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-web-interact",
+                                  "element": "reload"
+                                }
+                              ]
                             }
                           },
                           {
@@ -266,10 +738,12 @@
                   "placement": "left-end"
                 }
               }
-            ],
-            "conditions": {
-              "each": "FEEL: variables.digipairTools"
-            }
+                ],
+                "conditions": {
+                  "each": "FEEL: item.agents"
+                }
+              }
+            ]
           },
           {
             "library": "web",
@@ -469,6 +943,45 @@
               }
             }
           ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "folders",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-editor",
+                    "element": "digipair",
+                    "properties": {
+                      "digipair": "common"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if previous.metadata.toolFolders = null then [] else previous.metadata.toolFolders"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "toolGroups",
+          "value": "FEEL: flatten([for folder in variables.folders return { id: folder.id, name: folder.name, agents: for a in variables.digipairTools[item.metadata.folder = folder.id] return { infos: a.infos, metadata: a.metadata, moveTargets: for f in variables.folders return { folderId: f.id, folderName: f.name, agentId: a.infos.id, isCurrent: f.id = a.metadata.folder } } }, [{ id: null, name: \"Sans dossier\", agents: for a in variables.digipairTools[not(some folder in variables.folders satisfies folder.id = item.metadata.folder)] return { infos: a.infos, metadata: a.metadata, moveTargets: for f in variables.folders return { folderId: f.id, folderName: f.name, agentId: a.infos.id, isCurrent: f.id = a.metadata.folder } } }]])"
         }
       }
     ]
