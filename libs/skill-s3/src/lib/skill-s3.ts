@@ -15,7 +15,17 @@ class S3Service {
   }
 
   async upload(params: any, _pinsSettingsList: PinsSettings[], context: any) {
-    const { bucket, key, content, config = context.privates.S3_CONFIG } = params;
+    const { bucket, key, content, config = context.privates.S3_CONFIG, maxSizeMb = context.privates.S3_UPLOAD_MAX_SIZE_MB ?? undefined } = params;
+    const base64Data = content.replace(/^data:.*;base64,/, '');
+
+    if (maxSizeMb) {
+      const fileSizeBytes = Buffer.byteLength(base64Data, 'base64');
+      const fileSizeMB = fileSizeBytes / (1024 * 1024);
+
+      if (fileSizeMB > maxSizeMb) {
+        throw new Error(`[SKILL-S3] File too large: ${fileSizeMB.toFixed(2)} MB (max ${maxSizeMB} MB)`);
+      }
+    }
 
     const client = this.getClient(config);
     const match = content.match(/^data:(.*?);base64,/);
@@ -24,7 +34,7 @@ class S3Service {
     const command = new PutObjectCommand({
       Bucket: bucket,
       Key: key,
-      Body: Buffer.from(content.replace(/^data:.*;base64,/, ''), 'base64'),
+      Body: Buffer.from(base64Data, 'base64'),
       ContentType: contentType,
     });
 

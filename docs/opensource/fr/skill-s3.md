@@ -23,12 +23,14 @@ Uploader un fichier dans un bucket S3.
 
 #### Paramètres
 
-| Nom      | Type   | Requis | Description                                                                 |
-|----------|--------|--------|-----------------------------------------------------------------------------|
-| bucket   | string | Oui    | Nom du bucket S3 cible.                                                     |
-| key      | string | Oui    | Clé (chemin) où le fichier sera stocké dans le bucket.                      |
-| content  | string | Oui    | Contenu du fichier encodé en base64 (avec préfixe data URI).                |
-| config   | object | Non    | Configuration du client AWS SDK (optionnelle).                              |
+| Nom       | Type   | Requis | Description                                                  |
+|-----------|--------|--------|--------------------------------------------------------------|
+| bucket    | string | Oui    | Nom du bucket S3 cible.                                      |
+| key       | string | Oui    | Clé (chemin) où le fichier sera stocké dans le bucket.       |
+| content   | string | Oui    | Contenu du fichier encodé en base64 (avec préfixe data URI). |
+| config    | object | Non    | Configuration du client AWS SDK (optionnelle).               |
+| maxSizeMb | number | Oui    | Taille max du fichier en Mo (optionnelle).                   |
+
 
 #### Exemple
 
@@ -44,8 +46,9 @@ Uploader un fichier dans un bucket S3.
       "region": "eu-west-1",
       "accessKeyId": "AKIA...",
       "secretAccessKey": "..."
-    }
-  }
+    },
+    "maxSizeMb": 50
+  },
 }
 ```
 
