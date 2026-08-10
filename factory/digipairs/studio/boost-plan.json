@@ -1,0 +1,92 @@
+{
+  "description": "Schedule a reasoning process.",
+  "summary": "Schedule a reasoning",
+  "library": "@digipair/skill-chatbot",
+  "element": "boost",
+  "metadata": {},
+  "properties": {
+    "steps": [
+      {
+        "name": "Initialisation",
+        "execute": [
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "When do you want to schedule it?",
+              "boost": [
+                {
+                  "step": "Execution",
+                  "prompt": true,
+                  "required": true,
+                  "inputs": []
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Execution",
+        "execute": [
+          {
+            "library": "@digipair/skill-basic",
+            "element": "setVariable",
+            "properties": {
+              "name": "infos",
+              "execute": [
+                {
+                  "library": "@digipair/skill-dsp",
+                  "element": "generate",
+                  "properties": {
+                    "signature": "comment:string -> cron:string \"task scheduling in relation to the comment or @startup to execute it only once\", assistant:string \"Assistant's response to indicate that the task has been successfully scheduled.\"",
+                    "input": {
+                      "comment": "FEEL: request.body.prompt"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "library": "@digipair/skill-cron",
+            "element": "addCron",
+            "properties": {
+              "time": "{{previous.cron}}",
+              "digipair": "{{request.body.context.digipair}}",
+              "reasoning": "{{request.body.context.reasoning}}"
+            }
+          },
+          {
+            "library": "@digipair/skill-git",
+            "element": "commit",
+            "conditions": {
+              "if": "FEEL: privates.GIT_COMMIT = true"
+            }
+          },
+          {
+            "library": "@digipair/skill-git",
+            "element": "push",
+            "conditions": {
+              "if": "FEEL: privates.GIT_PUSH = true"
+            }
+          },
+          {
+            "library": "digipair:studio",
+            "element": "action-answer",
+            "properties": {
+              "assistant": "{{variables.infos.assistant}}",
+              "command": [
+                {
+                  "library": "@digipair/skill-web-interact",
+                  "element": "reload"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pins": []
+}

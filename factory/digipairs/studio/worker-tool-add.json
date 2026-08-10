@@ -1,0 +1,443 @@
+{
+  "description": "Raisonnement concernant l'utilisation ou la gestion des outils.",
+  "summary": "Tool agents",
+  "library": "@digipair/skill-web",
+  "element": "page",
+  "metadata": {},
+  "properties": {
+    "body": [
+      {
+        "library": "@digipair/skill-web-spectrum",
+        "element": "sp-theme",
+        "pins": [
+          {
+            "library": "web",
+            "element": "section",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-top-nav",
+                "pins": [
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-top-nav-item",
+                    "pins": [
+                      {
+                        "library": "web",
+                        "element": "img",
+                        "properties": {
+                          "src": "https://res.cloudinary.com/do87nxq3l/image/upload/fl_preserve_transparency/v1717769492/logo-digipair_oyvvxz.png?_s=public-apps",
+                          "style": "height: 20px;"
+                        }
+                      }
+                    ],
+                    "properties": {
+                      "href": "https://www.digipair.ai"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-top-nav-item",
+                    "properties": {
+                      "textContent": "Tool agents",
+                      "href": "/studio/tools"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-top-nav-item",
+                    "properties": {
+                      "textContent": "Worker agents",
+                      "href": "/studio/workers"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-web-spectrum",
+                    "element": "sp-action-menu",
+                    "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "View logs",
+                          "href": "/studio/logs"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "View processes",
+                          "href": "/studio/process-list"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "View LLM consumption",
+                          "href": "/studio/consumptions"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "View the monthly LLM consumption",
+                          "href": "/studio/consumptions-monthly"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "Settings",
+                          "href": "/studio/common-edit"
+                        }
+                      }
+                    ],
+                    "properties": {
+                      "style": "margin-inline-start: auto;",
+                      "quiet": true
+                    }
+                  }
+                ]
+              }
+            ],
+            "properties": {
+              "style": "background-color: white;\npadding: 0 20px 0 20px;\nposition: fixed;\nz-index: 10000;\ntop: 0;\nleft: 0;\nright: 0;"
+            }
+          },
+          {
+            "library": "web",
+            "element": "h4",
+            "properties": {
+              "textContent": "FEEL: \"Add a \" + (if starts with(variables.workerType,\"role-\") then \"role\" else \"tool\") + \" agent\""
+            }
+          },
+          {
+            "library": "web",
+            "element": "div",
+            "properties": {
+              "textContent": "List of available agents:"
+            }
+          },
+          {
+            "library": "web",
+            "element": "div",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-card",
+                "pins": [
+                  {
+                    "library": "web",
+                    "element": "img",
+                    "properties": {
+                      "src": "FEEL: item.metadata.avatar",
+                      "style": "height: 60px;",
+                      "slot": "preview"
+                    }
+                  }
+                ],
+                "properties": {
+                  "style": "overflow: hidden;\nmargin: 5px;\ncursor: pointer;",
+                  "horizontal": true,
+                  "subheading": "{{item.infos.name}}"
+                },
+                "events": {
+                  "click": [
+                    {
+                      "library": "@digipair/skill-basic",
+                      "element": "transform",
+                      "properties": {
+                        "execute": [
+                          {
+                            "library": "@digipair/skill-basic",
+                            "element": "setVariable",
+                            "properties": {
+                              "name": "loading",
+                              "value": true
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web",
+                            "element": "executeFactory",
+                            "properties": {
+                              "execute": [
+                                {
+                                  "library": "@digipair/skill-editor",
+                                  "element": "digipair",
+                                  "properties": {
+                                    "digipair": "FEEL: request.params[1]"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "transform",
+                                  "properties": {
+                                    "value": "FEEL:context merge(\n  previous, \n  { \n    libraries: context(\n      concatenate(\n        get entries(previous.libraries),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                                  },
+                                  "conditions": {
+                                    "if": "FEEL: variables.workerType = \"worker\""
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-basic",
+                                  "element": "transform",
+                                  "properties": {
+                                    "value": "FEEL:context merge(\n  previous, \n  { \n    roles: context(\n      concatenate(\n        get entries(previous.roles),\n        [{ key: \"digipair:\" + item.infos.id, \"value\": \"latest\" }]\n      )\n    )\n  }\n)"
+                                  },
+                                  "conditions": {
+                                    "if": "FEEL: variables.workerType = \"role-worker\""
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-editor",
+                                  "element": "setDigipair",
+                                  "properties": {
+                                    "digipair": "FEEL: request.params[1]",
+                                    "value": "FEEL: previous"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-git",
+                                  "element": "commit",
+                                  "conditions": {
+                                    "if": "FEEL: privates.GIT_COMMIT = true"
+                                  }
+                                },
+                                {
+                                  "library": "@digipair/skill-git",
+                                  "element": "push",
+                                  "conditions": {
+                                    "if": "FEEL: privates.GIT_PUSH = true"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "library": "@digipair/skill-web-interact",
+                            "element": "goTo",
+                            "properties": {
+                              "url": "/studio/worker-tasks/{{request.params.[0]}}"
+                            }
+                          }
+                        ]
+                      },
+                      "conditions": {
+                        "if": "FEEL: variables.loading = false"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "conditions": {
+              "each": "FEEL: variables.digipairs"
+            }
+          },
+          {
+            "library": "web",
+            "element": "div",
+            "properties": {
+              "style": "height: 50px"
+            }
+          },
+          {
+            "library": "@digipair/skill-web-spectrum",
+            "element": "sp-button-group",
+            "pins": [
+              {
+                "library": "@digipair/skill-web-spectrum",
+                "element": "sp-button",
+                "properties": {
+                  "textContent": "Cancel",
+                  "href": "/studio/worker-tasks/{{request.params.[0]}}"
+                }
+              }
+            ]
+          }
+        ],
+        "properties": {
+          "system": "spectrum",
+          "color": "light",
+          "scale": "medium"
+        }
+      },
+      {
+        "library": "@digipair/skill-web-chatbot",
+        "element": "digipair-chatbot",
+        "properties": {
+          "code": "{{request.digipair}}"
+        }
+      }
+    ],
+    "styleHtml": "color-scheme:light;\npadding: 60px 40px 80px 40px;",
+    "browserInitialize": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "loading",
+          "value": false
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "digipair",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-editor",
+                    "element": "digipair",
+                    "properties": {
+                      "digipair": "{{request.params.[0]}}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "workerType",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if starts with(request.params[2], \"role-worker\") then \"role-worker\" else \"worker\""
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "referencePrefixes",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: if starts with(request.params[2], \"role-worker\") then [\"role-tool-\", \"role-worker-\"]  else [\"tool-\", \"worker-\"]"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "digipairs",
+          "execute": [
+            {
+              "library": "@digipair/skill-web",
+              "element": "executeFactory",
+              "properties": {
+                "execute": [
+                  {
+                    "library": "@digipair/skill-editor",
+                    "element": "digipairs"
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "execute": [
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "setVariable",
+                          "properties": {
+                            "name": "infos",
+                            "execute": [
+                              {
+                                "library": "@digipair/skill-editor",
+                                "element": "digipair",
+                                "properties": {
+                                  "digipair": "{{item}}"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "setVariable",
+                          "properties": {
+                            "name": "metadata",
+                            "execute": [
+                              {
+                                "library": "@digipair/skill-editor",
+                                "element": "metadata",
+                                "properties": {
+                                  "digipair": "{{item}}"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "library": "@digipair/skill-basic",
+                          "element": "transform",
+                          "properties": {
+                            "value": {
+                              "infos": "FEEL: variables.infos",
+                              "metadata": "FEEL: variables.metadata"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "conditions": {
+                      "each": "FEEL:(for id in previous return\n  if \n    (some prefix in variables.referencePrefixes satisfies starts with(id, prefix))\n    and id != request.params[1]\n    and count(\n      get entries(\n        if variables.workerType = \"role-worker\"\n        then variables.digipair.roles\n        else variables.digipair.libraries\n      )[key = \"digipair:\" + id]\n    ) = 0\n  then\n    id\n  else\n    null\n)[item != null]"
+                    }
+                  },
+                  {
+                    "library": "@digipair/skill-basic",
+                    "element": "transform",
+                    "properties": {
+                      "value": "FEEL: previous"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pins": []
+}

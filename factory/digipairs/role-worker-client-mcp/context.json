@@ -1,0 +1,102 @@
+{
+  "description": "Étude des éléments environnants pour comprendre le contexte.",
+  "summary": "Analyse contextuelle",
+  "library": "@digipair/skill-service",
+  "element": "service",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "schema",
+          "execute": [
+            {
+              "library": "@digipair/skill-factory",
+              "element": "start",
+              "properties": {
+                "reasoning": "schema.json",
+                "digipair": "FEEL: request.digipair"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "action",
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "FEEL: get value(variables.schema.paths, \"/\" + request.body.reasoning).post"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "FEEL: get value(variables.schema.paths, \"/\" + substring(request.body.reasoning, 7)).post"
+              },
+              "conditions": {
+                "if": "FEEL: previous = null and starts with(request.body.reasoning, \"boost-\")"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": { "value": {} },
+              "conditions": { "if": "FEEL: previous = null" }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "setVariable",
+        "properties": {
+          "name": "context",
+          "execute": [
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": { "value": "FEEL: variables.action.parameters" }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": "FEEL: get value(variables.schema.paths, \"/\" + substring(request.body.reasoning, 7)).post.parameters"
+              },
+              "conditions": {
+                "if": "FEEL: previous = null and starts with(request.body.reasoning, \"boost-\")"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": { "value": [] },
+              "conditions": { "if": "FEEL: previous = null" }
+            }
+          ]
+        }
+      },
+      {
+        "library": "@digipair/skill-basic",
+        "element": "transform",
+        "properties": {
+          "value": {
+            "summary": "FEEL: variables.action.summary",
+            "description": "FEEL: variables.action.description",
+            "context": "FEEL: variables.context"
+          }
+        }
+      }
+    ]
+  },
+  "pins": []
+}

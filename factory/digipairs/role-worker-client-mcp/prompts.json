@@ -1,0 +1,51 @@
+{
+  "description": "Mécanisme d'appel d'une méthode de librairie",
+  "summary": "Appel d'une méthode de librairie",
+  "library": "@digipair/skill-worker",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-basic",
+        "element": "trycatch",
+        "properties": {
+          "executeTry": [
+            {
+              "library": "@digipair/skill-worker",
+              "element": "execute",
+              "properties": {
+                "execute": "FEEL: [{\n  \"library\": \"@digipair/skill-client-mcp\",\n  \"element\": \"callTool\",\n  \"properties\": { \"arguments\": request.body, \"name\": \"action-prompts\" }\n},\n{\n  \"library\": \"@digipair/skill-basic\",\n  \"element\": \"transform\",\n  \"properties\": { \"value\": \"FEEL: previous.structuredContent\" }\n}]"
+              }
+            }
+          ],
+          "executeCatch": [
+            {
+              "library": "@digipair/skill-factory",
+              "element": "start",
+              "properties": {
+                "reasoning": "schema.json",
+                "digipair": "FEEL: request.digipair"
+              }
+            },
+            {
+              "library": "@digipair/skill-basic",
+              "element": "transform",
+              "properties": {
+                "value": {
+                  "id": "FEEL: request.digipair",
+                  "title": "FEEL: previous.info.summary",
+                  "description": "FEEL: previous.info.description",
+                  "actions": []
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pins": [],
+  "digipair": "role-client-mcp",
+  "id": "prompts"
+}

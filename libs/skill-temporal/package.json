@@ -51,6 +51,11 @@
               "input": "libs/skill-temporal",
               "glob": "index.d.ts",
               "output": "."
+            },
+            {
+              "input": "libs/skill-temporal",
+              "glob": "index.js",
+              "output": "."
             }
           ]
         }

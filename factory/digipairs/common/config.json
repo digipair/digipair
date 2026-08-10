@@ -1,0 +1,11 @@
+{
+  "name": "common",
+  "description": "common actions.",
+  "metadata": {},
+  "libraries": {},
+  "roles": {
+    "digipair:role-common": "latest"
+  },
+  "variables": {},
+  "privates": {}
+}

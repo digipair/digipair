@@ -2225,234 +2225,6 @@
     tunnel-agent "^0.6.0"
     uuid "^8.3.2"
 
-"@digipair/engine@0.110.3":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/engine/-/engine-0.110.3.tgz#7bad356cf09e21cf57897fc981d7741fac25b31c"
-  integrity sha512-4WRI9w16pLh9LDxRiV5UKSGLM+4Mbmx1sDdKoqblklYgDmxo9CAsKdVngnFvLv+dRe9joLctW/6XsoYaOW5qyg==
-  dependencies:
-    cel-js "^0.8.2"
-    feelin "^4.3.0"
-    handlebars "4.7.8"
-
-"@digipair/engine@latest":
-  version "0.114.8"
-  resolved "https://registry.yarnpkg.com/@digipair/engine/-/engine-0.114.8.tgz#64313fecf9464ccf2df2233f7461f3b42284cd01"
-  integrity sha512-naMlzF5tB5NcWnKUf9bMzC+hbyqB13bkpoupTyYYCYofQ0CGc1ZCsBym65ojE5G2xCiba+fJyQYtzrrpXKJIQg==
-  dependencies:
-    cel-js "0.8.2"
-    feelin "4.3.0"
-    handlebars "4.7.8"
-
-"@digipair/skill-basic@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-basic/-/skill-basic-0.110.3.tgz#280636b783e59d0be4650e85810debf065921a94"
-  integrity sha512-Q7wQzBjfkE7lwN7mVd33IaK2uXoxzkudLEP9d0kc04lraDsb9iPiSAfYPCabOlSIgLy7pGtM6Kmf4q20Q5KFGQ==
-
-"@digipair/skill-canvas@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-canvas/-/skill-canvas-0.110.3.tgz#2dc773e68a1b421d0ae3e291abb1563f98803f54"
-  integrity sha512-i1TQLGbPapWLfISLgUtKVML7S/WHIbLHv/mc2x5LwTHvHTVkx+rIk7bxmpyw3K3N1uTJbw+ulekrhqo/ikHARQ==
-  dependencies:
-    canvas "^3.2.0"
-
-"@digipair/skill-chatbot@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-chatbot/-/skill-chatbot-0.110.3.tgz#5dc0d5a09130ac740da6793961c46c010ec9029a"
-  integrity sha512-vEIl6CcmlW4VixbrGfUd4aS7I0TnbBxwSMUEPc6fT6CK3e/usDkgWMvMKDWMNSlfAfvNB4XeG8AlP1Ie9cusoQ==
-
-"@digipair/skill-client-mcp@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-client-mcp/-/skill-client-mcp-0.110.3.tgz#456d2e188d17d821f2c36684ffe1d8c75a7c42e7"
-  integrity sha512-HuViRFbYNmNlXKhhFOUL5s13mjfH2WViNKzu4t0Q9suv1avRT0uosnA3xcByHXMT1rpq4IoGfjLsNim+IqnmUA==
-  dependencies:
-    "@digipair/engine" "0.110.3"
-    "@modelcontextprotocol/sdk" "^1.18.2"
-
-"@digipair/skill-codex@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-codex/-/skill-codex-0.110.3.tgz#488d1136e8c40767e01d100ba405b27feff65639"
-  integrity sha512-TMf6sqz6IZY6t0gJvFRXtiirIQnhbx/fy5eSl6N9+9CuWkxTrBKWbuo2f85luymZTuRMkFlqMGRCyWm1dl4DBg==
-  dependencies:
-    "@openai/codex" "^0.25.0"
-
-"@digipair/skill-common@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-common/-/skill-common-0.110.3.tgz#404c78ebd556c7d50e546f6cae617fd9df46f032"
-  integrity sha512-uTwdX6GuEApFjy1TQ9HRvdgvQQk2FXPAFGpF44XmcyuvRIXZigTBW4toV87K8wGPMHn0BlZoKmqJMA94vOYecg==
-
-"@digipair/skill-cron@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-cron/-/skill-cron-0.110.3.tgz#6c80e722b079ae54f3b81014032842892c05e44c"
-  integrity sha512-tZGhmK4HO0ACkccqZfUS9J9BVej1Om4YsoLo5BLGrhCAqYsB53/w/qSCJ0UXd5RK+F0qCz4FHLya9Idn7i9RGA==
-  dependencies:
-    cron "^3.1.7"
-
-"@digipair/skill-debug@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-debug/-/skill-debug-0.110.3.tgz#5c908a1b2a5b12f268321f08e4a352b81e94b063"
-  integrity sha512-kvUQqrZgOWdRT4NV6P/Vlvmi6lWl2Zqd2kXWoMemPNNwqETlbTtbm16p3RT+j7Lpy1wXmAoLBRmPifheizlk+Q==
-
-"@digipair/skill-dsp@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-dsp/-/skill-dsp-0.110.3.tgz#35d69222f9652c3e0e11862f537cd92c7c61755b"
-  integrity sha512-k99QOEduity2yiKYQFpFG9HGmFBX4ko72SZqIbPQP4BqAbA+rXVWV2AWkjUOF/iXtGmwj6+EXfenWBF+riXvjg==
-
-"@digipair/skill-editor@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-editor/-/skill-editor-0.110.3.tgz#1aaf33d6232155b93eaba0642d0058c5bd9874de"
-  integrity sha512-Vpsp8xujxtsnYLSjhfFCxGwiYqtNTsZw/J8znTXQ1NWcQxW6R7BteyfIGwTqnpLip5QQM+HBbp6pDy2cCaUV4A==
-
-"@digipair/skill-factory@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-factory/-/skill-factory-0.110.3.tgz#b4170f1990194150b2033b5038929216c7b88779"
-  integrity sha512-FmOd0Do8goWlth/vQ3YgQRAz8A6b8hR7yyJmwfP74BscKMM5UdZfGPTypVyqbJUBxRioDUp3UQPx7DYYM2ezEA==
-
-"@digipair/skill-http@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-http/-/skill-http-0.110.3.tgz#bad1665d49485377a37ecd7c63803de5dc7628da"
-  integrity sha512-/OYSIIHubQnwKTVlmYhyp3/d1PRiP6l3zhvPrNl00u43DefKYBa2GvxWz4waxUpG3W/LrAP4mVuupSykLz8/mg==
-  dependencies:
-    form-data "4.0.1"
-
-"@digipair/skill-imap@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-imap/-/skill-imap-0.110.3.tgz#51476ad5d674a38fdeeed8eac7158c2ba9f8137d"
-  integrity sha512-eLFAFqYWsyeYLeTFqwvRz43jVtqLAyWJeiUS+4GkdvyRPyhICUQ/sKIayVtgnwsA4om05X7SmO3IfJ8DiVWivA==
-  dependencies:
-    imapflow "^1.0.171"
-    jsdom "^25.0.1"
-
-"@digipair/skill-llm@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-llm/-/skill-llm-0.110.3.tgz#d9452717829bd82a4b2640b2211697634174f7aa"
-  integrity sha512-p9SeRgSW4l4BNI8ZI6C5GVbkF0rKbuGHtMoBQNzYIbGWmSV1DmFArenIKGSnpQ4p7pk09cG0IwWH99TtyRVMBQ==
-
-"@digipair/skill-logger@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-logger/-/skill-logger-0.110.3.tgz#8bf0b6915c4ce1bb3819fce2c70c4d3b9e8b12c0"
-  integrity sha512-HM0QhcVTqr5bCE1J/++0icWXP2/zYwRg5G4eTqss5lZECKVJw85/LEhlh1jr2snS6D0Ys+eX1Y223ojfu7NTtA==
-
-"@digipair/skill-mcp@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-mcp/-/skill-mcp-0.110.3.tgz#e4ecf60c9d022035f1e81825289b10d42e09abfe"
-  integrity sha512-VJO6U5ZRjPfyYMftH3xiV3v109OGPc7c1eZDHZNcg4QWAp9YkIZMHyEpACa5sktLC3p7RauoHO+DVUogI8Fb7Q==
-  dependencies:
-    "@digipair/engine" "0.110.3"
-    "@modelcontextprotocol/sdk" "^1.18.2"
-    zod "^3.23.8"
-
-"@digipair/skill-oauth2@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-oauth2/-/skill-oauth2-0.110.3.tgz#6b3951fcf4ce77ebc65b5ba095e02470d1190ee1"
-  integrity sha512-uLvODHMg1lUc+gpmkjg1MxCX9JlnXFYuX5fn3+R1OoFSoNr49eS1O6XhU8EF1wQa/ElBBAMDsCpHqo6A2XPIZQ==
-  dependencies:
-    simple-oauth2 "^5.1.0"
-
-"@digipair/skill-openai@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-openai/-/skill-openai-0.110.3.tgz#74bd456d5814464a35916c47bf0179abc9547898"
-  integrity sha512-NRxq8S1fEfQyc1HauARyDpBjserFATTzvQ4hbdthXv7JGcIcyAqe634QgPTGKvtRlQZY/K5CO31jhNblODf4wg==
-
-"@digipair/skill-process@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-process/-/skill-process-0.110.3.tgz#24ee01281953795f5d63731912bb20aadb55ac7e"
-  integrity sha512-L4e3EgaY/ph9ja2z/KjcWDxaMDOEPmyrKrb/9kl+ORvSTZHgTivI2Iia6ses690EdcV3vLf9i8bl3DXiQq9lKA==
-
-"@digipair/skill-sendmail@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-sendmail/-/skill-sendmail-0.110.3.tgz#47fa5fe4496396ad450a39180fcfee70850d2930"
-  integrity sha512-MUkEo6nRbdJ42JyOAxjxM9KlyGXbkav47APHxcn2w8fJQJK8c+t/5TzZBpx+yxbzjY3jNkkjntI902VvhKDCgA==
-
-"@digipair/skill-service@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-service/-/skill-service-0.110.3.tgz#a2675c4aa8c6997113d06de6cc624ee172873bab"
-  integrity sha512-w97FyNeK76I8ADBJsa7KGqtLKtjSSBTvLu7nc0UK4vjpiwaUZ/IeoA4OiEqIh8SB3SD2kJRGjaTq1cxmzR99Pg==
-  dependencies:
-    multer "^2.0.2"
-
-"@digipair/skill-sse@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-sse/-/skill-sse-0.110.3.tgz#6d0f7b2ab59748ba83caa3c8d784ca9795979ea8"
-  integrity sha512-6HFqc2Ex9qKLzfDiTd1Xf55LdJrolWLlwiOHXFoFGmeHSTOKx6FSZOwsNu/32tC2x+6D3P5DWtqVNjvguMk2Dg==
-
-"@digipair/skill-temporal@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-temporal/-/skill-temporal-0.110.3.tgz#9927669fda2b0651630581a50958c1c7ae8b434f"
-  integrity sha512-pljBpEQPBtvxNinfLyD+HxZ02aQgPgjipvzdMg2ZCr5tOyBEMmdIZwgT+4i8cWauRdbsdMxUrownvJ1UN112fQ==
-  dependencies:
-    "@temporalio/client" "^1.10.1"
-    "@temporalio/common" "^1.10.1"
-    "@temporalio/worker" "^1.10.1"
-    "@temporalio/workflow" "^1.10.1"
-    feelin "^4.3.0"
-
-"@digipair/skill-tool@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-tool/-/skill-tool-0.110.3.tgz#e5eeec3499a0b7b6589d80d62370168cae673732"
-  integrity sha512-TLwhd6t5nfuCz5Seqqs9sRFDMpOCtfjWDmflFQnCYp+qGwztxAnrH9MCjeM3bJJKqjqXnhmCy59o1Wm3Vt+EtQ==
-
-"@digipair/skill-web-chatbot@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-chatbot/-/skill-web-chatbot-0.110.3.tgz#a9c999db69e1a9d65957d58f6da89fb5a26275f4"
-  integrity sha512-hocCzsss03uCbFKHufem64CLv58ygWqKPjnZBSAdQjw0xrF3I096AXT1vF500pTn31y9EaaXBoZBXVLOH27A5g==
-
-"@digipair/skill-web-debug@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-debug/-/skill-web-debug-0.110.3.tgz#46ca511518d46b1b9a029c24cbd3acd5e53b96c7"
-  integrity sha512-mRiEnf92pBdt8bGFIqLf902rNEpuEKa+ssk8FjSMr9pf96lCrFINHU9+8b+QdvW7KYLMxy8b9iz1mRmP3U6ZcQ==
-
-"@digipair/skill-web-editor@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-editor/-/skill-web-editor-0.110.3.tgz#d98e0f64c40e39ccacde8efad5e6af3b0b145625"
-  integrity sha512-6JkybLnH9g+HQbHLlNo7QHtAZ8VIkBxV8JWCjuLwDHF6xQhBGId6LgG76p8QCCWgFUwjOnj2oQKoeBq2C5cJZg==
-
-"@digipair/skill-web-font-awesome@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-font-awesome/-/skill-web-font-awesome-0.110.3.tgz#936c342bd7108bd8cee0401ac3575de5ca42c103"
-  integrity sha512-IFSuJ2CT+wBY1alq0aYSP7LLjWsIT88Aisbh4u4jVuOGIQuNkjR9tagvyXM0mkfwxHQqRC0UC1kpM6hO/Xr1hw==
-
-"@digipair/skill-web-inputs@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-inputs/-/skill-web-inputs-0.110.3.tgz#f61493a8ccc41e6a1a31ad9ccbfcbc12c4057e3f"
-  integrity sha512-/qiuL0wHJBNS4B83nPv9FNxgskwnVx5l64wff3kQPSCZutak5WnM9EYDZrFSeThcO01SSLAmvHoj/7oJ5fkNAg==
-
-"@digipair/skill-web-interact@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-interact/-/skill-web-interact-0.110.3.tgz#7706ed9d358672534666eb3bd598072e99c9cff8"
-  integrity sha512-0zxESF0Q8jH2UpmtRcwoROoBfCJYE26k6DrdoIO+R6QTG8tQLwYaHLNZIz3sF4LAt84oOS1/B3hQRtAEC6icGg==
-
-"@digipair/skill-web-jsoneditor@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-jsoneditor/-/skill-web-jsoneditor-0.110.3.tgz#88137662a6bf50999eabbfcad91be6b8995d7f08"
-  integrity sha512-Y4dEaQDdSoiG44vMyOqHmgu3Bgjt41Z6wd5oMXZlWwS+oTMj4LZ7XSAsLxnq1DIiyXO+TfUdXK+YmGhTxufhDQ==
-
-"@digipair/skill-web-notification@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-notification/-/skill-web-notification-0.110.3.tgz#6e25233e5759d885598ecc2bd0e3e65d80c11b97"
-  integrity sha512-K2kJBtzeLHdcgKGDxANkj2dXCUdpI6w2aYLG0Hg7P1QEUy1fBXLidLzwvRklJz/JdHG+QxYnA4hYL5AgDbMlmQ==
-
-"@digipair/skill-web-spectrum@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web-spectrum/-/skill-web-spectrum-0.110.3.tgz#004e87d35aac177221c99b82a16de3b381491e20"
-  integrity sha512-Wl5ZwcCweJ82ykf5Xt1xuifpmYLvSu+ZuD9C0FDkK7/hH8khkgZ4h129QbWxSgViymCgL0xiexSfGqodGs6Dpg==
-
-"@digipair/skill-web@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-web/-/skill-web-0.110.3.tgz#db39ea9ad4a774d50171d66122645dbc7a447da3"
-  integrity sha512-LiBX/KjPB8UYPEemlpfR74j0DMhuwNAeVKjfBl2uMFo3cOjo+ymnD7tbJ5kQCvjupeWYGv0D1Ii3PsxvD1rRtQ==
-  dependencies:
-    jsdom "^25.0.1"
-
-"@digipair/skill-worker@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-worker/-/skill-worker-0.110.3.tgz#48f00aa4a154180d7c1504a993e3f06e825b1432"
-  integrity sha512-r8l453498KcQ6iQViyJwYoEJc0f2LJWkG3to8P5dQonfky7C4FT/PPzKB1+eg87DHRdWcEg2V0S7blpkftv6Mg==
-
-"@digipair/skill-yaml@latest":
-  version "0.110.3"
-  resolved "https://registry.yarnpkg.com/@digipair/skill-yaml/-/skill-yaml-0.110.3.tgz#c972a7d70d453e1b0f556ff646d512154a6ffab4"
-  integrity sha512-30Gj+SUL5qGDolob8hcNLA/pSIcLoDr64EO2/mjmJQJxLLOs7loX/+lDWiKys+8AGZdtmuAuHnWddRotgx/Aeg==
-
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -6886,7 +6658,7 @@
     "@temporalio/common" "1.13.1"
     abort-controller "^3.0.0"
 
-"@temporalio/client@1.13.1", "@temporalio/client@^1.10.1", "@temporalio/client@^1.11.8":
+"@temporalio/client@1.13.1", "@temporalio/client@^1.11.8":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@temporalio/client/-/client-1.13.1.tgz#ac97882d7e9298d0a7676829616a6ccf1c7e239a"
   integrity sha512-EW++yWZhMhHOBCJ5hz4EZank9D5NskJO2zq25THXWGWRDNLeZPGT2rblOPz38Yexu7N6JcSLh8OglWRDohMCzg==
@@ -6898,7 +6670,7 @@
     long "^5.2.3"
     uuid "^9.0.1"
 
-"@temporalio/common@1.13.1", "@temporalio/common@^1.10.1", "@temporalio/common@^1.11.8":
+"@temporalio/common@1.13.1", "@temporalio/common@^1.11.8":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@temporalio/common/-/common-1.13.1.tgz#27ded9132f95a0905601262518987eb2f8a7b5fc"
   integrity sha512-Z8t+uN33gu0Hw0T6o0J0Lmn2v6KJ2j7rDBjPYJwRTqrzY8On8wCkgkrq0JaqNRoMzkSJCjj+eanuBswiltsZlg==
@@ -6939,7 +6711,7 @@
     long "^5.2.3"
     protobufjs "^7.2.5"
 
-"@temporalio/worker@^1.10.1", "@temporalio/worker@^1.11.8":
+"@temporalio/worker@^1.11.8":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@temporalio/worker/-/worker-1.13.1.tgz#2e1a43650be6ecef62b10943f62c337ccc5986e1"
   integrity sha512-YcB7WviQmmrruziT4xEXUBAkM3NiQLLMc92n7xvjE1cdEfmVuUD+MSzqhqQll004bcHQu67ZhCm9T0GNfErhIQ==
@@ -6967,7 +6739,7 @@
     unionfs "^4.5.1"
     webpack "^5.94.0"
 
-"@temporalio/workflow@1.13.1", "@temporalio/workflow@^1.10.1", "@temporalio/workflow@^1.11.8":
+"@temporalio/workflow@1.13.1", "@temporalio/workflow@^1.11.8":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@temporalio/workflow/-/workflow-1.13.1.tgz#083333d6b150d8e0df3b317fd1f37a447de459ea"
   integrity sha512-Wbuvk3rK6F6hVQbXDHB5JuYZVEUWV6eSs1HoB9J15/N+1dOFLVykyBd8lw7Fn5dxNEI1F1nmS4VCJVV47AlZhQ==
@@ -9512,7 +9284,7 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==
 
-cel-js@0.8.2, cel-js@^0.8.2:
+cel-js@0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/cel-js/-/cel-js-0.8.2.tgz#877c3d0a7811ba09a85a5992d8257d5f02b528d2"
   integrity sha512-fPk7V5wcjp6GQ2CqkQKbfaIGQ5rQIm8xOueVqbp9MPfviqZEBOReBF82iZa0oHUm449UTsj1LAzUIAsI356ong==

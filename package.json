@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "serve:factory": "npx nx serve factory",
     "publish": "npx nx release -y $NPMVERSION && yarn run replace-in-file /latest/g $NPMVERSION apps/factory/dist/package.json && node tools/scripts/publish-factory.mjs factory $NPMVERSION latest",
     "test:factory": "npx nx run factory:test --skip-nx-cache",
     "registry-local:start": "node tools/registry/clean-local-registry.js && node tools/registry/start-local-registry.js",

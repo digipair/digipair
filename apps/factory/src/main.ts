@@ -18,7 +18,7 @@ function copyDirectoryRecursive(source: string, target: string) {
   }
 
   if (!existsSync(target)) {
-    mkdirSync(target);
+    mkdirSync(target, { recursive: true });
   }
 
   const files = readdirSync(source);

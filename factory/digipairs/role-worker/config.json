@@ -1,0 +1,14 @@
+{
+  "name": "Role Worker",
+  "description": "Role Worker Digipair",
+  "metadata": {},
+  "libraries": {
+    "@digipair/skill-basic": "latest",
+    "@digipair/skill-debug": "latest",
+    "@digipair/skill-factory": "latest",
+    "@digipair/skill-service": "latest",
+    "@digipair/skill-worker": "latest"
+  },
+  "variables": {},
+  "privates": {}
+}

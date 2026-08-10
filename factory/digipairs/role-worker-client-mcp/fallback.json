@@ -1,0 +1,145 @@
+{
+  "description": "Mécanisme d'appel d'une méthode de librairie",
+  "summary": "Appel d'une méthode de librairie",
+  "library": "@digipair/skill-worker",
+  "element": "task",
+  "metadata": {},
+  "properties": {
+    "execute": [
+      {
+        "library": "@digipair/skill-worker",
+        "element": "execute",
+        "properties": {
+          "execute": "FEEL: [{\n  \"library\": \"@digipair/skill-client-mcp\",\n  \"element\": \"callTool\",\n  \"properties\": { \"arguments\": request.body, \"name\": request.reasoning }\n},\n{\n  \"library\": \"@digipair/skill-basic\",\n  \"element\": \"transform\",\n  \"properties\": { \"value\": \"FEEL: previous.structuredContent\" }\n}]"
+        },
+        "conditions": {
+          "if": "FEEL: substring(request.reasoning, 1, 6) != \"boost-\""
+        }
+      },
+      {
+        "library": "@digipair/skill-chatbot",
+        "element": "boost",
+        "properties": {
+          "steps": [
+            {
+              "name": "initialize",
+              "execute": [
+                {
+                  "library": "@digipair/skill-chatbot",
+                  "element": "answer",
+                  "properties": {
+                    "assistant": "",
+                    "boost": {
+                      "context": {},
+                      "step": "update",
+                      "reasoning": "FEEL: request.reasoning",
+                      "digipair": "FEEL: request.digipair",
+                      "executable": true
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "update",
+              "execute": [
+                {
+                  "library": "@digipair/skill-chatbot",
+                  "element": "answer",
+                  "properties": {
+                    "assistant": "",
+                    "boost": {
+                      "context": "FEEL: context merge(request.body.context, request.body.data)",
+                      "step": "update",
+                      "reasoning": "FEEL: request.reasoning",
+                      "digipair": "FEEL: request.digipair",
+                      "executable": true
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "manual",
+              "execute": [
+                {
+                  "library": "@digipair/skill-chatbot",
+                  "element": "answer",
+                  "properties": {
+                    "assistant": "",
+                    "boost": {
+                      "context": "FEEL: request.body.context",
+                      "step": "update",
+                      "reasoning": "FEEL: request.reasoning",
+                      "digipair": "FEEL: request.digipair",
+                      "executable": true
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "name": "execute",
+              "execute": [
+                {
+                  "library": "@digipair/skill-basic",
+                  "element": "setVariable",
+                  "properties": {
+                    "name": "context",
+                    "execute": [
+                      {
+                        "library": "@digipair/skill-factory",
+                        "element": "start",
+                        "properties": { "reasoning": "schema.json" }
+                      },
+                      {
+                        "library": "@digipair/skill-basic",
+                        "element": "transform",
+                        "properties": {
+                          "execute": [
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "transform",
+                              "properties": {
+                                "value": {
+                                  "key": "FEEL: item.name",
+                                  "value": "FEEL: get value(request.body.context, item.name)"
+                                }
+                              }
+                            }                            
+                          ]
+                        },
+                        "conditions": {
+                          "each": "FEEL: get value(previous.paths, \"/\" + substring(request.reasoning, 7)).post.parameters"
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-basic",
+                        "element": "transform",
+                        "properties": { "value": "FEEL: context(previous)" }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "library": "@digipair/skill-factory",
+                  "element": "start",
+                  "properties": {
+                    "reasoning": "FEEL: substring(request.reasoning, 7)",
+                    "body": "FEEL: variables.context"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "conditions": {
+          "if": "FEEL: substring(request.reasoning, 1, 6) = \"boost-\""
+        }
+      }
+    ]
+  },
+  "pins": [],
+  "digipair": "shared-role-client-mcp",
+  "id": "fallback"
+}
