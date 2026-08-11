@@ -367,6 +367,148 @@
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-menu-item",
                         "properties": {
+                          "textContent": "↑ Monter"
+                        },
+                        "conditions": {
+                          "if": "FEEL: item.folderPrevId != null"
+                        },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderA",
+                                "value": "{{item.id}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderB",
+                                "value": "{{item.folderPrevId}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web",
+                              "element": "executeFactory",
+                              "properties": {
+                                "execute": [
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "digipair",
+                                    "properties": {
+                                      "digipair": "common"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "setDigipair",
+                                    "properties": {
+                                      "digipair": "common",
+                                      "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"workerFolders\", for f in (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders) return if f.id = variables.swapFolderA then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderB][1] else if f.id = variables.swapFolderB then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderA][1] else f))"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "commit",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_COMMIT = true"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "push",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_PUSH = true"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "reload"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "↓ Descendre"
+                        },
+                        "conditions": {
+                          "if": "FEEL: item.folderNextId != null"
+                        },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderA",
+                                "value": "{{item.id}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderB",
+                                "value": "{{item.folderNextId}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web",
+                              "element": "executeFactory",
+                              "properties": {
+                                "execute": [
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "digipair",
+                                    "properties": {
+                                      "digipair": "common"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "setDigipair",
+                                    "properties": {
+                                      "digipair": "common",
+                                      "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"workerFolders\", for f in (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders) return if f.id = variables.swapFolderA then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderB][1] else if f.id = variables.swapFolderB then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderA][1] else f))"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "commit",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_COMMIT = true"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "push",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_PUSH = true"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "reload"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
                           "textContent": "Delete folder"
                         },
                         "events": {
@@ -1149,6 +1291,148 @@
                       "style": "margin-inline-start: 4px;"
                     },
                     "pins": [
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "↑ Monter"
+                        },
+                        "conditions": {
+                          "if": "FEEL: item.folderPrevId != null"
+                        },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderA",
+                                "value": "{{item.id}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderB",
+                                "value": "{{item.folderPrevId}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web",
+                              "element": "executeFactory",
+                              "properties": {
+                                "execute": [
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "digipair",
+                                    "properties": {
+                                      "digipair": "common"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "setDigipair",
+                                    "properties": {
+                                      "digipair": "common",
+                                      "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"workerFolders\", for f in (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders) return if f.id = variables.swapFolderA then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderB][1] else if f.id = variables.swapFolderB then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderA][1] else f))"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "commit",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_COMMIT = true"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "push",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_PUSH = true"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "reload"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "library": "@digipair/skill-web-spectrum",
+                        "element": "sp-menu-item",
+                        "properties": {
+                          "textContent": "↓ Descendre"
+                        },
+                        "conditions": {
+                          "if": "FEEL: item.folderNextId != null"
+                        },
+                        "events": {
+                          "click": [
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderA",
+                                "value": "{{item.id}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-basic",
+                              "element": "setVariable",
+                              "properties": {
+                                "name": "swapFolderB",
+                                "value": "{{item.folderNextId}}"
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web",
+                              "element": "executeFactory",
+                              "properties": {
+                                "execute": [
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "digipair",
+                                    "properties": {
+                                      "digipair": "common"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-editor",
+                                    "element": "setDigipair",
+                                    "properties": {
+                                      "digipair": "common",
+                                      "value": "FEEL: context put(previous, \"metadata\", context put(previous.metadata, \"workerFolders\", for f in (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders) return if f.id = variables.swapFolderA then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderB][1] else if f.id = variables.swapFolderB then (if previous.metadata.workerFolders = null then [] else previous.metadata.workerFolders)[id = variables.swapFolderA][1] else f))"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "commit",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_COMMIT = true"
+                                    }
+                                  },
+                                  {
+                                    "library": "@digipair/skill-git",
+                                    "element": "push",
+                                    "conditions": {
+                                      "if": "FEEL: privates.GIT_PUSH = true"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "library": "@digipair/skill-web-interact",
+                              "element": "reload"
+                            }
+                          ]
+                        }
+                      },
                       {
                         "library": "@digipair/skill-web-spectrum",
                         "element": "sp-menu-item",
@@ -1941,7 +2225,7 @@
         "element": "setVariable",
         "properties": {
           "name": "workerGroups",
-          "value": "FEEL: flatten([for folder in variables.folders[remote != true] return { id: folder.id, name: folder.name, agents: for a in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote != true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }, [{ id: null, name: \"Sans dossier\", agents: for a in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote != true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }]])"
+          "value": "FEEL: flatten([for folder in variables.folders[remote != true] return { id: folder.id, name: folder.name, folderPrevId: (sublist(for x in variables.folders[remote != true] return x.id, index of(for x in variables.folders[remote != true] return x.id, folder.id)[1] - 1, 1))[1], folderNextId: (sublist(for x in variables.folders[remote != true] return x.id, index of(for x in variables.folders[remote != true] return x.id, folder.id)[1] + 1, 1))[1], agents: for a in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote != true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }, [{ id: null, name: \"Sans dossier\", agents: for a in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote != true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote != true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }]])"
         }
       },
       {
@@ -1949,7 +2233,7 @@
         "element": "setVariable",
         "properties": {
           "name": "remoteWorkerGroups",
-          "value": "FEEL: flatten([for folder in variables.folders[remote = true] return { id: folder.id, name: folder.name, agents: for a in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote = true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }, [{ id: null, name: \"Sans dossier\", agents: for a in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote = true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }]])"
+          "value": "FEEL: flatten([for folder in variables.folders[remote = true] return { id: folder.id, name: folder.name, folderPrevId: (sublist(for x in variables.folders[remote = true] return x.id, index of(for x in variables.folders[remote = true] return x.id, folder.id)[1] - 1, 1))[1], folderNextId: (sublist(for x in variables.folders[remote = true] return x.id, index of(for x in variables.folders[remote = true] return x.id, folder.id)[1] + 1, 1))[1], agents: for a in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote = true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and metadata.folder = folder.id] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }, [{ id: null, name: \"Sans dossier\", agents: for a in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return context put(context put(context put(a, \"moveTargets\", for mf in variables.folders[remote = true] return { folderId: mf.id, folderName: mf.name, agentId: a.infos.id, isCurrent: mf.id = a.metadata.folder }), \"prevId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] - 1, 1))[1]), \"nextId\", (sublist(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, index of(for x in variables.sortedWorkers[metadata.remote = true and not(some folder in variables.folders satisfies folder.id = metadata.folder)] return x.infos.id, a.infos.id)[1] + 1, 1))[1]) }]])"
         }
       }
     ]
