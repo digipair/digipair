@@ -187,6 +187,15 @@
         "x-events": []
       }
     },
+    "/refresh": {
+      "post": {
+        "tags": ["web", "boost"],
+        "summary": "Refresh the page content",
+        "description": "Re-runs initialization and re-renders the body without a full page reload; falls back to a full reload when unavailable",
+        "parameters": [],
+        "x-events": []
+      }
+    },
     "/upload": {
       "post": {
         "tags": ["web"],

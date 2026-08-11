@@ -53,6 +53,14 @@ class WebInteractService {
     window.location.reload();
   }
 
+  async refresh(_params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    if (typeof (window as any).__digipairRefresh === 'function') {
+      await (window as any).__digipairRefresh();
+    } else {
+      window.location.reload();
+    }
+  }
+
   async upload(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { accept = '*' } = params;
 
@@ -154,6 +162,9 @@ export const goTo = (params: any, pinsSettingsList: PinsSettings[], context: any
 
 export const reload = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WebInteractService().reload(params, pinsSettingsList, context);
+
+export const refresh = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new WebInteractService().refresh(params, pinsSettingsList, context);
 
 export const upload = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new WebInteractService().upload(params, pinsSettingsList, context);

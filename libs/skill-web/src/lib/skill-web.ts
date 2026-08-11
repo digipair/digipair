@@ -254,18 +254,45 @@ class WebService {
         __PATH__: '${context.__PATH__}',
       };
 
-      await executePinsList(${JSON.stringify(
+      const __browserInitialize = ${JSON.stringify(
         this.prepareBrowserPinsSettings('browserInitialize', browserInitialize),
-      )}, context, context.__PATH__ + '.browserInitialize');
-      
-      const pinsList = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
-      document.querySelectorAll('body > [data-digipair-pins]').forEach((element) => element.remove()); // Remove SSR elements
-      for (let i = 0; i < pinsList.length; i++) {
-        const item = pinsList[i];
-        await generateElementFromPins(item, document.body, { ...context, data: ${JSON.stringify(
-          preparedData,
-        )} });
+      )};
+      const __bodyPins = ${JSON.stringify(this.prepareBrowserPinsSettings('body', body))};
+      const __data = ${JSON.stringify(preparedData)};
+      const __variablesBaseline = JSON.stringify(context.variables);
+
+      async function __digipairRenderApp() {
+        // Preserve the open/closed state of keyed <details> (e.g. folders) across re-renders
+        const __openState = {};
+        document.querySelectorAll('details[data-dp-key]').forEach((element) => {
+          __openState[element.getAttribute('data-dp-key')] = element.open;
+        });
+        await executePinsList(__browserInitialize, context, context.__PATH__ + '.browserInitialize');
+        // Remove previously rendered app nodes and any leftover SSR elements
+        document
+          .querySelectorAll('body > [data-digipair-app], body > [data-digipair-pins]')
+          .forEach((element) => element.remove());
+        const __before = new Set(Array.prototype.slice.call(document.body.children));
+        for (let i = 0; i < __bodyPins.length; i++) {
+          await generateElementFromPins(__bodyPins[i], document.body, { ...context, data: __data });
+        }
+        Array.prototype.slice.call(document.body.children).forEach((element) => {
+          if (!__before.has(element)) element.setAttribute('data-digipair-app', '');
+        });
+        // Restore the preserved <details> open state
+        document.querySelectorAll('details[data-dp-key]').forEach((element) => {
+          const key = element.getAttribute('data-dp-key');
+          if (Object.prototype.hasOwnProperty.call(__openState, key)) element.open = __openState[key];
+        });
       }
+
+      // Targeted refresh: re-run initialization + re-render the body without a full page reload
+      window.__digipairRefresh = async () => {
+        context.variables = JSON.parse(__variablesBaseline);
+        await __digipairRenderApp();
+      };
+
+      await __digipairRenderApp();
 
       setTimeout(async () => {
         await executePinsList(${JSON.stringify(
