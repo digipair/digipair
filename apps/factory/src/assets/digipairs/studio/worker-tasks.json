@@ -502,7 +502,7 @@
                         "library": "web",
                         "element": "img",
                         "properties": {
-                          "src": "FEEL: if\n  starts with(item.library, \"digipair:\")\nthen \n  (for tool in variables.tools return if tool.infos.id = substring(item.library, 10) then tool.metadata.avatar else null)[item != null][1]\nelse \n  \"/public/libraries/\" + item.library + \"/\" + item.element + \".svg\"",
+                          "src": "FEEL: if\n  starts with(item.library, \"digipair:\")\nthen \n  \"/\" + substring(item.library, 10) + \"/avatar.png\"\nelse \n  \"/public/libraries/\" + item.library + \"/\" + item.element + \".svg\"",
                           "style": "height: 60px;",
                           "slot": "preview"
                         }
@@ -1332,7 +1332,7 @@
                     "library": "web",
                     "element": "img",
                     "properties": {
-                      "src": "FEEL: item.metadata.avatar",
+                      "src": "/{{item.infos.id}}/avatar.png",
                       "style": "height: 60px;",
                       "slot": "preview"
                     }
@@ -1675,7 +1675,7 @@
                           "properties": {
                             "value": {
                               "infos": "FEEL: variables.toolInfos",
-                              "metadata": "FEEL: variables.toolMetadata"
+                              "metadata": "FEEL: context put(variables.toolMetadata, \"avatar\", null)"
                             }
                           }
                         }
@@ -1745,7 +1745,7 @@
                           "properties": {
                             "value": {
                               "infos": "FEEL: variables.toolInfos",
-                              "metadata": "FEEL: variables.toolMetadata"
+                              "metadata": "FEEL: context put(variables.toolMetadata, \"avatar\", null)"
                             }
                           }
                         }

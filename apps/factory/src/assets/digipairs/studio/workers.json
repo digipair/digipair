@@ -593,7 +593,7 @@
                         "library": "web",
                         "element": "img",
                         "properties": {
-                          "src": "FEEL: item.metadata.avatar",
+                          "src": "/{{item.infos.id}}/avatar.png",
                           "style": "height: 60px;",
                           "slot": "preview"
                         }
@@ -1521,7 +1521,7 @@
                         "library": "web",
                         "element": "img",
                         "properties": {
-                          "src": "FEEL: item.metadata.avatar",
+                          "src": "/{{item.infos.id}}/avatar.png",
                           "style": "height: 60px;",
                           "slot": "preview"
                         }
@@ -2048,7 +2048,7 @@
                           "properties": {
                             "value": {
                               "infos": "FEEL: variables.infos",
-                              "metadata": "FEEL: variables.metadata"
+                              "metadata": "FEEL: context put(variables.metadata, \"avatar\", null)"
                             }
                           }
                         }
