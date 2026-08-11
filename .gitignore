@@ -45,7 +45,7 @@ Thumbs.db
 .nx/workspace-data
 tools/vespa/configuration/*.zip
 .env
-./factory/**/*
+/factory/**/*
 /server.ts
 /test.ts
 /test.html
