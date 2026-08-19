@@ -28,7 +28,7 @@ class CodexService {
       useLegacyLandlock = true, // see rationale below, near where it's applied
     } = params;
 
-    const model = params.model ?? context.privates?.CODEX_MODEL ?? 'gpt-5';
+    const model = context.privates?.CODEX_MODEL ?? 'gpt-5';
 
     if (!prompt || !prompt.trim()) {
       throw new Error('Prompt must be a non-empty string');
@@ -215,7 +215,7 @@ class CodexService {
       result = lastAgentMessage?.item?.text?.trim() ?? '';
     } finally {
       try {
-        unlinkSync(outputLastMessagePath);
+        rmSync(tmpDir, { recursive: true, force: true });
       } catch (_) {
         /* already gone, nothing to do */
       }
