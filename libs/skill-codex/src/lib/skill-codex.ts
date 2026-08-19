@@ -8,7 +8,7 @@ import { randomUUID } from 'crypto';
 class CodexService {
   /**
    * Runs the local Codex CLI with the provided prompt and returns its final message as a string.
-   * Requires either ChatGPT sign-in (codex login), OPENAI_API_KEY in the environment,
+   * Requires either ChatGPT sign-in (codex login), OPENAI_API_KEY/CODEX_API_KEY in the environment,
    * or a custom OpenAI-compatible `provider`.
    *
    * Uses --json + --output-last-message instead of parsing raw stdout: recent Codex CLI
@@ -25,6 +25,7 @@ class CodexService {
       onAction = [],
       debug = false,
       provider, // optional custom OpenAI-compatible provider: { id, apiURL, apiKey, wireApi? }
+      useLegacyLandlock = true, // see rationale below, near where it's applied
     } = params;
 
     const model = params.model ?? context.privates?.CODEX_MODEL ?? 'gpt-5';
@@ -60,6 +61,12 @@ class CodexService {
 
     const env = { ...process.env };
 
+    // codex exec only reads CODEX_API_KEY (not OPENAI_API_KEY) for API-key auth;
+    // fall back to OPENAI_API_KEY if that's the only one set in the environment.
+    if (!env.CODEX_API_KEY && env.OPENAI_API_KEY) {
+      env.CODEX_API_KEY = env.OPENAI_API_KEY;
+    }
+
     // Custom OpenAI-compatible provider (Scaleway, OVHcloud, ...)
     if (provider?.apiURL) {
       const providerId = provider.id ?? 'custom';
@@ -86,6 +93,16 @@ class CodexService {
 
     // add arg model, default gpt-5
     args.push('--model', model);
+    // Default ON: works around a known bubblewrap regression on Linux hosts
+    // where user-namespace creation fails ("bwrap: Failed RTM_NEWADDR"),
+    // e.g. inside Docker/containers or on Ubuntu 24.04+ with AppArmor's
+    // unprivileged-userns restriction. Falls back to the Landlock sandbox,
+    // which still enforces filesystem AND network isolation (seccomp-BPF),
+    // just without bubblewrap's namespace layer. Official fix, documented at
+    // https://github.com/openai/codex/blob/main/codex-rs/linux-sandbox/README.md
+    if (useLegacyLandlock) {
+      args.push('-c', 'use_legacy_landlock=true');
+    }
     // skip git repo check
     args.push('--skip-git-repo-check');
     args.push(prompt);
@@ -99,10 +116,13 @@ class CodexService {
     let stdout = '';
     let stderr = '';
     let pendingLine = ''; // buffer for lines split across chunks
-    const events: any[] = []; // parsed JSONL events, used for onAction + result fallback
+    const events: any[] = []; // parsed JSONL events, used for the result fallback
 
-    // "Actions" = any completed item other than the agent's own message
-    // (command_execution, mcp_tool_call, web_search, todo_list, ...)
+    // "Actions" = any completed item, reported live: agent_message items surface the
+    // agent's own narration text (e.g. "retrying with a minimal command"), other item
+    // types (command_execution, mcp_tool_call, web_search, file_change, todo_list, ...)
+    // surface a generic "<type> completed" label. Detailed per-type formatting is left
+    // to the consumer via the full `item` payload.
     const handleJsonLine = (rawLine: string) => {
       const trimmed = rawLine.trim();
       if (!trimmed) return;
@@ -116,10 +136,11 @@ class CodexService {
 
       events.push(evt);
 
-      if (evt.type === 'item.completed' && evt.item && evt.item.type !== 'agent_message') {
+      if (evt.type === 'item.completed' && evt.item) {
+        const action = evt.item.type === 'agent_message' ? evt.item.text : `${evt.item.type} completed`;
         executePinsList(
           onAction,
-          { action: summarizeItem(evt.item), item: evt.item, ...context },
+          { action, item: evt.item, ...context },
           `${context.__PATH__}.onAction`,
         );
       }
@@ -201,23 +222,6 @@ class CodexService {
     }
 
     return result;
-  }
-}
-
-function summarizeItem(item: any): string {
-  switch (item.type) {
-    case 'command_execution':
-      return `command_execution: ${item.command ?? '(unknown command)'}`;
-    case 'mcp_tool_call':
-      return `mcp_tool_call: ${item.server ?? '?'}.${item.tool ?? '?'}`;
-    case 'web_search':
-      return `web_search: ${item.query ?? '(unknown query)'}`;
-    case 'todo_list':
-      return 'todo_list updated';
-    case 'patch_apply':
-      return 'patch applied';
-    default:
-      return `${item.type ?? 'item'} completed`;
   }
 }
 
