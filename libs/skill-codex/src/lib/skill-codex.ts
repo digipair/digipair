@@ -3,7 +3,7 @@ import { spawn } from 'child_process';
 import { existsSync, mkdtempSync, readFileSync, unlinkSync } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { randomUUID } from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 
 class CodexService {
   /**
@@ -45,7 +45,7 @@ class CodexService {
     // "last agent_message" out of the JSONL stream (some intermediate
     // messages can look like a final one).
     const tmpDir = mkdtempSync(path.join(os.tmpdir(), 'codex-service-'));
-    const outputLastMessagePath = path.join(tmpDir, `${randomUUID()}.txt`);
+    const outputLastMessagePath = path.join(tmpDir, `${uuidv4()}.txt`);
 
     // We invoke via `node codex.js` to avoid platform-specific shims.
     const args: string[] = [codexJs];
