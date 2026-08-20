@@ -1,6 +1,6 @@
 import { executePinsList, PinsSettings } from '@digipair/engine';
 import { spawn } from 'child_process';
-import { existsSync, mkdtempSync, readFileSync, unlinkSync } from 'fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -26,9 +26,13 @@ class CodexService {
       debug = false,
       provider, // optional custom OpenAI-compatible provider: { id, apiURL, apiKey, wireApi? }
       useLegacyLandlock = true, // see rationale below, near where it's applied
+      outputSchema, // optional plain JS object (JSON Schema), passed via --output-schema.
+                    // Only usable for fields whose shape is fully known in advance —
+                    // incompatible with a free-form field (e.g. an arbitrary reasoning
+                    // tree). Off by default (undefined); opt-in per call.
     } = params;
 
-    const model = context.privates?.CODEX_MODEL ?? 'gpt-5';
+    const model = params.model ?? context.privates?.CODEX_MODEL ?? 'gpt-5';
 
     if (!prompt || !prompt.trim()) {
       throw new Error('Prompt must be a non-empty string');
@@ -46,6 +50,14 @@ class CodexService {
     // messages can look like a final one).
     const tmpDir = mkdtempSync(path.join(os.tmpdir(), 'codex-service-'));
     const outputLastMessagePath = path.join(tmpDir, `${uuidv4()}.txt`);
+
+    // Written into the same tmpDir as outputLastMessagePath, so the single
+    // rmSync(tmpDir, ...) cleanup at the end covers both files.
+    let outputSchemaPath: string | undefined;
+    if (outputSchema) {
+      outputSchemaPath = path.join(tmpDir, `${uuidv4()}.schema.json`);
+      writeFileSync(outputSchemaPath, JSON.stringify(outputSchema));
+    }
 
     // We invoke via `node codex.js` to avoid platform-specific shims.
     const args: string[] = [codexJs];
@@ -68,6 +80,8 @@ class CodexService {
     }
 
     // Custom OpenAI-compatible provider (Scaleway, OVHcloud, ...)
+    // NOT YET USED IN PRODUCTION as of this version — kept ready for when
+    // it is. Inert unless `provider` is explicitly passed.
     if (provider?.apiURL) {
       const providerId = provider.id ?? 'custom';
       const envKeyName = `CODEX_PROVIDER_API_KEY_${providerId.toUpperCase()}`;
@@ -100,8 +114,19 @@ class CodexService {
     // which still enforces filesystem AND network isolation (seccomp-BPF),
     // just without bubblewrap's namespace layer. Official fix, documented at
     // https://github.com/openai/codex/blob/main/codex-rs/linux-sandbox/README.md
+    //
+    // ⚠️ WATCH: this flag is marked deprecated as of Codex CLI ~0.14x
+    // ("[features].use_legacy_landlock is deprecated and will be removed
+    // soon"), with no official replacement yet. Actively contested by users
+    // hitting the exact same Docker/Ubuntu 24.04 issue we hit here — see
+    // https://github.com/openai/codex/issues/18800 (opened Apr 2026, open).
+    // Re-check this on every @openai/codex upgrade; if it's removed without
+    // a replacement, the bwrap bug workaround will need to be revisited.
     if (useLegacyLandlock) {
       args.push('-c', 'use_legacy_landlock=true');
+    }
+    if (outputSchemaPath) {
+      args.push('--output-schema', outputSchemaPath);
     }
     // skip git repo check
     args.push('--skip-git-repo-check');
@@ -214,6 +239,8 @@ class CodexService {
         .find(e => e.type === 'item.completed' && e.item?.type === 'agent_message');
       result = lastAgentMessage?.item?.text?.trim() ?? '';
     } finally {
+      // rm -rf the whole temp dir (not just the file): mkdtempSync leaves an
+      // empty directory behind otherwise, which leaks in /tmp across runs.
       try {
         rmSync(tmpDir, { recursive: true, force: true });
       } catch (_) {
