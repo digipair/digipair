@@ -39,12 +39,7 @@ class OpencodeService {
     if (!apiURL) throw new Error('Missing context.privates.OPENCODE_API_URL');
     if (!apiKey) throw new Error('Missing context.privates.OPENCODE_API_KEY');
 
-    const opencodeBin = require.resolve('opencode-ai/bin/opencode');
-    if (!existsSync(opencodeBin)) {
-      throw new Error(
-        `OpenCode CLI not found. Ensure opencode-ai is installed. Looked for: ${opencodeBin}`,
-      );
-    }
+    const opencodeBin = resolveOpencodeBin();
 
     // The CLI takes no inline config. A temp file keeps the user's working
     // directory clean and is removed in the finally block, so the API key
@@ -201,6 +196,36 @@ class OpencodeService {
       }
     }
   }
+}
+
+/**
+ * Resolves the CLI executable through package.json#bin.
+ *
+ * The file name is not stable: on Linux the package ships `bin/opencode.exe`,
+ * an ELF binary despite the extension. Hardcoding a name breaks, and
+ * `require.resolve('opencode-ai/bin/...')` fails anyway because the package
+ * restricts subpath access through its "exports" field — package.json itself
+ * stays resolvable.
+ */
+function resolveOpencodeBin(): string {
+  const pkgPath = require.resolve('opencode-ai/package.json');
+  const pkgDir = path.dirname(pkgPath);
+  const bin = require(pkgPath).bin;
+  const declared = typeof bin === 'string' ? bin : bin?.opencode;
+
+  const candidates = [
+    ...(declared ? [path.join(pkgDir, declared)] : []),
+    path.join(pkgDir, 'bin', 'opencode.exe'),
+    path.join(pkgDir, 'bin', 'opencode'),
+  ];
+
+  const found = candidates.find(existsSync);
+  if (!found) {
+    throw new Error(
+      `OpenCode CLI not found. Ensure opencode-ai is installed. Looked for: ${candidates.join(', ')}`,
+    );
+  }
+  return found;
 }
 
 export const runPrompt = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
