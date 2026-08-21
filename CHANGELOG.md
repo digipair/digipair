@@ -1,3 +1,7 @@
+## 0.140.2-local (2026-08-21)
+
+This was a version bump only, there were no code changes.
+
 ## 0.140.1-local (2026-08-21)
 
 ### 🚀 Features
