@@ -3523,13 +3523,6 @@
   dependencies:
     "@lit-labs/ssr-dom-shim" "^1.4.0"
 
-"@literate.ink/utilities@1.0.0-10641118381.1":
-  version "1.0.0-10641118381.1"
-  resolved "https://registry.yarnpkg.com/@literate.ink/utilities/-/utilities-1.0.0-10641118381.1.tgz#8fb97ba575652101a545f1aba7c96ddd7dd5b418"
-  integrity sha512-omhzgwfAjNXqIjt6dmWbU8pm6QfEvNYetykEXYk+vVaJ8oICglvkChxkC6FkF8zJKMM/lFrNHgD42obQ8lwolQ==
-  dependencies:
-    set-cookie-parser "^2.7.0"
-
 "@lukeed/csprng@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@lukeed/csprng/-/csprng-1.1.0.tgz#1e3e4bd05c1cc7a0b2ddbd8a03f39f6e4b5e6cfe"
@@ -4295,6 +4288,13 @@
   integrity sha512-YAeKOQNdmMz/CPnj0dtbprFGlvkwGbKjd7aEMfbdhrrkwEx0qNwb5pr82ID+9Y77X19AixmZcAA3qa0vPmWaXQ==
   dependencies:
     "@vscode/ripgrep" "^1.15.14"
+
+"@opencode-ai/sdk@^1.18.20":
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/@opencode-ai/sdk/-/sdk-1.18.20.tgz#431c7689c797175ad4ba981aece2d475680ef3b6"
+  integrity sha512-07PeB/aHS//CaByGXbeHqQXuuIaKCUnZt7zUf1lbobR34fURtmAH9Wzks37vqnbZo0RUUJx3JsfIWT9hUH1EgA==
+  dependencies:
+    cross-spawn "7.0.6"
 
 "@opentelemetry/api@^1.9.0":
   version "1.9.0"
@@ -10319,7 +10319,7 @@ cross-fetch@^4.0.0:
   dependencies:
     node-fetch "^2.7.0"
 
-cross-spawn@^7.0.3, cross-spawn@^7.0.5, cross-spawn@^7.0.6:
+cross-spawn@7.0.6, cross-spawn@^7.0.3, cross-spawn@^7.0.5, cross-spawn@^7.0.6:
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.6.tgz#8a58fe78f00dcd70c370451759dfbfaf03e8ee9f"
   integrity sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==
@@ -13162,11 +13162,6 @@ html-encoding-sniffer@^4.0.0:
   integrity sha512-Y22oTqIU4uuPgEemfz7NDJz6OeKf12Lsu+QC+s3BVpda64lTiMYCyGwg5ki4vFxkMwQdeZDl2adZoqUgdFuTgQ==
   dependencies:
     whatwg-encoding "^3.1.1"
-
-html-entities@^2.5.2:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.6.0.tgz#7c64f1ea3b36818ccae3d3fb48b6974208e984f8"
-  integrity sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==
 
 html-escaper@^2.0.0:
   version "2.0.2"
@@ -16515,11 +16510,6 @@ node-forge@^1:
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-1.3.1.tgz#be8da2af243b2417d5f646a770663a92b7e9ded3"
   integrity sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==
 
-node-forge@^1.3.1:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-1.3.3.tgz#0ad80f6333b3a0045e827ac20b7f735f93716751"
-  integrity sha512-rLvcdSyRCyouf6jcOIPe/BgwG/d7hKjzMKOas33/pHEr6gbq18IK9zV7DiPvzsz0oBJPme6qr6H6kGZuI9/DZg==
-
 node-gyp-build@4.8.4:
   version "4.8.4"
   resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.8.4.tgz#8a70ee85464ae52327772a90d66c6077a900cfc8"
@@ -17037,6 +17027,84 @@ openai@^6.3.0:
   resolved "https://registry.yarnpkg.com/openai/-/openai-6.8.1.tgz#72610890aa6f67b3473c7be2e2d6ff25ebb9846a"
   integrity sha512-ACifslrVgf+maMz9vqwMP4+v9qvx5Yzssydizks8n+YUJ6YwUoxj51sKRQ8HYMfR6wgKLSIlaI108ZwCk+8yig==
 
+opencode-ai@^1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-ai/-/opencode-ai-1.18.20.tgz#79ace165fba034da1599fb3411691611228c409a"
+  integrity sha512-8c2yJ/Oe1qFi9KYE0KS9WCyy6O1QtI9odzBmBWGOeyOgXTn/hGOwCp/fgcHY2qVQ2TVgkQXze7jXjJ6AFyeU0Q==
+  optionalDependencies:
+    opencode-darwin-arm64 "1.18.20"
+    opencode-darwin-x64 "1.18.20"
+    opencode-darwin-x64-baseline "1.18.20"
+    opencode-linux-arm64 "1.18.20"
+    opencode-linux-arm64-musl "1.18.20"
+    opencode-linux-x64 "1.18.20"
+    opencode-linux-x64-baseline "1.18.20"
+    opencode-linux-x64-baseline-musl "1.18.20"
+    opencode-linux-x64-musl "1.18.20"
+    opencode-windows-arm64 "1.18.20"
+    opencode-windows-x64 "1.18.20"
+    opencode-windows-x64-baseline "1.18.20"
+
+opencode-darwin-arm64@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-darwin-arm64/-/opencode-darwin-arm64-1.18.20.tgz#ffd83a4c5313d8b8921d9d2488cbae79eb9acbc4"
+  integrity sha512-fgEBJswx91OAtEmJy7iTT22iYsadCyn4Yp7rV09g+uf5loyZXknyOLYmILYIDrvEP6FrULrPYWBjWmWqIr6ugA==
+
+opencode-darwin-x64-baseline@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-darwin-x64-baseline/-/opencode-darwin-x64-baseline-1.18.20.tgz#eff7aca6d73e808a0682be2d70ded539fe90dc67"
+  integrity sha512-+KF59u/SSjUyaGqtrjckywsVGyqBcOzkRJcO1c3Crx/IKV+U2azNuIZ/S22ngEfXf4u9fxeT/Cohmczq2s8VCQ==
+
+opencode-darwin-x64@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-darwin-x64/-/opencode-darwin-x64-1.18.20.tgz#7858a47fd1bc48cd369c9ee672c301101ca54624"
+  integrity sha512-y63l232dLPMXWmYVWroTxbd7wfYCsRePBaXsi7n3eYPNe7Keo6rMlxcNsmbBhxc8OmCer0yD9DkaSS5yMLg9wQ==
+
+opencode-linux-arm64-musl@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-linux-arm64-musl/-/opencode-linux-arm64-musl-1.18.20.tgz#334443241c98e2877b4054459bb8a699b80f1d00"
+  integrity sha512-qpRofadzK5SsARB9u4uaZK/Lkaf+p1zluXTN8BqOYAhzCLkFLpisyP76s1NxM0ZLPPXszvOsoi4QrXfViu8pmQ==
+
+opencode-linux-arm64@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-linux-arm64/-/opencode-linux-arm64-1.18.20.tgz#1d70c70d33d4a26a6c60910ae8e3279eedc93147"
+  integrity sha512-DbxQeYtEAbUUExuFP5vh+jzxeKQwnQ1nnAW7vx4noZqoyeMqj58y5ynwkSzgX886yiCi1WIrN7jaZdmiYpZuzA==
+
+opencode-linux-x64-baseline-musl@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-linux-x64-baseline-musl/-/opencode-linux-x64-baseline-musl-1.18.20.tgz#53fb89e73a191ea508843bfd00e6366d4d3c4052"
+  integrity sha512-enVVSrQ2RAoTHTbBRWwmF1FVmP8fmWUWGHGbJMsH69RxkFvrAnmoHq9FaorcKlTSlqfI4gpF4NgmL053yO4x4w==
+
+opencode-linux-x64-baseline@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-linux-x64-baseline/-/opencode-linux-x64-baseline-1.18.20.tgz#b254118cf526d1a46738a6577e37298aa2888b35"
+  integrity sha512-u5Ud6jyj83ebxTuWGyogJsWSD9BZH7+N1WejtIIFVkIK2sjgie4o6VZabQUXQy1FLCvRfpW8HZkIjiARhebY9g==
+
+opencode-linux-x64-musl@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-linux-x64-musl/-/opencode-linux-x64-musl-1.18.20.tgz#76921a75066a0046c6b409732f65748e5b095874"
+  integrity sha512-PdlCelm/EvIKB6U1w23Wb3Bnv2JizuJYzM5RB9u2lDsuF1NSg9dGHTgcs8pEu/xG4bscqY6pWPruxbUp2E3pZw==
+
+opencode-linux-x64@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-linux-x64/-/opencode-linux-x64-1.18.20.tgz#208bada8c116d615bec4ab043a7a521609c6cfdf"
+  integrity sha512-H+XhU7NbfTBt+YE1zasYduljfveZQbatw72gDUhWKfnE83gd9KZ8u5biCf7TZEcsi9QJebFga2UTrebsivzQug==
+
+opencode-windows-arm64@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-windows-arm64/-/opencode-windows-arm64-1.18.20.tgz#af16fb1a641c3d79d1514ecccefe368e11d9d317"
+  integrity sha512-P0FmDdwdH/afaXSJ8QA29LESEZjMaZVzqCddITgClOe1DHlr502+CPFbIvl2I8dp0C0KDdmh+gq4sciK0Tl/bg==
+
+opencode-windows-x64-baseline@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-windows-x64-baseline/-/opencode-windows-x64-baseline-1.18.20.tgz#4969ec1b7c89fe3637144e858a2ccd93d4fb2aea"
+  integrity sha512-dTUWq8Z5prd7WjccG6lqSbyXn3PL5tsNlqpNzjW+uBnJDVXLaN3Zv10OMvFDVlr1cmHQoggRKwvmyYwA2eDrrQ==
+
+opencode-windows-x64@1.18.20:
+  version "1.18.20"
+  resolved "https://registry.yarnpkg.com/opencode-windows-x64/-/opencode-windows-x64-1.18.20.tgz#63b98c1336704896b8f691af0b45602581c7e13e"
+  integrity sha512-crDW+lxiXTdjMbvIW67y3SkbGkMNlTtIV9eFCsjU4gjOW6EN9hfj28GMlAI4hePEBs9JLs5dD7EJUMjQwZ9IOQ==
+
 opencollective-postinstall@^2.0.2, opencollective-postinstall@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
@@ -17417,16 +17485,6 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
-
-pawnote@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/pawnote/-/pawnote-1.6.2.tgz#90730d6ce454cb7380770e22e18ff5d401183cd7"
-  integrity sha512-K+qItgqju/LR+uGG/7YquvHBpwxwhBJ2buGjU+Zlh2gP+9kEgi9qnyHsSUNjUGvsQHZtgV4n1JklI7N0FNyDKQ==
-  dependencies:
-    "@literate.ink/utilities" "1.0.0-10641118381.1"
-    html-entities "^2.5.2"
-    node-forge "^1.3.1"
-    pako "^2.1.0"
 
 pdf-lib@^1.17.1:
   version "1.17.1"
@@ -19443,11 +19501,6 @@ set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
   integrity sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==
-
-set-cookie-parser@^2.7.0:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.7.2.tgz#ccd08673a9ae5d2e44ea2a2de25089e67c7edf68"
-  integrity sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw==
 
 set-value@^2.0.0, set-value@^2.0.1:
   version "2.0.1"

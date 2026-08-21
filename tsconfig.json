@@ -233,6 +233,9 @@
     },
     {
       "path": "./libs/skill-rabbitmq"
+    },
+    {
+      "path": "./libs/skill-opencode"
     }
   ]
 }
