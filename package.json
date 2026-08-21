@@ -30,7 +30,7 @@
     "@openai/codex": "^0.23.0",
     "@opencode-ai/sdk": "^1.18.20",
     "@spectrum-web-components/bundle": "^0.43.0",
-    "@temporalio/client":"^1.15.0",
+    "@temporalio/client": "^1.15.0",
     "@temporalio/common": "^1.15.0",
     "@temporalio/worker": "^1.15.0",
     "@temporalio/workflow": "^1.15.0",

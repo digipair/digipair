@@ -21,8 +21,8 @@ module.exports = withNxDigipair(['esm', 'cjs'], config =>
     {
       external: (id) => {
         const deps = config.format === 'cjs'
-          ? ["@digipair/engine","@opencode-ai/sdk","opencode-ai","child_process","fs","path"]
-          : ["@opencode-ai/sdk","opencode-ai","child_process","fs","path"];
+          ? ["@digipair/engine","opencode-ai","child_process","fs","os","path"]
+          : ["opencode-ai","child_process","fs","os","path"];
         return deps.some(dep => id === dep || id.startsWith(dep + "/"));
       }
     }

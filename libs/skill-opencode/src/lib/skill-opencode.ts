@@ -1,163 +1,204 @@
 import { executePinsList, PinsSettings } from '@digipair/engine';
-import { dirname, join } from 'path';
+import { spawn } from 'child_process';
+import { existsSync, writeFileSync, mkdtempSync, rmSync } from 'fs';
+import { tmpdir } from 'os';
+import * as path from 'path';
 
+/**
+ * Runs the local OpenCode CLI (anomalyco/opencode, MIT) in one-shot mode,
+ * the equivalent of `codex exec`: no server to supervise, no shared state.
+ *
+ * SECURITY: OpenCode does NOT sandbox. Its permission system is a UX feature,
+ * not a security boundary — run this in a container for real isolation. The
+ * default profile below is read-only, which narrows the surface but is not a
+ * substitute for a sandbox.
+ */
 class OpencodeService {
-  /**
-   * Runs a prompt through OpenCode using the official `@opencode-ai/sdk` npm library.
-   *
-   * The SDK boots a local OpenCode server (spawning the `opencode` CLI shipped by the
-   * `opencode-ai` package), creates a session and streams the assistant answer back.
-   * Requires the relevant provider credentials in the environment (e.g. `OPENAI_API_KEY`,
-   * `ANTHROPIC_API_KEY`, or a prior `opencode auth login`).
-   */
+  /** Spawns the OpenCode CLI and returns the agent's final text. */
   async runPrompt(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<string> {
     const {
       prompt,
+      // Kept for contract compatibility with skill-codex. Maps to a permission
+      // profile — NOT a sandbox, see the security note above.
+      sandbox = 'read-only',
       cwd = process.cwd() + '/factory/digipairs',
-      agent,
       timeoutMs,
       onStdout = [],
       onAction = [],
       debug = false,
     } = params;
 
-    // Model is provided as "providerID/modelID" (e.g. "anthropic/claude-sonnet-4-5", "openai/gpt-5").
-    const modelString: string | undefined = context.privates?.OPENCODE_MODEL;
+    const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'scaleway';
+    const model = context.privates?.OPENCODE_MODEL ?? 'qwen3-coder-30b-a3b-instruct';
+    const apiURL = context.privates?.OPENCODE_API_URL;
+    const apiKey = context.privates?.OPENCODE_API_KEY;
 
     if (!prompt || !prompt.trim()) {
       throw new Error('Prompt must be a non-empty string');
     }
+    if (!apiURL) throw new Error('Missing context.privates.OPENCODE_API_URL');
+    if (!apiKey) throw new Error('Missing context.privates.OPENCODE_API_KEY');
 
-    const model = modelString
-      ? {
-          providerID: modelString.split('/')[0],
-          modelID: modelString.split('/').slice(1).join('/'),
-        }
-      : undefined;
+    const opencodeBin = require.resolve('opencode-ai/bin/opencode');
+    if (!existsSync(opencodeBin)) {
+      throw new Error(
+        `OpenCode CLI not found. Ensure opencode-ai is installed. Looked for: ${opencodeBin}`,
+      );
+    }
 
-    // The SDK launches the `opencode` CLI by name, so make sure the binary shipped by the
-    // `opencode-ai` package is resolvable through PATH.
-    this.ensureOpencodeOnPath();
+    // The CLI takes no inline config. A temp file keeps the user's working
+    // directory clean and is removed in the finally block, so the API key
+    // never lingers on disk.
+    const tmpDir = mkdtempSync(path.join(tmpdir(), 'opencode-skill-'));
+    const configPath = path.join(tmpDir, 'opencode.json');
 
-    // `@opencode-ai/sdk` is ESM only: use a dynamic import so it also works from the CJS build.
-    const { createOpencodeServer, createOpencodeClient } = await import('@opencode-ai/sdk');
-
-    const server = await createOpencodeServer({ hostname: '127.0.0.1', port: 0 });
-    const client = createOpencodeClient({ baseUrl: server.url });
-
-    const controller = new AbortController();
-    let timedOut = false;
-    let timeout: NodeJS.Timeout | undefined;
-
-    try {
-      // Stream server events to the provided callbacks.
-      if (onStdout.length > 0 || onAction.length > 0) {
-        this.streamEvents(client, controller.signal, context, onStdout, onAction, debug).catch(
-          () => {
-            /* stream is aborted once the prompt resolves */
+    writeFileSync(
+      configPath,
+      JSON.stringify({
+        $schema: 'https://opencode.ai/config.json',
+        model: `${providerId}/${model}`,
+        provider: {
+          [providerId]: {
+            npm: '@ai-sdk/openai-compatible',
+            name: providerId,
+            options: { baseURL: apiURL, apiKey },
+            models: { [model]: {} },
           },
+        },
+        // No rule may be "ask": headless, that suspends the agent loop waiting
+        // on a human who will never answer, until timeoutMs fires.
+        permission:
+          sandbox === 'read-only'
+            ? {
+              '*': 'deny',
+              read: 'allow',
+              glob: 'allow',
+              grep: 'allow',
+              list: 'allow',
+              edit: 'deny',
+              bash: 'deny',
+              webfetch: 'deny',
+            }
+            : { '*': 'allow' },
+      }),
+    );
+
+    const args = [
+      'run',
+      '--format',
+      'json',
+      '--model',
+      `${providerId}/${model}`,
+      '--dir',
+      cwd,
+      prompt,
+    ];
+
+    const child = spawn(opencodeBin, args, {
+      cwd,
+      env: { ...process.env, OPENCODE_CONFIG: configPath },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+
+    let stdout = '';
+    let stderr = '';
+    let pending = '';
+    const texts: string[] = [];
+
+    // Typed JSONL events, a contract documented by `--format json` — replaces
+    // the regex parsing of an unspecified text format, which is what broke on
+    // the Codex side after an upstream change.
+    const handleEvent = (evt: any) => {
+      const part = evt?.part ?? evt?.properties?.part;
+
+      if (part?.type === 'text' && typeof part.text === 'string') {
+        texts.push(part.text);
+      }
+
+      const action =
+        evt?.type === 'tool_use' && part?.tool
+          ? `${part.tool} ${part.state?.status ?? 'called'}`
+          : part?.type === 'text' && part.text
+            ? part.text
+            : null;
+
+      if (action && onAction?.length) {
+        executePinsList(
+          onAction,
+          { action, item: part ?? evt, ...context },
+          `${context.__PATH__}.onAction`,
         );
       }
+    };
 
-      if (timeoutMs && timeoutMs > 0) {
-        timeout = setTimeout(() => {
-          timedOut = true;
-          controller.abort();
-        }, timeoutMs);
+    const onData = (chunk: Buffer) => {
+      const s = chunk.toString();
+      stdout += s;
+
+      if (debug) process.stdout.write(s);
+
+      if (onStdout?.length) {
+        executePinsList(onStdout, { chunk: s, ...context }, `${context.__PATH__}.onStdout`);
       }
 
-      const session = await client.session.create({
-        query: { directory: cwd },
-        body: {},
-        signal: controller.signal,
-      });
-      const sessionId = (session as any).data?.id;
-      if (!sessionId) {
-        throw new Error(`OpenCode failed to create a session: ${JSON.stringify(session)}`);
-      }
-
-      const response = await client.session.prompt({
-        path: { id: sessionId },
-        query: { directory: cwd },
-        body: {
-          ...(model ? { model } : {}),
-          ...(agent ? { agent } : {}),
-          parts: [{ type: 'text', text: prompt }],
-        },
-        signal: controller.signal,
-      });
-
-      if ((response as any).error) {
-        throw new Error(`OpenCode failed: ${JSON.stringify((response as any).error)}`);
-      }
-
-      const parts = (response as any).data?.parts ?? [];
-      const result = parts
-        .filter((part: any) => part.type === 'text')
-        .map((part: any) => part.text)
-        .join('')
-        .trim();
-
-      return result;
-    } catch (err) {
-      if (timedOut) {
-        throw new Error(`OpenCode timed out after ${timeoutMs} ms`);
-      }
-      throw err;
-    } finally {
-      if (timeout) clearTimeout(timeout);
-      controller.abort();
-      server.close();
-    }
-  }
-
-  /**
-   * Subscribes to the OpenCode event stream and forwards it to the `onStdout` / `onAction` pins.
-   */
-  private async streamEvents(
-    client: any,
-    signal: AbortSignal,
-    context: any,
-    onStdout: PinsSettings[],
-    onAction: PinsSettings[],
-    debug: boolean,
-  ): Promise<void> {
-    const events = await client.event({ signal });
-
-    for await (const event of events.stream) {
-      if (debug) {
-        process.stdout.write(JSON.stringify(event) + '\n');
-      }
-
-      if (onStdout.length > 0) {
-        executePinsList(onStdout, { chunk: event, ...context }, `${context.__PATH__}.onStdout`);
-      }
-
-      if (onAction.length > 0 && event?.type === 'message.part.updated') {
-        const part = event.properties?.part;
-        const action =
-          part?.type === 'text' ? part.text : part?.type === 'tool' ? part.tool : undefined;
-        if (action) {
-          executePinsList(onAction, { action, ...context }, `${context.__PATH__}.onAction`);
+      pending += s;
+      const lines = pending.split('\n');
+      pending = lines.pop() ?? '';
+      for (const l of lines) {
+        const t = l.trim();
+        if (!t) continue;
+        try {
+          handleEvent(JSON.parse(t));
+        } catch {
+          /* not a JSON line */
         }
       }
-    }
-  }
+    };
+    const onErr = (chunk: Buffer) => {
+      stderr += chunk.toString();
+    };
 
-  /**
-   * Prepends the `opencode-ai` package `.bin` directory to PATH so the SDK can spawn the CLI.
-   */
-  private ensureOpencodeOnPath(): void {
+    child.stdout?.on('data', onData);
+    child.stderr?.on('data', onErr);
+
     try {
-      const packageJsonPath = require.resolve('opencode-ai/package.json');
-      const binDir = join(dirname(dirname(packageJsonPath)), '.bin');
-      const separator = process.platform === 'win32' ? ';' : ':';
-      const currentPath = process.env.PATH ?? '';
-      if (!currentPath.split(separator).includes(binDir)) {
-        process.env.PATH = `${binDir}${separator}${currentPath}`;
+      await new Promise<void>((resolve, reject) => {
+        let timeout: NodeJS.Timeout | undefined;
+        if (timeoutMs && timeoutMs > 0) {
+          timeout = setTimeout(() => {
+            child.kill('SIGTERM');
+            reject(new Error(`Opencode timed out after ${timeoutMs} ms`));
+          }, timeoutMs);
+        }
+
+        child.on('error', err => {
+          if (timeout) clearTimeout(timeout);
+          reject(err);
+        });
+        child.on('close', (code, signal) => {
+          if (timeout) clearTimeout(timeout);
+          if (pending.trim()) {
+            try {
+              handleEvent(JSON.parse(pending.trim()));
+            } catch {
+              /* partial line */
+            }
+          }
+          if (code === 0) resolve();
+          else {
+            const reason = signal ? `signal ${signal}` : `exit code ${code}`;
+            reject(new Error(`Opencode failed with ${reason}.\n${stderr || stdout}`));
+          }
+        });
+      });
+
+      return texts.join('\n').trim() || stdout.trim();
+    } finally {
+      try {
+        rmSync(tmpDir, { recursive: true, force: true });
+      } catch {
+        /* already gone */
       }
-    } catch {
-      // If resolution fails we rely on `opencode` already being available on PATH.
     }
   }
 }

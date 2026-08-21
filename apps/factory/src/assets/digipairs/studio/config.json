@@ -24,6 +24,7 @@
     "@digipair/skill-web": "latest",
     "@digipair/skill-yaml": "latest",
     "@digipair/skill-debug": "latest",
+    "@digipair/skill-opencode": "latest",
     "@digipair/skill-web-chatbot": "latest",
     "@digipair/skill-web-inputs": "latest",
     "@digipair/skill-web-interact": "latest",
