@@ -22,7 +22,6 @@
     "@digipair/skill-llm": "latest",
     "@digipair/skill-mcp": "latest",
     "@digipair/skill-openai": "latest",
-    "@digipair/skill-opencode": "latest",
     "@digipair/skill-service": "latest",
     "@digipair/skill-sse": "latest",
     "@digipair/skill-temporal": "latest",
