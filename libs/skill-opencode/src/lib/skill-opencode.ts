@@ -40,7 +40,6 @@ class OpencodeService {
     } = params;
 
     const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'openai';
-    const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'openai';
     // Default derived from the provider id, overridable via OPENCODE_PROVIDER_NPM.
     // "openai" needs the native package: it speaks the Responses API, which recent
     // OpenAI models require — the generic one (Chat Completions) is refused by them.
