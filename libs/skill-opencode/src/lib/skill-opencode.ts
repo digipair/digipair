@@ -8,10 +8,21 @@ import * as path from 'path';
  * Runs the local OpenCode CLI (anomalyco/opencode, MIT) in one-shot mode,
  * the equivalent of `codex exec`: no server to supervise, no shared state.
  *
+ * NOTE — no `instructions` preloading. Convention files are read by the model
+ * itself, as instructed by AGENTS.md. Measured: OpenAI models read all 5/5 and
+ * resolve paths correctly; Scaleway models read 2-4/5 and resolve against the
+ * git root instead of the working directory roughly half the time. Switching
+ * provider means re-adding `config.instructions` with ABSOLUTE paths (relative
+ * ones resolve against the process CWD, not --dir, and fail silently).
+ *
  * SECURITY: OpenCode does NOT sandbox. Its permission system is a UX feature,
  * not a security boundary — run this in a container for real isolation. The
  * default profile below is read-only, which narrows the surface but is not a
  * substitute for a sandbox.
+ *
+ * The ESM bundle is published for packaging symmetry only: this skill spawns a
+ * local binary and writes to /tmp, so it never runs in a browser. `require`
+ * and `__dirname` below are exercised through the CJS bundle.
  */
 class OpencodeService {
   /** Spawns the OpenCode CLI and returns the agent's final text. */
@@ -28,29 +39,27 @@ class OpencodeService {
       debug = false,
     } = params;
 
-    const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'scaleway';
-    const model = context.privates?.OPENCODE_MODEL ?? 'qwen3-coder-30b-a3b-instruct';
+    const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'openai';
+    const providerNpm = context.privates?.OPENCODE_PROVIDER_NPM ?? '@ai-sdk/openai'; // other provider than openai use '@ai-sdk/openai-compatible'
+    const model = context.privates?.OPENCODE_MODEL ?? 'gpt-5';
     const apiURL = context.privates?.OPENCODE_API_URL;
     const apiKey = context.privates?.OPENCODE_API_KEY;
 
     if (!prompt || !prompt.trim()) {
       throw new Error('Prompt must be a non-empty string');
     }
-    if (!apiURL) throw new Error('Missing context.privates.OPENCODE_API_URL');
     if (!apiKey) throw new Error('Missing context.privates.OPENCODE_API_KEY');
 
-    const opencodeBin = require.resolve('opencode-ai/bin/opencode');
-    if (!existsSync(opencodeBin)) {
-      throw new Error(
-        `OpenCode CLI not found. Ensure opencode-ai is installed. Looked for: ${opencodeBin}`,
-      );
-    }
+    const opencodeBin = resolveOpencodeBin();
 
     // The CLI takes no inline config. A temp file keeps the user's working
     // directory clean and is removed in the finally block, so the API key
     // never lingers on disk.
     const tmpDir = mkdtempSync(path.join(tmpdir(), 'opencode-skill-'));
     const configPath = path.join(tmpDir, 'opencode.json');
+
+    const options: any = { apiKey };
+    if (apiURL) options.baseURL = apiURL;
 
     writeFileSync(
       configPath,
@@ -59,9 +68,9 @@ class OpencodeService {
         model: `${providerId}/${model}`,
         provider: {
           [providerId]: {
-            npm: '@ai-sdk/openai-compatible',
+            npm: providerNpm,
             name: providerId,
-            options: { baseURL: apiURL, apiKey },
+            options,
             models: { [model]: {} },
           },
         },
@@ -201,6 +210,26 @@ class OpencodeService {
       }
     }
   }
+}
+
+/**
+ * Resolves the CLI through package.json#bin. The file name is not stable —
+ * on Linux the package ships `bin/opencode.exe`, an ELF binary despite the
+ * extension — and `require.resolve('opencode-ai/bin/...')` fails because the
+ * package restricts subpath access via "exports". package.json stays
+ * resolvable, and its `bin` entry points at the launcher that picks the right
+ * platform build (opencode-linux-x64, -baseline, darwin-arm64...).
+ */
+function resolveOpencodeBin(): string {
+  const pkgPath = require.resolve('opencode-ai/package.json');
+  const bin = require(pkgPath).bin?.opencode;
+  if (!bin) throw new Error('opencode-ai installed but declares no "bin.opencode" entry');
+
+  const binPath = path.join(path.dirname(pkgPath), bin);
+  if (!existsSync(binPath)) {
+    throw new Error(`OpenCode CLI not found. Looked for: ${binPath}`);
+  }
+  return binPath;
 }
 
 export const runPrompt = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
