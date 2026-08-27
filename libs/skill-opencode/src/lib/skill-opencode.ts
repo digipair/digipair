@@ -40,7 +40,14 @@ class OpencodeService {
     } = params;
 
     const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'openai';
-    const providerNpm = context.privates?.OPENCODE_PROVIDER_NPM ?? '@ai-sdk/openai'; // other provider than openai use '@ai-sdk/openai-compatible'
+    const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'openai';
+    // Default derived from the provider id, overridable via OPENCODE_PROVIDER_NPM.
+    // "openai" needs the native package: it speaks the Responses API, which recent
+    // OpenAI models require — the generic one (Chat Completions) is refused by them.
+    // Any other provider uses the generic OpenAI-compatible adapter.
+    const providerNpm =
+      context.privates?.OPENCODE_PROVIDER_NPM ??
+      (providerId === 'openai' ? '@ai-sdk/openai' : '@ai-sdk/openai-compatible');
     const model = context.privates?.OPENCODE_MODEL ?? 'gpt-5';
     const apiURL = context.privates?.OPENCODE_API_URL;
     const apiKey = context.privates?.OPENCODE_API_KEY;
