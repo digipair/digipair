@@ -1,5 +1,5 @@
 {
-  "name": "@digipair/skill-mcp",
+  "name": "@digipair/skill-opencode",
   "version": "0.137.0",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
@@ -7,7 +7,7 @@
   "keywords": [
     "digipair",
     "service",
-    "tool"
+    "util"
   ],
   "exports": {
     ".": {
@@ -27,10 +27,9 @@
     "package.json"
   ],
   "nx": {
-    "name": "skill-mcp"
+    "name": "skill-opencode"
   },
   "dependencies": {
-    "zod": "^3.23.8",
-    "@modelcontextprotocol/sdk": "^1.18.2"
+    "opencode-ai": "^1.18.20"
   }
 }
