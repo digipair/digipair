@@ -1,0 +1,132 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-opencode",
+    "summary": "Intégration opencode CLI",
+    "description": "Cette skill permet d'exécuter des prompts en utilisant le CLI opencode",
+    "version": "0.1.0",
+    "x-icon": "🤖"
+  },
+  "paths": {
+    "/runPrompt": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Exécuter un prompt opencode",
+        "description": "Exécute un prompt en utilisant le CLI opencode local et retourne le résultat",
+        "parameters": [
+          {
+            "name": "prompt",
+            "summary": "Prompt",
+            "required": true,
+            "description": "Le prompt à envoyer à opencode",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model",
+            "summary": "Model",
+            "required": false,
+            "description": "Le model opencode à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "agent",
+            "summary": "Agent",
+            "required": false,
+            "description": "L'agent opencode à utiliser",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format de sortie",
+            "required": false,
+            "description": "Format de sortie pour l'exécution d'opencode (par défaut 'json'). Avec 'json', le texte de l'assistant est extrait des events JSONL ; avec 'default', la sortie brute est retournée.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "default"
+              ]
+            }
+          },
+          {
+            "name": "cwd",
+            "summary": "Répertoire de travail",
+            "required": false,
+            "description": "Répertoire de travail pour l'exécution d'opencode (par défaut process.cwd() + '/factory/digipairs')",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timeoutMs",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Timeout en millisecondes",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "debug",
+            "summary": "Mode débogage",
+            "required": false,
+            "description": "Active le mode débogage",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "onStdout",
+            "summary": "Callback stdout",
+            "required": false,
+            "description": "Actions à exécuter lors de la réception de données stdout",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "onAction",
+            "summary": "Callback action",
+            "required": false,
+            "description": "Actions à exécuter pour chaque event JSON parsé (disponible via 'action') lorsque le format est 'json'",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'exécution opencode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "description": "La sortie de l'exécution du CLI opencode"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
