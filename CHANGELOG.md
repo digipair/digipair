@@ -1,3 +1,14 @@
+## 0.141.0 (2026-08-28)
+
+### 🚀 Features
+
+- remove pronote ([90578f2b](https://github.com/digipair/digipair/commit/90578f2b))
+- add skill-opencode ([a3c7568c](https://github.com/digipair/digipair/commit/a3c7568c))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.140.0 (2026-07-30)
 
 ### 🚀 Features
