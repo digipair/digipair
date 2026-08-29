@@ -1,3 +1,13 @@
+## 0.141.3 (2026-08-29)
+
+### 🚀 Features
+
+- execute opencode in the correct directory ([fc93ca99](https://github.com/digipair/digipair/commit/fc93ca99))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.141.2 (2026-08-28)
 
 This was a version bump only, there were no code changes.
