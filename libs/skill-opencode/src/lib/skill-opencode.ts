@@ -47,6 +47,7 @@ class OpencodeService {
     if (model) args.push('--model', model);
     if (agent) args.push('--agent', agent);
     args.push('--format', format);
+    args.push('--dir', cwd);
     args.push(prompt);
 
     const child = spawn(opencodeBin, args, {
