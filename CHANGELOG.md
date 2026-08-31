@@ -1,3 +1,7 @@
+## 0.140.7-local (2026-08-31)
+
+This was a version bump only, there were no code changes.
+
 ## 0.140.6-local (2026-08-26)
 
 This was a version bump only, there were no code changes.
