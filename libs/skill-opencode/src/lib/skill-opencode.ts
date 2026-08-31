@@ -14,7 +14,6 @@ import * as path from 'path';
  * git root instead of the working directory roughly half the time. Switching
  * provider means re-adding `config.instructions` with ABSOLUTE paths (relative
  * ones resolve against the process CWD, not --dir, and fail silently).
- * See compte-rendu-opencode.md §4.
  *
  * SECURITY: OpenCode does NOT sandbox. Its permission system is a UX feature,
  * not a security boundary — run this in a container for real isolation. The
@@ -41,7 +40,13 @@ class OpencodeService {
     } = params;
 
     const providerId = context.privates?.OPENCODE_PROVIDER_ID ?? 'openai';
-    const providerNpm = context.privates?.OPENCODE_PROVIDER_NPM ?? '@ai-sdk/openai'; // other provider than openai use '@ai-sdk/openai-compatible'
+    // Default derived from the provider id, overridable via OPENCODE_PROVIDER_NPM.
+    // "openai" needs the native package: it speaks the Responses API, which recent
+    // OpenAI models require — the generic one (Chat Completions) is refused by them.
+    // Any other provider uses the generic OpenAI-compatible adapter.
+    const providerNpm =
+      context.privates?.OPENCODE_PROVIDER_NPM ??
+      (providerId === 'openai' ? '@ai-sdk/openai' : '@ai-sdk/openai-compatible');
     const model = context.privates?.OPENCODE_MODEL ?? 'gpt-5';
     const apiURL = context.privates?.OPENCODE_API_URL;
     const apiKey = context.privates?.OPENCODE_API_KEY;
@@ -201,11 +206,9 @@ class OpencodeService {
           }
         });
       });
-
-      return texts.join('\n').trim() || stdout.trim();
+      // keep only final response
+      return (texts.length ? texts[texts.length - 1].trim() : '') || stdout.trim();
     } finally {
-      // rm -rf the whole temp dir: mkdtempSync otherwise leaves empty folders
-      // piling up in /tmp across runs.
       try {
         rmSync(tmpDir, { recursive: true, force: true });
       } catch {
