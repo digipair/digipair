@@ -206,8 +206,8 @@ class OpencodeService {
           }
         });
       });
-
-      return texts.join('\n').trim() || stdout.trim();
+      // keep only final response
+      return (texts.length ? texts[texts.length - 1].trim() : '') || stdout.trim();
     } finally {
       try {
         rmSync(tmpDir, { recursive: true, force: true });
