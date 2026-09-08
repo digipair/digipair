@@ -4,8 +4,8 @@ import { PinsSettings } from '@digipair/engine';
 import { Connection, WorkflowClient, WorkflowExecutionInfo } from '@temporalio/client';
 import { NativeConnection, Worker, WorkerOptions } from '@temporalio/worker';
 
-import { dataSignal, dataQuery, workflow as workflowJob } from './workflows.js';
-import { namespace, taskQueue } from './shared.js';
+import { dataSignal, dataQuery, eventSignal, workflow as workflowJob } from './workflows.js';
+import { namespace, taskQueue, eventSearchAttribute } from './shared.js';
 import * as activities from './activities.js';
 
 class TemporalService {
@@ -86,9 +86,7 @@ class TemporalService {
       failureSteps = [],
     } = params;
     const prefix =
-      context.privates.TEMPORAL_PREFIX ??
-      process.env['TEMPORAL_PREFIX'] ??
-      `digipair-workflow-`;
+      context.privates.TEMPORAL_PREFIX ?? process.env['TEMPORAL_PREFIX'] ?? `digipair-workflow-`;
     const workflowOptions = {
       // RetryPolicy specifies how to automatically handle retries if an Activity fails.
       retry: {
@@ -118,6 +116,31 @@ class TemporalService {
       taskQueue,
       workflowId: `${prefix}${id}`,
     });
+  }
+
+  async publish(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
+    const { event, data } = params;
+    const prefix =
+      context.privates.TEMPORAL_PREFIX ??
+      process.env['TEMPORAL_PREFIX'] ??
+      `digipair-workflow-${context.request.digipair}-${context.request.reasoning}-`;
+
+    // ne cible que les workflows en cours d'écoute de cet event (search attribute posé par le listen)
+    const query =
+      `WorkflowId STARTS_WITH '${prefix}' ` +
+      `AND ExecutionStatus = "Running" ` +
+      `AND ${eventSearchAttribute} = "${event}"`;
+
+    const workflowIterator = this.client.list({ query });
+
+    const workflowIds = [] as string[];
+    for await (const workflow of workflowIterator) {
+      const handle = this.client.getHandle(workflow.workflowId);
+      await handle.signal(eventSignal, { event, data });
+      workflowIds.push(workflow.workflowId);
+    }
+
+    return workflowIds;
   }
 
   async push(params: any, _pinsSettingsList: PinsSettings[], context: any): Promise<any> {
@@ -206,6 +229,9 @@ export const workflow = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const push = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.push(params, pinsSettingsList, context);
+
+export const publish = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  instance.publish(params, pinsSettingsList, context);
 
 export const terminate = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   instance.terminate(params, pinsSettingsList, context);

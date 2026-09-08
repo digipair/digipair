@@ -205,6 +205,107 @@
         }
       }
     },
+    "/listen": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Écoute d'un événement",
+        "description": "Attend un événement envoyé par un publish. Peut abonner dynamiquement le workflow via des attributs de recherche pour le rendre découvrable par les publishers.",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Nom",
+            "required": false,
+            "description": "Nom de l'étape",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "event",
+            "summary": "Nom de l'événement",
+            "required": false,
+            "description": "Nom de l'événement attendu. Il est enregistré dans les attributs de recherche du workflow pour que les publishers puissent le découvrir, puis retiré une fois l'écoute terminée. Si omis, n'importe quel événement débloque l'étape.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delay",
+            "summary": "Délai de propagation",
+            "required": false,
+            "description": "Durée d'attente après l'enregistrement de l'événement dans les attributs de recherche, pour laisser le Visibility store propager la mise à jour avant l'écoute (défaut : 2 seconds)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timeout",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Durée d'attente maximale. Si atteinte sans événement, l'étape retourne null.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Données de l'événement reçu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Données de l'événement reçu, ou null en cas de timeout"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/publish": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Publie un événement vers les workflows correspondants",
+        "description": "Envoie un événement à tous les workflows en cours qui correspondent à la requête sur les attributs de recherche, sans connaître leurs identifiants",
+        "parameters": [
+          {
+            "name": "event",
+            "summary": "Nom de l'événement",
+            "required": false,
+            "description": "Nom de l'événement publié",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Données",
+            "required": false,
+            "description": "Contenu de l'événement",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Identifiants des workflows auxquels l'événement a été publié",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/push": {
       "post": {
         "tags": ["service"],

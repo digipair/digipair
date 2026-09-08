@@ -205,6 +205,107 @@
         }
       }
     },
+    "/listen": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Listen for an event",
+        "description": "Wait for an event pushed by a publish. Optionally subscribes the workflow to search attributes so it becomes discoverable by publishers.",
+        "parameters": [
+          {
+            "name": "name",
+            "summary": "Name",
+            "required": false,
+            "description": "Name of the step",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "event",
+            "summary": "Event name",
+            "required": false,
+            "description": "Name of the event to wait for. It is registered in the workflow search attributes so publishers can discover it, then removed once the listen completes. If omitted, any event unblocks the step.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delay",
+            "summary": "Propagation delay",
+            "required": false,
+            "description": "Wait duration after registering the event in the search attributes, to let the Visibility store propagate the update before listening (default: 2 seconds)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timeout",
+            "summary": "Timeout",
+            "required": false,
+            "description": "Maximum wait duration. When reached without any event, the step returns null.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Received event data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Data of the received event, or null on timeout"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/publish": {
+      "post": {
+        "tags": ["service"],
+        "summary": "Publish an event to matching workflows",
+        "description": "Sends an event to every running workflow matching the search attributes query, without knowing their workflow IDs",
+        "parameters": [
+          {
+            "name": "event",
+            "summary": "Event name",
+            "required": false,
+            "description": "Name of the published event",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "summary": "Data",
+            "required": false,
+            "description": "Event payload",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "IDs of the workflows the event was published to",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/push": {
       "post": {
         "tags": ["service"],

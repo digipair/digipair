@@ -8,17 +8,20 @@ import {
   isCancellation,
   CancellationScope,
   ActivityCancellationType,
+  upsertSearchAttributes,
+  workflowInfo,
 } from '@temporalio/workflow';
 import { ApplicationFailure } from '@temporalio/common';
 import { PinsSettings, preparePinsSettings } from '@digipair/engine';
 import * as feelin from 'feelin';
 
 import type * as activities from './activities.js';
-import { WorkflowArgs } from './shared.js';
+import { WorkflowArgs, eventSearchAttributeKey } from './shared.js';
 
 const { evaluate } = feelin as any;
 export const dataSignal = defineSignal<[any]>('data');
 export const dataQuery = defineQuery<[any]>('data');
+export const eventSignal = defineSignal<[{ event: string; data: any }]>('event');
 
 async function executePins(
   executePinsList: any,
@@ -85,6 +88,47 @@ async function executePins(
       () => evaluate(settings.properties.condition, context),
       settings.properties.timeout,
     );
+  } else if (settings.element === 'listen') {
+    const eventName = (settings.properties as any)['event'];
+    const timeout = (settings.properties as any)['timeout'];
+    const delay = (settings.properties as any)['delay'] ?? '2 seconds';
+
+    const currentEvents = () =>
+      workflowInfo().typedSearchAttributes.get(eventSearchAttributeKey) ?? [];
+
+    // abonnement : ajoute l'event dans les search attributes pour être découvrable par un publish
+    if (eventName) {
+      upsertSearchAttributes([
+        { key: eventSearchAttributeKey, value: [...new Set([...currentEvents(), eventName])] },
+      ]);
+      // laisse le temps au Visibility store de propager la mise à jour avant l'écoute
+      await sleep(delay);
+    }
+
+    const findIndex = () =>
+      context.workflow.events.findIndex(
+        (current: { event: string; data: any }) => !eventName || current.event === eventName,
+      );
+
+    try {
+      await condition(() => findIndex() >= 0, timeout);
+
+      const index = findIndex();
+      if (index < 0) {
+        // timeout atteint sans événement reçu
+        result = null;
+      } else {
+        const [event] = context.workflow.events.splice(index, 1);
+        result = event.data;
+      }
+    } finally {
+      // désabonnement : retire l'event des search attributes après l'écoute
+      if (eventName) {
+        upsertSearchAttributes([
+          { key: eventSearchAttributeKey, value: currentEvents().filter(current => current !== eventName) },
+        ]);
+      }
+    }
   } else if (settings.element === 'stop') {
     throw 'DIGIPAIR_WORKFLOW_STOP';
   } else if (settings.element === 'goto') {
@@ -131,7 +175,7 @@ export async function workflow({
 }: WorkflowArgs): Promise<any> {
   let result: any;
 
-  context.workflow = { data };
+  context.workflow = { data, events: [] as { event: string; data: any }[] };
   context.protected = {};
 
   const { executePinsList } = proxyActivities<typeof activities>({
@@ -143,6 +187,9 @@ export async function workflow({
   });
   setHandler(dataQuery, () => {
     return context.workflow.data;
+  });
+  setHandler(eventSignal, (payload: { event: string; data: any }) => {
+    context.workflow.events.push(payload);
   });
 
   // vérifie si tous les pinsSettings sont bien de la librairie @digipair/skill-temporal
