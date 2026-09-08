@@ -1,3 +1,13 @@
+## 0.142.0 (2026-09-08)
+
+### 🚀 Features
+
+- add listen and publish ([ac07eba8](https://github.com/digipair/digipair/commit/ac07eba8))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.141.3 (2026-08-29)
 
 ### 🚀 Features
