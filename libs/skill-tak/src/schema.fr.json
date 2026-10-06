@@ -1,0 +1,421 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-tak",
+    "summary": "Communiquer avec un serveur TAK",
+    "description": "Se connecter à un serveur TAK, envoyer et recevoir des messages CoT (Cursor on Target) et appeler l'API HTTP TAK.",
+    "version": "0.1.0",
+    "x-icon": "🛰️"
+  },
+  "paths": {
+    "/enroll": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Enrôler un certificat client via identifiant/mot de passe",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL d'enrôlement",
+            "required": true,
+            "description": "URL d'enrôlement de certificat du serveur TAK (ex. https://server.example.com:8446)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "summary": "Identifiant",
+            "required": true,
+            "description": "Identifiant du compte sur le serveur TAK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "summary": "Mot de passe",
+            "required": true,
+            "description": "Mot de passe du compte sur le serveur TAK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Certificat client délivré",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cert": {
+                      "type": "string",
+                      "description": "Certificat client PEM signé par le serveur"
+                    },
+                    "key": {
+                      "type": "string",
+                      "description": "Clé privée PEM"
+                    },
+                    "ca": {
+                      "type": "array",
+                      "description": "Chaîne d'autorité de certification PEM",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tak": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Se connecter au flux d'un serveur TAK",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL du serveur",
+            "required": true,
+            "description": "Point d'accès streaming du serveur TAK (ex. ssl://ops.example.com:8089)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cert",
+            "summary": "Certificat client",
+            "required": true,
+            "description": "Certificat client PEM utilisé pour l'authentification TLS mutuelle",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "summary": "Clé privée",
+            "required": true,
+            "description": "Clé privée PEM associée au certificat client",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "passphrase",
+            "summary": "Phrase secrète",
+            "required": false,
+            "description": "Phrase secrète protégeant la clé privée",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ca",
+            "summary": "Autorité de certification",
+            "required": false,
+            "description": "Autorité de certification PEM utilisée pour valider le serveur",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rejectUnauthorized",
+            "summary": "Rejeter si non autorisé",
+            "required": false,
+            "description": "Rejeter la connexion lorsque le certificat du serveur ne peut pas être validé",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Identifiant de connexion",
+            "required": false,
+            "description": "Identifiant unique de connexion utilisé dans les journaux",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Type de connexion",
+            "required": false,
+            "description": "Libellé informatif du type de connexion",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion au serveur TAK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Instance de connexion streaming TAK",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/send": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Envoyer des messages CoT au serveur TAK",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connexion TAK",
+            "required": true,
+            "description": "Connexion au serveur TAK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "messages",
+            "summary": "Messages",
+            "required": true,
+            "description": "Messages CoT à envoyer, sous forme de features GeoJSON (objets) ou de XML CoT brut (chaînes)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "description": "Feature GeoJSON"
+                  },
+                  {
+                    "type": "string",
+                    "description": "XML CoT brut"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Résultat de l'envoi",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sent": {
+                      "type": "integer",
+                      "description": "Nombre de messages CoT envoyés"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/listen": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Écouter les messages CoT entrants",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connexion TAK",
+            "required": true,
+            "description": "Connexion au serveur TAK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Exécuter",
+            "required": true,
+            "description": "Commandes à exécuter pour chaque message CoT reçu (disponible via `cot`, une feature GeoJSON)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connexion TAK à l'écoute des messages CoT",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Instance de connexion streaming TAK",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/disconnect": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Se déconnecter du serveur TAK",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Connexion TAK",
+            "required": true,
+            "description": "Instance de connexion streaming TAK à détruire",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/api": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Se connecter à l'API HTTP du serveur TAK",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "URL de l'API",
+            "required": true,
+            "description": "URL de base de l'API HTTP du serveur TAK (ex. https://ops.example.com:8443)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cert",
+            "summary": "Certificat client",
+            "required": true,
+            "description": "Certificat client PEM utilisé pour l'authentification",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "summary": "Clé privée",
+            "required": true,
+            "description": "Clé privée PEM associée au certificat client",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Client de l'API HTTP TAK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Instance du client API TAK",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/request": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Appeler un endpoint de l'API HTTP du serveur TAK",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "Client API TAK",
+            "required": true,
+            "description": "Connexion à l'API HTTP du serveur TAK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Chemin",
+            "required": true,
+            "description": "Chemin ou fragment d'API à appeler (ex. /Marti/api/missions)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Options de la requête (méthode, corps, en-têtes, ...)",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Réponse de l'API",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Réponse renvoyée par l'API HTTP du serveur TAK",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

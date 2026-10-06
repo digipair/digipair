@@ -236,6 +236,9 @@
     },
     {
       "path": "./libs/skill-opencode"
+    },
+    {
+      "path": "./libs/skill-tak"
     }
   ]
 }

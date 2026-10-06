@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "module": "EsNext",
+    "moduleResolution": "Bundler",
+    "types": ["node"],
+    "paths": {
+      "@digipair/engine": ["libs/engine/src/index.ts"],
+      "@tak-ps/node-tak": ["libs/skill-tak/src/types/node-tak.d.ts"],
+      "@tak-ps/node-cot": ["libs/skill-tak/src/types/node-cot.d.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "references": [
+    {
+      "path": "../engine/tsconfig.lib.json"
+    }
+  ]
+}

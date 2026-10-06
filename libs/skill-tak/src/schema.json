@@ -1,0 +1,421 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-tak",
+    "summary": "Communicate with a TAK Server",
+    "description": "Connect to a TAK Server, send and receive CoT (Cursor on Target) messages and call the TAK HTTP API.",
+    "version": "0.1.0",
+    "x-icon": "🛰️"
+  },
+  "paths": {
+    "/enroll": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Enroll a client certificate using username/password",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Enrollment URL",
+            "required": true,
+            "description": "TAK Server certificate enrollment URL (e.g. https://server.example.com:8446)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "summary": "Username",
+            "required": true,
+            "description": "TAK Server account username",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "summary": "Password",
+            "required": true,
+            "description": "TAK Server account password",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Issued client certificate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cert": {
+                      "type": "string",
+                      "description": "PEM client certificate signed by the server"
+                    },
+                    "key": {
+                      "type": "string",
+                      "description": "PEM private key"
+                    },
+                    "ca": {
+                      "type": "array",
+                      "description": "PEM certificate authority chain",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tak": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Connect to a TAK Server streaming endpoint",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "Server URL",
+            "required": true,
+            "description": "TAK Server streaming endpoint (e.g. ssl://ops.example.com:8089)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cert",
+            "summary": "Client certificate",
+            "required": true,
+            "description": "PEM client certificate used for mutual TLS authentication",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "summary": "Private key",
+            "required": true,
+            "description": "PEM private key associated with the client certificate",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "passphrase",
+            "summary": "Passphrase",
+            "required": false,
+            "description": "Passphrase protecting the private key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ca",
+            "summary": "Certificate authority",
+            "required": false,
+            "description": "PEM certificate authority used to validate the server",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rejectUnauthorized",
+            "summary": "Reject unauthorized",
+            "required": false,
+            "description": "Reject the connection when the server certificate cannot be validated",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "id",
+            "summary": "Connection id",
+            "required": false,
+            "description": "Unique connection identifier used in log messages",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "summary": "Connection type",
+            "required": false,
+            "description": "Informational connection type label",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Connection to the TAK Server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "TAK streaming connection instance",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/send": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Send CoT messages to the TAK Server",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "TAK connection",
+            "required": true,
+            "description": "Connection to the TAK Server",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "messages",
+            "summary": "Messages",
+            "required": true,
+            "description": "CoT messages to send, either GeoJSON features (objects) or raw CoT XML (strings)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "description": "GeoJSON feature"
+                  },
+                  {
+                    "type": "string",
+                    "description": "Raw CoT XML"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Send result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sent": {
+                      "type": "integer",
+                      "description": "Number of CoT messages sent"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/listen": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Listen to incoming CoT messages",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "TAK connection",
+            "required": true,
+            "description": "Connection to the TAK Server",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "execute",
+            "summary": "Execute",
+            "required": true,
+            "description": "Commands to execute for each received CoT message (available as `cot`, a GeoJSON feature)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "TAK connection listening for CoT messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "TAK streaming connection instance",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/disconnect": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Disconnect from the TAK Server",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "TAK connection",
+            "required": true,
+            "description": "TAK streaming connection instance to destroy",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        ],
+        "x-events": []
+      }
+    },
+    "/api": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Connect to the TAK Server HTTP API",
+        "parameters": [
+          {
+            "name": "url",
+            "summary": "API URL",
+            "required": true,
+            "description": "TAK Server HTTP API base URL (e.g. https://ops.example.com:8443)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cert",
+            "summary": "Client certificate",
+            "required": true,
+            "description": "PEM client certificate used for authentication",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "summary": "Private key",
+            "required": true,
+            "description": "PEM private key associated with the client certificate",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "TAK HTTP API client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "TAK API client instance",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/request": {
+      "post": {
+        "tags": [
+          "service"
+        ],
+        "summary": "Call an endpoint of the TAK Server HTTP API",
+        "parameters": [
+          {
+            "name": "client",
+            "summary": "TAK API client",
+            "required": true,
+            "description": "Connection to the TAK Server HTTP API",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "https://schemas.digipair.ai/pinsSettings"
+              }
+            }
+          },
+          {
+            "name": "path",
+            "summary": "Path",
+            "required": true,
+            "description": "API path or fragment to request (e.g. /Marti/api/missions)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "summary": "Options",
+            "required": false,
+            "description": "Fetch options (method, body, headers, ...)",
+            "schema": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "API response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Response returned by the TAK Server HTTP API",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}

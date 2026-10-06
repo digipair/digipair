@@ -39,6 +39,7 @@ const _config = (globalInstance.__DIGIPAIR_CONFIG__ = globalInstance.__DIGIPAIR_
   BASE_URL: 'https://cdn.jsdelivr.net/npm' as string,
   ALIAS: [] as Alias[],
   LOGGER: (level: string, path: string, message: string, context: any, data?: any) => {},
+  DIGIPAIR_FUNCTIONS: {},
 });
 const isRemoteVersion = /^https?:\/\/[^\s/$.?#].[^\s]*$/;
 
@@ -70,12 +71,14 @@ export const applyTemplate = (value: any, context: any) => {
       result = evaluateFeel(path, {
         ...context,
         ...DIGIPAIR_FUNCTIONS,
+        ..._config.DIGIPAIR_FUNCTIONS,
       });
     } else if (result.startsWith('FEEL:')) {
       const path = result.replace(/^FEEL:/, '');
       result = evaluateFeel(path, {
         ...context,
         ...DIGIPAIR_FUNCTIONS,
+        ..._config.DIGIPAIR_FUNCTIONS,
       });
     } else if (result.startsWith('CEL:')) {
       const path = result.replace(/^CEL:/, '');
@@ -84,7 +87,10 @@ export const applyTemplate = (value: any, context: any) => {
         {
           ...context,
         },
-        DIGIPAIR_FUNCTIONS,
+        {
+          ...DIGIPAIR_FUNCTIONS,
+          ..._config.DIGIPAIR_FUNCTIONS,
+        },
       );
     } else {
       const template = Handlebars.compile(value, { noEscape: true });

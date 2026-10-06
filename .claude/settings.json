@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({k:d.get\\(k\\) for k in ['dependencies','devDependencies']}, indent=2\\)\\)\")",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('/Users/marcbuils/projects/digipair/digipair/libs/skill-kafka/src/schema.fr.json'\\)\\);print\\(json.dumps\\(d['info'],ensure_ascii=False,indent=2\\)\\);print\\('paths:',list\\(d['paths'].keys\\(\\)\\)\\)\")",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('tsconfig.base.json'\\)\\);print\\(json.dumps\\(d.get\\('compilerOptions',{}\\).get\\('paths',{}\\),indent=0\\)\\)\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('package.json'\\)\\);print\\('main',d.get\\('main'\\)\\);print\\('types',d.get\\('types'\\)\\);print\\('exports',json.dumps\\(d.get\\('exports'\\),indent=1\\)\\)\")",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('package.json'\\)\\);print\\('main',d.get\\('main'\\)\\);print\\('types',d.get\\('types'\\)\\);print\\('type',d.get\\('type'\\)\\);print\\('exports',json.dumps\\(d.get\\('exports'\\),indent=1\\)\\)\")",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('package.json'\\)\\);print\\('deps',json.dumps\\(d.get\\('dependencies'\\),indent=1\\)\\);print\\('peer',json.dumps\\(d.get\\('peerDependencies'\\),indent=1\\)\\)\")",
+      "Bash(npm view *)",
+      "Bash(ls yarn.lock package-lock.json)",
+      "Bash(python3 -c \"import json,sys;d=json.load\\(sys.stdin\\);print\\('types:',d.get\\('types'\\)\\);print\\('main:',d.get\\('main'\\)\\)\")",
+      "Bash(python3 -c \"import json,sys;d=json.load\\(sys.stdin\\);print\\('types:',d.get\\('types'\\)\\);print\\('exports:',json.dumps\\(d.get\\('exports'\\)\\)\\)\")",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('tsconfig.base.json'\\)\\);print\\(d['compilerOptions'].get\\('moduleResolution'\\),d['compilerOptions'].get\\('module'\\)\\)\")",
+      "Bash(env)",
+      "Bash(npx ts-node *)",
+      "Bash(python3 -c \"import json;print\\('root type:',json.load\\(open\\('package.json'\\)\\).get\\('type','commonjs'\\)\\)\")",
+      "Bash(TS_NODE_TRANSPILE_ONLY=1 TS_NODE_COMPILER_OPTIONS='{\"module\":\"NodeNext\",\"moduleResolution\":\"NodeNext\"}' node --loader ts-node/esm test.ts)",
+      "Bash(npx swc *)",
+      "Bash(TAK_CERT_FILE=/tmp/tak_test.pem TAK_KEY_FILE=/tmp/tak_test.key node test.mts)",
+      "Bash(rm -f /tmp/tak_test.key /tmp/tak_test.pem /tmp/test.mjs; echo \"nettoyé\"; cd /Users/marcbuils/projects/digipair/digipair; git status --short test.ts)",
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('libs/engine/package.json'\\)\\);print\\('main',d.get\\('main'\\)\\);print\\('module',d.get\\('module'\\)\\);print\\('exports',json.dumps\\(d.get\\('exports'\\)\\)\\)\")",
+      "Bash(openssl req *)",
+      "Bash(cp test.ts test.mts)",
+      "Bash(TAK_CERT_FILE=/tmp/tak_test.pem TAK_KEY_FILE=/tmp/tak_test.key timeout 30 node test.mts)",
+      "Bash(npx tsc *)",
+      "Bash(TAK_USERNAME=demo TAK_PASSWORD=demo node test.mts)",
+      "Bash(TAK_USERNAME=marc TAK_PASSWORD='AliciaAgatheJulesMio325!' node test.mts)",
+      "Bash(TAK_USERNAME=marc TAK_PASSWORD='AliciaAgatheJulesMio325!' node test2.mts)",
+      "Bash(TAK_USERNAME=marc TAK_PASSWORD='AliciaAgatheJulesMio325!' node probe.mts)"
+    ],
+    "additionalDirectories": [
+      "/private/tmp"
+    ]
+  }
+}
