@@ -1,3 +1,13 @@
+## 0.144.0 (2026-10-06)
+
+### 🚀 Features
+
+- add skill-tak ([5b5684433](https://github.com/digipair/digipair/commit/5b5684433))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.143.0 (2026-09-16)
 
 This was a version bump only, there were no code changes.
