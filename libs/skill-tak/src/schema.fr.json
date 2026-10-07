@@ -184,12 +184,10 @@
             "name": "client",
             "summary": "Connexion TAK",
             "required": true,
-            "description": "Connexion au serveur TAK",
+            "description": "Instance de connexion streaming TAK renvoyée par /tak",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
+              "type": "object",
+              "additionalProperties": true
             }
           },
           {
@@ -246,12 +244,10 @@
             "name": "client",
             "summary": "Connexion TAK",
             "required": true,
-            "description": "Connexion au serveur TAK",
+            "description": "Instance de connexion streaming TAK renvoyée par /tak",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
+              "type": "object",
+              "additionalProperties": true
             }
           },
           {
@@ -368,12 +364,10 @@
             "name": "client",
             "summary": "Client API TAK",
             "required": true,
-            "description": "Connexion à l'API HTTP du serveur TAK",
+            "description": "Instance du client API HTTP TAK renvoyée par /api",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "https://schemas.digipair.ai/pinsSettings"
-              }
+              "type": "object",
+              "additionalProperties": true
             }
           },
           {
