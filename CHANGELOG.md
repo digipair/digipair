@@ -1,3 +1,13 @@
+## 0.144.2 (2026-10-07)
+
+### 🚀 Features
+
+- update factory ([2569d25dd](https://github.com/digipair/digipair/commit/2569d25dd))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.144.1 (2026-10-07)
 
 ### 🚀 Features

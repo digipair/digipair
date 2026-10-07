@@ -51,7 +51,7 @@ class TakService {
 
   async send(params: any, _pins: PinsSettings[], context: any): Promise<any> {
     const { client = context.privates.CLIENT_TAK, messages = [] } = params;
-    const tak = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const tak = client;
     const { CoTParser } = await cotLib();
 
     const cots = await Promise.all(
@@ -70,7 +70,7 @@ class TakService {
 
   async listen(params: any, _pins: PinsSettings[], context: any): Promise<any> {
     const { client = context.privates.CLIENT_TAK, execute = [] } = params;
-    const tak = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const tak = client;
     const { CoTParser } = await cotLib();
 
     tak.on('cot', async (cot: any) => {
@@ -103,7 +103,7 @@ class TakService {
 
   async request(params: any, _pins: PinsSettings[], context: any): Promise<any> {
     const { client = context.privates.CLIENT_TAK_API, path, options = {} } = params;
-    const api = await executePinsList(client, context, `${context.__PATH__}.client`);
+    const api = client;
 
     return api.fetch(api.stdurl(path), options);
   }
