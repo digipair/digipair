@@ -1,3 +1,13 @@
+## 0.144.1 (2026-10-07)
+
+### 🚀 Features
+
+- update skill-tak ([806bebea](https://github.com/digipair/digipair/commit/806bebea))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.144.0 (2026-10-06)
 
 ### 🚀 Features
