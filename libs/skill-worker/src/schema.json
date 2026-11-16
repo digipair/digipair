@@ -285,8 +285,13 @@
           "uuid": {
             "type": "string",
             "summary": "UUID"
+          },
+          "pair": {
+            "type": "string",
+            "summary": "Pair"
           }
-        }
+        },
+        "required": ["filename", "mimeType", "uuid"]
       },
       "Prompt": {
         "type": "object",
