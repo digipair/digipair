@@ -1,3 +1,17 @@
+## 0.145.0 (2026-11-25)
+
+### 🚀 Features
+
+- update skill-tak schema ([18aeed284](https://github.com/digipair/digipair/commit/18aeed284))
+- remove .claude ([a97cfcd6f](https://github.com/digipair/digipair/commit/a97cfcd6f))
+- remove .claude ([68d509827](https://github.com/digipair/digipair/commit/68d509827))
+- update File schema ([398de1b83](https://github.com/digipair/digipair/commit/398de1b83))
+- add send-mail cc and bcc management ([e037b4612](https://github.com/digipair/digipair/commit/e037b4612))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.144.2 (2026-10-07)
 
 ### 🚀 Features
