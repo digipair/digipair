@@ -7,6 +7,8 @@ class SendMailService {
     const {
       from,
       to,
+      cc,
+      bcc,
       subject,
       text,
       html,
@@ -17,6 +19,8 @@ class SendMailService {
     const info = await transporter.sendMail({
       from,
       to,
+      cc,
+      bcc,
       subject,
       text,
       html,

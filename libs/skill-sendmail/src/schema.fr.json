@@ -33,6 +33,24 @@
             }
           },
           {
+            "name": "cc",
+            "summary": "CC",
+            "required": false,
+            "description": "Destinataires en copie (CC)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bcc",
+            "summary": "BCC",
+            "required": false,
+            "description": "Destinataires en copie cachée (BCC)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subject",
             "summary": "Sujet",
             "required": true,

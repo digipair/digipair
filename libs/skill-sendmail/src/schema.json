@@ -33,6 +33,24 @@
             }
           },
           {
+            "name": "cc",
+            "summary": "CC",
+            "required": false,
+            "description": "CC recipients of the email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bcc",
+            "summary": "BCC",
+            "required": false,
+            "description": "BCC recipients of the email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "subject",
             "summary": "Subject",
             "required": true,
