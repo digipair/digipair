@@ -1,3 +1,7 @@
+## 0.145.1 (2026-11-25)
+
+This was a version bump only, there were no code changes.
+
 ## 0.145.0 (2026-11-25)
 
 ### 🚀 Features
