@@ -1,3 +1,14 @@
+## 0.146.0 (2026-11-27)
+
+### 🚀 Features
+
+- add skill-archive ([4a4bf9e5](https://github.com/digipair/digipair/commit/4a4bf9e5))
+- improve skill-archive ([63cab7c5](https://github.com/digipair/digipair/commit/63cab7c5))
+
+### ❤️ Thank You
+
+- Marc BUILS
+
 ## 0.145.1 (2026-11-25)
 
 This was a version bump only, there were no code changes.
