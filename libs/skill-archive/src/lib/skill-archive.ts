@@ -16,6 +16,12 @@ interface ArchiveFile {
   content: string;
 }
 
+interface ArchiveEntry {
+  filename: string;
+  size: number;
+  mimeType: string;
+}
+
 class ArchiveService {
   private toBuffer(content: string): Buffer {
     const data = (content ?? '').replace(/^data:.*;base64,/, '');
@@ -116,6 +122,60 @@ class ArchiveService {
     });
   }
 
+  private listZip(buffer: Buffer): ArchiveEntry[] {
+    const zip = new AdmZip(buffer);
+    return zip
+      .getEntries()
+      .filter(entry => !entry.isDirectory)
+      .map(entry => ({
+        filename: entry.entryName,
+        size: entry.header.size,
+        mimeType: this.mimeTypeFromFilename(entry.entryName),
+      }));
+  }
+
+  private listTar(buffer: Buffer, gzip: boolean): Promise<ArchiveEntry[]> {
+    const { extract: createExtract } = require('tar-stream');
+    const tarBuffer = gzip ? gunzipSync(buffer) : buffer;
+
+    return new Promise((resolve, reject) => {
+      const extract = createExtract();
+      const entries: ArchiveEntry[] = [];
+
+      extract.on('entry', (header: any, stream: NodeJS.ReadableStream, next: () => void) => {
+        if (header.type === 'file') {
+          entries.push({
+            filename: header.name,
+            size: header.size,
+            mimeType: this.mimeTypeFromFilename(header.name),
+          });
+        }
+        stream.on('end', next);
+        stream.resume();
+      });
+      extract.on('finish', () => resolve(entries));
+      extract.on('error', reject);
+      extract.end(tarBuffer);
+    });
+  }
+
+  private resolveFormat(buffer: Buffer, format?: string): 'zip' | 'tar' | 'tar.gz' {
+    return (format ?? this.detectFormat(buffer)) as 'zip' | 'tar' | 'tar.gz';
+  }
+
+  private extractAll(buffer: Buffer, format: string): Promise<ArchiveFile[]> | ArchiveFile[] {
+    switch (format) {
+      case 'zip':
+        return this.extractZip(buffer);
+      case 'tar':
+        return this.extractTar(buffer, false);
+      case 'tar.gz':
+        return this.extractTar(buffer, true);
+      default:
+        throw new Error(`Unsupported archive format: ${format}`);
+    }
+  }
+
   async compress(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { files = [], format = 'zip' } = params;
 
@@ -140,18 +200,36 @@ class ArchiveService {
   async extract(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
     const { file } = params;
     const buffer = this.toBuffer(file);
-    const format = params.format ?? this.detectFormat(buffer);
+    const format = this.resolveFormat(buffer, params.format);
+
+    return this.extractAll(buffer, format);
+  }
+
+  async list(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { file } = params;
+    const buffer = this.toBuffer(file);
+    const format = this.resolveFormat(buffer, params.format);
 
     switch (format) {
       case 'zip':
-        return this.extractZip(buffer);
+        return this.listZip(buffer);
       case 'tar':
-        return this.extractTar(buffer, false);
+        return this.listTar(buffer, false);
       case 'tar.gz':
-        return this.extractTar(buffer, true);
+        return this.listTar(buffer, true);
       default:
         throw new Error(`Unsupported archive format: ${format}`);
     }
+  }
+
+  async extractFile(params: any, _pinsSettingsList: PinsSettings[], _context: any): Promise<any> {
+    const { file, filename } = params;
+    const buffer = this.toBuffer(file);
+    const format = this.resolveFormat(buffer, params.format);
+
+    const files = await this.extractAll(buffer, format);
+
+    return files.find(entry => entry.filename === filename) ?? null;
   }
 }
 
@@ -160,3 +238,9 @@ export const compress = (params: any, pinsSettingsList: PinsSettings[], context:
 
 export const extract = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
   new ArchiveService().extract(params, pinsSettingsList, context);
+
+export const list = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ArchiveService().list(params, pinsSettingsList, context);
+
+export const extractFile = (params: any, pinsSettingsList: PinsSettings[], context: any) =>
+  new ArchiveService().extractFile(params, pinsSettingsList, context);

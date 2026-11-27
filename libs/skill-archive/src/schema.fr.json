@@ -126,6 +126,137 @@
           }
         }
       }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service", "tool"],
+        "summary": "Lister les fichiers d'une archive",
+        "description": "Liste les fichiers contenus dans une archive zip, tar ou tar.gz sans extraire leur contenu.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Archive encodée en base64 à inspecter (data URL accepté)",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format",
+            "required": false,
+            "description": "Format d'archive. Détecté automatiquement à partir du contenu si omis.",
+            "schema": {
+              "type": "string",
+              "enum": ["zip", "tar", "tar.gz"]
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Contenu de l'archive listé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "Liste des fichiers contenus dans l'archive",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "filename": {
+                        "type": "string",
+                        "description": "Nom (ou chemin) du fichier dans l'archive"
+                      },
+                      "size": {
+                        "type": "integer",
+                        "description": "Taille décompressée du fichier en octets"
+                      },
+                      "mimeType": {
+                        "type": "string",
+                        "description": "Type MIME déduit du nom du fichier"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/extractFile": {
+      "post": {
+        "tags": ["service", "tool"],
+        "summary": "Extraire un fichier",
+        "description": "Extrait un fichier par son nom depuis une archive zip, tar ou tar.gz.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Archive encodée en base64 depuis laquelle extraire (data URL accepté)",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          {
+            "name": "filename",
+            "summary": "Nom du fichier",
+            "required": true,
+            "description": "Nom (ou chemin) du fichier à extraire de l'archive",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format",
+            "required": false,
+            "description": "Format d'archive. Détecté automatiquement à partir du contenu si omis.",
+            "schema": {
+              "type": "string",
+              "enum": ["zip", "tar", "tar.gz"]
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Fichier extrait avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "Le fichier extrait",
+                      "properties": {
+                        "filename": {
+                          "type": "string",
+                          "description": "Nom (ou chemin) du fichier dans l'archive"
+                        },
+                        "content": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Contenu du fichier encodé en base64 sous forme de data URL"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null",
+                      "description": "Aucun fichier correspondant au nom indiqué n'a été trouvé dans l'archive"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

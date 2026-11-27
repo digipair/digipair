@@ -126,6 +126,137 @@
           }
         }
       }
+    },
+    "/list": {
+      "post": {
+        "tags": ["service", "tool"],
+        "summary": "List archive files",
+        "description": "List the files contained in a zip, tar or tar.gz archive without extracting their content.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "File",
+            "required": true,
+            "description": "Base64 encoded archive to inspect (data URL accepted)",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format",
+            "required": false,
+            "description": "Archive format. Auto-detected from the content when omitted.",
+            "schema": {
+              "type": "string",
+              "enum": ["zip", "tar", "tar.gz"]
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Archive content successfully listed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "List of files contained in the archive",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "filename": {
+                        "type": "string",
+                        "description": "Name (or path) of the file inside the archive"
+                      },
+                      "size": {
+                        "type": "integer",
+                        "description": "Uncompressed size of the file in bytes"
+                      },
+                      "mimeType": {
+                        "type": "string",
+                        "description": "MIME type inferred from the file name"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/extractFile": {
+      "post": {
+        "tags": ["service", "tool"],
+        "summary": "Extract a single file",
+        "description": "Extract a single file by name from a zip, tar or tar.gz archive.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "File",
+            "required": true,
+            "description": "Base64 encoded archive to extract from (data URL accepted)",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          {
+            "name": "filename",
+            "summary": "File name",
+            "required": true,
+            "description": "Name (or path) of the file to extract from the archive",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format",
+            "required": false,
+            "description": "Archive format. Auto-detected from the content when omitted.",
+            "schema": {
+              "type": "string",
+              "enum": ["zip", "tar", "tar.gz"]
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "File successfully extracted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "description": "The extracted file",
+                      "properties": {
+                        "filename": {
+                          "type": "string",
+                          "description": "Name (or path) of the file inside the archive"
+                        },
+                        "content": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "Base64 encoded content of the file as a data URL"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null",
+                      "description": "No file matching the given name was found in the archive"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
