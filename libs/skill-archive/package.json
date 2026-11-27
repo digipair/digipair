@@ -1,0 +1,37 @@
+{
+  "name": "@digipair/skill-archive",
+  "version": "0.145.1",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "keywords": [
+    "digipair",
+    "service",
+    "tool"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
+    },
+    "./index.esm.js": "./dist/index.esm.js",
+    "./index.cjs.js": "./dist/index.cjs.js",
+    "./package.json": "./package.json",
+    "./schema.json": "./dist/schema.json",
+    "./schema.fr.json": "./dist/schema.fr.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "nx": {
+    "name": "skill-archive"
+  },
+  "dependencies": {
+    "adm-zip": "^0.6.1",
+    "mime-types": "^2.1.35",
+    "tar-stream": "^2.2.0"
+  }
+}

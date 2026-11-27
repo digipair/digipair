@@ -239,6 +239,9 @@
     },
     {
       "path": "./libs/skill-tak"
+    },
+    {
+      "path": "./libs/skill-archive"
     }
   ]
 }

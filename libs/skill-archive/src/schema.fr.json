@@ -1,0 +1,135 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "@digipair/skill-archive",
+    "summary": "Manipulation d'archives",
+    "description": "Ce skill permet de générer et d'extraire des fichiers d'archive (zip, tar, tar.gz)",
+    "version": "0.1.0",
+    "x-icon": "🗜️"
+  },
+  "paths": {
+    "/compress": {
+      "post": {
+        "tags": ["service", "tool"],
+        "summary": "Créer une archive",
+        "description": "Crée une archive zip, tar ou tar.gz à partir d'une liste de fichiers.",
+        "parameters": [
+          {
+            "name": "files",
+            "summary": "Fichiers",
+            "required": true,
+            "description": "Liste des fichiers à inclure dans l'archive",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "summary": "Nom du fichier",
+                    "description": "Nom (ou chemin) du fichier dans l'archive"
+                  },
+                  "content": {
+                    "type": "string",
+                    "format": "byte",
+                    "summary": "Contenu",
+                    "description": "Contenu du fichier encodé en base64 (data URL accepté)"
+                  }
+                },
+                "required": ["filename", "content"]
+              }
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format",
+            "required": false,
+            "description": "Format d'archive à générer",
+            "schema": {
+              "type": "string",
+              "enum": ["zip", "tar", "tar.gz"],
+              "default": "zip"
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Archive générée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^data:",
+                  "description": "Archive encodée en base64 sous forme de data URL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/extract": {
+      "post": {
+        "tags": ["service", "tool"],
+        "summary": "Extraire une archive",
+        "description": "Extrait les fichiers contenus dans une archive zip, tar ou tar.gz.",
+        "parameters": [
+          {
+            "name": "file",
+            "summary": "Fichier",
+            "required": true,
+            "description": "Archive encodée en base64 à extraire (data URL accepté)",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          {
+            "name": "format",
+            "summary": "Format",
+            "required": false,
+            "description": "Format d'archive. Détecté automatiquement à partir du contenu si omis.",
+            "schema": {
+              "type": "string",
+              "enum": ["zip", "tar", "tar.gz"]
+            }
+          }
+        ],
+        "x-events": [],
+        "responses": {
+          "200": {
+            "description": "Archive extraite avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "Liste des fichiers extraits",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "filename": {
+                        "type": "string",
+                        "description": "Nom (ou chemin) du fichier dans l'archive"
+                      },
+                      "content": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Contenu du fichier encodé en base64 sous forme de data URL"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "x-scene-blocks": {}
+}
